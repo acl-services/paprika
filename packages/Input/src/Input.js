@@ -108,13 +108,13 @@ const Input = React.forwardRef((props, ref) => {
     <sc.Input {...styleProps} className={rootClasses}>
       {renderIcon(a11yText)}
       <input
-        data-pka-anchor="input"
-        {...moreProps}
         aria-invalid={hasError}
         aria-label={a11yText}
-        className="form-input__input"
+        data-pka-anchor="input"
         disabled={isDisabled}
         readOnly={isReadOnly}
+        {...moreProps}
+        className="form-input__input"
         value={isControlled ? value : undefined}
         defaultValue={!isControlled ? defaultValue : undefined}
         onChange={callAll(handleChange, onChange)}
