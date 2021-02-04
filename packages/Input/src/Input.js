@@ -7,17 +7,65 @@ import Button from "@paprika/button";
 import * as types from "./types";
 import * as sc from "./Input.styles";
 
+function callAll(...fns) {
+  return (...args) => {
+    for (const fn of fns) {
+      if (fn) fn(...args);
+    }
+  };
+}
+
 const Input = React.forwardRef((props, ref) => {
-  const inputClearHandler = e => {
-    e.target.value = "";
-    props.onChange(e);
-    props.onClear();
-    e.stopPropagation();
+  const {
+    a11yText,
+    clearIcon,
+    className,
+    defaultValue,
+    icon,
+    isDisabled,
+    isReadOnly,
+    hasClearButton,
+    hasError,
+    onChange,
+    onClear,
+    size,
+    value,
+    ...moreProps
+  } = props;
+
+  const isControlled = value !== null;
+
+  const [shouldShowClearButton, setShouldShowClearButton] = React.useState(
+    hasClearButton && !isDisabled && !isReadOnly && (value || defaultValue)
+  );
+
+  React.useEffect(() => {
+    setShouldShowClearButton(hasClearButton && !isDisabled && !isReadOnly && (value || defaultValue));
+  }, [hasClearButton, isDisabled, isReadOnly, value, defaultValue]);
+
+  const inputRef = React.useRef();
+  const bestRef = ref || inputRef;
+
+  const handleChange = event => {
+    if (!hasClearButton || isDisabled || isReadOnly) return;
+    if (isControlled) {
+      setShouldShowClearButton(Boolean(value));
+    } else {
+      setShouldShowClearButton(Boolean(event.target.value));
+    }
+  };
+
+  const inputClearHandler = () => {
+    if (!isControlled) {
+      if (bestRef.current) bestRef.current.value = "";
+      setShouldShowClearButton(false);
+    }
+    onClear();
   };
 
   const renderClear = () => {
-    const { clearIcon, hasClearButton, isDisabled, isReadOnly, size, value } = props;
-    if (!hasClearButton || isDisabled || isReadOnly || !value) return null;
+    if (!shouldShowClearButton) return null;
+
     const iconSize = size === types.LARGE ? types.MEDIUM : types.SMALL;
 
     return (
@@ -38,32 +86,10 @@ const Input = React.forwardRef((props, ref) => {
     return <span className="form-input__icon">{props.icon}</span>;
   };
 
-  const {
-    a11yText,
-    clearIcon,
-    className,
-    icon,
-    isDisabled,
-    isReadOnly,
-    hasClearButton,
-    hasError,
-    onClear,
-    size,
-    ...moreProps
-  } = props;
-
-  if (moreProps.value || moreProps.value === "") {
-    delete moreProps.defaultValue;
-  } else {
-    delete moreProps.value;
-  }
-
   const styleProps = {
     size,
     hasClearButton,
   };
-
-  if (a11yText) moreProps["aria-label"] = a11yText;
 
   const rootClasses = classNames(
     "form-input",
@@ -77,15 +103,19 @@ const Input = React.forwardRef((props, ref) => {
 
   return (
     <sc.Input {...styleProps} className={rootClasses}>
-      {renderIcon()}
+      {renderIcon(a11yText)}
       <input
         aria-invalid={hasError}
+        aria-label={a11yText}
         className="form-input__input"
         data-pka-anchor="input"
         disabled={isDisabled}
         readOnly={isReadOnly}
-        ref={ref}
+        value={isControlled ? value : undefined}
+        defaultValue={!isControlled ? defaultValue : undefined}
+        onChange={callAll(handleChange, onChange)}
         {...moreProps}
+        ref={ref || inputRef}
       />
       {renderClear()}
     </sc.Input>
@@ -98,7 +128,7 @@ Input.types = {
 };
 
 const propTypes = {
-  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
+  /** Provides a non-visible label for this input for assistive technologies. */
   a11yText: PropTypes.string,
 
   /** Sets the class for the input. */
@@ -107,13 +137,13 @@ const propTypes = {
   /** Custom icon for the clear action in the input. */
   clearIcon: PropTypes.node,
 
-  /** Sets the default input value  */
+  /** Sets the default input value for an uncontrolled component. */
   defaultValue: PropTypes.string,
 
-  /** If true displays a clear button inside the input if it contains a value.  */
+  /** If true displays a clear button inside the input if it contains a value. */
   hasClearButton: PropTypes.bool,
 
-  /** If true displays a red border around input to show error.  */
+  /** If true displays a red border around input to show error. */
   hasError: PropTypes.bool,
 
   /** Displays an icon inside the input. */
@@ -125,10 +155,10 @@ const propTypes = {
   /** If true it makes the input read only. */
   isReadOnly: PropTypes.bool,
 
-  /** Callback to be executed when the input value is changed. Should not be used with defaultValue prop */
+  /** Callback to be executed when the input value is changed. Should be used when value prop is provided (component is controlled). */
   onChange: PropTypes.func,
 
-  /** Callback to be executed when the input value is cleared */
+  /** Callback to be executed when the input value is cleared. */
   onClear: PropTypes.func,
 
   /** Changes the size of the input. */
@@ -153,7 +183,7 @@ const defaultProps = {
   a11yText: null,
   clearIcon: null,
   className: null,
-  defaultValue: "",
+  defaultValue: null,
   hasClearButton: false,
   hasError: false,
   icon: null,
