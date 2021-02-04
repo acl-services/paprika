@@ -21,6 +21,7 @@
     "@paprika/heading": "^1.0.6",
     "@paprika/helpers": "^2.0.1",
     "@paprika/icon": "^1.0.4",
+    "@paprika/overlay": "^1.0.4",
     "@paprika/raw-button": "^1.0.3",
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",

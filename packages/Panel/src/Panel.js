@@ -166,10 +166,9 @@ export default function Panel(props) {
       sidePanel = (
         <Portal active={!isInline}>
           <React.Fragment>
-            {overlayExtracted ? React.cloneElement(overlayExtracted, { onClose, zIndex }) : null}
-            <FocusLock as="div" {...focusLockProps}>
-              {dialog}
-            </FocusLock>
+            {overlayExtracted
+              ? React.cloneElement(overlayExtracted, { onClose, zIndex, ...focusLockProps, children: () => dialog })
+              : dialog}
           </React.Fragment>
         </Portal>
       );
