@@ -2,7 +2,7 @@ import React from "react";
 import { configure, render, fireEvent, waitFor } from "@testing-library/react";
 
 import ListBox from "../../../src";
-import { ControlledIsSelected } from "../../../stories/examples/multi";
+import { ControlledAndSelected } from "../../../stories/examples/Multi/ControlledAndSelected";
 
 configure({ testIdAttribute: "data-pka-anchor" });
 
@@ -325,7 +325,7 @@ describe("ListBox multi select", () => {
   });
 
   it("should select an option via a controlled button", () => {
-    const { getByTestId, getAllByTestId } = render(<ControlledIsSelected />);
+    const { getByTestId, getAllByTestId } = render(<ControlledAndSelected />);
     const dataAttributeIsSelected = "list-option--is-selected";
     const button1 = getByTestId("button_1");
     expect(button1).not.toBeNull();

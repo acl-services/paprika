@@ -6,23 +6,6 @@ import ListBox from "../../src";
 import { images } from "../fixtures/images";
 import * as characters from "../fixtures/characters";
 
-export const Basic = () => (
-  <ListBox>
-    {characters.villians}
-    {characters.antiHeroes}
-    {characters.heroes}
-  </ListBox>
-);
-
-export const BasicWithEmptyOption = () => (
-  <ListBox>
-    <ListBox.Option label="">&nbsp;</ListBox.Option>
-    {characters.heroes}
-    {characters.villians}
-    {characters.antiHeroes}
-  </ListBox>
-);
-
 export const Dividers = () => (
   <ListBox>
     <ListBox.Divider>Villians</ListBox.Divider>
@@ -55,13 +38,6 @@ export const BasicOptionDisabled = () => (
   </ListBox>
 );
 
-export const HasNoClearButton = () => (
-  <ListBox>
-    <ListBox.Popover hasClearButton={false} />
-    {characters.heroes}
-  </ListBox>
-);
-
 export const CustomChildrenInline = () => (
   <ListBox height={320}>
     {images.map(image => (
@@ -85,14 +61,7 @@ export const WithGroups = () => (
   </ListBox>
 );
 
-export const WithCustomZIndex = () => (
-  <ListBox>
-    <ListBox.Popover zIndex={10000}>Anti-Heroes</ListBox.Popover>
-    {characters.antiHeroes}
-  </ListBox>
-);
-
-export const WithPreventDefaultOnSelect = () => (
+export const WithRawItem = () => (
   <ListBox>
     {characters.villians}
     <ListBox.RawItem>

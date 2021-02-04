@@ -1,13 +1,11 @@
 import { Meta, Props, Story } from "@storybook/addon-docs/blocks";
-import ListBox from "../src/";
-
+import ListBox from "../src";
 import { images } from "./fixtures/images";
 import * as characters from "./fixtures/characters";
-
-import * as Multi from "./examples/multi";
-import * as Single from "./examples/single";
-import * as Trigger from "./examples/trigger.js";
-import FilterSelect from "./moreExamples/filterSelect/FilterSelect";
+import { CustomCheckboxes } from "./examples/Multi/CustomCheckboxes";
+import * as Single from "./examples/Single";
+import * as Trigger from "./examples/Trigger.js";
+import FilterSelect from "./sandbox/FilterSelect/FilterSelect";
 
 # ListBox
 
@@ -332,14 +330,16 @@ function OptionCustomCheckbox(props) {
   {characters.villians.map(Option => (
     <ListBox.Option label={Option.props.children}>
       {({ isSelected }) => <OptionCustomCheckbox isSelected={isSelected} character={Option.props.children} />}
-</ListBox>
+    </ListBox.Option>
+  ))}
+</ListBox>;
 ```
 
 In the above code snippet, `characters.villians` refers to a file named `characters` with a variable `villians` that stores an array of strings
 
 #### Result
 
-<Multi.WithCustomCheckboxes />
+<CustomCheckboxes />
 
 ### More Examples
 

@@ -2,6 +2,7 @@ import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import { testStoryParameters } from "storybook/assets/storyParameters";
 import ExampleStory from "storybook/components/ExampleStory";
+import DirectoryExample from "./sandbox/Directory/Directory";
 import FilterSelectExample from "./sandbox/FilterSelect/FilterSelect";
 import ListBox from "../src";
 
@@ -20,6 +21,19 @@ export const FilterSelectStory = () => (
 
 FilterSelectStory.story = {
   name: "Filter Select",
+  parameters: {
+    ...testStoryParameters,
+  },
+};
+
+export const ListBoxDirectoryStory = () => (
+  <ExampleStory storyName="Directory" component="ListBox" fileName="sandbox/Directory.js">
+    <DirectoryExample />
+  </ExampleStory>
+);
+
+ListBoxDirectoryStory.story = {
+  name: "Directory",
   parameters: {
     ...testStoryParameters,
   },
