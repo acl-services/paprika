@@ -56,7 +56,7 @@ export default function Header(props) {
 
   window.addEventListener("resize", handleResizeWindow);
 
-  const isBlockClass = isBlock ? "collapsible-card-header__content--is-block" : "";
+  const isBlockClass = isBlock && numberOfChildren > 1 ? "collapsible-card-header__content--is-block" : "";
   return (
     <div ref={headerRef} className="collapsible-card-header">
       <div className={`collapsible-card-header__content ${isBlockClass}`}>

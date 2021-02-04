@@ -66,7 +66,7 @@ const ExampleStory = () => {
       <StoryHeading level={1}>Collapsible Card variations</StoryHeading>
       <h3>Full-width</h3>
       <CollapsibleCard>
-        <CollapsibleCard.Header breakpoint={700}>
+        <CollapsibleCard.Header>
           <CollapsibleCard.Segment>One segment, auto decide width</CollapsibleCard.Segment>
         </CollapsibleCard.Header>
         <CollapsibleCard.Body>
@@ -85,7 +85,7 @@ const ExampleStory = () => {
       </CollapsibleCard>
       <br />
       <CollapsibleCard>
-        <CollapsibleCard.Header>
+        <CollapsibleCard.Header breakpoint={700}>
           <CollapsibleCard.Segment width={70}>Two segments, set width</CollapsibleCard.Segment>
           <CollapsibleCard.Segment width={30}>Two segments, set width</CollapsibleCard.Segment>
         </CollapsibleCard.Header>
