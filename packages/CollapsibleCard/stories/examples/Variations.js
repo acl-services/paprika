@@ -7,9 +7,9 @@ import StatusTracker from "@paprika/status-tracker";
 import CollapsibleCard from "../../src";
 
 // x go with full or half (no thirds)
-// - allow them to define width of each half
-// - hard code the breakpoint when it switches to stacked mode (e.g. 800px), though maybe i could easily make it a prop)
-// - provide a context that shares `isStacked` (so the consumer can handle and mannipulate the children)
+// x allow them to define width of each half
+// x support a breakpoint when it switches to stacked mode
+// - provide a context that shares `isBlock` (so the consumer can handle and mannipulate the children's style)
 // - convert to use .styles not .scss
 // - build the commonly used components for the switch/avatar/title/description/tag part
 // - done
@@ -66,32 +66,35 @@ const ExampleStory = () => {
       <StoryHeading level={1}>Collapsible Card variations</StoryHeading>
       <h3>Full-width</h3>
       <CollapsibleCard>
-        <CollapsibleCard.Header>
-          <CollapsibleCard.Segment>Auto Full width</CollapsibleCard.Segment>
+        <CollapsibleCard.Header breakpoint={700}>
+          <CollapsibleCard.Segment>One segment, auto decide width</CollapsibleCard.Segment>
         </CollapsibleCard.Header>
         <CollapsibleCard.Body>
           <Lipsum />
         </CollapsibleCard.Body>
       </CollapsibleCard>
+      <br />
       <CollapsibleCard>
         <CollapsibleCard.Header>
-          <CollapsibleCard.Segment>Auto 50% width</CollapsibleCard.Segment>
-          <CollapsibleCard.Segment>Auto 50% width</CollapsibleCard.Segment>
+          <CollapsibleCard.Segment>Two segments, auto decide width</CollapsibleCard.Segment>
+          <CollapsibleCard.Segment>Two segments, auto decide width</CollapsibleCard.Segment>
         </CollapsibleCard.Header>
         <CollapsibleCard.Body>
           <Lipsum />
         </CollapsibleCard.Body>
       </CollapsibleCard>
+      <br />
       <CollapsibleCard>
         <CollapsibleCard.Header>
-          <CollapsibleCard.Segment width={70}>70% width</CollapsibleCard.Segment>
-          <CollapsibleCard.Segment width={30}>30% width</CollapsibleCard.Segment>
+          <CollapsibleCard.Segment width={70}>Two segments, set width</CollapsibleCard.Segment>
+          <CollapsibleCard.Segment width={30}>Two segments, set width</CollapsibleCard.Segment>
         </CollapsibleCard.Header>
         <CollapsibleCard.Body>
           <Lipsum />
         </CollapsibleCard.Body>
       </CollapsibleCard>
-      What would happen if i put in 3?
+      <br />
+      Putting in more will still work
     </Story>
   );
 };

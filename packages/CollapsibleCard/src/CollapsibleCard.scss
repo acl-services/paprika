@@ -16,29 +16,13 @@
   display: flex;
 
   .collapsible-card-header__content {
-    flex: 1 1 auto;
-    // background-color: greenyellow;
-
-    // TODO: remove this block
-    // > div {
-    //   border: 1px dashed blue;
-    //   margin: 5px;
-    // }
-  }
-
-  &.collapsible-card-header--half .collapsible-card-header__content {
     display: flex;
-    justify-content: space-between;
+    flex: 1 1 auto;
 
-    > div {
-      &:nth-of-type(2) {
-        display: inline-flex;
-      }
-    }
-
-    @media (max-width: 800px) {
-      background-color: red;
+    &.collapsible-card-header__content--is-block {
+      background-color: turquoise;
       display: block;
+      flex: none;
     }
   }
 
