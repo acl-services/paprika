@@ -4,6 +4,7 @@ import classNames from "classnames";
 import * as constants from "@paprika/constants/lib/Constants";
 import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
 import Button from "@paprika/button";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import * as types from "./types";
 import * as sc from "./Input.styles";
 
@@ -34,6 +35,8 @@ const Input = React.forwardRef((props, ref) => {
   } = props;
 
   const isControlled = value !== null;
+
+  const i18n = useI18n();
 
   const [shouldShowClearButton, setShouldShowClearButton] = React.useState(
     hasClearButton && !isDisabled && !isReadOnly && (value || defaultValue)
@@ -70,7 +73,7 @@ const Input = React.forwardRef((props, ref) => {
 
     return (
       <Button.Icon
-        a11yText="Clear Input" // TODO: add L10n
+        a11yText={i18n.t("input.clear_button.aria_label")}
         className="form-input__clear"
         kind={types.MINOR}
         size={iconSize}
@@ -105,16 +108,16 @@ const Input = React.forwardRef((props, ref) => {
     <sc.Input {...styleProps} className={rootClasses}>
       {renderIcon(a11yText)}
       <input
+        data-pka-anchor="input"
+        {...moreProps}
         aria-invalid={hasError}
         aria-label={a11yText}
         className="form-input__input"
-        data-pka-anchor="input"
         disabled={isDisabled}
         readOnly={isReadOnly}
         value={isControlled ? value : undefined}
         defaultValue={!isControlled ? defaultValue : undefined}
         onChange={callAll(handleChange, onChange)}
-        {...moreProps}
         ref={ref || inputRef}
       />
       {renderClear()}
