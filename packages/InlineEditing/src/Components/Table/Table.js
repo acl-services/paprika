@@ -74,6 +74,42 @@ const defaultProps = {};
 //   return children;
 // });
 
+function useStatus(initialStatus = "idle") {
+  const [status, setStatus] = React.useState(initialStatus);
+
+  const handleStatus = {
+    onFocus: () => {
+      setStatus("focus");
+    },
+    onBlur: () => {
+      setStatus("idle");
+    },
+    onInteraction: () => {
+      setStatus(prev => {
+        if (prev === "focus" || prev === "editing") {
+          return "editing";
+        }
+
+        return "focus";
+      });
+    },
+  };
+
+  const types = {
+    IDLE: "idle",
+    FOCUS: "focus",
+    EDITING: "editing",
+  };
+
+  return { status, handleStatus, types, setStatus };
+}
+
+const Editable = React.forwardRef((props, ref) => {
+  const { status, handleStatus, types } = useStatus();
+  React.useImperativeHandle(ref, () => handleStatus);
+  return React.cloneElement(props.children, { ...props.children.props, status, types: { types } });
+});
+
 export default function Table(props) {
   const { children, ...moreProps } = props;
   const refCells = React.useRef(new Map());
@@ -81,7 +117,6 @@ export default function Table(props) {
   const cellKey = ({ rowIndex, columnIndex }) => `paprika.inline-editing.cell${rowIndex}-${columnIndex}`;
 
   function handleFocus({ rowIndex, columnIndex }) {
-    debugger;
     const instance = refCells.current.get(cellKey({ rowIndex, columnIndex }));
     if ("onFocus" in instance) {
       instance.onFocus();
@@ -89,7 +124,6 @@ export default function Table(props) {
   }
 
   function handleBlur({ rowIndex, columnIndex }) {
-    debugger;
     const instance = refCells.current.get(cellKey({ rowIndex, columnIndex }));
     if ("onBlur" in instance) {
       instance.onBlur();
@@ -99,9 +133,14 @@ export default function Table(props) {
   function handleKeyUp(event) {
     if (event.key === "Enter") {
       const { rowIndex, columnIndex } = event.target.dataset;
-      const ref = refCells.current.get(cellKey(rowIndex, columnIndex));
-      if (ref) ref.toggleIsEditing();
+      const ref = refCells.current.get(cellKey({ rowIndex, columnIndex }));
+      if (ref) ref.onInteraction();
     }
+  }
+
+  function handleClick({ rowIndex, columnIndex }) {
+    const ref = refCells.current.get(cellKey({ rowIndex, columnIndex }));
+    if (ref) ref.onInteraction();
   }
 
   function nextData({ nextValue, rowIndex, columnIndex }) {}
@@ -120,17 +159,24 @@ export default function Table(props) {
     const cellElementBound = getCellElement({ rowIndex, columnIndex });
     const getRect = getBoundingClientRect(cellElementBound);
 
-    const cellRender = cell({
-      ...args,
-      getCellElement: cellElementBound,
-      getRect,
-      // this set the cell (provided by the consumer) component ref and its expect to have an imperative API
-      // that we can manipulate, doing this way, we can modify and update a specific cell
-      // without the need to execute any other function of the already rendered cells
-      ref: ref => refCells.current.set(cellKey({ rowIndex, columnIndex }), ref),
-    });
+    // const cellRender = cell({
+    //   ...args,
+    //   getCellElement: cellElementBound,
+    //   getRect,
+    //   // this set the cell (provided by the consumer) component ref and its expect to have an imperative API
+    //   // that we can manipulate, doing this way, we can modify and update a specific cell
+    //   // without the need to execute any other function of the already rendered cells
+    // });
 
-    return <sc.CellOverflow>{cellRender}</sc.CellOverflow>;
+    const Cell = cell;
+
+    return (
+      <sc.CellOverflow>
+        <Editable {...args} ref={ref => refCells.current.set(cellKey({ rowIndex, columnIndex }), ref)}>
+          <Cell {...args} />
+        </Editable>
+      </sc.CellOverflow>
+    );
   };
 
   const clonedColumnDefinition = React.useMemo(() => {
@@ -154,12 +200,13 @@ export default function Table(props) {
 
   return (
     <TablePaprika
-      onFocus={handleFocus}
+      enableArrowKeyNavigation
       onBlur={handleBlur}
+      onClick={handleClick}
+      onFocus={handleFocus}
+      onKeyUp={handleKeyUp}
       ref={refTable}
       {...moreProps}
-      enableArrowKeyNavigation
-      onKeyUp={handleKeyUp}
     >
       {clonedColumnDefinition}
     </TablePaprika>

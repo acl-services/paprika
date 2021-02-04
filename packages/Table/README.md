@@ -32,6 +32,7 @@ npm install @paprika/table
 | enableArrowKeyNavigation | bool                                                                                                            | false    | false                         | For authors use only, use case: inline editing.              |
 | onFocus                  | func                                                                                                            | false    | () => {}                      | It will be call each time a new cell received the focus      |
 | onBlur                   | func                                                                                                            | false    | () => {}                      | It will be call each time a current selected cell lose focus |
+| onClick                  | func                                                                                                            | false    | () => {}                      | It will be fire each time an user click on a cell            |
 
 ### Table.ColumnDefinition
 

@@ -23,6 +23,8 @@ interface TableProps {
   onFocus?: (...args: any[]) => any;
   /** It will be call each time a current selected cell lose focus */
   onBlur?: (...args: any[]) => any;
+  /** It will be fire each time an user click on a cell */
+  onClick?: (...args: any[]) => any;
 }
 
 declare namespace Table {

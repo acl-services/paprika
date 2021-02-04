@@ -17,11 +17,13 @@ export const handleKeyDown = ({ refFocus, tableId, columnsLength, rowsLength, on
 };
 
 export const handleBlur = ({ refFocus, tableId, onBlur }) => () => {
-  const { rowIndex, columnIndex } = refFocus.current;
   if (refFocus.current) {
-    addHighlightIdleClass({ rowIndex, columnIndex }, tableId);
+    const { rowIndex, columnIndex } = refFocus.current;
+    if (refFocus.current) {
+      addHighlightIdleClass({ rowIndex, columnIndex }, tableId);
+    }
+    onBlur({ rowIndex, columnIndex, tableId });
   }
-  onBlur({ rowIndex, columnIndex, tableId });
 };
 
 export const handleFocus = ({ refFocus, tableId, onFocus }) => () => {
@@ -33,7 +35,7 @@ export const handleFocus = ({ refFocus, tableId, onFocus }) => () => {
   }
 };
 
-export const handleClick = ({ refFocus, tableId, onFocus }) => event => {
+export const handleClick = ({ refFocus, tableId, onClick }) => event => {
   if (event.target) {
     const target = event.target;
     const { rowIndex, columnIndex } = target.dataset;
@@ -42,11 +44,14 @@ export const handleClick = ({ refFocus, tableId, onFocus }) => event => {
       const rowIndexInt = Number.parseInt(rowIndex, 10);
       const columnIndexInt = Number.parseInt(columnIndex, 10);
 
+      // it should always fire the onClick
+      onClick({ rowIndex, columnIndex, tableId });
+
       if (rowIndexInt === refFocus.current.rowIndex && columnIndexInt === refFocus.current.columnIndex) {
         return;
       }
 
-      addHighlightFocus({ rowIndex: rowIndexInt, columnIndex: columnIndexInt }, tableId, onFocus);
+      addHighlightFocus({ rowIndex: rowIndexInt, columnIndex: columnIndexInt }, tableId);
 
       removeHighlightFocus(
         {

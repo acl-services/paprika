@@ -10,14 +10,15 @@ import { handleBlur, handleFocus, handleKeyDown, handleClick } from "./event";
 
 const Table = React.forwardRef((props, ref) => {
   const {
+    a11yText,
     borderType,
     children,
-    hasZebraStripes,
     data,
-    a11yText,
     enableArrowKeyNavigation,
-    onFocus,
+    hasZebraStripes,
     onBlur,
+    onClick,
+    onFocus,
     ...moreProps
   } = props;
   const [tableId] = React.useState(() => `table_${uuidv4()}`);
@@ -45,7 +46,7 @@ const Table = React.forwardRef((props, ref) => {
         onFocus: handleFocus({ refFocus, tableId, onFocus }),
         onBlur: handleBlur({ refFocus, tableId, onBlur }),
         onKeyDown: handleKeyDown({ refFocus, tableId, onFocus, ...qty }),
-        onClick: handleClick({ refFocus, tableId, onFocus }),
+        onClick: handleClick({ refFocus, tableId, onClick }),
         tabIndex: -1,
       }
     : {};
@@ -152,15 +153,18 @@ const propTypes = {
   onFocus: PropTypes.func,
   /** It will be call each time a current selected cell lose focus */
   onBlur: PropTypes.func,
+  /** It will be fire each time an user click on a cell */
+  onClick: PropTypes.func,
 };
 
 const defaultProps = {
   borderType: Table.types.border.HORIZONTAL,
   data: [],
-  hasZebraStripes: false,
   enableArrowKeyNavigation: false,
-  onFocus: () => {},
+  hasZebraStripes: false,
   onBlur: () => {},
+  onClick: () => {},
+  onFocus: () => {},
 };
 
 Table.displayName = "Table";

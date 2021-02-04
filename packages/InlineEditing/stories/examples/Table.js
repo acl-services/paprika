@@ -64,23 +64,51 @@ const TextCell = styled.div(() => {
 //   return <span>{value}</span>;
 // }
 
+function useStatus(initialStatus = "idle") {
+  const [status, setStatus] = React.useState(initialStatus);
+
+  const handleStatus = {
+    onFocus: () => {
+      setStatus("focus");
+    },
+    onBlur: () => {
+      setStatus("idle");
+    },
+    onInteraction: () => {
+      setStatus(prev => {
+        if (prev === "focus" || prev === "editing") {
+          return "editing";
+        }
+
+        return "focus";
+      });
+    },
+  };
+
+  const types = {
+    IDLE: "idle",
+    FOCUS: "focus",
+    EDITING: "editing",
+  };
+
+  return { status, handleStatus, types, setStatus };
+}
+
 const TextEditable = React.forwardRef((props, ref) => {
-  const [isEditing, setIsEditing] = React.useState(false);
-  const [isActive, setIsActive] = React.useState(false);
+  const { status, handleStatus, types } = useStatus();
 
-  React.useImperativeHandle(ref, () => {
-    return {
-      onFocus: () => {
-        setIsActive(true);
-      },
-      onBlur: () => {
-        setIsActive(false);
-      },
-    };
-  });
+  React.useImperativeHandle(ref, () => handleStatus);
 
-  return <span>{isActive ? "isActive" : props.value}</span>;
+  if (status === types.IDLE) return <span>{props.value}</span>;
+
+  if (status === types.FOCUS) return <span>has focus</span>;
+
+  if (status === types.EDITING) return <span>is editing</span>;
 });
+
+const Test = props => {
+  return props.status;
+};
 
 export default function() {
   const [data, setData] = React.useState(dataMock);
@@ -100,14 +128,20 @@ export default function() {
       <Table.ColumnDefinition
         header="author"
         width="180"
-        cell={props => {
-          return <TextEditable value={props.row.book} {...props} />;
-        }}
+        // cell={props => {
+        //   // <TextEditable value={props.row.book} {...props} />;
+        //   // return <span>{props.status}</span>;
+        // }}
+        cell={props => (
+          <>
+            {props.row.author} {props.status}
+          </>
+        )}
       />
-      {/* <Table.ColumnDefinition header="title" width="180" cell={React.forwardRef(({ row }) => <Text.Output>{row.book}</Text.Output>} />
+      <Table.ColumnDefinition header="title" width="180" cell={props => props.row.book} />
       <Table.ColumnDefinition header="cover" cell={({ row }) => <img height={74} src={row.cover} alt="cover book" />} />
       <Table.ColumnDefinition header="tags" width="340" cell={({ row }) => row.tags.map(tag => <Tag>{tag}</Tag>)} />
-      <Table.ColumnDefinition header="description" cell={({ row }) => <TextEllipsis>{row.description}</TextEllipsis>} /> */}
+      <Table.ColumnDefinition header="description" cell={({ row }) => <TextEllipsis>{row.description}</TextEllipsis>} />
     </Table>
   );
 }
