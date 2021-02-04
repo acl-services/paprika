@@ -6,14 +6,6 @@ export default {
   title: getStoryName("InlineEditing"),
 };
 
-export const Text = () => {
-  return (
-    <div style={{ padding: "32px" }}>
-      <widgets.Text />
-    </div>
-  );
-};
-
 export const Table = () => {
   return <widgets.Table />;
 };
