@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import DeleteIcon from "@paprika/icon/lib/Trashbin";
 import Input from "@paprika/input";
-import Select from "@paprika/select";
+import ListBox from "@paprika/list-box";
 import DatePicker from "../DatePicker";
 import FilterContext from "../../context";
 import * as types from "../../types";
@@ -26,6 +26,8 @@ const defaultProps = {
   id: null,
   renderValueField: null,
 };
+
+const MAX_OPTIONS = 15;
 
 function Item(props) {
   const {
@@ -56,13 +58,12 @@ function Item(props) {
     onDeleteFilter(id);
   }
 
-  function handleChangeColumn(event) {
-    const newColumnId = event.target.value;
-    onChangeFilter(types.changeTypes.COLUMN, { id, columnId: newColumnId });
+  function handleChangeColumn(index, options) {
+    onChangeFilter(types.changeTypes.COLUMN, { id, columnId: options[index].value });
   }
 
-  function handleChangeRule(event) {
-    onChangeFilter(types.changeTypes.RULE, { id, rule: event.target.value });
+  function handleChangeRule(index, options) {
+    onChangeFilter(types.changeTypes.RULE, { id, rule: options[index].value });
   }
 
   function handleChangeValue(e) {
@@ -80,31 +81,29 @@ function Item(props) {
     }
   }
 
-  function handleChangeBooleanFilterValue(event) {
-    onChangeFilter(types.changeTypes.FILTER_VALUE, { id, value: event.target.value === "true" });
+  function handleChangeBooleanFilterValue(index, options) {
+    onChangeFilter(types.changeTypes.FILTER_VALUE, { id, value: options[index].value === "true" });
   }
 
-  function handleChangeSingleSelectFilterValue(event) {
-    onChangeFilter(types.changeTypes.FILTER_VALUE, { id, value: event.target.value });
+  function handleChangeSingleSelectFilterValue(index, options) {
+    onChangeFilter(types.changeTypes.FILTER_VALUE, { id, value: options[index].value });
   }
 
   function renderRuleField() {
     switch (selectedColumnType) {
       case types.columnTypes.BOOLEAN:
-        return I18n.t("filter.rules.is");
+        return <sc.RuleSelect data-pka-anchor="filter.item.ruleSelector">{I18n.t("filter.rules.is")}</sc.RuleSelect>;
       default:
         return (
-          <sc.RuleSelect
-            as={Select}
-            onChange={handleChangeRule}
-            value={selectedRule}
-            data-pka-anchor="filter.ruleSelector"
-          >
-            {rulesByType[selectedColumnType].map(rule => (
-              <option key={rule} value={rule}>
-                {I18n.t(`filter.rules.${localeKeysByRule[rule]}`)}
-              </option>
-            ))}
+          <sc.RuleSelect data-pka-anchor="filter.item.ruleSelector">
+            <ListBox onChange={handleChangeRule}>
+              <ListBox.Trigger hasClearButton={false} />
+              {rulesByType[selectedColumnType].map(rule => (
+                <ListBox.Option key={rule} value={rule} isSelected={rule === selectedRule}>
+                  {I18n.t(`filter.rules.${localeKeysByRule[rule]}`)}
+                </ListBox.Option>
+              ))}
+            </ListBox>
           </sc.RuleSelect>
         );
     }
@@ -123,9 +122,16 @@ function Item(props) {
     switch (selectedColumnType) {
       case types.columnTypes.BOOLEAN:
         return (
-          <sc.ValueInput as={Select} value={value.toString()} onChange={handleChangeBooleanFilterValue}>
-            <option value="true">{I18n.t("filter.rules.true")}</option>
-            <option value="false">{I18n.t("filter.rules.false")}</option>
+          <sc.ValueInput data-pka-anchor="filter.item.valueInput" value={value.toString()}>
+            <ListBox onChange={handleChangeBooleanFilterValue}>
+              <ListBox.Trigger hasClearButton={false} />
+              <ListBox.Option value="true" isSelected={value}>
+                {I18n.t("filter.rules.true")}
+              </ListBox.Option>
+              <ListBox.Option value="false" isSelected={!value}>
+                {I18n.t("filter.rules.false")}
+              </ListBox.Option>
+            </ListBox>
           </sc.ValueInput>
         );
       case types.columnTypes.DATE:
@@ -135,21 +141,36 @@ function Item(props) {
             initialDate={value}
             onChange={handleChangeDatePicker}
             parsingFormat={columns.find(({ id }) => id === selectedColumnId).momentParsingFormat}
+            data-pka-anchor="filter.item.valueInput"
           />
         );
 
       case types.columnTypes.SINGLE_SELECT:
         return (
-          <sc.ValueInput as={Select} value={value} onChange={handleChangeSingleSelectFilterValue}>
-            {selectOptions.map(data => (
-              <option key={data[selectedColumnId]} value={data[selectedColumnId]}>
-                {data[selectedColumnId]}
-              </option>
-            ))}
+          <sc.ValueInput data-pka-anchor="filter.item.valueInput">
+            <ListBox onChange={handleChangeSingleSelectFilterValue}>
+              {selectOptions >= MAX_OPTIONS ? <ListBox.Filter /> : null}
+              {selectOptions.map(data => (
+                <ListBox.Option
+                  key={data[selectedColumnId]}
+                  value={data[selectedColumnId]}
+                  isSelected={data[selectedColumnId] === value}
+                >
+                  {data[selectedColumnId]}
+                </ListBox.Option>
+              ))}
+            </ListBox>
           </sc.ValueInput>
         );
       default:
-        return <sc.ValueInput as={Input} value={value} onChange={handleChangeValue} />;
+        return (
+          <sc.ValueInput
+            as={Input}
+            value={value}
+            onChange={handleChangeValue}
+            data-pka-anchor="filter.item.valueInput"
+          />
+        );
     }
   }
 
@@ -158,16 +179,16 @@ function Item(props) {
       <FilterPrefix index={index} onChangeOperator={onChangeOperator} operator={operator} />
       <sc.FilterItem data-pka-anchor="filter.item">
         <sc.RowWrapper>
-          <sc.ColumnSelect
-            data-pka-anchor="filter.item.columnSelect"
-            onChange={handleChangeColumn}
-            value={selectedColumnId}
-          >
-            {columns.map(column => (
-              <option key={column.id} value={column.id}>
-                {column.label}
-              </option>
-            ))}
+          <sc.ColumnSelect data-pka-anchor="filter.item.columnSelector">
+            <ListBox onChange={handleChangeColumn}>
+              <ListBox.Trigger hasClearButton={false} />
+              {columns.length >= MAX_OPTIONS ? <ListBox.Filter /> : null}
+              {columns.map(column => (
+                <ListBox.Option key={column.id} value={column.id} isSelected={column.id === selectedColumnId}>
+                  {column.label}
+                </ListBox.Option>
+              ))}
+            </ListBox>
           </sc.ColumnSelect>
 
           {renderRuleField()}

@@ -17,6 +17,8 @@ interface TableProps {
   hasZebraStripes?: boolean;
   /** Array of data to be stored in the Table */
   data?: shape[];
+  /** For authors use only, use case: inline editing. */
+  enableArrowKeyNavigation?: boolean;
 }
 
 declare namespace Table {

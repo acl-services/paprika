@@ -28,22 +28,18 @@ describe("<DataGrid />", () => {
   it("Should have infinity scroll", () => {
     cy.visitStorybook(`${storyPrefix}-backyard-tests--infinity-scroll`);
 
-    cy.getByText(/Rows:300/i)
-      .should("exist")
-      .getAllByRole("rowgroup")
+    cy.findByText(/Rows:300/i).should("exist");
+    cy.findAllByRole("rowgroup")
       .last()
       .then($e => {
         window.requestAnimationFrame(() => $e.get(0).scrollTo(0, $e.get(0).scrollHeight));
-      })
-      .getByText(/Rows:600/i)
-      .should("exist");
+      });
+    cy.findByText(/Rows:600/i).should("exist");
   });
 
   it("Should not show collapsed content", () => {
-    cy.visitStorybook(`${storyPrefix}-examples--collapsible`)
-      .getByRole("grid")
-      .contains(/narratives/i)
-      .should("not.be.visible");
+    cy.visitStorybook(`${storyPrefix}-examples--collapsible`);
+    cy.findByRole("grid").should("not.contain", /narratives/i);
   });
 
   xit("should render StickyColumn", () => {
@@ -135,12 +131,10 @@ describe("<DataGrid />", () => {
   it("should navigate DataGrid-collapsible with enter key and up, down arrow keys", () => {
     cy.visitStorybook(`${storyPrefix}-examples--collapsible`);
 
-    cy.getByText("Audit Planning")
-      .trigger("mouseup")
-      .getAllByRole("grid")
-      .should("contain", "Narratives");
+    cy.findByText("Audit Planning").trigger("mouseup");
+    cy.findAllByRole("grid").should("contain", "Narratives");
 
-    cy.getByText("Audit Planning")
+    cy.findByText("Audit Planning")
       .trigger("mouseup")
       .trigger("keydown", keyEvent.down)
       .trigger("keyup", keyEvent.enter)

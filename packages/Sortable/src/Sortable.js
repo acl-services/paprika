@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import uuid from "uuid/v4";
+import { v4 as uuidv4 } from "uuid";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import SortableItem from "./components/SortableItem/SortableItem";
@@ -32,7 +32,8 @@ function filterChildren(children) {
 
 const Sortable = ({ children, onChange, hasNumbers, hasZebraStripes, onRemove, ...moreProps }) => {
   const I18n = useI18n();
-  const dropId = React.useRef(uuid());
+  const [dropId] = React.useState(() => `droppable_${uuidv4()}`);
+
   const validChildren = filterChildren(children);
 
   const handleDragStart = (start, provided) => {
@@ -73,7 +74,7 @@ const Sortable = ({ children, onChange, hasNumbers, hasZebraStripes, onRemove, .
       onDragUpdate={handleDragUpdate}
       liftInstruction={I18n.t("sortable.aria_description")}
     >
-      <Droppable droppableId={dropId.current}>
+      <Droppable droppableId={dropId}>
         {(provided, snapshot) => (
           <sc.Sortable
             {...provided.droppableProps}

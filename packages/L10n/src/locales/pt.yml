@@ -128,34 +128,6 @@ pt:
         plural_label: "{{numberOfHiddenColumn}} colunas ocultas"
         search_placeholder: Pesquisar...
       no_results: Nenhum resultado
-      filter:
-        no_filters_applied: Nenhum filtro aplicado a esta exibição
-        label: Filtro
-        singular_label: 1 filtro aplicado
-        plural_label: "{{numberOfFilters}} filtros aplicados"
-        add_filter: Adicionar um campo para filtrar
-        and: e
-        or: ou
-        where: Onde
-        rules:
-          is: é
-          is_not: não é
-          contains: contém
-          does_not_contain: não contém
-          is_blank: está em branco
-          is_not_blank: não está em branco
-          equals: igual a
-          not_equal_to: diferente de
-          greater_than: ">"
-          less_than: "<"
-          greater_than_or_equal_to: "≥"
-          less_than_or_equal_to: "≤"
-          is_empty: está vazio
-          is_not_empty: não está vazio
-          is_before: é antes de
-          is_after: é depois de
-          true: "verdadeiro"
-          false: "falso"
       search_placeholder: Pesquisar...
       search_a11y_text: Pesquisar os dados
       sort:
@@ -192,6 +164,7 @@ pt:
     dynamicHyperlinkTransformer:
       access_denied: "Acesso negado"
       invalid_url: "URL inválido"
+      exceeded_max_links_rendered: "Não foi possível renderizar"
       loading: Carregando...
     filter:
       actions:
@@ -199,9 +172,8 @@ pt:
         clear: Limpar
         delete: Excluir
       no_filters_applied: Nenhum filtro aplicado a esta exibição
-      label: Filtrar
-      lowercase_label: "{{count}} filtro"
-      lowercase_label_plural: "{{count}} filtros"
+      label: Filtro
+      label_with_count: "{{count}} filtrado(s)"
       and: E
       or: Ou
       rules:
@@ -217,7 +189,7 @@ pt:
         less_than: "<"
         greater_than_or_equal_to: "≥"
         less_than_or_equal_to: "≤"
-        is_empty: está em branco
+        is_empty: está vazio
         is_not_empty: não está vazio
         is_before: é antes de
         is_after: é depois de

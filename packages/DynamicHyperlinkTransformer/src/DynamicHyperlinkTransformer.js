@@ -13,6 +13,11 @@ function getDynamicHyperlinks(document) {
   return Array.from(document.querySelectorAll(dynamicHyperlinkSelector));
 }
 
+function stripHtml(str) {
+  const doc = new DOMParser().parseFromString(str, "text/html");
+  return doc.body.textContent || "";
+}
+
 export default function DynamicHyperlinkTransformer({ onFetch }) {
   const I18n = useI18n();
 
@@ -36,15 +41,24 @@ export default function DynamicHyperlinkTransformer({ onFetch }) {
               .then(response => {
                 const { error, name, term } = response;
 
-                const className = error ? "dynamic-hyperlink--invalid" : "dynamic-hyperlink--valid";
-                const linkText = error ? originalLinkUrl : name;
-                const errorText = error ? I18n.t(`dynamicHyperlinkTransformer.${error}`) : "";
+                dynamicHyperlink.innerHTML = ""; // eslint-disable-line no-param-reassign
 
-                dynamicHyperlink.innerHTML = linkText; // eslint-disable-line no-param-reassign
-                const typeOrErrorSpan = document.createElement("span");
-                typeOrErrorSpan.innerHTML = error ? `- ${errorText}` : term;
-                typeOrErrorSpan.className = className;
-                dynamicHyperlink.appendChild(typeOrErrorSpan);
+                const labelSpan = document.createElement("span");
+                labelSpan.className = "dynamic-hyperlink--label";
+                labelSpan.innerHTML = error ? stripHtml(`${originalLinkUrl} `) : stripHtml(`${name} `);
+                dynamicHyperlink.appendChild(labelSpan);
+
+                if (error) {
+                  const errorSpan = document.createElement("span");
+                  errorSpan.className = "dynamic-hyperlink--invalid";
+                  errorSpan.innerHTML = `- ${I18n.t(`dynamicHyperlinkTransformer.${error}`)}`;
+                  dynamicHyperlink.appendChild(errorSpan);
+                } else {
+                  const termSpan = document.createElement("span");
+                  termSpan.className = "dynamic-hyperlink--valid";
+                  termSpan.innerHTML = stripHtml(term);
+                  dynamicHyperlink.appendChild(termSpan);
+                }
               });
           } else {
             throw new Error("In DynamicHyperlinkTransformer component, the onFetch prop must return a Promise");
@@ -58,16 +72,16 @@ export default function DynamicHyperlinkTransformer({ onFetch }) {
     }
 
     function updateDynamicHyperlinksWhenReady() {
+      updateDynamicHyperlinks(document);
+
       const ckEditorInstances = getCkEditorInstances();
 
       if (ckEditorInstances) {
         Object.entries(ckEditorInstances).forEach(([, ckEditorInstance]) => {
-          ckEditorInstance.on("instanceReady", () => {
+          ckEditorInstance.on("dataReady", () => {
             updateDynamicHyperlinks(ckEditorInstance.document.$);
           });
         });
-      } else {
-        updateDynamicHyperlinks(document);
       }
     }
 

@@ -3,6 +3,7 @@ import InputExample from "./InputExample";
 import { InputStory } from "../Input.stories.styles";
 
 const WithRefStory = () => {
+  // TODO: Add example with React.useRef()
   let $input;
   const setRef = node => {
     $input = node;
@@ -19,7 +20,7 @@ const WithRefStory = () => {
           <code>ref</code>
         </small>
       </h3>
-      <InputExample ref={setRef} />
+      <InputExample ref={setRef} hasClearButton />
       <small>This text input will capture the focus after 1 second.</small>
     </InputStory>
   );

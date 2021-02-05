@@ -14,7 +14,7 @@ import rules, { defaultRulesByType, logicalFilterOperators } from "./rules";
 import * as sc from "./Filter.styles";
 
 function getLabelText(numberOfFilters, I18n) {
-  return numberOfFilters ? I18n.t("filter.lowercase_label", { count: numberOfFilters }) : I18n.t("filter.label");
+  return numberOfFilters ? I18n.t("filter.label_with_count", { count: numberOfFilters }) : I18n.t("filter.label");
 }
 
 export default function Filter(props) {

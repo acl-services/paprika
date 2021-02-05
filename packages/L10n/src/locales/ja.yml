@@ -128,34 +128,6 @@ ja:
         plural_label: "{{numberOfHiddenColumn}}列非表示"
         search_placeholder: 検索...
       no_results: 結果なし
-      filter:
-        no_filters_applied: このビューに適用するフィルターなし
-        label: フィルター
-        singular_label: 1フィルター適用済み
-        plural_label: "{{numberOfFilters}}フィルター適用済み"
-        add_filter: フィルター対象のフィールドを追加
-        and: および
-        or: または
-        where: 条件として
-        rules:
-          is: 'は次である:'
-          is_not: 'は次でない:'
-          contains: 'は次を含む:'
-          does_not_contain: 'は次を含まない:'
-          is_blank: は空白である
-          is_not_blank: は空白でない
-          equals: 'は次と一致する:'
-          not_equal_to: 'は次と一致しない:'
-          greater_than: ">"
-          less_than: "<"
-          greater_than_or_equal_to: "≥"
-          less_than_or_equal_to: "≤"
-          is_empty: は空である
-          is_not_empty: は空でない
-          is_before: 'は次より前である:'
-          is_after: 'は次より後である:'
-          true: "真"
-          false: "偽"
       search_placeholder: 検索...
       search_a11y_text: データを検索
       sort:
@@ -192,6 +164,7 @@ ja:
     dynamicHyperlinkTransformer:
       access_denied: "アクセスが拒否されました"
       invalid_url: "URL が無効です"
+      exceeded_max_links_rendered: "レンダリングできませんでした"
       loading: 読み込み中...
     filter:
       actions:
@@ -200,8 +173,7 @@ ja:
         delete: 削除
       no_filters_applied: このビューに適用するフィルターなし
       label: フィルター
-      lowercase_label: "{{count}} フィルター"
-      lowercase_label_plural: "{{count}} フィルター"
+      label_with_count: "{{count}}件フィルター済み"
       and: および
       or: または
       rules:

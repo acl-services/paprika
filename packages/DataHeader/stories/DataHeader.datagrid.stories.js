@@ -1,6 +1,6 @@
 import React from "react";
 import DataGrid from "@paprika/data-grid";
-import DropdownMenu from "@paprika/dropdown-menu";
+import OverflowMenu from "@paprika/overflow-menu";
 import EllipsisVertical from "@paprika/icon/lib/EllipsisVertical";
 
 import { getStoryName } from "storybook/storyTree";
@@ -23,14 +23,14 @@ function Menu(props) {
   };
 
   return (
-    <DropdownMenu>
-      <DropdownMenu.Trigger buttonType="raw">
+    <OverflowMenu>
+      <OverflowMenu.Trigger buttonType="raw">
         <EllipsisVertical />
-      </DropdownMenu.Trigger>
-      <DropdownMenu.Item onClick={handleClick("one")}>One</DropdownMenu.Item>
-      <DropdownMenu.Item onClick={handleClick("two")}>Two</DropdownMenu.Item>
-      <DropdownMenu.Item onClick={handleClick("three")}>Three</DropdownMenu.Item>
-    </DropdownMenu>
+      </OverflowMenu.Trigger>
+      <OverflowMenu.Item onClick={handleClick("one")}>One</OverflowMenu.Item>
+      <OverflowMenu.Item onClick={handleClick("two")}>Two</OverflowMenu.Item>
+      <OverflowMenu.Item onClick={handleClick("three")}>Three</OverflowMenu.Item>
+    </OverflowMenu>
   );
 }
 

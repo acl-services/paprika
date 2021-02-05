@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import nanoid from "nanoid";
+import { v4 as uuidv4 } from "uuid";
 import { FormElementContext } from "../../FormElement";
 import * as sc from "./Error.styles";
 
 function Error(props) {
   const { children, ...moreProps } = props;
   const { addIdToAriaDescribedBy } = React.useContext(FormElementContext);
-  const [ariaErrorId] = React.useState(nanoid);
+  const [ariaErrorId] = React.useState(() => `form-element-aria-error_${uuidv4()}`);
 
   React.useEffect(() => {
     if (addIdToAriaDescribedBy) addIdToAriaDescribedBy({ ariaErrorId });

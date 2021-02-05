@@ -1,6 +1,6 @@
 import React from "react";
 import Table from "@paprika/table";
-import DropdownMenu from "@paprika/dropdown-menu";
+import OverflowMenu from "@paprika/overflow-menu";
 // You should import this icon from WASABICONS if you are using it on the highbond ecosystem.
 import EllipsisVertical from "@paprika/icon/lib/EllipsisVertical";
 import DataHeader from "../src";
@@ -13,14 +13,14 @@ const data = [
 
 function Menu() {
   return (
-    <DropdownMenu>
-      <DropdownMenu.Trigger buttonType="raw">
+    <OverflowMenu>
+      <OverflowMenu.Trigger buttonType="raw">
         <EllipsisVertical />
-      </DropdownMenu.Trigger>
-      <DropdownMenu.Item onClick={() => {}}>One</DropdownMenu.Item>
-      <DropdownMenu.Item onClick={() => {}}>Two</DropdownMenu.Item>
-      <DropdownMenu.Item onClick={() => {}}>Three</DropdownMenu.Item>
-    </DropdownMenu>
+      </OverflowMenu.Trigger>
+      <OverflowMenu.Item onClick={() => {}}>One</OverflowMenu.Item>
+      <OverflowMenu.Item onClick={() => {}}>Two</OverflowMenu.Item>
+      <OverflowMenu.Item onClick={() => {}}>Three</OverflowMenu.Item>
+    </OverflowMenu>
   );
 }
 

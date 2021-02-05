@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import nanoid from "nanoid";
+import { v4 as uuidv4 } from "uuid";
 import { FormElementContext } from "../../FormElement";
 import * as sc from "./Description.styles";
 
 function Description(props) {
   const { children, ...moreProps } = props;
   const { addIdToAriaDescribedBy } = React.useContext(FormElementContext);
-  const [ariaDescriptionId] = React.useState(nanoid);
+  const [ariaDescriptionId] = React.useState(() => `form-element-aria-desc_${uuidv4()}`);
 
   React.useEffect(() => {
     if (addIdToAriaDescribedBy) addIdToAriaDescribedBy({ ariaDescriptionId });
