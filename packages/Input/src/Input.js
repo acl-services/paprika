@@ -34,7 +34,7 @@ const Input = React.forwardRef((props, ref) => {
     ...moreProps
   } = props;
 
-  const isControlled = value !== null;
+  const isControlled = value !== undefined;
 
   const i18n = useI18n();
 
@@ -46,8 +46,8 @@ const Input = React.forwardRef((props, ref) => {
     setShouldShowClearButton(hasClearButton && !isDisabled && !isReadOnly && (value || defaultValue));
   }, [hasClearButton, isDisabled, isReadOnly, value, defaultValue]);
 
-  const inputRef = React.useRef();
-  const bestRef = ref || inputRef;
+  const refInput = React.useRef();
+  const refBest = ref || refInput;
 
   const handleChange = event => {
     if (!hasClearButton || isDisabled || isReadOnly) return;
@@ -60,7 +60,7 @@ const Input = React.forwardRef((props, ref) => {
 
   const inputClearHandler = () => {
     if (!isControlled) {
-      if (bestRef.current) bestRef.current.value = "";
+      if (refBest.current) refBest.current.value = "";
       setShouldShowClearButton(false);
     }
     onClear();
@@ -118,7 +118,7 @@ const Input = React.forwardRef((props, ref) => {
         value={isControlled ? value : undefined}
         defaultValue={!isControlled ? defaultValue : undefined}
         onChange={callAll(handleChange, onChange)}
-        ref={ref || inputRef}
+        ref={ref || refInput}
       />
       {renderClear()}
     </sc.Input>
@@ -196,7 +196,7 @@ const defaultProps = {
   onClear: () => {},
   size: Input.types.size.MEDIUM,
   type: Input.types.type.TEXT,
-  value: null,
+  value: undefined,
 };
 
 Input.displayName = "Input";
