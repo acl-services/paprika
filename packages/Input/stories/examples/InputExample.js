@@ -8,10 +8,7 @@ const InputExample = React.forwardRef((props, ref) => {
     <Input
       {...props}
       onChange={e => {
-        setValue(e.target.value);
-      }}
-      onClear={() => {
-        setValue("");
+        setValue(e ? e.target.value : "");
       }}
       ref={ref}
       value={value}
