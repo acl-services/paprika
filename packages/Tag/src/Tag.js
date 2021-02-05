@@ -23,7 +23,7 @@ Delete.defaultProps = {
 };
 
 export default function Tag(props) {
-  const { children, onRemove, size, hasDeleteButton, onClick, a11yText, isDisabled, ...moreProps } = props;
+  const { children, onRemove, size, onClick, a11yText, isDisabled, ...moreProps } = props;
   const isChildString = typeof children === "string";
 
   const handleRemove = e => {
@@ -36,11 +36,14 @@ export default function Tag(props) {
       <sc.Ellipsis isChildString={isChildString} size={size}>
         {children}
       </sc.Ellipsis>
-      {hasDeleteButton ? <Delete isDisabled={isDisabled} onRemove={handleRemove} size={size} /> : null}
+      {onRemove ? <Delete isDisabled={isDisabled} onRemove={handleRemove} size={size} /> : null}
     </>
   );
 
   if (onClick) {
+    if (!a11yText) {
+      console.warn("Tag component should include an a11yText prop if an onClick is provided.");
+    }
     return (
       <sc.RawButtonTag a11yText={a11yText} isDisabled={isDisabled} onClick={onClick} {...moreProps}>
         {content}
@@ -62,12 +65,15 @@ Tag.types = {
 };
 
 const propTypes = {
+  // used in aria-tag on the root element
   a11yText: PropTypes.string,
+  // Pass a function to show a delete button
   onRemove: PropTypes.func,
   children: PropTypes.node.isRequired,
+  // Disables tag onClick and delete button functionality
   isDisabled: PropTypes.bool,
+  // Fires when clicking the root tag element. Should also pass value for a11yText when using this.
   onClick: PropTypes.func,
-  hasDeleteButton: PropTypes.bool,
   tagColor: PropTypes.oneOf([
     Tag.types.color.BLACK,
     Tag.types.color.BLUE,
@@ -86,7 +92,6 @@ const propTypes = {
 
 const defaultProps = {
   a11yText: null,
-  hasDeleteButton: false,
   isDisabled: false,
   onClick: null,
   onRemove: null,

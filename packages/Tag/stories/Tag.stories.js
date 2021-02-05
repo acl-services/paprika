@@ -37,19 +37,19 @@ export function TagsExample() {
             {permutation.tagSize} with Icon Avatar
           </Tag>
           <Tag size={permutation.tagSize}>{`${permutation.tagSize} just text`}</Tag>
-          <Tag size={permutation.tagSize} onRemove={handleRemove} hasDeleteButton>
+          <Tag size={permutation.tagSize} onRemove={handleRemove}>
             {`${permutation.tagSize} has delete option`}
           </Tag>
-          <Tag size={permutation.tagSize} onRemove={handleRemove} hasDeleteButton style={{ width: "120px" }}>
+          <Tag size={permutation.tagSize} onRemove={handleRemove} style={{ width: "120px" }}>
             {`${permutation.tagSize} has delete option and really long text`}
           </Tag>
           <Tag onClick={handleClick} size={permutation.tagSize}>
             {`${permutation.tagSize} has onClick  handler`}
           </Tag>
-          <Tag onClick={handleClick} size={permutation.tagSize} onRemove={handleRemove} hasDeleteButton>
+          <Tag onClick={handleClick} size={permutation.tagSize} onRemove={handleRemove}>
             {`${permutation.tagSize} has onClick  handler and delete option`}
           </Tag>
-          <Tag onClick={handleClick} size={permutation.tagSize} onRemove={handleRemove} hasDeleteButton isDisabled>
+          <Tag onClick={handleClick} size={permutation.tagSize} onRemove={handleRemove} isDisabled>
             {`${permutation.tagSize} has onClick  handler and delete option and is disabled`}
           </Tag>
         </Tags>
