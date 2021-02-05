@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Tag from "../src";
-// import { mockData } from "../src/mockData";
 
 export default {
   title: "Tag",
