@@ -26,7 +26,7 @@ function getOptionInPopover() {
 function getDeleteButtonByOptionInTrigger(text, $trigger) {
   return [...$trigger.querySelectorAll(`li`)]
     .filter(li => li.textContent === text)[0]
-    .querySelector("[data-pka-anchor='list-box-tags.pill.delete']");
+    .querySelector("[data-pka-anchor='tag.delete']");
 }
 
 describe("ListBoxTags", () => {

@@ -6,6 +6,8 @@ interface TagProps {
 
   a11yText?: string;
 
+  borderColor?: string;
+
   onRemove?: (...args: any[]) => any;
 
   children: React.ReactNode;
@@ -13,8 +15,6 @@ interface TagProps {
   isDisabled?: boolean;
 
   onClick?: (...args: any[]) => any;
-
-  hasDeleteButton?: boolean;
 
   tagColor?:
     | Tag.types.color.BLACK

@@ -24,7 +24,7 @@ export default function App() {
       <ListBox
         noResultsMessage="No results found, but you can add an email and then press enter..."
         selectedOptions={selectedOptions}
-        pillLabelKey="name"
+        tagLabelKey="name"
         {...moreProps}
       >
         {filteredData.map(option => {
