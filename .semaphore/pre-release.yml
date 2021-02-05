@@ -22,8 +22,13 @@ blocks:
       jobs:
         - name: "Publish to NPM"
           commands:
+            - git checkout -b pre-release-$SEMAPHORE_PIPELINE_ID
+            - git push origin pre-release-$SEMAPHORE_PIPELINE_ID --no-verify
             - nvm use
             - npx lerna bootstrap
             - yarn
-            - yarn lerna version --conventional-commits --conventional-prerelease --yes
+            - yarn lerna version --conventional-commits --conventional-prerelease --no-changelog --yes
             - yarn lerna publish from-package --yes --dist-tag next
+            - git add packages/*.md packages/*/index.d.ts
+            - git commit -m 'chore(Publish): automate readme, type definitions and changelog update' --no-verify
+            - git push origin pre-release-$SEMAPHORE_PIPELINE_ID --no-verify

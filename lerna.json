@@ -3,6 +3,10 @@
   "npmClient": "yarn",
   "useWorkspaces": true,
   "command": {
+    "version": {
+      "message": "chore(Paprika): publish packages",
+      "allowBranch": ["main", "pre-release-*", "release-*"]
+    },
     "publish": {
       "ignoreChanges": ["ignored-file", "*.md", "*.spec.js", "*.stories.js", "*.cypress.js"]
     }
