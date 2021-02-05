@@ -42,6 +42,10 @@ import "@paprika/helpers/lib/polyfills/elementClosest";
 
 <br />
 
+#### callAll(functions[])
+
+Returns a function that will call all functions passed as arguments.
+
 #### extractChildren(children, types[])
 
 Get a hash table of components from `chilren` argument where the `displayName` property of `child` matches an item provided in the `types` argument with the keys of the return object matching the items in `types`.
