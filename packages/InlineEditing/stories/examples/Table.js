@@ -1,24 +1,26 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import Table from "../../src/components/Table/Table";
+import Table, { Text } from "../../src";
 import dataMock from "./mock";
 
 export default function() {
   const [data] = React.useState(dataMock);
   return (
-    <Table data={data} hasZebraStripes>
+    <Table data={data} hasZebraStripes a11yText="My Table">
       <Table.ColumnDefinition
         header="author"
         width="180"
-        cell={props => (
-          <>
-            {props.row.author} {props.status}
-          </>
-        )}
+        cell={props => <Text value={props.row.author} {...props} />}
       />
-      <Table.ColumnDefinition header="title" width="180" cell={props => props.row.book} />
+      <Table.ColumnDefinition header="title" width="180" cell={props => <Text value={props.row.book} {...props} />} />
       <Table.ColumnDefinition header="cover" cell={({ row }) => <img height={74} src={row.cover} alt="cover book" />} />
-      <Table.ColumnDefinition header="tags" width="340" cell={({ row }) => row.tags.map(tag => <Tag>{tag}</Tag>)} />
+      <Table.ColumnDefinition
+        header="tags"
+        width="340"
+        cell={({ row, rowIndex, columnIndex }) =>
+          row.tags.map(tag => <Tag key={`${tag}${columnIndex}${rowIndex}`}>{tag}</Tag>)
+        }
+      />
       <Table.ColumnDefinition
         header="description"
         cell={props => (
@@ -38,8 +40,8 @@ const Tag = styled.span(() => {
     border: 1px solid #ccc;
     border-radius: 4px;
     color: #111;
-    display: inline-block;
     margin: 2px 2px;
     padding: 2px;
+    white-space: nowrap;
   `;
 });

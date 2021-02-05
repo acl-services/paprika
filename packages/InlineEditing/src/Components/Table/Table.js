@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import TablePaprika from "@paprika/table";
 import Editable from "../Editable";
 import { getCellElement, getBoundingClientRect } from "./helpers";
-import * as sc from "./Table.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -14,26 +13,24 @@ export default function Table(props) {
   const { children, ...moreProps } = props;
   const refCells = React.useRef(new Map());
   const refTable = React.useRef(null);
-  const cellKey = ({ rowIndex, columnIndex }) => `paprika.inline-editing.cell${rowIndex}-${columnIndex}`;
+  const getCellKeyStr = ({ rowIndex, columnIndex }) => `paprika.inline-editing.cell${rowIndex}-${columnIndex}`;
 
   const clonedColumnDefinition = React.useMemo(() => {
-    const handleCell = ({ cell: Cell /* onChange */ }) => args => {
+    const handleCell = ({ cell: Cell, columnWidth /* onChange */ }) => args => {
       const { rowIndex, columnIndex } = args;
       const cellElementBound = getCellElement({ refTable, rowIndex, columnIndex });
       const getRect = getBoundingClientRect(cellElementBound);
 
       return (
-        <sc.CellOverflow>
-          <Editable ref={ref => refCells.current.set(cellKey({ rowIndex, columnIndex }), ref)}>
-            <Cell {...args} getRect={getRect} />
-          </Editable>
-        </sc.CellOverflow>
+        <Editable ref={ref => refCells.current.set(getCellKeyStr({ rowIndex, columnIndex }), ref)}>
+          <Cell {...args} columnWidth={columnWidth} getRect={getRect} />
+        </Editable>
       );
     };
 
     const cloned = [];
     React.Children.forEach(children, child => {
-      const { cell, onChange } = child.props;
+      const { cell, onChange, width } = child.props;
 
       cloned.push(
         React.cloneElement(child, {
@@ -41,6 +38,7 @@ export default function Table(props) {
           cell: handleCell({
             cell,
             onChange,
+            columnWidth: Number.parseInt(width, 10) || null,
           }),
         })
       );
@@ -50,14 +48,14 @@ export default function Table(props) {
   }, [children]);
 
   function handleFocus({ rowIndex, columnIndex }) {
-    const instance = refCells.current.get(cellKey({ rowIndex, columnIndex }));
+    const instance = refCells.current.get(getCellKeyStr({ rowIndex, columnIndex }));
     if ("onFocus" in instance) {
       instance.onFocus();
     }
   }
 
   function handleBlur({ rowIndex, columnIndex }) {
-    const instance = refCells.current.get(cellKey({ rowIndex, columnIndex }));
+    const instance = refCells.current.get(getCellKeyStr({ rowIndex, columnIndex }));
     if ("onBlur" in instance) {
       instance.onBlur();
     }
@@ -66,13 +64,13 @@ export default function Table(props) {
   function handleKeyUp(event) {
     if (event.key === "Enter") {
       const { rowIndex, columnIndex } = event.target.dataset;
-      const ref = refCells.current.get(cellKey({ rowIndex, columnIndex }));
+      const ref = refCells.current.get(getCellKeyStr({ rowIndex, columnIndex }));
       if (ref) ref.onInteraction();
     }
   }
 
   function handleClick({ rowIndex, columnIndex }) {
-    const ref = refCells.current.get(cellKey({ rowIndex, columnIndex }));
+    const ref = refCells.current.get(getCellKeyStr({ rowIndex, columnIndex }));
     if (ref) ref.onInteraction();
   }
 

@@ -65,7 +65,6 @@ export default [
       "latin american ",
       "nobel prize ",
       "jose arcadio ",
-      "magical realism ",
       "family tree ",
       "latin america ",
       "ever read ",

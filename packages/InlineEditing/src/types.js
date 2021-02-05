@@ -1,11 +1,7 @@
 export default {
-  type: {
-    inputWrapper: {
-      INLINE: "inline",
-      MODAL: "modal",
-      TASK_DESIGNER: "task-designer",
-      PANEL: "panel",
-      POPOVER: "popover",
-    },
+  status: {
+    IDLE: "idle",
+    FOCUS: "focus",
+    EDITING: "editing",
   },
 };

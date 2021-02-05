@@ -1,34 +1,35 @@
 import React from "react";
 import PropTypes from "prop-types";
+import * as sc from "./Editable.styles";
+import types from "../../types";
 
 const Editable = React.forwardRef((props, ref) => {
-  const [status, setStatus] = React.useState("idle");
+  const on = types.status;
+  const [status, setStatus] = React.useState(on.IDLE);
 
   React.useImperativeHandle(ref, () => ({
     onFocus: () => {
-      setStatus("focus");
+      setStatus(on.FOCUS);
     },
     onBlur: () => {
-      setStatus("idle");
+      setStatus(on.IDLE);
     },
     onInteraction: () => {
       setStatus(prev => {
-        if (prev === "focus" || prev === "editing") {
-          return "editing";
+        if (prev === on.FOCUS || prev === on.EDITING) {
+          return on.EDITING;
         }
 
-        return "focus";
+        return on.FOCUS;
       });
     },
   }));
 
-  const types = {
-    IDLE: "idle",
-    FOCUS: "focus",
-    EDITING: "editing",
-  };
-
-  return React.cloneElement(props.children, { ...props.children.props, status, types: { types } });
+  return (
+    <sc.CellOverflow status={on}>
+      {React.cloneElement(props.children, { ...props.children.props, status, types })}
+    </sc.CellOverflow>
+  );
 });
 
 Editable.propTypes = {
