@@ -18,4 +18,5 @@ export const severityTagColors = {
   LOW_RISK: "lowRisk",
   MEDIUM_RISK: "mediumRisk",
   HIGH_RISK: "highRisk",
+  ALERT: "alert",
 };

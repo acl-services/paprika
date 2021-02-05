@@ -52,6 +52,11 @@ const tagColorStyles = {
   highRisk: css`
     background: #cd3c44;
   `,
+
+  alert: css`
+    background: none;
+    color: ${tokens.color.orangeDarken10};
+  `,
 };
 
 export const Tags = styled.ul(() => {
@@ -64,9 +69,14 @@ export const Tags = styled.ul(() => {
   `;
 });
 
-const tagStyles = ({ tagColor }) => css`
+const borderColorStyles = ({ borderColor }) => css`
+  border: 1px solid ${borderColor};
+`;
+
+const tagStyles = ({ tagColor, borderColor }) => css`
   align-items: center;
   background: ${tokens.color.blackLighten70};
+  ${borderColor ? borderColorStyles : ""}
   border-radius: ${tokens.space[0] * 2}px;
   color: ${tokens.color.white};
   display: flex;
@@ -101,9 +111,10 @@ export const Ellipsis = styled.div(({ isChildString, size }) => {
     ? `padding: 0 ${paddingGap[size]} 1px ${paddingGap[size]};`
     : `padding-right: ${paddingGap[size]}`;
 
+  // todo: fix truncateText not showing ... with display inline-flex, only with display: block....
   return css`
     align-items: center;
-    display: block;
+    display: inline-flex;
     ${getFontSize[size]};
     ${padding};
     ${truncateText};

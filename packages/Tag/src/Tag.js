@@ -67,6 +67,8 @@ Tag.types = {
 const propTypes = {
   // used in aria-tag on the root element
   a11yText: PropTypes.string,
+  // Can pass a custom border color
+  borderColor: PropTypes.string,
   // Pass a function to show a delete button
   onRemove: PropTypes.func,
   children: PropTypes.node.isRequired,
@@ -74,6 +76,7 @@ const propTypes = {
   isDisabled: PropTypes.bool,
   // Fires when clicking the root tag element. Should also pass value for a11yText when using this.
   onClick: PropTypes.func,
+
   tagColor: PropTypes.oneOf([
     Tag.types.color.BLACK,
     Tag.types.color.BLUE,
@@ -91,6 +94,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  borderColor: null,
   a11yText: null,
   isDisabled: false,
   onClick: null,

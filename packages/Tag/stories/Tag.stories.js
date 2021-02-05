@@ -1,6 +1,8 @@
 /* eslint-disable react/no-array-index-key */
 import React from "react";
 import CalendarIcon from "@paprika/icon/lib/Calendar";
+import ExclamationCircle from "@paprika/icon/lib/ExclamationCircle";
+import tokens from "@paprika/tokens";
 import Avatar from "../../Avatar/src";
 
 import Tag, { Tags } from "../src";
@@ -52,6 +54,17 @@ export function TagsExample() {
           <Tag onClick={handleClick} size={permutation.tagSize} onRemove={handleRemove} isDisabled>
             {`${permutation.tagSize} has onClick  handler and delete option and is disabled`}
           </Tag>
+          <Tag
+            size={permutation.tagSize}
+            onRemove={handleRemove}
+            tagColor={types.severityTagColors.ALERT}
+            borderColor={tokens.color.orangeDarken10}
+          >
+            <Avatar isRound size={permutation.avatarSize} backgroundColor="none">
+              <ExclamationCircle style={{ fontSize: "24px", color: tokens.color.orangeDarken10 }} />
+            </Avatar>
+            {`${permutation.tagSize} with custom border color`}
+          </Tag>
         </Tags>
       ))}
       Colours
@@ -60,7 +73,7 @@ export function TagsExample() {
           {Object.entries(types.colors).map(color => (
             <Tag key={color[1]} tagColor={color[1]} size={permutation.tagSize}>
               <Avatar isRound size={permutation.avatarSize}>
-                WW
+                <CalendarIcon />
               </Avatar>
               {permutation.tagSize} with text Avatar
             </Tag>
@@ -73,7 +86,7 @@ export function TagsExample() {
           {Object.entries(types.severityTagColors).map(color => (
             <Tag key={color[1]} tagColor={color[1]} size={permutation.tagSize}>
               <Avatar isRound size={permutation.avatarSize}>
-                WW
+                <CalendarIcon />
               </Avatar>
               {permutation.tagSize} with text Avatar
             </Tag>
