@@ -10,13 +10,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Localization of Clear Button's `aria-label` [@mikrotron](https://github.com/mikrotron).
 
+### Changed
+
+- BREAKING CHANGE: The `onChange` callback is now fired with `null` when the Clear Button is clicked [@mikrotron](https://github.com/mikrotron).
+
+### Removed
+
+- BREAKING CHANGE: The `onClear` prop was removed [@mikrotron](https://github.com/mikrotron).
+
 ### Fixed
 
 - `hasClearButton` will now work with uncontrolled implementation of the `<Input>` [@mikrotron](https://github.com/mikrotron).
-
-### Changed
-
-- The `onChange` callback is no longer fired (with the wrong Event) when the Clear Button is clicked [@mikrotron](https://github.com/mikrotron).
 
 ## [0.2.26] - 2020-04-29
 

@@ -21,10 +21,11 @@ interface InputProps {
   isDisabled?: boolean;
   /** If true it makes the input read only. */
   isReadOnly?: boolean;
-  /** Callback to be executed when the input value is changed. Should be used when value prop is provided (component is controlled). */
+  /** Callback to be executed when the input value is changed. Receives the
+onChange event as an argument, except when the clear button is clicked,
+then the argument is null. Needed when value prop is provided (component
+is controlled). */
   onChange?: (...args: any[]) => any;
-  /** Callback to be executed when the input value is cleared. */
-  onClear?: (...args: any[]) => any;
   /** Changes the size of the input. */
   size?: Input.types.size.SMALL | Input.types.size.MEDIUM | Input.types.size.LARGE;
   /** Allows user to specify the type of input. */
