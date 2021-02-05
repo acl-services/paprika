@@ -5,16 +5,9 @@ import * as constants from "@paprika/constants/lib/Constants";
 import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
 import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import { callAll } from "@paprika/helpers";
 import * as types from "./types";
 import * as sc from "./Input.styles";
-
-function callAll(...fns) {
-  return (...args) => {
-    for (const fn of fns) {
-      if (fn) fn(...args);
-    }
-  };
-}
 
 const Input = React.forwardRef((props, ref) => {
   const {
