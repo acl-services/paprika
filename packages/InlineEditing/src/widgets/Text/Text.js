@@ -7,14 +7,16 @@ const propTypes = {
   value: PropTypes.string.isRequired,
   columnWidth: PropTypes.number,
   status: PropTypes.string.isRequired,
+  statusTypes: PropTypes.shape({}),
 };
 
 const defaultProps = {
   columnWidth: null,
+  statusTypes: {},
 };
 
 export default function Text(props) {
-  const { value: valueProps, columnWidth, status } = props;
+  const { value: valueProps, columnWidth, status, statusTypes: on } = props;
   const [value, setValue] = React.useState(valueProps);
   const refInput = React.useRef(null);
 
@@ -23,12 +25,12 @@ export default function Text(props) {
   }
 
   React.useEffect(() => {
-    if (status === "editing") {
-      // refInput.current.focus();
+    if (status === on.EDITING) {
+      refInput.current.focus();
     }
-  }, [status]);
+  }, [status, on]);
 
-  if (status === "editing") {
+  if (status === on.EDITING) {
     return <Input ref={refInput} onChange={handleChange} value={value} />;
   }
 

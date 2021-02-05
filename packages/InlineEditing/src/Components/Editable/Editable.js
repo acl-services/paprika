@@ -27,7 +27,7 @@ const Editable = React.forwardRef((props, ref) => {
 
   return (
     <sc.CellOverflow status={on}>
-      {React.cloneElement(props.children, { ...props.children.props, status, types })}
+      {React.cloneElement(props.children, { ...props.children.props, status, statusTypes: on })}
     </sc.CellOverflow>
   );
 });
