@@ -27,8 +27,13 @@ blocks:
             - nvm use
             - npx lerna bootstrap
             - yarn
-            - yarn lerna version --conventional-commits --conventional-prerelease --no-changelog --yes
+            - yarn lerna version --conventional-commits --conventional-prerelease --no-changelog --no-push --yes
             - yarn lerna publish from-package --yes --dist-tag next
             - git add packages/*.md packages/*/index.d.ts
             - git commit -m 'chore(Publish): automate readme, type definitions and changelog update' --no-verify
-            - git push origin pre-release-$SEMAPHORE_PIPELINE_ID --no-verify
+            - git push origin pre-release-$SEMAPHORE_PIPELINE_ID --follow-tags --no-verify
+            - git checkout master
+            - git merge origin/pre-release-$SEMAPHORE_PIPELINE_ID
+            - git push origin master -f --no-verify
+            - git branch -d pre-release-$SEMAPHORE_PIPELINE_ID
+            - git push origin -d pre-release-$SEMAPHORE_PIPELINE_ID
