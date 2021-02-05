@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Key for the `aria-label` of the Clear Button of the `<Input>` [@mikrotron](https://github.com/mikrotron).
+
 ## [0.4.1] - 2020-07-09
 
 ### Removed
