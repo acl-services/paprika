@@ -102,14 +102,7 @@ export const Ellipsis = styled.div(({ isChildString, size }) => {
     large: fontSize(0),
   };
 
-  const paddingGap = {
-    medium: `${tokens.space[0] / 2}px`,
-    large: tokens.space,
-  };
-
-  const padding = isChildString
-    ? `padding: 0 ${paddingGap[size]} 1px ${paddingGap[size]};`
-    : `padding-right: ${paddingGap[size]}`;
+  const padding = isChildString ? `padding: 0 ${tokens.space} 1px ${tokens.space};` : `padding-right: ${tokens.space}`;
 
   // todo: fix truncateText not showing ... with display inline-flex, only with display: block....
   return css`
