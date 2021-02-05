@@ -4,9 +4,9 @@ import Close from "@paprika/icon/lib/Times";
 import * as sc from "./Tag.styles";
 import * as types from "./types";
 
-export function Delete({ size, onRemove = () => {} }) {
+export function Delete({ isDisabled, size, onRemove = () => {} }) {
   return (
-    <sc.Delete size={size} data-pka-anchor="tag.delete" onClick={onRemove}>
+    <sc.Delete isDisabled={isDisabled} size={size} data-pka-anchor="tag.delete" onClick={onRemove}>
       <Close />
     </sc.Delete>
   );
@@ -15,26 +15,42 @@ export function Delete({ size, onRemove = () => {} }) {
 Delete.propTypes = {
   onRemove: PropTypes.func.isRequired,
   size: PropTypes.oneOf([types.MEDIUM, types.LARGE]).isRequired,
+  isDisabled: PropTypes.bool,
+};
+
+Delete.defaultProps = {
+  isDisabled: false,
 };
 
 export default function Tag(props) {
   const { children, onRemove, size, hasDeleteButton, onClick, a11yText, isDisabled, ...moreProps } = props;
   const isChildString = typeof children === "string";
 
-  // if (onClick) {
-  //   return (
-  //     <sc.RawButtonTag a11yText={a11yText} isDisabled={isDisabled} onClick={onClick} {...moreProps}>
-  //       <sc.PillText>{props.children}</sc.PillText>
-  //     </sc.RawButtonTag>
-  //   );
-  // }
+  const handleRemove = e => {
+    onRemove();
+    e.stopPropagation();
+  };
 
-  return (
-    <sc.Tag data-pka-anchor="tag" {...moreProps}>
+  const content = (
+    <>
       <sc.Ellipsis isChildString={isChildString} size={size}>
         {children}
       </sc.Ellipsis>
-      {hasDeleteButton ? <Delete onRemove={onRemove} size={size} /> : null}
+      {hasDeleteButton ? <Delete isDisabled={isDisabled} onRemove={handleRemove} size={size} /> : null}
+    </>
+  );
+
+  if (onClick) {
+    return (
+      <sc.RawButtonTag a11yText={a11yText} isDisabled={isDisabled} onClick={onClick} {...moreProps}>
+        {content}
+      </sc.RawButtonTag>
+    );
+  }
+
+  return (
+    <sc.Tag data-pka-anchor="tag" {...moreProps}>
+      {content}
     </sc.Tag>
   );
 }

@@ -14,7 +14,7 @@ const tagColorStyles = {
   `,
 
   grey: css`
-    background: ${tokens.color.blackLighten60};
+    background: ${tokens.color.blackLighten70};
     color: ${tokens.color.black};
   `,
 
@@ -27,7 +27,7 @@ const tagColorStyles = {
   `,
 
   noRisk: css`
-    background: ${tokens.color.blackLighten60};
+    background: ${tokens.color.blackLighten70};
     color: ${tokens.color.black};
   `,
 
@@ -64,25 +64,27 @@ export const Tags = styled.ul(() => {
   `;
 });
 
-export const Tag = styled.li(({ tagColor }) => {
-  return css`
-    align-items: center;
-    background: ${tokens.color.blackLighten70};
-    border-radius: ${tokens.space[0] * 2}px;
-    color: ${tokens.color.white};
-    display: flex;
-    line-height: 1;
-    margin-bottom: 2px;
-    margin-right: ${tokens.spaceSm};
-    max-width: 100%;
-    padding: 2px;
-    ${tagColorStyles[tagColor]}
+const tagStyles = ({ tagColor }) => css`
+  align-items: center;
+  background: ${tokens.color.blackLighten70};
+  border-radius: ${tokens.space[0] * 2}px;
+  color: ${tokens.color.white};
+  display: flex;
+  line-height: 1;
+  margin-bottom: 2px;
+  margin-right: ${tokens.spaceSm};
+  max-width: 100%;
+  padding: 2px;
+  ${tagColorStyles[tagColor]}
 
-    [data-pka-anchor="avatar"] {
-      margin-right: ${tokens.space};
-    }
-  `;
-});
+  [data-pka-anchor="avatar"] {
+    margin-right: ${tokens.space};
+  }
+`;
+
+export const RawButtonTag = styled(RawButton)(tagStyles);
+
+export const Tag = styled.li(tagStyles);
 
 export const Ellipsis = styled.div(({ isChildString, size }) => {
   const getFontSize = {

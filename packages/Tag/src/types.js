@@ -6,6 +6,7 @@ export const LARGE = constants.size.LARGE;
 export const colors = {
   BLACK: constants.color.BLACK,
   BLUE: constants.color.BLUE,
+  GREY: constants.color.GREY,
   GREEN: constants.color.GREEN,
   ORANGE: constants.color.ORANGE,
   LIGHT_BLUE: constants.color.LIGHT_BLUE,

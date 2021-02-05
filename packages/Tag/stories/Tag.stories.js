@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from "react";
 import CalendarIcon from "@paprika/icon/lib/Calendar";
 import Avatar from "../../Avatar/src";
@@ -11,10 +12,18 @@ export default {
 };
 
 export function TagsExample() {
+  const handleRemove = () => {
+    console.log("remove event");
+  };
+
+  const handleClick = () => {
+    console.log("click event");
+  };
+
   return (
     <>
       {[{ tagSize: "medium", avatarSize: "small" }, { tagSize: "large", avatarSize: "medium" }].map(permutation => (
-        <Tags>
+        <Tags key={permutation.avatarSize}>
           <Tag size={permutation.tagSize}>
             <Avatar isRound size={permutation.avatarSize}>
               WW
@@ -28,17 +37,28 @@ export function TagsExample() {
             {permutation.tagSize} with Icon Avatar
           </Tag>
           <Tag size={permutation.tagSize}>{`${permutation.tagSize} just text`}</Tag>
-          <Tag size={permutation.tagSize} hasDeleteButton>{`${permutation.tagSize} has delete option`}</Tag>
-          <Tag size={permutation.tagSize} hasDeleteButton style={{ width: "120px" }}>
+          <Tag size={permutation.tagSize} onRemove={handleRemove} hasDeleteButton>
+            {`${permutation.tagSize} has delete option`}
+          </Tag>
+          <Tag size={permutation.tagSize} onRemove={handleRemove} hasDeleteButton style={{ width: "120px" }}>
             {`${permutation.tagSize} has delete option and really long text`}
+          </Tag>
+          <Tag onClick={handleClick} size={permutation.tagSize}>
+            {`${permutation.tagSize} has onClick  handler`}
+          </Tag>
+          <Tag onClick={handleClick} size={permutation.tagSize} onRemove={handleRemove} hasDeleteButton>
+            {`${permutation.tagSize} has onClick  handler and delete option`}
+          </Tag>
+          <Tag onClick={handleClick} size={permutation.tagSize} onRemove={handleRemove} hasDeleteButton isDisabled>
+            {`${permutation.tagSize} has onClick  handler and delete option and is disabled`}
           </Tag>
         </Tags>
       ))}
       Colours
-      {[{ tagSize: "large", avatarSize: "medium" }].map(permutation => (
-        <Tags>
+      {[{ tagSize: "large", avatarSize: "medium" }].map((permutation, index) => (
+        <Tags key={index}>
           {Object.entries(types.colors).map(color => (
-            <Tag tagColor={color[1]} size={permutation.tagSize}>
+            <Tag key={color[1]} tagColor={color[1]} size={permutation.tagSize}>
               <Avatar isRound size={permutation.avatarSize}>
                 WW
               </Avatar>
@@ -48,10 +68,10 @@ export function TagsExample() {
         </Tags>
       ))}
       Severity Colours
-      {[{ tagSize: "large", avatarSize: "medium" }].map(permutation => (
-        <Tags>
+      {[{ tagSize: "large", avatarSize: "medium" }].map((permutation, index) => (
+        <Tags key={index}>
           {Object.entries(types.severityTagColors).map(color => (
-            <Tag tagColor={color[1]} size={permutation.tagSize}>
+            <Tag key={color[1]} tagColor={color[1]} size={permutation.tagSize}>
               <Avatar isRound size={permutation.avatarSize}>
                 WW
               </Avatar>
