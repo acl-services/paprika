@@ -21,7 +21,6 @@ const Input = React.forwardRef((props, ref) => {
     hasClearButton,
     hasError,
     onChange,
-    onClear,
     size,
     value,
     ...moreProps
@@ -56,7 +55,7 @@ const Input = React.forwardRef((props, ref) => {
       if (refBest.current) refBest.current.value = "";
       setShouldShowClearButton(false);
     }
-    onClear();
+    onChange(null);
   };
 
   const renderClear = () => {
@@ -151,11 +150,13 @@ const propTypes = {
   /** If true it makes the input read only. */
   isReadOnly: PropTypes.bool,
 
-  /** Callback to be executed when the input value is changed. Should be used when value prop is provided (component is controlled). */
+  /**
+   * Callback to be executed when the input value is changed. Receives the
+   * onChange event as an argument, except when the clear button is clicked,
+   * then the argument is null. Needed when value prop is provided (component
+   * is controlled).
+   */
   onChange: PropTypes.func,
-
-  /** Callback to be executed when the input value is cleared. */
-  onClear: PropTypes.func,
 
   /** Changes the size of the input. */
   size: PropTypes.oneOf([Input.types.size.SMALL, Input.types.size.MEDIUM, Input.types.size.LARGE]),
@@ -186,7 +187,6 @@ const defaultProps = {
   isDisabled: false,
   isReadOnly: false,
   onChange: () => {},
-  onClear: () => {},
   size: Input.types.size.MEDIUM,
   type: Input.types.type.TEXT,
   value: undefined,
