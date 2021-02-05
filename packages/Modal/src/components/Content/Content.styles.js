@@ -2,8 +2,6 @@ import styled from "styled-components";
 import stylers from "@paprika/stylers";
 import { spacer } from "@paprika/stylers/lib/helpers";
 
-const SPACE = spacer(2);
-
 export const ContentWrapper = styled.div`
   overflow-y: auto;
 
@@ -13,5 +11,5 @@ export const ContentWrapper = styled.div`
 `;
 
 export const Content = styled.div`
-  padding: ${SPACE};
+  padding: ${spacer(2)};
 `;

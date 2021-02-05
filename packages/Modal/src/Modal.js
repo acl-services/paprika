@@ -20,13 +20,6 @@ const Modal = props => {
     setAriaLabel(ariaLabel);
   }, []);
 
-  const contextValue = {
-    a11yText,
-    isOpen,
-    onClose,
-    updateAriaLabel,
-  };
-
   const { "Modal.FocusLock": focusLockExtracted, "Modal.Overlay": overlayExtracted, children } = extractChildren(
     moreProps.children,
     ["Modal.FocusLock", "Modal.Overlay"]
@@ -39,6 +32,13 @@ const Modal = props => {
     as: sc.FocusLock,
     lockProps: { size },
     ...(focusLockProps || {}),
+  };
+
+  const contextValue = {
+    a11yText,
+    isOpen,
+    onClose,
+    updateAriaLabel,
   };
 
   return (

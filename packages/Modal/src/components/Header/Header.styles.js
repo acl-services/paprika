@@ -13,9 +13,12 @@ export const Header = styled.div`
 export const HeaderHeading = styled(Heading)(
   ({ isSingleLine, hasCloseButton }) => css`
     margin-right: ${spacer(2)};
-    ${isSingleLine && stylers.truncateText};
-    ${isSingleLine && `padding: ${spacer(2)} 0;`};
-    ${isSingleLine && hasCloseButton && `margin: 0 ${spacer(2)} 0 0; width: 95%;`};
-    ${isSingleLine && !hasCloseButton && `margin: 0;`};
+
+    ${isSingleLine &&
+      `
+      ${stylers.truncateText};
+      padding: ${spacer(2)} 0;
+      ${hasCloseButton ? `margin: 0 ${spacer(2)} 0 0; width: 95%;` : `margin: 0;`}
+    `}
   `
 );

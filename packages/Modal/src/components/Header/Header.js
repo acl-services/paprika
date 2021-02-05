@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { RefOf } from "@paprika/helpers";
+import * as constants from "@paprika/constants/lib/Constants";
 import Button from "@paprika/button";
 import * as sc from "./Header.styles";
 import { ModalContext } from "../../Modal";
@@ -44,11 +45,11 @@ const Header = React.forwardRef((props, ref) => {
       </sc.HeaderHeading>
       {hasCloseButton && (
         <Button.Close
-          data-qa-anchor="modal.header.close-button"
+          data-qa-anchor="paprika.modal.header.close-button"
           data-pka-anchor="modal.header.close-button"
           isSemantic={false}
           onClick={onClose}
-          size="medium"
+          size={constants.size.MEDIUM}
         />
       )}
     </sc.Header>
