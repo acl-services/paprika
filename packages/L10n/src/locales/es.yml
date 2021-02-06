@@ -128,34 +128,6 @@ es:
         plural_label: "{{numberOfHiddenColumn}} columnas ocultas"
         search_placeholder: Buscar...
       no_results: No hay resultados
-      filter:
-        no_filters_applied: No se aplicaron filtros a esta vista
-        label: Filtro
-        singular_label: Se aplicó 1 filtro
-        plural_label: "{{numberOfFilters}} filtros aplicados"
-        add_filter: Agregar un campo para filtrar
-        and: y
-        or: o
-        where: Donde
-        rules:
-          is: es
-          is_not: no es
-          contains: contiene
-          does_not_contain: no contiene
-          is_blank: está en blanco
-          is_not_blank: no está en blanco
-          equals: es igual a
-          not_equal_to: no es igual a
-          greater_than: ">"
-          less_than: "<"
-          greater_than_or_equal_to: "≥"
-          less_than_or_equal_to: "≤"
-          is_empty: está vacío
-          is_not_empty: no está vacío
-          is_before: es anterior a
-          is_after: es posterior a
-          true: "verdadero"
-          false: "falso"
       search_placeholder: Buscar...
       search_a11y_text: Buscar los datos
       sort:
@@ -192,6 +164,7 @@ es:
     dynamicHyperlinkTransformer:
       access_denied: "Acceso denegado"
       invalid_url: "URL no válida"
+      exceeded_max_links_rendered: "No se pudo procesar"
       loading: Cargando...
     filter:
       actions:
@@ -211,7 +184,7 @@ es:
         is_blank: está en blanco
         is_not_blank: no está en blanco
         equals: es igual a
-        not_equal_to: es distinto de
+        not_equal_to: no es igual a
         greater_than: ">"
         less_than: "<"
         greater_than_or_equal_to: "≥"
