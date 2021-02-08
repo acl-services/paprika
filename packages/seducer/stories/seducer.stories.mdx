@@ -862,12 +862,13 @@ dispatch(action.remove, value);
 
 ### Why was this library created it?
 
-As described in the beginning of the page one of the main reason was to make React.useReducer more approachable to any developer independently from their expertise level.
-But also, I did it because I'm a library author and having the power of reducers without introducing a peer-dependency in your library, is quite nice and also mitigate some of the hassles for your consumers when consuming your Components 😸. And lastly and more important in advances cases is that Seducer provides a way to implemented Inversion of control in a simple way, without forcing you to export a reducer, neither to learn convolute approaches.
+As described in the beginning of the page one of the main reason was to make `React.useReducer` more approachable to any developer independently from their expertise level.
+But as a side effect of doing that, this small package allowed the consumer to `provided inversion of control` to their consumers without even worrying about that, this is really handy for building
+reusable `Features` or complex `components`, where the **`Reducer`** pattern shines!.
 
 ### Is this a new state manager library?
 
-No, Seducer is just a wrapper on top of React.useReducer that's all, React is still in charge of the state.
+No, Seducer is just a wrapper on top of `React.useReducer` that's all.
 
 ### When should I picked React.useReducer (Seducer) instead React.useState?
 
