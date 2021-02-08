@@ -69,19 +69,20 @@ npm install @paprika/panel
 | height   | number | false    | 72      |             |
 | isSticky | bool   | false    | false   |             |
 
-### Panel.FocusLock
-
-| Prop        | Type | required | default | Description |
-| ----------- | ---- | -------- | ------- | ----------- |
-| returnFocus | -    | false    | true    |             |
-
 ### Panel.Overlay
 
-| Prop            | Type   | required | default | Description                                                         |
-| --------------- | ------ | -------- | ------- | ------------------------------------------------------------------- |
-| hasOutsideClick | bool   | false    | true    | Will call an onClose handler when clicked on (outside of the Panel) |
-| onClose         | func   | false    | null    | Callback for click event                                            |
-| zIndex          | number | false    | null    | The z-index of the Panel Overlay                                    |
+| Prop              | Type       | required | default  | Description                      |
+| ----------------- | ---------- | -------- | -------- | -------------------------------- |
+| backdropClassName | string     | false    | null     |                                  |
+| children          | func       | false    | () => {} |                                  |
+| container         | instanceOf | false    | null     | container of the Overlay element |
+| focusLockOptions  | shape      | false    | {}       |                                  |
+| hasBackdrop       | bool       | false    | true     |                                  |
+| isOpen            | bool       | true     | -        |                                  |
+| onClose           | func       | false    | () => {} |                                  |
+| onAfterOpen       | func       | false    | () => {} |                                  |
+| onAfterClose      | func       | false    | () => {} |                                  |
+| zIndex            | number     | false    | null     | z-index of the Overlay wrapper   |
 
 ### Panel.Trigger
 

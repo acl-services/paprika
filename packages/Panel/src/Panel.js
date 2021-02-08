@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { zValue } from "@paprika/stylers/lib/helpers";
 import { LockBodyScroll, Portal } from "@paprika/helpers";
+import OriginalOverlay from "@paprika/overlay";
 import Content from "./components/Content";
 import Dialog from "./components/Dialog";
 import Footer from "./components/Footer";
@@ -166,9 +167,17 @@ export default function Panel(props) {
       sidePanel = (
         <Portal active={!isInline}>
           <React.Fragment>
-            {overlayExtracted
-              ? React.cloneElement(overlayExtracted, { onClose, zIndex, ...focusLockProps, children: () => dialog })
-              : dialog}
+            <OriginalOverlay
+              data-pka-anchor="panel.overlay"
+              focusLockOptions={focusLockProps}
+              hasBackdrop={!!overlayExtracted}
+              isOpen={isOpen}
+              onClose={onClose}
+              zIndex={zIndex}
+              {...(overlayExtracted || {})}
+            >
+              {state => React.cloneElement(dialog, { state })}
+            </OriginalOverlay>
           </React.Fragment>
         </Portal>
       );
