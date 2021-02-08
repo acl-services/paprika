@@ -41,16 +41,22 @@ export function Provider({
   initializer = undefined,
   interceptors = {},
 }) {
+  if (!actions) {
+    throw new Error(
+      "Actions are required for useSeducerWithContext, is an object with their actions as their properties"
+    );
+  }
+
   if (typeof initializer !== "undefined" && typeof initializer !== "function")
     throw new Error("the initializer prop must be a function");
 
   const reducerMemo = React.useMemo(() => {
-    return reducer(actions || {}, hasLogger, interceptors);
-  }, [actions, hasLogger]);
+    return reducer(actions, hasLogger, interceptors);
+  }, [actions, hasLogger, interceptors]);
 
   const [state, dispatch] = React.useReducer(reducerMemo, initialState, initializer);
 
-  const types = React.useMemo(() => getTypes({ ...interceptors, ...actions }), [actions]);
+  const types = React.useMemo(() => getTypes({ ...interceptors, ...actions }), [actions, interceptors]);
 
   setContextDisplayName(contextState, displayName);
 
