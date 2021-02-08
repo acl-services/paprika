@@ -5,7 +5,7 @@ _clear, one sentence description of primary purpose of this PR_
 _details of code change / secondary purposes of this PR_
 
 ### Updates 📦
-- [ ] MAJOR (breaking) change to _these packages_ (if the package you are breaking is a dependency in other packages, be sure to add commits with a "BREAKING CHANGE" messages to those packages as well)
+- [ ] MAJOR (breaking) change to _these packages_ (if the package you are breaking is a dependency in other packages, be sure to add a commit with a "BREAKING CHANGE" message to those other packages as well)
 - [ ] MINOR (backward compatible) change to _these packages_
 - [ ] PATCH (bug fix) change to _these packages_
 
