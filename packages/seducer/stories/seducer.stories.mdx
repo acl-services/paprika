@@ -5,6 +5,8 @@ import Basic from "./examples/useReducer.basic";
 import Blocks, { Block } from "storybook/components/Blocks";
 import BasicWithContext from "./examples/useReducerWithContext.basic";
 import CharacterList from "./examples/useReducerWithContext.CharacterList";
+import ConfettiUseSeducer from "./examples/useReducer.confetti";
+import AsyncExample from "./examples/useSeducer.async";
 
 <Meta title={`${getStoryName("seducer")}/Docs`} />
 
@@ -48,12 +50,10 @@ export default function App() {
 
   return (
     <>
-      <ButtonGroup>
-        {/** alternative you can dispatch("up") directly */}
-        <Button onClick={() => dispatch(action.up)}>+</Button>
-        <Button onClick={() => dispatch(action.down)}>-</Button>
-      </ButtonGroup>
-      <div>{state}</div>
+      {/** alternative you can dispatch("up") directly */}
+      <Button onClick={() => dispatch(action.up)}>+</Button>
+      <Button onClick={() => dispatch(action.down)}>-</Button>
+      {state}
     </>
   );
 }
@@ -422,9 +422,17 @@ export default function CharacterListFeature({ initialSelected = [], initialChar
   );
 }
 
-// you can use it like:
-// <CharacterList initialCharacters={["Batman", "Flash", "Super Woman"]} initialSelected={["Aquaman"]} />
-// <CharacterList initialCharacters={["Bart", "Lisa", "Homer"]} initialSelected={["Marge", "Mr Burns"]} /></Block>
+/* you can use it like:
+ <CharacterList 
+  initialCharacters={["Batman", "Flash", "Super Woman"]} 
+  initialSelected={["Aquaman"]} 
+/>
+
+<CharacterList 
+  initialCharacters={["Bart", "Lisa", "Homer"]} 
+  initialSelected={["Marge", "Mr Burns"]} 
+/>
+*/
 ```
 
   </Block>
@@ -436,37 +444,345 @@ export default function CharacterListFeature({ initialSelected = [], initialChar
 > -- Hollywood Principle
 
 Inversion of Control sounds really fancy, but there is high chances of you using it daily. The functions
-you pass-down whenever using Array.Filter, Array.Map or Array.Sort, all that is Inversion of Control.
-You can read a way better explanation from Kent C. Dodds, if you are interested into understanding it better.
+you pass-down whenever using `Array.Filter`, `Array.Map` or `Array.Sort`, all that is Inversion of Control.
+You can read a way better explanation from [Kent C. Dodds](https://kentcdodds.com/blog/inversion-of-control), if you are interested into understanding it better.
 
-I will show you how to do Inversion of Control using useSeducer and useSeducerWithContext
+I will show you how to do Inversion of Control using `useSeducer` and `useSeducerWithContext`
 
 Normally to achieve IOC with the State Reduce Pattern you would need to export the internal reducer of your reusable component,
 and then make your consumer to provide their own Reducer, this way the consumer could "hook" into the
-React.useReducer and received any dispatched action.
+`React.useReducer` and received any dispatched actions.
 
-This patterns is really powerful, but little cumbersome IMO, useSeducer and useSeducerWithContext provide a more
-friendly approach via what I named interceptors
+This patterns is really powerful, but little cumbersome IMO, `useSeducer` and `useSeducerWithContext` provided a more
+friendly approach via interceptors.
 
-interceptors are regular functions that can mixed with the regular actions and extended the current ones or override them in a simple way.
+Interceptors are regular functions which extended the default ones in convenient way.
 
 Take as example the following simple component using useSeducer:
 
-`Example 12`
+<Blocks>
+  <Block>
+    <ConfettiUseSeducer />
+  </Block>
+  <Block>
 
-The two important parts are these:
+```jsx
+import { useSeducer } from "@paprika/useSeducer";
 
-The first one is to let your hook to accept the interceptors and pass it to useSeducer
+function up(state) {
+  return { ...state, sum: state.sum + 1 };
+}
 
-`Example 13`
+function down(state) {
+  return { ...state, sum: state.sum - 1 };
+}
 
-and the second is when you override the behaviour and even extend the internal state:
+function useMyReusableCounter(interceptors = {}) {
+  /* prettier-ignore*/
+  const [state, dispatch, types] = useSeducer(
+    { up, down },
+    { sum: 0 },
+    null,
+    false,
+    interceptors
+  );
+  return [state, dispatch, types, interceptors];
+}
 
-`Example 14`
+function MyReusableCounter({ onUp, onDown, counter }) {
+  return (
+    <div
+      onKeyDown={event => {
+        if (event.key === "ArrowUp") {
+          event.preventDefault();
+          onUp();
+        }
+
+        if (event.key === "ArrowDown") {
+          event.preventDefault();
+          onDown();
+        }
+      }}
+    >
+      <Button onClick={onUp}>+</Button>
+      <Button onClick={onDown}>-</Button>
+      {counter}
+    </div>
+  );
+}
+
+export default function Feature() {
+  function up(state, payload, next) {
+    if ((state.sum + 1) % 10 === 0 && state.sum !== 0) {
+      return { ...next(), __hasConfetti: true };
+    }
+
+    return { ...next(), __hasConfetti: false };
+  }
+
+  function duplicate(state) {
+    if (state.sum === 0) return { ...state, sum: 1 };
+    return { ...state, sum: state.sum * 2 };
+  }
+
+  const [state, dispatch, types] = useMyReusableCounter({ up, duplicate });
+
+  return (
+    <>
+      <Confetti active={state.__hasConfetti} />
+      {state.__hasConfetti ? (
+        <div style={{ position: "absolute", left: "100px", top: "10px" }}>
+          Wait for the confetti
+          <span role="img" aria-label="confetti">
+            🎉
+          </span>!
+        </div>
+      ) : null}
+      {/* prettier-ignore*/}
+      <MyReusableCounter 
+        onUp={() => dispatch(types.up)} 
+        onDown={() => dispatch(types.down)} 
+        counter={state.sum} 
+      />
+    </>
+  );
+}
+```
+
+  </Block>
+</Blocks>
+
+### Two important places where you should pay attention:
+
+#### The first one is to let your hook to accept the interceptors and pass it to useSeducer
+
+```jsx
+function useMyReusableCounter(interceptors = {}) {
+  const [state, dispatch, types] = useSeducer(
+    { up, down },
+    { sum: 0 },
+    null,
+    false,
+    // With this useSeducer will known that our intention is to extend the behaviour.
+    interceptors
+  );
+
+  return [state, dispatch, types, interceptors];
+}
+```
+
+#### and the second is when you override the behaviour and even extend the internal state:
+
+```jsx
+/* Pay close attention on the third argument for the "up" action
+/* in case you override an existence action, automatically you are going to received a function 
+/* that you can run it and get what would be the regular next state. 
+/* You can make use it as escape of your custom action. 
+**/
+
+function up(state, payload, next) {
+  if ((state.sum + 1) % 10 === 0 && state.sum !== 0) {
+    return { ...next(), __hasConfetti: true };
+  }
+
+  /** while I don't recommend messing with the original state, 
+  /* it's possible to add your own values since you are
+  /* hook directly into the store 
+  */
+  return { ...next(), __hasConfetti: false };
+}
+
+/**
+ * "duplicate" is an action that doesn't exists in the current reducer but you can extend it.
+ */
+function duplicate(state) {
+  if (state.sum === 0) return { ...state, sum: 1 };
+  return { ...state, sum: state.sum * 2 };
+}
+
+// pass-down the new actions which will be turn into interceptors.
+const [state, dispatch, types] = useMyReusableCounter({ up, duplicate });
+```
 
 The following is the same component but using useSeducerWithContext:
 
-`Example 15`
+<Blocks>
+  <Block>
+    <ConfettiUseSeducer />
+  </Block>
+  <Block>
+
+```jsx
+// YourReusableComponent.js
+  export const actions = {
+  up(state) {
+    return { ...state, sum: state.sum + 1 };
+  },
+  down(state) {
+    return { ...state, sum: state.sum - 1 };
+  },
+};
+
+export const initialState = {
+  sum: 0,
+};
+
+function YourReusableComponent() {
+  const [state, dispatch, types] = useSeducerWithContext();
+
+  return (
+    <>
+      <Button onClick={() => dispatch(types.up)}>+</Button>
+      <Button onClick={() => dispatch(types.down)}>-</Button>
+      {state.sum}
+    </>
+  );
+}
+
+// App.js
+import YourReusableComponent, { actions, initialState } from "./YourReusableComponent";
+
+const interceptors = {
+  up(state, payload, next) {
+    if ((state.sum + 1) % 10 === 0 && state.sum !== 0) {
+      return { ...next(), __hasConfetti: true };
+    }
+
+    return { ...next(), __hasConfetti: false };
+  },
+  duplicate(state) {
+    if (state.sum === 0) return { ...state, sum: 1 };
+    return { ...state, sum: state.sum * 2 };
+  },
+};
+
+function Confetti() {
+  const [state, dispatch, types] = useSeducerWithContext();
+
+  return (
+    <>
+      <Confetti active={state.__hasConfetti} />
+      {state.__hasConfetti ? "Wait for the confetti 🎉!" : null}
+      <YourReusableComponent />
+      <Button onClick={() => dispatch(types.duplicate)}>
+        duplicate
+      </Button>
+    </>
+  );
+}
+
+export default function Feature() {
+  return (
+    <Provider
+      actions={actions}
+      initialState={initialState}
+      {/* this is where the magic happens */}
+      interceptors={interceptors}
+      hasLogger
+    >
+      <Confetti />
+    </Provider>
+  );
+}
+
+```
+
+  </Block>
+</Blocks>
+
+## What about async functions and Seducer
+
+Async functions are not different or special for Seducer, You can keep using async functions as you were doing it
+before with `React.useReducer`.
+
+Saying that here is a small example about how to handle this scenario either with React.useReducer or Seducer.
+Also worth nothing that there is nothing preventing you from using Seducer with popular Libraries like react-query or Immer.
+
+<Blocks>
+  <Block>
+    <AsyncExample />
+  </Block>
+  <Block>
+
+```jsx
+
+import { useSeducer } from "@paprika/seducer";
+
+const actions = {
+  loading(state) {
+    return { ...state, status: "loading", data: null };
+  },
+  error(state) {
+    return { ...state, status: "has error" };
+  },
+  response(state, payload) {
+    return { ...state, data: payload, status: null };
+  },
+};
+
+async function asyncFakeFetch({ dispatch, types, hasError }) {
+  return new Promise((response, error) => {
+    dispatch(types.loading);
+    setTimeout(() => {
+      if (hasError) {
+        error();
+        dispatch(types.error);
+        return;
+      }
+      dispatch(types.response, ["🐥", "🐶", "😸", "🐧", "🦊"]);
+      response();
+    }, 1500);
+  });
+}
+
+const initialState = { status: null, data: null };
+
+export default function App() {
+  const [state, dispatch, types] = useSeducer(actions, initialState, null, true);
+  const { status, data } = state;
+
+  function handleAsyncFetch(hasError = false) {
+    asyncFakeFetch({ dispatch, types, hasError });
+  }
+
+  return (
+    <>
+        <Button
+          isDisabled={status === "loading"}
+          onClick={() => {
+            handleAsyncFetch();
+          }}
+        >
+          Fetch Success
+        </Button>
+        <Button
+          isDisabled={status === "loading"}
+          onClick={() => {
+            handleAsyncFetch(true);
+          }}
+        >
+          Fetch Error
+        </Button>
+      </div>
+      {status ? <div>{status}</div> : null}
+      {data ? (
+        <div>
+          <ul>
+            {data.map(item => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+    </>
+  );
+}
+
+
+```
+
+  </Block>
+</Blocks>
 
 ## DEV-UX
 
@@ -494,14 +810,14 @@ useSeducer(actions, initialState, null, true)
 
 this is what you can expect to see in you dev console:
 
-`IMG DEV CONSOLE WITH hasLogger`
+<img src="/logger.gif" alt="developer console displaying logger behaviour" />
 
 ### Action Types
 
 In previous examples you saw me explicitly typing the name of the action in order to dispatch it dispatch("up") or dispatch("add", value)
 this is fine but prone to typing errors.
 
-Both hooks provides a way to access their types via a third value while destructuring their hooks [state, dispatch, types].
+Both hooks provides a way to access their types via a third value while destructuring their hooks `[state, dispatch, types]`.
 Seducer's types get create by taking the functions name pass-down via the action object.
 
 Make use of the types help you as well at the moment of renaming or refactoring your code since it's easier to find and replace.
@@ -509,6 +825,8 @@ Make use of the types help you as well at the moment of renaming or refactoring 
 ```jsx
 // --------
 // useSeducer provides a third value the action types when destructuring the array
+// note: since you are destructuring you could name the action types as your convinience types, action up to you.
+
 const [state, dispatch, action] = useSeducer({ up, down }, 0);
 dispatch(action.up);
 dispatch(action.down);
@@ -539,14 +857,6 @@ dispatch(action.search, value);
 dispatch(action.sort, value);
 dispatch(action.remove, value);
 ```
-
-## What about async functions and Seducer
-
-Async functions are not different or special for Seducer, You can keep using async functions as you were doing it
-before with React.useReducer.
-
-Saying that here is a small example about how to handle this scenario either with React.useReducer or Seducer.
-Also worth nothing that there is nothing preventing you from using Seducer with popular Libraries like react-query or Immer.
 
 ## FAQ
 
