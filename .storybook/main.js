@@ -26,7 +26,7 @@ module.exports = {
     "@storybook/addon-a11y",
     "@storybook/addon-cssresources",
   ],
-  webpackFinal: async (config, { configType }) => {
+  webpackFinal: async config => {
     config.module.rules = [
       ...config.module.rules,
       {
