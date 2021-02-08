@@ -1,6 +1,6 @@
 {
   "name": "@paprika/seducer",
-  "version": "1.0.3",
+  "version": "1.1.1",
   "description": "Seducer (simple reducer) is a wrap on top of React.useReducer which make it easier to use it",
   "main": "index.js",
   "repository": {
