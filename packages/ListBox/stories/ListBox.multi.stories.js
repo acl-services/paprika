@@ -4,7 +4,6 @@ import ExampleStory from "storybook/components/ExampleStory";
 import { CustomCheckboxes } from "./examples/Multi/CustomCheckboxes";
 import { ControlledAndSelected } from "./examples/Multi/ControlledAndSelected";
 import { FullyControlledListBox } from "./examples/Multi/FullyControlled";
-import { GroupsAndSelectedOptions } from "./examples/Multi/GroupsAndSelectedOptions";
 import { UncontrolledListBox } from "./examples/Multi/Uncontrolled";
 import ListBox from "../src";
 
@@ -31,21 +30,6 @@ export const CustomCheckboxesExample = () => (
 
 CustomCheckboxesExample.story = {
   name: "Custom Checkboxes",
-  parameters,
-};
-
-export const GroupsAndSelectedOptionsExample = () => (
-  <ExampleStory
-    component="ListBox"
-    storyName="Groups and selected options"
-    fileName="examples/Multi/GroupsAndSelectedOptions.js"
-  >
-    <GroupsAndSelectedOptions />
-  </ExampleStory>
-);
-
-GroupsAndSelectedOptionsExample.story = {
-  name: "Groups and Selected Options",
   parameters,
 };
 

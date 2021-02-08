@@ -10,10 +10,6 @@ import ListBox from "../../src";
 
 const options = ["Punisher", "Catwoman", "Venom", "Thunderbolts", "Deadpool", "Spawn", "Wolverine"];
 
-function renderOptions() {
-  return options.map(option => <ListBox.Option key={option}>{option}</ListBox.Option>);
-}
-
 export default function SubcomponentsExample() {
   return (
     <>
@@ -50,7 +46,9 @@ export default function SubcomponentsExample() {
               );
             }}
           </ListBox.Trigger>
-          {renderOptions()}
+          {options.map(option => (
+            <ListBox.Option key={option}>{option}</ListBox.Option>
+          ))}
         </ListBox>
       </CodeViewer>
       <StoryHeading level={2}>Listbox.Trigger | Custom clear button</StoryHeading>
@@ -58,7 +56,9 @@ export default function SubcomponentsExample() {
         <ListBox isInline>
           <ListBox.Trigger hasClearButton clearIcon={<RefreshIcon />} />
           <ListBox.Option isSelected>Loki</ListBox.Option>
-          {renderOptions()}
+          {options.map(option => (
+            <ListBox.Option key={option}>{option}</ListBox.Option>
+          ))}
         </ListBox>
       </CodeViewer>
       <StoryHeading level={2}>ListBox.RawItem</StoryHeading>

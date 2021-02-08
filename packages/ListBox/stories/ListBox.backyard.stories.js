@@ -1,9 +1,10 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
-import { testStoryParameters } from "storybook/assets/storyParameters";
+import { exampleStoryParameters } from "storybook/assets/storyParameters";
 import ExampleStory from "storybook/components/ExampleStory";
 import DirectoryExample from "./sandbox/Directory/Directory";
 import FilterSelectExample from "./sandbox/FilterSelect/FilterSelect";
+import Lazy from "./sandbox/LazyListBox/Lazy";
 import ListBox from "../src";
 
 const storyName = getStoryName("ListBox");
@@ -22,7 +23,7 @@ export const FilterSelectStory = () => (
 FilterSelectStory.story = {
   name: "Filter Select",
   parameters: {
-    ...testStoryParameters,
+    ...exampleStoryParameters,
   },
 };
 
@@ -35,6 +36,19 @@ export const ListBoxDirectoryStory = () => (
 ListBoxDirectoryStory.story = {
   name: "Directory",
   parameters: {
-    ...testStoryParameters,
+    ...exampleStoryParameters,
+  },
+};
+
+export const LazyStory = () => (
+  <ExampleStory component="ListBox" storyName="Lazy ListBox" fileName="examples/Lazy.js">
+    <Lazy />
+  </ExampleStory>
+);
+
+LazyStory.story = {
+  name: "Lazy Load API",
+  parameters: {
+    ...exampleStoryParameters,
   },
 };

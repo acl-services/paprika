@@ -2,7 +2,6 @@ import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import ExampleStory from "storybook/components/ExampleStory";
 import OnChange from "./examples/OnChange";
-import Lazy from "./examples/LazyListBox/Lazy";
 import Subcomponents from "./examples/Subcomponents";
 import ListBox from "../src";
 
@@ -42,19 +41,6 @@ export const OnChangeStory = () => (
 
 OnChangeStory.story = {
   name: "OnChange",
-  parameters: {
-    ...paramaters,
-  },
-};
-
-export const LazyStory = () => (
-  <ExampleStory component="ListBox" storyName="Lazy ListBox" fileName="examples/Lazy.js">
-    <Lazy />
-  </ExampleStory>
-);
-
-LazyStory.story = {
-  name: "Lazy Load API",
   parameters: {
     ...paramaters,
   },
