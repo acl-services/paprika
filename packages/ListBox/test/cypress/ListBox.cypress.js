@@ -52,16 +52,6 @@ describe("ListBox single select", () => {
     cy.get(selectors.trigger).should("contain", character);
   });
 
-  describe("ListBox single select zIndex", () => {
-    it("should have custom number of 10000", () => {
-      cy.visitStorybook(`${storyPrefix}-examples-single--custom-z-index`);
-      toggleDropdown();
-      cy.get(selectors.popover)
-        .should("have.css", "z-index")
-        .and("match", /10000/);
-    });
-  });
-
   describe("ListBox single select filter", () => {
     it("should show correct amount of options and select one", () => {
       cy.get(selectors.filterInput)
@@ -140,7 +130,7 @@ describe("ListBox single select custom filter", () => {
 
 describe("ListBox multi select filter", () => {
   beforeEach(() => {
-    cy.visitStorybook(`${storyPrefix}-examples-multi--with-filter`);
+    cy.visitStorybook(`${storyPrefix}-backyard-tests--multi-with-filter-story`);
     toggleDropdown();
   });
 

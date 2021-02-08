@@ -2,6 +2,7 @@ import { getStoryUrlPrefix } from "../../../../.storybook/storyTree";
 import selectors from "../helpers/selectors";
 
 const storyPrefix = `${getStoryUrlPrefix("ListBox")}`;
+
 describe("ListBox filterSelect from moreExamples", () => {
   function shouldHaveListLengthOf(num) {
     cy.get(selectors.filterSelectTableList)
@@ -26,7 +27,7 @@ describe("ListBox filterSelect from moreExamples", () => {
   }
 
   beforeEach(() => {
-    cy.visitStorybook(`${storyPrefix}-examples--filter-select`);
+    cy.visitStorybook(`${storyPrefix}-backyard-sandbox--filter-select-story`);
   });
 
   it("should show correct options in list and trigger when color filtering", () => {
