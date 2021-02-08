@@ -44,7 +44,6 @@ module.exports = {
       globalObject: "self",
     };
 
-    console.log(">>>>>>>>>>>>>>>>>>>>>>mode", config.mode);
     return config;
   },
 };

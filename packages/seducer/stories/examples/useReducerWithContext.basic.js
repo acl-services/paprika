@@ -2,6 +2,11 @@ import React from "react";
 import Button from "@paprika/button";
 import Input from "@paprika/input";
 import Times from "@paprika/icon/lib/Times";
+import Card from "@paprika/card";
+import Toast from "@paprika/toast";
+
+import { Story } from "storybook/assets/styles/common.styles";
+
 import { Provider, useSeducerWithContext } from "../../src";
 
 function Add() {
@@ -71,9 +76,19 @@ const initialState = new Set(["Cat", "Dog", "Bear"]);
 
 export default function App() {
   return (
-    <Provider initialState={initialState} actions={actions} hasLogger>
-      <List />
-      <Add />
-    </Provider>
+    <Story>
+      <Card style={{ padding: "16px" }}>
+        <Toast hasCloseButton={false}>
+          Try to add a Lion!{" "}
+          <span role="img" aria-label="lion">
+            🦁
+          </span>
+        </Toast>
+        <Provider initialState={initialState} actions={actions} hasLogger>
+          <List />
+          <Add />
+        </Provider>
+      </Card>
+    </Story>
   );
 }

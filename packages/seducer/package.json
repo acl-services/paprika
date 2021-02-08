@@ -21,11 +21,15 @@
   },
   "homepage": "https://github.com/acl-services/paprika/tree/master/packages/seducer",
   "dependencies": {
-    "@paprika/button": "^1.0.3"
+    "@paprika/button": "^1.0.3",
+    "@paprika/card": "^1.0.4",
+    "@paprika/collapsible-card": "^1.1.8",
+    "@paprika/toast": "^1.0.6",
+    "prop-types": "^15.7.2"
   },
   "peerDependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   }
 }

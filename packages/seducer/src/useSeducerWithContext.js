@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-param-reassign */
 import React from "react";
+import PropTypes from "prop-types";
 import reducer from "./reducer";
 import getTypes from "./getTypes";
 
@@ -10,6 +11,25 @@ export const contextDispatch = React.createContext(null);
 export const useSeducerWithContext = () => {
   const [dispatch, types] = useDispatch();
   return [useState(), dispatch, types];
+};
+
+const propTypes = {
+  actions: PropTypes.shape({}),
+  children: PropTypes.node.isRequired,
+  displayName: PropTypes.string,
+  hasLogger: PropTypes.bool,
+  initialState: PropTypes.shape({}),
+  initializer: PropTypes.func,
+  interceptors: PropTypes.shape({}),
+};
+
+const defaultProps = {
+  actions: {},
+  displayName: null,
+  hasLogger: false,
+  initialState: {},
+  initializer: undefined,
+  interceptors: {},
 };
 
 export function Provider({
@@ -90,3 +110,7 @@ function setContextDisplayName(contextState, displayName) {
 
   contextDispatch.displayName = displayName ? `${displayName}Dispatch` : "ContextSimpleReducerDispatch";
 }
+
+Provider.propTypes = propTypes;
+
+Provider.defaultProps = defaultProps;
