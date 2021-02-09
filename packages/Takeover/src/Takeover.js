@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { zValue } from "@paprika/stylers/lib/helpers";
 import { extractChildren } from "@paprika/helpers";
-import Overlay from "@paprika/overlay";
+import Overlay from "./components/Overlay";
 import FocusLock from "./components/FocusLock";
 import Header from "./components/Header/Header";
 import Content from "./components/Content/Content";
@@ -49,9 +49,14 @@ export default function Takeover(props) {
     "Takeover.Content": contentExtracted,
     "Takeover.FocusLock": focusLockExtracted,
     "Takeover.Header": headerExtracted,
-    Overlay: overlayExtracted,
+    "Takeover.Overlay": overlayExtracted,
     children,
-  } = extractChildren(moreProps.children, ["Takeover.Content", "Takeover.FocusLock", "Takeover.Header", "Overlay"]);
+  } = extractChildren(moreProps.children, [
+    "Takeover.Content",
+    "Takeover.FocusLock",
+    "Takeover.Header",
+    "Takeover.Overlay",
+  ]);
 
   const focusLockProps = focusLockExtracted ? focusLockExtracted.props : {};
   const focusLockOptions = {
@@ -112,4 +117,4 @@ Takeover.defaultProps = defaultProps;
 Takeover.Header = Header;
 Takeover.Content = Content;
 Takeover.FocusLock = FocusLock;
-Takeover.Overlay = TakeoverOverlay;
+Takeover.Overlay = Overlay;
