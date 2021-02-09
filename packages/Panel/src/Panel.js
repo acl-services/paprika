@@ -176,7 +176,6 @@ export default function Panel(props) {
         <Portal active>
           <OriginalOverlay
             data-pka-anchor="panel.overlay"
-            container={document.querySelector('[data-pka-anchor="panel"]')}
             focusLockOptions={focusLockProps}
             hasBackdrop
             isOpen={isOpen}
