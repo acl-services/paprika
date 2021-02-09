@@ -1,14 +1,16 @@
 import React from "react";
-import Input from "../../src";
+import { action } from "@storybook/addon-actions";
 import { InputStory } from "../Input.stories.styles";
+import Input from "../../src";
 
 const UncontrolledExample = () => {
   return (
     <InputStory>
       <Input
         defaultValue="hello world"
-        onChange={e => {
-          console.log("the inputs new value is: ", e.target.value);
+        hasClearButton
+        onChange={event => {
+          action("value changed")(event.target.value);
         }}
       />
     </InputStory>
