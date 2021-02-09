@@ -4,24 +4,6 @@ import Close from "@paprika/icon/lib/Times";
 import * as sc from "./Tag.styles";
 import * as types from "./types";
 
-export function Delete({ isDisabled, size, onRemove = () => {} }) {
-  return (
-    <sc.Delete isDisabled={isDisabled} size={size} data-pka-anchor="tag.delete" onClick={onRemove}>
-      <Close />
-    </sc.Delete>
-  );
-}
-
-Delete.propTypes = {
-  onRemove: PropTypes.func.isRequired,
-  size: PropTypes.oneOf([types.MEDIUM, types.LARGE]).isRequired,
-  isDisabled: PropTypes.bool,
-};
-
-Delete.defaultProps = {
-  isDisabled: false,
-};
-
 export default function Tag(props) {
   const { children, onRemove, size, onClick, a11yText, isDisabled, ...moreProps } = props;
   const isChildString = typeof children === "string";
@@ -36,7 +18,11 @@ export default function Tag(props) {
       <sc.Ellipsis isChildString={isChildString} size={size}>
         {children}
       </sc.Ellipsis>
-      {onRemove ? <Delete isDisabled={isDisabled} onRemove={handleRemove} size={size} /> : null}
+      {onRemove ? (
+        <sc.Delete isDisabled={isDisabled} size={size} data-pka-anchor="tag.remove" onClick={handleRemove}>
+          <Close />
+        </sc.Delete>
+      ) : null}
     </>
   );
 
