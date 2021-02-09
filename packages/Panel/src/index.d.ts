@@ -18,7 +18,7 @@ interface PanelProps {
   /** Render the panel inline */
   isInline?: boolean;
   /** Control the visibility of the Panel. This prop makes the Panel appear. */
-  isOpen: boolean;
+  isOpen?: boolean;
   /** Modify the look of the Panel */
   kind?: Panel.types.kind.DEFAULT | Panel.types.kind.CHILD | Panel.types.kind.PRIMARY;
   /** Control offset of the Panel. Only use 'top' when sliding in from the left or right. Only use 'left' or 'right' when sliding in from the bottom. */
@@ -96,7 +96,7 @@ declare namespace Panel {
 
     hasBackdrop?: boolean;
 
-    isOpen: boolean;
+    isOpen?: boolean;
 
     onClose?: (...args: any[]) => any;
 

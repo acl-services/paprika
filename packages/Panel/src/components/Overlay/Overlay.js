@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable react/no-unused-prop-types */
 import React from "react";
 import PropTypes from "prop-types";
@@ -12,7 +13,7 @@ const propTypes = {
 
   focusLockOptions: PropTypes.shape(FocusPropTypes),
   hasBackdrop: PropTypes.bool,
-  isOpen: PropTypes.bool.isRequired,
+  isOpen: PropTypes.bool,
   onClose: PropTypes.func,
   onAfterOpen: PropTypes.func,
   onAfterClose: PropTypes.func,
@@ -20,17 +21,7 @@ const propTypes = {
   /** z-index of the Overlay wrapper */
   zIndex: PropTypes.number,
 };
-const defaultProps = {
-  backdropClassName: null,
-  children: () => {},
-  container: null,
-  focusLockOptions: {},
-  hasBackdrop: true,
-  onAfterClose: () => {},
-  onAfterOpen: () => {},
-  onClose: () => {},
-  zIndex: null,
-};
+const defaultProps = {};
 
 const Overlay = () => <></>;
 
