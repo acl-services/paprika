@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { zValue } from "@paprika/stylers/lib/helpers";
 import { extractChildren } from "@paprika/helpers";
+import OriginalOverlay from "@paprika/overlay";
 import Overlay from "./components/Overlay";
 import FocusLock from "./components/FocusLock";
 import Header from "./components/Header/Header";
@@ -39,9 +40,6 @@ const defaultProps = {
   zIndex: zValue(5),
 };
 
-const TakeoverOverlay = Overlay;
-delete TakeoverOverlay.propTypes.isOpen;
-
 export default function Takeover(props) {
   const { a11yText, isOpen, onClose, onAfterClose, onAfterOpen, zIndex, ...moreProps } = props;
 
@@ -64,12 +62,11 @@ export default function Takeover(props) {
     ...(focusLockProps || {}),
   };
 
-  const takeoverOverlay = overlayExtracted || <TakeoverOverlay />;
   const overlayProps = {
     "data-pka-anchor": "takeover.overlay",
     hasBackdrop: false,
     focusLockOptions,
-    ...takeoverOverlay.props,
+    ...(overlayExtracted ? overlayExtracted.props : {}),
     isOpen,
     onAfterClose,
     onAfterOpen,
@@ -89,25 +86,29 @@ export default function Takeover(props) {
     return headerExtracted.props.children;
   }
 
-  return React.cloneElement(takeoverOverlay, overlayProps, state => (
-    <sc.Takeover
-      state={state}
-      {...moreProps}
-      aria-label={getAriaLabel()}
-      aria-modal
-      data-pka-anchor="takeover"
-      role="dialog"
-      zIndex={zIndex}
-    >
-      {headerExtracted && <sc.Header {...headerExtracted.props} onClose={onClose} />}
-      {contentExtracted && (
-        <sc.Content role="region" tabIndex="0">
-          {contentExtracted}
-        </sc.Content>
+  return (
+    <OriginalOverlay {...overlayProps}>
+      {state => (
+        <sc.Takeover
+          state={state}
+          {...moreProps}
+          aria-label={getAriaLabel()}
+          aria-modal
+          data-pka-anchor="takeover"
+          role="dialog"
+          zIndex={zIndex}
+        >
+          {headerExtracted && <sc.Header {...headerExtracted.props} onClose={onClose} />}
+          {contentExtracted && (
+            <sc.Content role="region" tabIndex="0">
+              {contentExtracted}
+            </sc.Content>
+          )}
+          {children}
+        </sc.Takeover>
       )}
-      {children}
-    </sc.Takeover>
-  ));
+    </OriginalOverlay>
+  );
 }
 
 Takeover.displayName = "Takeover";
