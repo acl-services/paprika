@@ -24,9 +24,6 @@ export default function Tag(props) {
   );
 
   if (onClick) {
-    if (!a11yText) {
-      console.warn("Tag component should include an a11yText prop if an onClick is provided.");
-    }
     return (
       <sc.RawButtonTag
         a11yText={a11yText}
@@ -48,7 +45,7 @@ export default function Tag(props) {
 }
 
 Tag.types = {
-  size: PropTypes.oneOf([types.MEDIUM, types.LARGE]),
+  size: types.sizes,
   color: types.colors,
   severity: types.severityTagColors,
 };
@@ -58,39 +55,40 @@ const propTypes = {
   a11yText: PropTypes.string,
   /** Can pass a custom border color */
   borderColor: PropTypes.string,
-  /**  Pass a function to show a delete button */
-  onRemove: PropTypes.func,
   /** Content to show in the central area of the tag */
   children: PropTypes.node.isRequired,
-  /** Disables tag onClick and delete button functionality */
+  /** Disables tag onClick and remove button functionality */
   isDisabled: PropTypes.bool,
   /** Fires when clicking the root element. Should also pass value for a11yText when using this */
   onClick: PropTypes.func,
+  /**  Pass a function to show a remove button */
+  onRemove: PropTypes.func,
+  /** Size of the tag(font size, min-height, padding, etc). */
+  size: PropTypes.oneOf([Tag.types.size.MEDIUM, Tag.types.size.LARGE]),
   /** Visual color of the tag */
   tagColor: PropTypes.oneOf([
     Tag.types.color.BLACK,
     Tag.types.color.BLUE,
     Tag.types.color.GREEN,
     Tag.types.color.GREY,
-    Tag.types.color.ORANGE,
     Tag.types.color.LIGHT_BLUE,
     Tag.types.color.LIGHT_ORANGE,
+    Tag.types.color.ORANGE,
     Tag.types.severity.NO_RISK,
     Tag.types.severity.LOW_RISK,
     Tag.types.severity.MEDIUM_RISK,
     Tag.types.severity.HIGH_RISK,
+    Tag.types.severity.ALERT,
   ]),
-  /** Size of the tag(font size, min-height, padding, etc). */
-  size: PropTypes.oneOf([types.MEDIUM, types.LARGE]),
 };
 
 const defaultProps = {
-  borderColor: null,
   a11yText: null,
+  borderColor: null,
   isDisabled: false,
   onClick: null,
   onRemove: null,
-  size: types.MEDIUM,
+  size: Tag.types.size.MEDIUM,
   tagColor: Tag.types.color.GREY,
 };
 

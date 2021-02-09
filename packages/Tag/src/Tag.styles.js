@@ -2,60 +2,62 @@ import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import RawButton from "@paprika/raw-button";
 import Button from "@paprika/button";
-import { fontSize } from "@paprika/stylers/lib/helpers";
+import { fontSize, spacer } from "@paprika/stylers/lib/helpers";
 import { truncateText } from "@paprika/stylers/lib/includes";
+import * as types from "./types";
 
 const tagColorStyles = {
-  black: css`
+  [types.colors.BLACK]: css`
     background: ${tokens.color.black};
   `,
 
-  blue: css`
+  [types.colors.BLUE]: css`
     background: ${tokens.color.blue};
   `,
 
-  grey: css`
+  [types.colors.GREY]: css`
     background: ${tokens.color.blackLighten70};
     color: ${tokens.color.black};
   `,
 
-  green: css`
+  [types.colors.GREEN]: css`
     background: ${tokens.color.greenDarken10};
   `,
 
-  orange: css`
+  [types.colors.ORANGE]: css`
     background: ${tokens.color.orangeDarken10};
   `,
 
-  noRisk: css`
-    background: ${tokens.color.blackLighten70};
-    color: ${tokens.color.black};
-  `,
-
-  lightBlue: css`
+  [types.colors.LIGHT_BLUE]: css`
     background: ${tokens.color.blueLighten50};
     color: ${tokens.color.blueDarken20};
   `,
 
-  lightOrange: css`
+  [types.colors.LIGHT_ORANGE]: css`
     background: ${tokens.color.orangeLighten40};
     color: ${tokens.color.orangeDarken20};
   `,
 
-  lowRisk: css`
+  [types.severityTagColors.NO_RISK]: css`
+    background: ${tokens.color.blackLighten70};
+    color: ${tokens.color.black};
+  `,
+
+  [types.severityTagColors.LOW_RISK]: css`
     background: #299a7a;
   `,
 
-  mediumRisk: css`
+  [types.severityTagColors.MEDIUM_RISK]: css`
     background: #c9af28;
   `,
 
-  highRisk: css`
+  [types.severityTagColors.HIGH_RISK]: css`
     background: #cd3c44;
   `,
 
-  alert: css`
+  [types.severityTagColors.ALERT]: css`
     background: none;
+    border: 1px solid ${tokens.color.orangeDarken10};
     color: ${tokens.color.orangeDarken10};
   `,
 };
@@ -78,7 +80,7 @@ const tagStyles = ({ tagColor, borderColor }) => css`
   align-items: center;
   background: ${tokens.color.blackLighten70};
   ${borderColor ? borderColorStyles : ""}
-  border-radius: ${tokens.space[0] * 2}px;
+  border-radius: ${spacer(2)};
   color: ${tokens.color.white};
   display: flex;
   line-height: 1;
@@ -136,7 +138,7 @@ export const Delete = styled(Button.Close)(({ size }) => {
     border-radius: 50%;
     box-sizing: border-box;
     display: flex;
-    flex: 0 0 auto;
+    flex-shrink: 0;
     font-size: ${fontSize[size]};
     height: ${width[size]};
     justify-content: center;
@@ -150,11 +152,6 @@ export const Delete = styled(Button.Close)(({ size }) => {
 
     &:focus {
       background: ${tokens.color.blackLighten60};
-    }
-
-    & svg {
-      color: ${tokens.color.blackLighten20};
-      pointer-events: none;
     }
   `;
 });
