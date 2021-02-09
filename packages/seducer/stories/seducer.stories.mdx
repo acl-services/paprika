@@ -1,0 +1,876 @@
+import { Meta, Props, Story } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import CollapsibleCard from "@paprika/collapsible-card";
+import Basic from "./examples/useReducer.basic";
+import Blocks, { Block } from "storybook/components/Blocks";
+import BasicWithContext from "./examples/useReducerWithContext.basic";
+import CharacterList from "./examples/useReducerWithContext.CharacterList";
+import ConfettiUseSeducer from "./examples/useReducer.confetti";
+import AsyncExample from "./examples/useSeducer.async";
+import Readme from "../README.md";
+import { Description } from "@storybook/addon-docs/blocks";
+
+<Meta title={`${getStoryName("seducer")}/Docs`} />
+
+<Description markdown={Readme} />
+
+<br />
+
+## useSeducer example
+
+<Blocks>
+  <Block>
+    <Basic />
+  </Block>
+ <Block>
+
+```js
+import { useSeducer } from "@paprika/seducer";
+export default function App() {
+  function up(state) {
+    return state + 1;
+  }
+  function down(state) {
+    return state - 1;
+  }
+  const [state, dispatch, action] = useSeducer({ up, down }, 0);
+
+  return (
+    <>
+      {/** alternative you can dispatch("up") directly */}
+      <Button onClick={() => dispatch(action.up)}>+</Button>
+      <Button onClick={() => dispatch(action.down)}>-</Button>
+      {state}
+    </>
+  );
+}
+```
+
+  </Block>
+</Blocks>
+
+## useSeducerWithContext example
+
+<Blocks>
+  <Block>
+    <BasicWithContext />
+  </Block>
+  <Block>
+
+```js
+import { Provider, useSeducerWithContext } from "@paprika/useSeducerWithContext";
+
+function Add() {
+  // accessing dispatch via the context
+  const [, dispatch] = useSeducerWithContext();
+  const ref = React.useRef(null);
+
+  return (
+    <form
+      onSubmit={event => {
+        dispatch("add", ref.current.value);
+        ref.current.value = "";
+      }}
+    >
+      <Input ref={ref} defaultValue="" placeholder="add an animal [enter]" />
+    </form>
+  );
+}
+
+function List() {
+  const [state, dispatch] = useSeducerWithContext();
+  const handleDelete = item => () => {
+    dispatch("remove", item);
+  };
+
+  return (
+    <ul>
+      {Array.from(state).map(item => (
+        <li key={item}>
+          {item} <Times />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+const initialState = new Set(["Cat", "Dog", "Bear"]);
+
+const actions = {
+  add(state, payload) {
+    const nextList = new Set(state);
+    nextList.add(payload);
+    return nextList;
+  },
+  remove(state, payload) {
+    const nextList = new Set(state);
+    nextList.delete(payload);
+    return nextList;
+  },
+};
+
+export default function App() {
+  return (
+    <Provider initialState={initialState} actions={actions} hasLogger>
+      <List />
+      <Add />
+    </Provider>
+  );
+}
+```
+
+  </Block>
+</Blocks>
+
+As you can see `useSeducer` and `useSeducerWithContext` are easy to use and give you a lot of flexibility in helping you to
+manage your state. All these with the benefit of using `React.useReducer` and without worrying of setting up switch statements,
+declaring reducer function or worrying about how to organize your code, you don't even have to understand the reducer pattern at all,
+this has been abstracted for you.
+
+IMO just by abstracting `React.useReducer` and let you focusing only in `actions`, Seducer has already accomplish its value
+proposition in improving the `React.useReducer` experience.
+
+But Seducer provides a little more advances features for more complex scenarios, targeting small and medium reusable
+features or complex components, also helps you in using the concept of "inversion of control" with a more friendly approach,
+so if you are interested in learning more about that.
+
+## Reusability - Advance
+
+<br />
+<CollapsibleCard label="Reusability with useSeducer">
+
+Reusing components and features within the React ecosystem is a complex topic, there are many patterns and ways to make
+your components reusable.
+
+Seducer in specific use the state reduce pattern, this patterns is best suitable for medium reusable
+features or complex components.
+
+The recipe for reusable component using useSeducer goes like this:
+
+### 1. Export a hook initializing your reducer with `useSeducer`
+
+```js
+import { useSeducer } from "@paprika/seducer";
+
+const actions = {
+  up(state, payload) {...};
+  down(state, payload) {...};
+  setCounter(state, payload) {...};
+}
+
+const initialState = { counter: 0, ...more}
+
+export function useYourComponent() {
+  const store = useSeducer(actions, initialState)
+  return store;
+}
+```
+
+### 2. Create your reusable component:
+
+Pay attention how we have a prop to override the store which in case our consumer wants to take over and controll the component,
+but if the consumer doesn't pass anything down, is initializing it with a default one.
+
+```js
+import { useSeducer } from "@paprika/seducer";
+
+const actions = {
+  up(state, payload) {...};
+  down(state, payload) {...};
+  setCounter(state, payload) {...};
+}
+
+const initialState = { counter: 0, ...more}
+
+export function useYourComponent() {
+  const store = useSeducer(actions, initialState)
+  return store;
+}
+
+export default function YourReusableComponent({ store: storeProps, ...moreProps }) {
+  const storeDefault = useYourComponent();
+  const [state, dispatch, types] = storeProps || storeDefault;
+
+  return (
+    <>
+      <span>{state.counter}</span>
+      <button onClick={() => dispatch(types.up)}>+</button>
+      <button onClick={() => dispatch(types.down)}>-</button>
+    </>
+  )
+}
+```
+
+### 3. Make use of your Reusable component
+
+`Example 5`
+
+### 4. Control your Reusable component
+
+`Example 6`
+
+That's it you created a control and uncontrolled component.
+
+</CollapsibleCard>
+<br />
+<CollapsibleCard label="Reusability with useSeducerWithContext">
+
+The recipe for useSeducerWithContext goes like this:
+
+<br />
+
+### 1. Similarly to useSeducer start by defining the basic structure:
+
+```js
+import { useSeducerWithContext } from "@paprika/seducer";
+
+export const actions = { ... };
+export const initialState = { ... };
+
+/**  unlike useSeducer you don't need to wrap your seducer hook to initialize it. */
+/**  for that you will use a <Provider />, for this reason you will need to export the actions and the initalState */
+/**  which you will use later to feed it into the Provider */
+```
+
+### 2. Initiate the context with the hook
+
+We repeat the step for creating our reusable component, keep in mind that unlike useSeducer where we injected the store,
+for `useSeducerWithContext` only requires to call `useSeducerWithContext()`.
+
+```js
+
+import { useSeducerWithContext } from "@paprika/seducer";
+export const actions = { ... };
+export const initialState = { ... };
+
+export default function YourReusableComponent() {
+  const [state, dispatch, types] = useSeducerWithContext();
+
+  return (
+    <>
+      <span>{state.counter}</span>
+      <button onClick={() => dispatch(types.up)}>+</button>
+      <button onClick={() => dispatch(types.down)}>-</button>
+    </>
+  )
+}
+
+
+```
+
+### 3. Now we need to wrap our Reusable component within a Provider and use it.
+
+```js
+import { Provider } from "@paprika/seducer";
+import YourReusableComponent { actions, initialState } from "./YourReusableComponent"
+
+function App() {
+  // now you have access to the component and can control it.
+  const [state, dispatch, types] = useSeducerWithContext();
+  return <YourReusableComponent />
+}
+
+function Root() {
+  return (
+    <Provider initialState={initialState} actions={actions}>
+      <App />
+    </Provider>
+  )
+}
+```
+
+</CollapsibleCard>
+
+## More Examples
+
+An little more elaborated example component
+
+## example with useSeducer
+
+<Blocks>
+  <Block>
+    <CharacterList initialCharacters={["Batman", "Flash", "Super Woman"]} initialSelected={["Aquaman"]} />
+    <CharacterList initialCharacters={["Bart", "Lisa", "Homer"]} initialSelected={["Marge", "Mr Burns"]} /></Block>
+  <Block>
+
+```jsx
+import { useSeducerWithContext, Provider } from "@paprika/seducer";
+
+const actions = {
+  selected(state, payload) {
+    return { ...state, selected: new Set(payload || []) };
+  },
+  characters(state, payload) {
+    return { ...state, characters: new Set(payload || []) };
+  },
+  toggle(state, payload) {
+    let removeFrom = new Set(state.characters);
+    let moveTo = new Set(state.selected);
+
+    if (state.selected.has(payload)) {
+      removeFrom = new Set(state.selected);
+      moveTo = new Set(state.characters);
+      removeFrom.delete(payload);
+      moveTo.add(payload);
+
+      return {
+        ...state,
+        selected: removeFrom,
+        characters: moveTo,
+      };
+    }
+
+    removeFrom.delete(payload);
+    moveTo.add(payload);
+
+    return {
+      ...state,
+      selected: moveTo,
+      characters: removeFrom,
+    };
+  },
+
+  addCharacter(state, payload) {
+    const next = new Set(state.characters);
+    next.add(payload);
+    return { ...state, characters: next };
+  },
+};
+
+export function CharactersList() {
+  const refInput = React.useRef(null);
+  const [state, dispatch, types] = useSeducerWithContext();
+
+  const handleToggle = value => () => {
+    dispatch(types.toggle, value);
+  };
+
+  return (
+    <div>
+      <form
+        onSubmit={event => {
+          event.preventDefault();
+
+          if (refInput.current.value) {
+            dispatch(types.addCharacter, refInput.current.value);
+            refInput.current.value = "";
+          }
+        }}
+      >
+        <label>Add character:</label>
+        <Input ref={refInput} />
+      </form>
+      <br />
+      <div>
+        <div>
+          <strong>Selected:</strong>
+          <ul>
+            {Array.from(state.selected).map(character => (
+              <li key={character} style={{ padding: "0 0 8px 0" }}>
+                {character}
+                <Button size={Button.types.size.SMALL} onClick={handleToggle(character)}>
+                  remove
+                </Button>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <strong>Characters:</strong>
+          <ul>
+            {Array.from(state.characters).map(character => (
+              <li key={character} style={{ padding: "0 0 8px 0" }}>
+                {character}
+                <Button size={Button.types.size.SMALL} onClick={handleToggle(character)}>
+                  select
+                </Button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function CharacterListFeature({ initialSelected = [], initialCharacters = [] }) {
+  const initialState = {
+    selected: new Set(initialSelected),
+    characters: new Set(initialCharacters),
+  };
+
+  // useReducerWithContext requires a Provider in order to use useSeducerWithContext
+  return (
+    <Provider initialState={initialState} actions={actions}>
+      <CharactersList />
+    </Provider>
+  );
+}
+
+/* you can use it like:
+ <CharacterList 
+  initialCharacters={["Batman", "Flash", "Super Woman"]} 
+  initialSelected={["Aquaman"]} 
+/>
+
+<CharacterList 
+  initialCharacters={["Bart", "Lisa", "Homer"]} 
+  initialSelected={["Marge", "Mr Burns"]} 
+/>
+*/
+```
+
+  </Block>
+</Blocks>
+
+## Inversion of Control - Advance
+
+> Don't call us, we'll call you
+> -- Hollywood Principle
+
+Inversion of Control sounds really fancy, but there is high chances of you using it daily. The functions
+you pass-down whenever using `Array.Filter`, `Array.Map` or `Array.Sort`, all that is Inversion of Control.
+You can read a way better explanation from [Kent C. Dodds](https://kentcdodds.com/blog/inversion-of-control), if you are interested into understanding it better.
+
+I will show you how to do Inversion of Control using `useSeducer` and `useSeducerWithContext`
+
+Normally to achieve IOC with the State Reduce Pattern you would need to export the internal reducer of your reusable component,
+and then make your consumer to provide their own Reducer, this way the consumer could "hook" into the
+`React.useReducer` and received any dispatched actions.
+
+This patterns is really powerful, but little cumbersome IMO, `useSeducer` and `useSeducerWithContext` provided a more
+friendly approach via interceptors.
+
+Interceptors are regular functions which extended the default ones in convenient way.
+
+Take as example the following simple component using useSeducer:
+
+<Blocks>
+  <Block>
+    <ConfettiUseSeducer />
+  </Block>
+  <Block>
+
+```jsx
+import { useSeducer } from "@paprika/useSeducer";
+
+function up(state) {
+  return { ...state, sum: state.sum + 1 };
+}
+
+function down(state) {
+  return { ...state, sum: state.sum - 1 };
+}
+
+function useMyReusableCounter(interceptors = {}) {
+  /* prettier-ignore*/
+  const [state, dispatch, types] = useSeducer(
+    { up, down },
+    { sum: 0 },
+    null,
+    false,
+    interceptors
+  );
+  return [state, dispatch, types, interceptors];
+}
+
+function MyReusableCounter({ onUp, onDown, counter }) {
+  return (
+    <div
+      onKeyDown={event => {
+        if (event.key === "ArrowUp") {
+          event.preventDefault();
+          onUp();
+        }
+
+        if (event.key === "ArrowDown") {
+          event.preventDefault();
+          onDown();
+        }
+      }}
+    >
+      <Button onClick={onUp}>+</Button>
+      <Button onClick={onDown}>-</Button>
+      {counter}
+    </div>
+  );
+}
+
+export default function Feature() {
+  function up(state, payload, next) {
+    if ((state.sum + 1) % 10 === 0 && state.sum !== 0) {
+      return { ...next(), __hasConfetti: true };
+    }
+
+    return { ...next(), __hasConfetti: false };
+  }
+
+  function duplicate(state) {
+    if (state.sum === 0) return { ...state, sum: 1 };
+    return { ...state, sum: state.sum * 2 };
+  }
+
+  const [state, dispatch, types] = useMyReusableCounter({ up, duplicate });
+
+  return (
+    <>
+      <Confetti active={state.__hasConfetti} />
+      {state.__hasConfetti ? (
+        <div style={{ position: "absolute", left: "100px", top: "10px" }}>
+          Wait for the confetti
+          <span role="img" aria-label="confetti">
+            🎉
+          </span>!
+        </div>
+      ) : null}
+      {/* prettier-ignore*/}
+      <MyReusableCounter 
+        onUp={() => dispatch(types.up)} 
+        onDown={() => dispatch(types.down)} 
+        counter={state.sum} 
+      />
+    </>
+  );
+}
+```
+
+  </Block>
+</Blocks>
+
+### Two important places where you should pay attention:
+
+#### The first one is to let your hook to accept the interceptors and pass it to useSeducer
+
+```jsx
+function useMyReusableCounter(interceptors = {}) {
+  const [state, dispatch, types] = useSeducer(
+    { up, down },
+    { sum: 0 },
+    null,
+    false,
+    // With this useSeducer will known that our intention is to extend the behaviour.
+    interceptors
+  );
+
+  return [state, dispatch, types, interceptors];
+}
+```
+
+#### and the second is when you override the behaviour and even extend the internal state:
+
+```jsx
+/* Pay close attention on the third argument for the "up" action
+/* in case you override an existence action, automatically you are going to received a function 
+/* that you can run it and get what would be the regular next state. 
+/* You can make use it as escape of your custom action. 
+**/
+
+function up(state, payload, next) {
+  if ((state.sum + 1) % 10 === 0 && state.sum !== 0) {
+    return { ...next(), __hasConfetti: true };
+  }
+
+  /** while I don't recommend messing with the original state, 
+  /* it's possible to add your own values since you are
+  /* hook directly into the store 
+  */
+  return { ...next(), __hasConfetti: false };
+}
+
+/**
+ * "duplicate" is an action that doesn't exists in the current reducer but you can extend it.
+ */
+function duplicate(state) {
+  if (state.sum === 0) return { ...state, sum: 1 };
+  return { ...state, sum: state.sum * 2 };
+}
+
+// pass-down the new actions which will be turn into interceptors.
+const [state, dispatch, types] = useMyReusableCounter({ up, duplicate });
+```
+
+The following is the same component but using useSeducerWithContext:
+
+<Blocks>
+  <Block>
+    <ConfettiUseSeducer />
+  </Block>
+  <Block>
+
+```jsx
+// YourReusableComponent.js
+  export const actions = {
+  up(state) {
+    return { ...state, sum: state.sum + 1 };
+  },
+  down(state) {
+    return { ...state, sum: state.sum - 1 };
+  },
+};
+
+export const initialState = {
+  sum: 0,
+};
+
+function YourReusableComponent() {
+  const [state, dispatch, types] = useSeducerWithContext();
+
+  return (
+    <>
+      <Button onClick={() => dispatch(types.up)}>+</Button>
+      <Button onClick={() => dispatch(types.down)}>-</Button>
+      {state.sum}
+    </>
+  );
+}
+
+// App.js
+import YourReusableComponent, { actions, initialState } from "./YourReusableComponent";
+
+const interceptors = {
+  up(state, payload, next) {
+    if ((state.sum + 1) % 10 === 0 && state.sum !== 0) {
+      return { ...next(), __hasConfetti: true };
+    }
+
+    return { ...next(), __hasConfetti: false };
+  },
+  duplicate(state) {
+    if (state.sum === 0) return { ...state, sum: 1 };
+    return { ...state, sum: state.sum * 2 };
+  },
+};
+
+function Confetti() {
+  const [state, dispatch, types] = useSeducerWithContext();
+
+  return (
+    <>
+      <Confetti active={state.__hasConfetti} />
+      {state.__hasConfetti ? "Wait for the confetti 🎉!" : null}
+      <YourReusableComponent />
+      <Button onClick={() => dispatch(types.duplicate)}>
+        duplicate
+      </Button>
+    </>
+  );
+}
+
+export default function Feature() {
+  return (
+    <Provider
+      actions={actions}
+      initialState={initialState}
+      {/* this is where the magic happens */}
+      interceptors={interceptors}
+      hasLogger
+    >
+      <Confetti />
+    </Provider>
+  );
+}
+
+```
+
+  </Block>
+</Blocks>
+
+## What about async functions and Seducer
+
+Async functions are not different or special for Seducer, You can keep using async functions as you were doing it
+before with `React.useReducer`.
+
+Saying that here is a small example about how to handle this scenario either with React.useReducer or Seducer.
+Also worth nothing that there is nothing preventing you from using Seducer with popular Libraries like react-query or Immer.
+
+<Blocks>
+  <Block>
+    <AsyncExample />
+  </Block>
+  <Block>
+
+```jsx
+
+import { useSeducer } from "@paprika/seducer";
+
+const actions = {
+  loading(state) {
+    return { ...state, status: "loading", data: null };
+  },
+  error(state) {
+    return { ...state, status: "has error" };
+  },
+  response(state, payload) {
+    return { ...state, data: payload, status: null };
+  },
+};
+
+async function asyncFakeFetch({ dispatch, types, hasError }) {
+  return new Promise((response, error) => {
+    dispatch(types.loading);
+    setTimeout(() => {
+      if (hasError) {
+        error();
+        dispatch(types.error);
+        return;
+      }
+      dispatch(types.response, ["🐥", "🐶", "😸", "🐧", "🦊"]);
+      response();
+    }, 1500);
+  });
+}
+
+const initialState = { status: null, data: null };
+
+export default function App() {
+  const [state, dispatch, types] = useSeducer(actions, initialState, null, true);
+  const { status, data } = state;
+
+  function handleAsyncFetch(hasError = false) {
+    asyncFakeFetch({ dispatch, types, hasError });
+  }
+
+  return (
+    <>
+        <Button
+          isDisabled={status === "loading"}
+          onClick={() => {
+            handleAsyncFetch();
+          }}
+        >
+          Fetch Success
+        </Button>
+        <Button
+          isDisabled={status === "loading"}
+          onClick={() => {
+            handleAsyncFetch(true);
+          }}
+        >
+          Fetch Error
+        </Button>
+      </div>
+      {status ? <div>{status}</div> : null}
+      {data ? (
+        <div>
+          <ul>
+            {data.map(item => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+    </>
+  );
+}
+
+
+```
+
+  </Block>
+</Blocks>
+
+## DEV-UX
+
+Using Seducer comes with some perks from the developer experience side of things.
+As example includes a Logger, actions types declaration, allowed you to customize the displayName of the reducer and "inversion of control" with minimal effort.
+
+### hasLogger
+
+When enable on useSeducer or useSeducerWithContext will print on the dev console their previous and
+next state each time an actions is executed, providing the consumer with a nicer picture of what it's happening with their state.
+
+```jsx
+import { Provider, useSeducer } from "seducer";
+
+// when using it with useSeducer
+// signature (actions, initialState, initializer, hasLogger)
+useSeducer(actions, initialState, null, true)
+
+
+// when using it with useSeducerWithContext
+<Provider actions={...} initialState={...} hasLogger>
+  <App />
+<Provider>
+```
+
+this is what you can expect to see in you dev console:
+
+<img src="/logger.gif" alt="developer console displaying logger behaviour" />
+
+### Action Types
+
+In previous examples you saw me explicitly typing the name of the action in order to dispatch it dispatch("up") or dispatch("add", value)
+this is fine but prone to typing errors.
+
+Both hooks provides a way to access their types via a third value while destructuring their hooks `[state, dispatch, types]`.
+Seducer's types get create by taking the functions name pass-down via the action object.
+
+Make use of the types help you as well at the moment of renaming or refactoring your code since it's easier to find and replace.
+
+```jsx
+// --------
+// useSeducer provides a third value the action types when destructuring the array
+// note: since you are destructuring you could name the action types as your convinience types, action up to you.
+
+const [state, dispatch, action] = useSeducer({ up, down }, 0);
+dispatch(action.up);
+dispatch(action.down);
+
+// --------
+// your actions
+function add(state, payload){ ... }
+function remove(state, payload){ ... }
+
+// like useSeducer useSeducerWithContext follow the same pattern
+const [state, dispatch, action] = useSeducerWithContext();
+
+dispatch(action.add, value);
+dispatch(action.remove, value);
+
+// --------
+// actions.js
+// you can even split your action in their own file
+export const search(actions, payload) {...}
+export const sort(actions, payload) {...}
+export const remove(actions, payload) {...}
+
+// App.js
+import * as actions from "./actions";
+const [state, dispatch, action] = useSeducer(actions, initialState);
+
+dispatch(action.search, value);
+dispatch(action.sort, value);
+dispatch(action.remove, value);
+```
+
+## FAQ
+
+### Why was this library created it?
+
+As described in the beginning of the page one of the main reason was to make `React.useReducer` more approachable to any developer independently from their expertise level.
+But as a side effect of doing that, this small package allowed the consumer to `provided inversion of control` to their consumers without even worrying about that, this is really handy for building
+reusable `Features` or complex `components`, where the **`Reducer`** pattern shines!.
+
+### Is this a new state manager library?
+
+No, Seducer is just a wrapper on top of `React.useReducer` that's all.
+
+### When should I picked React.useReducer or Seducer instead React.useState?
+
+The React's documentation put it like this:
+
+> useReducer is usually preferable to useState when you have complex state logic that involves multiple sub-values or when the next state depends on the previous one. useReducer also lets you optimize performance for components that trigger deep updates because you can pass dispatch down instead of callbacks.
+> --React useReducer
+
+If you want to keep reading more about this, Kent C. Dodds has a [more elaborated answer](https://kentcdodds.com/blog/should-i-usestate-or-usereducer).
+
+### Where can I read more about useReducer, Context and related topics?
+
+- These three posts [How to use React Context effectively](https://kentcdodds.com/blog/how-to-use-react-context-effectively) / [The State Reducer Pattern with React Hooks How to implement useState with useReducer](https://kentcdodds.com/blog/the-state-reducer-pattern-with-react-hooks) - By Kent C. Dodds
+- [The one with hooks](https://reactjs.org/blog/2019/02/06/react-v16.8.0.html#react-1)
+- The documentation 😅 [useReducer](https://reactjs.org/docs/hooks-reference.html#usereducer)
+- Inversion of Control: [Inversion of control - Wikipedia](https://en.wikipedia.org/wiki/Inversion_of_control) and [Inversion of control - Kent C. Dodds.](https://kentcdodds.com/blog/inversion-of-control)
+- Some information about useReducer, dispatch and context [How to avoid passing callbacks down?](https://reactjs.org/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down)
+- Stackoverflow answer Redux vs useReducer [When to use native React.useReducer Hook and how it differentiate from Redux](https://stackoverflow.com/questions/54576865/when-to-use-native-react-usereducer-hook-and-how-it-differentiate-from-redux) - Some answer are not entirely correct.
+- Dan Abramov recipe for avoiding re-renders with context. [Preventing rerenders with React.memo and useContext hook. #15156](https://github.com/facebook/react/issues/15156#issuecomment-474590693)
+- [Redux basic tutorial](https://redux-toolkit.js.org/tutorials/basic-tutorial) an example about how to use it. If you are interested.
