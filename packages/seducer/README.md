@@ -13,10 +13,6 @@ To mitigate some of these reasons, Seducer (simple reducer) borned which is a wr
 
 `Seducer` provides two hooks that you can consume `useSeducer` and `useSeducerWithContext`.
 
-<hr />
-
-Showtime, these are a basic example for `useSeducer` and a more elaborated one for `useSeducerWithContext`.
-
 ## useSeducer example
 
 ```js
@@ -39,3 +35,4 @@ export default function App() {
     </>
   );
 }
+```

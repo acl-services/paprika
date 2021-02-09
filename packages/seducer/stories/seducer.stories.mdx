@@ -7,27 +7,14 @@ import BasicWithContext from "./examples/useReducerWithContext.basic";
 import CharacterList from "./examples/useReducerWithContext.CharacterList";
 import ConfettiUseSeducer from "./examples/useReducer.confetti";
 import AsyncExample from "./examples/useSeducer.async";
+import Readme from "../README.md";
+import { Description } from "@storybook/addon-docs/blocks";
 
 <Meta title={`${getStoryName("seducer")}/Docs`} />
 
-<!-- <Description markdown={Readme} /> -->
-<!-- import { Description } from "@storybook/addon-docs/blocks"; -->
+<Description markdown={Readme} />
 
-# Seducer
-
-React.useReducer is an awesome hook but more often than not it is overshadow by its relative React.useState which is easier and simple to use.
-
-Personally, I think is mostly by some of the following reasons:
-
-Reducers are not the bread and butter of all react-developers unlikeReact.useState. This make it a harder pattern to memorize.
-Apart from simple examples React.useReducer requires some boilerplate to make it functional.
-To make it consumable across different components you need to pair it with the React.createContext and you will need more boilerplate to use it.
-And because all above, our belovedReact.useState is picked first than React.useReducer each time
-To mitigate some of these reasons, I created Seducer (simple reducer) which is a simple wrapper on top of React.useReducer, making it easier to use and with a more friendly approach.
-
-Seducer provides two hooks that you can consume useSeducer and useSeducerWithContext.
-
-Ok, showtime, these are a basic example for `useSeducer` and a more elaborated one for `useSeducerWithContext`.
+<br />
 
 ## useSeducer example
 
@@ -35,7 +22,7 @@ Ok, showtime, these are a basic example for `useSeducer` and a more elaborated o
   <Block>
     <Basic />
   </Block>
-  <Block>
+ <Block>
 
 ```js
 import { useSeducer } from "@paprika/seducer";
@@ -146,8 +133,6 @@ proposition in improving the `React.useReducer` experience.
 But Seducer provides a little more advances features for more complex scenarios, targeting small and medium reusable
 features or complex components, also helps you in using the concept of "inversion of control" with a more friendly approach,
 so if you are interested in learning more about that.
-
-Please keep reading.
 
 ## Reusability - Advance
 
