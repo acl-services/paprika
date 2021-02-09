@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import RawButton from "@paprika/raw-button";
+import Button from "@paprika/button";
 import { fontSize } from "@paprika/stylers/lib/helpers";
 import { truncateText } from "@paprika/stylers/lib/includes";
 
@@ -114,7 +115,7 @@ export const Ellipsis = styled.div(({ isChildString, size }) => {
   `;
 });
 
-export const Delete = styled(RawButton)(({ size }) => {
+export const Delete = styled(Button.Close)(({ size }) => {
   const fontSize = {
     medium: "10px",
     large: "12px",
@@ -139,6 +140,7 @@ export const Delete = styled(RawButton)(({ size }) => {
     font-size: ${fontSize[size]};
     height: ${width[size]};
     justify-content: center;
+    min-height: auto;
     padding: ${padding[size]};
     width: ${width[size]};
 

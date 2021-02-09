@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Close from "@paprika/icon/lib/Times";
 import * as sc from "./Tag.styles";
 import * as types from "./types";
 
@@ -19,9 +18,7 @@ export default function Tag(props) {
         {children}
       </sc.Ellipsis>
       {onRemove ? (
-        <sc.Delete isDisabled={isDisabled} size={size} data-pka-anchor="tag.remove" onClick={handleRemove}>
-          <Close />
-        </sc.Delete>
+        <sc.Delete isDisabled={isDisabled} size={size} data-pka-anchor="tag.remove" onClick={handleRemove} />
       ) : null}
     </>
   );
@@ -31,7 +28,13 @@ export default function Tag(props) {
       console.warn("Tag component should include an a11yText prop if an onClick is provided.");
     }
     return (
-      <sc.RawButtonTag a11yText={a11yText} isDisabled={isDisabled} onClick={onClick} {...moreProps}>
+      <sc.RawButtonTag
+        a11yText={a11yText}
+        isDisabled={isDisabled}
+        onClick={onClick}
+        {...moreProps}
+        data-pka-anchor="tag"
+      >
         {content}
       </sc.RawButtonTag>
     );
@@ -51,18 +54,19 @@ Tag.types = {
 };
 
 const propTypes = {
-  // used in aria-tag on the root element
+  /** used in aria-tag on the root element */
   a11yText: PropTypes.string,
-  // Can pass a custom border color
+  /** Can pass a custom border color */
   borderColor: PropTypes.string,
-  // Pass a function to show a delete button
+  /**  Pass a function to show a delete button */
   onRemove: PropTypes.func,
+  /** Content to show in the central area of the tag */
   children: PropTypes.node.isRequired,
-  // Disables tag onClick and delete button functionality
+  /** Disables tag onClick and delete button functionality */
   isDisabled: PropTypes.bool,
-  // Fires when clicking the root tag element. Should also pass value for a11yText when using this.
+  /** Fires when clicking the root element. Should also pass value for a11yText when using this */
   onClick: PropTypes.func,
-
+  /** Visual color of the tag */
   tagColor: PropTypes.oneOf([
     Tag.types.color.BLACK,
     Tag.types.color.BLUE,
@@ -76,6 +80,7 @@ const propTypes = {
     Tag.types.severity.MEDIUM_RISK,
     Tag.types.severity.HIGH_RISK,
   ]),
+  /** Size of the tag(font size, min-height, padding, etc). */
   size: PropTypes.oneOf([types.MEDIUM, types.LARGE]),
 };
 
