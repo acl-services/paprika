@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import Button from "@paprika/button";
 import ArrowUpIcon from "@paprika/icon/lib/ArrowUp";
 import CollapsibleCardContext from "../../CollapsibleCardContext";
-// import * as sc from "./Header.styles";
+import * as sc from "./Header.styles";
 
 export default function Header(props) {
   let resizeTimeout;
@@ -58,11 +58,10 @@ export default function Header(props) {
 
   window.addEventListener("resize", handleResizeWindow);
 
-  const isBrokenClass = isBroken && numberOfChildren > 1 ? "collapsible-card-header__content--is-block" : "";
   return (
-    <div ref={headerRef} className="collapsible-card-header">
-      <div className={`collapsible-card-header__content ${isBrokenClass}`}>{newChildren}</div>
-      <div className="collapsible-card-header__expand-toggle">
+    <sc.Header ref={headerRef}>
+      <sc.HeaderContent isBroken={isBroken}>{newChildren}</sc.HeaderContent>
+      <sc.ExpandToggle isCollapsed={context.isCollapsed}>
         <Button.Icon
           onClick={() => {
             context.setIsCollapsed(isCollapsed => !isCollapsed);
@@ -71,8 +70,8 @@ export default function Header(props) {
         >
           <ArrowUpIcon />
         </Button.Icon>
-      </div>
-    </div>
+      </sc.ExpandToggle>
+    </sc.Header>
   );
 }
 

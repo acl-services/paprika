@@ -10,23 +10,18 @@ import CollapsibleCard from "../../src";
 // x allow them to define width of each half
 // x support a breakpoint when it switches to stacked mode
 // x provide a context that shares `isBlock` (so the consumer can handle and manipulate the children's style)
-// - convert to use .styles not .scss
+// x speed it up, it is doing unnecessary re-renders i think
+// x convert to use .styles not .scss
 // - build the commonly used components for the switch/avatar/title/description/tag part
 // - put together stories demonstrating the variations
-// - speed it up, it is doing unnecessary re-renders i think
 // - done
 
-// TODO: responsiveness (first using just query, then using ResizeDetector?)
 // TODO: controlled/uncontrolled
 // TODO: other props
 // TODO: Cards.Group
 // TODO: a11y, focus, see Collapsible and old CollapsibleCard
 // TODO: tests
 // TODO later: clicking on buttons in the header was propagating, so i discussed with nahum and decided to make just the arrow clickable and discuss later
-
-// function ShortText() {
-//   return "Just a few words";
-// }
 
 function Lipsum() {
   return (

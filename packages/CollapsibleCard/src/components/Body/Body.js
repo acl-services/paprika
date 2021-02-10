@@ -1,11 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+import CollapsibleCardContext from "../../CollapsibleCardContext";
 import * as sc from "./Body.styles";
 
 export default function Body(props) {
   const { children, ...moreProps } = props;
-  return <div className="collapsible-card-body">{children}</div>;
-  // return <sc.Body {...moreProps}>{children}</sc.Body>;
+  const context = React.useContext(CollapsibleCardContext);
+
+  return (
+    <sc.Body isCollapsed={context.isCollapsed} {...moreProps}>
+      {children}
+    </sc.Body>
+  );
 }
 
 const propTypes = {

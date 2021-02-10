@@ -3,9 +3,31 @@ import styled, { css } from "styled-components";
 
 export const Header = styled.div(
   () => css`
-    border: 1px solid red;
     display: flex;
-    justify-content: ${({ type }) => (type === "half" ? "space-between" : "normal")};
-    padding: 4px;
+  `
+);
+
+export const HeaderContent = styled.div(
+  ({ isBroken }) => css`
+    display: flex;
+    flex: 1 1 auto;
+
+    ${isBroken &&
+    css`
+      background-color: turquoise;
+      display: block;
+    `}
+  `
+);
+
+export const ExpandToggle = styled.div(
+  ({ isCollapsed }) => css`
+    background-color: darkorange;
+    flex: 0 0 32px;
+
+    ${isCollapsed &&
+    css`
+      transform: rotate(180deg);
+    `}
   `
 );

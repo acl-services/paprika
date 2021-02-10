@@ -4,17 +4,16 @@ import Body from "./components/Body";
 import Header from "./components/Header";
 import Segment from "./components/Segment";
 import CollapsibleCardContext from "./CollapsibleCardContext";
-import "./CollapsibleCard.scss";
+import * as sc from "./CollapsibleCard.styles";
 
 export default function CollapsibleCard(props) {
   const { children, ...moreProps } = props;
   const [isCollapsed, setIsCollapsed] = React.useState(true);
   const thingsToShare = { isCollapsed, setIsCollapsed };
-  const isCollapsedClassname = isCollapsed ? "collapsible-card--collapsed" : "";
 
   return (
     <CollapsibleCardContext.Provider value={thingsToShare}>
-      <div className={`collapsible-card ${isCollapsedClassname}`}>{children}</div>
+      <sc.CollapsibleCard isCollapsed={isCollapsed}>{children}</sc.CollapsibleCard>
     </CollapsibleCardContext.Provider>
   );
 }
