@@ -13,9 +13,6 @@ import * as types from "../src/types";
 
 import Modal from "../src";
 
-// eslint-disable-next-line import/no-named-as-default-member
-const { Header, Content, Footer, FocusLock } = Modal;
-
 const storyName = getStoryName("Modal");
 
 /* Long block to test body scroll locking */
@@ -42,15 +39,15 @@ const ModalStory = ({ children }) => {
         onClose={toggle}
         size={select("Size", [types.SMALL, types.MEDIUM, types.LARGE], types.MEDIUM, "Modal")}
       >
-        <Header hasCloseButton={boolean("Has close button", true, "Header")}>Header</Header>
+        <Modal.Header hasCloseButton={boolean("Has close button", true, "Header")}>Header</Modal.Header>
         {children}
-        <Footer>
+        <Modal.Footer>
           <Button kind={Button.types.kind.PRIMARY}>Primary</Button>
           <Button>Secondary</Button>
           <Button kind={Button.types.kind.MINOR} onClick={toggle}>
             Cancel
           </Button>
-        </Footer>
+        </Modal.Footer>
       </Modal>
     </LongBlock>
   );
@@ -66,14 +63,14 @@ const Example = () => (
     </Tagline>
     <Rule />
     <ModalStory>
-      <Content>
+      <Modal.Content>
         {repeat(8, key => (
           <p key={key}>
             Mixtape single-origin coffee put a bird on it flexitarian street cred live-edge you probably haven‘t heard
             of them.
           </p>
         ))}
-      </Content>
+      </Modal.Content>
     </ModalStory>
   </Story>
 );
@@ -87,11 +84,11 @@ storiesOf(storyName, module)
 storiesOf(`${storyName}/Examples`, module)
   .add("Basic", () => (
     <ModalStory>
-      <Content>
+      <Modal.Content>
         {repeat(25, key => (
           <p key={key}>Some content here</p>
         ))}
-      </Content>
+      </Modal.Content>
     </ModalStory>
   ))
   .add("with full-width content", () => (
@@ -101,20 +98,20 @@ storiesOf(`${storyName}/Examples`, module)
   ))
   .add("with autofocus on input", () => (
     <Modal isOpen>
-      <Header>Header</Header>
-      <Content>
+      <Modal.Header>Header</Modal.Header>
+      <Modal.Content>
         <p>With input auto focus</p>
         <input type="text" data-autofocus />
-      </Content>
+      </Modal.Content>
     </Modal>
   ))
   .add("with disabled autofocus", () => (
     <Modal isOpen>
-      <FocusLock autoFocus={false} />
-      <Header>Header</Header>
-      <Content>
+      <Modal.FocusLock autoFocus={false} />
+      <Modal.Header>Header</Modal.Header>
+      <Modal.Content>
         <p>autofocus disabled</p>
-      </Content>
+      </Modal.Content>
     </Modal>
   ))
   .add("with focus on heading", () => {
@@ -144,68 +141,68 @@ storiesOf(`${storyName}/Examples`, module)
             }
           `}
         >
-          <Header refHeading={refHeading}>Header</Header>
-          <Content>
+          <Modal.Header refHeading={refHeading}>Header</Modal.Header>
+          <Modal.Content>
             <p>
               Unicorn next level readymade polaroid, locavore hot chicken forage ennui crucifix tote bag yuccie. Raw
               denim tumblr echo park bushwick hoodie iceland cloud bread iPhone kombucha shoreditch taiyaki woke. Brunch
               ramps cred polaroid, vinyl skateboard portland typewriter jean shorts single-origin coffee flexitarian
               drinking vinegar.
             </p>
-          </Content>
+          </Modal.Content>
         </Modal>
       </Story>
     );
   })
   .add("with header coloured ", () => (
     <Modal isOpen>
-      <FocusLock autoFocus={false} />
-      <Header style={{ backgroundColor: tokens.color.blueLighten30 }}>
+      <Modal.FocusLock autoFocus={false} />
+      <Modal.Header style={{ backgroundColor: tokens.color.blueLighten30 }}>
         This is a really long example This is a really long exampleThis is a really long exampleThis is a really long
         exampleThis is a really long exampleThis is a really long example
-      </Header>
-      <Content>
+      </Modal.Header>
+      <Modal.Content>
         {repeat(8, key => (
           <p key={key} style={{ marginTop: 0 }}>
             Mixtape single-origin coffee put a bird on it flexitarian street cred live-edge you probably haven‘t heard
             of them.
           </p>
         ))}
-      </Content>
+      </Modal.Content>
     </Modal>
   ))
   .add("with truncated (single line) header text ", () => (
     <Modal isOpen>
-      <FocusLock autoFocus={false} />
-      <Header isSingleLine>
+      <Modal.FocusLock autoFocus={false} />
+      <Modal.Header isSingleLine>
         This is a really long example This is a really long exampleThis is a really long exampleThis is a really long
         exampleThis is a really long exampleThis is a really long example
-      </Header>
-      <Content>
+      </Modal.Header>
+      <Modal.Content>
         {repeat(8, key => (
           <p key={key} style={{ marginTop: 0 }}>
             Mixtape single-origin coffee put a bird on it flexitarian street cred live-edge you probably haven‘t heard
             of them.
           </p>
         ))}
-      </Content>
+      </Modal.Content>
     </Modal>
   ))
   .add("with truncated (single line) header text and no close button ", () => (
     <Modal isOpen>
-      <FocusLock autoFocus={false} />
-      <Header isSingleLine hasCloseButton={false}>
+      <Modal.FocusLock autoFocus={false} />
+      <Modal.Header isSingleLine hasCloseButton={false}>
         This is a really long example This is a really long exampleThis is a really long exampleThis is a really long
         exampleThis is a really long exampleThis is a really long example
-      </Header>
-      <Content>
+      </Modal.Header>
+      <Modal.Content>
         {repeat(8, key => (
           <p key={key} style={{ marginTop: 0 }}>
             Mixtape single-origin coffee put a bird on it flexitarian street cred live-edge you probably haven‘t heard
             of them.
           </p>
         ))}
-      </Content>
+      </Modal.Content>
     </Modal>
   ));
 
@@ -223,8 +220,8 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module)
       >
         <Button onClick={toggle}>Open Modal</Button>
         <Modal isOpen={isOpen} onClose={toggle} zIndex={99}>
-          <Header>Header</Header>
-          <Content>
+          <Modal.Header>Header</Modal.Header>
+          <Modal.Content>
             <p>
               The <code>zIndex</code> prop of this <code>&lt;Modal&gt;</code> is also <code>99</code>.
             </p>
@@ -235,13 +232,13 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module)
             {repeat(4, key => (
               <p key={key}>Hexagon heirloom kitsch DIY man bun cloud bread succulent meggings.</p>
             ))}
-          </Content>
-          <Footer>
+          </Modal.Content>
+          <Modal.Footer>
             <Button kind={Button.types.kind.PRIMARY}>Primary</Button>
             <Button kind={Button.types.kind.MINOR} onClick={toggle}>
               Cancel
             </Button>
-          </Footer>
+          </Modal.Footer>
         </Modal>
         <div
           css={`
@@ -270,7 +267,7 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module)
 
       return (
         <ModalStory>
-          <Content>
+          <Modal.Content>
             <SidePanel isOpen={isOpen} onClose={toggle}>
               <SidePanel.Overlay />
               <SidePanel.Trigger kind={SidePanel.types.kind.PRIMARY} onClick={toggle}>
@@ -278,7 +275,7 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module)
               </SidePanel.Trigger>
               <SidePanel.Header>Header</SidePanel.Header>
             </SidePanel>
-          </Content>
+          </Modal.Content>
         </ModalStory>
       );
     })
@@ -304,15 +301,15 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module)
                 event.preventDefault();
               }}
             >
-              <Header hasCloseButton={boolean("Has close button", true, "Header")}>Header</Header>
-              <Content>
+              <Modal.Header hasCloseButton={boolean("Has close button", true, "Header")}>Header</Modal.Header>
+              <Modal.Content>
                 <input type="text" defaultValue="press enter while focus" />
-              </Content>
-              <Footer>
+              </Modal.Content>
+              <Modal.Footer>
                 <Button isSubmit isSemantic={false} kind={Button.types.kind.PRIMARY}>
                   Primary
                 </Button>
-              </Footer>
+              </Modal.Footer>
             </form>
           </Modal>
         </LongBlock>
@@ -323,44 +320,44 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module)
 storiesOf(`${storyName}/Backyard/Tests/Screener`, module)
   .add("small", () => (
     <ModalStory>
-      <Content>
+      <Modal.Content>
         <p>Some content here</p>
-      </Content>
+      </Modal.Content>
     </ModalStory>
   ))
   .add("symmetric reducing of &::before and &::after", () => (
     <ModalStory>
-      <Content>
+      <Modal.Content>
         <p>height of this modal bigger than (100% - (124px * 2)) on 1280x1024</p>
         {repeat(17, key => (
           <p key={key}>Some content here</p>
         ))}
-      </Content>
+      </Modal.Content>
     </ModalStory>
   ))
   .add("scroll in content area", () => (
     <ModalStory>
-      <Content>
+      <Modal.Content>
         <p>height of this modal bigger than (100% - (24px * 2)) on 1280x1024</p>
         {repeat(24, key => (
           <p key={key}>Some content here</p>
         ))}
-      </Content>
+      </Modal.Content>
     </ModalStory>
   ))
   .add("focus lock content input", () => (
     <ModalStory>
-      <Content>
+      <Modal.Content>
         <p>With input auto focus</p>
         <input type="text" data-autofocus />
-      </Content>
+      </Modal.Content>
     </ModalStory>
   ))
   .add("focus lock disabled", () => (
     <ModalStory>
-      <FocusLock autoFocus={false} />
-      <Content>
+      <Modal.FocusLock autoFocus={false} />
+      <Modal.Content>
         <p>autofocus disabled</p>
-      </Content>
+      </Modal.Content>
     </ModalStory>
   ));
