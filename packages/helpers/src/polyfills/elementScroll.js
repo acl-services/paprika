@@ -4,7 +4,7 @@
 // https://github.com/idmadj/element-scroll-polyfill/blob/master/index.js
 
 (function() {
-  if ((Element.prototype.scroll && Element.prototype.scroll) || !document) return;
+  if ((Element.prototype.scroll && Element.prototype.scrollTo) || !document) return;
 
   const normalizeNonFiniteValue = function normalizeNonFiniteValue(value) {
     value = +value;
