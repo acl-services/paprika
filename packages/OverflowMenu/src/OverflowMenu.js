@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import "what-input";
 import Popover from "@paprika/popover";
 import { extractChildren } from "@paprika/helpers";
+import { zValue } from "@paprika/stylers/lib/helpers";
 import Content from "./components/Content";
 import Divider from "./components/Divider";
 import Trigger from "./components/Trigger";
@@ -12,31 +13,36 @@ import Item from "./components/Item";
 import * as sc from "./OverflowMenu.styles";
 
 const propTypes = {
-  /** Alignment of the Popover */
-  align: Popover.propTypes.align,
+  /** Where the popover content is positioned relative to the trigger or getPositioningElement. */
+  align: PropTypes.oneOf([
+    Popover.types.align.TOP,
+    Popover.types.align.RIGHT,
+    Popover.types.align.BOTTOM,
+    Popover.types.align.LEFT,
+  ]),
 
   /** Children should consist of <OverflowMenu.Item /> */
   children: PropTypes.node.isRequired,
 
   /** If provided, will align Popover to specified edge of Trigger */
-  edge: Popover.propTypes.edge,
+  edge: PropTypes.oneOf([Popover.types.align.LEFT, Popover.types.align.RIGHT, null]),
 
   /** Control if the overflow menu popover open. */
-  isOpen: Popover.propTypes.isOpen,
+  isOpen: PropTypes.bool,
 
   /** If provided, will fire when the Popover is closed */
-  onClose: Popover.propTypes.onClose,
+  onClose: PropTypes.func,
 
   /** The z-index for the popover / confirmation */
-  zIndex: Popover.propTypes.zIndex,
+  zIndex: PropTypes.number,
 };
 
 const defaultProps = {
-  align: Popover.defaultProps.align,
-  edge: Popover.defaultProps.edge,
+  align: Popover.types.align.BOTTOM,
+  edge: null,
   isOpen: null,
-  onClose: Popover.defaultProps.onClose,
-  zIndex: Popover.defaultProps.zIndex,
+  onClose: null,
+  zIndex: zValue(1),
 };
 
 const popoverOffset = 4;
