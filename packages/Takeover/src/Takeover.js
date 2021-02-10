@@ -66,7 +66,7 @@ export default function Takeover(props) {
     "data-pka-anchor": "takeover.overlay",
     hasBackdrop: false,
     focusLockOptions,
-    ...(overlayExtracted ? overlayExtracted.props : {}),
+    ...(overlayExtracted && overlayExtracted.props),
     isOpen,
     onAfterClose,
     onAfterOpen,
