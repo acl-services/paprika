@@ -128,6 +128,10 @@ export function handleArrowKeys({ event, state, dispatch, isArrowDown = null, on
 
   event.preventDefault();
   const next = getNextOptionActiveIndex(state, isArrowDown);
+
+  // accessibility
+  state.refListBox.current.children[next].focus();
+
   if (next !== null) {
     if (state.isMulti) {
       dispatch({
