@@ -28,7 +28,7 @@
     "@paprika/stylers": "^1.0.0",
     "@paprika/switch": "^1.0.7-alpha.1",
     "@paprika/tokens": "^1.0.0",
-    "immer": "^6.0.2",
+    "immer": "^8.0.1",
     "lodash.debounce": "^4.0.8",
     "prop-types": "^15.7.2",
     "uuid": "^8.3.2"
