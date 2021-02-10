@@ -1,11 +1,13 @@
 import styled, { css } from "styled-components";
-// import { spacer } from "@paprika/stylers/lib/helpers";
-// import Avatar from "@paprika/avatar";
+import { spacer } from "@paprika/stylers/lib/helpers";
 
 export const Body = styled.div(
   ({ isCollapsed }) =>
     css`
-      border: 0px solid silver;
+      background: lavender;
+      border: 2px dashed purple;
+      display: inline-block;
+      margin: 0 ${spacer(2)} ${spacer(3)};
 
       ${isCollapsed &&
       css`
