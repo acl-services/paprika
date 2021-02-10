@@ -36,4 +36,4 @@ blocks:
             - git merge origin/pre-release-$SEMAPHORE_PIPELINE_ID
             - git push origin master -f --no-verify
             - git branch -d pre-release-$SEMAPHORE_PIPELINE_ID
-            - git push origin -d pre-release-$SEMAPHORE_PIPELINE_ID
+            - git push origin -d pre-release-$SEMAPHORE_PIPELINE_ID --no-verify
