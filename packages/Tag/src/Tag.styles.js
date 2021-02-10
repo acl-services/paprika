@@ -76,7 +76,7 @@ const borderColorStyles = ({ borderColor }) => css`
   padding: 1px;
 `;
 
-const height = borderColor => {
+const widthAndHeight = borderColor => {
   return borderColor
     ? {
         medium: "18px",
@@ -95,7 +95,7 @@ const tagStyles = ({ theme, borderColor, size }) => css`
   border-radius: ${spacer(2)};
   color: ${tokens.color.white};
   display: flex;
-  height: ${height(borderColor)[size]};
+  height: ${widthAndHeight(borderColor)[size]};
   line-height: 1;
   margin-bottom: 2px;
   margin-right: ${tokens.spaceSm};
@@ -104,7 +104,8 @@ const tagStyles = ({ theme, borderColor, size }) => css`
   ${themeStyles[theme]}
 
   [data-pka-anchor="avatar"] {
-    margin-right: ${tokens.space};
+    margin-right: 0;
+    min-width: ${widthAndHeight(borderColor)[size]}
   }
 `;
 
@@ -112,20 +113,17 @@ export const RawButtonTag = styled(RawButton)(tagStyles);
 
 export const Tag = styled.li(tagStyles);
 
-export const Ellipsis = styled.div(({ isChildString, size }) => {
+export const Ellipsis = styled.div(({ size }) => {
   const getFontSize = {
     medium: fontSize(-1),
     large: fontSize(0),
   };
 
-  const padding = isChildString ? `padding: 0 ${tokens.space} 1px ${tokens.space};` : `padding-right: ${tokens.space}`;
-
-  // todo: fix truncateText not showing ... with display inline-flex, only with display: block....
   return css`
     align-items: center;
-    display: inline-flex;
+    display: block;
     ${getFontSize[size]};
-    ${padding};
+    padding: 0 ${tokens.space} 1px ${tokens.space};
     ${truncateText};
   `;
 });

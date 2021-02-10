@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable react/no-array-index-key */
 import React from "react";
 import L10n from "@paprika/l10n";
@@ -22,23 +23,40 @@ export default function Variations() {
         Variations
         {[{ tagSize: "medium", avatarSize: "small" }, { tagSize: "large", avatarSize: "medium" }].map(permutation => (
           <Tags key={permutation.avatarSize}>
-            <Tag size={permutation.tagSize}>
-              <Avatar isRound size={permutation.avatarSize}>
-                WW
-              </Avatar>
+            <Tag
+              size={permutation.tagSize}
+              avatar={
+                <Avatar isRound size={permutation.avatarSize}>
+                  WW
+                </Avatar>
+              }
+            >
               {permutation.tagSize} with text Avatar
             </Tag>
-            <Tag size={permutation.tagSize}>
-              <Avatar isRound size={permutation.avatarSize}>
-                <CalendarIcon />
-              </Avatar>
+            <Tag
+              size={permutation.tagSize}
+              avatar={
+                <Avatar isRound size={permutation.avatarSize}>
+                  <CalendarIcon />
+                </Avatar>
+              }
+            >
               {permutation.tagSize} with Icon Avatar
             </Tag>
             <Tag size={permutation.tagSize}>{`${permutation.tagSize} just text`}</Tag>
             <Tag size={permutation.tagSize} onRemove={handleRemove}>
               {`${permutation.tagSize} has delete option`}
             </Tag>
-            <Tag size={permutation.tagSize} onRemove={handleRemove} style={{ width: "120px" }}>
+            <Tag
+              avatar={
+                <Avatar isRound size={permutation.avatarSize}>
+                  <CalendarIcon />
+                </Avatar>
+              }
+              size={permutation.tagSize}
+              onRemove={handleRemove}
+              style={{ width: "120px" }}
+            >
               {`${permutation.tagSize} has delete option and really long text`}
             </Tag>
             <li style={{ listStyleType: "none" }}>
@@ -61,10 +79,12 @@ export default function Variations() {
               onRemove={handleRemove}
               theme={Tag.types.severityTheme.ALERT}
               borderColor={tokens.color.orangeDarken10}
+              avatar={
+                <Avatar isRound size={permutation.avatarSize} backgroundColor="none">
+                  <ExclamationCircle style={{ fontSize: "24px", color: tokens.color.orangeDarken10 }} />
+                </Avatar>
+              }
             >
-              <Avatar isRound size={permutation.avatarSize} backgroundColor="none">
-                <ExclamationCircle style={{ fontSize: "24px", color: tokens.color.orangeDarken10 }} />
-              </Avatar>
               {`${permutation.tagSize} with alert theme`}
             </Tag>
             <Tag size={permutation.tagSize} onRemove={handleRemove} borderColor="green">
@@ -78,10 +98,16 @@ export default function Variations() {
         {[{ tagSize: "large", avatarSize: "medium" }].map((permutation, index) => (
           <Tags key={index}>
             {Object.entries(Tag.types.theme).map(theme => (
-              <Tag key={theme[1]} theme={theme[1]} size={permutation.tagSize}>
-                <Avatar isRound size={permutation.avatarSize}>
-                  <CalendarIcon />
-                </Avatar>
+              <Tag
+                key={theme[1]}
+                theme={theme[1]}
+                size={permutation.tagSize}
+                avatar={
+                  <Avatar isRound size={permutation.avatarSize}>
+                    <CalendarIcon />
+                  </Avatar>
+                }
+              >
                 {permutation.tagSize} with text Avatar
               </Tag>
             ))}
@@ -93,10 +119,16 @@ export default function Variations() {
         {[{ tagSize: "large", avatarSize: "medium" }].map((permutation, index) => (
           <Tags key={index}>
             {Object.entries(Tag.types.severityTheme).map(theme => (
-              <Tag key={theme[1]} theme={theme[1]} size={permutation.tagSize}>
-                <Avatar isRound size={permutation.avatarSize}>
-                  <CalendarIcon />
-                </Avatar>
+              <Tag
+                key={theme[1]}
+                theme={theme[1]}
+                size={permutation.tagSize}
+                avatar={
+                  <Avatar isRound size={permutation.avatarSize}>
+                    <CalendarIcon />
+                  </Avatar>
+                }
+              >
                 {permutation.tagSize} with text Avatar
               </Tag>
             ))}

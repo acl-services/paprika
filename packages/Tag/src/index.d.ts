@@ -5,6 +5,8 @@ interface TagProps {
   [x: string]: any;
   /** used in aria-tag on the root element */
   a11yText?: string;
+  /** Can pass a avatar to be displayed to the left of the tag content */
+  avatar?: React.ReactNode;
   /** Can pass a custom border color */
   borderColor?: string;
   /** Content to show in the central area of the tag */

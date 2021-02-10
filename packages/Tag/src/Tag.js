@@ -4,8 +4,7 @@ import * as sc from "./Tag.styles";
 import * as types from "./types";
 
 export default function Tag(props) {
-  const { children, onRemove, size, onClick, a11yText, isDisabled, ...moreProps } = props;
-  const isChildString = typeof children === "string";
+  const { children, onRemove, size, onClick, a11yText, avatar, isDisabled, ...moreProps } = props;
 
   const handleRemove = e => {
     onRemove();
@@ -14,9 +13,8 @@ export default function Tag(props) {
 
   const content = (
     <>
-      <sc.Ellipsis isChildString={isChildString} size={size}>
-        {children}
-      </sc.Ellipsis>
+      {avatar}
+      <sc.Ellipsis size={size}>{children}</sc.Ellipsis>
       {onRemove ? (
         <sc.Delete isDisabled={isDisabled} size={size} data-pka-anchor="tag.remove" onClick={handleRemove} />
       ) : null}
@@ -54,6 +52,8 @@ Tag.types = {
 const propTypes = {
   /** used in aria-tag on the root element */
   a11yText: PropTypes.string,
+  /** Can pass a avatar to be displayed to the left of the tag content */
+  avatar: PropTypes.node,
   /** Can pass a custom border color */
   borderColor: PropTypes.string,
   /** Content to show in the central area of the tag */
@@ -85,6 +85,7 @@ const propTypes = {
 
 const defaultProps = {
   a11yText: null,
+  avatar: null,
   borderColor: null,
   isDisabled: false,
   onClick: null,
