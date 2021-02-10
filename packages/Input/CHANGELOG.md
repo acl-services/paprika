@@ -35,3 +35,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 
 - Changed `Input.types.input` to `Input.types.type` to match the propType name. [@allison-c](https://github.com/allison-c).
+
+## [1.0.7-alpha.0] - 2021-02-05
+
+### Added
+
+- Localization of Clear Button's `aria-label` [@mikrotron](https://github.com/mikrotron).
+
+### Changed
+
+- BREAKING CHANGE: The `onChange` callback is now fired with `null` when the Clear Button is clicked [@mikrotron](https://github.com/mikrotron).
+
+### Removed
+
+- BREAKING CHANGE: The `onClear` prop was removed [@mikrotron](https://github.com/mikrotron).
+
+### Fixed
+
+- `hasClearButton` will now work with uncontrolled implementation of the `<Input>` [@mikrotron](https://github.com/mikrotron).

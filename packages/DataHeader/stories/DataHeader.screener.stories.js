@@ -6,7 +6,7 @@ import EllipsisVertical from "@paprika/icon/lib/EllipsisVertical";
 
 import { Story } from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
-import DropdownMenu from "@paprika/dropdown-menu";
+import OverflowMenu from "@paprika/overflow-menu";
 import DataHeader from "../src";
 
 export default {
@@ -21,14 +21,14 @@ const data = [
 
 function Menu() {
   return (
-    <DropdownMenu>
-      <DropdownMenu.Trigger buttonType="raw">
+    <OverflowMenu>
+      <OverflowMenu.Trigger buttonType="raw">
         <EllipsisVertical />
-      </DropdownMenu.Trigger>
-      <DropdownMenu.Item onClick={() => {}}>One</DropdownMenu.Item>
-      <DropdownMenu.Item onClick={() => {}}>Two</DropdownMenu.Item>
-      <DropdownMenu.Item onClick={() => {}}>Three</DropdownMenu.Item>
-    </DropdownMenu>
+      </OverflowMenu.Trigger>
+      <OverflowMenu.Item onClick={() => {}}>One</OverflowMenu.Item>
+      <OverflowMenu.Item onClick={() => {}}>Two</OverflowMenu.Item>
+      <OverflowMenu.Item onClick={() => {}}>Three</OverflowMenu.Item>
+    </OverflowMenu>
   );
 }
 

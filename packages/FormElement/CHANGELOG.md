@@ -96,3 +96,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Subcomponents can be used without context provider (FormElement wrapper).
 - Fieldset.Label no longer has htmlFor attribute.
 - Help popover is disabled when FormElement has isDisabled.
+
+## [4.0.4-alpha.0] - 2021-02-01
+
+### Changed
+
+- Replace `nanoid` by `uuid`.

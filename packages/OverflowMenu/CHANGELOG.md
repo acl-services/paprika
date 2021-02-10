@@ -17,3 +17,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 - Fixed passing updated props to Confirmation
+
+## [1.0.10-alpha.0] - 2021-02-01
+
+### Changed
+
+- Replace `nanoid` by `uuid`.

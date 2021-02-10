@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
-import nanoid from "nanoid";
+import { v4 as uuidv4 } from "uuid";
 
 import ArrowLeft from "@paprika/icon/lib/ArrowLeft";
 import ArrowRight from "@paprika/icon/lib/ArrowRight";
@@ -31,7 +31,7 @@ const propTypes = {
 };
 
 function ShortcutPanel(props) {
-  const uniqId = React.useMemo(() => nanoid(), []);
+  const [uniqId] = React.useState(() => `shortcut-panel_${uuidv4()}`);
   const { date, isVisible, onCancel, onConfirm } = props;
   const [pageIndex, setPageIndex] = React.useState(0);
   const [selectedMonth, setSelectedMonth] = React.useState(date.month());

@@ -2,9 +2,9 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
+import ExampleStory from "storybook/components/ExampleStory";
 import { InputStory } from "./Input.stories.styles";
 import InputExample from "./examples/InputExample";
-import stateDecorator from "./examples/StateDecorator";
 import ShowcaseStory from "./examples/Showcase";
 import SizesStory from "./examples/Sizes";
 import WithContentStory from "./examples/WithContent";
@@ -20,8 +20,11 @@ const storyName = getStoryName("Input");
 
 storiesOf(storyName, module)
   .addDecorator(withKnobs)
-  .addDecorator(stateDecorator)
-  .add("Showcase", ShowcaseStory);
+  .add("Showcase", () => (
+    <ExampleStory storyName="Input" tagline={ExampleStory.defaultTaglines.showcase}>
+      <ShowcaseStory />
+    </ExampleStory>
+  ));
 
 storiesOf(`${storyName}/Examples`, module)
   .add("Sizes", () => <SizesStory />)

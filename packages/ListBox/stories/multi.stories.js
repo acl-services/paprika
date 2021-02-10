@@ -7,12 +7,8 @@ import * as Multi from "./examples/multi";
 const storyName = getStoryName("ListBox");
 
 storiesOf(`${storyName}/Examples/Multi`, module)
-  .add("Basic", () => <Multi.Basic />)
   .add("Basic with preselected options", () => <Multi.BasicWithPreselectedOptions />)
-  .add("Basic is disabled", () => <Multi.BasicIsDisabled />)
-  .add("Basic is disabled while open", () => <Multi.BasicIsDisabledWhileOpen />)
   .add("With Custom Checkboxes", () => <Multi.WithCustomCheckboxes />)
-  .add("Footer", () => <Multi.Footer />)
   .add("With Groups", () => <Multi.WithGroups />)
   .add("With Filter", () => <Multi.WithFilter />)
   .add("With Groups and have preselected options", () => <Multi.WithGroupsAndHavePreselectedOptions />)

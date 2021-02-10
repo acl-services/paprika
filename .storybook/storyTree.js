@@ -99,7 +99,8 @@ const storyTree = [
       "Tokens",
       "helpers",
       "DynamicHyperlinkTransformer",
-      "MockEndpoints"
+      "MockEndpoints",
+      "seducer"
     ],
   },
 ];
