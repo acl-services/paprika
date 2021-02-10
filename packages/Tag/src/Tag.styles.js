@@ -59,6 +59,7 @@ const tagColorStyles = {
     background: none;
     border: 1px solid ${tokens.color.orangeDarken10};
     color: ${tokens.color.orangeDarken10};
+    padding: 1px;
   `,
 };
 
