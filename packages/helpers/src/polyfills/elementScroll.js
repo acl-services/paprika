@@ -4,6 +4,8 @@
 // https://github.com/idmadj/element-scroll-polyfill/blob/master/index.js
 
 (function() {
+  if ((Element.prototype.scroll && Element.prototype.scroll) || !document) return;
+
   const normalizeNonFiniteValue = function normalizeNonFiniteValue(value) {
     value = +value;
     return isNaN(value) || value == Infinity || value == -Infinity ? 0 : value;
@@ -34,6 +36,8 @@
 
   if (!Element.prototype.scroll) {
     Element.prototype.scroll = function() {
+      if (!document) return;
+
       const argsLength = arguments.length;
       const doc = this.ownerDocument;
       const win = doc.defaultView;
