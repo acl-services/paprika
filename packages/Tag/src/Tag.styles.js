@@ -6,60 +6,58 @@ import { fontSize, spacer } from "@paprika/stylers/lib/helpers";
 import { truncateText } from "@paprika/stylers/lib/includes";
 import * as types from "./types";
 
-const tagColorStyles = {
-  [types.colors.BLACK]: css`
+const themeStyles = {
+  [types.themes.BLACK]: css`
     background: ${tokens.color.black};
   `,
 
-  [types.colors.BLUE]: css`
+  [types.themes.BLUE]: css`
     background: ${tokens.color.blue};
   `,
 
-  [types.colors.GREY]: css`
+  [types.themes.GREY]: css`
     background: ${tokens.color.blackLighten70};
     color: ${tokens.color.black};
   `,
 
-  [types.colors.GREEN]: css`
+  [types.themes.GREEN]: css`
     background: ${tokens.color.greenDarken10};
   `,
 
-  [types.colors.ORANGE]: css`
+  [types.themes.ORANGE]: css`
     background: ${tokens.color.orangeDarken10};
   `,
 
-  [types.colors.LIGHT_BLUE]: css`
+  [types.themes.LIGHT_BLUE]: css`
     background: ${tokens.color.blueLighten50};
     color: ${tokens.color.blueDarken20};
   `,
 
-  [types.colors.LIGHT_ORANGE]: css`
+  [types.themes.LIGHT_ORANGE]: css`
     background: ${tokens.color.orangeLighten40};
     color: ${tokens.color.orangeDarken20};
   `,
 
-  [types.severityTagColors.NO_RISK]: css`
+  [types.severityThemes.NO_RISK]: css`
     background: ${tokens.color.blackLighten70};
     color: ${tokens.color.black};
   `,
 
-  [types.severityTagColors.LOW_RISK]: css`
+  [types.severityThemes.LOW_RISK]: css`
     background: #299a7a;
   `,
 
-  [types.severityTagColors.MEDIUM_RISK]: css`
+  [types.severityThemes.MEDIUM_RISK]: css`
     background: #c9af28;
   `,
 
-  [types.severityTagColors.HIGH_RISK]: css`
+  [types.severityThemes.HIGH_RISK]: css`
     background: #cd3c44;
   `,
 
-  [types.severityTagColors.ALERT]: css`
+  [types.severityThemes.ALERT]: css`
     background: none;
-    border: 1px solid ${tokens.color.orangeDarken10};
     color: ${tokens.color.orangeDarken10};
-    padding: 1px;
   `,
 };
 
@@ -75,21 +73,35 @@ export const Tags = styled.ul(() => {
 
 const borderColorStyles = ({ borderColor }) => css`
   border: 1px solid ${borderColor};
+  padding: 1px;
 `;
 
-const tagStyles = ({ tagColor, borderColor }) => css`
+const height = borderColor => {
+  return borderColor
+    ? {
+        medium: "18px",
+        large: "22px",
+      }
+    : {
+        medium: "20px",
+        large: "24px",
+      };
+};
+
+const tagStyles = ({ theme, borderColor, size }) => css`
   align-items: center;
   background: ${tokens.color.blackLighten70};
   ${borderColor ? borderColorStyles : ""}
   border-radius: ${spacer(2)};
   color: ${tokens.color.white};
   display: flex;
+  height: ${height(borderColor)[size]};
   line-height: 1;
   margin-bottom: 2px;
   margin-right: ${tokens.spaceSm};
   max-width: 100%;
   padding: 2px;
-  ${tagColorStyles[tagColor]}
+  ${themeStyles[theme]}
 
   [data-pka-anchor="avatar"] {
     margin-right: ${tokens.space};

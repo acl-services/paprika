@@ -1,14 +1,11 @@
 import * as constants from "@paprika/constants/lib/Constants";
 
-export const MEDIUM = constants.size.MEDIUM;
-export const LARGE = constants.size.LARGE;
-
 export const sizes = {
-  MEDIUM,
-  LARGE,
+  MEDIUM: constants.size.MEDIUM,
+  LARGE: constants.size.LARGE,
 };
 
-export const colors = {
+export const themes = {
   BLACK: constants.color.BLACK,
   BLUE: constants.color.BLUE,
   GREY: constants.color.GREY,
@@ -18,7 +15,7 @@ export const colors = {
   LIGHT_ORANGE: constants.color.LIGHT_ORANGE,
 };
 
-export const severityTagColors = {
+export const severityThemes = {
   NO_RISK: "noRisk",
   LOW_RISK: "lowRisk",
   MEDIUM_RISK: "mediumRisk",

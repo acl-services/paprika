@@ -29,6 +29,7 @@ export default function Tag(props) {
         a11yText={a11yText}
         isDisabled={isDisabled}
         onClick={onClick}
+        size={size}
         {...moreProps}
         data-pka-anchor="tag"
       >
@@ -38,7 +39,7 @@ export default function Tag(props) {
   }
 
   return (
-    <sc.Tag data-pka-anchor="tag" {...moreProps}>
+    <sc.Tag data-pka-anchor="tag" size={size} {...moreProps}>
       {content}
     </sc.Tag>
   );
@@ -46,8 +47,8 @@ export default function Tag(props) {
 
 Tag.types = {
   size: types.sizes,
-  color: types.colors,
-  severity: types.severityTagColors,
+  theme: types.themes,
+  severityTheme: types.severityThemes,
 };
 
 const propTypes = {
@@ -65,20 +66,20 @@ const propTypes = {
   onRemove: PropTypes.func,
   /** Size of the tag(font size, min-height, padding, etc). */
   size: PropTypes.oneOf([Tag.types.size.MEDIUM, Tag.types.size.LARGE]),
-  /** Visual color of the tag */
-  tagColor: PropTypes.oneOf([
-    Tag.types.color.BLACK,
-    Tag.types.color.BLUE,
-    Tag.types.color.GREEN,
-    Tag.types.color.GREY,
-    Tag.types.color.LIGHT_BLUE,
-    Tag.types.color.LIGHT_ORANGE,
-    Tag.types.color.ORANGE,
-    Tag.types.severity.NO_RISK,
-    Tag.types.severity.LOW_RISK,
-    Tag.types.severity.MEDIUM_RISK,
-    Tag.types.severity.HIGH_RISK,
-    Tag.types.severity.ALERT,
+  /** Visual theme of the tag */
+  theme: PropTypes.oneOf([
+    Tag.types.theme.BLACK,
+    Tag.types.theme.BLUE,
+    Tag.types.theme.GREEN,
+    Tag.types.theme.GREY,
+    Tag.types.theme.LIGHT_BLUE,
+    Tag.types.theme.LIGHT_ORANGE,
+    Tag.types.theme.ORANGE,
+    Tag.types.severityTheme.NO_RISK,
+    Tag.types.severityTheme.LOW_RISK,
+    Tag.types.severityTheme.MEDIUM_RISK,
+    Tag.types.severityTheme.HIGH_RISK,
+    Tag.types.severityTheme.ALERT,
   ]),
 };
 
@@ -89,7 +90,7 @@ const defaultProps = {
   onClick: null,
   onRemove: null,
   size: Tag.types.size.MEDIUM,
-  tagColor: Tag.types.color.GREY,
+  theme: Tag.types.theme.GREY,
 };
 
 Tag.propTypes = propTypes;

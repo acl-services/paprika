@@ -56,11 +56,19 @@ export default function Variations() {
                 {`${permutation.tagSize} has onClick  handler and delete option and is disabled`}
               </Tag>
             </li>
-            <Tag size={permutation.tagSize} onRemove={handleRemove} tagColor={Tag.types.severity.ALERT}>
+            <Tag
+              size={permutation.tagSize}
+              onRemove={handleRemove}
+              theme={Tag.types.severityTheme.ALERT}
+              borderColor={tokens.color.orangeDarken10}
+            >
               <Avatar isRound size={permutation.avatarSize} backgroundColor="none">
                 <ExclamationCircle style={{ fontSize: "24px", color: tokens.color.orangeDarken10 }} />
               </Avatar>
-              {`${permutation.tagSize} with custom border color`}
+              {`${permutation.tagSize} with alert theme`}
+            </Tag>
+            <Tag size={permutation.tagSize} onRemove={handleRemove} borderColor="green">
+              {`${permutation.tagSize} with custom border`}
             </Tag>
           </Tags>
         ))}
@@ -69,8 +77,8 @@ export default function Variations() {
         Colours
         {[{ tagSize: "large", avatarSize: "medium" }].map((permutation, index) => (
           <Tags key={index}>
-            {Object.entries(Tag.types.color).map(color => (
-              <Tag key={color[1]} tagColor={color[1]} size={permutation.tagSize}>
+            {Object.entries(Tag.types.theme).map(theme => (
+              <Tag key={theme[1]} theme={theme[1]} size={permutation.tagSize}>
                 <Avatar isRound size={permutation.avatarSize}>
                   <CalendarIcon />
                 </Avatar>
@@ -84,8 +92,8 @@ export default function Variations() {
         Severity Colours
         {[{ tagSize: "large", avatarSize: "medium" }].map((permutation, index) => (
           <Tags key={index}>
-            {Object.entries(Tag.types.severity).map(color => (
-              <Tag key={color[1]} tagColor={color[1]} size={permutation.tagSize}>
+            {Object.entries(Tag.types.severityTheme).map(theme => (
+              <Tag key={theme[1]} theme={theme[1]} size={permutation.tagSize}>
                 <Avatar isRound size={permutation.avatarSize}>
                   <CalendarIcon />
                 </Avatar>
