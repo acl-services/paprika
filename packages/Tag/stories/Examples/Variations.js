@@ -41,15 +41,21 @@ export default function Variations() {
             <Tag size={permutation.tagSize} onRemove={handleRemove} style={{ width: "120px" }}>
               {`${permutation.tagSize} has delete option and really long text`}
             </Tag>
-            <Tag onClick={handleClick} size={permutation.tagSize}>
-              {`${permutation.tagSize} has onClick  handler`}
-            </Tag>
-            <Tag onClick={handleClick} size={permutation.tagSize} onRemove={handleRemove}>
-              {`${permutation.tagSize} has onClick  handler and delete option`}
-            </Tag>
-            <Tag onClick={handleClick} size={permutation.tagSize} onRemove={handleRemove} isDisabled>
-              {`${permutation.tagSize} has onClick  handler and delete option and is disabled`}
-            </Tag>
+            <li style={{ listStyleType: "none" }}>
+              <Tag onClick={handleClick} size={permutation.tagSize}>
+                {`${permutation.tagSize} has onClick  handler`}
+              </Tag>
+            </li>
+            <li style={{ listStyleType: "none" }}>
+              <Tag onClick={handleClick} size={permutation.tagSize} onRemove={handleRemove}>
+                {`${permutation.tagSize} has onClick  handler and delete option`}
+              </Tag>
+            </li>
+            <li style={{ listStyleType: "none" }}>
+              <Tag onClick={handleClick} size={permutation.tagSize} onRemove={handleRemove} isDisabled>
+                {`${permutation.tagSize} has onClick  handler and delete option and is disabled`}
+              </Tag>
+            </li>
             <Tag size={permutation.tagSize} onRemove={handleRemove} tagColor={Tag.types.severity.ALERT}>
               <Avatar isRound size={permutation.avatarSize} backgroundColor="none">
                 <ExclamationCircle style={{ fontSize: "24px", color: tokens.color.orangeDarken10 }} />
