@@ -1,5 +1,5 @@
 import React from "react";
 
-const MyContext = React.createContext({});
+const CollapsibleCardContext = React.createContext({});
 
-export default MyContext;
+export default CollapsibleCardContext;

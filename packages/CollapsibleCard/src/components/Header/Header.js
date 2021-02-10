@@ -6,14 +6,12 @@ import ArrowUpIcon from "@paprika/icon/lib/ArrowUp";
 import CollapsibleCardContext from "../../CollapsibleCardContext";
 // import * as sc from "./Header.styles";
 
-// It seems laggy...? but mabye that's storybook?
-
 export default function Header(props) {
-  const headerRef = React.useRef();
   let resizeTimeout;
+  const { children, breakpoint, onChangeIsBroken, ...moreProps } = props;
 
-  const { children, breakpoint, ...moreProps } = props;
-  const [isBlock, setIsBlock] = React.useState(null);
+  const headerRef = React.useRef();
+  const [isBroken, setIsBroken] = React.useState(null);
   const [collapsibleCardWidth, setCollapsibleCardWidth] = React.useState(null);
   const context = React.useContext(CollapsibleCardContext);
 
@@ -24,8 +22,12 @@ export default function Header(props) {
   }, []);
 
   React.useEffect(() => {
-    setIsBlock(collapsibleCardWidth < breakpoint);
-  }, [collapsibleCardWidth, breakpoint, setIsBlock]);
+    setIsBroken(collapsibleCardWidth < breakpoint);
+  }, [collapsibleCardWidth, breakpoint, setIsBroken]);
+
+  React.useEffect(() => {
+    onChangeIsBroken(isBroken);
+  }, [isBroken, onChangeIsBroken]);
 
   const numberOfChildren = React.Children.count(props.children);
   const newChildren = [];
@@ -56,16 +58,10 @@ export default function Header(props) {
 
   window.addEventListener("resize", handleResizeWindow);
 
-  const isBlockClass = isBlock && numberOfChildren > 1 ? "collapsible-card-header__content--is-block" : "";
+  const isBrokenClass = isBroken && numberOfChildren > 1 ? "collapsible-card-header__content--is-block" : "";
   return (
     <div ref={headerRef} className="collapsible-card-header">
-      <div className={`collapsible-card-header__content ${isBlockClass}`}>
-        width: {collapsibleCardWidth}
-        <br />
-        breakpoint: {breakpoint}
-        <br />
-        {newChildren}
-      </div>
+      <div className={`collapsible-card-header__content ${isBrokenClass}`}>{newChildren}</div>
       <div className="collapsible-card-header__expand-toggle">
         <Button.Icon
           onClick={() => {
@@ -83,12 +79,14 @@ export default function Header(props) {
 const propTypes = {
   breakpoint: PropTypes.number,
   children: PropTypes.node,
+  onChangeIsBroken: PropTypes.func,
   width: PropTypes.number,
 };
 
 const defaultProps = {
   breakpoint: 800,
   children: null,
+  onChangeIsBroken: () => {},
   width: null,
 };
 

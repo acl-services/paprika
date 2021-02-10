@@ -22,12 +22,9 @@ npm install @paprika/collapsible-card
 
 ### CollapsibleCard
 
-| Prop       | Type        | required | default | Description                                              |
-| ---------- | ----------- | -------- | ------- | -------------------------------------------------------- |
-| children   | node        | false    | null    |                                                          |
-| hasDivider | bool        | false    | false   | If has a divider between collapsible header and content. |
-| label      | [node,func] | false    | null    | Label text as the card title, can be a render function.  |
-| onExpand   | func        | false    | null    | Callback function when expand the card.                  |
+| Prop     | Type | required | default | Description |
+| -------- | ---- | -------- | ------- | ----------- |
+| children | node | false    | null    |             |
 
 ### CollapsibleCard.Avatar
 

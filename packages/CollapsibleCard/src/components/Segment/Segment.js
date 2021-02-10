@@ -6,7 +6,7 @@ export default function Segment(props) {
   const { children, width, ...moreProps } = props;
   return (
     <sc.Segment width={width} {...moreProps}>
-      {children} ({width})
+      {children}
     </sc.Segment>
   );
 }
