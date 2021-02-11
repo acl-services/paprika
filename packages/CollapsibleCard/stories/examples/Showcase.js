@@ -103,6 +103,15 @@ const ExampleStory = () => {
         </CollapsibleCard.Body>
       </CollapsibleCard>
       <br />
+      <CollapsibleCard isEditing>
+        <CollapsibleCard.Header>
+          <CollapsibleCard.Segment>In edit mode</CollapsibleCard.Segment>
+        </CollapsibleCard.Header>
+        <CollapsibleCard.Body>
+          <Lipsum />
+        </CollapsibleCard.Body>
+      </CollapsibleCard>
+      <br />
       <br />
       <br />
       <StoryHeading level={1}>Real-world Examples</StoryHeading>
@@ -161,7 +170,7 @@ const ExampleStory = () => {
                 <Checkbox size="medium" checkedState="checked" />
               </HeaderLayout.Left>
               <HeaderLayout.Heading>{heading}</HeaderLayout.Heading>
-              <HeaderLayout.Metadata>...</HeaderLayout.Metadata>
+              <HeaderLayout.Metadata>{metadata}</HeaderLayout.Metadata>
               <HeaderLayout.Counter quantity={44} />
             </HeaderLayout>
           </CollapsibleCard.Segment>
