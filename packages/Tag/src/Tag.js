@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import RawButton from "@paprika/raw-button";
 import * as sc from "./Tag.styles";
 import * as types from "./types";
 
@@ -21,23 +22,19 @@ export default function Tag(props) {
     </>
   );
 
+  const tagProps = {
+    size,
+    "data-pka-anchor": "tag",
+  };
+
   if (onClick) {
-    return (
-      <sc.RawButtonTag
-        a11yText={a11yText}
-        isDisabled={isDisabled}
-        onClick={onClick}
-        size={size}
-        {...moreProps}
-        data-pka-anchor="tag"
-      >
-        {content}
-      </sc.RawButtonTag>
-    );
+    tagProps.a11yText = a11yText;
+    tagProps.isDisabled = isDisabled;
+    tagProps.onClick = onClick;
   }
 
   return (
-    <sc.Tag data-pka-anchor="tag" size={size} {...moreProps}>
+    <sc.Tag as={onClick ? RawButton : "div"} {...tagProps} {...moreProps}>
       {content}
     </sc.Tag>
   );

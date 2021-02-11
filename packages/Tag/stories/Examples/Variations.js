@@ -24,73 +24,87 @@ export default function Variations() {
         Variations
         {[{ tagSize: "medium", avatarSize: "small" }, { tagSize: "large", avatarSize: "medium" }].map(permutation => (
           <Tags key={permutation.avatarSize}>
-            <Tag
-              size={permutation.tagSize}
-              avatar={
-                <Avatar isRound size={permutation.avatarSize}>
-                  WW
-                </Avatar>
-              }
-            >
-              {permutation.tagSize} with text Avatar
-            </Tag>
-            <Tag
-              size={permutation.tagSize}
-              avatar={
-                <Avatar isRound size={permutation.avatarSize}>
-                  <CalendarIcon />
-                </Avatar>
-              }
-            >
-              {permutation.tagSize} with Icon Avatar
-            </Tag>
-            <Tag size={permutation.tagSize}>{`${permutation.tagSize} just text`}</Tag>
-            <Tag size={permutation.tagSize} onRemove={handleRemove}>
-              {`${permutation.tagSize} has delete option`}
-            </Tag>
-            <Tag
-              avatar={
-                <Avatar isRound size={permutation.avatarSize}>
-                  <CalendarIcon />
-                </Avatar>
-              }
-              size={permutation.tagSize}
-              onRemove={handleRemove}
-              style={{ width: "120px" }}
-            >
-              {`${permutation.tagSize} has delete option and really long text`}
-            </Tag>
-            <li style={{ listStyleType: "none" }}>
+            <li>
+              <Tag
+                size={permutation.tagSize}
+                avatar={
+                  <Avatar isRound size={permutation.avatarSize}>
+                    WW
+                  </Avatar>
+                }
+              >
+                {permutation.tagSize} with text Avatar
+              </Tag>
+            </li>
+            <li>
+              <Tag
+                size={permutation.tagSize}
+                avatar={
+                  <Avatar isRound size={permutation.avatarSize}>
+                    <CalendarIcon />
+                  </Avatar>
+                }
+              >
+                {permutation.tagSize} with Icon Avatar
+              </Tag>
+            </li>
+            <li>
+              <Tag size={permutation.tagSize}>{`${permutation.tagSize} just text`}</Tag>
+            </li>
+            <li>
+              <Tag size={permutation.tagSize} onRemove={handleRemove}>
+                {`${permutation.tagSize} has delete option`}
+              </Tag>
+            </li>
+            <li>
+              <Tag
+                avatar={
+                  <Avatar isRound size={permutation.avatarSize}>
+                    <CalendarIcon />
+                  </Avatar>
+                }
+                size={permutation.tagSize}
+                onRemove={handleRemove}
+                style={{ width: "120px" }}
+              >
+                {`${permutation.tagSize} has delete option and really long text`}
+              </Tag>
+            </li>
+            <li>
               <Tag onClick={handleClick} size={permutation.tagSize}>
                 {`${permutation.tagSize} has onClick  handler`}
               </Tag>
             </li>
-            <li style={{ listStyleType: "none" }}>
+            <li>
               <Tag onClick={handleClick} size={permutation.tagSize} onRemove={handleRemove}>
                 {`${permutation.tagSize} has onClick  handler and delete option`}
               </Tag>
             </li>
-            <li style={{ listStyleType: "none" }}>
+            <li>
               <Tag onClick={handleClick} size={permutation.tagSize} onRemove={handleRemove} isDisabled>
                 {`${permutation.tagSize} has onClick  handler and delete option and is disabled`}
               </Tag>
             </li>
-            <Tag
-              size={permutation.tagSize}
-              onRemove={handleRemove}
-              theme={Tag.types.severityTheme.ALERT}
-              borderColor={tokens.color.orangeDarken10}
-              avatar={
-                <Avatar isRound size={permutation.avatarSize} backgroundColor="none">
-                  <ExclamationCircle style={{ fontSize: "24px", color: tokens.color.orangeDarken10 }} />
-                </Avatar>
-              }
-            >
-              {`${permutation.tagSize} with alert theme`}
-            </Tag>
-            <Tag size={permutation.tagSize} onRemove={handleRemove} borderColor="green">
-              {`${permutation.tagSize} with custom border`}
-            </Tag>
+            <li>
+              <Tag
+                size={permutation.tagSize}
+                onRemove={handleRemove}
+                theme={Tag.types.severityTheme.ALERT}
+                borderColor={tokens.color.orangeDarken10}
+                avatar={
+                  <Avatar isRound size={permutation.avatarSize} backgroundColor="none">
+                    <ExclamationCircle style={{ fontSize: "24px", color: tokens.color.orangeDarken10 }} />
+                  </Avatar>
+                }
+              >
+                {`${permutation.tagSize} with alert theme`}
+              </Tag>
+            </li>
+            <li>
+              <Tag size={permutation.tagSize} onRemove={handleRemove} borderColor="green">
+                {`${permutation.tagSize} with custom border`}
+              </Tag>
+            </li>
           </Tags>
         ))}
       </div>
@@ -100,6 +114,7 @@ export default function Variations() {
           <Tags key={index}>
             {Object.entries(Tag.types.theme).map(theme => (
               <Tag
+                as="li"
                 key={theme[1]}
                 theme={theme[1]}
                 size={permutation.tagSize}
@@ -121,6 +136,7 @@ export default function Variations() {
           <Tags key={index}>
             {Object.entries(Tag.types.severityTheme).map(theme => (
               <Tag
+                as="li"
                 key={theme[1]}
                 theme={theme[1]}
                 size={permutation.tagSize}

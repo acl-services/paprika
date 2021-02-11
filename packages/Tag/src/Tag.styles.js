@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
-import RawButton from "@paprika/raw-button";
 import Button from "@paprika/button";
 import { fontSize, spacer } from "@paprika/stylers/lib/helpers";
 import { truncateText } from "@paprika/stylers/lib/includes";
@@ -66,6 +65,7 @@ export const Tags = styled.ul(() => {
     display: flex;
     flex-wrap: wrap;
     line-height: 1;
+    list-style-type: none;
     margin: 0;
     padding: 0;
   `;
@@ -109,9 +109,7 @@ const tagStyles = ({ theme, borderColor, size }) => css`
   }
 `;
 
-export const RawButtonTag = styled(RawButton)(tagStyles);
-
-export const Tag = styled.li(tagStyles);
+export const Tag = styled.div(tagStyles);
 
 export const Ellipsis = styled.div(({ size }) => {
   const getFontSize = {
