@@ -66,6 +66,7 @@ export const Grid = styled.div.attrs(({ $width }) => {
 
       .${gridId}-sticky-header {
         box-shadow: 2px 0px 0px 0px ${tokens.border.color};
+        overflow: hidden !important;
         z-index: 1;
       }
 
