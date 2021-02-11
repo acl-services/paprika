@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 import { spacer } from "@paprika/stylers/lib/helpers";
 
-export const Left = styled.div(
+export const Counter = styled.span(
   () => css`
-    margin-right: ${spacer(1)};
+    margin-left: ${spacer(1)};
   `
 );

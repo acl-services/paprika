@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import * as sc from "./Heading.styles";
 
 export default function HeaderLayoutHeading(props) {
-  return <sc.HeaderLayoutHeading level={3}>{props.children}</sc.HeaderLayoutHeading>;
+  return <sc.HeaderLayoutHeading level={4}>{props.children}</sc.HeaderLayoutHeading>;
 }
 
 const propTypes = {

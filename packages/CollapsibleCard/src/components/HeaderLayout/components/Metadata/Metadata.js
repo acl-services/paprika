@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import * as sc from "./Metadata.styles";
 
 export default function Metadata(props) {
   const { children } = props;
-  return <div>{children}</div>;
+  return <sc.Metadata>{children}</sc.Metadata>;
 }
 
 const propTypes = {

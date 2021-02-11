@@ -15,9 +15,9 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/avatar": "^2.2.2",
     "@paprika/button": "^1.0.6",
     "@paprika/collapsible": "^1.1.5",
+    "@paprika/counter": "^1.0.4",
     "@paprika/heading": "^1.0.6",
     "@paprika/helpers": "^2.0.1",
     "@paprika/icon": "^1.0.4",
@@ -25,6 +25,13 @@
     "@paprika/tokens": "^1.0.0",
     "prop-types": "^15.7.2",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@paprika/avatar": "^2.2.2",
+    "@paprika/checkbox": "^1.0.5",
+    "@paprika/overflow-menu": "^1.0.9",
+    "@paprika/status-tracker": "^1.0.6",
+    "@paprika/switch": "^1.0.5"
   },
   "peerDependencies": {
     "@paprika/l10n": "^1.1.3",

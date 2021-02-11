@@ -4,14 +4,12 @@ import { spacer } from "@paprika/stylers/lib/helpers";
 export const Body = styled.div(
   ({ isCollapsed }) =>
     css`
-      background: lavender;
-      border: 2px dashed purple;
       display: inline-block;
       margin: 0 ${spacer(2)} ${spacer(3)};
 
       ${isCollapsed &&
-      css`
-        display: none;
-      `}
+        css`
+          display: none;
+        `}
     `
 );
