@@ -64,6 +64,12 @@ export const Grid = styled.div.attrs(({ $width }) => {
         overflow: auto !important;
       }
 
+      .${gridId}-sticky-header {
+        box-shadow: 2px 0px 0px 0px ${tokens.border.color};
+        overflow: hidden !important;
+        z-index: 1;
+      }
+
       .${gridId}-header {
         /** header grid doesn't need overflow on the x side */
         overflow: hidden !important;
@@ -77,7 +83,7 @@ export const Grid = styled.div.attrs(({ $width }) => {
       .${gridId}-sticky-columns {
         /* The arrow navigation is sensitive with borders. If a border is used, it will cause issues keyboard navigation. */
         -ms-overflow-style: none;
-        box-shadow: 3px 0px 0px 0px ${tokens.border.color};
+        box-shadow: 2px 0px 0px 0px ${tokens.border.color};
         overflow-x: hidden !important;
         scrollbar-width: none; /* Internet Explorer 10+ */
         z-index: 1; /* Firefox */
@@ -217,9 +223,9 @@ export const FillerTopRight = styled.div`
 
 export const FillerBottomLeft = styled.div`
   /* this is a small square filler on the bottom left corner of the DataGrid */
-  background: ${tokens.table.header.backgroundColor};
+  background: ${tokens.color.white};
   bottom: 0;
-  box-shadow: 0 0 0 1px ${tokens.border.color};
+  box-shadow: 1px 0 0 1px ${tokens.border.color};
   left: 0;
   position: absolute;
   z-index: 3;
