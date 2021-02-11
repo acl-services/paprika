@@ -1,12 +1,7 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
-import { Story } from "storybook/assets/styles/common.styles";
-import { getStoryName } from "storybook/storyTree";
 import Spinner from "@paprika/spinner";
 import debounce from "./helpers/debounce";
 import ListBox from "../../../src";
-
-const storyName = getStoryName("ListBox");
 
 function createFakeOptions(qty = 10, prefix = "") {
   const options = [];
@@ -17,7 +12,7 @@ function createFakeOptions(qty = 10, prefix = "") {
   return options;
 }
 
-function App() {
+export default function Directory() {
   const [allContacts, setAllContacts] = React.useState([]);
   const [allUsers, setAllUsers] = React.useState([]);
   const [contacts, setContacts] = React.useState([]);
@@ -158,9 +153,3 @@ function App() {
     </>
   );
 }
-
-storiesOf(`${storyName}/Examples`, module).add("Lazy Contact Directory", () => (
-  <Story>
-    <App />
-  </Story>
-));
