@@ -112,6 +112,28 @@ const ExampleStory = () => {
         </CollapsibleCard.Body>
       </CollapsibleCard>
       <br />
+      <CollapsibleCard initialIsCollapsed={false}>
+        <CollapsibleCard.Header>
+          <CollapsibleCard.Segment>Initially expanded</CollapsibleCard.Segment>
+        </CollapsibleCard.Header>
+        <CollapsibleCard.Body>
+          <Lipsum />
+        </CollapsibleCard.Body>
+      </CollapsibleCard>
+      <br />
+      <CollapsibleCard
+        onToggleIsCollapsed={newStateIsCollapsed => {
+          alert(newStateIsCollapsed ? "Collapsing" : "Expanding");
+        }}
+      >
+        <CollapsibleCard.Header>
+          <CollapsibleCard.Segment>With toggleCollapsed handler (expand/collapse me)</CollapsibleCard.Segment>
+        </CollapsibleCard.Header>
+        <CollapsibleCard.Body>
+          <Lipsum />
+        </CollapsibleCard.Body>
+      </CollapsibleCard>
+      <br />
       <br />
       <br />
       <StoryHeading level={1}>Real-world Examples</StoryHeading>

@@ -64,7 +64,7 @@ export default function Header(props) {
       <sc.ExpandToggle isCollapsed={context.isCollapsed}>
         <Button.Icon
           onClick={() => {
-            context.setIsCollapsed(isCollapsed => !isCollapsed);
+            context.handleToggleIsCollapsed();
           }}
           kind="minor"
         >

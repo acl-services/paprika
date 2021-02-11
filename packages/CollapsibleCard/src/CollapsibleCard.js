@@ -6,8 +6,7 @@ import Segment from "./components/Segment";
 import CollapsibleCardContext from "./CollapsibleCardContext";
 import * as sc from "./CollapsibleCard.styles";
 
-// - isEditing (when turns yellow), with a story
-// - controlled/uncontrolled (so can start it expanded. callbacks too?) with a story
+// - carol's feedback
 // - other props
 // - Cards.Group
 // - a11y, focus, see Collapsible and old CollapsibleCard
@@ -15,9 +14,15 @@ import * as sc from "./CollapsibleCard.styles";
 // TODO later: clicking on buttons in the header was propagating, so i discussed with nahum and decided to make just the arrow clickable and discuss later
 
 export default function CollapsibleCard(props) {
-  const { children, isEditing, ...moreProps } = props;
-  const [isCollapsed, setIsCollapsed] = React.useState(true);
-  const thingsToShare = { isCollapsed, setIsCollapsed };
+  const { children, initialIsCollapsed, isEditing, onToggleIsCollapsed, ...moreProps } = props;
+  const [isCollapsed, setIsCollapsed] = React.useState(initialIsCollapsed);
+
+  function handleToggleIsCollapsed() {
+    onToggleIsCollapsed(!isCollapsed);
+    setIsCollapsed(oldIsCollapsed => !oldIsCollapsed);
+  }
+
+  const thingsToShare = { isCollapsed, handleToggleIsCollapsed, onToggleIsCollapsed };
 
   return (
     <CollapsibleCardContext.Provider value={thingsToShare}>
@@ -28,12 +33,16 @@ export default function CollapsibleCard(props) {
 
 const propTypes = {
   children: PropTypes.node,
+  initialIsCollapsed: PropTypes.bool,
   isEditing: PropTypes.bool,
+  onToggleIsCollapsed: PropTypes.func,
 };
 
 const defaultProps = {
   children: null,
+  initialIsCollapsed: true,
   isEditing: false,
+  onToggleIsCollapsed: () => {},
 };
 
 CollapsibleCard.propTypes = propTypes;
