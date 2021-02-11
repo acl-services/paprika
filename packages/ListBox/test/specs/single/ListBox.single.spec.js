@@ -1,7 +1,8 @@
 import React from "react";
 import { render, fireEvent, configure, waitFor } from "@testing-library/react";
+import { Controlled } from "../../../stories/examples/Single/Controlled";
+import { OnChange } from "../../../stories/examples/Single/OnChange";
 import ListBox from "../../../src";
-import { ControlledIsSelected as ListBoxControlled, OnChange } from "../../../stories/examples/single";
 
 configure({ testIdAttribute: "data-pka-anchor" });
 
@@ -268,7 +269,7 @@ describe("ListBox single select", () => {
   });
 
   it("should select an option via a controlled button", () => {
-    const { getByTestId, getAllByTestId } = render(<ListBoxControlled />);
+    const { getByTestId, getAllByTestId } = render(<Controlled />);
 
     const button = getByTestId("button_1");
     expect(button).not.toBeNull();
@@ -280,7 +281,7 @@ describe("ListBox single select", () => {
   });
 
   it("should select only ONE option via a controlled button", () => {
-    const { getByTestId, getAllByTestId } = render(<ListBoxControlled />);
+    const { getByTestId, getAllByTestId } = render(<Controlled />);
 
     const button1 = getByTestId("button_1");
     const button2 = getByTestId("button_2");
