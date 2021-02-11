@@ -13,7 +13,7 @@ const options = ["Punisher", "Catwoman", "Venom", "Thunderbolts", "Deadpool", "S
 export default function SubcomponentsExample() {
   return (
     <>
-      <StoryHeading level={2}>Listbox.Filter</StoryHeading>
+      <StoryHeading level={2}>ListBox.Filter</StoryHeading>
       <CodeViewer>
         <ListBox isMulti isInline height={325}>
           <ListBox.Filter />
@@ -26,7 +26,7 @@ export default function SubcomponentsExample() {
           ))}
         </ListBox>
       </CodeViewer>
-      <StoryHeading level={2}>Listbox.Trigger</StoryHeading>
+      <StoryHeading level={2}>ListBox.Trigger</StoryHeading>
       <CodeViewer>
         <ListBox>
           <ListBox.Trigger>
@@ -51,7 +51,7 @@ export default function SubcomponentsExample() {
           ))}
         </ListBox>
       </CodeViewer>
-      <StoryHeading level={2}>Listbox.Trigger | Custom clear button</StoryHeading>
+      <StoryHeading level={2}>ListBox.Trigger | Custom clear button</StoryHeading>
       <CodeViewer>
         <ListBox isInline>
           <ListBox.Trigger hasClearButton clearIcon={<RefreshIcon />} />
@@ -70,7 +70,7 @@ export default function SubcomponentsExample() {
           </ListBox.RawItem>
         </ListBox>
       </CodeViewer>
-      <StoryHeading level={2}>Listbox.Box</StoryHeading>
+      <StoryHeading level={2}>ListBox.Box</StoryHeading>
       <CodeViewer>
         <ListBox>
           <ListBox.Box className="my-custom-className" style={{ border: "1px solid red" }} />

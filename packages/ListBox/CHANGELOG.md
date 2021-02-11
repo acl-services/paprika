@@ -10,7 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
-- Moved from Listbox
+- Moved from ListBox
 
 ## [0.9.0] - 2020-06-16
 

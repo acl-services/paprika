@@ -141,7 +141,7 @@ By default, the `<ListBoxBrowser />` does not display a list of the selected opt
 But you can activate this feature to display multiple options using the `<ListBoxBrowser.SelectedOptions />` subcomponent.
 
 ```jsx
-<ListboxBrowser data={data}>
+<ListBoxBrowser data={data}>
   <ListBoxBrowser.SelectedOptions />
 </ListBoxBrowser>
 ```
