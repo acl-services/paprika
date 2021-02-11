@@ -6,7 +6,7 @@ import Avatar from "../../Avatar/src";
 
 import Pill, { Pills } from "../src/components/Pill";
 
-const storyName = getStoryName("ListBox");
+const storyName = getStoryName("ListBoxWithTags");
 
 storiesOf(`${storyName}/Subcomponents/Pill`, module).add("Sizes", () => (
   <>
