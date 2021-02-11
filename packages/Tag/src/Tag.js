@@ -17,7 +17,13 @@ export default function Tag(props) {
       {avatar}
       <sc.Ellipsis size={size}>{children}</sc.Ellipsis>
       {onRemove ? (
-        <sc.Delete isDisabled={isDisabled} size={size} data-pka-anchor="tag.remove" onClick={handleRemove} />
+        <sc.Delete
+          isDisabled={isDisabled}
+          size={size}
+          data-pka-anchor="tag.remove"
+          data-qa-anchor="tag.remove"
+          onClick={handleRemove}
+        />
       ) : null}
     </>
   );
