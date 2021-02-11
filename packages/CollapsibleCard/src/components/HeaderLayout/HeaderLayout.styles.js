@@ -5,3 +5,8 @@ export const HeaderLayout = styled.div(
     display: flex;
   `
 );
+export const HeadingWrapper = styled.div(
+  () => css`
+    margin-top: -4px;
+  `
+);

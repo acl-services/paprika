@@ -27,10 +27,10 @@ export default function HeaderLayout(props) {
     <sc.HeaderLayout>
       {Left}
       <Right>
-        <div>
+        <sc.HeadingWrapper>
           {Heading}
           {Counter}
-        </div>
+        </sc.HeadingWrapper>
         {Metadata}
       </Right>
     </sc.HeaderLayout>

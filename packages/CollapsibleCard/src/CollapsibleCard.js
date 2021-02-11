@@ -6,7 +6,6 @@ import Segment from "./components/Segment";
 import CollapsibleCardContext from "./CollapsibleCardContext";
 import * as sc from "./CollapsibleCard.styles";
 
-// - carol's feedback
 // - other props
 // - Cards.Group
 // - a11y, focus, see Collapsible and old CollapsibleCard
