@@ -29,3 +29,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 - Fixed the mapping children error in `<Modal.Footer />`
+
+## [1.0.8-alpha.2] - 2021-02-11
+
+2020-02-02
+
+## Changed
+
+- to use Context instead of using extractChildren helper for more flexibility in children being passed
+
+### Added
+
+- isSingleLine prop to Header to truncate long strings
+- data-qa-anchor onto Header close button
