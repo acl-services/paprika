@@ -3,17 +3,18 @@
 import React from "react";
 import L10n from "@paprika/l10n";
 import CalendarIcon from "@paprika/icon/lib/Calendar";
+import { action } from "@storybook/addon-actions";
 import ExclamationCircle from "@paprika/icon/lib/ExclamationCircle";
 import tokens from "@paprika/tokens";
 import Avatar from "../../../Avatar/src";
 import Tag, { Tags } from "../../src";
 
 const handleRemove = () => {
-  console.log("remove event");
+  action("Remove event")();
 };
 
 const handleClick = () => {
-  console.log("click event");
+  action("Click event")();
 };
 
 export default function Variations() {
