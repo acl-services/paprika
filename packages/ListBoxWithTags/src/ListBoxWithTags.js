@@ -99,7 +99,7 @@ const renderTrigger = ({ t, size, selectedOptions, onRemove, renderTag, tagLabel
           }
 
           return (
-            <Tag key={label} onRemove={handleRemove(item)} size={size}>
+            <Tag as="li" key={label} onRemove={handleRemove(item)} size={size}>
               {label}
             </Tag>
           );

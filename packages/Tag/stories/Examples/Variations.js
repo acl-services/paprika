@@ -4,24 +4,22 @@ import React from "react";
 import L10n from "@paprika/l10n";
 import CalendarIcon from "@paprika/icon/lib/Calendar";
 import { action } from "@storybook/addon-actions";
+import { Gap } from "storybook/assets/styles/common.styles";
+import StoryHeading from "storybook/components/StoryHeading";
 import ExclamationCircle from "@paprika/icon/lib/ExclamationCircle";
 import tokens from "@paprika/tokens";
 import Avatar from "../../../Avatar/src";
 import Tag, { Tags } from "../../src";
 
-const handleRemove = () => {
-  action("Remove event")();
-};
+const handleRemove = () => action("Remove event")();
 
-const handleClick = () => {
-  action("Click event")();
-};
+const handleClick = () => action("Click event")();
 
 export default function Variations() {
   return (
     <L10n locale="en">
       <div style={{ padding: "20px" }}>
-        Variations
+        <StoryHeading>Variations</StoryHeading>
         {[{ tagSize: "medium", avatarSize: "small" }, { tagSize: "large", avatarSize: "medium" }].map(permutation => (
           <Tags key={permutation.avatarSize}>
             <li>
@@ -108,8 +106,9 @@ export default function Variations() {
           </Tags>
         ))}
       </div>
+      <Gap />
       <div style={{ padding: "20px" }}>
-        Colours
+        <StoryHeading>Themes</StoryHeading>
         {[{ tagSize: "large", avatarSize: "medium" }].map((permutation, index) => (
           <Tags key={index}>
             {Object.entries(Tag.types.theme).map(theme => (
@@ -130,8 +129,9 @@ export default function Variations() {
           </Tags>
         ))}
       </div>
+      <Gap />
       <div style={{ padding: "20px" }}>
-        Severity Colours
+        <StoryHeading>Severity Themes</StoryHeading>
         {[{ tagSize: "large", avatarSize: "medium" }].map((permutation, index) => (
           <Tags key={index}>
             {Object.entries(Tag.types.severityTheme).map(theme => (
