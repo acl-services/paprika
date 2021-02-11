@@ -1,9 +1,6 @@
 import React from "react";
 import StoryHeading from "storybook/components/StoryHeading";
 import { Story } from "storybook/assets/styles/common.styles";
-// import Counter from "@paprika/counter";
-// import Switch from "@paprika/switch";
-// import StatusTracker from "@paprika/status-tracker";
 import CollapsibleCard from "../../src";
 
 // x go with full or half (no thirds)
@@ -15,6 +12,8 @@ import CollapsibleCard from "../../src";
 // x make it look good
 // - build the commonly used components for the switch/avatar/title/description/tag part
 // - put together stories demonstrating the variations
+// - edit mode (when turns yellow)
+// - remove old metaData and Avatar components
 // - controlled/uncontrolled
 // - other props
 // - Cards.Group
@@ -36,26 +35,6 @@ function Lipsum() {
     </>
   );
 }
-
-// function TestHeader() {
-//   return (
-//     <div className="test-header">
-//       <Switch />
-//       <div className="test-header__content">
-//         <div style={{ display: "flex", fontWeight: "bold", justifyContent: "space-between" }}>
-//           <div style={{}}>COVID-19 Aggregate Regulatory Feeds Really Long Boring Description</div>
-//           <div style={{}}>
-//             <Counter quantity={100} />
-//           </div>
-//         </div>
-//         <div style={{ fontSize: "14px" }}>
-//           Curabitur eleifend convallis imperdiet. Proin volutpat placerat dictum. Morbi blandit eu libero sit amet
-//           pretium.
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
 
 const ExampleStory = () => {
   const [isBroken1, setIsBroken1] = React.useState(null);

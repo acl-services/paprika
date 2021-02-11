@@ -18,6 +18,7 @@
     "@paprika/avatar": "^2.2.2",
     "@paprika/button": "^1.0.6",
     "@paprika/collapsible": "^1.1.5",
+    "@paprika/heading": "^1.0.6",
     "@paprika/helpers": "^2.0.1",
     "@paprika/icon": "^1.0.4",
     "@paprika/stylers": "^1.0.0",
