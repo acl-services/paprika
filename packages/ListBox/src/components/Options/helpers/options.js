@@ -126,13 +126,11 @@ export function handleArrowKeys({ event, state, dispatch, isArrowDown = null, on
     return;
   }
 
-  event.preventDefault();
   const next = getNextOptionActiveIndex(state, isArrowDown);
-
-  // accessibility
-  state.refListBox.current.children[next].focus();
+  event.preventDefault();
 
   if (next !== null) {
+    state.refListBox.current.children[next].focus();
     if (state.isMulti) {
       dispatch({
         type: useListBox.types.setActiveOption,

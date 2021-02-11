@@ -13,7 +13,14 @@ export default function NoResults(props) {
   const [state] = useListBox();
 
   if ((state.isOpen || state.isInline) && state.noResultsFound) {
-    return <sc.NoResults data-pka-anchor="no-results">{label}</sc.NoResults>;
+    return (
+      <>
+        <sc.NoResults data-pka-anchor="no-results">{label}</sc.NoResults>
+        <sc.NoResultsAria aria-live="polite" role="alert">
+          {label}
+        </sc.NoResultsAria>
+      </>
+    );
   }
 
   return null;
