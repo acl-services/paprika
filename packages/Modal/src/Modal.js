@@ -6,24 +6,24 @@ import { zValue } from "@paprika/stylers/lib/helpers";
 import { extractChildren } from "@paprika/helpers";
 import FocusLock from "./components/FocusLock";
 import * as sc from "./Modal.styles";
+import Header from "./components/Header";
+import Content from "./components/Content";
+import Footer from "./components/Footer";
+
+export const ModalContext = React.createContext({});
 
 const Modal = props => {
   const { a11yText, isOpen, onClose, onAfterClose, onAfterOpen, size, zIndex, ...moreProps } = props;
+  const [ariaLabel, setAriaLabel] = React.useState();
 
-  const {
-    "Modal.FocusLock": focusLockExtracted,
-    "Modal.Overlay": overlayExtracted,
-    "Modal.Header": headerExtracted,
-    "Modal.Content": contentExtracted,
-    "Modal.Footer": footerExtracted,
-    children,
-  } = extractChildren(moreProps.children, [
-    "Modal.FocusLock",
-    "Modal.Overlay",
-    "Modal.Header",
-    "Modal.Content",
-    "Modal.Footer",
-  ]);
+  const updateAriaLabel = React.useCallback(ariaLabel => {
+    setAriaLabel(ariaLabel);
+  }, []);
+
+  const { "Modal.FocusLock": focusLockExtracted, "Modal.Overlay": overlayExtracted, children } = extractChildren(
+    moreProps.children,
+    ["Modal.FocusLock", "Modal.Overlay"]
+  );
 
   const focusLockProps = focusLockExtracted ? focusLockExtracted.props : {};
   const overlayProps = overlayExtracted ? overlayExtracted.props : {};
@@ -34,7 +34,12 @@ const Modal = props => {
     ...(focusLockProps || {}),
   };
 
-  const ariaLabel = a11yText || (headerExtracted ? headerExtracted.props.children : null);
+  const contextValue = {
+    a11yText,
+    isOpen,
+    onClose,
+    updateAriaLabel,
+  };
 
   return (
     <Overlay
@@ -49,13 +54,8 @@ const Modal = props => {
     >
       {state => (
         <sc.Modal size={size} data-pka-anchor="modal.wrapper" {...moreProps}>
-          <sc.Dialog state={state} role="dialog" aria-modal="true" aria-label={ariaLabel} data-pka-anchor="modal">
-            {headerExtracted && <sc.Header {...headerExtracted.props} onClose={onClose} />}
-            <sc.ContentWrapper role="region" tabIndex="0">
-              {contentExtracted && <sc.Content {...contentExtracted.props} />}
-              {children}
-            </sc.ContentWrapper>
-            {footerExtracted && <sc.Footer {...footerExtracted.props} />}
+          <sc.Dialog state={state} role="dialog" aria-modal aria-label={ariaLabel} data-pka-anchor="modal">
+            <ModalContext.Provider value={contextValue}>{children}</ModalContext.Provider>
           </sc.Dialog>
         </sc.Modal>
       )}
@@ -104,6 +104,11 @@ const defaultProps = {
 
 Modal.propTypes = propTypes;
 Modal.defaultProps = defaultProps;
+
+Modal.Header = Header;
+Modal.Content = Content;
+Modal.Footer = Footer;
+Modal.Overlay = Overlay;
 
 Modal.FocusLock = FocusLock;
 

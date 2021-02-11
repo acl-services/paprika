@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@paprika/button";
-import { Td, Th, FiltersStyled, TdFilter } from "./filterSelect.styles";
+import { Td, Th, FiltersStyled, TdFilter } from "./FilterSelect.styles";
 import ListBox from "../../../src";
 
 const items = [

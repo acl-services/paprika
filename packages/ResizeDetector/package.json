@@ -1,6 +1,6 @@
 {
   "name": "@paprika/resize-detector",
-  "version": "1.0.6-alpha.0",
+  "version": "1.0.6-alpha.1",
   "description": "A wrapper that provides debounced updates of its dimensions.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/helpers": "^2.1.1-alpha.0",
+    "@paprika/helpers": "^2.1.1-alpha.1",
     "lodash.debounce": "^4.0.8",
     "prop-types": "^15.7.2",
     "use-resize-observer": "^6.1.0"
