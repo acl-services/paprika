@@ -34,7 +34,7 @@ function renderComponent(props = {}, children = childrenContent) {
   };
 }
 
-xdescribe("ListBox single select", () => {
+describe("ListBox single select", () => {
   it("dropdown should be hidden when first rendered", () => {
     const { popoverIsHidden } = renderComponent();
     popoverIsHidden();

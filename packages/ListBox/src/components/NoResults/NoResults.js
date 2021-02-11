@@ -15,10 +15,9 @@ export default function NoResults(props) {
   if ((state.isOpen || state.isInline) && state.noResultsFound) {
     return (
       <>
-        <sc.NoResults data-pka-anchor="no-results">{label}</sc.NoResults>
-        <sc.NoResultsAria aria-live="polite" role="alert">
+        <sc.NoResults aria-live="polite" role="alert" data-pka-anchor="no-results">
           {label}
-        </sc.NoResultsAria>
+        </sc.NoResults>
       </>
     );
   }

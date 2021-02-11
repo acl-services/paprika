@@ -20,10 +20,10 @@ function renderComponent(props = {}, children = childrenContent) {
   return {
     ...rendered,
     openSelect: () => {
-      fireEvent.click(rendered.getByText(/select/i));
+      fireEvent.click(rendered.getByText(/Select.../i));
     },
     closeSelect: () => {
-      fireEvent.click(rendered.getByText(/select/i));
+      fireEvent.click(rendered.getByText(/Select.../i));
     },
     selectVenus: () => {
       fireEvent.click(rendered.getByText(/venus/i));
@@ -40,7 +40,7 @@ function renderComponent(props = {}, children = childrenContent) {
   };
 }
 
-xdescribe("ListBox multi select", () => {
+describe("ListBox multi select", () => {
   it("dropdown should be hidden when first rendered", () => {
     const { expectDropdownIsHidden } = renderComponent();
     expectDropdownIsHidden();
@@ -284,7 +284,6 @@ xdescribe("ListBox multi select", () => {
     expect(queryByText(/✅/i)).not.toBeInTheDocument();
   });
 
-  //
   it("should have correct checkbox beside selected and non-selected options", () => {
     function createOptions() {
       return ["option1", "option2", "option3"].map(option => {
