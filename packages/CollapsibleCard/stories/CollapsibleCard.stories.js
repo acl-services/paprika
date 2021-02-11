@@ -3,7 +3,6 @@ import { withKnobs } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
 import CollapsibleCard from "../src/CollapsibleCard";
 import Showcase from "./examples/Showcase";
-import Variations from "./examples/Variations";
 import HeaderLayout from "./examples/HeaderLayout";
 
 export default {
@@ -18,17 +17,6 @@ showcase.story = {
     options: {
       isToolshown: true,
       showPanel: true,
-    },
-  },
-};
-
-export const variations = () => <Variations />;
-variations.story = {
-  parameters: {
-    docs: { page: Variations },
-    options: {
-      isToolshown: true,
-      showPanel: false,
     },
   },
 };

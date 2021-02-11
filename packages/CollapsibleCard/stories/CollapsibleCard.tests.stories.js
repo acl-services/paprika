@@ -1,7 +1,7 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import CollapsibleCard from "../src";
-import Variations from "./examples/Variations";
+import Showcase from "./examples/Showcase";
 
 const storyName = getStoryName("CollapsibleCard");
 
@@ -11,8 +11,8 @@ export default {
   component: CollapsibleCard,
 };
 
-export const variations = () => <Variations />;
-variations.story = {
+export const showcase = () => <Showcase />;
+showcase.story = {
   name: "Screener",
   parameters: {
     options: {

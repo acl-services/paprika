@@ -12,7 +12,7 @@ const metadata =
 const HeaderLayoutStory = () => {
   return (
     <Story>
-      <StoryHeading level={1}>Children</StoryHeading>
+      <StoryHeading level={1}>HeaderLayout</StoryHeading>
 
       <HeaderLayout>
         <HeaderLayout.Left>
