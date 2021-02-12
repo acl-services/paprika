@@ -20,7 +20,7 @@ export default {
 };
 
 export const ControlledStory = () => (
-  <ExampleStory component="ListBox" storyName="Controlled isSelected" fileName="examples/Controlled.js">
+  <ExampleStory component="ListBox" storyName="Controlled isSelected" fileName="examples/Single/Controlled.js">
     <Controlled />
   </ExampleStory>
 );
