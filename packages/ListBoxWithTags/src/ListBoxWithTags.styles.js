@@ -26,8 +26,8 @@ export const Trigger = styled(RawButton)(({ size, allOptionsAreSelected }) => {
     color: ${tokens.color.black};
     display: block;
     /**
- * the bottom padding is assign on the Pill.styles file to 
- * let the pills have a margin bottom whenever the wrap occurs
+ * the bottom padding is assigned on the paprika Tag.styles file to 
+ * let the tags have a margin bottom whenever the wrap occurs
  */
     padding: 3px 50px 1px ${tokens.spaceSm};
     position: relative;
