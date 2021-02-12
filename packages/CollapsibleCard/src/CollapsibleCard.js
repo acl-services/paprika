@@ -6,10 +6,11 @@ import Segment from "./components/Segment";
 import CollapsibleCardContext from "./CollapsibleCardContext";
 import * as sc from "./CollapsibleCard.styles";
 
+// - hover style (designers only want it to affect the header when it is expanded...)
+// - focus style (designers want the entire header to go blue, but the entire thing is not clickable (see above)...)
 // - Cards.Group
-// - paprikaDocs in package.json
 // - a11y, focus, see Collapsible and old CollapsibleCard
-// - create all docs/readmes
+// - create all docs/readmes, see paprikaDocs in package.json
 // - tests
 // TODO later: clicking on buttons in the header was propagating, so i discussed with nahum and decided to make just the arrow clickable and discuss later
 

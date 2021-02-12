@@ -12,16 +12,14 @@ import HeaderLayout from "../../src/components/HeaderLayout";
 
 function Lipsum() {
   return (
-    <>
-      <p style={{ margin: 0 }}>
-        <strong>It is up to the consumer to strip margin/padding from the content they pass in.</strong> Sed eget
-        accumsan dolor, et volutpat odio. Donec vel vehicula metus. Donec urna quam, ullamcorper vitae magna non, semper
-        dictum risus. Maecenas dui dolor, tempus ut arcu sit amet, bibendum rhoncus nulla. Morbi non lacus mi. Curabitur
-        eleifend convallis imperdiet. Proin volutpat placerat dictum. Morbi blandit eu libero sit amet pretium. Cras
-        gravida purus tempor libero ornare sodales. Mauris hendrerit tempus sapien vel finibus. In nec risus pharetra,
-        hendrerit sapien sit amet, eleifend orci. Ut efficitur elit nec mauris suscipit molestie.
-      </p>
-    </>
+    <p style={{ margin: 0, border: "1px dashed purple" }}>
+      <strong>It is up to the consumer to strip margin/padding from the content they pass in.</strong> Sed eget accumsan
+      dolor, et volutpat odio. Donec vel vehicula metus. Donec urna quam, ullamcorper vitae magna non, semper dictum
+      risus. Maecenas dui dolor, tempus ut arcu sit amet, bibendum rhoncus nulla. Morbi non lacus mi. Curabitur eleifend
+      convallis imperdiet. Proin volutpat placerat dictum. Morbi blandit eu libero sit amet pretium. Cras gravida purus
+      tempor libero ornare sodales. Mauris hendrerit tempus sapien vel finibus. In nec risus pharetra, hendrerit sapien
+      sit amet, eleifend orci. Ut efficitur elit nec mauris suscipit molestie.
+    </p>
   );
 }
 
