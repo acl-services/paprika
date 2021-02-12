@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import CaretDownIcon from "@paprika/icon/lib/CaretDown";
 import CaretUpIcon from "@paprika/icon/lib/CaretUp";
-import ListBox from "@paprika/list-box";
 import { filter } from "@paprika/list-box/lib/helpers/filter";
+import ListBox from "@paprika/list-box";
 import Tag, { Tags } from "@paprika/tag";
 /* eslint-disable no-restricted-syntax */
 import * as triggerSc from "@paprika/list-box/lib/components/Trigger/Trigger.styles";
@@ -74,6 +74,8 @@ const renderTrigger = ({ t, size, selectedOptions, onRemove, renderTag, tagLabel
 
   return (
     <sc.Trigger
+      aria-haspopup="true"
+      aria-expanded={isOpen}
       ref={refTrigger}
       {...propsForTrigger()}
       onClick={handleClick}

@@ -201,16 +201,6 @@ export const handleClickOption = ({ props, state, dispatch, onChangeContext }) =
 };
 
 export function handleEnterOrSpace({ event, state, dispatch, onChangeContext }) {
-  const pressedSpaceKeyWhileHavingFilter = state.hasFilter && event.key === " " && event.target.value !== "";
-
-  const isEventOnFooter = state.refFooterContainer.current
-    ? state.refFooterContainer.current.contains(event.target)
-    : false;
-
-  if (pressedSpaceKeyWhileHavingFilter || isEventOnFooter) {
-    return;
-  }
-
   event.preventDefault();
 
   const option = state.options[state.activeOption];

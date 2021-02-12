@@ -9,6 +9,7 @@ en:
       pm: pm
     back: Back
     remove: remove
+    remove_a11y: "Remove {{value}}"
     moreInformation: more information
     close: Close
     dataGrid:
