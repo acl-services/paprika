@@ -27,6 +27,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@acl-services/wasabicons": "^1.0.9",
     "@paprika/avatar": "^2.2.2",
     "@paprika/checkbox": "^1.0.5",
     "@paprika/overflow-menu": "^1.0.9",

@@ -6,9 +6,11 @@ import Segment from "./components/Segment";
 import CollapsibleCardContext from "./CollapsibleCardContext";
 import * as sc from "./CollapsibleCard.styles";
 
-// - other props
+// - moreProps (remove or support)
 // - Cards.Group
+// - paprikaDocs in package.json
 // - a11y, focus, see Collapsible and old CollapsibleCard
+// - create all docs/readmes
 // - tests
 // TODO later: clicking on buttons in the header was propagating, so i discussed with nahum and decided to make just the arrow clickable and discuss later
 

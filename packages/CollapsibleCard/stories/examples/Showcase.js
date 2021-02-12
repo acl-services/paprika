@@ -6,6 +6,7 @@ import Checkbox from "@paprika/checkbox";
 import OverflowMenu from "@paprika/overflow-menu";
 import StatusTracker from "@paprika/status-tracker";
 import Switch from "@paprika/switch";
+import LightningIcon from "@acl-services/wasabicons/lib/Lightning";
 import CollapsibleCard from "../../src";
 import HeaderLayout from "../../src/components/HeaderLayout";
 
@@ -164,7 +165,9 @@ const ExampleStory = () => {
           <CollapsibleCard.Segment width={60}>
             <HeaderLayout>
               <HeaderLayout.Left>
-                <Avatar size="medium">CO</Avatar>
+                <Avatar size="medium" backgroundColor="#575757" color="#f0f0f0">
+                  <LightningIcon />
+                </Avatar>
               </HeaderLayout.Left>
               <HeaderLayout.Heading>{heading}</HeaderLayout.Heading>
               <HeaderLayout.Metadata>Resize window and watch the buttons&apos; alignment change</HeaderLayout.Metadata>
@@ -196,7 +199,8 @@ const ExampleStory = () => {
               <HeaderLayout.Counter quantity={44} />
             </HeaderLayout>
           </CollapsibleCard.Segment>
-          <CollapsibleCard.Segment width={60}>
+          <CollapsibleCard.Segment width={10} />
+          <CollapsibleCard.Segment width={40}>
             <StatusTracker>
               <StatusTracker.Point name="Draft" kind={StatusTracker.types.kind.PAST} description="Desc" />
               <StatusTracker.Point name="In review" description="Desc2" kind={StatusTracker.types.kind.CURRENT}>
@@ -210,6 +214,7 @@ const ExampleStory = () => {
               <StatusTracker.Point name="Done" kind={StatusTracker.types.kind.FUTURE} />
             </StatusTracker>
           </CollapsibleCard.Segment>
+          <CollapsibleCard.Segment width={10} />
         </CollapsibleCard.Header>
         <CollapsibleCard.Body>
           <Lipsum />
