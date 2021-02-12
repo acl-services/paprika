@@ -56,6 +56,7 @@ const themeStyles = {
 
   [types.severityThemes.ALERT]: css`
     background: none;
+    border: 1px solid ${tokens.color.orangeDarken10};
     color: ${tokens.color.orangeDarken10};
   `,
 };
@@ -71,31 +72,24 @@ export const Tags = styled.ul(() => {
   `;
 });
 
-const borderColorStyles = ({ borderColor }) => css`
-  border: 1px solid ${borderColor};
-  padding: 1px;
-`;
-
-const widthAndHeight = borderColor => {
-  return borderColor
-    ? {
-        medium: "18px",
-        large: "22px",
-      }
-    : {
-        medium: "20px",
-        large: "24px",
-      };
+const widthAndHeight = {
+  medium: "24px",
+  large: "28px",
 };
 
-const tagStyles = ({ theme, borderColor, size }) => css`
+const avatarWidthAndHeight = {
+  medium: "20px",
+  large: "24px",
+};
+
+const tagStyles = ({ theme, size }) => css`
   align-items: center;
   background: ${tokens.color.blackLighten70};
-  ${borderColor ? borderColorStyles : ""}
   border-radius: ${spacer(2)};
+  box-sizing: border-box;
   color: ${tokens.color.white};
   display: flex;
-  height: ${widthAndHeight(borderColor)[size]};
+  height: ${widthAndHeight[size]};
   line-height: 1;
   margin-bottom: 2px;
   margin-right: ${tokens.spaceSm};
@@ -104,8 +98,8 @@ const tagStyles = ({ theme, borderColor, size }) => css`
   ${themeStyles[theme]}
 
   [data-pka-anchor="avatar"] {
-    margin-right: 0;
-    min-width: ${widthAndHeight(borderColor)[size]}
+    height: ${avatarWidthAndHeight[size]};
+    min-width: ${avatarWidthAndHeight[size]};
   }
 `;
 

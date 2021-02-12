@@ -57,8 +57,6 @@ const propTypes = {
   a11yText: PropTypes.string,
   /** Can pass a avatar to be displayed to the left of the tag content */
   avatar: PropTypes.node,
-  /** Can pass a custom border color */
-  borderColor: PropTypes.string,
   /** Content to show in the central area of the tag */
   children: PropTypes.node.isRequired,
   /** Disables tag onClick and remove button functionality */
@@ -89,7 +87,6 @@ const propTypes = {
 const defaultProps = {
   a11yText: null,
   avatar: null,
-  borderColor: null,
   isDisabled: false,
   onClick: null,
   onRemove: null,

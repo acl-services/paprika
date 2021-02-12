@@ -88,7 +88,6 @@ export default function Variations() {
                 size={permutation.tagSize}
                 onRemove={handleRemove}
                 theme={Tag.types.severityTheme.ALERT}
-                borderColor={tokens.color.orangeDarken10}
                 avatar={
                   <Avatar isRound size={permutation.avatarSize} backgroundColor="none">
                     <ExclamationCircle style={{ fontSize: "24px", color: tokens.color.orangeDarken10 }} />
@@ -96,11 +95,6 @@ export default function Variations() {
                 }
               >
                 {`${permutation.tagSize} with alert theme`}
-              </Tag>
-            </li>
-            <li>
-              <Tag size={permutation.tagSize} onRemove={handleRemove} borderColor="green">
-                {`${permutation.tagSize} with custom border`}
               </Tag>
             </li>
           </Tags>
