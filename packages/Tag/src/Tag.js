@@ -21,7 +21,7 @@ export default function Tag(props) {
           isDisabled={isDisabled}
           size={size}
           data-pka-anchor="tag.remove"
-          data-qa-anchor="tag.remove"
+          data-qa-anchor="paprika.tag.remove"
           onClick={handleRemove}
         />
       ) : null}
