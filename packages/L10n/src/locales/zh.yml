@@ -195,3 +195,6 @@ zh:
         is_after: 晚于
         true: "真"
         false: "假"
+    input:
+      clear_button:
+        aria_label: 清除输入

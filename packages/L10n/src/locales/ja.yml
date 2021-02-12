@@ -195,3 +195,6 @@ ja:
         is_after: 'は次より後である:'
         true: "真"
         false: "偽"
+    input:
+      clear_button:
+        aria_label: 入力をクリア
