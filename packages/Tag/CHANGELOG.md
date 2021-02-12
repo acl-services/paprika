@@ -6,6 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Changed
+### Added
 
-- Replaced Pill subcomponent with Paprika Tag component. [@tristanjasper](https://github.com/tristanjasper).
+- Added: New tag component [@tristanjasper](https://github.com/tristanjasper).
