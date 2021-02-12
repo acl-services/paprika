@@ -9,7 +9,6 @@ export const Header = styled.div(
   `
 );
 
-// TODO: i am not sure if i want `align-self` here. see what it looks like with the real content
 export const HeaderContent = styled.div(
   ({ isBroken }) => css`
     align-self: center;
@@ -18,9 +17,9 @@ export const HeaderContent = styled.div(
     margin-right: ${spacer(2)};
 
     ${isBroken &&
-    css`
-      display: block;
-    `}
+      css`
+        display: block;
+      `}
   `
 );
 
@@ -29,8 +28,8 @@ export const ExpandToggle = styled.div(
     flex: 0 0 32px;
 
     ${isCollapsed &&
-    css`
-      transform: rotate(180deg);
-    `}
+      css`
+        transform: rotate(180deg);
+      `}
   `
 );

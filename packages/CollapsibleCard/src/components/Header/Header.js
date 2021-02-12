@@ -8,7 +8,7 @@ import * as sc from "./Header.styles";
 
 export default function Header(props) {
   let resizeTimeout;
-  const { children, breakpoint, onChangeIsBroken, ...moreProps } = props;
+  const { breakpoint, onChangeIsBroken } = props;
 
   const headerRef = React.useRef();
   const [isBroken, setIsBroken] = React.useState(null);
@@ -79,14 +79,12 @@ const propTypes = {
   breakpoint: PropTypes.number,
   children: PropTypes.node,
   onChangeIsBroken: PropTypes.func,
-  width: PropTypes.number,
 };
 
 const defaultProps = {
   breakpoint: 800,
   children: null,
   onChangeIsBroken: () => {},
-  width: null,
 };
 
 Header.propTypes = propTypes;

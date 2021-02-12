@@ -3,12 +3,8 @@ import PropTypes from "prop-types";
 import * as sc from "./Segment.styles";
 
 export default function Segment(props) {
-  const { children, width, ...moreProps } = props;
-  return (
-    <sc.Segment width={width} {...moreProps}>
-      {children}
-    </sc.Segment>
-  );
+  const { children, width } = props;
+  return <sc.Segment width={width}>{children}</sc.Segment>;
 }
 
 const propTypes = {

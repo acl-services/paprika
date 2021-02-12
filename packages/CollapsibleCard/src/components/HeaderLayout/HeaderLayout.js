@@ -9,7 +9,7 @@ import Counter from "./components/Counter";
 import * as sc from "./HeaderLayout.styles";
 
 export default function HeaderLayout(props) {
-  const { children, ...moreProps } = props;
+  const { children } = props;
 
   const {
     "HeaderLayout.Left": Left,

@@ -147,7 +147,9 @@ const ExampleStory = () => {
           <CollapsibleCard.Segment>
             <HeaderLayout>
               <HeaderLayout.Left>
-                <Switch onClick={() => {}} />
+                <div style={{ paddingTop: "8px" }}>
+                  <Switch onClick={() => {}} />
+                </div>
               </HeaderLayout.Left>
               <HeaderLayout.Heading>{heading}</HeaderLayout.Heading>
               <HeaderLayout.Metadata>{metadata}</HeaderLayout.Metadata>
@@ -192,7 +194,9 @@ const ExampleStory = () => {
           <CollapsibleCard.Segment width={40}>
             <HeaderLayout>
               <HeaderLayout.Left>
-                <Checkbox size="medium" checkedState="checked" />
+                <div style={{ paddingTop: "8px" }}>
+                  <Checkbox size="medium" checkedState="checked" />
+                </div>
               </HeaderLayout.Left>
               <HeaderLayout.Heading>{heading}</HeaderLayout.Heading>
               <HeaderLayout.Metadata>{metadata}</HeaderLayout.Metadata>

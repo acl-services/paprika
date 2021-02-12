@@ -6,7 +6,6 @@ import Segment from "./components/Segment";
 import CollapsibleCardContext from "./CollapsibleCardContext";
 import * as sc from "./CollapsibleCard.styles";
 
-// - moreProps (remove or support)
 // - Cards.Group
 // - paprikaDocs in package.json
 // - a11y, focus, see Collapsible and old CollapsibleCard
@@ -15,7 +14,7 @@ import * as sc from "./CollapsibleCard.styles";
 // TODO later: clicking on buttons in the header was propagating, so i discussed with nahum and decided to make just the arrow clickable and discuss later
 
 export default function CollapsibleCard(props) {
-  const { children, initialIsCollapsed, isEditing, onToggleIsCollapsed, ...moreProps } = props;
+  const { children, initialIsCollapsed, isEditing, onToggleIsCollapsed } = props;
   const [isCollapsed, setIsCollapsed] = React.useState(initialIsCollapsed);
 
   function handleToggleIsCollapsed() {
