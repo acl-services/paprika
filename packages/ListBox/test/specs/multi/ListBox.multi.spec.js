@@ -20,10 +20,10 @@ function renderComponent(props = {}, children = childrenContent) {
   return {
     ...rendered,
     openSelect: () => {
-      fireEvent.click(rendered.getByText(/Select.../i));
+      fireEvent.click(rendered.getByText(/select/i));
     },
     closeSelect: () => {
-      fireEvent.click(rendered.getByText(/Select.../i));
+      fireEvent.click(rendered.getByText(/select/i));
     },
     selectVenus: () => {
       fireEvent.click(rendered.getByText(/venus/i));

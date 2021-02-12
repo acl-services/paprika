@@ -240,7 +240,7 @@ export default function Trigger(props) {
       {hasRenderTrigger ? renderChildrenProps : renderLabel()}
       {state.selectedOptions.length && hasClearButton && !shouldHideClearButton ? (
         <sc.ClearButton
-          aria-label={I18n.t("listbox.trigger.clear_button")}
+          a11yText={I18n.t("listBox.trigger.clear_selection")}
           isSemantic={false}
           isDisabled={isDisabled}
           data-pka-anchor="clear-button"
