@@ -92,14 +92,12 @@ export default function Trigger(props) {
   const [triggerButtonId] = React.useState(() => `list-box-trigger_${uuidv4()}`);
 
   const handleClick = () => {
-    window.requestAnimationFrame(() => {
-      if (state.isOpen) {
-        dispatch({ type: useListBox.types.closePopover });
-        return;
-      }
+    if (state.isOpen) {
+      dispatch({ type: useListBox.types.closePopover });
+      return;
+    }
 
-      dispatch({ type: useListBox.types.openPopover });
-    });
+    dispatch({ type: useListBox.types.openPopover });
   };
 
   const handleKeyUp = event => {
