@@ -6,8 +6,7 @@ import * as types from "../../types";
 const blueSelected = tokens.color.blueLighten50;
 
 const activeStyles = css`
-  border: 2px solid Highlight;
-  border-radius: 3px;
+  ${stylers.focusRing()}
 `;
 
 const disabledStyles = css`
@@ -43,6 +42,12 @@ export const Option = styled.li(
       ${hasPreventDefaultOnSelect ? "background: transparent;" : ""};
 
       background: ${isSelected ? blueSelected : tokens.color.blackLighten70};
+    }
+
+    &:focus {
+      ${stylers.focusRing()}
+      border-bottom-color: transparent;
+      border-radius: ${tokens.border.radius};
     }
 
     ${isActive && listBoxHasFocus && hasPreventDefaultOnSelect ? `border-color: ${tokens.color.blackLighten60}` : ""};
