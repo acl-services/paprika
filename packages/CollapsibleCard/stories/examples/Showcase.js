@@ -6,7 +6,6 @@ import Checkbox from "@paprika/checkbox";
 import OverflowMenu from "@paprika/overflow-menu";
 import StatusTracker from "@paprika/status-tracker";
 import Switch from "@paprika/switch";
-import LightningIcon from "@acl-services/wasabicons/lib/Lightning";
 import CollapsibleCard from "../../src";
 import HeaderLayout from "../../src/components/HeaderLayout";
 
@@ -166,7 +165,7 @@ const ExampleStory = () => {
             <HeaderLayout>
               <HeaderLayout.Left>
                 <Avatar size="medium" backgroundColor="#575757" color="#f0f0f0">
-                  <LightningIcon />
+                  Co
                 </Avatar>
               </HeaderLayout.Left>
               <HeaderLayout.Heading>{heading}</HeaderLayout.Heading>
