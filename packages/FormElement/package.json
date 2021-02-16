@@ -1,6 +1,6 @@
 {
   "name": "@paprika/form-element",
-  "version": "4.0.5",
+  "version": "4.0.6-alpha.1",
   "description": "FormElement component displays a user input field",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -17,9 +17,9 @@
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/constants": "^1.0.0",
-    "@paprika/helpers": "^2.1.0",
+    "@paprika/helpers": "^2.1.1-alpha.1",
     "@paprika/icon": "^1.0.4",
-    "@paprika/popover": "^1.0.8",
+    "@paprika/popover": "^1.0.9-alpha.1",
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",
     "prop-types": "^15.7.2",

@@ -1,8 +1,7 @@
 import React from "react";
 import { configure, render, fireEvent, waitFor } from "@testing-library/react";
-
+import { ControlledAndSelected } from "../../../stories/examples/Multi/ControlledAndSelected";
 import ListBox from "../../../src";
-import { ControlledIsSelected } from "../../../stories/examples/multi";
 
 configure({ testIdAttribute: "data-pka-anchor" });
 
@@ -285,7 +284,6 @@ describe("ListBox multi select", () => {
     expect(queryByText(/✅/i)).not.toBeInTheDocument();
   });
 
-  //
   it("should have correct checkbox beside selected and non-selected options", () => {
     function createOptions() {
       return ["option1", "option2", "option3"].map(option => {
@@ -325,7 +323,7 @@ describe("ListBox multi select", () => {
   });
 
   it("should select an option via a controlled button", () => {
-    const { getByTestId, getAllByTestId } = render(<ControlledIsSelected />);
+    const { getByTestId, getAllByTestId } = render(<ControlledAndSelected />);
     const dataAttributeIsSelected = "list-option--is-selected";
     const button1 = getByTestId("button_1");
     expect(button1).not.toBeNull();

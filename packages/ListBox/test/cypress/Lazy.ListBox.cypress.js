@@ -8,26 +8,8 @@ function checkIfSelected(marvelChar, isSelected) {
 
 describe("Lazy ListBox", () => {
   beforeEach(() => {
-    cy.visitStorybook(`${getStoryUrlPrefix("ListBox")}-examples--lazy-listbox`);
+    cy.visitStorybook(`${getStoryUrlPrefix("ListBox")}-backyard-sandbox--lazy-story`);
     openLazyDropDown();
-  });
-
-  it("should select three options and see three images", () => {
-    cy.get("#root")
-      .children()
-      .should("have.length", 1);
-    cy.contains("Namora").click();
-    cy.get(selectors.popoverList).scrollTo("bottom");
-    cy.contains("Satana").click();
-    cy.contains("Sauron").click();
-    cy.contains("Apply").click();
-    cy.get(selectors.popover).should("not.be.visible");
-    cy.get("#root div:first")
-      .children()
-      .should("have.length", 3)
-      .and("contain", "Namora")
-      .and("contain", "Satana")
-      .and("contain", "Sauron");
   });
 
   it("should show correct amount when backspacing filter", () => {

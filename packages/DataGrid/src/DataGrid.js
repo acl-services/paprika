@@ -450,6 +450,7 @@ const DataGrid = React.forwardRef((props, ref) => {
         <sc.Flex>
           {/** STICKY HEADER */}
           <Grid
+            className={`${gridId}-sticky-header`}
             columnCount={stickyColumnsIndexes.length}
             columnWidth={columnIndex => {
               return ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props.width;
