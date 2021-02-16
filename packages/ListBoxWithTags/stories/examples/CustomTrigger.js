@@ -13,15 +13,15 @@ export default function CustomTrigger() {
     defaultFilteredData,
   });
 
-  function renderPill({ option, Pill, onRemove }) {
+  function renderTag({ option, Tag, onRemove }) {
     const color = getAvatarColors(option.label);
     return (
-      <Pill onRemove={onRemove} key={option.label}>
+      <Tag onRemove={onRemove} key={option.label}>
         <Avatar size={Avatar.types.size.SMALL} isRound backgroundColor={color.backgroundColor} color={color.fontColor}>
           {getInitialsFromText(option.label)}
         </Avatar>
         {option.label}
-      </Pill>
+      </Tag>
     );
   }
 
@@ -29,7 +29,7 @@ export default function CustomTrigger() {
     <div style={{ padding: "32px" }}>
       <ListBox
         noResultsMessage="No results found, but you can add an email and then press enter..."
-        renderPill={renderPill}
+        renderTag={renderTag}
         selectedOptions={getSelectedOptions()}
         {...moreUseListBoxWithTagsProps}
       >

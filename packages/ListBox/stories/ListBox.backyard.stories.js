@@ -15,7 +15,7 @@ export default {
 };
 
 export const FilterSelectStory = () => (
-  <ExampleStory storyName="Filter Select" component="ListBox" fileName="sandbox/FilterSelect.js">
+  <ExampleStory storyName="Filter Select" component="ListBox" fileName="sandbox/FilterSelect/FilterSelect.js">
     <FilterSelectExample />
   </ExampleStory>
 );
@@ -28,7 +28,7 @@ FilterSelectStory.story = {
 };
 
 export const ListBoxDirectoryStory = () => (
-  <ExampleStory storyName="Directory" component="ListBox" fileName="sandbox/Directory.js">
+  <ExampleStory storyName="Directory" component="ListBox" fileName="sandbox/Directory/Directory.js">
     <DirectoryExample />
   </ExampleStory>
 );
@@ -41,7 +41,7 @@ ListBoxDirectoryStory.story = {
 };
 
 export const LazyStory = () => (
-  <ExampleStory component="ListBox" storyName="Lazy ListBox" fileName="examples/Lazy.js">
+  <ExampleStory component="ListBox" storyName="Lazy ListBox" fileName="sandbox/LazyListBox/Lazy.js">
     <Lazy />
   </ExampleStory>
 );

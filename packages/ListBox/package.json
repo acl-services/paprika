@@ -14,6 +14,7 @@
     "@paprika/popover": "^1.0.9-alpha.1",
     "@paprika/raw-button": "^1.0.3",
     "@paprika/stylers": "^1.0.0",
+    "@paprika/toast": "^1.0.7",
     "@paprika/tokens": "^1.0.0",
     "lodash.isequal": "^4.5.0",
     "prop-types": "15.7.2",

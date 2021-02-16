@@ -6,6 +6,7 @@ import Button from "@paprika/button";
 import CaretDownIcon from "@paprika/icon/lib/CaretDown";
 import CaretUpIcon from "@paprika/icon/lib/CaretUp";
 import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import Label from "../Label";
 import { handleKeyDownKeyboardKeys, handleKeyUpKeyboardKeys } from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../useListBox";
@@ -90,6 +91,7 @@ export default function Trigger(props) {
   } = state;
 
   const [triggerButtonId] = React.useState(() => `list-box-trigger_${uuidv4()}`);
+  const I18n = useI18n();
 
   const handleClick = () => {
     if (isDisabled) {
@@ -165,6 +167,7 @@ export default function Trigger(props) {
         onKeyUp={handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext })}
         isDisabled={isDisabled}
         data-pka-anchor="list-box-trigger"
+        aria-haspopup="true"
         aria-describedby={formElementLabelDescribedBy}
         aria-labelledby={triggerButtonId.current}
       >
@@ -237,6 +240,7 @@ export default function Trigger(props) {
       {hasRenderTrigger ? renderChildrenProps : renderLabel()}
       {state.selectedOptions.length && hasClearButton && !shouldHideClearButton ? (
         <sc.ClearButton
+          a11yText={I18n.t("listBox.trigger.clear_selection")}
           isSemantic={false}
           isDisabled={isDisabled}
           data-pka-anchor="clear-button"
