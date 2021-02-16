@@ -59,7 +59,7 @@ export default function Header(props) {
   window.addEventListener("resize", handleResizeWindow);
 
   return (
-    <sc.Header ref={headerRef}>
+    <sc.Header ref={headerRef} isEditing={context.isEditing}>
       <sc.HeaderContent isBroken={isBroken}>{newChildren}</sc.HeaderContent>
       <sc.ExpandToggle isCollapsed={context.isCollapsed}>
         <Button.Icon

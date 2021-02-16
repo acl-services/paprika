@@ -7,13 +7,12 @@ import Segment from "./components/Segment";
 import CollapsibleCardContext from "./CollapsibleCardContext";
 import * as sc from "./CollapsibleCard.styles";
 
-// - Cards.Group
 // - a11y, focus, see Collapsible and old CollapsibleCard
 // - create all docs/readmes, see paprikaDocs in package.json
 // - tests
 
 export default function CollapsibleCard(props) {
-  const { children, initialIsCollapsed, isEditing, isRow, isLastRow, onToggleIsCollapsed } = props;
+  const { children, initialIsCollapsed, isEditing, isFirstRow, isLastRow, isMiddleRow, onToggleIsCollapsed } = props;
   const [isCollapsed, setIsCollapsed] = React.useState(initialIsCollapsed);
 
   function handleToggleIsCollapsed() {
@@ -21,11 +20,11 @@ export default function CollapsibleCard(props) {
     setIsCollapsed(oldIsCollapsed => !oldIsCollapsed);
   }
 
-  const thingsToShare = { isCollapsed, handleToggleIsCollapsed, onToggleIsCollapsed };
+  const thingsToShare = { handleToggleIsCollapsed, isCollapsed, isEditing, onToggleIsCollapsed };
 
   return (
     <CollapsibleCardContext.Provider value={thingsToShare}>
-      <sc.CollapsibleCard isEditing={isEditing} isRow={isRow} isLastRow={isLastRow}>
+      <sc.CollapsibleCard isEditing={isEditing} isFirstRow={isFirstRow} isMiddleRow={isMiddleRow} isLastRow={isLastRow}>
         {children}
       </sc.CollapsibleCard>
     </CollapsibleCardContext.Provider>
@@ -36,7 +35,8 @@ const propTypes = {
   children: PropTypes.node,
   initialIsCollapsed: PropTypes.bool,
   isEditing: PropTypes.bool,
-  isRow: PropTypes.bool,
+  isFirstRow: PropTypes.bool,
+  isMiddleRow: PropTypes.bool,
   isLastRow: PropTypes.bool,
   onToggleIsCollapsed: PropTypes.func,
 };
@@ -45,7 +45,8 @@ const defaultProps = {
   children: null,
   initialIsCollapsed: true,
   isEditing: false,
-  isRow: false,
+  isFirstRow: false,
+  isMiddleRow: false,
   isLastRow: false,
   onToggleIsCollapsed: () => {},
 };

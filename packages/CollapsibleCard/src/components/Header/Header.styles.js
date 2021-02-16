@@ -1,11 +1,17 @@
 import styled, { css } from "styled-components";
 import { spacer } from "@paprika/stylers/lib/helpers";
+import tokens from "@paprika/tokens";
 
 export const Header = styled.div(
-  () => css`
+  ({ isEditing }) => css`
     align-items: flex-start;
     display: flex;
     padding: ${spacer(2)};
+
+    ${isEditing &&
+      css`
+        background-color: ${tokens.color.yellowLighten30};
+      `}
   `
 );
 

@@ -4,10 +4,6 @@ import { v4 as uuidv4 } from "uuid";
 import Header from "./components/Header";
 import * as sc from "./Group.styles";
 
-// Put the box-shadow on the entire group, since i strip it from the cards
-
-// note they have one example grouping with Tabs in the header, which would need no bottom padding. maybe give it no styling at all?
-
 export default function Group(props) {
   const { children } = props;
   const newChildren = [];
@@ -23,8 +19,11 @@ export default function Group(props) {
       );
     }
 
+    const isFirstRow = index === 0;
     const isLastRow = index === React.Children.toArray(children).length - 1;
-    newChildren.push(React.cloneElement(child, { isLastRow, isRow: !isLastRow, key: uuidv4() }));
+    const isMiddleRow = !isFirstRow && !isLastRow;
+
+    newChildren.push(React.cloneElement(child, { isFirstRow, isMiddleRow, isLastRow, key: uuidv4() }));
   });
 
   return <sc.Group>{newChildren}</sc.Group>;
