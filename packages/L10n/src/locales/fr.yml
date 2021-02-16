@@ -195,3 +195,6 @@ fr:
         is_after: est après
         true: "vrai"
         false: "faux"
+    input:
+      clear_button:
+        aria_label: Effacer l'entrée

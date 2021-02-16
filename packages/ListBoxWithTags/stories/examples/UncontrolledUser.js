@@ -17,20 +17,20 @@ const defaultFilteredData = processedData;
 const defaultData = processedData;
 
 // prettier-ignore
-const stylesForPill = (color) => ({ alignItems: "center", backgroundColor: color.backgroundColor, borderRadius: "50%", boxSizing: "border-box", color: color.fontColor, display: "flex", height: "24px", justifyContent: "center", marginRight: "8px", padding: "3px", width: "24px", fontSize: ".8rem", lineHeight: 1 })
+const stylesForTag = (color) => ({ alignItems: "center", backgroundColor: color.backgroundColor, borderRadius: "50%", boxSizing: "border-box", color: color.fontColor, display: "flex", height: "24px", justifyContent: "center", marginRight: "8px", padding: "3px", width: "24px", fontSize: ".8rem", lineHeight: 1 })
 
-function CustomPill({ option, Pill, onRemove }) {
+function CustomTag({ option, Tag, onRemove }) {
   const color = getAvatarColors(option.name);
 
   return (
     <Popover isDark isEager zIndex={101}>
       <Popover.Trigger>
-        <Pill onRemove={onRemove} key={option.id}>
+        <Tag onRemove={onRemove} key={option.id}>
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-            <div style={stylesForPill(color)}>{option.name.substring(0, 2)}</div>
+            <div style={stylesForTag(color)}>{option.name.substring(0, 2)}</div>
             {option.username}
           </div>
-        </Pill>
+        </Tag>
       </Popover.Trigger>
       <Popover.Tip />
       <Popover.Content>
@@ -70,8 +70,8 @@ export default function UncontrolledUsers() {
 
   const [hasSubmitted, setHasSubmitted] = React.useState(false);
 
-  function renderPill({ option, Pill, onRemove }) {
-    return <CustomPill key={option.id} option={option} Pill={Pill} onRemove={onRemove} />;
+  function renderTag({ option, Tag, onRemove }) {
+    return <CustomTag key={option.id} option={option} Tag={Tag} onRemove={onRemove} />;
   }
 
   function handleSubmit(event) {
@@ -110,7 +110,7 @@ export default function UncontrolledUsers() {
               movie: "Atanarjuat: The Fast Runner",
             };
           })}
-          renderPill={renderPill}
+          renderTag={renderTag}
           selectedOptions={getSelectedOptions()}
           {...moreUseListBoxWithTagsProps}
         >

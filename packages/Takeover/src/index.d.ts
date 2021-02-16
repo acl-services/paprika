@@ -18,3 +18,39 @@ interface TakeoverProps {
   /** The z-index of the Takeover content */
   zIndex?: number;
 }
+
+declare namespace Takeover {
+  function Header(props: HeaderProps): JSX.Element;
+  interface HeaderProps {
+    [x: string]: any;
+
+    children: React.ReactNode;
+
+    hasCloseButton?: boolean;
+
+    kind?: Header.types.kind.DEFAULT | Header.types.kind.PRIMARY;
+
+    level?: 1 | 2 | 3 | 4 | 5 | 6;
+
+    onClose?: (...args: any[]) => any;
+
+    refHeading?: custom;
+  }
+}
+declare namespace Takeover {
+  function FocusLock(props: FocusLockProps): JSX.Element;
+  interface FocusLockProps {
+    [x: string]: any;
+
+    returnFocus?: any;
+  }
+}
+
+declare namespace Header {
+  namespace types {
+    namespace kind {
+      const DEFAULT: any;
+      const PRIMARY: any;
+    }
+  }
+}

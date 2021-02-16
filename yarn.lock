@@ -3410,6 +3410,21 @@
     prop-types "^15.7.2"
     what-input "^5.2.6"
 
+"@paprika/button@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@paprika/button/-/button-1.0.7.tgz#05beedfb9bddc5d40419493d3da88f58787e93d5"
+  integrity sha512-WlBQYg/uj7fUW12Ec7T9+U7LTGhYirzTw6pFItYL4Dc1L7NcfMmX0Cl7q8SNrns11LJgC8iEluCqbHXqovbQ3w==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.3.1"
+    "@paprika/constants" "^1.0.0"
+    "@paprika/helpers" "^2.1.0"
+    "@paprika/icon" "^1.0.4"
+    "@paprika/raw-button" "^1.0.3"
+    "@paprika/stylers" "^1.0.0"
+    "@paprika/tokens" "^1.0.0"
+    prop-types "^15.7.2"
+    what-input "^5.2.6"
+
 "@paprika/constants@^0.1.3", "@paprika/constants@^0.1.4":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@paprika/constants/-/constants-0.1.4.tgz#e185f5ccafc86c954a589798bcdbf9d71c8723be"
@@ -3438,6 +3453,14 @@
   version "0.2.14"
   resolved "https://registry.yarnpkg.com/@paprika/helpers/-/helpers-0.2.14.tgz#42b4ef1ccdb7ddba699ee05a4988908f14936d37"
   integrity sha512-j+LaBc/tI/CeKwkX7mPOzjOpFmg2UzuTFov2Z+DWJbxf/dRZkQUyKxinEaY6ReJ6oXn2XREaqyq7fj+VO9gbug==
+
+"@paprika/helpers@^2.0.1", "@paprika/helpers@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@paprika/helpers/-/helpers-2.1.0.tgz#db46a39c32b97be0bf128715cf0cb0a317bb7d19"
+  integrity sha512-OF4n5Tn9TfggR7Zv8p2rkDiWgQ39m285mTmnDK1uoEEOBcarpJ9mn67Cbq3gxtHrT/FSjM86/b8Ozgi027oV6g==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.3.1"
+    prop-types "^15.7.2"
 
 "@paprika/icon@^0.2.15":
   version "0.2.16"
@@ -3500,6 +3523,20 @@
   integrity sha512-96fxjVO0ir3XiYzCy8MByAlWdJLMaEzlzaqYVuUl7OFSu42MpVzYoN3sFDpA8yxkCOYC7nXH0tNn6AA3Xz97gw==
   dependencies:
     "@paprika/tokens" "^0.1.18"
+
+"@paprika/toast@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@paprika/toast/-/toast-1.0.7.tgz#d6e3d11526a963e221bcff16d2851c79fef81bd7"
+  integrity sha512-LyrcLM+Njy7uGe1Yr3SDV4+INn937MQQAb0x0kAOzAfAXD/A8g4xHXDpSJJkWXqCFj7kwDu+FoBJBYEoxfJ5jg==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.3.1"
+    "@paprika/button" "^1.0.7"
+    "@paprika/constants" "^1.0.0"
+    "@paprika/helpers" "^2.1.0"
+    "@paprika/icon" "^1.0.4"
+    "@paprika/stylers" "^1.0.0"
+    "@paprika/tokens" "^1.0.0"
+    prop-types "^15.7.2"
 
 "@paprika/tokens@^0.1.14", "@paprika/tokens@^0.1.18", "@paprika/tokens@^0.1.18-alpha.1", "@paprika/tokens@^0.1.6":
   version "0.1.18"

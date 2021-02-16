@@ -284,7 +284,6 @@ describe("ListBox multi select", () => {
     expect(queryByText(/✅/i)).not.toBeInTheDocument();
   });
 
-  //
   it("should have correct checkbox beside selected and non-selected options", () => {
     function createOptions() {
       return ["option1", "option2", "option3"].map(option => {
