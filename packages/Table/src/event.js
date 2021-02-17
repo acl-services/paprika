@@ -4,6 +4,7 @@ import {
   addHighlightIdleClass,
   removeHighlightFocus,
   removeHighlightIdleClass,
+  $getCell,
 } from "./cellHighlight";
 
 import arrows from "./arrows";
@@ -22,7 +23,13 @@ export const handleBlur = ({ refFocus, tableId, onBlur }) => () => {
     if (refFocus.current) {
       addHighlightIdleClass({ rowIndex, columnIndex }, tableId);
     }
-    onBlur({ rowIndex, columnIndex, tableId });
+
+    // wait for the real onBlur
+    window.requestAnimationFrame(() => {
+      const $cell = $getCell({ rowIndex, columnIndex }, tableId);
+      if ($cell.contains(document.activeElement)) return;
+      onBlur({ rowIndex, columnIndex, tableId });
+    });
   }
 };
 

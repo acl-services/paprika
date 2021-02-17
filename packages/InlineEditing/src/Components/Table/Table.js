@@ -16,14 +16,19 @@ export default function Table(props) {
   const getCellKeyStr = ({ rowIndex, columnIndex }) => `paprika.inline-editing.cell${rowIndex}-${columnIndex}`;
 
   const clonedColumnDefinition = React.useMemo(() => {
-    const handleCell = ({ cell: Cell, columnWidth /* onChange */ }) => args => {
+    const handleCell = ({ cell: Cell, columnWidth, onChange }) => args => {
       const { rowIndex, columnIndex } = args;
       const cellElementBound = getCellElement({ refTable, rowIndex, columnIndex });
       const getRect = getBoundingClientRect(cellElementBound);
 
       return (
-        <Editable ref={ref => refCells.current.set(getCellKeyStr({ rowIndex, columnIndex }), ref)}>
-          <Cell {...args} columnWidth={columnWidth} getRect={getRect} />
+        <Editable
+          refTable={refTable}
+          ref={ref => refCells.current.set(getCellKeyStr({ rowIndex, columnIndex }), ref)}
+          getRect={getRect}
+          {...args}
+        >
+          <Cell onChange={onChange} {...args} columnWidth={columnWidth} getRect={getRect} />
         </Editable>
       );
     };
@@ -49,14 +54,14 @@ export default function Table(props) {
 
   function handleFocus({ rowIndex, columnIndex }) {
     const instance = refCells.current.get(getCellKeyStr({ rowIndex, columnIndex }));
-    if ("onFocus" in instance) {
+    if (instance && "onFocus" in instance) {
       instance.onFocus();
     }
   }
 
   function handleBlur({ rowIndex, columnIndex }) {
     const instance = refCells.current.get(getCellKeyStr({ rowIndex, columnIndex }));
-    if ("onBlur" in instance) {
+    if (instance && "onBlur" in instance) {
       instance.onBlur();
     }
   }

@@ -3,13 +3,17 @@ import styled, { css } from "styled-components";
 import Table, { Text } from "../../src";
 import dataMock from "./mock";
 
-export default function() {
+export default function () {
   const [data] = React.useState(dataMock);
   return (
     <Table data={data} hasZebraStripes a11yText="My Table">
       <Table.ColumnDefinition
         header="author"
         width="180"
+        onChange={props => {
+          const { rowIndex = null, columnIndex = null, nextValue = null, nextData = null } = props;
+          debugger;
+        }}
         cell={props => <Text value={props.row.author} {...props} />}
       />
       <Table.ColumnDefinition header="title" width="180" cell={props => <Text value={props.row.book} {...props} />} />

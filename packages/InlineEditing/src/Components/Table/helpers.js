@@ -5,4 +5,6 @@ export const getCellElement = ({ refTable, rowIndex, columnIndex }) => () => {
   );
 };
 
-export const getBoundingClientRect = cellElement => () => cellElement().getBoundingClientRect();
+export const getBoundingClientRect = cellElement => () => {
+  return cellElement().getBoundingClientRect();
+};
