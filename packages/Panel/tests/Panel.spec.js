@@ -76,13 +76,12 @@ describe("Panel", () => {
   describe("Panel.Overlay", () => {
     it("should triggered onClose when clicking on the Overlay", () => {
       const fn = jest.fn();
-      const { getByRole } = render({
+      const { getByTestId } = render({
         onClose: fn,
         children: <Panel.Overlay />,
       });
 
-      // overlay is a RawButton
-      fireEvent.click(getByRole(/button/i));
+      fireEvent.click(getByTestId("overlay.backdrop"));
 
       expect(fn).toHaveBeenCalled();
     });
@@ -90,13 +89,12 @@ describe("Panel", () => {
   describe("Panel.Group", () => {
     it("should triggered onClose when clicking on the Overlay", () => {
       const fn = jest.fn();
-      const { getByRole } = render({
+      const { getByTestId } = render({
         onClose: fn,
         children: <Panel.Overlay />,
       });
 
-      // overlay is a RawButton
-      fireEvent.click(getByRole(/button/i));
+      fireEvent.click(getByTestId("overlay.backdrop"));
 
       expect(fn).toHaveBeenCalled();
     });
@@ -104,13 +102,12 @@ describe("Panel", () => {
   describe("Panel.Trigger", () => {
     it("should triggered onClose when clicking on the Overlay", () => {
       const fn = jest.fn();
-      const { getByRole } = render({
+      const { getByTestId } = render({
         onClose: fn,
         children: <Panel.Overlay />,
       });
 
-      // overlay is a RawButton
-      fireEvent.click(getByRole(/button/i));
+      fireEvent.click(getByTestId("overlay.backdrop"));
 
       expect(fn).toHaveBeenCalled();
     });
