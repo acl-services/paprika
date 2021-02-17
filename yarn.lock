@@ -3481,17 +3481,6 @@
     "@paprika/tokens" "^0.1.18"
     prop-types "^15.7.2"
 
-"@paprika/overlay@^1.0.5-alpha.0":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@paprika/overlay/-/overlay-1.0.5.tgz#68bd67f453c9fda85f68fe09cdf8601cf8249b96"
-  integrity sha512-xZBBzpk568U7JcLojLn0Vwq6c2j/WJDCAzp6gidGuzYYk4yI7cK31A7H1zV04eQNe+beK4+RJj/S+fcIde7g/g==
-  dependencies:
-    "@paprika/helpers" "^2.1.0"
-    "@paprika/tokens" "^1.0.0"
-    prop-types "^15.7.2"
-    react-focus-lock "^2.2.1"
-    react-transition-group "^4.3.0"
-
 "@paprika/raw-button@^0.2.21", "@paprika/raw-button@^0.2.21-alpha.1":
   version "0.2.21"
   resolved "https://registry.yarnpkg.com/@paprika/raw-button/-/raw-button-0.2.21.tgz#540c3225af94056af154e4ea9423f750babc0586"

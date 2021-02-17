@@ -18,7 +18,7 @@ const propTypes = {
   onAfterOpen: PropTypes.func,
   onAfterClose: PropTypes.func,
 
-  /** z-index of the Overlay wrapper */
+  /** The z-index of the Panel Overlay */
   zIndex: PropTypes.number,
 };
 const defaultProps = {};
