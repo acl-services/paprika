@@ -5,7 +5,7 @@ import stylers from "@paprika/stylers";
 
 // Common Storybook story styles
 
-export const Story = styled.div`
+export const Story = styled.main`
   padding: ${stylers.spacer(3)};
 
   h1 {
