@@ -7,13 +7,14 @@ import Segment from "./components/Segment";
 import CollapsibleCardContext from "./CollapsibleCardContext";
 import * as sc from "./CollapsibleCard.styles";
 
-// - a11y, focus, see Collapsible and old CollapsibleCard
+// - a11y, see Collapsible and old CollapsibleCard
 // - make header clickable?
 //   - consumer would have to stop propagation on whatever children they pass in (and not all children have an `onClick` to hook into)
 //   - this component would have to handle clicking anywhere on the header
 //   - this component would have to have a 'focus' style (normal and row)
 //   - this component would have to have a 'hover' style (normal and row)
 // - create all docs/readmes, see paprikaDocs in package.json
+//   - mention a11yHeadingLevel
 // - tests
 
 export default function CollapsibleCard(props) {

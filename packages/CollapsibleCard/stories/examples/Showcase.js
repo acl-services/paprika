@@ -148,7 +148,7 @@ const ExampleStory = () => {
                   <Switch a11yText="click me" onClick={() => {}} />
                 </div>
               </HeaderLayout.Left>
-              <HeaderLayout.Heading>{heading}</HeaderLayout.Heading>
+              <HeaderLayout.Heading a11yHeadingLevel={3}>{heading}</HeaderLayout.Heading>
               <HeaderLayout.Metadata>{metadata}</HeaderLayout.Metadata>
               <HeaderLayout.Counter quantity={44} />
             </HeaderLayout>
