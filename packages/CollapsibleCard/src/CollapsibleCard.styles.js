@@ -38,9 +38,18 @@ function getBorderRadius(isFirstRow, isMiddleRow, isLastRow) {
   return `6px`;
 }
 
+function getBorder(isEditing, isFirstRow, isMiddleRow, isLastRow) {
+  if (isEditing || isFirstRow || isMiddleRow || isLastRow) {
+    return "none";
+  }
+
+  return `1px solid ${tokens.color.blackLighten60}`;
+}
+
 export const CollapsibleCard = styled.div(
   ({ isEditing, isFirstRow, isMiddleRow, isLastRow }) => css`
     background-color: ${tokens.color.white};
+    border: ${getBorder(isEditing, isFirstRow, isMiddleRow, isLastRow)};
     border-radius: ${getBorderRadius(isFirstRow, isMiddleRow, isLastRow)};
     box-shadow: ${getBoxShadow(isEditing, isFirstRow, isMiddleRow, isLastRow)};
     overflow: hidden;
