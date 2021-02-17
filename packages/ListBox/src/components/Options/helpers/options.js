@@ -126,9 +126,11 @@ export function handleArrowKeys({ event, state, dispatch, isArrowDown = null, on
     return;
   }
 
-  event.preventDefault();
   const next = getNextOptionActiveIndex(state, isArrowDown);
+  event.preventDefault();
+
   if (next !== null) {
+    state.refListBox.current.children[next].focus();
     if (state.isMulti) {
       dispatch({
         type: useListBox.types.setActiveOption,
@@ -201,16 +203,6 @@ export const handleClickOption = ({ props, state, dispatch, onChangeContext }) =
 };
 
 export function handleEnterOrSpace({ event, state, dispatch, onChangeContext }) {
-  const pressedSpaceKeyWhileHavingFilter = state.hasFilter && event.key === " " && event.target.value !== "";
-
-  const isEventOnFooter = state.refFooterContainer.current
-    ? state.refFooterContainer.current.contains(event.target)
-    : false;
-
-  if (pressedSpaceKeyWhileHavingFilter || isEventOnFooter) {
-    return;
-  }
-
   event.preventDefault();
 
   const option = state.options[state.activeOption];

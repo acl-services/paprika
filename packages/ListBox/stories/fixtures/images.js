@@ -27,3 +27,10 @@ export const images = [
       "https://vignette.wikia.nocookie.net/lego-marvelsuperheroes/images/4/4a/Ant-Man.png/revision/latest?cb=20131011194045",
   },
 ];
+
+export const imagesForTest = [
+  {
+    label: "Spiderman",
+    src: "https://img.brickowl.com/files/image_cache/larger/lego-spider-man-minifigure-540134-25.jpg",
+  },
+];

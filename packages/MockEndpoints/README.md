@@ -4,7 +4,7 @@ A helper function that wraps of the 'fetch-mock' library, making it easy to mock
 
 See the stories for a working examples.
 
-```
+```javascript
   import mockEndpoints from "@paprika/mock-endpoints";
 
   const endpoints = [
@@ -22,7 +22,7 @@ See the stories for a working examples.
     const { endpointsAreMocked } = useMockEndpoints(endpoints);
     if (!endpointsAreMocked) return null;
 
-    // Any API calls in this component will be intercepted and the response will come from "handlers"
+    // Any API calls in this component will be intercepted and the response will come from the corresponding "response" value above
     return <UserLookup />;
   }
 ```

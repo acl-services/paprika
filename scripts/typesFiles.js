@@ -47,7 +47,7 @@ const createPropsList = ({ info }) => {
 
   Object.keys(info.props).map(key => {
     const v = info.props[key] || {};
-    let type = "-";
+    let type = "any";
 
     if ("type" in v) {
       switch (v.type.name) {

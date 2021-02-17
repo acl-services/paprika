@@ -6,11 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.4.0]
+
+- Fix some issue with keyboard functionality introduced when working with ListBoxWithTags on the Trigger component.
+- Remove dispatch toggle from Trigger and when with an ordinary if and else, adding clarity to whats happening.
+
+## [1.0.1]
+
+- Fix accessibility issue so options are now focusable and read to screen reader technology
+- Add Toast component as dependency
+
 ## [1.0.0] - 2020-11-04
 
 ### Changed
 
-- Moved from Listbox
+- Moved from ListBox
 
 ## [0.9.0] - 2020-06-16
 

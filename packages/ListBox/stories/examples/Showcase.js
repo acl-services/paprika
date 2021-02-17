@@ -27,7 +27,10 @@ export default function Showcase() {
       <CodeViewer>
         <ListBox onChange={handleOptionClicked} {...listBoxProps}>
           {showFilter && <ListBox.Filter />}
+          <ListBox.Divider>Villians</ListBox.Divider>
           {characters.villians}
+          <ListBox.Divider>Heroes</ListBox.Divider>
+          {characters.heroes}
           {showFooter && <ListBox.Footer onClickAccept={handleOptionClicked} />}
         </ListBox>
       </CodeViewer>
@@ -35,7 +38,10 @@ export default function Showcase() {
       <CodeViewer>
         <ListBox onChange={handleOptionClicked} {...listBoxProps} isMulti>
           {showFilter && <ListBox.Filter />}
+          <ListBox.Divider>Villians</ListBox.Divider>
           {characters.villians}
+          <ListBox.Divider>Heroes</ListBox.Divider>
+          {characters.heroes}
           {showFooter && <ListBox.Footer onClickAccept={handleOptionClicked} />}
         </ListBox>
       </CodeViewer>
