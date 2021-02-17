@@ -18,6 +18,7 @@ import {
   useAdjustWidth,
   useChildrenChange,
   useHasFooter,
+  useHasError,
   useIsDisabled,
   useIsPopOverOpen,
   useOnScrolled,
@@ -82,8 +83,10 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     children,
     filter, // eslint-disable-line
     footer, // eslint-disable-line
+    hasError,
     hasImplicitAll,
     height,
+    isDisabled,
     isInline,
     placeholder,
     popover, // eslint-disable-line
@@ -101,7 +104,8 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
 
   useAdjustWidth();
   useChildrenChange(children);
-  useIsDisabled(props.isDisabled);
+  useHasError(hasError);
+  useIsDisabled(isDisabled);
   useIsPopOverOpen(shouldTriggerKeepFocus);
   useOnScrolled();
   useOptionSelected();
@@ -144,6 +148,9 @@ ListBoxContainer.types = {
 export const propTypes = {
   /** Child of type <ListBox.Option />, <ListBox.Divider />, etc */
   children: PropTypes.arrayOf(PropTypes.node),
+
+  /** If ListBox is in an error state  */
+  hasError: PropTypes.bool,
 
   /** Has implicit "All items selected" value when no item is selected */
   hasImplicitAll: PropTypes.bool,
@@ -188,6 +195,7 @@ export const defaultProps = {
   children: null,
   filter: null, // eslint-disable-line
   footer: null, // eslint-disable-line
+  hasError: false,
   hasImplicitAll: false,
   height: 200,
   isDisabled: false,

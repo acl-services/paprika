@@ -160,6 +160,17 @@ export function useIsDisabled(isDisabled) {
   }, [dispatch, isDisabled]);
 }
 
+export function useHasError(hasError) {
+  const [, dispatch] = useListBox();
+
+  React.useEffect(() => {
+    dispatch({
+      type: useListBox.types.setHasError,
+      payload: hasError,
+    });
+  }, [dispatch, hasError]);
+}
+
 export function useOptionSelected() {
   const [state, dispatch] = useListBox();
 

@@ -9,6 +9,7 @@ export const StoreContext = React.createContext();
 function initializeState(props) {
   const {
     childrenOptions,
+    hasError,
     height,
     isDisabled,
     isInline,
@@ -44,6 +45,7 @@ function initializeState(props) {
     filteredOptions: [],
     formElementId,
     formElementLabelDescribedBy,
+    hasError,
     hasFilter: false,
     hasFooter: false,
     hasPopupOpened: false,

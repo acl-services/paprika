@@ -66,27 +66,26 @@ export default function Trigger(props) {
   const [state, dispatch] = useListBox();
   const onChangeContext = React.useContext(OnChangeContext);
   const {
+    children,
     clearIcon,
-    placeholder,
     hasClearButton,
     hasImplicitAll,
-    label,
-    onClickFooterAccept,
-    children,
     isHidden,
+    label,
     onClickClear,
-    // eslint-disable-next-line react/prop-types
-    onFooterClickAccept,
+    onClickFooterAccept,
+    placeholder,
     ...moreProps
   } = props;
   const {
-    isDisabled,
     formElementLabelDescribedBy,
-    refTriggerContainer,
-    refTrigger,
-    isMulti,
+    hasError,
     idListBox,
+    isDisabled,
+    isMulti,
     refLabel,
+    refTrigger,
+    refTriggerContainer,
     size,
   } = state;
 
@@ -245,6 +244,7 @@ export default function Trigger(props) {
       isDisabled={isDisabled}
       ref={refTriggerContainer}
       size={size}
+      hasError={hasError}
       {...getDOMAttributesForListBoxButton(state.idListBox)()}
       {...moreProps}
     >

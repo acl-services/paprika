@@ -243,6 +243,13 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
+    case useListBox.types.setHasError: {
+      return {
+        ...state,
+        hasError: payload,
+      };
+    }
+
     case useListBox.types.setIsDisabled: {
       return {
         ...state,
