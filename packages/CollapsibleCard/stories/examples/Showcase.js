@@ -145,7 +145,7 @@ const ExampleStory = () => {
             <HeaderLayout>
               <HeaderLayout.Left>
                 <div style={{ paddingTop: "8px" }}>
-                  <Switch onClick={() => {}} />
+                  <Switch a11yText="click me" onClick={() => {}} />
                 </div>
               </HeaderLayout.Left>
               <HeaderLayout.Heading>{heading}</HeaderLayout.Heading>
@@ -192,7 +192,7 @@ const ExampleStory = () => {
             <HeaderLayout>
               <HeaderLayout.Left>
                 <div style={{ paddingTop: "8px" }}>
-                  <Checkbox size="medium" checkedState="checked" />
+                  <Checkbox a11yText="Sample" size="medium" checkedState="checked" />
                 </div>
               </HeaderLayout.Left>
               <HeaderLayout.Heading>{heading}</HeaderLayout.Heading>

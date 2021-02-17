@@ -3,11 +3,13 @@ import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 import Button from "@paprika/button";
 import ArrowUpIcon from "@paprika/icon/lib/ArrowUp";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import CollapsibleCardContext from "../../CollapsibleCardContext";
 import * as sc from "./Header.styles";
 
 export default function Header(props) {
   let resizeTimeout;
+  const I18n = useI18n();
   const { breakpoint, onChangeIsBroken } = props;
 
   const headerRef = React.useRef();
@@ -63,6 +65,7 @@ export default function Header(props) {
       <sc.HeaderContent isBroken={isBroken}>{newChildren}</sc.HeaderContent>
       <sc.ExpandToggle isCollapsed={context.isCollapsed}>
         <Button.Icon
+          a11yText={context.isCollapsed ? I18n.t("collapsible.expand") : I18n.t("collapsible.collapse")}
           onClick={() => {
             context.handleToggleIsCollapsed();
           }}
