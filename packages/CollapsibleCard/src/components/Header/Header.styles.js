@@ -10,11 +10,17 @@ export const Header = styled.div(
     border-radius: ${getBorderRadius(isFirstRow, isMiddleRow, isLastRow, isCollapsed)};
     cursor: pointer;
     display: flex;
-    padding: 15px;
+    margin: 1px;
+    padding: 14px;
 
     &:focus {
       border: 1px solid ${tokens.highlight.active.noBorder.borderColor};
       outline: none;
+    }
+
+    &:hover {
+      border: 2px solid ${tokens.color.blackLighten50};
+      margin: 0px;
     }
 
     ${isEditing &&

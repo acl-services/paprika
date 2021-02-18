@@ -13,8 +13,7 @@ import * as sc from "./CollapsibleCard.styles";
 //     - make this work for overflowmenu
 //   x this component would have to handle clicking anywhere on the header
 //   x this component would have to have a 'focus' style (normal and row)
-//   - this component would have to have a 'hover' style (normal and row)
-//   - i could make other paprika components have `onClick` callbacks so the consumer could call e.stopPropagation (eg OverflowMenu, probably lots of others)
+//   x this component would have to have a 'hover' style (normal and row)
 // - see Collapsible and old CollapsibleCard (a11y, props)
 //   - allyText
 // - create all docs/readmes, see paprikaDocs in package.json
