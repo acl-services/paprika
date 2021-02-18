@@ -17,10 +17,13 @@ export const Header = styled.div(
       margin: 0px;
     }
 
+    &:focus {
+      outline: none;
+    }
+
     [data-whatinput="keyboard"] &:focus {
       border: 2px solid ${tokens.highlight.active.noBorder.borderColor};
       margin: 0px;
-      outline: none;
     }
 
     ${isEditing &&
