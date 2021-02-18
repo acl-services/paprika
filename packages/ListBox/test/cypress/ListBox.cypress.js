@@ -3,6 +3,7 @@ import selectors from "../helpers/selectors";
 import { toggleDropdown } from "../helpers/toggleHelpers";
 
 const storyPrefix = `${getStoryUrlPrefix("ListBox")}`;
+const typingDelay = { delay: 250 };
 
 describe("ListBox single select", () => {
   beforeEach(() => {
@@ -55,9 +56,8 @@ describe("ListBox single select", () => {
   describe("ListBox single select filter", () => {
     it("should show correct amount of options and select one", () => {
       cy.get(selectors.filterInput)
-        .focus()
-        .clear()
-        .type("w");
+        .click()
+        .type("w", typingDelay);
       cy.get(selectors.popoverList)
         .children()
         .should("have.length", 4)
@@ -68,11 +68,8 @@ describe("ListBox single select", () => {
 
     it("should show all options after erasing filtered input", () => {
       cy.get(selectors.filterInput)
-        .focus()
-        .clear()
-        .type("wo")
-        .type("{backspace}")
-        .type("{backspace}");
+        .click()
+        .type("wo{backspace}{backspace}", typingDelay);
       cy.get(selectors.popoverList)
         .children()
         .should("have.length", 24);
@@ -83,8 +80,7 @@ describe("ListBox single select", () => {
     it("should filter by option label", () => {
       cy.get(selectors.filterInput)
         .focus()
-        .clear()
-        .type("spiderman");
+        .type("spi", typingDelay);
       cy.get(selectors.popoverList)
         .children()
         .should("have.length", 2);
@@ -112,8 +108,7 @@ describe("ListBox single select custom filter", () => {
     toggleDropdown();
     cy.get(selectors.filterInput)
       .focus()
-      .clear()
-      .type("P");
+      .type("P", typingDelay);
     cy.get(selectors.popoverList)
       .children()
       .should("have.length", 2);
@@ -123,8 +118,7 @@ describe("ListBox single select custom filter", () => {
       .should("have.length", 7);
     cy.get(selectors.filterInput)
       .focus()
-      .clear()
-      .type("{backspace}ZZZ");
+      .type("{backspace}ZZ", typingDelay);
     cy.get(selectors.popoverList).then($e => {
       expect($e.find("ul").children().length).to.be.equal(0);
     });
@@ -142,8 +136,7 @@ describe("ListBox multi select filter", () => {
   it("should filter, select, deselect and close trigger", () => {
     cy.get(selectors.filterInput)
       .focus()
-      .clear()
-      .type("w");
+      .type("w", typingDelay);
     cy.get(selectors.popoverList)
       .children()
       .should("have.length", 4)
@@ -163,11 +156,9 @@ describe("ListBox multi select filter", () => {
 
   it("should be able to use keys to select option", () => {
     cy.get(selectors.filterInput)
-      .focus()
-      .clear()
-      .type("{downarrow}")
+      .type("{downarrow}", typingDelay)
       .type("{enter}");
-    cy.get("body").click();
+    cy.get("body").click({ force: true });
     cy.get(selectors.trigger).should("contain", "Punisher");
   });
 });
