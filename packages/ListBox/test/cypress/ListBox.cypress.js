@@ -56,6 +56,7 @@ describe("ListBox single select", () => {
     it("should show correct amount of options and select one", () => {
       cy.get(selectors.filterInput)
         .focus()
+        .clear()
         .type("w");
       cy.get(selectors.popoverList)
         .children()
@@ -68,6 +69,7 @@ describe("ListBox single select", () => {
     it("should show all options after erasing filtered input", () => {
       cy.get(selectors.filterInput)
         .focus()
+        .clear()
         .type("wo")
         .type("{backspace}")
         .type("{backspace}");
@@ -81,6 +83,7 @@ describe("ListBox single select", () => {
     it("should filter by option label", () => {
       cy.get(selectors.filterInput)
         .focus()
+        .clear()
         .type("spiderman");
       cy.get(selectors.popoverList)
         .children()
@@ -109,6 +112,7 @@ describe("ListBox single select custom filter", () => {
     toggleDropdown();
     cy.get(selectors.filterInput)
       .focus()
+      .clear()
       .type("P");
     cy.get(selectors.popoverList)
       .children()
@@ -119,6 +123,7 @@ describe("ListBox single select custom filter", () => {
       .should("have.length", 7);
     cy.get(selectors.filterInput)
       .focus()
+      .clear()
       .type("{backspace}ZZZ");
     cy.get(selectors.popoverList).then($e => {
       expect($e.find("ul").children().length).to.be.equal(0);
@@ -137,6 +142,7 @@ describe("ListBox multi select filter", () => {
   it("should filter, select, deselect and close trigger", () => {
     cy.get(selectors.filterInput)
       .focus()
+      .clear()
       .type("w");
     cy.get(selectors.popoverList)
       .children()
@@ -155,9 +161,10 @@ describe("ListBox multi select filter", () => {
       .and("contain", "Wolverine, Catwoman");
   });
 
-  // TODO: Flaky spec, works locally but fails on semaphore
-  xit("should be able to use keys to select option", () => {
+  it("should be able to use keys to select option", () => {
     cy.get(selectors.filterInput)
+      .focus()
+      .clear()
       .type("{downarrow}")
       .type("{enter}");
     cy.get("body").click();
