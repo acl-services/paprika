@@ -100,6 +100,7 @@ zh:
       less_about: 显示关于{{topic}}的更少信息
     listBox:
       trigger:
+        clear_selection: 清除选择
         placeholder: 选择…
       filter:
         a11y_text: 搜索

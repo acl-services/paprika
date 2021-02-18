@@ -100,6 +100,7 @@ pt:
       less_about: mostrar menos sobre {{topic}}
     listBox:
       trigger:
+        clear_selection: Limpar seleção
         placeholder: Selecione...
       filter:
         a11y_text: Pesquisar

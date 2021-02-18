@@ -100,6 +100,7 @@ ja:
       less_about: '{{topic}}について少なく表示'
     listBox:
       trigger:
+        clear_selection: 選択をクリア
         placeholder: 選択...
       filter:
         a11y_text: 検索
