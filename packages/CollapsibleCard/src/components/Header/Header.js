@@ -63,6 +63,10 @@ export default function Header(props) {
   return (
     <sc.Header
       isEditing={context.isEditing}
+      isCollapsed={context.isCollapsed}
+      isFirstRow={context.isFirstRow}
+      isLastRow={context.isLastRow}
+      isMiddleRow={context.isMiddleRow}
       onClick={() => {
         context.handleToggleIsCollapsed();
       }}

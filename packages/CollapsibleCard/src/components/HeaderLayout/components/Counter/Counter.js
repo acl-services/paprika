@@ -13,7 +13,7 @@ export default function HeaderLayoutCounter(props) {
 }
 
 const propTypes = {
-  quantity: PropTypes.string.isRequired,
+  quantity: PropTypes.number.isRequired,
 };
 
 HeaderLayoutCounter.propTypes = propTypes;

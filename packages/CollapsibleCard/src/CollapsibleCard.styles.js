@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
+import getBorderRadius from "./helper.styles";
 
 function getBoxShadow(isEditing, isFirstRow, isMiddleRow, isLastRow) {
   if (isEditing) {
@@ -22,22 +23,6 @@ function getBoxShadow(isEditing, isFirstRow, isMiddleRow, isLastRow) {
   return `${tokens.card.shadow}`;
 }
 
-function getBorderRadius(isFirstRow, isMiddleRow, isLastRow) {
-  if (isFirstRow) {
-    return `${tokens.card.borderRadius} ${tokens.card.borderRadius} 0 0`;
-  }
-
-  if (isMiddleRow) {
-    return `unset`;
-  }
-
-  if (isLastRow) {
-    return `0 0 ${tokens.card.borderRadius} ${tokens.card.borderRadius}`;
-  }
-
-  return tokens.card.borderRadius;
-}
-
 function getBorder(isEditing, isFirstRow, isMiddleRow, isLastRow) {
   if (isEditing || isFirstRow || isMiddleRow || isLastRow) {
     return "none";
@@ -47,10 +32,10 @@ function getBorder(isEditing, isFirstRow, isMiddleRow, isLastRow) {
 }
 
 export const CollapsibleCard = styled.div(
-  ({ isEditing, isFirstRow, isMiddleRow, isLastRow }) => css`
+  ({ isEditing, isCollapsed, isFirstRow, isMiddleRow, isLastRow }) => css`
     background-color: ${tokens.color.white};
     border: ${getBorder(isEditing, isFirstRow, isMiddleRow, isLastRow)};
-    border-radius: ${getBorderRadius(isFirstRow, isMiddleRow, isLastRow)};
+    border-radius: ${getBorderRadius(isFirstRow, isMiddleRow, isLastRow, isCollapsed)};
     box-shadow: ${getBoxShadow(isEditing, isFirstRow, isMiddleRow, isLastRow)};
     overflow: hidden;
 

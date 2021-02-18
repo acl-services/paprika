@@ -12,7 +12,7 @@ import * as sc from "./CollapsibleCard.styles";
 //     x make sure this works for checkbox
 //     - make this work for overflowmenu
 //   x this component would have to handle clicking anywhere on the header
-//   - this component would have to have a 'focus' style (normal and row)
+//   x this component would have to have a 'focus' style (normal and row)
 //   - this component would have to have a 'hover' style (normal and row)
 //   - i could make other paprika components have `onClick` callbacks so the consumer could call e.stopPropagation (eg OverflowMenu, probably lots of others)
 // - see Collapsible and old CollapsibleCard (a11y, props)
@@ -32,11 +32,25 @@ export default function CollapsibleCard(props) {
     setIsCollapsed(oldIsCollapsed => !oldIsCollapsed);
   }
 
-  const thingsToShare = { handleToggleIsCollapsed, isCollapsed, isEditing, onToggleIsCollapsed };
+  const thingsToShare = {
+    handleToggleIsCollapsed,
+    isCollapsed,
+    isEditing,
+    isFirstRow,
+    isLastRow,
+    isMiddleRow,
+    onToggleIsCollapsed,
+  };
 
   return (
     <CollapsibleCardContext.Provider value={thingsToShare}>
-      <sc.CollapsibleCard isEditing={isEditing} isFirstRow={isFirstRow} isMiddleRow={isMiddleRow} isLastRow={isLastRow}>
+      <sc.CollapsibleCard
+        isCollapsed={isCollapsed}
+        isEditing={isEditing}
+        isFirstRow={isFirstRow}
+        isMiddleRow={isMiddleRow}
+        isLastRow={isLastRow}
+      >
         {children}
       </sc.CollapsibleCard>
     </CollapsibleCardContext.Provider>
@@ -57,9 +71,9 @@ const defaultProps = {
   children: null,
   initialIsCollapsed: true,
   isEditing: false,
-  isFirstRow: false,
-  isMiddleRow: false,
-  isLastRow: false,
+  isFirstRow: null,
+  isMiddleRow: null,
+  isLastRow: null,
   onToggleIsCollapsed: () => {},
 };
 

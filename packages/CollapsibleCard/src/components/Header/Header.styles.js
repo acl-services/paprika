@@ -1,12 +1,13 @@
 import styled, { css } from "styled-components";
 import { spacer } from "@paprika/stylers/lib/helpers";
 import tokens from "@paprika/tokens";
+import getBorderRadius from "../../helper.styles";
 
 export const Header = styled.div(
-  ({ isEditing }) => css`
+  ({ isEditing, isCollapsed, isFirstRow, isMiddleRow, isLastRow }) => css`
     align-items: flex-start;
     border: 1px solid transparent;
-    border-radius: ${tokens.card.borderRadius};
+    border-radius: ${getBorderRadius(isFirstRow, isMiddleRow, isLastRow, isCollapsed)};
     cursor: pointer;
     display: flex;
     padding: 15px;
