@@ -2,6 +2,7 @@ import React from "react";
 import StoryHeading from "storybook/components/StoryHeading";
 import { Story } from "storybook/assets/styles/common.styles";
 import Avatar from "@paprika/avatar";
+import Button from "@paprika/button";
 import Checkbox from "@paprika/checkbox";
 import OverflowMenu from "@paprika/overflow-menu";
 import StatusTracker from "@paprika/status-tracker";
@@ -145,7 +146,12 @@ const ExampleStory = () => {
             <HeaderLayout>
               <HeaderLayout.Left>
                 <div style={{ paddingTop: "8px" }}>
-                  <Switch a11yText="click me" onClick={() => {}} />
+                  <Switch
+                    a11yText="click me"
+                    onClick={e => {
+                      e.stopPropagation();
+                    }}
+                  />
                 </div>
               </HeaderLayout.Left>
               <HeaderLayout.Heading a11yHeadingLevel={3}>{heading}</HeaderLayout.Heading>
@@ -174,10 +180,36 @@ const ExampleStory = () => {
             </HeaderLayout>
           </CollapsibleCard.Segment>
           <CollapsibleCard.Segment width={40}>
-            <div style={{ textAlign: isBroken800 ? "left" : "right" }}>
-              <button type="button">click 1</button>&nbsp;
-              <button type="button">click 2</button>&nbsp;
-              <button type="button">click 3</button>
+            <div style={{ paddingTop: "5px", textAlign: isBroken800 ? "left" : "right" }}>
+              <Button
+                onClick={e => {
+                  e.stopPropagation();
+                }}
+                size="small"
+                kind="primary"
+              >
+                click 1
+              </Button>
+              &nbsp;
+              <Button
+                onClick={e => {
+                  e.stopPropagation();
+                }}
+                size="small"
+                kind="primary"
+              >
+                click 2
+              </Button>
+              &nbsp;
+              <Button
+                onClick={e => {
+                  e.stopPropagation();
+                }}
+                size="small"
+                kind="primary"
+              >
+                click 3
+              </Button>
             </div>
           </CollapsibleCard.Segment>
         </CollapsibleCard.Header>
@@ -192,7 +224,14 @@ const ExampleStory = () => {
             <HeaderLayout>
               <HeaderLayout.Left>
                 <div style={{ paddingTop: "8px" }}>
-                  <Checkbox a11yText="Sample" size="medium" checkedState="checked" />
+                  <Checkbox
+                    a11yText="Sample"
+                    size="medium"
+                    checkedState="checked"
+                    onChange={e => {
+                      e.stopPropagation();
+                    }}
+                  />
                 </div>
               </HeaderLayout.Left>
               <HeaderLayout.Heading>{heading}</HeaderLayout.Heading>

@@ -5,8 +5,16 @@ import tokens from "@paprika/tokens";
 export const Header = styled.div(
   ({ isEditing }) => css`
     align-items: flex-start;
+    border: 1px solid transparent;
+    border-radius: ${tokens.card.borderRadius};
+    cursor: pointer;
     display: flex;
-    padding: ${spacer(2)};
+    padding: 15px;
+
+    &:focus {
+      border: 1px solid ${tokens.highlight.active.noBorder.borderColor};
+      outline: none;
+    }
 
     ${isEditing &&
       css`

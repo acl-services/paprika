@@ -61,15 +61,27 @@ export default function Header(props) {
   window.addEventListener("resize", handleResizeWindow);
 
   return (
-    <sc.Header ref={headerRef} isEditing={context.isEditing}>
+    <sc.Header
+      isEditing={context.isEditing}
+      onClick={() => {
+        context.handleToggleIsCollapsed();
+      }}
+      onKeyPress={e => {
+        if ([" ", "Enter"].includes(e.key)) {
+          context.handleToggleIsCollapsed();
+          e.preventDefault();
+        }
+      }}
+      ref={headerRef}
+      tabIndex={0}
+    >
       <sc.HeaderContent isBroken={isBroken}>{newChildren}</sc.HeaderContent>
       <sc.ExpandToggle isCollapsed={context.isCollapsed}>
         <Button.Icon
           a11yText={context.isCollapsed ? I18n.t("collapsible.expand") : I18n.t("collapsible.collapse")}
-          onClick={() => {
-            context.handleToggleIsCollapsed();
-          }}
+          onClick={() => {}}
           kind="minor"
+          tabIndex={-1}
         >
           <ArrowUpIcon />
         </Button.Icon>

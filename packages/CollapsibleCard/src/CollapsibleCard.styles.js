@@ -24,7 +24,7 @@ function getBoxShadow(isEditing, isFirstRow, isMiddleRow, isLastRow) {
 
 function getBorderRadius(isFirstRow, isMiddleRow, isLastRow) {
   if (isFirstRow) {
-    return `6px 6px 0 0`;
+    return `${tokens.card.borderRadius} ${tokens.card.borderRadius} 0 0`;
   }
 
   if (isMiddleRow) {
@@ -32,10 +32,10 @@ function getBorderRadius(isFirstRow, isMiddleRow, isLastRow) {
   }
 
   if (isLastRow) {
-    return `0 0 6px 6px`;
+    return `0 0 ${tokens.card.borderRadius} ${tokens.card.borderRadius}`;
   }
 
-  return `6px`;
+  return tokens.card.borderRadius;
 }
 
 function getBorder(isEditing, isFirstRow, isMiddleRow, isLastRow) {
