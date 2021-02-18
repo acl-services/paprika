@@ -10,7 +10,7 @@ const isInlineCSS = css`
 `;
 
 export const Box = styled.div(
-  ({ hasError, isInline, triggerWidth }) => css`
+  ({ hasError, isInline, isReadOnly, triggerWidth }) => css`
     background-color: ${tokens.color.white};
     border: 1px solid ${tokens.border.color};
     border-radius: ${tokens.border.radius};
@@ -21,5 +21,6 @@ export const Box = styled.div(
     ${hasError && stylers.errorFormStyles}
     ${isInline && isInlineCSS}
     ${triggerWidth ? `width: ${triggerWidth}px;` : ""};
+    ${isReadOnly ? stylers.readOnlyFormStyles : ""}
   `
 );

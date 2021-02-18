@@ -10,6 +10,7 @@ const getKnobs = () => ({
   height: number("height", 200),
   hasError: boolean("hasError", false),
   isDisabled: boolean("isDisabled", false),
+  isReadOnly: boolean("isReadOnly", false),
   placeholder: text("placeholder", "Select..."),
   showFilter: boolean("Show Filter", false),
   showFooter: boolean("Show Footer", false),

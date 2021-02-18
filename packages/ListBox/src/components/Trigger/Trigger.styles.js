@@ -22,7 +22,7 @@ const triggerSizes = {
   `,
 };
 
-const triggerStyles = ({ size, isDisabled, hasError }) => css`
+const triggerStyles = ({ hasError, isDisabled, isReadOnly, size }) => css`
   ${stylers.truncateText}
   align-items: center;
   background-color: ${tokens.color.white};
@@ -37,26 +37,31 @@ const triggerStyles = ({ size, isDisabled, hasError }) => css`
   transition: border-color 0.2s;
   width: 100%;
   ${triggerSizes[size]};
-  ${hasError && stylers.errorFormStyles}
+  ${hasError ? stylers.errorFormStyles : ""}
   ${isDisabled ? `color: ${tokens.color.blackLighten60};` : ""}
+  ${isReadOnly ? stylers.readOnlyFormStyles : ""}
 
   [data-pka-anchor="raw-button"] {
     width: calc(100% - 48px);
   }
 `;
 
-const triggerStylesProps = ({ isHidden, isInline }) => {
+const triggerStylesProps = ({ isHidden, isInline, isReadOnly }) => {
   if (isHidden) {
     return css`
       border: 1px solid ${tokens.border.color};
     `;
   }
 
-  return isInline
+  return isInline || isReadOnly
     ? css`
         ${triggerStyles}
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
+        ${isInline
+          ? css`
+              border-bottom-left-radius: 0;
+              border-bottom-right-radius: 0;
+            `
+          : ""}
       `
     : css`
         [data-pka-anchor="list-box-trigger"] {
@@ -70,14 +75,19 @@ export const ListBoxTrigger = styled.div`
   ${triggerStylesProps}
 `;
 
-export const iconStyles = ({ isDisabled }) => css`
+const iconStyles = ({ isDisabled, isReadOnly }) => css`
+  color: ${tokens.color.black};
   height: 100%;
   pointer-events: none;
   position: absolute;
   right: ${tokens.space};
   top: 0;
   ${stylers.fontSize(-1)}
-  ${isDisabled && `color: ${tokens.color.blackLighten60};`}
+  ${isDisabled || isReadOnly ? `color: ${tokens.color.blackLighten60};` : ""}
+`;
+
+export const CaretIcon = styled.span`
+  ${iconStyles}
 `;
 
 export const ClearButton = styled(Button.Icon)(
@@ -88,19 +98,14 @@ export const ClearButton = styled(Button.Icon)(
     right: ${shouldHideCaret ? 0 : "22px"};
     top: 0;
 
-    > span {
-      height: 14px;
-      line-height: 14px;
-
-      > svg {
-        color: ${tokens.color.blackLighten20};
-        vertical-align: text-top;
-        ${iconStyles}
-      }
-    }
-
     &:hover {
       background-color: transparent;
+    }
+    
+    [data-pka-anchor="icon"] {
+      ${iconStyles}
+      color: ${tokens.color.blackLighten20};
+      vertical-align: text-top;
     }
   `
 );

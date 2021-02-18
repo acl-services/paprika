@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useListBox from "../../useListBox";
+import { PropsContext } from "../../store/PropsProvider";
 import * as sc from "./Label.styles";
 import LabelMulti from "./LabelMulti";
 import LabelSingle from "./LabelSingle";
@@ -18,9 +19,9 @@ const propTypes = {
 };
 
 const defaultProps = {
-  label: null,
-  isDisabled: false,
   hasImplicitAll: false,
+  isDisabled: false,
+  label: null,
   placeholder: "",
 };
 
@@ -28,6 +29,7 @@ export default function Label(props) {
   const { hasImplicitAll, placeholder, label: customLabel, isDisabled } = props;
   const [state] = useListBox();
   const { selectedOptions, isMulti, options } = state;
+  const propsContext = React.useContext(PropsContext);
   const [label, setLabel] = React.useState(placeholder);
 
   React.useEffect(() => {
@@ -46,7 +48,12 @@ export default function Label(props) {
   }, [isMulti, options, placeholder, selectedOptions]);
 
   return (
-    <sc.Label hasImplicitAll={hasImplicitAll} isPlaceholder={!selectedOptions.length} isDisabled={isDisabled}>
+    <sc.Label
+      hasImplicitAll={hasImplicitAll}
+      isPlaceholder={!selectedOptions.length}
+      isDisabled={isDisabled}
+      isReadOnly={propsContext.isReadOnly}
+    >
       {customLabel || label}
     </sc.Label>
   );

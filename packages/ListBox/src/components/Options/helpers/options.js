@@ -166,13 +166,11 @@ export const toggleOption = ({ index, isMulti, dispatch, onChangeContext }) => {
   selectSingleOption({ activeOptionIndex: index, isOpen: false, dispatch, onChangeContext });
 };
 
-export const handleClickOption = ({ props, state, dispatch, onChangeContext }) => event => {
+export const handleClickOption = ({ props, state, isDisabled, dispatch, onChangeContext }) => event => {
   const { index } = props;
   const { options, hasFilter, isMulti, refFilterInput } = state;
   const hasPreventDefaultOnSelect = options[index].preventDefaultOnSelect;
-  if (state.isDisabled || props.isDisabled) {
-    return;
-  }
+  if (isDisabled) return;
 
   const focusListBoxContentIfHasNotFilter =
     state.refListBox.current.contains(event.target) && document.activeElement === document.body && !hasFilter;

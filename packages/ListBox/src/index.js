@@ -11,29 +11,33 @@ import RawItem from "./components/RawItem";
 import Trigger from "./components/Trigger";
 import Provider from "./store/Provider";
 import OnChangeProvider from "./store/OnChangeProvider";
+import PropsProvider from "./store/PropsProvider";
 import * as types from "./types";
 
 const ListBoxWithProvider = React.forwardRef((props, ref) => {
-  const { children, ...moreProps } = props;
+  const { children, isReadOnly, ...moreProps } = props;
+  const providedProps = {
+    isReadOnly,
+  };
+
   /*
-  Assures the structure of the children is one of the following:
+    Assures the structure of the children is one of the following:
 
-  <React.Fragment>
-    <ListBox.Option />
-  </React.Fragment>
-
-  - OR -
-
-  [
-    <React.Fragment>
-      <ListBox.Option />
-    </React.Fragment>,
     <React.Fragment>
       <ListBox.Option />
     </React.Fragment>
-  ]
-  */
 
+    - OR -
+
+    [
+      <React.Fragment>
+        <ListBox.Option />
+      </React.Fragment>,
+      <React.Fragment>
+        <ListBox.Option />
+      </React.Fragment>
+    ]
+  */
   const _children = React.Children.map(children, child => {
     return child !== null && React.Fragment === child.type ? child.props.children : child;
   });
@@ -56,9 +60,19 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
   return (
     <Provider {...moreProps} childrenOptions={options}>
       <OnChangeProvider onChange={props.onChange}>
-        <ListBox {...moreProps} ref={ref} filter={filter} footer={footer} popover={popover} trigger={trigger} box={box}>
-          {options}
-        </ListBox>
+        <PropsProvider {...providedProps}>
+          <ListBox
+            {...moreProps}
+            ref={ref}
+            filter={filter}
+            footer={footer}
+            popover={popover}
+            trigger={trigger}
+            box={box}
+          >
+            {options}
+          </ListBox>
+        </PropsProvider>
       </OnChangeProvider>
     </Provider>
   );

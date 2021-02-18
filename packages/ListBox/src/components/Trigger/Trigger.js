@@ -11,6 +11,7 @@ import Label from "../Label";
 import { handleKeyDownKeyboardKeys, handleKeyUpKeyboardKeys } from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../useListBox";
 import { OnChangeContext } from "../../store/OnChangeProvider";
+import { PropsContext } from "../../store/PropsProvider";
 
 import invokeOnChange, {
   sanitizeActionTypes,
@@ -65,6 +66,8 @@ const defaultProps = {
 export default function Trigger(props) {
   const [state, dispatch] = useListBox();
   const onChangeContext = React.useContext(OnChangeContext);
+  const propsContext = React.useContext(PropsContext);
+
   const {
     children,
     clearIcon,
@@ -77,6 +80,7 @@ export default function Trigger(props) {
     placeholder,
     ...moreProps
   } = props;
+
   const {
     formElementLabelDescribedBy,
     hasError,
@@ -159,28 +163,28 @@ export default function Trigger(props) {
   };
 
   function renderLabel() {
-    return state.isInline ? (
+    return state.isInline || propsContext.isReadOnly ? (
       <Label
         activeOption={state.options[state.activeOption]}
         hasImplicitAll={hasImplicitAll}
         isDisabled={isDisabled}
         isMulti={isMulti}
+        label={label}
         options={state.options}
         placeholder={placeholder}
         selectedOptions={state.selectedOptions}
-        label={label}
       />
     ) : (
       <RawButton
-        id={triggerButtonId.current}
-        onClick={handleClick}
-        ref={refTrigger}
-        onKeyUp={handleKeyUp}
-        isDisabled={isDisabled}
-        data-pka-anchor="list-box-trigger"
-        aria-haspopup
         aria-describedby={formElementLabelDescribedBy}
+        aria-haspopup="true"
         aria-labelledby={triggerButtonId.current}
+        data-pka-anchor="list-box-trigger"
+        id={triggerButtonId.current}
+        isDisabled={isDisabled}
+        onClick={handleClick}
+        onKeyUp={handleKeyUp}
+        ref={refTrigger}
       >
         {refLabel && refLabel.current ? (
           <sc.VisuallyHiddenFormLabel>{refLabel.current.innerText}</sc.VisuallyHiddenFormLabel>
@@ -190,10 +194,10 @@ export default function Trigger(props) {
           hasImplicitAll={hasImplicitAll}
           isDisabled={isDisabled}
           isMulti={isMulti}
+          label={label}
           options={state.options}
           placeholder={placeholder}
           selectedOptions={state.selectedOptions}
-          label={label}
         />
       </RawButton>
     );
@@ -209,6 +213,7 @@ export default function Trigger(props) {
         handleKeyDown: handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext }),
         handleKeyUp: handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext }),
         isOpen: state.isOpen,
+        isReadOnly: propsContext.isReadOnly,
         onChangeContext,
         propsForTrigger: getDOMAttributesForListBoxButton(idListBox),
         refTrigger,
@@ -224,16 +229,19 @@ export default function Trigger(props) {
       const [selected, options] = getSelectedOptionSingle(state);
       return children(selected, options, attributes);
     }
-  }, [hasRenderTrigger, isMulti, state, children, dispatch, idListBox, refTrigger, onChangeContext]);
+  }, [
+    hasRenderTrigger,
+    isMulti,
+    state,
+    children,
+    dispatch,
+    idListBox,
+    refTrigger,
+    onChangeContext,
+    propsContext.isReadOnly,
+  ]);
 
-  const caret = state.isOpen ? (
-    <CaretUpIcon isDisabled={isDisabled} css={sc.iconStyles} />
-  ) : (
-    <CaretDownIcon isDisabled={isDisabled} css={sc.iconStyles} />
-  );
-
-  const shouldHideClearButton = (state.hasFooter && state.isOpen) || hasRenderTrigger;
-
+  const shouldHideClearButton = (state.hasFooter && state.isOpen) || hasRenderTrigger || propsContext.isReadOnly;
   const shouldHideCaret = hasRenderTrigger || state.isInline;
 
   if (isHidden && state.isInline) {
@@ -244,6 +252,7 @@ export default function Trigger(props) {
     <sc.ListBoxTrigger
       isInline={state.isInline}
       isDisabled={isDisabled}
+      isReadOnly={propsContext.isReadOnly}
       ref={refTriggerContainer}
       size={size}
       hasError={hasError}
@@ -265,11 +274,17 @@ export default function Trigger(props) {
           {clearIcon || <TimesCircleIcon isDisabled={isDisabled} css={sc.iconStyles} />}
         </sc.ClearButton>
       ) : null}
-      {shouldHideCaret ? null : caret}
+      {shouldHideCaret ? null : (
+        <sc.CaretIcon
+          as={state.isOpen ? CaretUpIcon : CaretDownIcon}
+          isDisabled={isDisabled}
+          isReadOnly={propsContext.isReadOnly}
+        />
+      )}
     </sc.ListBoxTrigger>
   );
 }
 
+Trigger.displayName = "ListBox.Trigger";
 Trigger.propTypes = propTypes;
 Trigger.defaultProps = defaultProps;
-Trigger.displayName = "ListBox.Trigger";
