@@ -91,7 +91,7 @@ const renderTrigger = ({
       a11yText={t("listBoxWithTags.a11y_text_trigger", { options: a11yText })}
       aria-controls={listBoxId}
       aria-expanded={isOpen}
-      aria-haspopup="true"
+      aria-haspopup
       ref={refTrigger}
       {...propsForTrigger()}
       onClick={handleClick}
