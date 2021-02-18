@@ -103,7 +103,7 @@ declare namespace Panel {
     onAfterOpen?: (...args: any[]) => any;
 
     onAfterClose?: (...args: any[]) => any;
-    /** z-index of the Overlay wrapper */
+    /** The z-index of the Panel Overlay */
     zIndex?: number;
   }
 }
