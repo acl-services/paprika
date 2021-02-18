@@ -3524,6 +3524,20 @@
   dependencies:
     "@paprika/tokens" "^0.1.18"
 
+"@paprika/toast@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@paprika/toast/-/toast-1.0.7.tgz#d6e3d11526a963e221bcff16d2851c79fef81bd7"
+  integrity sha512-LyrcLM+Njy7uGe1Yr3SDV4+INn937MQQAb0x0kAOzAfAXD/A8g4xHXDpSJJkWXqCFj7kwDu+FoBJBYEoxfJ5jg==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.3.1"
+    "@paprika/button" "^1.0.7"
+    "@paprika/constants" "^1.0.0"
+    "@paprika/helpers" "^2.1.0"
+    "@paprika/icon" "^1.0.4"
+    "@paprika/stylers" "^1.0.0"
+    "@paprika/tokens" "^1.0.0"
+    prop-types "^15.7.2"
+
 "@paprika/tokens@^0.1.14", "@paprika/tokens@^0.1.18", "@paprika/tokens@^0.1.18-alpha.1", "@paprika/tokens@^0.1.6":
   version "0.1.18"
   resolved "https://registry.yarnpkg.com/@paprika/tokens/-/tokens-0.1.18.tgz#6522daf57c46c095ea50f16dd2ea4fd55869eb31"

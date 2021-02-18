@@ -1,6 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React from "react";
 import PropTypes from "prop-types";
+import { v4 as uuidv4 } from "uuid";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import CaretDownIcon from "@paprika/icon/lib/CaretDown";
 import CaretUpIcon from "@paprika/icon/lib/CaretUp";
@@ -53,9 +54,16 @@ const defaultProps = {
   allOptionsAreSelectedMessage: "",
 };
 
-const renderTrigger = ({ t, size, selectedOptions, onRemove, renderTag, tagLabelKey, allOptionsAreSelected }) => (
-  ...args
-) => {
+const renderTrigger = ({
+  t,
+  size,
+  selectedOptions,
+  onRemove,
+  listBoxId,
+  renderTag,
+  tagLabelKey,
+  allOptionsAreSelected,
+}) => (...args) => {
   const [, , , attributes] = args;
   const { propsForTrigger, refTrigger, dispatch, types, handleKeyDown, handleKeyUp, isOpen } = attributes;
 
@@ -72,10 +80,18 @@ const renderTrigger = ({ t, size, selectedOptions, onRemove, renderTag, tagLabel
 
   const Caret = isOpen ? <CaretUpIcon css={triggerSc.iconStyles} /> : <CaretDownIcon css={triggerSc.iconStyles} />;
 
+  const a11yTextOptions = selectedOptions.map(item => {
+    return tagLabelKey === null ? item.label : item[tagLabelKey];
+  });
+
+  const a11yText = selectedOptions.length === 0 ? t("listBoxWithTags.placeholder") : a11yTextOptions.join(", ");
+
   return (
     <sc.Trigger
-      aria-haspopup="true"
+      a11yText={t("listBoxWithTags.a11y_text_trigger", { options: a11yText })}
+      aria-controls={listBoxId}
       aria-expanded={isOpen}
+      aria-haspopup="true"
       ref={refTrigger}
       {...propsForTrigger()}
       onClick={handleClick}
@@ -144,6 +160,7 @@ export default function ListBoxWithTags(props) {
   /* eslint-enable react/prop-types */
 
   const refFilter = React.useRef(null);
+  const [listBoxId] = React.useState(() => `listbox-content_${uuidv4()}`);
 
   function handleKeyDown(event) {
     const label = event.target.value;
@@ -176,6 +193,7 @@ export default function ListBoxWithTags(props) {
           {renderTrigger({
             allOptionsAreSelected,
             onRemove,
+            listBoxId,
             tagLabelKey,
             renderTag,
             selectedOptions,
@@ -183,6 +201,7 @@ export default function ListBoxWithTags(props) {
             t,
           })}
         </ListBox.Trigger>
+        <ListBox.Box id={listBoxId} />
         {allOptionsAreSelected ? null : (
           <ListBox.Filter filter={filter} ref={refFilter} onKeyDown={handleKeyDown} {...noResultMessageProp} />
         )}

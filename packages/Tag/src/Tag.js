@@ -14,11 +14,13 @@ export default function Tag(props) {
     e.stopPropagation();
   };
 
-  const handleKeyDown = e => {
+  const handleDeleteKeyDown = e => {
     if (e.key === "Enter" || e.key === "Backspace" || e.key === " ") {
       handleRemove(e);
     }
   };
+
+  const a11yTagText = typeof children === "string" ? I18n.t("remove_a11y", { value: children }) : I18n.t("remove");
 
   const content = (
     <>
@@ -26,13 +28,13 @@ export default function Tag(props) {
       <sc.Ellipsis size={size}>{children}</sc.Ellipsis>
       {onRemove ? (
         <sc.Delete
-          a11yText={I18n.t("remove_a11y", { value: children })}
+          a11yText={a11yText || a11yTagText}
           isDisabled={isDisabled}
           size={size}
           data-pka-anchor="tag.remove"
           data-qa-anchor="paprika.tag.remove"
           onClick={handleRemove}
-          onKeyDown={handleKeyDown}
+          onKeyDown={handleDeleteKeyDown}
         />
       ) : null}
     </>

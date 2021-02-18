@@ -23,7 +23,8 @@
     "@paprika/tag": "^0.0.2-alpha.0",
     "@paprika/tokens": "^1.0.0",
     "icons": "^1.0.0",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "uuid": "^8.3.2"
   },
   "peerDependencies": {
     "@paprika/l10n": "^1.1.3",

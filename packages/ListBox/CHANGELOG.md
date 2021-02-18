@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ## [1.0.1]
+
 - Fix accessiblity issue so options are now focusable and read to screen reader technology
 - Add Toast component as depedency
 
