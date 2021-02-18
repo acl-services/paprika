@@ -248,7 +248,6 @@ const ExampleStory = () => {
                   <OverflowMenu.Trigger
                     onClick={e => {
                       e.stopPropagation();
-                      alert(251);
                     }}
                   />
                   <OverflowMenu.Item onClick={() => {}}>First Item</OverflowMenu.Item>

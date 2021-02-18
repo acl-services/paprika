@@ -60,6 +60,7 @@ npm install @paprika/overflow-menu
 | buttonType | [ Trigger.types.button.ICON, Trigger.types.button.RAW, Trigger.types.button.SIMPLE] | false    | Trigger.types.button.SIMPLE | Determine the styling of the button |
 | isOpen     | bool                                                                                | false    | false                       |                                     |
 | menuRefId  | string                                                                              | false    | ""                          |                                     |
+| onClick    | func                                                                                | false    | () => {}                    |                                     |
 | onOpenMenu | func                                                                                | false    | () => {}                    |                                     |
 | triggerRef | custom                                                                              | false    | null                        |                                     |
 
