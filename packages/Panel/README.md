@@ -82,7 +82,7 @@ npm install @paprika/panel
 | onClose           | func       | false    | -       |                                  |
 | onAfterOpen       | func       | false    | -       |                                  |
 | onAfterClose      | func       | false    | -       |                                  |
-| zIndex            | number     | false    | -       | z-index of the Overlay wrapper   |
+| zIndex            | number     | false    | -       | The z-index of the Panel Overlay |
 
 ### Panel.Trigger
 
