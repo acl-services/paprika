@@ -6,21 +6,21 @@ import getBorderRadius from "../../helper.styles";
 export const Header = styled.div(
   ({ isEditing, isCollapsed, isFirstRow, isMiddleRow, isLastRow }) => css`
     align-items: flex-start;
-    border: 1px solid transparent;
+    border: 2px solid transparent;
     border-radius: ${getBorderRadius(isFirstRow, isMiddleRow, isLastRow, isCollapsed)};
     cursor: pointer;
     display: flex;
-    margin: 1px;
     padding: 14px;
 
-    &:focus {
-      border: 1px solid ${tokens.highlight.active.noBorder.borderColor};
-      outline: none;
-    }
-
-    &:hover {
+    :hover {
       border: 2px solid ${tokens.color.blackLighten50};
       margin: 0px;
+    }
+
+    [data-whatinput="keyboard"] &:focus {
+      border: 2px solid ${tokens.highlight.active.noBorder.borderColor};
+      margin: 0px;
+      outline: none;
     }
 
     ${isEditing &&

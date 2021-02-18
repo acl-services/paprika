@@ -245,7 +245,12 @@ const ExampleStory = () => {
               <StatusTracker.Point name="Draft" kind={StatusTracker.types.kind.PAST} description="Desc" />
               <StatusTracker.Point name="In review" description="Desc2" kind={StatusTracker.types.kind.CURRENT}>
                 <OverflowMenu>
-                  <OverflowMenu.Trigger />
+                  <OverflowMenu.Trigger
+                    onClick={e => {
+                      e.stopPropagation();
+                      alert(251);
+                    }}
+                  />
                   <OverflowMenu.Item onClick={() => {}}>First Item</OverflowMenu.Item>
                   <OverflowMenu.Item onClick={() => {}}>Second Item</OverflowMenu.Item>
                 </OverflowMenu>
