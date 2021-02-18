@@ -163,6 +163,7 @@ export default function Trigger(props) {
       <Label
         activeOption={state.options[state.activeOption]}
         hasImplicitAll={hasImplicitAll}
+        isDisabled={isDisabled}
         isMulti={isMulti}
         options={state.options}
         placeholder={placeholder}
@@ -187,6 +188,7 @@ export default function Trigger(props) {
         <Label
           activeOption={state.options[state.activeOption]}
           hasImplicitAll={hasImplicitAll}
+          isDisabled={isDisabled}
           isMulti={isMulti}
           options={state.options}
           placeholder={placeholder}

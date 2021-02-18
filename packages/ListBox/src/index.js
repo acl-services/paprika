@@ -23,15 +23,16 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
   </React.Fragment>
 
   - OR -
-    [
-      <React.Fragment>
-        <ListBox.Option />
-      </React.Fragment>,
-      <React.Fragment>
-        <ListBox.Option />
-      </React.Fragment>
-    ]
-    */
+
+  [
+    <React.Fragment>
+      <ListBox.Option />
+    </React.Fragment>,
+    <React.Fragment>
+      <ListBox.Option />
+    </React.Fragment>
+  ]
+  */
 
   const _children = React.Children.map(children, child => {
     return child !== null && React.Fragment === child.type ? child.props.children : child;
@@ -74,9 +75,10 @@ ListBoxWithProvider.Popover = Popover;
 ListBoxWithProvider.RawItem = RawItem;
 ListBoxWithProvider.Trigger = Trigger;
 
-ListBoxWithProvider.defaultProps = defaultProps;
 ListBoxWithProvider.displayName = "ListBox";
 ListBoxWithProvider.propTypes = propTypes;
+ListBoxWithProvider.defaultProps = defaultProps;
+
 ListBoxWithProvider.types = {
   size: {
     SMALL: types.SMALL,

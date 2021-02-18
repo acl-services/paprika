@@ -8,6 +8,8 @@ import LabelSingle from "./LabelSingle";
 const propTypes = {
   hasImplicitAll: PropTypes.bool,
 
+  isDisabled: PropTypes.bool,
+
   /** Override the label with a custom one. */
   label: PropTypes.string,
 
@@ -17,12 +19,13 @@ const propTypes = {
 
 const defaultProps = {
   label: null,
+  isDisabled: false,
   hasImplicitAll: false,
   placeholder: "",
 };
 
 export default function Label(props) {
-  const { hasImplicitAll, placeholder, label: customLabel } = props;
+  const { hasImplicitAll, placeholder, label: customLabel, isDisabled } = props;
   const [state] = useListBox();
   const { selectedOptions, isMulti, options } = state;
   const [label, setLabel] = React.useState(placeholder);
@@ -43,7 +46,7 @@ export default function Label(props) {
   }, [isMulti, options, placeholder, selectedOptions]);
 
   return (
-    <sc.Label hasImplicitAll={hasImplicitAll} isPlaceholder={!selectedOptions.length}>
+    <sc.Label hasImplicitAll={hasImplicitAll} isPlaceholder={!selectedOptions.length} isDisabled={isDisabled}>
       {customLabel || label}
     </sc.Label>
   );

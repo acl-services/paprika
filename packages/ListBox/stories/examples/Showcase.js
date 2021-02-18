@@ -8,6 +8,7 @@ import ListBox from "../../src";
 
 const getKnobs = () => ({
   height: number("height", 200),
+  hasError: boolean("hasError", false),
   isDisabled: boolean("isDisabled", false),
   placeholder: text("placeholder", "Select..."),
   showFilter: boolean("Show Filter", false),
