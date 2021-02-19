@@ -1,7 +1,7 @@
 {
   "name": "@paprika/collapsible-card",
   "version": "1.1.7",
-  "description": "Styled collapsible card component. ",
+  "description": "Styled collapsible card component.",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",

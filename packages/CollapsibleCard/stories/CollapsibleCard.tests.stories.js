@@ -1,7 +1,7 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import CollapsibleCard from "../src";
-import Showcase from "./examples/Showcase";
+import RealWorld from "./examples/RealWorld";
 
 const storyName = getStoryName("CollapsibleCard");
 
@@ -11,8 +11,8 @@ export default {
   component: CollapsibleCard,
 };
 
-export const showcase = () => <Showcase />;
-showcase.story = {
+export const screener = () => <RealWorld />;
+screener.story = {
   name: "Screener",
   parameters: {
     options: {
