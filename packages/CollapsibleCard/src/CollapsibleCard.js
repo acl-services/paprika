@@ -7,8 +7,6 @@ import Segment from "./components/Segment";
 import CollapsibleCardContext from "./CollapsibleCardContext";
 import * as sc from "./CollapsibleCard.styles";
 
-// - tests
-
 export default function CollapsibleCard(props) {
   const { children, initialIsCollapsed, isEditing, isFirstRow, isLastRow, isMiddleRow, onToggleIsCollapsed } = props;
   const [isCollapsed, setIsCollapsed] = React.useState(initialIsCollapsed);

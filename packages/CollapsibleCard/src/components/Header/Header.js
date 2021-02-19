@@ -62,6 +62,7 @@ export default function Header(props) {
 
   return (
     <sc.Header
+      data-pka-anchor="collapsible.header"
       isEditing={context.isEditing}
       isCollapsed={context.isCollapsed}
       isFirstRow={context.isFirstRow}
