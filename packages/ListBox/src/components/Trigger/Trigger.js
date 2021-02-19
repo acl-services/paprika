@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { v4 as uuidv4 } from "uuid";
 import RawButton from "@paprika/raw-button";
 import Button from "@paprika/button";
 import CaretDownIcon from "@paprika/icon/lib/CaretDown";
@@ -12,61 +11,19 @@ import { handleKeyDownKeyboardKeys, handleKeyUpKeyboardKeys } from "../../helper
 import useListBox from "../../useListBox";
 import { OnChangeContext } from "../../store/OnChangeProvider";
 import { PropsContext } from "../../store/PropsProvider";
-
 import invokeOnChange, {
   sanitizeActionTypes,
   getSelectedOptionSingle,
   getSelectedOptionsMulti,
 } from "../../helpers/invokeOnChange";
-
 import * as sc from "./Trigger.styles";
 import { getDOMAttributesForListBoxButton } from "../../helpers/DOMAttributes";
 
-const propTypes = {
-  /** Custom clear icon */
-  clearIcon: PropTypes.node,
-
-  /** Body content of the trigger. */
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-
-  /** If true it adds a clear button */
-  hasClearButton: PropTypes.bool,
-
-  /** Has implicit "All items selected" value when no item is selected */
-  hasImplicitAll: PropTypes.bool,
-
-  /** Override the label with a custom one. */
-  label: PropTypes.string,
-
-  /** Callback to be executed when the clear button is clicked or activated by keyboard. */
-  onClickClear: PropTypes.func,
-
-  /** Callback to be executed when the accept button is clicked or activated by keyboard. */
-  onClickFooterAccept: PropTypes.func,
-
-  /** Sets a placeholder for the trigger */
-  placeholder: PropTypes.string,
-
-  /** If true the trigger will be hidden */
-  isHidden: PropTypes.bool,
-};
-
-const defaultProps = {
-  clearIcon: null,
-  children: <React.Fragment />,
-  hasClearButton: true,
-  hasImplicitAll: false,
-  label: null,
-  onClickClear: null,
-  onClickFooterAccept: null,
-  placeholder: "Select...",
-  isHidden: false,
-};
-
 export default function Trigger(props) {
+  const I18n = useI18n();
   const [state, dispatch] = useListBox();
   const onChangeContext = React.useContext(OnChangeContext);
-  const propsContext = React.useContext(PropsContext);
+  const providedProps = React.useContext(PropsContext);
 
   const {
     children,
@@ -78,23 +35,39 @@ export default function Trigger(props) {
     onClickClear,
     onClickFooterAccept,
     placeholder,
+    morePropsForTrigger,
     ...moreProps
   } = props;
 
-  const {
-    formElementLabelDescribedBy,
-    hasError,
-    idListBox,
-    isDisabled,
-    isMulti,
-    refLabel,
-    refTrigger,
-    refTriggerContainer,
-    size,
-  } = state;
+  const { idListBox, isReadOnly } = providedProps;
 
-  const [triggerButtonId] = React.useState(() => `list-box-trigger_${uuidv4()}`);
-  const I18n = useI18n();
+  const { hasError, isDisabled, isMulti, refLabel, refTrigger, refTriggerContainer, size } = state;
+
+  const idFormLabel = React.useRef();
+
+  React.useEffect(() => {
+    const $label = refLabel && refLabel.current;
+    if (!$label) return;
+
+    const possibleId = $label.getAttribute("id");
+    if (possibleId) {
+      idFormLabel.current = possibleId;
+    } else {
+      const newId = `${idListBox}__form-label`;
+      $label.setAttribute("id", newId);
+      idFormLabel.current = newId;
+    }
+
+    function handleClickLabel() {
+      refTrigger.current.focus();
+    }
+
+    $label.addEventListener("click", handleClickLabel);
+
+    return () => {
+      $label.removeEventListener("click", handleClickLabel);
+    };
+  }, [refLabel, refTrigger, idListBox]);
 
   const handleClick = () => {
     if (state.isOpen) {
@@ -115,22 +88,6 @@ export default function Trigger(props) {
       dispatch({ type: useListBox.types.openPopover });
     }
   };
-
-  React.useEffect(() => {
-    const $label = refLabel && refLabel.current;
-
-    if (!$label) return;
-
-    function handleClickLabel() {
-      refTrigger.current.focus();
-    }
-
-    $label.addEventListener("click", handleClickLabel);
-
-    return () => {
-      $label.removeEventListener("click", handleClickLabel);
-    };
-  }, [refLabel, refTrigger]);
 
   const handleClickClear = () => {
     if (isDisabled) {
@@ -163,10 +120,11 @@ export default function Trigger(props) {
   };
 
   function renderLabel() {
-    return state.isInline || propsContext.isReadOnly ? (
+    return state.isInline || isReadOnly ? (
       <Label
         activeOption={state.options[state.activeOption]}
         hasImplicitAll={hasImplicitAll}
+        id={`${idListBox}__label`}
         isDisabled={isDisabled}
         isMulti={isMulti}
         label={label}
@@ -176,22 +134,22 @@ export default function Trigger(props) {
       />
     ) : (
       <RawButton
-        aria-describedby={formElementLabelDescribedBy}
-        aria-haspopup="true"
-        aria-labelledby={triggerButtonId.current}
+        {...getDOMAttributesForListBoxButton({
+          idListBox,
+          idFormLabel: idFormLabel.current,
+          refLabel,
+        })}
+        {...morePropsForTrigger}
         data-pka-anchor="list-box-trigger"
-        id={triggerButtonId.current}
         isDisabled={isDisabled}
         onClick={handleClick}
         onKeyUp={handleKeyUp}
         ref={refTrigger}
       >
-        {refLabel && refLabel.current ? (
-          <sc.VisuallyHiddenFormLabel>{refLabel.current.innerText}</sc.VisuallyHiddenFormLabel>
-        ) : null}
         <Label
           activeOption={state.options[state.activeOption]}
           hasImplicitAll={hasImplicitAll}
+          id={`${idListBox}__label`}
           isDisabled={isDisabled}
           isMulti={isMulti}
           label={label}
@@ -205,17 +163,21 @@ export default function Trigger(props) {
 
   const hasRenderTrigger = typeof children === "function";
 
-  let renderChildrenProps = null;
-  renderChildrenProps = React.useMemo(() => {
+  const renderChildrenProps = React.useMemo(() => {
     if (hasRenderTrigger) {
       const attributes = {
         dispatch,
         handleKeyDown: handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext }),
         handleKeyUp: handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext }),
         isOpen: state.isOpen,
-        isReadOnly: propsContext.isReadOnly,
+        isReadOnly,
         onChangeContext,
-        propsForTrigger: getDOMAttributesForListBoxButton(idListBox),
+        propsForTrigger: () =>
+          getDOMAttributesForListBoxButton({
+            idListBox,
+            idFormLabel: idFormLabel.current,
+            refLabel,
+          }),
         refTrigger,
         types: sanitizeActionTypes(useListBox.types),
       };
@@ -230,18 +192,24 @@ export default function Trigger(props) {
       return children(selected, options, attributes);
     }
   }, [
-    hasRenderTrigger,
-    isMulti,
-    state,
     children,
     dispatch,
+    hasRenderTrigger,
     idListBox,
-    refTrigger,
+    isMulti,
+    isReadOnly,
     onChangeContext,
-    propsContext.isReadOnly,
+    refLabel,
+    refTrigger,
+    state,
   ]);
 
-  const shouldHideClearButton = (state.hasFooter && state.isOpen) || hasRenderTrigger || propsContext.isReadOnly;
+  const shouldHideClearButton =
+    !hasClearButton ||
+    hasRenderTrigger ||
+    isReadOnly ||
+    (state.hasFooter && state.isOpen) ||
+    state.selectedOptions.length === 0;
   const shouldHideCaret = hasRenderTrigger || state.isInline;
 
   if (isHidden && state.isInline) {
@@ -250,22 +218,21 @@ export default function Trigger(props) {
 
   return (
     <sc.ListBoxTrigger
-      isInline={state.isInline}
+      hasError={hasError}
       isDisabled={isDisabled}
-      isReadOnly={propsContext.isReadOnly}
+      isInline={state.isInline}
+      isReadOnly={isReadOnly}
       ref={refTriggerContainer}
       size={size}
-      hasError={hasError}
-      {...getDOMAttributesForListBoxButton(state.idListBox)()}
       {...moreProps}
     >
       {hasRenderTrigger ? renderChildrenProps : renderLabel()}
-      {state.selectedOptions.length && hasClearButton && !shouldHideClearButton ? (
+      {shouldHideClearButton ? null : (
         <sc.ClearButton
           a11yText={I18n.t("listBox.trigger.clear_selection")}
-          isSemantic={false}
-          isDisabled={isDisabled}
           data-pka-anchor="clear-button"
+          isDisabled={isDisabled}
+          isSemantic={false}
           kind={Button.types.kind.MINOR}
           onClick={handleClickClear}
           shouldHideCaret={shouldHideCaret}
@@ -273,18 +240,57 @@ export default function Trigger(props) {
         >
           {clearIcon || <TimesCircleIcon isDisabled={isDisabled} css={sc.iconStyles} />}
         </sc.ClearButton>
-      ) : null}
+      )}
       {shouldHideCaret ? null : (
-        <sc.CaretIcon
-          as={state.isOpen ? CaretUpIcon : CaretDownIcon}
-          isDisabled={isDisabled}
-          isReadOnly={propsContext.isReadOnly}
-        />
+        <sc.CaretIcon as={state.isOpen ? CaretUpIcon : CaretDownIcon} isDisabled={isDisabled} isReadOnly={isReadOnly} />
       )}
     </sc.ListBoxTrigger>
   );
 }
 
 Trigger.displayName = "ListBox.Trigger";
-Trigger.propTypes = propTypes;
-Trigger.defaultProps = defaultProps;
+
+Trigger.propTypes = {
+  /* More props added to ListBox to add to trigger button for a11y */
+  morePropsForTrigger: PropTypes.any, // eslint-disable-line react/forbid-prop-types
+
+  /** Custom clear icon */
+  clearIcon: PropTypes.node,
+
+  /** Body content of the trigger. */
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+
+  /** If true it adds a clear button */
+  hasClearButton: PropTypes.bool,
+
+  /** Has implicit "All items selected" value when no item is selected */
+  hasImplicitAll: PropTypes.bool,
+
+  /** Override the label with a custom one. */
+  label: PropTypes.string,
+
+  /** Callback to be executed when the clear button is clicked or activated by keyboard. */
+  onClickClear: PropTypes.func,
+
+  /** Callback to be executed when the accept button is clicked or activated by keyboard. */
+  onClickFooterAccept: PropTypes.func,
+
+  /** Sets a placeholder for the trigger */
+  placeholder: PropTypes.string,
+
+  /** If true the trigger will be hidden */
+  isHidden: PropTypes.bool,
+};
+
+Trigger.defaultProps = {
+  morePropsForTrigger: null,
+  clearIcon: null,
+  children: <React.Fragment />,
+  hasClearButton: true,
+  hasImplicitAll: false,
+  label: null,
+  onClickClear: null,
+  onClickFooterAccept: null,
+  placeholder: "Select...",
+  isHidden: false,
+};

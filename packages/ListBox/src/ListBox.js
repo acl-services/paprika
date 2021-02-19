@@ -12,8 +12,8 @@ import Popover from "./components/Popover";
 import Trigger from "./components/Trigger";
 import useListBox from "./useListBox";
 import { OnChangeContext } from "./store/OnChangeProvider";
+import { PropsContext } from "./store/PropsProvider";
 import handleImperative from "./imperative";
-
 import {
   useAdjustWidth,
   useChildrenChange,
@@ -26,24 +26,32 @@ import {
 } from "./hooks";
 
 export function ListBox(props) {
-  const [state] = useListBox();
   const {
     children,
     hasImplicitAll,
     height,
+    isOpen,
     placeholder,
-    trigger: _trigger,
-    footer,
-    filter,
+
     box = { props: {} },
+    filter,
+    footer,
+    trigger: _trigger,
+
+    ...moreProps
   } = props;
+
   const I18n = useI18n();
+  const [state] = useListBox();
+  const providedProps = React.useContext(PropsContext);
+
   const propsForTrigger = {
     hasClearButton: true,
     hasImplicitAll,
     onClickClear: null,
+    onClickFooterAccept: footer ? footer.props.onClickAccept : null,
     placeholder: placeholder || I18n.t("listBox.trigger.placeholder"),
-    onFooterClickAccept: footer ? footer.props.onClickAccept : null,
+    morePropsForTrigger: moreProps,
   };
 
   const trigger = _trigger ? (
@@ -53,15 +61,22 @@ export function ListBox(props) {
   );
 
   const hasOptions = Boolean(React.Children.count(children));
+  const listProps = {
+    height,
+    hasOptions,
+    ...(state.isInline ? moreProps : {}),
+  };
+
+  console.log("listProps", listProps);
 
   return (
     <React.Fragment>
       {trigger}
       <Content onCancelFooter={footer ? footer.props.onClickCancel : null} hasOptions={hasOptions}>
         <Box {...box.props}>
-          {filter}
-          <List height={height} hasOptions={hasOptions}>
-            <Options isPopoverOpen={props.isOpen}>{children}</Options>
+          {providedProps.isReadOnly ? null : filter}
+          <List {...listProps}>
+            <Options isPopoverOpen={isOpen}>{children}</Options>
           </List>
           {filter ? (
             <NoResults label={filter.props.noResultsMessage || I18n.t("listBox.filter.no_results_message")} />
@@ -79,19 +94,29 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
   const I18n = useI18n();
 
   const {
-    box, // eslint-disable-line
     children,
-    filter, // eslint-disable-line
-    footer, // eslint-disable-line
     hasError,
     hasImplicitAll,
     height,
     isDisabled,
     isInline,
+    isMulti,
+    onChange,
     placeholder,
-    popover, // eslint-disable-line
     isOpen,
+    size,
+
+    // exclude from moreProps
+    id,
+    isReadOnly,
+
+    box, // eslint-disable-line
+    filter, // eslint-disable-line
+    footer, // eslint-disable-line
+    popover, // eslint-disable-line
     trigger, // eslint-disable-line
+
+    ...moreProps
   } = props;
 
   // IMPERATIVE API
@@ -112,15 +137,17 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
   useHasFooter(footer);
 
   const propsForListBox = {
-    children,
-    filter,
-    footer,
     hasImplicitAll,
     height,
     placeholder: placeholder || I18n.t("listBox.trigger.placeholder"),
-    trigger,
     isOpen,
+
     box,
+    filter,
+    footer,
+    trigger,
+
+    ...moreProps,
   };
 
   const listBox = <ListBox {...propsForListBox}>{children}</ListBox>;
@@ -131,8 +158,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
 
   if (popover) {
     const PopoverClone = React.cloneElement(popover, {
-      // eslint-disable-next-line react/prop-types
-      ...popover.props,
+      ...popover.props, // eslint-disable-line react/prop-types
       children: listBox,
     });
     return PopoverClone;
@@ -158,6 +184,9 @@ export const propTypes = {
   /** Indicate which is the height for the options container */
   height: PropTypes.number,
 
+  /** DOM id attribute for focussable control (trigger element or ul element if isInline=true) */
+  id: PropTypes.string,
+
   /** Disables the ListBox if true */
   isDisabled: PropTypes.bool,
 
@@ -169,6 +198,9 @@ export const propTypes = {
 
   /** Indicates if the popover is visible */
   isOpen: PropTypes.bool,
+
+  /** The ListBox will not allow value to be changed */
+  isReadOnly: PropTypes.bool,
 
   /** Callback returning the current selection on the ListBox */
   onChange: PropTypes.func,
@@ -198,10 +230,12 @@ export const defaultProps = {
   hasError: false,
   hasImplicitAll: false,
   height: 200,
+  id: null,
   isDisabled: false,
   isInline: false,
   isMulti: false,
   isOpen: null,
+  isReadOnly: false,
   onChange: () => {},
   placeholder: null,
   size: ListBoxContainer.types.size.MEDIUM,

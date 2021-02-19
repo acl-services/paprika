@@ -56,7 +56,7 @@ describe("ListBox single select", () => {
   describe("ListBox single select filter", () => {
     it("should show correct amount of options and select one", () => {
       cy.get(selectors.filterInput)
-        .click()
+        .focus()
         .type("w", typingDelay);
       cy.get(selectors.popoverList)
         .children()
@@ -68,7 +68,7 @@ describe("ListBox single select", () => {
 
     it("should show all options after erasing filtered input", () => {
       cy.get(selectors.filterInput)
-        .click()
+        .focus()
         .type("wo{backspace}{backspace}", typingDelay);
       cy.get(selectors.popoverList)
         .children()

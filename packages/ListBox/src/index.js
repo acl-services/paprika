@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 import ListBox, { propTypes, defaultProps } from "./ListBox";
 import extractChildren from "./helpers/extractChildren";
 import Divider from "./components/Divider";
@@ -15,8 +16,10 @@ import PropsProvider from "./store/PropsProvider";
 import * as types from "./types";
 
 const ListBoxWithProvider = React.forwardRef((props, ref) => {
-  const { children, isReadOnly, ...moreProps } = props;
+  const { children, id, isReadOnly, ...moreProps } = props;
+
   const providedProps = {
+    idListBox: id || `list-box-trigger_${uuidv4()}`,
     isReadOnly,
   };
 
@@ -38,6 +41,7 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
       </React.Fragment>
     ]
   */
+
   const _children = React.Children.map(children, child => {
     return child !== null && React.Fragment === child.type ? child.props.children : child;
   });
@@ -63,12 +67,12 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
         <PropsProvider {...providedProps}>
           <ListBox
             {...moreProps}
-            ref={ref}
+            box={box}
             filter={filter}
             footer={footer}
             popover={popover}
             trigger={trigger}
-            box={box}
+            ref={ref}
           >
             {options}
           </ListBox>

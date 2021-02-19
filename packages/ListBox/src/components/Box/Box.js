@@ -10,18 +10,16 @@ const propTypes = {
 };
 
 export default function Box(props) {
-  const { children, ...moreProps } = props;
   const [state] = useListBox();
-  const propsContext = React.useContext(PropsContext);
+  const { isReadOnly } = React.useContext(PropsContext);
 
   return (
     <sc.Box
       data-pka-anchor="list-box-box"
       hasError={state.hasError}
       isInline={state.isInline}
-      isReadOnly={propsContext.isReadOnly}
+      isReadOnly={isReadOnly}
       triggerWidth={state.triggerWidth}
-      {...moreProps}
     >
       {props.children}
     </sc.Box>

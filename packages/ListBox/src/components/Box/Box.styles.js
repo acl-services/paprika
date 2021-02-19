@@ -18,8 +18,8 @@ export const Box = styled.div(
     box-sizing: border-box;
     padding: 0;
     transition: border-color 0.2s;
-    ${hasError && stylers.errorFormStyles}
-    ${isInline && isInlineCSS}
+    ${hasError && isInline ? stylers.errorFormStyles : ""}
+    ${isInline ? isInlineCSS : ""}
     ${triggerWidth ? `width: ${triggerWidth}px;` : ""};
     ${isReadOnly ? stylers.readOnlyFormStyles : ""}
   `

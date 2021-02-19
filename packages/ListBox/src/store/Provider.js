@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { v4 as uuidv4 } from "uuid";
 import reducer from "./reducer";
 import { getDataOptions } from "../components/Option/helpers/optionState";
 
@@ -25,12 +24,9 @@ function initializeState(props) {
     refLabel,
     size,
   } = props;
-  const formElementId = props.id;
-  const formElementLabelDescribedBy = props["aria-describedby"];
 
   // initialize state for options and groups
   const options = getDataOptions(childrenOptions);
-  // const Footer = getFooter(childrenOptions);
   const selectedOptions = Object.keys(options)
     .filter(key => options[key].isSelected)
     .map(key => Number.parseInt(key, 10));
@@ -43,14 +39,11 @@ function initializeState(props) {
   const initialState = {
     activeOption,
     filteredOptions: [],
-    formElementId,
-    formElementLabelDescribedBy,
     hasError,
     hasFilter: false,
     hasFooter: false,
     hasPopupOpened: false,
     height,
-    idListBox: `listBoxId_${uuidv4()}`,
     isDisabled,
     isInline,
     isMulti,
