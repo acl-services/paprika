@@ -11,7 +11,6 @@ export const selectMultipleOption = "SELECT_MULTIPLE_OPTION";
 export const selectSingleOption = "SELECT_SINGLE_OPTION";
 export const setActiveOption = "SET_ACTION_OPTION";
 export const setListBoxHasFocus = "SET_LISTBOX_HAS_FOCUS";
-export const setHasError = "SET_HAS_ERROR";
 export const setHasFooter = "SET_HAS_FOOTER";
 export const setHasPopupOpened = "SET_HAS_POPUP_OPENED";
 export const setHeight = "SET_HEIGHT";

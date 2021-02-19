@@ -18,7 +18,6 @@ import {
   useAdjustWidth,
   useChildrenChange,
   useHasFooter,
-  useHasError,
   useIsDisabled,
   useIsPopOverOpen,
   useOnScrolled,
@@ -67,8 +66,6 @@ export function ListBox(props) {
     ...(state.isInline ? moreProps : {}),
   };
 
-  console.log("listProps", listProps);
-
   return (
     <React.Fragment>
       {trigger}
@@ -95,7 +92,6 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
 
   const {
     children,
-    hasError,
     hasImplicitAll,
     height,
     isDisabled,
@@ -107,6 +103,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     size,
 
     // exclude from moreProps
+    hasError,
     id,
     isReadOnly,
 
@@ -129,7 +126,6 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
 
   useAdjustWidth();
   useChildrenChange(children);
-  useHasError(hasError);
   useIsDisabled(isDisabled);
   useIsPopOverOpen(shouldTriggerKeepFocus);
   useOnScrolled();

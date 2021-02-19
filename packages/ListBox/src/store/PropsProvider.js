@@ -5,6 +5,7 @@ export const PropsContext = React.createContext(null);
 
 const propTypes = {
   children: PropTypes.node.isRequired,
+  hasError: PropTypes.bool.isRequired,
   idListBox: PropTypes.string.isRequired,
   isReadOnly: PropTypes.bool.isRequired,
 };

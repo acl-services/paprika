@@ -16,9 +16,10 @@ import PropsProvider from "./store/PropsProvider";
 import * as types from "./types";
 
 const ListBoxWithProvider = React.forwardRef((props, ref) => {
-  const { children, id, isReadOnly, ...moreProps } = props;
+  const { children, hasError, id, isReadOnly, ...moreProps } = props;
 
   const providedProps = {
+    hasError,
     idListBox: id || `list-box-trigger_${uuidv4()}`,
     isReadOnly,
   };

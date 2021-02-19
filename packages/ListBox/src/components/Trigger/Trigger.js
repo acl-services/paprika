@@ -38,13 +38,10 @@ export default function Trigger(props) {
     morePropsForTrigger,
     ...moreProps
   } = props;
-
-  const { idListBox, isReadOnly } = providedProps;
-
-  const { hasError, isDisabled, isMulti, refLabel, refTrigger, refTriggerContainer, size } = state;
+  const { hasError, idListBox, isReadOnly } = providedProps;
+  const { isDisabled, isMulti, refLabel, refTrigger, refTriggerContainer, size } = state;
 
   const idFormLabel = React.useRef();
-
   React.useEffect(() => {
     const $label = refLabel && refLabel.current;
     if (!$label) return;
