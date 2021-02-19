@@ -3,6 +3,7 @@ import StoryHeading from "storybook/components/StoryHeading";
 import { Story, Tagline } from "storybook/assets/styles/common.styles";
 import Avatar from "@paprika/avatar";
 import Switch from "@paprika/switch";
+import Toast from "@paprika/toast";
 import HeaderLayout from "../../src/components/HeaderLayout";
 
 const heading = "COVID-19 Aggregate Regulatory Feeds";
@@ -15,10 +16,17 @@ const HeaderLayoutStory = () => {
       <StoryHeading level={1}>HeaderLayout</StoryHeading>
       <Tagline>
         This is a helper sub-component that will often be put inside of the
-        <code>CollapsibleCard.Header</code>. Note: it is important to <code>e.stopPropagation()</code> on any clickable
-        components that are put into the <code>CollapsibleCard.Header</code>, otherwise clicking on them will
-        expand/collapse the component.
+        <code>CollapsibleCard.Header</code>.
       </Tagline>
+      <br />
+      <Toast kind="warning">
+        It is important to <code>e.stopPropagation()</code> on any clickable components that are put into the{" "}
+        <code>CollapsibleCard.Header</code>, otherwise clicking on them will expand/collapse the component.
+      </Toast>
+      <Toast kind="warning">
+        You may have to pass the <code>a11yHeadingLevel</code> prop into the <code>HeaderLayout.Heading</code> component
+        to prevent a11y errors.
+      </Toast>
       <br />
       <br />
       <HeaderLayout>

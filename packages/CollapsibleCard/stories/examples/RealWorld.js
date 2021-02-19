@@ -8,6 +8,7 @@ import OverflowMenu from "@paprika/overflow-menu";
 import StatusTracker from "@paprika/status-tracker";
 import Switch from "@paprika/switch";
 import Tabs from "@paprika/tabs";
+import Toast from "@paprika/toast";
 import CollapsibleCard from "../../src";
 import HeaderLayout from "../../src/components/HeaderLayout";
 
@@ -32,6 +33,15 @@ const RealWorldStory = () => {
     <Story>
       <StoryHeading level={1}>Real-world Examples</StoryHeading>
       <Tagline>These examples demonstrate how the CollapsibleCard will really be used in the real world.</Tagline>
+      <br />
+      <Toast kind="warning">
+        It is important to <code>e.stopPropagation()</code> on any clickable components that are put into the{" "}
+        <code>CollapsibleCard.Header</code>, otherwise clicking on them will expand/collapse the component.
+      </Toast>
+      <Toast kind="warning">
+        You may have to pass the <code>a11yHeadingLevel</code> prop into the <code>HeaderLayout.Heading</code> component
+        to prevent a11y errors.
+      </Toast>
       <br />
       <CollapsibleCard>
         <CollapsibleCard.Header>
