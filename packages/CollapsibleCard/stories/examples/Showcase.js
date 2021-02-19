@@ -180,13 +180,12 @@ const ExampleStory = () => {
             </HeaderLayout>
           </CollapsibleCard.Segment>
           <CollapsibleCard.Segment width={40}>
-            <div style={{ paddingTop: "5px", textAlign: isBroken800 ? "left" : "right" }}>
+            <div style={{ paddingTop: "2px", textAlign: isBroken800 ? "left" : "right" }}>
               <Button
                 onClick={e => {
                   e.stopPropagation();
                 }}
-                size="small"
-                kind="primary"
+                kind="flat"
               >
                 click 1
               </Button>
@@ -195,8 +194,7 @@ const ExampleStory = () => {
                 onClick={e => {
                   e.stopPropagation();
                 }}
-                size="small"
-                kind="primary"
+                kind="flat"
               >
                 click 2
               </Button>
@@ -205,8 +203,7 @@ const ExampleStory = () => {
                 onClick={e => {
                   e.stopPropagation();
                 }}
-                size="small"
-                kind="primary"
+                kind="flat"
               >
                 click 3
               </Button>

@@ -35,7 +35,7 @@ export const CollapsibleCard = styled.div(
   ({ isEditing, isCollapsed, isFirstRow, isMiddleRow, isLastRow }) => css`
     background-color: ${tokens.color.white};
     border: ${getBorder(isEditing, isFirstRow, isMiddleRow, isLastRow)};
-    border-radius: ${getBorderRadius(isFirstRow, isMiddleRow, isLastRow, isCollapsed)};
+    border-radius: ${getBorderRadius(isFirstRow, isMiddleRow, isLastRow, isCollapsed, false)};
     box-shadow: ${getBoxShadow(isEditing, isFirstRow, isMiddleRow, isLastRow)};
     overflow: hidden;
 

@@ -1,6 +1,6 @@
 import tokens from "@paprika/tokens";
 
-export default function getBorderRadius(isFirstRow, isMiddleRow, isLastRow, isCollapsed) {
+export default function getBorderRadius(isFirstRow, isMiddleRow, isLastRow, isCollapsed, isHeader) {
   const isInAGroup = isFirstRow !== null;
   const isExpanded = !isCollapsed;
 
@@ -19,7 +19,7 @@ export default function getBorderRadius(isFirstRow, isMiddleRow, isLastRow, isCo
       }
       return `unset`;
     }
-  } else if (isExpanded) {
+  } else if (isExpanded && isHeader) {
     return `${tokens.card.borderRadius} ${tokens.card.borderRadius} 0 0`;
   }
 

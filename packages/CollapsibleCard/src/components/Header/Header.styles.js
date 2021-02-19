@@ -7,7 +7,7 @@ export const Header = styled.div(
   ({ isEditing, isCollapsed, isFirstRow, isMiddleRow, isLastRow }) => css`
     align-items: flex-start;
     border: 2px solid transparent;
-    border-radius: ${getBorderRadius(isFirstRow, isMiddleRow, isLastRow, isCollapsed)};
+    border-radius: ${getBorderRadius(isFirstRow, isMiddleRow, isLastRow, isCollapsed, true)};
     cursor: pointer;
     display: flex;
     padding: 14px;
