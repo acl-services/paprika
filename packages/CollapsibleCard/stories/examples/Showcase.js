@@ -165,7 +165,7 @@ const ExampleStory = () => {
         </CollapsibleCard.Body>
       </CollapsibleCard>
       <br />
-      <CollapsibleCard>
+      <CollapsibleCard isEditing>
         <CollapsibleCard.Header onChangeIsBroken={handleChangeIsBroken800}>
           <CollapsibleCard.Segment width={60}>
             <HeaderLayout>
@@ -181,6 +181,25 @@ const ExampleStory = () => {
           </CollapsibleCard.Segment>
           <CollapsibleCard.Segment width={40}>
             <div style={{ paddingTop: "2px", textAlign: isBroken800 ? "left" : "right" }}>
+              <div style={{ display: "inline-block", borderRight: "1px solid silver", marginRight: "16px" }}>
+                <Button
+                  onClick={e => {
+                    e.stopPropagation();
+                  }}
+                  kind="primary"
+                >
+                  Save
+                </Button>
+                &nbsp;
+                <Button
+                  onClick={e => {
+                    e.stopPropagation();
+                  }}
+                  kind="minor"
+                >
+                  Cancel
+                </Button>
+              </div>
               <Button
                 onClick={e => {
                   e.stopPropagation();

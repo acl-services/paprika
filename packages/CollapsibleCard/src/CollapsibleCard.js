@@ -7,7 +7,6 @@ import Segment from "./components/Segment";
 import CollapsibleCardContext from "./CollapsibleCardContext";
 import * as sc from "./CollapsibleCard.styles";
 
-// - carol's feedback
 // - create all docs/readmes, see paprikaDocs in package.json
 //   - mention a11yHeadingLevel
 //   - mention to add `e.stopPropagation()` to children
