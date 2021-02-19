@@ -104,17 +104,26 @@ export default function Text(props) {
   }
 
   if (status === on.FOCUS) {
-    return (
-      <Popover {...popoverProps}>
+    const trigger = (
+      <sc.Input columnWidth={columnWidth}>
+        <button
+          type="button"
+          onClick={event => {
+            event.stopPropagation();
+            alert("yei!");
+          }}
+        >
+          hi!
+        </button>
         <sc.Ellipsis size={size}>{value}</sc.Ellipsis>
-        <p>
-          Push your water glass on the floor poop on grasses so pet me pet me pet me pet me, bite, scratch, why are you
-          petting me. Ooooh feather moving feather! purrr purr littel cat, little cat purr purr i rule on my back you
-          rub my tummy i bite you hard mewl for food at 4am to pet a cat, rub its belly, endure blood and agony, quietly
-          weep, keep rubbing belly, for i can haz. Sleep all day whilst slave is at work, play all night whilst slave is
-          sleeping fall{" "}
-        </p>
-      </Popover>
+      </sc.Input>
+    );
+    return (
+      <>
+        <Popover {...popoverProps} trigger={trigger}>
+          <p>purrr purr littel cat, little cat purr purr i rule on my back you rub my </p>
+        </Popover>
+      </>
     );
   }
 

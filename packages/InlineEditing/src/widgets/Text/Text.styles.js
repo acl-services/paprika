@@ -30,9 +30,13 @@ export const Ellipsis = styled.span(({ size }) => {
   `;
 });
 
-export const Input = styled.div(() => {
+export const Input = styled.div(({ columnWidth }) => {
   return css`
+    box-sizing: border-box;
     display: block;
+    border: 1px solid red;
+    ${columnWidth ? `width:${columnWidth}px` : ""};
+    z-index: 1000;
 
     .text-inline-input > [data-pka-anchor="input"] {
       border: 0;

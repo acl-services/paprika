@@ -4,8 +4,6 @@ import tokens from "@paprika/tokens";
 export const CellOverflow = styled.div(({ hasError }) => {
   return css`
     ${hasError ? `box-shadow: inset 0 0 1px 2px ${tokens.color.orange}; background: white;` : ""};
-    height: 24px;
-    padding: ${tokens.space};
     pointer-events: none;
     position: relative;
   `;
@@ -45,7 +43,6 @@ export const Card = styled.div(({ rect }) => {
     border: 1px solid ${tokens.border.color};
     box-shadow: ${tokens.shadow};
     box-sizing: border-box;
-    padding: 8px;
     width: ${rect.width}px;
   `;
 });

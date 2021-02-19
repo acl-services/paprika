@@ -23,6 +23,7 @@ const defaultProps = {
 function PopoverFocusOrEdit(props) {
   return (
     <Popover {...props} offset={props.offset()}>
+      {props.trigger ? <Popover.Trigger>{props.trigger}</Popover.Trigger> : null}
       <Popover.Content>
         <sc.Card rect={props.rect}>{props.children}</sc.Card>
       </Popover.Content>
@@ -74,7 +75,7 @@ const Editable = React.forwardRef((props, ref) => {
     edge: "left",
     isOpen: true,
     isPortal: false,
-    offset: () => -getRect().height,
+    offset: () => (status === on.EDITING ? -getRect().height : 0),
     shouldKeepFocus: false,
     getPositioningElement: () => {
       return refTable.current.querySelector(`[data-row-index="${rowIndex}"][data-column-index="${columnIndex}"]`);
