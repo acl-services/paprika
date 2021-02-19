@@ -7,19 +7,10 @@ import Segment from "./components/Segment";
 import CollapsibleCardContext from "./CollapsibleCardContext";
 import * as sc from "./CollapsibleCard.styles";
 
-// - make header clickable?
-//   - consumer would have to stop propagation on whatever children they pass in (and not all children have an `onClick` to hook into)
-//     x make sure this works for checkbox
-//     - make this work for overflowmenu
-//   x this component would have to handle clicking anywhere on the header
-//   x this component would have to have a 'focus' style (normal and row)
-//   x this component would have to have a 'hover' style (normal and row)
-// - see Collapsible and old CollapsibleCard (a11y, props)
-//   - allyText
+// - carol's feedback
 // - create all docs/readmes, see paprikaDocs in package.json
 //   - mention a11yHeadingLevel
 //   - mention to add `e.stopPropagation()` to children
-// - ask carol and jonathan to review (send storybook direct links)
 // - tests
 
 export default function CollapsibleCard(props) {
@@ -44,6 +35,7 @@ export default function CollapsibleCard(props) {
   return (
     <CollapsibleCardContext.Provider value={thingsToShare}>
       <sc.CollapsibleCard
+        aria-expanded={!isCollapsed}
         isCollapsed={isCollapsed}
         isEditing={isEditing}
         isFirstRow={isFirstRow}
