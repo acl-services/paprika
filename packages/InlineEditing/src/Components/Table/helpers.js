@@ -6,5 +6,5 @@ export const getCellElement = ({ refTable, rowIndex, columnIndex }) => () => {
 };
 
 export const getBoundingClientRect = cellElement => () => {
-  return cellElement().getBoundingClientRect();
+  return cellElement()?.getBoundingClientRect();
 };

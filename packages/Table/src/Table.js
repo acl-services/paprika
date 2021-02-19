@@ -19,6 +19,8 @@ const Table = React.forwardRef((props, ref) => {
     onBlur,
     onClick,
     onFocus,
+    /** for internal use */
+    cellPropsResetCSS = false, // eslint-disable-line
     ...moreProps
   } = props;
   const [tableId] = React.useState(() => `table_${uuidv4()}`);
@@ -93,6 +95,7 @@ const Table = React.forwardRef((props, ref) => {
                 if (typeof cell === "function")
                   return (
                     <sc.TD
+                      cellPropsResetCSS={cellPropsResetCSS}
                       borderType={borderType}
                       key={columnIndex}
                       {...moreColumnProps}
@@ -106,6 +109,7 @@ const Table = React.forwardRef((props, ref) => {
                 if (typeof cell === "string")
                   return (
                     <sc.TD
+                      cellPropsResetCSS={cellPropsResetCSS}
                       borderType={borderType}
                       key={columnIndex}
                       {...moreColumnProps}

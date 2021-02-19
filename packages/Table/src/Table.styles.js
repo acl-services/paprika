@@ -60,10 +60,10 @@ const borderTypesStyles = {
   `,
 };
 
-export const TD = styled.td(({ borderType }) => {
+export const TD = styled.td(({ borderType, cellPropsResetCSS }) => {
   return css`
     ${borderType in borderTypesStyles ? borderTypesStyles[borderType] : ""}
-    padding: ${tokens.space};
+    ${cellPropsResetCSS ? "" : `padding: ${tokens.space};`};
     text-align: left;
   `;
 });

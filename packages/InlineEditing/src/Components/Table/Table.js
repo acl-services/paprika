@@ -1,8 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import TablePaprika from "@paprika/table";
+/** REMOVE THIS BEFORE MERGE */
+/** REMOVE THIS BEFORE MERGE */
+/** REMOVE THIS BEFORE MERGE */
+/** REMOVE THIS BEFORE MERGE */
+/** DO NOT MERGE IMPORTING THE COMPONENT WITH A RELATIVE PATH */
+import TablePaprika from "../../../../Table/src";
 import Editable from "../Editable";
 import { getCellElement, getBoundingClientRect } from "./helpers";
+import * as sc from "./Table.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -16,7 +22,7 @@ export default function Table(props) {
   const getCellKeyStr = ({ rowIndex, columnIndex }) => `paprika.inline-editing.cell${rowIndex}-${columnIndex}`;
 
   const clonedColumnDefinition = React.useMemo(() => {
-    const handleCell = ({ cell: Cell, columnWidth, onChange }) => args => {
+    const handleCell = ({ cell: Cell, onChange, columnWidth }) => args => {
       const { rowIndex, columnIndex } = args;
       const cellElementBound = getCellElement({ refTable, rowIndex, columnIndex });
       const getRect = getBoundingClientRect(cellElementBound);
@@ -26,9 +32,11 @@ export default function Table(props) {
           refTable={refTable}
           ref={ref => refCells.current.set(getCellKeyStr({ rowIndex, columnIndex }), ref)}
           getRect={getRect}
+          onChange={onChange}
+          columnWidth={columnWidth}
           {...args}
         >
-          <Cell onChange={onChange} {...args} columnWidth={columnWidth} getRect={getRect} />
+          <Cell {...args} />
         </Editable>
       );
     };
@@ -80,17 +88,20 @@ export default function Table(props) {
   }
 
   return (
-    <TablePaprika
-      enableArrowKeyNavigation
-      onBlur={handleBlur}
-      onClick={handleClick}
-      onFocus={handleFocus}
-      onKeyUp={handleKeyUp}
-      ref={refTable}
-      {...moreProps}
-    >
-      {clonedColumnDefinition}
-    </TablePaprika>
+    <sc.Wrapper>
+      <TablePaprika
+        enableArrowKeyNavigation
+        onBlur={handleBlur}
+        onClick={handleClick}
+        onFocus={handleFocus}
+        onKeyUp={handleKeyUp}
+        ref={refTable}
+        cellPropsResetCSS
+        {...moreProps}
+      >
+        {clonedColumnDefinition}
+      </TablePaprika>
+    </sc.Wrapper>
   );
 }
 
