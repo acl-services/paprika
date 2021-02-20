@@ -6,10 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-- Major refactor.
-
 ### Changed
 
+- Major refactor.
 - Replace `nanoid` by `uuid`.
 
 ## [1.1.2-alpha.1] - 2020-12-04
