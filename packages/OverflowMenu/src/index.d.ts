@@ -3,18 +3,18 @@ export default OverflowMenu;
 declare function OverflowMenu(props: OverflowMenuProps): JSX.Element;
 interface OverflowMenuProps {
   [x: string]: any;
-  /** Alignment of the Popover */
-  align?: custom;
+  /** Where the popover content is positioned relative to the trigger or getPositioningElement. */
+  align?: Popover.types.align.TOP | Popover.types.align.RIGHT | Popover.types.align.BOTTOM | Popover.types.align.LEFT;
   /** Children should consist of <OverflowMenu.Item /> */
   children: React.ReactNode;
   /** If provided, will align Popover to specified edge of Trigger */
-  edge?: custom;
+  edge?: Popover.types.align.LEFT | Popover.types.align.RIGHT | null;
   /** Control if the overflow menu popover open. */
-  isOpen?: custom;
+  isOpen?: boolean;
   /** If provided, will fire when the Popover is closed */
-  onClose?: custom;
+  onClose?: (...args: any[]) => any;
   /** The z-index for the popover / confirmation */
-  zIndex?: custom;
+  zIndex?: number;
 }
 
 declare namespace OverflowMenu {
@@ -72,6 +72,24 @@ declare namespace OverflowMenu {
   }
 }
 
+declare namespace Popover {
+  namespace types {
+    namespace align {
+      const TOP: any;
+      const RIGHT: any;
+      const BOTTOM: any;
+      const LEFT: any;
+    }
+  }
+}
+declare namespace Popover {
+  namespace types {
+    namespace align {
+      const LEFT: any;
+      const RIGHT: any;
+    }
+  }
+}
 declare namespace Trigger {
   namespace types {
     namespace button {

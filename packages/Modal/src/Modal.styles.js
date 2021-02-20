@@ -2,9 +2,6 @@ import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 import * as types from "./types";
-import OriginalHeader from "./components/Header";
-import OriginalContent from "./components/Content";
-import OriginalFooter from "./components/Footer";
 
 /*
 Some comments concerning modal positioning:
@@ -80,25 +77,3 @@ export const Modal = styled.div(
     ${stylers.z(1)};
   `
 );
-
-export const Header = styled(OriginalHeader)`
-  flex: none;
-`;
-
-export const ContentWrapper = styled.div`
-  overflow-y: auto;
-
-  &:focus {
-    ${stylers.focusRing.subtle(true)};
-  }
-`;
-
-export const Content = styled(OriginalContent)`
-  ${Header} + ${ContentWrapper} > & {
-    margin-top: -${OriginalContent.SPACE};
-  }
-`;
-
-export const Footer = styled(OriginalFooter)`
-  flex: none;
-`;

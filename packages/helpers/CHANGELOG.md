@@ -27,3 +27,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - useMountedRef useEffect to useLayoutEffect
 - [BREAKING CHANGE] Moved polyfill helpers together into a polyfills directory
   [@mikrotron](https://github.com/mikrotron)
+
+## [2.0.2-alpha.0] - 2021-02-05
+
+### Added
+
+- `callAll` function [@mikrotron](https://github.com/mikrotron)
+
+## [2.1.1-alpha.0] - 2021-02-10
+
+- Avoid errors in jest spec.

@@ -61,6 +61,7 @@ const Point = React.forwardRef((props, ref) => {
           onFocus={handleTooltipOpen}
           onBlur={handleTooltipClose}
           kind={kind}
+          isDropdown
           data-pka-anchor="status-tracker.point"
         >
           {React.cloneElement(
@@ -107,6 +108,25 @@ const Point = React.forwardRef((props, ref) => {
       );
     }
 
+    if (kind === kinds.CURRENT) {
+      return (
+        <sc.Point
+          aria-label={name}
+          onMouseOver={handleTooltipOpen}
+          onMouseOut={handleTooltipClose}
+          onFocus={handleTooltipOpen}
+          onBlur={handleTooltipClose}
+          isDropdown={false}
+          kind={kind}
+          tabIndex={0}
+          data-pka-anchor="status-tracker.point"
+          {...a11yAttributes}
+        >
+          {name}
+        </sc.Point>
+      );
+    }
+
     return (
       <sc.Point
         aria-label={name}
@@ -114,6 +134,7 @@ const Point = React.forwardRef((props, ref) => {
         onMouseOut={handleTooltipClose}
         onFocus={handleTooltipOpen}
         onBlur={handleTooltipClose}
+        isDropdown={false}
         kind={kind}
         as={RawButton}
         data-pka-anchor="status-tracker.point"

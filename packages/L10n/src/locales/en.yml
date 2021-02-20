@@ -102,6 +102,7 @@ en:
       less_about: show less about {{topic}}
     listBox:
       trigger:
+        clear_selection: Clear selection
         placeholder: Select...
       filter:
         a11y_text: Search
@@ -197,3 +198,6 @@ en:
         is_after: is after
         true: "true"
         false: "false"
+    input:
+      clear_button: 
+        aria_label: Clear input

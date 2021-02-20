@@ -5,10 +5,10 @@ export const Frame = styled.div`
 `;
 
 export const ImageOption = styled.div`
-  height: 115px;
-  line-height: 115px;
+  height: 60px;
+  line-height: 60px;
   text-align: center;
-  width: 115px;
+  width: 60px;
 
   img {
     max-height: 100%;

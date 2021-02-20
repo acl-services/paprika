@@ -1,13 +1,12 @@
 import { Meta, Props, Story } from "@storybook/addon-docs/blocks";
-import ListBox from "../src/";
-
+import ListBox from "../src";
 import { images } from "./fixtures/images";
 import * as characters from "./fixtures/characters";
-
-import * as Multi from "./examples/multi";
-import * as Single from "./examples/single";
-import * as Trigger from "./examples/trigger.js";
-import FilterSelect from "./moreExamples/filterSelect/FilterSelect";
+import { CustomCheckboxes } from "./examples/Multi/CustomCheckboxes";
+import { OnChange } from "./examples/Single/OnChange";
+import { Controlled } from "./examples/Single/Controlled";
+import { Trigger } from "./examples/Trigger.js";
+import FilterSelect from "./sandbox/FilterSelect/FilterSelect";
 
 # ListBox
 
@@ -25,7 +24,7 @@ Main features:
 ## Installation
 
 ```
-yarn add @/paprika/list-box
+yarn add @paprika/list-box
 ```
 
 or
@@ -248,7 +247,7 @@ const togglePopover = (dispatch, types) => () => {
 
 #### Result
 
-<Trigger.Trigger />
+<Trigger />
 
 ### Multi ListBox
 
@@ -332,26 +331,28 @@ function OptionCustomCheckbox(props) {
   {characters.villians.map(Option => (
     <ListBox.Option label={Option.props.children}>
       {({ isSelected }) => <OptionCustomCheckbox isSelected={isSelected} character={Option.props.children} />}
-</ListBox>
+    </ListBox.Option>
+  ))}
+</ListBox>;
 ```
 
 In the above code snippet, `characters.villians` refers to a file named `characters` with a variable `villians` that stores an array of strings
 
 #### Result
 
-<Multi.WithCustomCheckboxes />
+<CustomCheckboxes />
 
 ### More Examples
 
 #### Display a text when an option in `<ListBox>` is selected
 
-<Single.OnChange />
+<OnChange />
 
 #### Controlled ListBox
 
 `Controlled ListBox` allows users to either select option by clicking the corresponding button or selecting the `ListBox.Option`
 
-<Single.ControlledIsSelected />
+<ControlledIsSelected />
 
 #### Example of filtering a data set using `<ListBox>`
 

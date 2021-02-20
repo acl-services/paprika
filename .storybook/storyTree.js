@@ -8,6 +8,7 @@ const storyTree = [
       "Heading",
       "Icon",
       "Pill",
+      "Tag"
     ],
   },
   {
@@ -98,7 +99,8 @@ const storyTree = [
       "Tokens",
       "helpers",
       "DynamicHyperlinkTransformer",
-      "MockEndpoints"
+      "MockEndpoints",
+      "seducer"
     ],
   },
 ];

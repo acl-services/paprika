@@ -6,10 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Changed
-
-- Replace `nanoid` by `uuid`.
-
 ## [0.3.0] - 2020-06-24
 
 ### Breaking change
@@ -44,3 +40,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Updated: Created and placed all constants into type.js file. [@kaan.darcey](https://github.com/KDarcey).
+
+## [1.0.7-alpha.0] - 2021-02-01
+
+### Changed
+
+- Replace `nanoid` by `uuid`.
+
+## [1.0.9-alpha.2] - 2021-02-11
+
+- Fixed some UI issues related to borders.
