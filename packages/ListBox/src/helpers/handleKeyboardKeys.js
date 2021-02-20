@@ -1,18 +1,16 @@
 import { handleEnterOrSpace, handleArrowKeys } from "../components/Options/helpers/options";
 import useListBox from "../useListBox";
 
-export const handleKeyDownKeyboardKeys = ({ state, dispatch, onChangeContext }) => event => {
-  if (state.isDisabled) {
-    return;
-  }
+export const handleKeyDownKeyboardKeys = ({ providedProps, state, dispatch, onChangeContext }) => event => {
+  if (providedProps.isDisabled) return;
 
   switch (event.key) {
     case "ArrowUp":
-      handleArrowKeys({ event, state, dispatch, onChangeContext, isArrowDown: false });
+      handleArrowKeys({ event, providedProps, state, dispatch, onChangeContext, isArrowDown: false });
       break;
 
     case "ArrowDown":
-      handleArrowKeys({ event, state, dispatch, onChangeContext, isArrowDown: true });
+      handleArrowKeys({ event, providedProps, state, dispatch, onChangeContext, isArrowDown: true });
       break;
 
     default:
@@ -20,10 +18,8 @@ export const handleKeyDownKeyboardKeys = ({ state, dispatch, onChangeContext }) 
   }
 };
 
-export const handleKeyUpKeyboardKeys = ({ state, dispatch, onChangeContext }) => event => {
-  if (state.isDisabled) {
-    return;
-  }
+export const handleKeyUpKeyboardKeys = ({ providedProps, state, dispatch, onChangeContext }) => event => {
+  if (providedProps.isDisabled) return;
 
   switch (event.key) {
     case "Escape":
@@ -37,7 +33,7 @@ export const handleKeyUpKeyboardKeys = ({ state, dispatch, onChangeContext }) =>
 
     case "Enter":
     case " ":
-      handleEnterOrSpace({ event, state, dispatch, onChangeContext });
+      handleEnterOrSpace({ event, providedProps, state, dispatch, onChangeContext });
       break;
 
     default:

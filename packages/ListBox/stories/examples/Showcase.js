@@ -1,17 +1,19 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
-import { boolean, number, text } from "@storybook/addon-knobs";
+import { boolean, number, select, text } from "@storybook/addon-knobs";
 import CodeViewer from "storybook/components/CodeViewer";
 import StoryHeading from "storybook/components/StoryHeading";
 import * as characters from "../fixtures/characters";
 import ListBox from "../../src";
 
 const getKnobs = () => ({
+  size: select("size", Object.values(ListBox.types.size), ListBox.types.size.MEDIUM),
   height: number("height", 200),
   hasError: boolean("hasError", false),
   isDisabled: boolean("isDisabled", false),
+  isInline: boolean("isInline", false),
   isReadOnly: boolean("isReadOnly", false),
-  placeholder: text("placeholder", "Select..."),
+  placeholder: text("placeholder", ""),
   showFilter: boolean("Show Filter", false),
   showFooter: boolean("Show Footer", false),
 });

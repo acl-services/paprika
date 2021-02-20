@@ -9,11 +9,8 @@ function initializeState(props) {
   const {
     childrenOptions,
     height,
-    isDisabled,
-    isInline,
     isMulti,
     isOpen,
-    placeholder,
     refFilterInput,
     refFooterContainer,
     refListBox,
@@ -21,7 +18,6 @@ function initializeState(props) {
     refTrigger,
     refTriggerContainer,
     refLabel,
-    size,
   } = props;
 
   // initialize state for options and groups
@@ -42,8 +38,6 @@ function initializeState(props) {
     hasFooter: false,
     hasPopupOpened: false,
     height,
-    isDisabled,
-    isInline,
     isMulti,
     isOpen,
     lastKnownSelectedOptions: selectedOptions.slice(0),
@@ -51,7 +45,6 @@ function initializeState(props) {
     noResultsFound: false,
     onChangeFn: null,
     options,
-    placeholder,
     refFilterInput,
     refFooterContainer,
     refLabel,
@@ -60,7 +53,6 @@ function initializeState(props) {
     refTrigger,
     refTriggerContainer,
     selectedOptions,
-    size,
     triggerWidth: 0,
   };
 

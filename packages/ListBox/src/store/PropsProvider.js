@@ -3,13 +3,6 @@ import PropTypes from "prop-types";
 
 export const PropsContext = React.createContext(null);
 
-const propTypes = {
-  children: PropTypes.node.isRequired,
-  hasError: PropTypes.bool.isRequired,
-  idListBox: PropTypes.string.isRequired,
-  isReadOnly: PropTypes.bool.isRequired,
-};
-
 export default function PropsProvider(props) {
   const { children, ...providedProps } = props;
 
@@ -17,4 +10,14 @@ export default function PropsProvider(props) {
 }
 
 PropsProvider.displayName = "PropsProvider";
-PropsProvider.propTypes = propTypes;
+
+PropsProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+  hasError: PropTypes.bool.isRequired,
+  idListBox: PropTypes.string.isRequired,
+  isDisabled: PropTypes.bool.isRequired,
+  isInline: PropTypes.bool.isRequired,
+  isReadOnly: PropTypes.bool.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  size: PropTypes.string.isRequired,
+};

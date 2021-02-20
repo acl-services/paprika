@@ -120,8 +120,8 @@ export function getNextOptionActiveIndexLooping(state) {
   return getNextOptionActiveIndex(state) || getNextOptionActiveIndex(state, false);
 }
 
-export function handleArrowKeys({ event, state, dispatch, isArrowDown = null, onChangeContext }) {
-  if (!state.isInline && !state.isOpen) {
+export function handleArrowKeys({ event, providedProps, state, dispatch, isArrowDown = null, onChangeContext }) {
+  if (!providedProps.isInline && !state.isOpen) {
     dispatch({ type: useListBox.types.openPopover });
     return;
   }
@@ -147,7 +147,13 @@ export function handleArrowKeys({ event, state, dispatch, isArrowDown = null, on
         payload: { activeOptionIndex: next, isOpen: true },
       });
     } else {
-      selectSingleOption({ activeOptionIndex: next, isOpen: true, dispatch, onChangeContext, eventType: KEY_PRESS });
+      selectSingleOption({
+        activeOptionIndex: next,
+        isOpen: true,
+        dispatch,
+        onChangeContext,
+        eventType: KEY_PRESS,
+      });
     }
   }
 }
@@ -166,7 +172,7 @@ export const toggleOption = ({ index, isMulti, dispatch, onChangeContext }) => {
   selectSingleOption({ activeOptionIndex: index, isOpen: false, dispatch, onChangeContext });
 };
 
-export const handleClickOption = ({ props, state, isDisabled, dispatch, onChangeContext }) => event => {
+export const handleClickOption = ({ props, isDisabled, state, dispatch, onChangeContext }) => event => {
   if (isDisabled) return;
   const { index } = props;
   const { options, hasFilter, isMulti, refFilterInput } = state;
@@ -210,7 +216,7 @@ export const handleClickOption = ({ props, state, isDisabled, dispatch, onChange
   selectSingleOption({ activeOptionIndex: index, isOpen: false, dispatch, onChangeContext, eventType: CLICK });
 };
 
-export function handleEnterOrSpace({ event, state, dispatch, onChangeContext }) {
+export function handleEnterOrSpace({ event, providedProps, state, dispatch, onChangeContext }) {
   event.preventDefault();
 
   const option = state.options[state.activeOption];
@@ -226,7 +232,7 @@ export function handleEnterOrSpace({ event, state, dispatch, onChangeContext }) 
   }
 
   if (state.activeOption === null) {
-    if (state.isInline) {
+    if (providedProps.isInline) {
       return;
     }
 
@@ -245,7 +251,7 @@ export function handleEnterOrSpace({ event, state, dispatch, onChangeContext }) 
     }
   }
 
-  if (state.isOpen || state.isInline) {
+  if (state.isOpen || providedProps.isInline) {
     if (typeof state.options[state.activeOption] !== "undefined" && state.options[state.activeOption].onClick) {
       state.options[state.activeOption].onClick();
     }

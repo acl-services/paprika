@@ -91,20 +91,21 @@ export const CaretIcon = styled.span`
 `;
 
 export const ClearButton = styled(Button.Icon)(
-  ({ shouldHideCaret }) => css`
+  ({ shouldHideCaret, isDisabled }) => css`
     height: 100%;
     margin-right: 2px;
     position: absolute;
     right: ${shouldHideCaret ? 0 : "22px"};
     top: 0;
 
-    &:hover {
+    &:hover, &:focus {
       background-color: transparent;
+      border-color: transparent;
     }
     
-    [data-pka-anchor="icon"] {
+    [data-pka-anchor="button.icon"] svg {
       ${iconStyles}
-      color: ${tokens.color.blackLighten20};
+      color: ${isDisabled ? tokens.color.blackLighten60 : tokens.color.blackLighten20};
       vertical-align: text-top;
     }
   `

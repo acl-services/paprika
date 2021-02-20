@@ -6,30 +6,11 @@ import * as sc from "./Label.styles";
 import LabelMulti from "./LabelMulti";
 import LabelSingle from "./LabelSingle";
 
-const propTypes = {
-  hasImplicitAll: PropTypes.bool,
-
-  isDisabled: PropTypes.bool,
-
-  /** Override the label with a custom one. */
-  label: PropTypes.string,
-
-  /** Sets a placeholder for the label. */
-  placeholder: PropTypes.string,
-};
-
-const defaultProps = {
-  hasImplicitAll: false,
-  isDisabled: false,
-  label: null,
-  placeholder: "",
-};
-
 export default function Label(props) {
   const { hasImplicitAll, placeholder, label: customLabel, isDisabled } = props;
   const [state] = useListBox();
   const { selectedOptions, isMulti, options } = state;
-  const propsContext = React.useContext(PropsContext);
+  const { isReadOnly } = React.useContext(PropsContext);
   const [label, setLabel] = React.useState(placeholder);
 
   React.useEffect(() => {
@@ -52,12 +33,28 @@ export default function Label(props) {
       hasImplicitAll={hasImplicitAll}
       isPlaceholder={!selectedOptions.length}
       isDisabled={isDisabled}
-      isReadOnly={propsContext.isReadOnly}
+      isReadOnly={isReadOnly}
     >
       {customLabel || label}
     </sc.Label>
   );
 }
 
-Label.propTypes = propTypes;
-Label.defaultProps = defaultProps;
+Label.propTypes = {
+  hasImplicitAll: PropTypes.bool,
+
+  isDisabled: PropTypes.bool,
+
+  /** Override the label with a custom one. */
+  label: PropTypes.string,
+
+  /** Sets a placeholder for the label. */
+  placeholder: PropTypes.string,
+};
+
+Label.defaultProps = {
+  hasImplicitAll: false,
+  isDisabled: false,
+  label: null,
+  placeholder: "",
+};

@@ -34,12 +34,26 @@ export default function Trigger(props) {
     label,
     onClickClear,
     onClickFooterAccept,
-    placeholder,
     morePropsForTrigger,
     ...moreProps
   } = props;
-  const { hasError, idListBox, isReadOnly } = providedProps;
-  const { isDisabled, isMulti, refLabel, refTrigger, refTriggerContainer, size } = state;
+
+  const { hasError, idListBox, isDisabled, isInline, isReadOnly, size } = providedProps;
+
+  const {
+    activeOption,
+    hasFooter,
+    isOpen,
+    isMulti,
+    onChange,
+    options,
+    refLabel,
+    refTrigger,
+    refTriggerContainer,
+    selectedOptions,
+  } = state;
+
+  const placeholder = props.placeholder || providedProps.placeholder;
 
   const idFormLabel = React.useRef();
   React.useEffect(() => {
@@ -67,7 +81,7 @@ export default function Trigger(props) {
   }, [refLabel, refTrigger, idListBox]);
 
   const handleClick = () => {
-    if (state.isOpen) {
+    if (isOpen) {
       dispatch({ type: useListBox.types.closePopover });
       return;
     }
@@ -96,7 +110,7 @@ export default function Trigger(props) {
       return;
     }
 
-    if (state.hasFooter) {
+    if (hasFooter) {
       dispatch({
         type: useListBox.types.clear,
         payload: {
@@ -111,23 +125,23 @@ export default function Trigger(props) {
       type: useListBox.types.clear,
       payload: {
         isOpen: false,
-        onChangeFn: invokeOnChange(state.onChange, "list-box:clear"),
+        onChangeFn: invokeOnChange(onChange, "list-box:clear"),
       },
     });
   };
 
   function renderLabel() {
-    return state.isInline || isReadOnly ? (
+    return isInline || isReadOnly ? (
       <Label
-        activeOption={state.options[state.activeOption]}
+        activeOption={options[activeOption]}
         hasImplicitAll={hasImplicitAll}
         id={`${idListBox}__label`}
         isDisabled={isDisabled}
         isMulti={isMulti}
         label={label}
-        options={state.options}
+        options={options}
         placeholder={placeholder}
-        selectedOptions={state.selectedOptions}
+        selectedOptions={selectedOptions}
       />
     ) : (
       <RawButton
@@ -144,15 +158,15 @@ export default function Trigger(props) {
         ref={refTrigger}
       >
         <Label
-          activeOption={state.options[state.activeOption]}
+          activeOption={options[activeOption]}
           hasImplicitAll={hasImplicitAll}
           id={`${idListBox}__label`}
           isDisabled={isDisabled}
           isMulti={isMulti}
           label={label}
-          options={state.options}
+          options={options}
           placeholder={placeholder}
-          selectedOptions={state.selectedOptions}
+          selectedOptions={selectedOptions}
         />
       </RawButton>
     );
@@ -166,7 +180,7 @@ export default function Trigger(props) {
         dispatch,
         handleKeyDown: handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext }),
         handleKeyUp: handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext }),
-        isOpen: state.isOpen,
+        isOpen,
         isReadOnly,
         onChangeContext,
         propsForTrigger: () =>
@@ -194,6 +208,7 @@ export default function Trigger(props) {
     hasRenderTrigger,
     idListBox,
     isMulti,
+    isOpen,
     isReadOnly,
     onChangeContext,
     refLabel,
@@ -202,14 +217,10 @@ export default function Trigger(props) {
   ]);
 
   const shouldHideClearButton =
-    !hasClearButton ||
-    hasRenderTrigger ||
-    isReadOnly ||
-    (state.hasFooter && state.isOpen) ||
-    state.selectedOptions.length === 0;
-  const shouldHideCaret = hasRenderTrigger || state.isInline;
+    !hasClearButton || hasRenderTrigger || isReadOnly || (hasFooter && isOpen) || selectedOptions.length === 0;
+  const shouldHideCaret = hasRenderTrigger || isInline;
 
-  if (isHidden && state.isInline) {
+  if (isHidden && isInline) {
     return <sc.ListBoxTrigger data-pka-anchor="list-box-trigger" isHidden />;
   }
 
@@ -217,7 +228,7 @@ export default function Trigger(props) {
     <sc.ListBoxTrigger
       hasError={hasError}
       isDisabled={isDisabled}
-      isInline={state.isInline}
+      isInline={isInline}
       isReadOnly={isReadOnly}
       ref={refTriggerContainer}
       size={size}
@@ -239,7 +250,7 @@ export default function Trigger(props) {
         </sc.ClearButton>
       )}
       {shouldHideCaret ? null : (
-        <sc.CaretIcon as={state.isOpen ? CaretUpIcon : CaretDownIcon} isDisabled={isDisabled} isReadOnly={isReadOnly} />
+        <sc.CaretIcon as={isOpen ? CaretUpIcon : CaretDownIcon} isDisabled={isDisabled} isReadOnly={isReadOnly} />
       )}
     </sc.ListBoxTrigger>
   );
@@ -288,6 +299,6 @@ Trigger.defaultProps = {
   label: null,
   onClickClear: null,
   onClickFooterAccept: null,
-  placeholder: "Select...",
+  placeholder: null,
   isHidden: false,
 };

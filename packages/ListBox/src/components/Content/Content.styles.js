@@ -1,12 +1,12 @@
 import styled, { css } from "styled-components";
-import tokens from "@paprika/tokens";
+import stylers from "@paprika/stylers";
 
-export const Content = styled.div(({ hasOptions }) => {
-  return css`
-    ${hasOptions ? "" : "display:none;"};
-    :focus {
-      outline: 2px ${tokens.color.blackLighten30} dotted;
-      z-index: 1;
+export const Content = styled.div(
+  ({ hasOptions }) => css`
+    ${hasOptions ? "" : "display: none;"};
+
+    &:focus {
+      ${stylers.focusRing.subtle(true)}
     }
-  `;
-});
+  `
+);

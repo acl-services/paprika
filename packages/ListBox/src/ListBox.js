@@ -18,7 +18,6 @@ import {
   useAdjustWidth,
   useChildrenChange,
   useHasFooter,
-  useIsDisabled,
   useIsPopOverOpen,
   useOnScrolled,
   useOptionSelected,
@@ -30,7 +29,6 @@ export function ListBox(props) {
     hasImplicitAll,
     height,
     isOpen,
-    placeholder,
 
     box = { props: {} },
     filter,
@@ -42,14 +40,13 @@ export function ListBox(props) {
 
   const I18n = useI18n();
   const [state] = useListBox();
-  const providedProps = React.useContext(PropsContext);
+  const { isInline, isReadOnly } = React.useContext(PropsContext);
 
   const propsForTrigger = {
     hasClearButton: true,
     hasImplicitAll,
     onClickClear: null,
     onClickFooterAccept: footer ? footer.props.onClickAccept : null,
-    placeholder: placeholder || I18n.t("listBox.trigger.placeholder"),
     morePropsForTrigger: moreProps,
   };
 
@@ -63,7 +60,7 @@ export function ListBox(props) {
   const listProps = {
     height,
     hasOptions,
-    ...(state.isInline ? moreProps : {}),
+    ...(isInline ? moreProps : {}),
   };
 
   return (
@@ -71,14 +68,14 @@ export function ListBox(props) {
       {trigger}
       <Content onCancelFooter={footer ? footer.props.onClickCancel : null} hasOptions={hasOptions}>
         <Box {...box.props}>
-          {providedProps.isReadOnly ? null : filter}
+          {isReadOnly ? null : filter}
           <List {...listProps}>
             <Options isPopoverOpen={isOpen}>{children}</Options>
           </List>
           {filter ? (
             <NoResults label={filter.props.noResultsMessage || I18n.t("listBox.filter.no_results_message")} />
           ) : null}
-          {footer ? React.cloneElement(footer, { ref: state.refFooterContainer }) : null}
+          {footer && !isReadOnly ? React.cloneElement(footer, { ref: state.refFooterContainer }) : null}
         </Box>
       </Content>
     </React.Fragment>
@@ -88,30 +85,31 @@ export function ListBox(props) {
 const ListBoxContainer = React.forwardRef((props, ref) => {
   const [state, dispatch] = useListBox();
   const onChangeContext = React.useContext(OnChangeContext);
-  const I18n = useI18n();
 
   const {
     children,
     hasImplicitAll,
     height,
-    isDisabled,
-    isInline,
     isMulti,
     onChange,
-    placeholder,
     isOpen,
-    size,
 
     // exclude from moreProps
     hasError,
     id,
+    isDisabled,
+    isInline,
     isReadOnly,
+    placeholder,
+    size,
 
-    box, // eslint-disable-line
-    filter, // eslint-disable-line
-    footer, // eslint-disable-line
-    popover, // eslint-disable-line
-    trigger, // eslint-disable-line
+    /* eslint-disable react/prop-types */
+    box,
+    filter,
+    footer,
+    popover,
+    trigger,
+    /* eslint-enable react/prop-types */
 
     ...moreProps
   } = props;
@@ -126,7 +124,6 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
 
   useAdjustWidth();
   useChildrenChange(children);
-  useIsDisabled(isDisabled);
   useIsPopOverOpen(shouldTriggerKeepFocus);
   useOnScrolled();
   useOptionSelected();
@@ -135,7 +132,6 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
   const propsForListBox = {
     hasImplicitAll,
     height,
-    placeholder: placeholder || I18n.t("listBox.trigger.placeholder"),
     isOpen,
 
     box,
@@ -212,17 +208,8 @@ export const propTypes = {
   ]),
 };
 
-ListBox.propTypes = {
-  ...propTypes,
-  children: PropTypes.node.isRequired,
-  height: PropTypes.number.isRequired,
-  placeholder: PropTypes.string.isRequired,
-};
-
 export const defaultProps = {
   children: null,
-  filter: null, // eslint-disable-line
-  footer: null, // eslint-disable-line
   hasError: false,
   hasImplicitAll: false,
   height: 200,
@@ -233,9 +220,14 @@ export const defaultProps = {
   isOpen: null,
   isReadOnly: false,
   onChange: () => {},
-  placeholder: null,
+  placeholder: "",
   size: ListBoxContainer.types.size.MEDIUM,
-  trigger: null, // eslint-disable-line
+};
+
+ListBox.propTypes = {
+  ...propTypes,
+  children: PropTypes.node.isRequired,
+  height: PropTypes.number.isRequired,
 };
 
 ListBoxContainer.propTypes = propTypes;

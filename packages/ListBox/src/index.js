@@ -1,5 +1,6 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import ListBox, { propTypes, defaultProps } from "./ListBox";
 import extractChildren from "./helpers/extractChildren";
 import Divider from "./components/Divider";
@@ -16,12 +17,18 @@ import PropsProvider from "./store/PropsProvider";
 import * as types from "./types";
 
 const ListBoxWithProvider = React.forwardRef((props, ref) => {
-  const { children, hasError, id, isReadOnly, ...moreProps } = props;
+  const { children, hasError, id, isDisabled, isInline, isReadOnly, placeholder, size, ...moreProps } = props;
+
+  const I18n = useI18n();
 
   const providedProps = {
     hasError,
     idListBox: id || `list-box-trigger_${uuidv4()}`,
+    isDisabled,
+    isInline,
     isReadOnly,
+    placeholder: placeholder || I18n.t("listBox.trigger.placeholder"),
+    size,
   };
 
   /*

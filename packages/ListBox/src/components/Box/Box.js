@@ -4,14 +4,9 @@ import * as sc from "./Box.styles";
 import useListBox from "../../useListBox";
 import { PropsContext } from "../../store/PropsProvider";
 
-const propTypes = {
-  /** Body content of the box. */
-  children: PropTypes.node.isRequired,
-};
-
 export default function Box(props) {
-  const [{ isInline, triggerWidth }] = useListBox();
-  const { isReadOnly, hasError } = React.useContext(PropsContext);
+  const [{ triggerWidth }] = useListBox();
+  const { isInline, isReadOnly, hasError } = React.useContext(PropsContext);
 
   return (
     <sc.Box
@@ -26,4 +21,7 @@ export default function Box(props) {
   );
 }
 
-Box.propTypes = propTypes;
+Box.propTypes = {
+  /** Body content of the box. */
+  children: PropTypes.node.isRequired,
+};
