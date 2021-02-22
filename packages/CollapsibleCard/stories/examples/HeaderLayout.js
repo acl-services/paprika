@@ -4,7 +4,7 @@ import { Story, Tagline } from "storybook/assets/styles/common.styles";
 import Avatar from "@paprika/avatar";
 import Switch from "@paprika/switch";
 import Toast from "@paprika/toast";
-import HeaderLayout from "../../src/components/HeaderLayout";
+import { HeaderLayout } from "../../src";
 
 const heading = "COVID-19 Aggregate Regulatory Feeds";
 const metadata =
