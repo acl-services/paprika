@@ -8,7 +8,7 @@ import CollapsibleCardContext from "../../CollapsibleCardContext";
 import * as sc from "./Header.styles";
 
 export default function Header(props) {
-  let resizeTimeout;
+  const resizeTimeout = React.useRef(null);
   const I18n = useI18n();
   const { breakpoint, onChangeIsBroken } = props;
 
@@ -21,6 +21,16 @@ export default function Header(props) {
     (function iife() {
       setCollapsibleCardWidth(headerRef.current.offsetWidth);
     })();
+
+    function handleResizeWindow() {
+      clearTimeout(resizeTimeout.current);
+      resizeTimeout.current = setTimeout(() => {
+        setCollapsibleCardWidth(headerRef.current.offsetWidth);
+      }, 200);
+    }
+
+    window.addEventListener("resize", handleResizeWindow);
+    return () => window.removeEventListener("resize", handleResizeWindow);
   }, []);
 
   React.useEffect(() => {
@@ -50,15 +60,6 @@ export default function Header(props) {
       newChildren.push(newChild);
     }
   });
-
-  function handleResizeWindow() {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-      setCollapsibleCardWidth(headerRef.current.offsetWidth);
-    }, 200);
-  }
-
-  window.addEventListener("resize", handleResizeWindow);
 
   return (
     <sc.Header
