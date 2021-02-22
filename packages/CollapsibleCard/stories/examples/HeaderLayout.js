@@ -55,7 +55,6 @@ const HeaderLayoutStory = () => {
           <Avatar size="medium">19</Avatar>
         </HeaderLayout.Left>
         <HeaderLayout.Heading>{metadata}</HeaderLayout.Heading>
-        <HeaderLayout.Counter quantity={0} />
       </HeaderLayout>
     </Story>
   );
