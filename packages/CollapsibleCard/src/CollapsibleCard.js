@@ -7,8 +7,14 @@ import Segment from "./components/Segment";
 import CollapsibleCardContext from "./CollapsibleCardContext";
 import * as sc from "./CollapsibleCard.styles";
 
+export const POSITIONS = {
+  FIRST: "first",
+  MIDDLE: "middle",
+  LAST: "last",
+};
+
 export default function CollapsibleCard(props) {
-  const { children, initialIsCollapsed, isEditing, isFirstRow, isMiddleRow, isLastRow, onToggleIsCollapsed } = props;
+  const { children, initialIsCollapsed, isEditing, onToggleIsCollapsed, position } = props;
   const [isCollapsed, setIsCollapsed] = React.useState(() =>
     props.isCollapsed === null ? initialIsCollapsed : props.isCollapsed
   );
@@ -26,10 +32,8 @@ export default function CollapsibleCard(props) {
     handleToggleIsCollapsed,
     isCollapsed,
     isEditing,
-    isFirstRow,
-    isLastRow,
-    isMiddleRow,
     onToggleIsCollapsed,
+    position,
   };
 
   return (
@@ -38,9 +42,7 @@ export default function CollapsibleCard(props) {
         aria-expanded={!isCollapsed}
         isCollapsed={isCollapsed}
         isEditing={isEditing}
-        isFirstRow={isFirstRow}
-        isMiddleRow={isMiddleRow}
-        isLastRow={isLastRow}
+        position={position}
       >
         {children}
       </sc.CollapsibleCard>
@@ -53,10 +55,8 @@ const propTypes = {
   initialIsCollapsed: PropTypes.bool,
   isCollapsed: PropTypes.bool,
   isEditing: PropTypes.bool,
-  isFirstRow: PropTypes.bool,
-  isMiddleRow: PropTypes.bool,
-  isLastRow: PropTypes.bool,
   onToggleIsCollapsed: PropTypes.func,
+  position: PropTypes.string,
 };
 
 const defaultProps = {
@@ -64,10 +64,8 @@ const defaultProps = {
   initialIsCollapsed: true,
   isCollapsed: null,
   isEditing: false,
-  isFirstRow: null,
-  isMiddleRow: null,
-  isLastRow: null,
   onToggleIsCollapsed: () => {},
+  position: null,
 };
 
 CollapsibleCard.propTypes = propTypes;

@@ -4,10 +4,10 @@ import tokens from "@paprika/tokens";
 import getBorderRadius from "../../helper.styles";
 
 export const Header = styled.div(
-  ({ isEditing, isCollapsed, isFirstRow, isMiddleRow, isLastRow }) => css`
+  ({ isEditing, isCollapsed, position }) => css`
     align-items: flex-start;
     border: 2px solid transparent;
-    border-radius: ${getBorderRadius(isFirstRow, isMiddleRow, isLastRow, isCollapsed, true)};
+    border-radius: ${getBorderRadius(position, isCollapsed, true)};
     cursor: pointer;
     display: flex;
     padding: 14px;

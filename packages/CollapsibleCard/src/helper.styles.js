@@ -1,19 +1,20 @@
 import tokens from "@paprika/tokens";
+import { POSITIONS } from "./CollapsibleCard";
 
-export default function getBorderRadius(isFirstRow, isMiddleRow, isLastRow, isCollapsed, isHeader) {
-  const isInAGroup = isFirstRow !== null;
+export default function getBorderRadius(position, isCollapsed, isHeader) {
+  const isInAGroup = position !== null;
   const isExpanded = !isCollapsed;
 
   if (isInAGroup) {
-    if (isFirstRow) {
+    if (position === POSITIONS.FIRST) {
       return `${tokens.card.borderRadius} ${tokens.card.borderRadius} 0 0`;
     }
 
-    if (isMiddleRow) {
+    if (position === POSITIONS.MIDDLE) {
       return `unset`;
     }
 
-    if (isLastRow) {
+    if (position === POSITIONS.LAST) {
       if (isCollapsed) {
         return `0 0 ${tokens.card.borderRadius} ${tokens.card.borderRadius}`;
       }

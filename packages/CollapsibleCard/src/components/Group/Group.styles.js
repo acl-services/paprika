@@ -7,5 +7,6 @@ export const Group = styled.div(
     border: 1px solid ${tokens.color.blackLighten60};
     border-radius: ${tokens.card.borderRadius};
     box-shadow: ${tokens.card.shadow};
+    overflow: hidden;
   `
 );

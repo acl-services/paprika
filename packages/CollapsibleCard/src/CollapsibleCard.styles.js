@@ -1,30 +1,40 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import getBorderRadius from "./helper.styles";
+import { POSITIONS } from "./CollapsibleCard";
 
-function getBoxShadow(isEditing, isFirstRow, isMiddleRow, isLastRow) {
+function getBoxShadow(isEditing, position) {
   if (isEditing) {
-    let blur = "3px";
-    if (isFirstRow || isMiddleRow || isLastRow) {
-      blur = "1px";
+    let blur;
+    switch (position) {
+      case POSITIONS.FIRST:
+      case POSITIONS.MIDDLE:
+      case POSITIONS.LAST:
+        blur = "1px";
+        break;
+      default:
+        blur = "3px";
+        break;
     }
 
     return `0 0 0 1px rgba(145, 106, 31, 1), 0 1px ${blur} 0 rgba(145, 106, 31, 1)`;
   }
 
-  if (isFirstRow || isMiddleRow) {
-    return `inset 0px -1px 0px ${tokens.color.blackLighten60}`;
+  switch (position) {
+    case POSITIONS.FIRST:
+    case POSITIONS.MIDDLE:
+      return `inset 0px -1px 0px ${tokens.color.blackLighten60}`;
+    case POSITIONS.LAST:
+      return `none`;
+    default:
+      return `${tokens.card.shadow}`;
   }
-
-  if (isLastRow) {
-    return `none`;
-  }
-
-  return `${tokens.card.shadow}`;
 }
 
-function getBorder(isEditing, isFirstRow, isMiddleRow, isLastRow) {
-  if (isEditing || isFirstRow || isMiddleRow || isLastRow) {
+function getBorder(isEditing, position) {
+  const isInAGroup = position !== null;
+
+  if (isEditing || isInAGroup) {
     return "none";
   }
 
@@ -32,11 +42,11 @@ function getBorder(isEditing, isFirstRow, isMiddleRow, isLastRow) {
 }
 
 export const CollapsibleCard = styled.div(
-  ({ isEditing, isCollapsed, isFirstRow, isMiddleRow, isLastRow }) => css`
+  ({ isEditing, isCollapsed, position }) => css`
     background-color: ${tokens.color.white};
-    border: ${getBorder(isEditing, isFirstRow, isMiddleRow, isLastRow)};
-    border-radius: ${getBorderRadius(isFirstRow, isMiddleRow, isLastRow, isCollapsed, false)};
-    box-shadow: ${getBoxShadow(isEditing, isFirstRow, isMiddleRow, isLastRow)};
+    border: ${getBorder(isEditing, position)};
+    border-radius: ${getBorderRadius(position, isCollapsed, false)};
+    box-shadow: ${getBoxShadow(isEditing, position)};
     overflow: hidden;
 
     ${isEditing &&

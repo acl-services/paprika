@@ -66,9 +66,7 @@ export default function Header(props) {
       data-pka-anchor="collapsible.header"
       isEditing={context.isEditing}
       isCollapsed={context.isCollapsed}
-      isFirstRow={context.isFirstRow}
-      isLastRow={context.isLastRow}
-      isMiddleRow={context.isMiddleRow}
+      position={context.position}
       onClick={() => {
         context.handleToggleIsCollapsed();
       }}
