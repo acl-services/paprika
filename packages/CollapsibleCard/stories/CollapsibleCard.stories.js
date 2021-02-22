@@ -7,6 +7,7 @@ import HeaderLayout from "./examples/HeaderLayout";
 import Group from "./examples/Group";
 import SegmentsAndBreakpoints from "./examples/SegmentsAndBreakpoints";
 import RealWorld from "./examples/RealWorld";
+import ControlledAndUncontrolled from "./examples/ControlledAndUncontrolled";
 
 export default {
   title: getStoryName("CollapsibleCard"),
@@ -59,6 +60,14 @@ export const realWorld = () => <RealWorld />;
 realWorld.story = {
   parameters: {
     docs: { page: RealWorld },
+    parameters,
+  },
+};
+
+export const controlledAndUncontrolled = () => <ControlledAndUncontrolled />;
+controlledAndUncontrolled.story = {
+  parameters: {
+    docs: { page: ControlledAndUncontrolled },
     parameters,
   },
 };

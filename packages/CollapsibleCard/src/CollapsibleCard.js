@@ -8,12 +8,18 @@ import CollapsibleCardContext from "./CollapsibleCardContext";
 import * as sc from "./CollapsibleCard.styles";
 
 export default function CollapsibleCard(props) {
-  const { children, initialIsCollapsed, isEditing, isFirstRow, isLastRow, isMiddleRow, onToggleIsCollapsed } = props;
-  const [isCollapsed, setIsCollapsed] = React.useState(initialIsCollapsed);
+  const { children, initialIsCollapsed, isEditing, isFirstRow, isMiddleRow, isLastRow, onToggleIsCollapsed } = props;
+  const [isCollapsed, setIsCollapsed] = React.useState(() =>
+    props.isCollapsed === null ? initialIsCollapsed : props.isCollapsed
+  );
+
+  React.useEffect(() => {
+    setIsCollapsed(props.isCollapsed === null ? initialIsCollapsed : props.isCollapsed);
+  }, [props.isCollapsed, initialIsCollapsed]);
 
   function handleToggleIsCollapsed() {
     onToggleIsCollapsed(!isCollapsed);
-    setIsCollapsed(oldIsCollapsed => !oldIsCollapsed);
+    setIsCollapsed(oldValue => !oldValue);
   }
 
   const thingsToShare = {
@@ -45,6 +51,7 @@ export default function CollapsibleCard(props) {
 const propTypes = {
   children: PropTypes.node,
   initialIsCollapsed: PropTypes.bool,
+  isCollapsed: PropTypes.bool,
   isEditing: PropTypes.bool,
   isFirstRow: PropTypes.bool,
   isMiddleRow: PropTypes.bool,
@@ -55,6 +62,7 @@ const propTypes = {
 const defaultProps = {
   children: null,
   initialIsCollapsed: true,
+  isCollapsed: null,
   isEditing: false,
   isFirstRow: null,
   isMiddleRow: null,
