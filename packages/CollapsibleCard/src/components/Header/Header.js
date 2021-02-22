@@ -85,7 +85,6 @@ export default function Header(props) {
       <sc.ExpandToggle isCollapsed={context.isCollapsed}>
         <Button.Icon
           a11yText={context.isCollapsed ? I18n.t("collapsible.expand") : I18n.t("collapsible.collapse")}
-          aria-hidden
           onClick={() => {}}
           kind="minor"
           tabIndex={-1}
