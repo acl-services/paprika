@@ -1,19 +1,13 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
+import { exampleStoryParameters } from "storybook/assets/storyParameters";
 import ExampleStory from "storybook/components/ExampleStory";
 import OnChange from "./examples/OnChange";
 import Subcomponents from "./examples/Subcomponents";
+import FormElementExample from "./examples/FormElement";
 import ListBox from "../src";
 
 const storyName = getStoryName("ListBox");
-
-const paramaters = {
-  viewMode: "story",
-  options: {
-    isToolshown: false,
-    showPanel: true,
-  },
-};
 
 export default {
   title: `${storyName}/Examples`,
@@ -25,11 +19,10 @@ export const SubcomponentsStory = () => (
     <Subcomponents />
   </ExampleStory>
 );
-
 SubcomponentsStory.story = {
   name: "Subcomponents",
   parameters: {
-    ...paramaters,
+    ...exampleStoryParameters,
   },
 };
 
@@ -38,10 +31,21 @@ export const OnChangeStory = () => (
     <OnChange />
   </ExampleStory>
 );
-
 OnChangeStory.story = {
   name: "OnChange",
   parameters: {
-    ...paramaters,
+    ...exampleStoryParameters,
+  },
+};
+
+export const formElementStory = () => (
+  <ExampleStory component="ListBox" storyName="With FormElement" fileName="examples/FormElement.js">
+    <FormElementExample />
+  </ExampleStory>
+);
+formElementStory.story = {
+  name: "With FormElement",
+  parameters: {
+    ...exampleStoryParameters,
   },
 };
