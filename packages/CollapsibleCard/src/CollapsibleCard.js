@@ -1,83 +1,77 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { v4 as uuidv4 } from "uuid";
-import { extractChildren } from "@paprika/helpers";
-import Avatar from "./components/Avatar";
-import Metadata from "./components/Metadata";
-
+import Body from "./components/Body";
+import Group from "./components/Group";
+import Header from "./components/Header";
+import Segment from "./components/Segment";
+import CollapsibleCardContext from "./CollapsibleCardContext";
 import * as sc from "./CollapsibleCard.styles";
 
+export const POSITIONS = {
+  FIRST: "first",
+  MIDDLE: "middle",
+  LAST: "last",
+};
+
 export default function CollapsibleCard(props) {
-  const { children, hasDivider, label, onExpand, ...moreProps } = props;
-  const [isCollapsed, setIsCollapsed] = React.useState(true);
-  const [labelTextId] = React.useState(() => `collapsible-card-label_${uuidv4()}`);
-  const [metadataId] = React.useState(() => `collapsible-card-metadata_${uuidv4()}`);
-  const {
-    "CollapsibleCard.Avatar": avatar,
-    "CollapsibleCard.Metadata": metadata,
-    children: otherElements,
-  } = extractChildren(children, ["CollapsibleCard.Avatar", "CollapsibleCard.Metadata"]);
+  const { children, initialIsCollapsed, isEditing, onToggleIsCollapsed, position } = props;
+  const [isCollapsed, setIsCollapsed] = React.useState(() =>
+    props.isCollapsed === null ? initialIsCollapsed : props.isCollapsed
+  );
 
   React.useEffect(() => {
-    if (!isCollapsed && onExpand) {
-      onExpand();
-    }
-  }, [isCollapsed, onExpand]);
+    setIsCollapsed(props.isCollapsed === null ? initialIsCollapsed : props.isCollapsed);
+  }, [props.isCollapsed, initialIsCollapsed]);
 
-  function getLabel() {
-    return (
-      <sc.Label>
-        {avatar}
-        <div>
-          <sc.LabelText id={labelTextId}>{label}</sc.LabelText>
-          {metadata ? React.cloneElement(metadata, { id: metadataId }) : null}
-        </div>
-      </sc.Label>
-    );
+  function handleToggleIsCollapsed() {
+    onToggleIsCollapsed(!isCollapsed);
+    setIsCollapsed(oldValue => !oldValue);
   }
 
-  function handleClick() {
-    setIsCollapsed(prevIsCollapsed => !prevIsCollapsed);
-  }
+  const thingsToShare = {
+    handleToggleIsCollapsed,
+    isCollapsed,
+    isEditing,
+    onToggleIsCollapsed,
+    position,
+  };
 
   return (
-    <sc.CollapsibleCard
-      iconAlign="right"
-      label={typeof label === "function" ? label({ isCollapsed }) : getLabel()}
-      isCollapsed={isCollapsed}
-      onClick={handleClick}
-      hasAvatar={!!avatar}
-      hasLabelOnly={!avatar && !metadata}
-      triggerAriaDescribedby={`${labelTextId} ${metadata ? metadataId : ""}`}
-      {...moreProps}
-    >
-      <sc.Content hasDivider={hasDivider}>{otherElements}</sc.Content>
-    </sc.CollapsibleCard>
+    <CollapsibleCardContext.Provider value={thingsToShare}>
+      <sc.CollapsibleCard
+        aria-expanded={!isCollapsed}
+        isCollapsed={isCollapsed}
+        isEditing={isEditing}
+        position={position}
+      >
+        {children}
+      </sc.CollapsibleCard>
+    </CollapsibleCardContext.Provider>
   );
 }
 
 const propTypes = {
   children: PropTypes.node,
-
-  /** If has a divider between collapsible header and content. */
-  hasDivider: PropTypes.bool,
-
-  /** Label text as the card title, can be a render function. */
-  label: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-
-  /** Callback function when expand the card. */
-  onExpand: PropTypes.func,
+  initialIsCollapsed: PropTypes.bool,
+  isCollapsed: PropTypes.bool,
+  isEditing: PropTypes.bool,
+  onToggleIsCollapsed: PropTypes.func,
+  position: PropTypes.string,
 };
 
 const defaultProps = {
   children: null,
-  hasDivider: false,
-  label: null,
-  onExpand: null,
+  initialIsCollapsed: true,
+  isCollapsed: null,
+  isEditing: false,
+  onToggleIsCollapsed: () => {},
+  position: null,
 };
 
 CollapsibleCard.propTypes = propTypes;
 CollapsibleCard.defaultProps = defaultProps;
 
-CollapsibleCard.Avatar = Avatar;
-CollapsibleCard.Metadata = Metadata;
+CollapsibleCard.Body = Body;
+CollapsibleCard.Header = Header;
+CollapsibleCard.Segment = Segment;
+CollapsibleCard.Group = Group;
