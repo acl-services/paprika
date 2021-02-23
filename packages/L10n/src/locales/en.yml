@@ -82,6 +82,8 @@ en:
       escape: escape
     collapsible:
       ariaText: Collapsible section
+      collapse: Collapse
+      expand: Expand
     sortable:
       aria_description: Draggable item. Press space to lift.
       aria_lift: You have lifted an item in position {{source}}. Use the arrow keys to move, space to drop, and escape to cancel.
