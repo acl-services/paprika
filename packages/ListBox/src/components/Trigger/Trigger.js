@@ -148,7 +148,6 @@ export default function Trigger(props) {
         {...getDOMAttributesForListBoxButton({
           idListBox,
           idFormLabel: idFormLabel.current,
-          refLabel,
         })}
         {...morePropsForTrigger}
         data-pka-anchor="list-box-trigger"
@@ -187,7 +186,6 @@ export default function Trigger(props) {
           getDOMAttributesForListBoxButton({
             idListBox,
             idFormLabel: idFormLabel.current,
-            refLabel,
           }),
         refTrigger,
         types: sanitizeActionTypes(useListBox.types),
@@ -211,7 +209,6 @@ export default function Trigger(props) {
     isOpen,
     isReadOnly,
     onChangeContext,
-    refLabel,
     refTrigger,
     state,
   ]);

@@ -42,6 +42,8 @@ export function ListBox(props) {
   const [state] = useListBox();
   const { isInline, isReadOnly } = React.useContext(PropsContext);
 
+  const hasOptions = Boolean(React.Children.count(children));
+
   const propsForTrigger = {
     hasClearButton: true,
     hasImplicitAll,
@@ -56,17 +58,21 @@ export function ListBox(props) {
     <Trigger {...propsForTrigger} />
   );
 
-  const hasOptions = Boolean(React.Children.count(children));
+  const contentProps = {
+    hasOptions,
+    onCancelFooter: footer ? footer.props.onClickCancel : null,
+    ...(isInline ? moreProps : {}),
+  };
+
   const listProps = {
     height,
     hasOptions,
-    ...(isInline ? moreProps : {}),
   };
 
   return (
     <React.Fragment>
       {trigger}
-      <Content onCancelFooter={footer ? footer.props.onClickCancel : null} hasOptions={hasOptions}>
+      <Content {...contentProps}>
         <Box {...box.props}>
           {isReadOnly ? null : filter}
           <List {...listProps}>

@@ -7,7 +7,7 @@ import LabelMulti from "./LabelMulti";
 import LabelSingle from "./LabelSingle";
 
 export default function Label(props) {
-  const { hasImplicitAll, placeholder, label: customLabel, isDisabled } = props;
+  const { hasImplicitAll, placeholder, label: customLabel, isDisabled, ...moreProps } = props;
   const [state] = useListBox();
   const { selectedOptions, isMulti, options } = state;
   const { isReadOnly } = React.useContext(PropsContext);
@@ -30,6 +30,7 @@ export default function Label(props) {
 
   return (
     <sc.Label
+      {...moreProps}
       hasImplicitAll={hasImplicitAll}
       isPlaceholder={!selectedOptions.length}
       isDisabled={isDisabled}

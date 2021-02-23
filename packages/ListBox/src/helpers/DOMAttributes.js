@@ -1,9 +1,4 @@
-export function getDOMAttributesForListBoxContainer({ isInline = false } = {}) {
-  const tabIndex = isInline ? "0" : "-1";
-  return { tabIndex };
-}
-
-export function getDOMAttributesForListBox({ activeOption, idListBox, isInline, options, refLabel }) {
+export function getDOMAttributesForListBox({ activeOption, idListBox, isInline, isMulti, options, refLabel }) {
   let activedescendant = "";
 
   if (activeOption && activeOption < Object.keys(options).length) {
@@ -13,15 +8,13 @@ export function getDOMAttributesForListBox({ activeOption, idListBox, isInline, 
     }
   }
   const bestLabel =
-    refLabel && refLabel.current
-      ? { "aria-label": refLabel.current.textContent }
-      : { "aria-labelledby": `${idListBox}__label` };
+    refLabel && refLabel.current ? `${refLabel.current.getAttribute("id")} ${idListBox}__label` : `${idListBox}__label`;
 
   return {
     "aria-activedescendant": activedescendant,
+    "aria-labelledby": bestLabel,
+    "aria-multiselectable": isMulti ? "true" : null,
     id: isInline ? idListBox : null,
-    role: "listbox",
-    ...bestLabel,
   };
 }
 
@@ -30,8 +23,8 @@ export const getA11yAttributesForOption = isSelected => {
   return { role: "option", ...a11yIsSelected };
 };
 
-export const getDOMAttributesForListBoxButton = ({ idListBox, idFormLabel, refLabel }) => ({
+export const getDOMAttributesForListBoxButton = ({ idListBox, idFormLabel }) => ({
   "aria-haspopup": true,
-  "aria-labelledby": refLabel && refLabel.current ? `${idFormLabel} ${idListBox}` : null,
+  "aria-labelledby": idFormLabel ? `${idFormLabel} ${idListBox}__label` : null,
   id: idListBox,
 });
