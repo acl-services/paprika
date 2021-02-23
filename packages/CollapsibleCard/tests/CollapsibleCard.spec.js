@@ -63,7 +63,7 @@ describe("CollapsibleCard", () => {
       </CollapsibleCard>
     );
 
-    fireEvent.click(screen.getByRole("button"));
+    fireEvent.click(screen.getByRole("button", { name: "testButton" }));
     expect(handleIsCollapsed).toHaveBeenCalledTimes(0);
   });
 
