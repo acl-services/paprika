@@ -1,12 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import * as sc from "./Metadata.styles";
 
 export default function Metadata(props) {
-  const { children, ...moreProps } = props;
-
-  return <sc.Metadata {...moreProps}>{children}</sc.Metadata>;
+  const { children } = props;
+  return <sc.Metadata>{children}</sc.Metadata>;
 }
 
 const propTypes = {
@@ -19,4 +17,4 @@ const defaultProps = {
 
 Metadata.propTypes = propTypes;
 Metadata.defaultProps = defaultProps;
-Metadata.displayName = "CollapsibleCard.Metadata";
+Metadata.displayName = "HeaderLayout.Metadata";

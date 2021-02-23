@@ -31,9 +31,10 @@ const Point = React.forwardRef((props, ref) => {
     setIsTooltipOpen(false);
   }
 
-  function handleOverflowMenuOpen() {
+  function handleOverflowMenuOpen(onClickTrigger = () => {}, e) {
     setIsOverflowMenuOpen(true);
     setIsTooltipOpen(false);
+    onClickTrigger(e);
 
     setTimeout(() => {
       if (overflowMenuRef.current) {
@@ -79,7 +80,7 @@ const Point = React.forwardRef((props, ref) => {
                     buttonType: OverflowMenu.Trigger.types.button.SIMPLE,
                     isDropdown: true,
                     kind: Button.types.kind.PRIMARY,
-                    onClick: handleOverflowMenuOpen,
+                    onClick: e => handleOverflowMenuOpen(extractedOverflowMenuTrigger.props.onClick, e),
                     "data-pka-anchor": "status-tracker.point.overflow-menu.trigger",
                     "aria-describedby": a11yAttributes["aria-describedby"],
                   },
@@ -90,7 +91,7 @@ const Point = React.forwardRef((props, ref) => {
                   buttonType={OverflowMenu.Trigger.types.button.SIMPLE}
                   isDropdown
                   kind={Button.types.kind.PRIMARY}
-                  onClick={handleOverflowMenuOpen}
+                  onClick={e => handleOverflowMenuOpen(extractedOverflowMenuTrigger.props.onClick, e)}
                   data-pka-anchor="status-tracker.point.overflow-menu.trigger"
                   aria-describedby={a11yAttributes["aria-describedby"]}
                 >

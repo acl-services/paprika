@@ -1,54 +1,58 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
-import { fontSize, spacer, lineHeight } from "@paprika/stylers/lib/helpers";
-import Collapsible from "@paprika/collapsible";
+import getBorderRadius from "./helper.styles";
+import { POSITIONS } from "./CollapsibleCard";
 
-export const CollapsibleCard = styled(Collapsible)`
-  background-color: ${tokens.color.white};
-  border-radius: ${tokens.card.borderRadius};
-  box-shadow: ${tokens.card.shadow};
-  min-height: ${({ hasAvatar }) => (hasAvatar ? spacer(9) : spacer(7))};
-
-  > [data-pka-anchor="collapsible.trigger"] {
-    margin: 0;
-    padding: ${spacer(2)};
-    width: 100%;
-
-    > [data-pka-anchor="collapsible.icon"] {
-      margin-left: ${spacer(2)};
-      margin-right: ${spacer(2)};
-      ${({ hasLabelOnly }) =>
-        hasLabelOnly
-          ? ""
-          : css`
-              margin-top: ${spacer(1)};
-            `}
+function getBoxShadow(isEditing, position) {
+  if (isEditing) {
+    let blur;
+    switch (position) {
+      case POSITIONS.FIRST:
+      case POSITIONS.MIDDLE:
+      case POSITIONS.LAST:
+        blur = "1px";
+        break;
+      default:
+        blur = "3px";
+        break;
     }
+
+    return `0 0 0 1px rgba(145, 106, 31, 1), 0 1px ${blur} 0 rgba(145, 106, 31, 1)`;
   }
-`;
 
-export const Label = styled.div`
-  display: flex;
-`;
-
-export const LabelText = styled.div`
-  ${fontSize(1)};
-  ${lineHeight(-1)};
-  color: ${tokens.color.black};
-  font-weight: bold;
-`;
-
-const dividerStyles = css`
-  &::before {
-    border-top: 1px solid ${tokens.border.color};
-    content: "";
-    display: block;
-    margin-bottom: ${tokens.space};
+  switch (position) {
+    case POSITIONS.FIRST:
+    case POSITIONS.MIDDLE:
+      return `inset 0px -1px 0px ${tokens.color.blackLighten60}`;
+    case POSITIONS.LAST:
+      return `none`;
+    default:
+      return `${tokens.card.shadow}`;
   }
-`;
+}
 
-export const Content = styled.div`
-  padding: 0 ${spacer(2)} ${spacer(2)};
+function getBorder(isEditing, position) {
+  const isInAGroup = position !== null;
 
-  ${({ hasDivider }) => (hasDivider ? dividerStyles : "")}
-`;
+  if (isEditing || isInAGroup) {
+    return "none";
+  }
+
+  return `1px solid ${tokens.color.blackLighten60}`;
+}
+
+export const CollapsibleCard = styled.div(
+  ({ isEditing, isCollapsed, position }) => css`
+    background-color: ${tokens.color.white};
+    border: ${getBorder(isEditing, position)};
+    border-radius: ${getBorderRadius(position, isCollapsed, false)};
+    box-shadow: ${getBoxShadow(isEditing, position)};
+    overflow: hidden;
+
+    ${isEditing &&
+      css`
+        position: relative;
+        z-index: 1;
+      `}
+  `
+);
