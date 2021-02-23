@@ -1,6 +1,9 @@
 import styled, { css } from "styled-components";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
+import CaretDownIcon from "@paprika/icon/lib/CaretDown";
+import CaretUpIcon from "@paprika/icon/lib/CaretUp";
+import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
 import Button from "@paprika/button";
 import * as types from "../../types";
 
@@ -75,7 +78,7 @@ export const ListBoxTrigger = styled.div`
   ${triggerStylesProps}
 `;
 
-const iconStyles = ({ isDisabled, isReadOnly }) => css`
+const iconStyles = ({ isDisabled }) => css`
   color: ${tokens.color.black};
   height: 100%;
   pointer-events: none;
@@ -83,10 +86,18 @@ const iconStyles = ({ isDisabled, isReadOnly }) => css`
   right: ${tokens.space};
   top: 0;
   ${stylers.fontSize(-1)}
-  ${isDisabled || isReadOnly ? `color: ${tokens.color.blackLighten60};` : ""}
+  ${isDisabled ? `color: ${tokens.color.blackLighten60};` : ""}
 `;
 
-export const CaretIcon = styled.span`
+export const UpIcon = styled(CaretUpIcon)`
+  ${iconStyles}
+`;
+
+export const DownIcon = styled(CaretDownIcon)`
+  ${iconStyles}
+`;
+
+export const ClearIcon = styled(TimesCircleIcon)`
   ${iconStyles}
 `;
 
@@ -110,7 +121,3 @@ export const ClearButton = styled(Button.Icon)(
     }
   `
 );
-
-export const VisuallyHiddenFormLabel = styled.span`
-  ${stylers.visuallyHidden};
-`;

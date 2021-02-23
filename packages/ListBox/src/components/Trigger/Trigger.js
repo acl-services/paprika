@@ -2,9 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
 import Button from "@paprika/button";
-import CaretDownIcon from "@paprika/icon/lib/CaretDown";
-import CaretUpIcon from "@paprika/icon/lib/CaretUp";
-import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Label from "../Label";
 import { handleKeyDownKeyboardKeys, handleKeyUpKeyboardKeys } from "../../helpers/handleKeyboardKeys";
@@ -130,6 +127,13 @@ export default function Trigger(props) {
     });
   };
 
+  const hasRenderTrigger = typeof children === "function";
+
+  const shouldHideClearButton =
+    !hasClearButton || hasRenderTrigger || isReadOnly || (hasFooter && isOpen) || selectedOptions.length === 0;
+
+  const shouldHideCaret = hasRenderTrigger || isInline;
+
   function renderLabel() {
     return isInline || isReadOnly ? (
       <Label
@@ -171,7 +175,30 @@ export default function Trigger(props) {
     );
   }
 
-  const hasRenderTrigger = typeof children === "function";
+  function renderCaret() {
+    return isOpen ? (
+      <sc.UpIcon isDisabled={isDisabled || isReadOnly} />
+    ) : (
+      <sc.DownIcon isDisabled={isDisabled || isReadOnly} />
+    );
+  }
+
+  function renderClearButton() {
+    return (
+      <sc.ClearButton
+        a11yText={I18n.t("listBox.trigger.clear_selection")}
+        data-pka-anchor="clear-button"
+        isDisabled={isDisabled}
+        isSemantic={false}
+        kind={Button.types.kind.MINOR}
+        onClick={handleClickClear}
+        shouldHideCaret={shouldHideCaret}
+        size={size}
+      >
+        {clearIcon || <sc.ClearIcon isDisabled={isDisabled} css={sc.iconStyles} />}
+      </sc.ClearButton>
+    );
+  }
 
   const renderChildrenProps = React.useMemo(() => {
     if (hasRenderTrigger) {
@@ -213,10 +240,6 @@ export default function Trigger(props) {
     state,
   ]);
 
-  const shouldHideClearButton =
-    !hasClearButton || hasRenderTrigger || isReadOnly || (hasFooter && isOpen) || selectedOptions.length === 0;
-  const shouldHideCaret = hasRenderTrigger || isInline;
-
   if (isHidden && isInline) {
     return <sc.ListBoxTrigger data-pka-anchor="list-box-trigger" isHidden />;
   }
@@ -232,23 +255,8 @@ export default function Trigger(props) {
       {...moreProps}
     >
       {hasRenderTrigger ? renderChildrenProps : renderLabel()}
-      {shouldHideClearButton ? null : (
-        <sc.ClearButton
-          a11yText={I18n.t("listBox.trigger.clear_selection")}
-          data-pka-anchor="clear-button"
-          isDisabled={isDisabled}
-          isSemantic={false}
-          kind={Button.types.kind.MINOR}
-          onClick={handleClickClear}
-          shouldHideCaret={shouldHideCaret}
-          size={size}
-        >
-          {clearIcon || <TimesCircleIcon isDisabled={isDisabled} css={sc.iconStyles} />}
-        </sc.ClearButton>
-      )}
-      {shouldHideCaret ? null : (
-        <sc.CaretIcon as={isOpen ? CaretUpIcon : CaretDownIcon} isDisabled={isDisabled} isReadOnly={isReadOnly} />
-      )}
+      {shouldHideClearButton ? null : renderClearButton()}
+      {shouldHideCaret ? null : renderCaret()}
     </sc.ListBoxTrigger>
   );
 }
