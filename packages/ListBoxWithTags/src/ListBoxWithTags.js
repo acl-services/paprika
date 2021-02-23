@@ -3,13 +3,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 import useI18n from "@paprika/l10n/lib/useI18n";
-// import ListBox from "@paprika/list-box";
+import ListBox from "@paprika/list-box";
 import { filter } from "@paprika/list-box/lib/helpers/filter";
 import Tag, { Tags } from "@paprika/tag";
 /* eslint-disable no-restricted-syntax */
 import * as triggerSc from "@paprika/list-box/lib/components/Trigger/Trigger.styles";
 /* eslint-enable no-restricted-syntax */
-import ListBox from "../../ListBox";
 import * as sc from "./ListBoxWithTags.styles";
 
 const propTypes = {
