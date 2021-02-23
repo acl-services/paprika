@@ -167,7 +167,7 @@ export default function Trigger(props) {
         onKeyUp={handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext })}
         isDisabled={isDisabled}
         data-pka-anchor="list-box-trigger"
-        aria-haspopup="true"
+        aria-haspopup
         aria-describedby={formElementLabelDescribedBy}
         aria-labelledby={triggerButtonId.current}
       >

@@ -131,6 +131,12 @@ export function handleArrowKeys({ event, state, dispatch, isArrowDown = null, on
 
   if (next === null && event.nativeEvent.key === "ArrowUp" && state.hasFilter) {
     state.refFilterInput.current.focus();
+    if (state.isMulti) {
+      dispatch({
+        type: useListBox.types.setActiveOption,
+        payload: { activeOptionIndex: null, isOpen: true },
+      });
+    }
   }
 
   if (next !== null) {

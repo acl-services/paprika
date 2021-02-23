@@ -20,7 +20,7 @@ const TriggerButton = props => {
       data-pka-anchor="button"
       ref={triggerRef}
       aria-expanded={isConfirmOpen}
-      aria-haspopup="true"
+      aria-haspopup
       isSemantic={false}
       onClick={onOpenConfirm}
       {...moreProps}
