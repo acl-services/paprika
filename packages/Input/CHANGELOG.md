@@ -6,10 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Added
-
-- webkit-search-cancel-button style, removed Input NUMBER type [@tristanjasper](https://github.com/tristanjasper).
-
 ## [0.2.26] - 2020-04-29
 
 ### Added
@@ -57,3 +53,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 - `hasClearButton` will now work with uncontrolled implementation of the `<Input>` [@mikrotron](https://github.com/mikrotron).
+
+## [2.0.1-alpha.2] - 2021-02-23
+
+### Added
+
+- webkit-search-cancel-button style, removed Input NUMBER type [@tristanjasper](https://github.com/tristanjasper).
