@@ -46,3 +46,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Panel can now come up from the bottom: `slideFrom={Panel.slideFromDirections.BOTTOM}`
+
+## [2.0.7-alpha.3] - 2021-02-18
+
+### Changed
+
+- Using `@paprika/overlay` as the internal overlay component

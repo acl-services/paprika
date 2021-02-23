@@ -18,7 +18,7 @@ interface PanelProps {
   /** Render the panel inline */
   isInline?: boolean;
   /** Control the visibility of the Panel. This prop makes the Panel appear. */
-  isOpen: boolean;
+  isOpen?: boolean;
   /** Modify the look of the Panel */
   kind?: Panel.types.kind.DEFAULT | Panel.types.kind.CHILD | Panel.types.kind.PRIMARY;
   /** Control offset of the Panel. Only use 'top' when sliding in from the left or right. Only use 'left' or 'right' when sliding in from the bottom. */
@@ -82,21 +82,27 @@ declare namespace Panel {
   }
 }
 declare namespace Panel {
-  function FocusLock(props: FocusLockProps): JSX.Element;
-  interface FocusLockProps {
-    [x: string]: any;
-
-    returnFocus?: any;
-  }
-}
-declare namespace Panel {
   function Overlay(props: OverlayProps): JSX.Element;
   interface OverlayProps {
     [x: string]: any;
-    /** Will call an onClose handler when clicked on (outside of the Panel) */
-    hasOutsideClick?: boolean;
-    /** Callback for click event */
+
+    backdropClassName?: string;
+
+    children?: (...args: any[]) => any;
+    /** container of the Overlay element */
+    container?: instanceOf;
+
+    focusLockOptions?: shape;
+
+    hasBackdrop?: boolean;
+
+    isOpen?: boolean;
+
     onClose?: (...args: any[]) => any;
+
+    onAfterOpen?: (...args: any[]) => any;
+
+    onAfterClose?: (...args: any[]) => any;
     /** The z-index of the Panel Overlay */
     zIndex?: number;
   }

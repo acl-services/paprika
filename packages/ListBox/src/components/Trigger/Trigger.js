@@ -94,11 +94,23 @@ export default function Trigger(props) {
   const I18n = useI18n();
 
   const handleClick = () => {
-    if (isDisabled) {
+    if (state.isOpen) {
+      dispatch({ type: useListBox.types.closePopover });
       return;
     }
 
-    dispatch({ type: useListBox.types.togglePopover });
+    dispatch({ type: useListBox.types.openPopover });
+  };
+
+  const handleKeyUp = event => {
+    if (event.key === "Escape") {
+      dispatch({ type: useListBox.types.closePopover });
+      return;
+    }
+
+    if ([" ", "Enter", "ArrowDown"].includes(event.key)) {
+      dispatch({ type: useListBox.types.openPopover });
+    }
   };
 
   React.useEffect(() => {
@@ -163,8 +175,7 @@ export default function Trigger(props) {
         id={triggerButtonId.current}
         onClick={handleClick}
         ref={refTrigger}
-        onKeyDown={handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext })}
-        onKeyUp={handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext })}
+        onKeyUp={handleKeyUp}
         isDisabled={isDisabled}
         data-pka-anchor="list-box-trigger"
         aria-haspopup
