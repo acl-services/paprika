@@ -1,4 +1,3 @@
-// NOTE: Maybe this should be provided as a consumable package?
 import PropTypes from "prop-types";
 
 export const ShirtSizes = {
@@ -25,16 +24,6 @@ export const deprecated = name => (props, propName, component) => {
     return new Error(`Deprecated prop '${propName}' supplied to ${component}. Use '${name}' instead.`);
   }
   return null;
-};
-
-export const InputValidTypes = {
-  EMAIL: "email",
-  NUMBER: "number",
-  PASSWORD: "password",
-  SEARCH: "search",
-  TELEPHONE: "tel",
-  TEXT: "text",
-  URL: "url",
 };
 
 export const FocusPropTypes = {
@@ -65,8 +54,6 @@ export const FocusPropTypes = {
 
   sideCar: PropTypes.any,
 };
-
-InputValidTypes.ALL = Object.values(InputValidTypes);
 
 export const RefOf = (propType = PropTypes.object) =>
   PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: propType })]);

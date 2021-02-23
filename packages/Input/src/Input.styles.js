@@ -54,6 +54,10 @@ export const Input = styled.div(
     }
   }
 
+  input::-webkit-search-cancel-button {
+    display: none;
+  }
+
   /* Sizes */
 
   &.form-input--small input.form-input__input {
