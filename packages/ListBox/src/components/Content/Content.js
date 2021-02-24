@@ -75,7 +75,6 @@ export default function Content(props) {
   return (
     <Popover.Content
       {...getDOMAttributesForListBox({ idListBox, ...state })}
-      data-pka-anchor="list-box.content"
       onBlur={handleBlur(state, dispatch, onCancelFooter)}
       onKeyDown={handleKeyDownKeyboardKeys({ providedProps, state, dispatch, onChangeContext })}
       onKeyUp={handleKeyUpKeyboardKeys({ providedProps, state, dispatch, onChangeContext })}
