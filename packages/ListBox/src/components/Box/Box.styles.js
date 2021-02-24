@@ -9,6 +9,11 @@ const isInlineCSS = css`
   box-shadow: 0 0 0;
 `;
 
+const errorStyles = css`
+  ${stylers.errorFormStyles}
+  border-top-color: ${tokens.border.color};
+`;
+
 export const Box = styled.div(
   ({ hasError, isInline, isReadOnly, triggerWidth }) => css`
     background-color: ${tokens.color.white};
@@ -18,7 +23,7 @@ export const Box = styled.div(
     box-sizing: border-box;
     padding: 0;
     transition: border-color 0.2s;
-    ${hasError && isInline ? stylers.errorFormStyles : ""}
+    ${hasError && isInline ? errorStyles : ""}
     ${isInline ? isInlineCSS : ""}
     ${triggerWidth ? `width: ${triggerWidth}px;` : ""};
     ${isReadOnly ? stylers.readOnlyFormStyles : ""}

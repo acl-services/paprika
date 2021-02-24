@@ -5,18 +5,20 @@ import useListBox from "../../useListBox";
 import { PropsContext } from "../../store/PropsProvider";
 
 export default function Box(props) {
+  const { children, ...moreProps } = props;
   const [{ triggerWidth }] = useListBox();
   const { isInline, isReadOnly, hasError } = React.useContext(PropsContext);
 
   return (
     <sc.Box
+      {...moreProps}
       data-pka-anchor="list-box-box"
       hasError={hasError}
       isInline={isInline}
       isReadOnly={isReadOnly}
       triggerWidth={triggerWidth}
     >
-      {props.children}
+      {children}
     </sc.Box>
   );
 }

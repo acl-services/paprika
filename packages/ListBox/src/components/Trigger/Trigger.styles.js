@@ -25,7 +25,7 @@ const triggerSizes = {
   `,
 };
 
-const triggerStyles = ({ hasError, isDisabled, isReadOnly, size }) => css`
+const triggerStyles = ({ hasError, isDisabled, isInline, isReadOnly, size }) => css`
   ${stylers.truncateText}
   align-items: center;
   background-color: ${tokens.color.white};
@@ -41,6 +41,7 @@ const triggerStyles = ({ hasError, isDisabled, isReadOnly, size }) => css`
   width: 100%;
   ${triggerSizes[size]};
   ${hasError ? stylers.errorFormStyles : ""}
+  ${hasError && isInline ? `border-bottom-color: ${tokens.border.color};` : ""}
   ${isDisabled ? `color: ${tokens.color.blackLighten60};` : ""}
   ${isReadOnly ? stylers.readOnlyFormStyles : ""}
 

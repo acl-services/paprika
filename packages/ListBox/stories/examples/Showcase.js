@@ -8,12 +8,13 @@ import ListBox from "../../src";
 
 const getKnobs = () => ({
   size: select("size", Object.values(ListBox.types.size), ListBox.types.size.MEDIUM),
-  height: number("height", 200),
-  hasError: boolean("hasError", false),
-  isDisabled: boolean("isDisabled", false),
   isInline: boolean("isInline", false),
+  height: number("height", 200),
+  isDisabled: boolean("isDisabled", false),
   isReadOnly: boolean("isReadOnly", false),
+  hasError: boolean("hasError", false),
   placeholder: text("placeholder", ""),
+  hasImplicitAll: boolean("hasImplicitAll", false),
   showFilter: boolean("Show Filter", false),
   showFooter: boolean("Show Footer", false),
 });
