@@ -19,7 +19,7 @@ function Trigger(props) {
       ref={triggerRef}
       aria-controls={menuRefId}
       aria-expanded={isOpen}
-      aria-haspopup="true"
+      aria-haspopup
       onClick={e => {
         onOpenMenu();
         onClick(e);

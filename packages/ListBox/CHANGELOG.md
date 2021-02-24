@@ -13,8 +13,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [1.0.1]
 
-- Fix accessibility issue so options are now focusable and read to screen reader technology
-- Add Toast component as dependency
+- Fix accessiblity issue so options are now focusable and read to screen reader technology
+- Add Toast component as depedency
 
 ## [1.0.0] - 2020-11-04
 

@@ -1,16 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import * as sc from "./Tag.styles";
 import * as types from "./types";
 
 export default function Tag(props) {
   const { children, onRemove, size, onClick, a11yText, avatar, isDisabled, ...moreProps } = props;
+  const I18n = useI18n();
 
   const handleRemove = e => {
     onRemove();
     e.stopPropagation();
   };
+
+  const handleDeleteKeyDown = e => {
+    if (e.key === "Enter" || e.key === "Backspace" || e.key === " ") {
+      handleRemove(e);
+    }
+  };
+
+  const a11yTagText = typeof children === "string" ? I18n.t("remove_a11y", { value: children }) : I18n.t("remove");
 
   const content = (
     <>
@@ -18,11 +28,13 @@ export default function Tag(props) {
       <sc.Ellipsis size={size}>{children}</sc.Ellipsis>
       {onRemove ? (
         <sc.Delete
+          a11yText={a11yText || a11yTagText}
           isDisabled={isDisabled}
           size={size}
           data-pka-anchor="tag.remove"
           data-qa-anchor="paprika.tag.remove"
           onClick={handleRemove}
+          onKeyDown={handleDeleteKeyDown}
         />
       ) : null}
     </>

@@ -9,6 +9,7 @@ en:
       pm: pm
     back: Back
     remove: remove
+    remove_a11y: "Remove {{value}}"
     moreInformation: more information
     close: Close
     dataGrid:
@@ -120,6 +121,7 @@ en:
       placeholder: Select…
       no_results_found: No results found
       all_items_have_been_selected: "All items have been selected"
+      a11y_text_trigger: "Multi-select option: {{options}}"
     search:
       searchTerm: Search term...
     actionBar:
