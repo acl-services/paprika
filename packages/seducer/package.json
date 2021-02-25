@@ -29,10 +29,6 @@
     "react-dom": "^16.8.0"
   },
   "devDependencies": {
-    "@paprika/button": "^1.0.8-alpha.2",
-    "@paprika/card": "^1.0.6-alpha.2",
-    "@paprika/collapsible-card": "^1.1.10-alpha.2",
-    "@paprika/toast": "^1.0.8-alpha.2",
     "react-dom-confetti": "^0.2.0"
   }
 }

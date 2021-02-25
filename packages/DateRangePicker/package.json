@@ -32,8 +32,5 @@
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"
   },
-  "devDependencies": {
-    "prop-types": "^15.7.2"
-  },
   "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
 }

@@ -25,13 +25,6 @@
     "prop-types": "^15.7.2",
     "uuid": "^8.3.2"
   },
-  "devDependencies": {
-    "@paprika/avatar": "^2.2.4-alpha.2",
-    "@paprika/checkbox": "^1.0.8-alpha.2",
-    "@paprika/overflow-menu": "^1.0.12-alpha.3",
-    "@paprika/status-tracker": "^1.0.9-alpha.3",
-    "@paprika/switch": "^1.0.7-alpha.2"
-  },
   "peerDependencies": {
     "@paprika/l10n": "^1.1.10-alpha.3",
     "react": "^16.8.4",
