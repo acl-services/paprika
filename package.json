@@ -7,7 +7,6 @@
     "cypress:dev": "run-p --race storybook cypress:open",
     "cypress:open": "cypress open",
     "cypress:run": "wait-on http://localhost:9009/iframe.html && cypress run --browser chrome",
-    "generateChangelog": "node scripts/changelogFiles.js",
     "generateReadMe": "node scripts/readmeFiles.js",
     "generateTypeDefinitions": "node scripts/typesFiles.js && yarn tsc",
     "jest:watch": "yarn jest --watch",
@@ -15,9 +14,7 @@
     "lint": "eslint packages --report-unused-disable-directives",
     "lint:fix": "yarn lint --fix",
     "lint:jss": "stylelint './packages/**/src/**/*.styles.js'",
-    "postpublish": "git add packages/*.md packages/*/index.d.ts && git commit -m 'Publish: automate readme, type definitions and changelog update' --no-verify && git push origin master -f --no-verify",
     "prepare": "yarn cleanup && lerna run pretranspile && yarn transpile && yarn generateReadMe && yarn generateTypeDefinitions",
-    "prepublishOnly": "yarn generateChangelog",
     "prettier": "prettier \"packages/**/*.+(js|json|yml|css|scss)\"",
     "prettier:format": "yarn prettier --write",
     "publish:stable": "node scripts/publish",
@@ -131,6 +128,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.4.4",
+    "@changesets/cli": "^2.14.1",
     "legally": "^3.5.10",
     "react-json-tree": "^0.11.2",
     "shelljs": "^0.8.3"
