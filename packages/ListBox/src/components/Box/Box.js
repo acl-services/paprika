@@ -23,6 +23,8 @@ export default function Box(props) {
   );
 }
 
+Box.displayName = "ListBox.Box";
+
 Box.propTypes = {
   /** Body content of the box. */
   children: PropTypes.node.isRequired,

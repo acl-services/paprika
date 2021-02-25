@@ -11,7 +11,7 @@ import Option from "./components/Option";
 import Popover from "./components/Popover";
 import RawItem from "./components/RawItem";
 import Trigger from "./components/Trigger";
-import A11yPropsCollector from "./components/A11yPropsCollector";
+import A11y from "./components/A11y";
 import Provider from "./store/Provider";
 import OnChangeProvider from "./store/OnChangeProvider";
 import PropsProvider from "./store/PropsProvider";
@@ -60,7 +60,7 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
     "ListBox.Trigger",
   ]);
 
-  const a11yProps = extractChildrenProps(_children, A11yPropsCollector);
+  const a11yProps = extractChildrenProps(_children, A11y);
   const { id, refLabel, ...moreA11yProps } = a11yProps;
   const providedProps = {
     a11yProps: moreA11yProps,
@@ -97,6 +97,7 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
 
 export default ListBoxWithProvider;
 
+ListBoxWithProvider.A11y = A11y;
 ListBoxWithProvider.Box = Box;
 ListBoxWithProvider.Divider = Divider;
 ListBoxWithProvider.Filter = Filter;
@@ -105,7 +106,6 @@ ListBoxWithProvider.Option = Option;
 ListBoxWithProvider.Popover = Popover;
 ListBoxWithProvider.RawItem = RawItem;
 ListBoxWithProvider.Trigger = Trigger;
-ListBoxWithProvider.A11y = A11yPropsCollector;
 
 ListBoxWithProvider.displayName = "ListBox";
 ListBoxWithProvider.propTypes = propTypes;

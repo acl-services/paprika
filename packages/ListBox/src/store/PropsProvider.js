@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { propTypes as a11yPropTypes } from "../components/A11yPropsCollector";
+import { propTypes as a11yPropTypes } from "../components/A11y";
 
 export const PropsContext = React.createContext(null);
 

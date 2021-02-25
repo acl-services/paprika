@@ -22,6 +22,7 @@
   },
   "paprikaDocs": {
     "subComponents": [
+      "A11y",
       "Box",
       "Divider",
       "Filter",
@@ -29,8 +30,7 @@
       "Option",
       "Popover",
       "RawItem",
-      "Trigger",
-      "WithTags"
+      "Trigger"
     ]
   },
   "devDependencies": {

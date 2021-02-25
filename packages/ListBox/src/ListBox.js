@@ -30,10 +30,22 @@ export function ListBox(props) {
     height,
     isOpen,
 
+    // exclude from moreProps
+    hasError,
+    isDisabled,
+    isInline: excludedIsInline,
+    isMulti,
+    isReadOnly: excludedIsReadOnly,
+    onChange,
+    placeholder,
+    size,
+
+    /* eslint-disable react/prop-types */
     box = { props: {} },
     filter,
     footer,
     trigger: _trigger,
+    /* eslint-enable react/prop-types */
 
     ...moreProps
   } = props;
@@ -44,24 +56,30 @@ export function ListBox(props) {
 
   const hasOptions = Boolean(React.Children.count(children));
 
+  /* eslint-disable react/prop-types */
+  const onClickFooterAccept = footer ? footer.props.onClickAccept : null;
+  const onCancelFooter = footer ? footer.props.onClickCancel : null;
+  const noResultsMessage = filter ? filter.props.noResultsMessage || I18n.t("listBox.filter.no_results_message") : null;
+  /* eslint-enable react/prop-types */
+
   const propsForTrigger = {
     hasClearButton: true,
     hasImplicitAll,
     onClickClear: null,
-    onClickFooterAccept: footer ? footer.props.onClickAccept : null,
+    onClickFooterAccept,
   };
-
-  const trigger = _trigger ? React.cloneElement(_trigger, { ..._trigger.props }) : <Trigger {...propsForTrigger} />;
 
   const contentProps = {
     hasOptions,
-    onCancelFooter: footer ? footer.props.onClickCancel : null,
+    onCancelFooter,
   };
 
   const listProps = {
     height,
     hasOptions,
   };
+
+  const trigger = _trigger ? React.cloneElement(_trigger, { ..._trigger.props }) : <Trigger {...propsForTrigger} />;
 
   const listBox = (
     <>
@@ -73,9 +91,7 @@ export function ListBox(props) {
             <List {...listProps}>
               <Options isPopoverOpen={isOpen}>{children}</Options>
             </List>
-            {filter ? (
-              <NoResults label={filter.props.noResultsMessage || I18n.t("listBox.filter.no_results_message")} />
-            ) : null}
+            {filter ? <NoResults label={noResultsMessage} /> : null}
             {footer && !isReadOnly ? React.cloneElement(footer, { ref: state.refFooterContainer }) : null}
           </Box>
         </Content>
@@ -230,15 +246,12 @@ export const defaultProps = {
   isOpen: null,
   isReadOnly: false,
   onChange: () => {},
-  placeholder: "",
+  placeholder: null,
   size: ListBoxContainer.types.size.MEDIUM,
 };
 
-ListBox.propTypes = {
-  ...propTypes,
-  children: PropTypes.node.isRequired,
-  height: PropTypes.number.isRequired,
-};
+ListBox.propTypes = propTypes;
+ListBox.defaultProps = defaultProps;
 
 ListBoxContainer.propTypes = propTypes;
 ListBoxContainer.defaultProps = defaultProps;
