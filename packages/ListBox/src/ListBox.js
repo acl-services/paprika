@@ -41,7 +41,7 @@ export function ListBox(props) {
     size,
 
     /* eslint-disable react/prop-types */
-    box = { props: {} },
+    box,
     filter,
     footer,
     trigger: _trigger,
@@ -51,15 +51,14 @@ export function ListBox(props) {
   } = props;
 
   const I18n = useI18n();
-  const [state] = useListBox();
+  const [{ noResultsFound, refFooterContainer }] = useListBox();
   const { isInline, isReadOnly } = React.useContext(PropsContext);
-
-  const hasOptions = Boolean(React.Children.count(children));
 
   /* eslint-disable react/prop-types */
   const onClickFooterAccept = footer ? footer.props.onClickAccept : null;
   const onCancelFooter = footer ? footer.props.onClickCancel : null;
   const noResultsMessage = filter ? filter.props.noResultsMessage || I18n.t("listBox.filter.no_results_message") : null;
+  const boxProps = box ? box.props : null;
   /* eslint-enable react/prop-types */
 
   const propsForTrigger = {
@@ -70,13 +69,12 @@ export function ListBox(props) {
   };
 
   const contentProps = {
-    hasOptions,
     onCancelFooter,
   };
 
   const listProps = {
     height,
-    hasOptions,
+    hasOptions: !noResultsFound,
   };
 
   const trigger = _trigger ? React.cloneElement(_trigger, { ..._trigger.props }) : <Trigger {...propsForTrigger} />;
@@ -86,13 +84,13 @@ export function ListBox(props) {
       {trigger}
       {isInline || !isReadOnly ? (
         <Content {...contentProps}>
-          <Box {...box.props}>
+          <Box {...boxProps}>
             {isReadOnly ? null : filter}
             <List {...listProps}>
               <Options isPopoverOpen={isOpen}>{children}</Options>
             </List>
             {filter ? <NoResults label={noResultsMessage} /> : null}
-            {footer && !isReadOnly ? React.cloneElement(footer, { ref: state.refFooterContainer }) : null}
+            {footer && !isReadOnly ? React.cloneElement(footer, { ref: refFooterContainer }) : null}
           </Box>
         </Content>
       ) : null}
@@ -140,14 +138,20 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
   const onChangeContext = React.useContext(OnChangeContext);
   const providedProps = React.useContext(PropsContext);
 
+  /* eslint-disable react/prop-types */
+  const shouldTriggerKeepFocus = popover && popover.props.shouldKeepFocus;
+  const popoverProps = popover && popover.props;
+  /* eslint-enable react/prop-types */
+
   // IMPERATIVE API
-  const imperativeHandle = handleImperative({ state, dispatch, onChangeContext });
+  const imperativeHandle = handleImperative({
+    state,
+    dispatch,
+    onChangeContext,
+  });
   React.useImperativeHandle(ref, imperativeHandle);
 
   // HOOKS
-  // eslint-disable-next-line react/prop-types
-  const shouldTriggerKeepFocus = popover && popover.props.shouldKeepFocus;
-
   useAdjustWidth();
   useChildrenChange(children);
   useIsPopOverOpen(shouldTriggerKeepFocus);
@@ -176,7 +180,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
 
   if (popover) {
     const PopoverClone = React.cloneElement(popover, {
-      ...popover.props, // eslint-disable-line react/prop-types
+      ...popoverProps,
       children: listBox,
     });
     return PopoverClone;

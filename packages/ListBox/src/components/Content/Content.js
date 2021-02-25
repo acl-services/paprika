@@ -41,7 +41,7 @@ const handleContentFocusChange = (hasFocus, dispatch) =>
   dispatch({ type: useListBox.types.setListBoxHasFocus, payload: { hasFocus } });
 
 export default function Content(props) {
-  const { children, hasOptions, onCancelFooter, ...moreProps } = props;
+  const { children, onCancelFooter, ...moreProps } = props;
   const onChangeContext = React.useContext(OnChangeContext);
   const [state, dispatch] = useListBox();
   const { refListBoxContainer } = state;
@@ -55,7 +55,6 @@ export default function Content(props) {
         {...moreProps}
         {...getDOMAttributesForListBox({ idListBox, refLabel, ...state })}
         data-pka-anchor="list-box-content-inline" // TODO: rename "list-box.content-inline"
-        hasOptions={hasOptions}
         onBlur={() => {
           if (!isDisabled) handleContentFocusChange(false, dispatch);
         }}
@@ -88,10 +87,8 @@ export default function Content(props) {
 }
 
 Content.propTypes = {
-  /** Body content of the content. */
   children: PropTypes.node.isRequired,
   onCancelFooter: PropTypes.func,
-  hasOptions: PropTypes.bool.isRequired,
 };
 
 Content.defaultProps = {

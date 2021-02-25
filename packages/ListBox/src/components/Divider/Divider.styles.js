@@ -2,16 +2,6 @@ import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-/*
- * IMPORTANT: THE STYLE FOR ALL OPTION MUST BE THE SAME SIZE
- * THIS IS IMPORTANT FOR CALCULATING THE CORRECT POSITION WHEN EXECUTING useOnScrolled() on Options/helpers/options.js
- * IF THIS STYLES CHANGES THEN UP AN DOWN WILL NOT WORK CORRECTLY WHEN THE DIVIDER EXISTS
- * PAY ATTENTION WHEN YOU MODIFY THE FOLLOWING ATTRIBUTES:
- * - border
- * - margin
- * - padding
- */
-
 export const Divider = styled.li(
   ({ isDisabled }) => css`
     align-items: center;

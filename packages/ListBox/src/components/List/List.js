@@ -5,15 +5,14 @@ import * as sc from "./List.styles";
 
 export default function List(props) {
   const { children, height, hasOptions } = props;
-  const [state] = useListBox();
-  const { refListBox } = state;
+  const [{ noResultsFound, refListBox }] = useListBox();
 
   return (
     <sc.List
       data-pka-anchor="styled-list" // TODO: rename to "list-box.list"
       hasOptions={hasOptions}
       height={height}
-      noResultsFound={state.noResultsFound}
+      noResultsFound={noResultsFound}
       ref={refListBox}
     >
       {children}
@@ -25,8 +24,7 @@ List.propTypes = {
   /** Body content of the list. */
   children: PropTypes.node.isRequired,
 
-  /** Body content of the list. */
-  hasOptions: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
+  hasOptions: PropTypes.bool.isRequired,
 
   /** Sets the height for the list */
   height: PropTypes.number.isRequired,

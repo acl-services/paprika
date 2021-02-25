@@ -17,6 +17,7 @@ export default function FormElementExample() {
           {a11yProps => (
             <ListBox hasError data-qa-anchor="listbox-demo">
               <ListBox.A11y {...a11yProps} />
+              <ListBox.Filter />
               {items.map(item => (
                 <ListBox.Option key={item}>{item}</ListBox.Option>
               ))}
@@ -34,6 +35,7 @@ export default function FormElementExample() {
           {a11yProps => (
             <ListBox isMulti isInline hasError data-qa-anchor="listbox-inline-demo">
               <ListBox.A11y {...a11yProps} />
+              <ListBox.Filter />
               {items.map(item => (
                 <ListBox.Option key={item}>{item}</ListBox.Option>
               ))}
