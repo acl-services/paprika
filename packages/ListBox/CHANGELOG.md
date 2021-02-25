@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- `hasError` and `isReadOnly` props. [@mikrotron](https://github.com/mikrotron)
+- `<ListBox.A11y>` props collector component to collect props and attributes for a11y and propagate them to the trigger button or, if `isInline`, to the `role=listbox` element. [@mikrotron](https://github.com/mikrotron)
+
+### Changed
+
+- Moved `role=listbox` element from `<List>` (`<ul>`) to `<Content>`. [@mikrotron](https://github.com/mikrotron)
+- Improved the `aria-labels`. [@mikrotron](https://github.com/mikrotron)
+- Ensured `moreProps` passed to the root `<ListBox>` get propagated to the root DOM element. [@mikrotron](https://github.com/mikrotron)
+- Internally refactored some "controlled" props to a new, simple context provider allowing updates on re-render. [@mikrotron](https://github.com/mikrotron)
+
 ## [1.4.0]
 
 - Fix some issue with keyboard functionality introduced when working with ListBoxWithTags on the Trigger component.

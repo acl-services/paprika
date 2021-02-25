@@ -2,18 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import Toast from "@paprika/toast";
 import useListBox from "../../useListBox";
+import { PropsContext } from "../../store/PropsProvider";
 import * as sc from "./NoResults.styles";
-
-const propTypes = {
-  /** Sets label for NoResults */
-  label: PropTypes.node.isRequired,
-};
 
 export default function NoResults(props) {
   const { label } = props;
-  const [state] = useListBox();
+  const [{ isOpen, noResultsFound }] = useListBox();
+  const { isInline } = React.useContext(PropsContext);
 
-  if ((state.isOpen || state.isInline) && state.noResultsFound) {
+  if ((isOpen || isInline) && noResultsFound) {
     return (
       <>
         <sc.NoResults data-pka-anchor="no-results">{label}</sc.NoResults>
@@ -27,4 +24,7 @@ export default function NoResults(props) {
   return null;
 }
 
-NoResults.propTypes = propTypes;
+NoResults.propTypes = {
+  /** Sets label for NoResults */
+  label: PropTypes.node.isRequired,
+};

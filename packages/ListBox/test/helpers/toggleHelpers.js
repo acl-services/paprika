@@ -6,4 +6,5 @@ export function openLazyDropDown() {
 
 export function toggleDropdown() {
   cy.get(selectors.trigger).click();
+  cy.get(selectors.popover).should("be.visible");
 }

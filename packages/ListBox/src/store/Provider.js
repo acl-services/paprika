@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { v4 as uuidv4 } from "uuid";
 import reducer from "./reducer";
 import { getDataOptions } from "../components/Option/helpers/optionState";
 
@@ -8,28 +7,22 @@ export const StoreContext = React.createContext();
 
 function initializeState(props) {
   const {
-    childrenOptions,
     height,
-    isDisabled,
-    isInline,
     isMulti,
     isOpen,
-    placeholder,
+
+    childrenOptions,
+
     refFilterInput,
     refFooterContainer,
     refListBox,
     refListBoxContainer,
     refTrigger,
     refTriggerContainer,
-    refLabel,
-    size,
   } = props;
-  const formElementId = props.id;
-  const formElementLabelDescribedBy = props["aria-describedby"];
 
   // initialize state for options and groups
   const options = getDataOptions(childrenOptions);
-  // const Footer = getFooter(childrenOptions);
   const selectedOptions = Object.keys(options)
     .filter(key => options[key].isSelected)
     .map(key => Number.parseInt(key, 10));
@@ -42,15 +35,10 @@ function initializeState(props) {
   const initialState = {
     activeOption,
     filteredOptions: [],
-    formElementId,
-    formElementLabelDescribedBy,
     hasFilter: false,
     hasFooter: false,
     hasPopupOpened: false,
     height,
-    idListBox: `listBoxId_${uuidv4()}`,
-    isDisabled,
-    isInline,
     isMulti,
     isOpen,
     lastKnownSelectedOptions: selectedOptions.slice(0),
@@ -58,16 +46,13 @@ function initializeState(props) {
     noResultsFound: false,
     onChangeFn: null,
     options,
-    placeholder,
     refFilterInput,
     refFooterContainer,
-    refLabel,
     refListBox,
     refListBoxContainer,
     refTrigger,
     refTriggerContainer,
     selectedOptions,
-    size,
     triggerWidth: 0,
   };
 
