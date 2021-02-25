@@ -207,7 +207,7 @@ shell.ls("packages").forEach(folder => {
 
       initAutoReadme({ path, content });
     } catch (e) {
-      console.warn(e);
+      console.warn(folder, e);
     }
   }
 });

@@ -3,8 +3,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import CaretDownIcon from "@paprika/icon/lib/CaretDown";
-import CaretUpIcon from "@paprika/icon/lib/CaretUp";
 import ListBox from "@paprika/list-box";
 import { filter } from "@paprika/list-box/lib/helpers/filter";
 import Tag, { Tags } from "@paprika/tag";
@@ -78,7 +76,9 @@ const renderTrigger = ({
     onRemove(option);
   };
 
-  const Caret = isOpen ? <CaretUpIcon css={triggerSc.iconStyles} /> : <CaretDownIcon css={triggerSc.iconStyles} />;
+  function renderCaret() {
+    return isOpen ? <triggerSc.UpIcon /> : <triggerSc.DownIcon />;
+  }
 
   const a11yTextOptions = selectedOptions.map(item => {
     return tagLabelKey === null ? item.label : item[tagLabelKey];
@@ -128,7 +128,7 @@ const renderTrigger = ({
           </sc.PlaceHolder>
         )}
       </Tags>
-      {allOptionsAreSelected ? null : Caret}
+      {allOptionsAreSelected ? null : renderCaret()}
     </sc.Trigger>
   );
 };

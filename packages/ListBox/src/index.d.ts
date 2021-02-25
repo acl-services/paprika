@@ -4,11 +4,13 @@ declare function ListBox(props: ListBoxProps): JSX.Element;
 interface ListBoxProps {
   [x: string]: any;
   /** Child of type <ListBox.Option />, <ListBox.Divider />, etc */
-  children: React.ReactNode;
+  children?: node[];
+  /** If ListBox is in an error state */
+  hasError?: boolean;
   /** Has implicit "All items selected" value when no item is selected */
   hasImplicitAll?: boolean;
   /** Indicate which is the height for the options container */
-  height: number;
+  height?: number;
   /** Disables the ListBox if true */
   isDisabled?: boolean;
   /** This options will display the list-box without the Popover */
@@ -17,20 +19,34 @@ interface ListBoxProps {
   isMulti?: boolean;
   /** Indicates if the popover is visible */
   isOpen?: boolean;
+  /** The ListBox will not allow value to be changed */
+  isReadOnly?: boolean;
   /** Callback returning the current selection on the ListBox */
   onChange?: (...args: any[]) => any;
   /** Defaults label to display when the ListBox has not option selected */
-  placeholder: string;
+  placeholder?: string;
   /** Size of the trigger and options (font size, height, padding, etc). */
   size?: ListBoxContainer.types.size.SMALL | ListBoxContainer.types.size.MEDIUM | ListBoxContainer.types.size.LARGE;
 }
-declare function Box(props: BoxProps): JSX.Element;
-interface BoxProps {
-  [x: string]: any;
-  /** Body content of the box. */
-  children: React.ReactNode;
-}
 
+declare namespace ListBox {
+  function A11y(props: A11yProps): JSX.Element;
+  interface A11yProps {
+    [x: string]: any;
+    /** DOM id attribute for focussable control (trigger element or ul element if isInline=true) */
+    id?: string;
+    /** Ref for a DOM element containing the label for this component */
+    refLabel?: custom;
+  }
+}
+declare namespace ListBox {
+  function Box(props: BoxProps): JSX.Element;
+  interface BoxProps {
+    [x: string]: any;
+    /** Body content of the box. */
+    children: React.ReactNode;
+  }
+}
 declare namespace ListBox {
   function Divider(props: DividerProps): JSX.Element;
   interface DividerProps {
@@ -169,34 +185,6 @@ declare namespace ListBox {
     /** If true the trigger will be hidden */
     isHidden?: boolean;
   }
-}
-declare function WithTags(props: WithTagsProps): JSX.Element;
-interface WithTagsProps {
-  [x: string]: any;
-  /** Child of type <ListBox.Option />, <ListBox.Divider />, etc */
-  children: node[];
-  /** filter function for the ListBoxWithTags can be pair with ListBoxWithTags.filter */
-  filter?: (...args: any[]) => any;
-  /** String message to be display when there are not results */
-  noResultsMessage?: React.ReactNode;
-  /** Callback whenever the user change a selection on the ListBoxWithTags */
-  onChange?: (...args: any[]) => any;
-  /** Callback whenever the user input a new custom option like some@email.com, pass undefined to ignore this behaviour */
-  onAddCustomOption?: (...args: any[]) => any;
-  /** Callback once a pill is remove from the Trigger */
-  onRemove?: (...args: any[]) => any;
-  /** Regex that match the input of the user and reports to onAddCustomOption. The default is a basic email regex */
-  customOptionRegex?: instanceOf;
-  /** Render prop to override the default Pill style, see example for it's uses. */
-  renderPill?: (...args: any[]) => any;
-  /** An array of id that helps the ListBoxWithTags to known what elements are selected */
-  selectedOptions?: shape[];
-  /** Provides an alternative for rendering the Pill label instead of using the default [{label:value}] coming from the og data */
-  pillLabelKey?: string;
-  /** When this is true, it will display a message indicating all options are selected without showing the popover nor the search input */
-  allOptionsAreSelected?: boolean;
-  /** Message to display when all options have been selected */
-  allOptionsAreSelectedMessage?: string;
 }
 
 declare namespace ListBoxContainer {

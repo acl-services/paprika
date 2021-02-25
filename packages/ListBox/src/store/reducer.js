@@ -243,13 +243,6 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
-    case useListBox.types.setIsDisabled: {
-      return {
-        ...state,
-        isDisabled: payload,
-      };
-    }
-
     case useListBox.types.cleanOnChangeFn: {
       return {
         ...state,

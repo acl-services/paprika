@@ -2,12 +2,55 @@ import React from "react";
 import PropTypes from "prop-types";
 import useListBox from "../../useListBox";
 import { OnChangeContext } from "../../store/OnChangeProvider";
+import { PropsContext } from "../../store/PropsProvider";
 import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
 import { isOptionVisible, isOptionSelected, handleClickOption } from "../Options/helpers/options";
 import useIsSelectedOption from "./useIsSelectedOption";
 import * as sc from "./Option.styles";
 
-const propTypes = {
+export default function Option(props) {
+  const { index, groupId, label, ...moreProps } = props; // eslint-disable-line
+  const [state, dispatch] = useListBox();
+  const { activeOption, listBoxHasFocus } = state;
+  const providedProps = React.useContext(PropsContext);
+  const { isReadOnly, size } = providedProps;
+  const onChangeContext = React.useContext(OnChangeContext);
+
+  useIsSelectedOption({ index, props });
+
+  if (typeof state.options[index] === "undefined" || !isOptionVisible(state, index)) {
+    return null;
+  }
+
+  const isSelected = isOptionSelected(state, index);
+  const isDisabled = providedProps.isDisabled || props.isDisabled || isReadOnly;
+  const id = state.options[index].id;
+
+  return (
+    <sc.Option
+      {...moreProps}
+      {...getA11yAttributesForOption(isSelected)}
+      hasPreventDefaultOnSelect={props.preventDefaultOnSelect}
+      id={id}
+      listBoxHasFocus={listBoxHasFocus}
+      isActive={activeOption === index}
+      isDisabled={isDisabled}
+      isSelected={isSelected}
+      size={size}
+      key={index}
+      onClick={handleClickOption({ props, isDisabled, state, dispatch, onChangeContext })}
+      data-pka-anchor={isSelected ? "list-option--is-selected" : "list-option"}
+      data-pka-prevent-default-on-select={props.preventDefaultOnSelect}
+      tabIndex={-1}
+    >
+      {typeof props.children === "function" ? props.children({ isSelected, isDisabled, id }) : props.children}
+    </sc.Option>
+  );
+}
+
+Option.displayName = "ListBox.Option";
+
+Option.propTypes = {
   /** String, number or JSX content */
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
 
@@ -36,7 +79,7 @@ const propTypes = {
   preventDefaultOnSelect: PropTypes.bool,
 };
 
-const defaultProps = {
+Option.defaultProps = {
   isDisabled: false,
   isHidden: false,
   preventDefaultOnSelect: false,
@@ -46,50 +89,3 @@ const defaultProps = {
   onClick: null,
   value: null,
 };
-
-export default function Option(props) {
-  const [state, dispatch] = useListBox();
-  const onChangeContext = React.useContext(OnChangeContext);
-  const { activeOption, listBoxHasFocus, isDisabled: isDisabledState, size } = state;
-  const { index, groupId, label, ...moreProps } = props; // eslint-disable-line
-
-  useIsSelectedOption({ index, props });
-
-  if (typeof state.options[index] === "undefined") {
-    return null;
-  }
-
-  if (!isOptionVisible(state, index)) {
-    return null;
-  }
-
-  const isSelected = isOptionSelected(state, index);
-  const isDisabled = isDisabledState || props.isDisabled;
-  const id = state.options[index].id;
-
-  return (
-    <sc.Option
-      {...moreProps}
-      {...getA11yAttributesForOption(isSelected)}
-      hasPreventDefaultOnSelect={props.preventDefaultOnSelect}
-      id={id}
-      listBoxHasFocus={listBoxHasFocus}
-      isActive={activeOption === index}
-      isDisabled={isDisabled}
-      isSelected={isSelected}
-      size={size}
-      key={index}
-      onClick={handleClickOption({ props, state, dispatch, onChangeContext })}
-      data-pka-anchor={isSelected ? "list-option--is-selected" : "list-option"}
-      data-pka-prevent-default-on-select={props.preventDefaultOnSelect}
-      tabIndex={-1}
-    >
-      {typeof props.children === "function" ? props.children({ isSelected, isDisabled, id }) : props.children}
-    </sc.Option>
-  );
-  /* eslint-enable react/prop-types */
-}
-
-Option.displayName = "ListBox.Option";
-Option.propTypes = propTypes;
-Option.defaultProps = defaultProps;

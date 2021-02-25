@@ -1,6 +1,7 @@
 import React from "react";
 import isEqual from "lodash.isequal";
 import useListBox from "../useListBox";
+import { PropsContext } from "../store/PropsProvider";
 import { getDataOptions } from "../components/Option/helpers/optionState";
 
 // we should export a hook from the popover so we get notify when the popover state for isOpen change meanwhile:
@@ -32,21 +33,31 @@ export function useChildrenChange(children) {
 
 export function useIsPopOverOpen(shouldKeepTriggerFocus) {
   const [state, dispatch] = useListBox();
+  const {
+    hasFilter,
+    hasPopupOpened,
+    isOpen,
+    refFilterInput,
+    refListBoxContainer,
+    refTrigger,
+    refTriggerContainer,
+  } = state;
+  const { isInline } = React.useContext(PropsContext);
 
   React.useLayoutEffect(() => {
-    if (state.isInline) return;
-    if (!state.refListBoxContainer.current) return;
+    if (isInline) return;
+    if (!refListBoxContainer.current) return;
 
-    const filterInput = state.refFilterInput.current;
-    const listBoxContainer = state.refListBoxContainer.current;
-    const trigger = state.refTrigger.current;
-    if (state.isOpen) {
-      if (state.hasFilter && !shouldKeepTriggerFocus) {
+    const filterInput = refFilterInput.current;
+    const listBoxContainer = refListBoxContainer.current;
+    const trigger = refTrigger.current;
+    if (isOpen) {
+      if (hasFilter && !shouldKeepTriggerFocus) {
         waitForPopoverAnimation(() => filterInput.focus());
         return;
       }
 
-      dispatch({ type: useListBox.types.setTriggerWidth, payload: state.refTriggerContainer.current.offsetWidth });
+      dispatch({ type: useListBox.types.setTriggerWidth, payload: refTriggerContainer.current.offsetWidth });
       dispatch({ type: useListBox.types.setHasPopupOpened, payload: true });
 
       if (!shouldKeepTriggerFocus) {
@@ -55,23 +66,23 @@ export function useIsPopOverOpen(shouldKeepTriggerFocus) {
       return;
     }
 
-    if (state.hasPopupOpened) {
+    if (hasPopupOpened) {
       listBoxContainer.focus();
-      if (state.isInline === false && state.isOpen === false) {
+      if (isInline === false && isOpen === false) {
         trigger.focus();
       }
     }
   }, [
     dispatch,
+    hasFilter,
+    hasPopupOpened,
+    isInline,
+    isOpen,
+    refFilterInput,
+    refListBoxContainer,
+    refTrigger,
+    refTriggerContainer,
     shouldKeepTriggerFocus,
-    state.hasFilter,
-    state.hasPopupOpened,
-    state.isInline,
-    state.isOpen,
-    state.refFilterInput,
-    state.refListBoxContainer,
-    state.refTrigger,
-    state.refTriggerContainer,
   ]);
 }
 
@@ -147,17 +158,6 @@ export function useOnScrolled() {
       });
     }
   }, [state.activeOption, state.options, state.refListBox]);
-}
-
-export function useIsDisabled(isDisabled) {
-  const [, dispatch] = useListBox();
-
-  React.useEffect(() => {
-    dispatch({
-      type: useListBox.types.setIsDisabled,
-      payload: isDisabled,
-    });
-  }, [dispatch, isDisabled]);
 }
 
 export function useOptionSelected() {
