@@ -15,7 +15,8 @@ export default function FormElementExample() {
         <FormElement.Instructions>Scenester brunch instructions</FormElement.Instructions>
         <FormElement.Content>
           {a11yProps => (
-            <ListBox hasError {...a11yProps} data-qa-anchor="listbox-demo">
+            <ListBox hasError data-qa-anchor="listbox-demo">
+              <ListBox.A11y {...a11yProps} />
               {items.map(item => (
                 <ListBox.Option key={item}>{item}</ListBox.Option>
               ))}
@@ -31,7 +32,8 @@ export default function FormElementExample() {
         <FormElement.Instructions>Scenester brunch instructions</FormElement.Instructions>
         <FormElement.Content>
           {a11yProps => (
-            <ListBox isMulti isInline hasError {...a11yProps} data-qa-anchor="listbox-demo">
+            <ListBox isMulti isInline hasError data-qa-anchor="listbox-inline-demo">
+              <ListBox.A11y {...a11yProps} />
               {items.map(item => (
                 <ListBox.Option key={item}>{item}</ListBox.Option>
               ))}

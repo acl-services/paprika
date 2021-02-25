@@ -49,19 +49,13 @@ export function ListBox(props) {
     hasImplicitAll,
     onClickClear: null,
     onClickFooterAccept: footer ? footer.props.onClickAccept : null,
-    morePropsForTrigger: moreProps,
   };
 
-  const trigger = _trigger ? (
-    React.cloneElement(_trigger, { ...propsForTrigger, ..._trigger.props })
-  ) : (
-    <Trigger {...propsForTrigger} />
-  );
+  const trigger = _trigger ? React.cloneElement(_trigger, { ..._trigger.props }) : <Trigger {...propsForTrigger} />;
 
   const contentProps = {
     hasOptions,
     onCancelFooter: footer ? footer.props.onClickCancel : null,
-    ...(isInline ? moreProps : {}),
   };
 
   const listProps = {
@@ -69,29 +63,36 @@ export function ListBox(props) {
     hasOptions,
   };
 
-  return (
-    <React.Fragment>
+  const listBox = (
+    <>
       {trigger}
-      <Content {...contentProps}>
-        <Box {...box.props}>
-          {isReadOnly ? null : filter}
-          <List {...listProps}>
-            <Options isPopoverOpen={isOpen}>{children}</Options>
-          </List>
-          {filter ? (
-            <NoResults label={filter.props.noResultsMessage || I18n.t("listBox.filter.no_results_message")} />
-          ) : null}
-          {footer && !isReadOnly ? React.cloneElement(footer, { ref: state.refFooterContainer }) : null}
-        </Box>
-      </Content>
-    </React.Fragment>
+      {isInline || !isReadOnly ? (
+        <Content {...contentProps}>
+          <Box {...box.props}>
+            {isReadOnly ? null : filter}
+            <List {...listProps}>
+              <Options isPopoverOpen={isOpen}>{children}</Options>
+            </List>
+            {filter ? (
+              <NoResults label={filter.props.noResultsMessage || I18n.t("listBox.filter.no_results_message")} />
+            ) : null}
+            {footer && !isReadOnly ? React.cloneElement(footer, { ref: state.refFooterContainer }) : null}
+          </Box>
+        </Content>
+      ) : null}
+    </>
+  );
+
+  return isInline ? (
+    <div data-pka-anchor="list-box" {...moreProps}>
+      {listBox}
+    </div>
+  ) : (
+    listBox
   );
 }
 
 const ListBoxContainer = React.forwardRef((props, ref) => {
-  const [state, dispatch] = useListBox();
-  const onChangeContext = React.useContext(OnChangeContext);
-
   const {
     children,
     hasImplicitAll,
@@ -102,7 +103,6 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
 
     // exclude from moreProps
     hasError,
-    id,
     isDisabled,
     isInline,
     isReadOnly,
@@ -119,6 +119,10 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
 
     ...moreProps
   } = props;
+
+  const [state, dispatch] = useListBox();
+  const onChangeContext = React.useContext(OnChangeContext);
+  const providedProps = React.useContext(PropsContext);
 
   // IMPERATIVE API
   const imperativeHandle = handleImperative({ state, dispatch, onChangeContext });
@@ -145,12 +149,12 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     footer,
     trigger,
 
-    ...moreProps,
+    ...(providedProps.isInline ? moreProps : {}),
   };
 
   const listBox = <ListBox {...propsForListBox}>{children}</ListBox>;
 
-  if (isInline) {
+  if (providedProps.isInline) {
     return listBox;
   }
 
@@ -162,7 +166,11 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     return PopoverClone;
   }
 
-  return <Popover>{listBox}</Popover>;
+  return (
+    <div data-pka-anchor="list-box" {...moreProps}>
+      <Popover>{listBox}</Popover>
+    </div>
+  );
 });
 
 ListBoxContainer.types = {
@@ -181,9 +189,6 @@ export const propTypes = {
 
   /** Indicate which is the height for the options container */
   height: PropTypes.number,
-
-  /** DOM id attribute for focussable control (trigger element or ul element if isInline=true) */
-  id: PropTypes.string,
 
   /** Disables the ListBox if true */
   isDisabled: PropTypes.bool,
@@ -219,7 +224,6 @@ export const defaultProps = {
   hasError: false,
   hasImplicitAll: false,
   height: 200,
-  id: null,
   isDisabled: false,
   isInline: false,
   isMulti: false,

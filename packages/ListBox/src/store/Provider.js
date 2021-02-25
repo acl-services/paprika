@@ -7,17 +7,18 @@ export const StoreContext = React.createContext();
 
 function initializeState(props) {
   const {
-    childrenOptions,
     height,
     isMulti,
     isOpen,
+
+    childrenOptions,
+
     refFilterInput,
     refFooterContainer,
     refListBox,
     refListBoxContainer,
     refTrigger,
     refTriggerContainer,
-    refLabel,
   } = props;
 
   // initialize state for options and groups
@@ -47,7 +48,6 @@ function initializeState(props) {
     options,
     refFilterInput,
     refFooterContainer,
-    refLabel,
     refListBox,
     refListBoxContainer,
     refTrigger,

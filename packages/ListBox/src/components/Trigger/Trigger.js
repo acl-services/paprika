@@ -31,11 +31,10 @@ export default function Trigger(props) {
     label,
     onClickClear,
     onClickFooterAccept,
-    morePropsForTrigger,
     ...moreProps
   } = props;
 
-  const { hasError, idListBox, isDisabled, isInline, isReadOnly, size } = providedProps;
+  const { a11yProps, hasError, idListBox, isDisabled, isInline, isReadOnly, refLabel, size } = providedProps;
 
   const {
     activeOption,
@@ -44,7 +43,6 @@ export default function Trigger(props) {
     isMulti,
     onChange,
     options,
-    refLabel,
     refTrigger,
     refTriggerContainer,
     selectedOptions,
@@ -153,7 +151,7 @@ export default function Trigger(props) {
           idListBox,
           idFormLabel: idFormLabel.current,
         })}
-        {...morePropsForTrigger}
+        {...a11yProps}
         data-pka-anchor="list-box-trigger"
         isDisabled={isDisabled}
         onClick={handleClick}
@@ -264,9 +262,6 @@ export default function Trigger(props) {
 Trigger.displayName = "ListBox.Trigger";
 
 Trigger.propTypes = {
-  /* More props added to ListBox to add to trigger button for a11y */
-  morePropsForTrigger: PropTypes.any, // eslint-disable-line react/forbid-prop-types
-
   /** Custom clear icon */
   clearIcon: PropTypes.node,
 
@@ -296,7 +291,6 @@ Trigger.propTypes = {
 };
 
 Trigger.defaultProps = {
-  morePropsForTrigger: null,
   clearIcon: null,
   children: <React.Fragment />,
   hasClearButton: true,

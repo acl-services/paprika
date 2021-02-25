@@ -46,13 +46,14 @@ export default function Content(props) {
   const [state, dispatch] = useListBox();
   const { refListBoxContainer } = state;
   const providedProps = React.useContext(PropsContext);
-  const { idListBox, isDisabled, isInline } = providedProps;
+  const { a11yProps, idListBox, isDisabled, isInline, refLabel } = providedProps;
 
   if (isInline) {
     return (
       <sc.Content
+        {...a11yProps}
         {...moreProps}
-        {...getDOMAttributesForListBox({ idListBox, ...state })}
+        {...getDOMAttributesForListBox({ idListBox, refLabel, ...state })}
         data-pka-anchor="list-box-content-inline" // TODO: rename "list-box.content-inline"
         hasOptions={hasOptions}
         onBlur={() => {
@@ -74,7 +75,7 @@ export default function Content(props) {
 
   return (
     <Popover.Content
-      {...getDOMAttributesForListBox({ idListBox, ...state })}
+      {...getDOMAttributesForListBox({ idListBox, refLabel, ...state })}
       onBlur={handleBlur(state, dispatch, onCancelFooter)}
       onKeyDown={handleKeyDownKeyboardKeys({ providedProps, state, dispatch, onChangeContext })}
       onKeyUp={handleKeyUpKeyboardKeys({ providedProps, state, dispatch, onChangeContext })}

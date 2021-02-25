@@ -1,4 +1,4 @@
-export function getDOMAttributesForListBox({ activeOption, idListBox, isInline, isMulti, options, refLabel }) {
+export function getDOMAttributesForListBox({ idListBox, refLabel, activeOption, isInline, isMulti, options }) {
   let activedescendant = "";
 
   if (activeOption && activeOption < Object.keys(options).length) {

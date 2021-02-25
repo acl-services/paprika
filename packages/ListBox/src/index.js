@@ -1,8 +1,8 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import { extractChildrenProps, extractChildren } from "@paprika/helpers";
 import ListBox, { propTypes, defaultProps } from "./ListBox";
-import extractChildren from "./helpers/extractChildren";
 import Divider from "./components/Divider";
 import Box from "./components/Box/BoxShell";
 import Filter from "./components/Filter";
@@ -11,25 +11,16 @@ import Option from "./components/Option";
 import Popover from "./components/Popover";
 import RawItem from "./components/RawItem";
 import Trigger from "./components/Trigger";
+import A11yPropsCollector from "./components/A11yPropsCollector";
 import Provider from "./store/Provider";
 import OnChangeProvider from "./store/OnChangeProvider";
 import PropsProvider from "./store/PropsProvider";
 import * as types from "./types";
 
 const ListBoxWithProvider = React.forwardRef((props, ref) => {
-  const { children, hasError, id, isDisabled, isInline, isReadOnly, placeholder, size, ...moreProps } = props;
+  const { children, hasError, isDisabled, isInline, isReadOnly, placeholder, size, ...moreProps } = props;
 
   const I18n = useI18n();
-
-  const providedProps = {
-    hasError,
-    idListBox: id || `list-box-trigger_${uuidv4()}`,
-    isDisabled,
-    isInline,
-    isReadOnly,
-    placeholder: placeholder || I18n.t("listBox.trigger.placeholder"),
-    size,
-  };
 
   /*
     Assures the structure of the children is one of the following:
@@ -69,6 +60,20 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
     "ListBox.Trigger",
   ]);
 
+  const a11yProps = extractChildrenProps(_children, A11yPropsCollector);
+  const { id, refLabel, ...moreA11yProps } = a11yProps;
+  const providedProps = {
+    a11yProps: moreA11yProps,
+    hasError,
+    idListBox: id || `list-box-trigger_${uuidv4()}`,
+    isDisabled,
+    isInline,
+    isReadOnly,
+    placeholder: placeholder || I18n.t("listBox.trigger.placeholder"),
+    refLabel,
+    size,
+  };
+
   return (
     <Provider {...moreProps} childrenOptions={options}>
       <OnChangeProvider onChange={props.onChange}>
@@ -100,6 +105,7 @@ ListBoxWithProvider.Option = Option;
 ListBoxWithProvider.Popover = Popover;
 ListBoxWithProvider.RawItem = RawItem;
 ListBoxWithProvider.Trigger = Trigger;
+ListBoxWithProvider.A11y = A11yPropsCollector;
 
 ListBoxWithProvider.displayName = "ListBox";
 ListBoxWithProvider.propTypes = propTypes;

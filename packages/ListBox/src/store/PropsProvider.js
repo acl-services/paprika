@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { propTypes as a11yPropTypes } from "../components/A11yPropsCollector";
 
 export const PropsContext = React.createContext(null);
 
@@ -12,6 +13,7 @@ export default function PropsProvider(props) {
 PropsProvider.displayName = "PropsProvider";
 
 PropsProvider.propTypes = {
+  ...a11yPropTypes,
   children: PropTypes.node.isRequired,
   hasError: PropTypes.bool.isRequired,
   idListBox: PropTypes.string.isRequired,
