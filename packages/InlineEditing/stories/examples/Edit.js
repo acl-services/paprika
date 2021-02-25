@@ -1,9 +1,8 @@
 import React from "react";
-import styled, { css } from "styled-components";
-import ArrowRight from "@paprika/icon/lib/ArrowRight";
 import RawButton from "../../../RawButton";
 import Table from "../../../Table/src";
 import Input from "../../../Input/src";
+import ListBox from "../../../ListBox/src";
 
 import extractChildren from "../../../helpers/src/extractChildren";
 
@@ -16,7 +15,7 @@ export function Editable({ children }) {
 
 export const Switcher = React.forwardRef((props, ref) => {
   const { onEdit: onEditProps, isEditing, setIsEditing } = props;
-  const { "Switcher.Value": value, "Switcher.Edit": edit } = extractChildren(props.children, [
+  const { "Switcher.Value": switcherValue, "Switcher.Edit": edit } = extractChildren(props.children, [
     "Switcher.Value",
     "Switcher.Edit",
   ]);
@@ -31,7 +30,7 @@ export const Switcher = React.forwardRef((props, ref) => {
     edit.props.children
   ) : (
     <RawButton ref={ref} onClick={() => setIsEditing(true)}>
-      {value.props.children}
+      {switcherValue.props.children}
     </RawButton>
   );
 });
@@ -71,6 +70,197 @@ export function InlineEditingTable(props) {
   return <Table {...moreProps}>{clonedColumnDefinition}</Table>;
 }
 
+function InlineInput(props) {
+  const { setIsEditing, rowIndex, columnIndex, onChange, isEditing, value } = props;
+  const refInput = React.useRef(null);
+  const refSwitcher = React.useRef(null);
+
+  const close = () => {
+    setIsEditing(false);
+  };
+
+  function submit(event) {
+    event.preventDefault();
+    onChange({ rowIndex, columnIndex, close, nextValue: refInput.current.value });
+  }
+
+  React.useEffect(() => {
+    if (isEditing) {
+      setIsEditing(false);
+      window.requestAnimationFrame(() => {
+        refSwitcher.current.focus();
+      });
+    }
+  }, [setIsEditing, value]);
+
+  return (
+    <Switcher
+      onEdit={() => {
+        refInput.current.focus();
+      }}
+      {...props}
+      ref={refSwitcher}
+    >
+      <Switcher.Edit>
+        <div style={{ position: "relative", height: "100%" }}>
+          {isEditing ? (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                height: "100%",
+                position: "absolute",
+                right: "4px",
+                color: "#AAA",
+                zIndex: 3,
+              }}
+            >
+              ↵
+            </div>
+          ) : null}
+          <Input
+            ref={refInput}
+            style={{ paddingRight: "24px" }}
+            onBlur={() => {
+              setIsEditing(false);
+              window.requestAnimationFrame(() => {
+                refSwitcher.current.focus();
+              });
+            }}
+            onKeyUp={event => {
+              if (event.key === "Escape") {
+                setIsEditing(false);
+                window.requestAnimationFrame(() => {
+                  refSwitcher.current.focus();
+                });
+              }
+
+              if (event.key === "Enter") {
+                submit(event);
+              }
+            }}
+            type="text"
+            defaultValue={props.row.author}
+          />
+        </div>
+      </Switcher.Edit>
+      <Switcher.Value>
+        <span>{props.row.author}</span>
+      </Switcher.Value>
+    </Switcher>
+  );
+}
+
+function InlineListBox(props) {
+  const {
+    setIsEditing,
+    rowIndex,
+    columnIndex,
+    onChange,
+    isEditing,
+    value,
+    placeHolder,
+    children,
+    ...moreProps
+  } = props;
+  const refInput = React.useRef(null);
+  const refSwitcher = React.useRef(null);
+
+  const close = () => {
+    setIsEditing(false);
+  };
+
+  function handleKeyUp(event) {
+    if (event.key === "Escape") {
+      setIsEditing(false);
+      window.requestAnimationFrame(() => {
+        refSwitcher.current.focus();
+      });
+    }
+
+    // if (event.key === "Enter") {
+    //   submit(event);
+    // }
+  }
+
+  function handleClose() {
+    setIsEditing(false);
+    window.requestAnimationFrame(() => {
+      refSwitcher.current.focus();
+    });
+  }
+
+  function handleBlur() {
+    const $parent = document.querySelector([`[data-paprika-anchor-inline-cell="${rowIndex}-${columnIndex}"]`])
+      .parentElement;
+
+    if ($parent.getAttribute("aria-hidden") === "true") {
+      window.requestAnimationFrame(() => {
+        handleClose();
+      });
+    }
+  }
+
+  function submit(event) {
+    event.preventDefault();
+    onChange({ rowIndex, columnIndex, close, nextValue: refInput.current.value });
+  }
+
+  function handleChange(args) {
+    console.log("change", args);
+    // handleClose();
+  }
+
+  function handleAccept(args) {
+    console.log("accept", args);
+  }
+
+  React.useEffect(() => {
+    if (isEditing) {
+      setIsEditing(false);
+      window.requestAnimationFrame(() => {
+        refSwitcher.current.focus();
+      });
+    }
+  }, [setIsEditing, value]);
+
+  const dataIsEditing = {
+    "data-paprika-anchor-inline-cell": `${rowIndex}-${columnIndex}`,
+  };
+
+  return (
+    <Switcher
+      onEdit={() => {
+        refInput.current.focus();
+      }}
+      {...props}
+      ref={refSwitcher}
+    >
+      <Switcher.Edit>
+        <ListBox {...moreProps} onChange={handleChange} ref={refInput}>
+          <ListBox.Trigger onKeyUp={handleKeyUp} onBlur={handleBlur} />
+          <ListBox.Popover onClose={handleClose} />
+          <ListBox.Box {...dataIsEditing} />
+          <ListBox.Footer
+            style={{ border: "1px solid red" }}
+            isClearVisible={false}
+            onClickAccept={handleAccept}
+            onClickCancel={handleClose}
+          />
+          {children}
+        </ListBox>
+      </Switcher.Edit>
+      <Switcher.Value>
+        <span>{props.placeHolder}</span>
+      </Switcher.Value>
+    </Switcher>
+  );
+}
+
+Object.keys(ListBox).forEach(key => {
+  InlineListBox[key] = ListBox[key];
+});
+
 const TableInner = React.memo(() => {
   const [data, setData] = React.useState(dataMock);
 
@@ -79,48 +269,33 @@ const TableInner = React.memo(() => {
       <InlineEditingTable.ColumnDefinition
         header="author"
         width="180"
-        cell={props => {
-          const { setIsEditing } = props;
-          const refInput = React.useRef(null);
-          const refSwitcher = React.useRef(null);
-
-          return (
-            <Switcher
-              onEdit={() => {
-                refInput.current.focus();
-              }}
-              {...props}
-              ref={refSwitcher}
-            >
-              <Switcher.Edit>
-                <Input
-                  ref={refInput}
-                  onBlur={() => {
-                    setIsEditing(false);
-                    window.requestAnimationFrame(() => {
-                      refSwitcher.current.focus();
-                    });
-                  }}
-                  onKeyDown={event => {
-                    if (event.key === "Escape") {
-                      setIsEditing(false);
-                      window.requestAnimationFrame(() => {
-                        refSwitcher.current.focus();
-                      });
-                    }
-                  }}
-                  type="text"
-                  defaultValue={props.row.author}
-                />
-              </Switcher.Edit>
-              <Switcher.Value>
-                <span>{props.row.author}</span>
-              </Switcher.Value>
-            </Switcher>
-          );
-        }}
+        cell={props => (
+          <InlineInput
+            {...props}
+            value={props.row.author}
+            onChange={({ rowIndex, nextValue }) => {
+              setData(prevData => {
+                const nextData = prevData.slice(0);
+                nextData[rowIndex].author = nextValue;
+                return nextData;
+              });
+            }}
+          />
+        )}
       />
-      <InlineEditingTable.ColumnDefinition header="title" width="140" cell={props => <span>{props.row.book}</span>} />
+      <InlineEditingTable.ColumnDefinition
+        header="book"
+        width="240"
+        cell={props => (
+          <InlineListBox placeHolder="select an item       ▾ " onChange={() => {}} {...props}>
+            {data.map(row => (
+              <ListBox.Option key={row.id} value={row.book}>
+                {row.book}
+              </ListBox.Option>
+            ))}
+          </InlineListBox>
+        )}
+      />
     </InlineEditingTable>
   );
 });

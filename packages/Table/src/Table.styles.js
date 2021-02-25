@@ -60,10 +60,12 @@ const borderTypesStyles = {
   `,
 };
 
-export const TD = styled.td(({ borderType, cellPropsResetCSS }) => {
+export const TD = styled.td(({ borderType, cellPropsResetCSS, width = null }) => {
+  const px = Number.isNaN(width) ? "" : "px";
   return css`
     ${borderType in borderTypesStyles ? borderTypesStyles[borderType] : ""}
     ${cellPropsResetCSS ? "" : `padding: ${tokens.space};`};
+    ${width ? `width: ${width}${px}; max-width: ${width}${px};` : ""};
     text-align: left;
   `;
 });
