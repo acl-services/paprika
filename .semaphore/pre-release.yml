@@ -26,4 +26,4 @@ blocks:
             - yarn
             - test -f .changeset/pre.json || yarn changeset pre enter next
             - yarn changeset version
-            - git status --porcelain && git add . && git commit -m"Pre-release" && yarn changeset publish && git push origin master --follow-tags
+            - git status --porcelain && git add . && git commit -m"Pre-release" --no-verify && yarn changeset publish && git push origin master --follow-tags --no-verify
