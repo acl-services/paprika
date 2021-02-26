@@ -52,7 +52,7 @@ export const PlaceHolderText = styled.div(() => {
     line-height: 1;
     margin-bottom: ${tokens.spaceSm};
     margin-right: ${tokens.spaceSm};
-    padding: ${tokens.spaceSm[0] / 2}px ${tokens.spaceSm};
+    padding: 2px ${tokens.spaceSm};
   `;
 });
 
@@ -61,11 +61,14 @@ export const AllOptionsAreSelected = styled.div(({ size }) => {
     border: 1px solid ${tokens.border.color};
     border-top: 0;
     box-sizing: border-box;
-
     color: ${tokens.placeholder.color};
-    ${fontSize[size]};
     font-style: ${tokens.placeholder.fontStyle};
     padding: ${tokens.spaceSm};
     position: relative;
+    ${fontSize[size]};
   `;
 });
+
+export const TriggerLabel = styled.div`
+  ${stylers.visuallyHidden}
+`;

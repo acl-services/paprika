@@ -57,7 +57,7 @@ const renderTrigger = ({
   size,
   selectedOptions,
   onRemove,
-  listBoxId,
+  listBoxContentId,
   renderTag,
   tagLabelKey,
   allOptionsAreSelected,
@@ -80,56 +80,60 @@ const renderTrigger = ({
     return isOpen ? <triggerSc.UpIcon /> : <triggerSc.DownIcon />;
   }
 
+  const { id: listBoxTriggerId, ...triggerProps } = propsForTrigger();
   const a11yTextOptions = selectedOptions.map(item => {
     return tagLabelKey === null ? item.label : item[tagLabelKey];
   });
-
   const a11yText = selectedOptions.length === 0 ? t("listBoxWithTags.placeholder") : a11yTextOptions.join(", ");
 
   return (
-    <sc.Trigger
-      a11yText={t("listBoxWithTags.a11y_text_trigger", { options: a11yText })}
-      aria-controls={listBoxId}
-      aria-expanded={isOpen}
-      aria-haspopup
-      ref={refTrigger}
-      {...propsForTrigger()}
-      onClick={handleClick}
-      onKeyUp={handleKeyUp}
-      onKeyDown={handleKeyDown}
-      size={size}
-      allOptionsAreSelected={allOptionsAreSelected}
-    >
-      <Tags>
-        {selectedOptions.map(item => {
-          if (typeof renderTag === "function") {
-            return renderTag({ option: item, Tag, onRemove: handleRemove(item) });
-          }
+    <>
+      <sc.Trigger
+        {...triggerProps}
+        allOptionsAreSelected={allOptionsAreSelected}
+        aria-controls={listBoxContentId}
+        aria-expanded={isOpen}
+        id={listBoxTriggerId}
+        onClick={handleClick}
+        onKeyUp={handleKeyUp}
+        onKeyDown={handleKeyDown}
+        ref={refTrigger}
+        size={size}
+      >
+        <Tags>
+          {selectedOptions.map(item => {
+            if (typeof renderTag === "function") {
+              return renderTag({ option: item, Tag, onRemove: handleRemove(item) });
+            }
 
-          const label = tagLabelKey === null ? item.label : item[tagLabelKey];
+            const label = tagLabelKey === null ? item.label : item[tagLabelKey];
 
-          if (typeof label !== "string") {
-            throw Error(
-              `Your item ${JSON.stringify(
-                item
-              )} must include the attribute "label", or you must indicate which attribute should be rendered as the label via the "tagLabelKey" prop.`
+            if (typeof label !== "string") {
+              throw Error(
+                `Your item ${JSON.stringify(
+                  item
+                )} must include the attribute "label", or you must indicate which attribute should be rendered as the label via the "tagLabelKey" prop.`
+              );
+            }
+
+            return (
+              <Tag as="li" key={label} onRemove={handleRemove(item)} size={size}>
+                {label}
+              </Tag>
             );
-          }
-
-          return (
-            <Tag as="li" key={label} onRemove={handleRemove(item)} size={size}>
-              {label}
-            </Tag>
-          );
-        })}
-        {selectedOptions.length ? null : (
-          <sc.PlaceHolder>
-            <sc.PlaceHolderText>{t("listBoxWithTags.placeholder")}</sc.PlaceHolderText>
-          </sc.PlaceHolder>
-        )}
-      </Tags>
-      {allOptionsAreSelected ? null : renderCaret()}
-    </sc.Trigger>
+          })}
+          {selectedOptions.length ? null : (
+            <sc.PlaceHolder>
+              <sc.PlaceHolderText>{t("listBoxWithTags.placeholder")}</sc.PlaceHolderText>
+            </sc.PlaceHolder>
+          )}
+        </Tags>
+        {allOptionsAreSelected ? null : renderCaret()}
+      </sc.Trigger>
+      <sc.TriggerLabel id={`${listBoxTriggerId}__label`}>
+        {t("listBoxWithTags.a11y_text_trigger", { options: a11yText })}
+      </sc.TriggerLabel>
+    </>
   );
 };
 
@@ -160,7 +164,7 @@ export default function ListBoxWithTags(props) {
   /* eslint-enable react/prop-types */
 
   const refFilter = React.useRef(null);
-  const [listBoxId] = React.useState(() => `listbox-content_${uuidv4()}`);
+  const [listBoxContentId] = React.useState(() => `listbox-content_${uuidv4()}`);
 
   function handleKeyDown(event) {
     const label = event.target.value;
@@ -193,7 +197,7 @@ export default function ListBoxWithTags(props) {
           {renderTrigger({
             allOptionsAreSelected,
             onRemove,
-            listBoxId,
+            listBoxContentId,
             tagLabelKey,
             renderTag,
             selectedOptions,
@@ -201,7 +205,7 @@ export default function ListBoxWithTags(props) {
             t,
           })}
         </ListBox.Trigger>
-        <ListBox.Box id={listBoxId} />
+        <ListBox.Box id={listBoxContentId} />
         {allOptionsAreSelected ? null : (
           <ListBox.Filter filter={filter} ref={refFilter} onKeyDown={handleKeyDown} {...noResultMessageProp} />
         )}
@@ -223,6 +227,7 @@ export default function ListBoxWithTags(props) {
 ListBoxWithTags.propTypes = propTypes;
 ListBoxWithTags.defaultProps = defaultProps;
 
+ListBoxWithTags.A11y = ListBox.A11y;
 ListBoxWithTags.Box = ListBox.Box;
 ListBoxWithTags.Divider = ListBox.Divider;
 ListBoxWithTags.Footer = ListBox.Footer;

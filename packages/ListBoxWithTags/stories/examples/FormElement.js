@@ -22,15 +22,14 @@ export default function FormElementExample() {
         <FormElement.Label>Lorem Hipsum Label</FormElement.Label>
         <FormElement.Instructions>Scenester brunch instructions</FormElement.Instructions>
         <FormElement.Content>
-          {() => (
-            // a11yProps => (
+          {a11yProps => (
             <ListBox
               {...moreUseListBoxWithTagsProps}
               data-qa-anchor="listbox-tags-demo"
               hasError
               selectedOptions={getSelectedOptions()}
             >
-              {/* <ListBox.A11y {...a11yProps} /> */}
+              <ListBox.A11y {...a11yProps} />
               {items.map(item => {
                 return !isSelected(item.label) ? (
                   <ListBox.Option key={item.label} value={item.label} label={item.label}>
