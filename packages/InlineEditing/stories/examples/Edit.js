@@ -1,5 +1,6 @@
 import React from "react";
 import RawButton from "../../../RawButton";
+import Textarea from "../../../Textarea";
 import Table from "../../../Table/src";
 import Input from "../../../Input/src";
 import ListBox from "../../../ListBox/src";
@@ -140,12 +141,76 @@ function InlineInput(props) {
               }
             }}
             type="text"
-            defaultValue={props.row.author}
+            defaultValue={value}
           />
         </div>
       </Switcher.Edit>
       <Switcher.Value>
-        <span>{props.row.author}</span>
+        <span>{value}</span>
+      </Switcher.Value>
+    </Switcher>
+  );
+}
+
+function InlineTextarea(props) {
+  const { setIsEditing, rowIndex, columnIndex, onChange, isEditing, value } = props;
+  const refTextarea = React.useRef(null);
+  const refSwitcher = React.useRef(null);
+
+  const close = () => {
+    setIsEditing(false);
+  };
+
+  function submit(event) {
+    event.preventDefault();
+    onChange({ rowIndex, columnIndex, close, nextValue: refTextarea.current.value });
+  }
+
+  React.useEffect(() => {
+    if (isEditing) {
+      setIsEditing(false);
+      window.requestAnimationFrame(() => {
+        refSwitcher.current.focus();
+      });
+    }
+  }, [setIsEditing, value]);
+
+  return (
+    <Switcher
+      onEdit={() => {
+        refTextarea.current.focus();
+      }}
+      {...props}
+      ref={refSwitcher}
+    >
+      <Switcher.Edit>
+        <Textarea
+          ref={refTextarea}
+          style={{ paddingRight: "24px" }}
+          onBlur={() => {
+            setIsEditing(false);
+            window.requestAnimationFrame(() => {
+              refSwitcher.current.focus();
+            });
+          }}
+          onKeyUp={event => {
+            if (event.key === "Escape") {
+              setIsEditing(false);
+              window.requestAnimationFrame(() => {
+                refSwitcher.current.focus();
+              });
+            }
+
+            if (event.key === "Enter") {
+              submit(event);
+            }
+          }}
+          type="text"
+          defaultValue={value}
+        />
+      </Switcher.Edit>
+      <Switcher.Value>
+        <span>{value}</span>
       </Switcher.Value>
     </Switcher>
   );
@@ -295,6 +360,11 @@ const TableInner = React.memo(() => {
             ))}
           </InlineListBox>
         )}
+      />
+      <InlineEditingTable.ColumnDefinition
+        header="book"
+        width="240"
+        cell={props => <InlineTextarea value={props.row.description} onChange={() => {}} {...props} />}
       />
     </InlineEditingTable>
   );
