@@ -6,9 +6,6 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 import ListBox from "@paprika/list-box";
 import { filter } from "@paprika/list-box/lib/helpers/filter";
 import Tag, { Tags } from "@paprika/tag";
-/* eslint-disable no-restricted-syntax */
-import * as triggerSc from "@paprika/list-box/lib/components/Trigger/Trigger.styles";
-/* eslint-enable no-restricted-syntax */
 import * as sc from "./ListBoxWithTags.styles";
 
 const renderTrigger = ({
@@ -36,7 +33,7 @@ const renderTrigger = ({
   };
 
   function renderCaret() {
-    return isOpen ? <triggerSc.UpIcon /> : <triggerSc.DownIcon />;
+    return isOpen ? <sc.UpIcon /> : <sc.DownIcon />;
   }
 
   const triggerProps = propsForTrigger();

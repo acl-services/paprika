@@ -1,6 +1,8 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
+import CaretDownIcon from "@paprika/icon/lib/CaretDown";
+import CaretUpIcon from "@paprika/icon/lib/CaretUp";
 import RawButton from "@paprika/raw-button";
 import ListBox from "@paprika/list-box";
 
@@ -71,4 +73,23 @@ export const AllOptionsAreSelected = styled.div(({ size }) => {
 
 export const TriggerLabel = styled.div`
   ${stylers.visuallyHidden}
+`;
+
+const iconStyles = ({ isDisabled }) => css`
+  color: ${tokens.color.black};
+  height: 100%;
+  pointer-events: none;
+  position: absolute;
+  right: ${tokens.space};
+  top: 0;
+  ${stylers.fontSize(-1)}
+  ${isDisabled ? `color: ${tokens.color.blackLighten60};` : ""}
+`;
+
+export const UpIcon = styled(CaretUpIcon)`
+  ${iconStyles}
+`;
+
+export const DownIcon = styled(CaretDownIcon)`
+  ${iconStyles}
 `;
