@@ -11,53 +11,12 @@ import * as triggerSc from "@paprika/list-box/lib/components/Trigger/Trigger.sty
 /* eslint-enable no-restricted-syntax */
 import * as sc from "./ListBoxWithTags.styles";
 
-const propTypes = {
-  /** Child of type <ListBox.Option />, <ListBox.Divider />, etc */
-  children: PropTypes.arrayOf(PropTypes.node).isRequired,
-  /** filter function for the ListBoxWithTags can be pair with ListBoxWithTags.filter  */
-  filter: PropTypes.func,
-  /** String message to be display when there are not results  */
-  noResultsMessage: PropTypes.node,
-  /** Callback whenever the user change a selection on the ListBoxWithTags  */
-  onChange: PropTypes.func,
-  /** Callback whenever the user input a new custom option like some@email.com, pass undefined to ignore this behaviour */
-  onAddCustomOption: PropTypes.func,
-  /** Callback once a tag is remove from the Trigger */
-  onRemove: PropTypes.func,
-  /** Regex that match the input of the user and reports to onAddCustomOption. The default is a basic email regex */
-  customOptionRegex: PropTypes.instanceOf(RegExp),
-  /** Render prop to override the default Tag style, see example for it's uses.  */
-  renderTag: PropTypes.func,
-  /** An array of id that helps the ListBoxWithTags to known what elements are selected  */
-  selectedOptions: PropTypes.arrayOf(PropTypes.shape({})),
-  /** Provides an alternative for rendering the Tag label instead of using the default [{label:value}] coming from the og data */
-  tagLabelKey: PropTypes.string,
-  /** When this is true, it will display a message indicating all options are selected on the popover */
-  allOptionsAreSelected: PropTypes.bool,
-  /** Message to display when all options have been selected */
-  allOptionsAreSelectedMessage: PropTypes.string,
-};
-
-const defaultProps = {
-  customOptionRegex: /^.+@.+\..+$/,
-  filter: undefined,
-  noResultsMessage: null,
-  onAddCustomOption: null,
-  onChange: () => {},
-  onRemove: () => {},
-  renderTag: null,
-  tagLabelKey: null,
-  selectedOptions: null,
-  allOptionsAreSelected: false,
-  allOptionsAreSelectedMessage: "",
-};
-
 const renderTrigger = ({
   t,
   size,
   selectedOptions,
   onRemove,
-  listBoxContentId,
+  idListBoxContent,
   renderTag,
   tagLabelKey,
   allOptionsAreSelected,
@@ -80,7 +39,7 @@ const renderTrigger = ({
     return isOpen ? <triggerSc.UpIcon /> : <triggerSc.DownIcon />;
   }
 
-  const { id: listBoxTriggerId, ...triggerProps } = propsForTrigger();
+  const triggerProps = propsForTrigger();
   const a11yTextOptions = selectedOptions.map(item => {
     return tagLabelKey === null ? item.label : item[tagLabelKey];
   });
@@ -90,10 +49,8 @@ const renderTrigger = ({
     <>
       <sc.Trigger
         {...triggerProps}
+        aria-controls={idListBoxContent}
         allOptionsAreSelected={allOptionsAreSelected}
-        aria-controls={listBoxContentId}
-        aria-expanded={isOpen}
-        id={listBoxTriggerId}
         onClick={handleClick}
         onKeyUp={handleKeyUp}
         onKeyDown={handleKeyDown}
@@ -130,7 +87,7 @@ const renderTrigger = ({
         </Tags>
         {allOptionsAreSelected ? null : renderCaret()}
       </sc.Trigger>
-      <sc.TriggerLabel id={`${listBoxTriggerId}__label`}>
+      <sc.TriggerLabel id={`${triggerProps.id}__label`}>
         {t("listBoxWithTags.a11y_text_trigger", { options: a11yText })}
       </sc.TriggerLabel>
     </>
@@ -151,20 +108,16 @@ export default function ListBoxWithTags(props) {
     tagLabelKey,
     renderTag,
     selectedOptions,
+    size, // eslint-disable-line react/prop-types
     ...moreProps
   } = props;
   const { t } = useI18n();
 
   const refDivRoot = React.useRef(null);
-  /* eslint-disable react/prop-types */
-  const size =
-    typeof props.size !== "undefined" && Object.keys(ListBox.types.size).includes(props.size.toUpperCase())
-      ? props.size
-      : ListBox.types.size.MEDIUM;
-  /* eslint-enable react/prop-types */
-
   const refFilter = React.useRef(null);
-  const [listBoxContentId] = React.useState(() => `listbox-content_${uuidv4()}`);
+  const [idListBoxContent] = React.useState(() => `list-box_${uuidv4()}__content`);
+
+  const validSize = Object.values(ListBox.types.size).includes(size) ? size : ListBox.types.size.MEDIUM;
 
   function handleKeyDown(event) {
     const label = event.target.value;
@@ -192,12 +145,12 @@ export default function ListBoxWithTags(props) {
 
   return (
     <div ref={refDivRoot}>
-      <ListBox isMulti size={size} onChange={handleChange} {...moreProps}>
+      <ListBox isMulti size={validSize} onChange={handleChange} {...moreProps}>
         <ListBox.Trigger>
           {renderTrigger({
             allOptionsAreSelected,
             onRemove,
-            listBoxContentId,
+            idListBoxContent,
             tagLabelKey,
             renderTag,
             selectedOptions,
@@ -205,7 +158,7 @@ export default function ListBoxWithTags(props) {
             t,
           })}
         </ListBox.Trigger>
-        <ListBox.Box id={listBoxContentId} />
+        <ListBox.Box id={idListBoxContent} />
         {allOptionsAreSelected ? null : (
           <ListBox.Filter filter={filter} ref={refFilter} onKeyDown={handleKeyDown} {...noResultMessageProp} />
         )}
@@ -224,8 +177,7 @@ export default function ListBoxWithTags(props) {
   );
 }
 
-ListBoxWithTags.propTypes = propTypes;
-ListBoxWithTags.defaultProps = defaultProps;
+ListBoxWithTags.displayName = "ListBoxWithTags";
 
 ListBoxWithTags.A11y = ListBox.A11y;
 ListBoxWithTags.Box = ListBox.Box;
@@ -235,3 +187,55 @@ ListBoxWithTags.Option = ListBox.Option;
 ListBoxWithTags.Popover = ListBox.Popover;
 ListBoxWithTags.RawItem = ListBox.RawItem;
 ListBoxWithTags.filter = filter;
+
+ListBoxWithTags.propTypes = {
+  /** When this is true, it will display a message indicating all options are selected on the popover */
+  allOptionsAreSelected: PropTypes.bool,
+
+  /** Message to display when all options have been selected */
+  allOptionsAreSelectedMessage: PropTypes.string,
+
+  /** Child of type <ListBox.Option />, <ListBox.Divider />, etc */
+  children: PropTypes.arrayOf(PropTypes.node).isRequired,
+
+  /** Regex that match the input of the user and reports to onAddCustomOption. The default is a basic email regex */
+  customOptionRegex: PropTypes.instanceOf(RegExp),
+
+  /** filter function for the ListBoxWithTags can be pair with ListBoxWithTags.filter  */
+  filter: PropTypes.func,
+
+  /** String message to be display when there are not results  */
+  noResultsMessage: PropTypes.node,
+
+  /** Callback whenever the user input a new custom option like some@email.com, pass undefined to ignore this behaviour */
+  onAddCustomOption: PropTypes.func,
+
+  /** Callback whenever the user change a selection on the ListBoxWithTags  */
+  onChange: PropTypes.func,
+
+  /** Callback once a tag is remove from the Trigger */
+  onRemove: PropTypes.func,
+
+  /** Render prop to override the default Tag style, see example for it's uses.  */
+  renderTag: PropTypes.func,
+
+  /** An array of id that helps the ListBoxWithTags to known what elements are selected  */
+  selectedOptions: PropTypes.arrayOf(PropTypes.shape({})),
+
+  /** Provides an alternative for rendering the Tag label instead of using the default [{label:value}] coming from the og data */
+  tagLabelKey: PropTypes.string,
+};
+
+ListBoxWithTags.defaultProps = {
+  allOptionsAreSelected: false,
+  allOptionsAreSelectedMessage: "",
+  customOptionRegex: /^.+@.+\..+$/,
+  filter: undefined,
+  noResultsMessage: null,
+  onAddCustomOption: null,
+  onChange: () => {},
+  onRemove: () => {},
+  renderTag: null,
+  selectedOptions: null,
+  tagLabelKey: null,
+};

@@ -14,7 +14,7 @@ export function getDOMAttributesForListBox({ idListBox, refLabel, activeOption, 
     "aria-activedescendant": activedescendant,
     "aria-labelledby": bestLabel,
     "aria-multiselectable": isMulti ? "true" : null,
-    id: isInline ? idListBox : null,
+    id: isInline ? idListBox : `${idListBox}__content`,
   };
 }
 
@@ -23,8 +23,10 @@ export const getA11yAttributesForOption = isSelected => {
   return { role: "option", ...a11yIsSelected };
 };
 
-export const getDOMAttributesForListBoxButton = ({ idListBox, idFormLabel }) => ({
+export const getDOMAttributesForListBoxButton = ({ idListBox, idFormLabel, isOpen }) => ({
+  "aria-controls": `${idListBox}__content`,
   "aria-haspopup": true,
+  "aria-expanded": isOpen,
   "aria-labelledby": idFormLabel ? `${idFormLabel} ${idListBox}__label` : null,
   id: idListBox,
 });
