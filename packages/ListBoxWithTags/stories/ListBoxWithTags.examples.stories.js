@@ -11,6 +11,7 @@ import Uncontrolled from "./examples/Uncontrolled";
 import UncontrolledUser from "./examples/UncontrolledUser";
 import UncontrolledFooter from "./examples/UncontrolledFooter";
 import FormElement from "./examples/FormElement";
+import UIStates from "./examples/UIStates";
 
 const storyName = getStoryName("ListBoxWithTags");
 
@@ -89,3 +90,10 @@ export const FormElementStory = () => (
   </ExampleStory>
 );
 FormElementStory.story = { name: "With FormElement", parameters: exampleStoryParameters };
+
+export const UIStatesStory = () => (
+  <ExampleStory storyName="UI States" component="ListBoxWithTags" fileName="examples/UIStates.js">
+    <UIStates />
+  </ExampleStory>
+);
+UIStatesStory.story = { name: "UI States", parameters: exampleStoryParameters };

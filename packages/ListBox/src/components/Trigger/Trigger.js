@@ -206,7 +206,6 @@ export default function Trigger(props) {
         handleKeyDown: handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext }),
         handleKeyUp: handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext }),
         isOpen,
-        isReadOnly,
         onChangeContext,
         propsForTrigger: () =>
           getDOMAttributesForListBoxButton({
@@ -227,18 +226,7 @@ export default function Trigger(props) {
       const [selected, options] = getSelectedOptionSingle(state);
       return children(selected, options, attributes);
     }
-  }, [
-    children,
-    dispatch,
-    hasRenderTrigger,
-    idListBox,
-    isMulti,
-    isOpen,
-    isReadOnly,
-    onChangeContext,
-    refTrigger,
-    state,
-  ]);
+  }, [children, dispatch, hasRenderTrigger, idListBox, isMulti, isOpen, onChangeContext, refTrigger, state]);
 
   if (isHidden && isInline) {
     return <sc.ListBoxTrigger data-pka-anchor="list-box-trigger" isHidden />;

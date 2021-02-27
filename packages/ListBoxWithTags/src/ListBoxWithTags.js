@@ -2,6 +2,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
+import * as constants from "@paprika/constants/lib/Constants";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import ListBox from "@paprika/list-box";
 import { filter } from "@paprika/list-box/lib/helpers/filter";
@@ -9,14 +10,17 @@ import Tag, { Tags } from "@paprika/tag";
 import * as sc from "./ListBoxWithTags.styles";
 
 const renderTrigger = ({
-  t,
-  size,
-  selectedOptions,
-  onRemove,
-  idListBoxContent,
-  renderTag,
-  tagLabelKey,
   allOptionsAreSelected,
+  hasError,
+  idListBoxContent,
+  isDisabled,
+  isReadOnly,
+  onRemove,
+  renderTag,
+  selectedOptions,
+  size,
+  tagLabelKey,
+  t,
 }) => (...args) => {
   const [, , , attributes] = args;
   const { propsForTrigger, refTrigger, dispatch, types, handleKeyDown, handleKeyUp, isOpen } = attributes;
@@ -32,8 +36,8 @@ const renderTrigger = ({
     onRemove(option);
   };
 
-  function renderCaret() {
-    return isOpen ? <sc.UpIcon /> : <sc.DownIcon />;
+  function renderCaret(isDisabled) {
+    return isOpen ? <sc.UpIcon isDisabled={isDisabled} /> : <sc.DownIcon isDisabled={isDisabled} />;
   }
 
   const triggerProps = propsForTrigger();
@@ -48,6 +52,9 @@ const renderTrigger = ({
         {...triggerProps}
         aria-controls={idListBoxContent}
         allOptionsAreSelected={allOptionsAreSelected}
+        hasError={hasError}
+        isDisabled={isDisabled || isReadOnly}
+        isReadOnly={isReadOnly}
         onClick={handleClick}
         onKeyUp={handleKeyUp}
         onKeyDown={handleKeyDown}
@@ -77,12 +84,12 @@ const renderTrigger = ({
             );
           })}
           {selectedOptions.length ? null : (
-            <sc.PlaceHolder>
-              <sc.PlaceHolderText>{t("listBoxWithTags.placeholder")}</sc.PlaceHolderText>
+            <sc.PlaceHolder isDisabled={isDisabled} size={size}>
+              {t("listBoxWithTags.placeholder")}
             </sc.PlaceHolder>
           )}
         </Tags>
-        {allOptionsAreSelected ? null : renderCaret()}
+        {allOptionsAreSelected ? null : renderCaret(isDisabled)}
       </sc.Trigger>
       <sc.TriggerLabel id={`${triggerProps.id}__label`}>
         {t("listBoxWithTags.a11y_text_trigger", { options: a11yText })}
@@ -98,6 +105,9 @@ export default function ListBoxWithTags(props) {
     children,
     customOptionRegex,
     filter,
+    hasError,
+    isDisabled,
+    isReadOnly,
     noResultsMessage,
     onAddCustomOption,
     onChange,
@@ -105,7 +115,7 @@ export default function ListBoxWithTags(props) {
     tagLabelKey,
     renderTag,
     selectedOptions,
-    size, // eslint-disable-line react/prop-types
+    size,
     ...moreProps
   } = props;
   const { t } = useI18n();
@@ -146,12 +156,15 @@ export default function ListBoxWithTags(props) {
         <ListBox.Trigger>
           {renderTrigger({
             allOptionsAreSelected,
-            onRemove,
+            hasError,
             idListBoxContent,
-            tagLabelKey,
+            isDisabled,
+            isReadOnly,
+            onRemove,
             renderTag,
             selectedOptions,
-            size,
+            size: validSize,
+            tagLabelKey,
             t,
           })}
         </ListBox.Trigger>
@@ -185,6 +198,13 @@ ListBoxWithTags.Popover = ListBox.Popover;
 ListBoxWithTags.RawItem = ListBox.RawItem;
 ListBoxWithTags.filter = filter;
 
+ListBoxWithTags.types = {
+  size: {
+    MEDIUM: [constants.size.MEDIUM],
+    LARGE: [constants.size.LARGE],
+  },
+};
+
 ListBoxWithTags.propTypes = {
   /** When this is true, it will display a message indicating all options are selected on the popover */
   allOptionsAreSelected: PropTypes.bool,
@@ -200,6 +220,15 @@ ListBoxWithTags.propTypes = {
 
   /** filter function for the ListBoxWithTags can be pair with ListBoxWithTags.filter  */
   filter: PropTypes.func,
+
+  /** If ListBox is in an error state  */
+  hasError: PropTypes.bool,
+
+  /** Disables the ListBox if true */
+  isDisabled: PropTypes.bool,
+
+  /** The ListBox will not allow value to be changed */
+  isReadOnly: PropTypes.bool,
 
   /** String message to be display when there are not results  */
   noResultsMessage: PropTypes.node,
@@ -219,6 +248,9 @@ ListBoxWithTags.propTypes = {
   /** An array of id that helps the ListBoxWithTags to known what elements are selected  */
   selectedOptions: PropTypes.arrayOf(PropTypes.shape({})),
 
+  /** Size of the trigger and options (font size, height, padding, etc). */
+  size: PropTypes.oneOf([ListBoxWithTags.types.size.MEDIUM, ListBoxWithTags.types.size.LARGE]),
+
   /** Provides an alternative for rendering the Tag label instead of using the default [{label:value}] coming from the og data */
   tagLabelKey: PropTypes.string,
 };
@@ -228,11 +260,15 @@ ListBoxWithTags.defaultProps = {
   allOptionsAreSelectedMessage: "",
   customOptionRegex: /^.+@.+\..+$/,
   filter: undefined,
+  hasError: false,
+  isDisabled: false,
+  isReadOnly: false,
   noResultsMessage: null,
   onAddCustomOption: null,
   onChange: () => {},
   onRemove: () => {},
   renderTag: null,
   selectedOptions: null,
+  size: ListBoxWithTags.types.size.MEDIUM,
   tagLabelKey: null,
 };

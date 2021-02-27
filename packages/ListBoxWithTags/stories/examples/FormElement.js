@@ -6,7 +6,7 @@ import ListBox, { useListBoxWithTags } from "../../src";
 const items = [
   { label: "Heirloom scenester chillwave" },
   { label: "Pickled paleo quinoa" },
-  { label: "readymade hammock succulents" },
+  { label: "Readymade hammock succulents" },
 ];
 
 export default function FormElementExample() {
