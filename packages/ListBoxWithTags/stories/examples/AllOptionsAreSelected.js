@@ -15,7 +15,7 @@ export default function App() {
   });
 
   return (
-    <ListBox allOptionsAreSelected selectedOptions={getSelectedOptions()} {...moreUseListBoxWithTagsProps}>
+    <ListBox isOpen allOptionsAreSelected selectedOptions={getSelectedOptions()} {...moreUseListBoxWithTagsProps}>
       {filteredData.map(option => {
         return !isSelected(option.label) ? (
           <ListBox.Option value={option.label} key={option.label} label={option.label}>
