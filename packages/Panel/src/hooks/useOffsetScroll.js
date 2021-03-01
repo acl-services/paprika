@@ -1,13 +1,14 @@
 import React from "react";
 
+const getWindowTop = () => window.pageYOffset || document.documentElement.scrollTop;
+
 const useOffsetScroll = offsetY => {
-  const [offsetScroll, setOffsetScroll] = React.useState(offsetY);
+  const [offsetScroll, setOffsetScroll] = React.useState(offsetY - getWindowTop());
 
   React.useLayoutEffect(() => {
     function handleScroll() {
-      const top = window.pageYOffset || document.documentElement.scrollTop;
-      if (top <= offsetY) {
-        setOffsetScroll(offsetY - top);
+      if (getWindowTop() <= offsetY) {
+        setOffsetScroll(offsetY - getWindowTop());
       } else {
         setOffsetScroll(0);
       }
