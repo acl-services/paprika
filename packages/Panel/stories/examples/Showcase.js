@@ -1,5 +1,5 @@
 import React from "react";
-import { boolean, text, select, number } from "@storybook/addon-knobs";
+import { boolean, text, select, number, object } from "@storybook/addon-knobs";
 import ExampleStory from "storybook/components/ExampleStory";
 import Button from "@paprika/button";
 import { TextLine } from "../helpers";
@@ -23,7 +23,7 @@ const sidePanelProps = () => ({
   ),
   width: text("width", "50%", sidePanelGroup),
   zIndex: number("zIndex", undefined, {}, sidePanelGroup),
-  offsetY: number("offsetY", 0, {}, sidePanelGroup),
+  offset: object("offset", 0, { top: 0, left: 0, right: 0 }, sidePanelGroup),
 });
 
 const headerProps = () => ({
