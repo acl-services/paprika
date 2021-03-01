@@ -7,10 +7,7 @@ const GroupStory = () => {
   return (
     <Story>
       <StoryHeading level={1}>CollapsibleCard.Group</StoryHeading>
-      <Tagline>
-        A group of styled collapsible card components. Check the &quot;Knobs&quot; and &quot;Actions&quot; tabs in the
-        Storybook sidepanel.
-      </Tagline>
+      <Tagline>A group of styled collapsible card components.</Tagline>
       <br />
       <CollapsibleCard.Group>
         <CollapsibleCard.Group.Header>

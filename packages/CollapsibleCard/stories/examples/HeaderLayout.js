@@ -15,8 +15,7 @@ const HeaderLayoutStory = () => {
     <Story>
       <StoryHeading level={1}>HeaderLayout</StoryHeading>
       <Tagline>
-        This is a helper sub-component that will often be put inside of the
-        <code>CollapsibleCard.Header</code>.
+        This is a helper sub-component that will often be put inside of the <code>CollapsibleCard.Header</code>.
       </Tagline>
       <br />
       <Toast kind="warning">
