@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- Support for `isDisabled`, `isReadOnly`, and `hasError` props. [@mikrotron](https://github.com/mikrotron)
+- Support fo `<ListBoxWithTags.A11y>` props collector. [@mikrotron](https://github.com/mikrotron)
+
 ## [1.0.5-alpha.3] - 2021-02-12
 
 ### Changed

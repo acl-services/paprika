@@ -83,6 +83,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - `hasError` and `isReadOnly` props. [@mikrotron](https://github.com/mikrotron)
 - `<ListBox.A11y>` props collector component to collect props and attributes for a11y and propagate them to the trigger button or, if `isInline`, to the `role=listbox` element. [@mikrotron](https://github.com/mikrotron)
+- `aria-expanded` and `aria-controls` to `attributes.propsForTrigger` in parameters of render function for `children` of `<ListBox.Trigger>`. [@mikrotron](https://github.com/mikrotron)
 
 ### Changed
 

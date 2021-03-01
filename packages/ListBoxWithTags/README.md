@@ -22,23 +22,35 @@ npm install @paprika/list-box-with-tags
 
 ### ListBoxWithTags
 
-| Prop                         | Type       | required | default        | Description                                                                                                              |
-| ---------------------------- | ---------- | -------- | -------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| children                     | arrayOf    | true     | -              | Child of type <ListBox.Option />, <ListBox.Divider />, etc                                                               |
-| filter                       | func       | false    | undefined      | filter function for the ListBoxWithTags can be pair with ListBoxWithTags.filter                                          |
-| noResultsMessage             | node       | false    | null           | String message to be display when there are not results                                                                  |
-| onChange                     | func       | false    | () => {}       | Callback whenever the user change a selection on the ListBoxWithTags                                                     |
-| onAddCustomOption            | func       | false    | null           | Callback whenever the user input a new custom option like some@email.com, pass undefined to ignore this behaviour        |
-| onRemove                     | func       | false    | () => {}       | Callback once a tag is remove from the Trigger                                                                           |
-| customOptionRegex            | instanceOf | false    | /^.+@.+\..+\$/ | Regex that match the input of the user and reports to onAddCustomOption. The default is a basic email regex              |
-| renderTag                    | func       | false    | null           | Render prop to override the default Tag style, see example for it's uses.                                                |
-| selectedOptions              | arrayOf    | false    | null           | An array of id that helps the ListBoxWithTags to known what elements are selected                                        |
-| tagLabelKey                  | string     | false    | null           | Provides an alternative for rendering the Tag label instead of using the default [{label:value}] coming from the og data |
-| allOptionsAreSelected        | bool       | false    | false          | When this is true, it will display a message indicating all options are selected on the popover                          |
-| allOptionsAreSelectedMessage | string     | false    | ""             | Message to display when all options have been selected                                                                   |
+| Prop                         | Type                                                                   | required | default                           | Description                                                                                                              |
+| ---------------------------- | ---------------------------------------------------------------------- | -------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| allOptionsAreSelected        | bool                                                                   | false    | false                             | When this is true, it will display a message indicating all options are selected on the popover                          |
+| allOptionsAreSelectedMessage | string                                                                 | false    | ""                                | Message to display when all options have been selected                                                                   |
+| children                     | arrayOf                                                                | true     | -                                 | Child of type <ListBox.Option />, <ListBox.Divider />, etc                                                               |
+| customOptionRegex            | instanceOf                                                             | false    | /^.+@.+\..+\$/                    | Regex that match the input of the user and reports to onAddCustomOption. The default is a basic email regex              |
+| filter                       | func                                                                   | false    | undefined                         | filter function for the ListBoxWithTags can be pair with ListBoxWithTags.filter                                          |
+| hasError                     | bool                                                                   | false    | false                             | If ListBox is in an error state                                                                                          |
+| isDisabled                   | bool                                                                   | false    | false                             | Disables the ListBox if true                                                                                             |
+| isReadOnly                   | bool                                                                   | false    | false                             | The ListBox will not allow value to be changed                                                                           |
+| noResultsMessage             | node                                                                   | false    | null                              | String message to be display when there are not results                                                                  |
+| onAddCustomOption            | func                                                                   | false    | null                              | Callback whenever the user input a new custom option like some@email.com, pass undefined to ignore this behaviour        |
+| onChange                     | func                                                                   | false    | () => {}                          | Callback whenever the user change a selection on the ListBoxWithTags                                                     |
+| onRemove                     | func                                                                   | false    | () => {}                          | Callback once a tag is remove from the Trigger                                                                           |
+| renderTag                    | func                                                                   | false    | null                              | Render prop to override the default Tag style, see example for it's uses.                                                |
+| selectedOptions              | arrayOf                                                                | false    | null                              | An array of id that helps the ListBoxWithTags to known what elements are selected                                        |
+| size                         | [ ListBoxWithTags.types.size.MEDIUM, ListBoxWithTags.types.size.LARGE] | false    | ListBoxWithTags.types.size.MEDIUM | Size of the trigger and options (font size, height, padding, etc).                                                       |
+| tagLabelKey                  | string                                                                 | false    | null                              | Provides an alternative for rendering the Tag label instead of using the default [{label:value}] coming from the og data |
 
 <!-- end: Autogenerated - do not modify -->
 <!-- content -->
+
+#### Note
+
+The `<ListBoxWithTags>` is composed from a `<ListBox>` component, and will propagate any additional props to the underlying `<ListBox>`, essentially extending the API to include the props for the `<ListBox>`.
+
+Additionally, the subcomponents of `<ListBox>` like `<ListBox.Option>`, `<ListBox.Popover>`, `<ListBox.A11y>`, etc are also supported and exported as part of the `ListBoxWithTags` package.
+
+Learn more about the `<ListBox>` component on [GitHub](https://github.com/acl-services/paprika/blob/master/packages/ListBox/README.md) or in [Storybook](https://paprika.highbond.com/?path=/story/forms-listbox-docs--page)
 
 <!-- eoContent -->
 
