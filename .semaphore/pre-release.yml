@@ -26,4 +26,4 @@ blocks:
             - yarn
             - test -f .changeset/pre.json || yarn changeset pre enter next
             - yarn changeset version
-            - [ -z "`git status --porcelain`" ] && echo "No changes." || { git add . && git commit -m"[Bot] Paprika Pre-release" --no-verify && yarn changeset publish && git push origin master --follow-tags --no-verify; }
+            - if [ -z "`git status --porcelain`" ]; then echo "No changes."; else { git add . && git commit -m"[Bot] Paprika Pre-Release" --no-verify && yarn changeset publish && git push origin master --follow-tags --no-verify; }; fi
