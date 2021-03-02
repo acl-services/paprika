@@ -1,2 +1,2 @@
-export { default } from "./components/Table";
-export * from "./widgets";
+export { default } from "./Editor";
+export { default as Table } from "./Table";

@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/collapsible-text": "^1.0.8",
     "@paprika/constants": "^1.0.0",
     "@paprika/helpers": "^2.0.1",
     "@paprika/icon": "^1.0.4",
