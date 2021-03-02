@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.0-next.0
+
+### Minor Changes
+
+- 9797e84: Add support for isDisabled, isReadOnly, and hasError props to <ListBoxWithTags> and handle the a11yProps provided by <FormElement.Content> via <ListBoxWithTags.A11y> prop collector component.
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
