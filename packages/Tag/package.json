@@ -1,6 +1,6 @@
 {
   "name": "@paprika/tag",
-  "version": "0.0.2-alpha.1",
+  "version": "0.0.2",
   "description": "Tag can be both static UI labels or removable components. Static Tag is mostly used to show an item’s status. A removable Tag should be used to add or group objects.",
   "author": "@paprika",
   "main": "lib/index.js",

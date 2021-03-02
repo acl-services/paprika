@@ -1,6 +1,6 @@
 {
   "name": "@paprika/seducer",
-  "version": "1.2.1-alpha.2",
+  "version": "2.0.0",
   "description": "Seducer (simple reducer) is a wrapper on top of React.useReducer, making it easier to use",
   "main": "lib/index.js",
   "repository": {
@@ -29,10 +29,10 @@
     "react-dom": "^16.8.0"
   },
   "devDependencies": {
-    "@paprika/button": "^1.0.8-alpha.2",
-    "@paprika/card": "^1.0.6-alpha.2",
-    "@paprika/collapsible-card": "^1.1.10-alpha.2",
-    "@paprika/toast": "^1.0.8-alpha.2",
+    "@paprika/button": "^1.0.8",
+    "@paprika/card": "^1.0.6",
+    "@paprika/collapsible-card": "^1.1.10",
+    "@paprika/toast": "^1.0.8",
     "react-dom-confetti": "^0.2.0"
   }
 }
