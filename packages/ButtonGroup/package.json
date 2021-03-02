@@ -18,7 +18,7 @@
     "@paprika/button": "^1.0.8",
     "@paprika/constants": "^1.0.0",
     "@paprika/helpers": "^2.1.1",
-    "@paprika/icon": "^0.2.15",
+    "@paprika/icon": "^1.0.4",
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",
     "prop-types": "^15.7.2"
