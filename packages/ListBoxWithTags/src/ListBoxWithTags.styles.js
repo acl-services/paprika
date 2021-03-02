@@ -64,7 +64,7 @@ const placeholderHeight = {
   [ListBox.types.size.LARGE]: "30px",
 };
 
-export const PlaceHolder = styled.div(
+export const Placeholder = styled.div(
   ({ isDisabled, size }) => css`
     height: ${placeholderHeight[size]};
     line-height: ${placeholderHeight[size]};

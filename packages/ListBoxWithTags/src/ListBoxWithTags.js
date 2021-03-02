@@ -9,6 +9,7 @@ import { filter } from "@paprika/list-box/lib/helpers/filter";
 import Tag, { Tags } from "@paprika/tag";
 import * as sc from "./ListBoxWithTags.styles";
 
+// TODO: Extract this to a separate component
 const renderTrigger = ({
   allOptionsAreSelected,
   hasError,
@@ -84,9 +85,9 @@ const renderTrigger = ({
             );
           })}
           {selectedOptions.length ? null : (
-            <sc.PlaceHolder isDisabled={isDisabled} size={size}>
+            <sc.Placeholder isDisabled={isDisabled} size={size}>
               {t("listBoxWithTags.placeholder")}
-            </sc.PlaceHolder>
+            </sc.Placeholder>
           )}
         </Tags>
         {allOptionsAreSelected ? null : renderCaret(isDisabled)}
