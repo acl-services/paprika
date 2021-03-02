@@ -1,23 +1,25 @@
 import React from "react";
 
-const getWindowTop = () => window.pageYOffset || document.documentElement.scrollTop;
-
 const useOffsetScroll = offsetY => {
-  const [offsetScroll, setOffsetScroll] = React.useState(offsetY - getWindowTop());
+  const getWindowTop = () => window.pageYOffset || document.documentElement.scrollTop;
+
+  const getOffsetYBasedOnScrollPosition = React.useCallback(() => {
+    if (getWindowTop() <= offsetY) {
+      return offsetY - getWindowTop();
+    }
+    return 0;
+  }, [offsetY]);
+
+  const [offsetScroll, setOffsetScroll] = React.useState(getOffsetYBasedOnScrollPosition());
 
   React.useLayoutEffect(() => {
-    function handleScroll() {
-      if (getWindowTop() <= offsetY) {
-        setOffsetScroll(offsetY - getWindowTop());
-      } else {
-        setOffsetScroll(0);
-      }
-    }
+    setOffsetScroll(getOffsetYBasedOnScrollPosition());
+    const handleScroll = () => setOffsetScroll(getOffsetYBasedOnScrollPosition());
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [offsetY]);
+  }, [getOffsetYBasedOnScrollPosition]);
 
   return offsetScroll;
 };
