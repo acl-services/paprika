@@ -15,6 +15,15 @@ const fontSize = {
   `,
 };
 
+const readOnlyTagStyles = css`
+  background-color: ${tokens.color.blackLighten60};
+
+  *::selection {
+    background: ${tokens.color.blueLighten30};
+    color: ${tokens.color.black};
+  }
+`;
+
 export const Trigger = styled(RawButton)(
   ({ allOptionsAreSelected, hasError, isDisabled, isReadOnly, size }) => css`
     align-items: center;
@@ -40,7 +49,7 @@ export const Trigger = styled(RawButton)(
     }
 
     [data-pka-anchor="tag"] {
-      ${isReadOnly ? `background-color: ${tokens.color.blackLighten60};` : ""}
+      ${isReadOnly ? readOnlyTagStyles : ""}
     }
 
     [data-pka-anchor="tag.remove"] {
