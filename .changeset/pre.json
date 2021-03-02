@@ -69,7 +69,7 @@
     "@paprika/tokens": "1.0.0",
     "@paprika/uploader": "2.0.6",
     "@paprika/helpers": "2.1.1",
-    "@paprika/seducer": "1.2.1-alpha.2"
+    "@paprika/seducer": "2.0.0"
   },
   "changesets": [
     "sharp-trees-cover"
