@@ -20,17 +20,15 @@ export default function App() {
 
   const selectedOptions = getSelectedOptions();
   return (
-    <div style={{ padding: "32px" }}>
-      <ListBox
-        noResultsMessage="No results found, but you can add an email and then press enter..."
-        selectedOptions={selectedOptions}
-        tagLabelKey="name"
-        {...moreProps}
-      >
-        {filteredData.map(option => {
-          return !isSelected(option.name) ? <ListBox.Option label={option.name}>{option.name}</ListBox.Option> : null;
-        })}
-      </ListBox>
-    </div>
+    <ListBox
+      noResultsMessage="No results found, but you can add an email and then press enter..."
+      selectedOptions={selectedOptions}
+      tagLabelKey="name"
+      {...moreProps}
+    >
+      {filteredData.map(option => {
+        return !isSelected(option.name) ? <ListBox.Option label={option.name}>{option.name}</ListBox.Option> : null;
+      })}
+    </ListBox>
   );
 }

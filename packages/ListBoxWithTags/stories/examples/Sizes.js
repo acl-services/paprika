@@ -1,4 +1,6 @@
 import React from "react";
+import StoryHeading from "storybook/components/StoryHeading";
+import { Gap } from "storybook/assets/styles/common.styles";
 import ListBox, { useListBoxWithTags } from "../../src";
 import animals from "../mocks";
 
@@ -14,8 +16,8 @@ function App({ size = "medium", isOpen = false }) {
   });
 
   return (
-    <div style={{ padding: "32px" }}>
-      <div>size ({size}):</div>
+    <>
+      <StoryHeading level={2}>{size}</StoryHeading>
       <ListBox
         noResultsMessage="No results found, but you can add an email and then press enter..."
         selectedOptions={getSelectedOptions()}
@@ -31,7 +33,7 @@ function App({ size = "medium", isOpen = false }) {
           ) : null;
         })}
       </ListBox>
-    </div>
+    </>
   );
 }
 
@@ -39,15 +41,8 @@ export default function Sizes() {
   return (
     <>
       <App size="medium" isOpen />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+      <Gap.Large />
+      <Gap.Large />
       <App size="large" />
     </>
   );

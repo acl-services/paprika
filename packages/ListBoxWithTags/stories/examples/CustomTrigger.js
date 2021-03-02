@@ -26,29 +26,27 @@ export default function CustomTrigger() {
   }
 
   return (
-    <div style={{ padding: "32px" }}>
-      <ListBox
-        noResultsMessage="No results found, but you can add an email and then press enter..."
-        renderTag={renderTag}
-        selectedOptions={getSelectedOptions()}
-        {...moreUseListBoxWithTagsProps}
-      >
-        {filteredData.map(option => {
-          if (typeof option.isCustom !== "undefined") {
-            return null;
-          }
+    <ListBox
+      noResultsMessage="No results found, but you can add an email and then press enter..."
+      renderTag={renderTag}
+      selectedOptions={getSelectedOptions()}
+      {...moreUseListBoxWithTagsProps}
+    >
+      {filteredData.map(option => {
+        if (typeof option.isCustom !== "undefined") {
+          return null;
+        }
 
-          const color = getAvatarColors(option.label);
-          return !isSelected(option.label) ? (
-            <ListBox.Option value={option.label} key={option.label} label={option.label}>
-              <Avatar size={Avatar.types.size.MEDIUM} backgroundColor={color.backgroundColor} color={color.fontColor}>
-                {getInitialsFromText(option.label)}
-              </Avatar>
-              <span style={{ fontSize: "1.3rem", paddingLeft: "8px" }}>{option.label}</span>
-            </ListBox.Option>
-          ) : null;
-        })}
-      </ListBox>
-    </div>
+        const color = getAvatarColors(option.label);
+        return !isSelected(option.label) ? (
+          <ListBox.Option value={option.label} key={option.label} label={option.label}>
+            <Avatar size={Avatar.types.size.MEDIUM} backgroundColor={color.backgroundColor} color={color.fontColor}>
+              {getInitialsFromText(option.label)}
+            </Avatar>
+            <span style={{ fontSize: "1.3rem", paddingLeft: "8px" }}>{option.label}</span>
+          </ListBox.Option>
+        ) : null;
+      })}
+    </ListBox>
   );
 }

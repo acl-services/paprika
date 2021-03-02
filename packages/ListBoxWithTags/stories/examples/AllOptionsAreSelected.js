@@ -15,16 +15,14 @@ export default function App() {
   });
 
   return (
-    <div style={{ padding: "32px" }}>
-      <ListBox allOptionsAreSelected selectedOptions={getSelectedOptions()} {...moreUseListBoxWithTagsProps}>
-        {filteredData.map(option => {
-          return !isSelected(option.label) ? (
-            <ListBox.Option value={option.label} key={option.label} label={option.label}>
-              {option.label}
-            </ListBox.Option>
-          ) : null;
-        })}
-      </ListBox>
-    </div>
+    <ListBox isOpen allOptionsAreSelected selectedOptions={getSelectedOptions()} {...moreUseListBoxWithTagsProps}>
+      {filteredData.map(option => {
+        return !isSelected(option.label) ? (
+          <ListBox.Option value={option.label} key={option.label} label={option.label}>
+            {option.label}
+          </ListBox.Option>
+        ) : null;
+      })}
+    </ListBox>
   );
 }

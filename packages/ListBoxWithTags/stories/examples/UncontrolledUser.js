@@ -80,91 +80,89 @@ export default function UncontrolledUsers() {
   }
 
   return (
-    <div style={{ padding: "32px" }}>
-      <form onSubmit={handleSubmit}>
-        <div>Select your favorite Oscar winners:</div>
-        {hasSubmitted ? (
-          <>
-            <div>your selections: </div>
-            <ul>
-              {getSelectedOptions().map(option => (
-                <li key={option.name}>
-                  {option.name} {option.userName}
-                </li>
-              ))}
-            </ul>
-          </>
-        ) : null}
-        <ListBox
-          allOptionsAreSelected={defaultFilteredData.length === getSelectedOptions().length}
-          allOptionsAreSelectedMessage="All directors have been selected"
-          onAddCustomOption={onAddCustomOption(label => {
-            // This allowed you override the default behaviour when creating a custom option
-            return {
-              id: label,
-              email: label,
-              username: `@${label.split("@")[0]}`,
-              year: 2020,
-              nationality: "(Can)",
-              name: "Canadian",
-              movie: "Atanarjuat: The Fast Runner",
-            };
-          })}
-          renderTag={renderTag}
-          selectedOptions={getSelectedOptions()}
-          {...moreUseListBoxWithTagsProps}
-        >
-          {filteredData.map(option => {
-            const color = getAvatarColors(option.name);
-            return !isSelected(option.id) ? (
-              <ListBox.Option id={option.id} key={option.id} label={option.name}>
-                <div>
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <Avatar
-                      isRound
-                      size={Avatar.types.size.MEDIUM}
-                      backgroundColor={color.backgroundColor}
-                      color={color.fontColor}
-                    >
-                      {getInitialsFromText(option.name, 2)}
-                    </Avatar>
-                    <div style={{ fontSize: "1rem", paddingLeft: "8px" }}>{option.name}</div>
-                    <div
-                      style={{
-                        fontSize: ".85rem",
-                        color: "#111",
-                        background: "#EEE",
-                        padding: "3px",
-                        borderRadius: "4px",
-                        margin: "0 4px",
-                      }}
-                    >
-                      {option.username}
-                    </div>
-                  </div>
+    <form onSubmit={handleSubmit}>
+      <div>Select your favorite Oscar winners:</div>
+      {hasSubmitted ? (
+        <>
+          <div>your selections: </div>
+          <ul>
+            {getSelectedOptions().map(option => (
+              <li key={option.name}>
+                {option.name} {option.userName}
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : null}
+      <ListBox
+        allOptionsAreSelected={defaultFilteredData.length === getSelectedOptions().length}
+        allOptionsAreSelectedMessage="All directors have been selected"
+        onAddCustomOption={onAddCustomOption(label => {
+          // This allowed you override the default behaviour when creating a custom option
+          return {
+            id: label,
+            email: label,
+            username: `@${label.split("@")[0]}`,
+            year: 2020,
+            nationality: "(Can)",
+            name: "Canadian",
+            movie: "Atanarjuat: The Fast Runner",
+          };
+        })}
+        renderTag={renderTag}
+        selectedOptions={getSelectedOptions()}
+        {...moreUseListBoxWithTagsProps}
+      >
+        {filteredData.map(option => {
+          const color = getAvatarColors(option.name);
+          return !isSelected(option.id) ? (
+            <ListBox.Option id={option.id} key={option.id} label={option.name}>
+              <div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <Avatar
+                    isRound
+                    size={Avatar.types.size.MEDIUM}
+                    backgroundColor={color.backgroundColor}
+                    color={color.fontColor}
+                  >
+                    {getInitialsFromText(option.name, 2)}
+                  </Avatar>
+                  <div style={{ fontSize: "1rem", paddingLeft: "8px" }}>{option.name}</div>
                   <div
                     style={{
                       fontSize: ".85rem",
                       color: "#111",
+                      background: "#EEE",
                       padding: "3px",
-                      marginLeft: "36px",
+                      borderRadius: "4px",
+                      margin: "0 4px",
                     }}
                   >
-                    winner: {option.year} for {option.movie}
+                    {option.username}
                   </div>
                 </div>
-              </ListBox.Option>
-            ) : null;
-          })}
-        </ListBox>
-        <br />
-        <br />
-        <br />
-        <br />
-        <button type="submit" onClick={handleSubmit}>
-          Submit
-        </button>
-      </form>
-    </div>
+                <div
+                  style={{
+                    fontSize: ".85rem",
+                    color: "#111",
+                    padding: "3px",
+                    marginLeft: "36px",
+                  }}
+                >
+                  winner: {option.year} for {option.movie}
+                </div>
+              </div>
+            </ListBox.Option>
+          ) : null;
+        })}
+      </ListBox>
+      <br />
+      <br />
+      <br />
+      <br />
+      <button type="submit" onClick={handleSubmit}>
+        Submit
+      </button>
+    </form>
   );
 }
