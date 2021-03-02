@@ -6,6 +6,6 @@ export const Metadata = styled.div(
   () => css`
     ${fontSize(-2)};
     ${lineHeight(-1)};
-    color: ${tokens.color.blackLighten20};
+    color: ${tokens.color.blackLighten10};
   `
 );

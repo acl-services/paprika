@@ -12,7 +12,13 @@ export const Header = styled.div(
     display: flex;
     padding: 14px;
 
+    ${isEditing &&
+      css`
+        background-color: ${tokens.color.yellowLighten30};
+      `}
+
     :hover {
+      background-color: ${tokens.color.blackLighten70};
       border: 2px solid ${tokens.color.blackLighten50};
       margin: 0px;
     }
@@ -25,11 +31,6 @@ export const Header = styled.div(
       border: 2px solid ${tokens.highlight.active.noBorder.borderColor};
       margin: 0px;
     }
-
-    ${isEditing &&
-      css`
-        background-color: ${tokens.color.yellowLighten30};
-      `}
   `
 );
 
