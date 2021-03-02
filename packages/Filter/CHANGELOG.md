@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.5
+
+### Patch Changes
+
+- Updated dependencies [0a31c86]
+  - @paprika/panel@2.0.8
+
 ## 1.1.5-next.0
 
 ### Patch Changes

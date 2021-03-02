@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.8
+
+### Patch Changes
+
+- 0a31c86: Fixed the issue of when you are scrolled down a bit and then open the Panel, it will open in the wrong y-position.
+
 ## 2.0.8-next.0
 
 ### Patch Changes
