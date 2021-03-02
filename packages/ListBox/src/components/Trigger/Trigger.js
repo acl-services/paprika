@@ -203,8 +203,8 @@ export default function Trigger(props) {
     if (hasRenderTrigger) {
       const attributes = {
         dispatch,
-        handleKeyDown: handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext }),
-        handleKeyUp: handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext }),
+        handleKeyDown: handleKeyDownKeyboardKeys({ providedProps, state, dispatch, onChangeContext }),
+        handleKeyUp: handleKeyUpKeyboardKeys({ providedProps, state, dispatch, onChangeContext }),
         isOpen,
         onChangeContext,
         propsForTrigger: () =>
