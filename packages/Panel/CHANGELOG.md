@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.0.8
+
+### Patch Changes
+
+- 0a31c86: Fixed the issue of when you are scrolled down a bit and then open the Panel, it will open in the wrong y-position.
+
+## 2.0.8-next.0
+
+### Patch Changes
+
+- 0a31c86: Fixed the issue of when you are scrolled down a bit and then open the Panel, it will open in the wrong y-position.
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
@@ -46,3 +58,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Panel can now come up from the bottom: `slideFrom={Panel.slideFromDirections.BOTTOM}`
+
+## [2.0.7-alpha.3] - 2021-02-18
+
+### Changed
+
+- Using `@paprika/overlay` as the internal overlay component

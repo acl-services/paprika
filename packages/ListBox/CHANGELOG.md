@@ -6,11 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.4.0]
+
+- Fix some issue with keyboard functionality introduced when working with ListBoxWithTags on the Trigger component.
+- Remove dispatch toggle from Trigger and when with an ordinary if and else, adding clarity to whats happening.
+
+## [1.0.1]
+
+- Fix accessiblity issue so options are now focusable and read to screen reader technology
+- Add Toast component as depedency
+
 ## [1.0.0] - 2020-11-04
 
 ### Changed
 
-- Moved from Listbox
+- Moved from ListBox
 
 ## [0.9.0] - 2020-06-16
 
@@ -66,3 +76,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 
 - Replace `nanoid` by `uuid`.
+
+## [1.3.5-alpha.7] - 2021-02-26
+
+### Added
+
+- `hasError` and `isReadOnly` props. [@mikrotron](https://github.com/mikrotron)
+- `<ListBox.A11y>` props collector component to collect props and attributes for a11y and propagate them to the trigger button or, if `isInline`, to the `role=listbox` element. [@mikrotron](https://github.com/mikrotron)
+
+### Changed
+
+- Moved `role=listbox` element from `<List>` (`<ul>`) to `<Content>`. [@mikrotron](https://github.com/mikrotron)
+- Improved the `aria-labels`. [@mikrotron](https://github.com/mikrotron)
+- Ensured `moreProps` passed to the root `<ListBox>` get propagated to the root DOM element. [@mikrotron](https://github.com/mikrotron)
+- Internally refactored some "controlled" props to a new, simple context provider allowing updates on re-render. [@mikrotron](https://github.com/mikrotron)

@@ -23,7 +23,7 @@ blocks:
         - name: "Publish to NPM"
           commands:
             - nvm use
-            - npx lerna bootstrap
             - yarn
-            - yarn lerna version prerelease --yes
-            - yarn lerna publish from-package --yes --dist-tag next
+            - test -f .changeset/pre.json || yarn changeset pre enter next
+            - yarn changeset version
+            - if [ -z "`git status --porcelain`" ]; then echo "No changes."; else { git add . && git commit -m"[Bot] Paprika Pre-Release" --no-verify && yarn changeset publish && git push origin master --follow-tags --no-verify; }; fi

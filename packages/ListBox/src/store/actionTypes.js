@@ -14,7 +14,6 @@ export const setListBoxHasFocus = "SET_LISTBOX_HAS_FOCUS";
 export const setHasFooter = "SET_HAS_FOOTER";
 export const setHasPopupOpened = "SET_HAS_POPUP_OPENED";
 export const setHeight = "SET_HEIGHT";
-export const setIsDisabled = "SET_IS_DISABLED";
 export const setTriggerWidth = "SET_TRIGGER_WIDTH";
 export const toggleOptionDisabled = "TOGGLE_OPTION_DISABLED";
 export const togglePopover = "TOGGLE_POPOVER";

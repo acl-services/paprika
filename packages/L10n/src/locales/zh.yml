@@ -9,6 +9,7 @@ zh:
       pm: 下午
     back: 返回
     remove: 移除
+    remove_a11y: "移除 {{value}}"
     moreInformation: 更多信息
     close: 关闭
     dataGrid:
@@ -81,6 +82,8 @@ zh:
       escape: Esc 键
     collapsible:
       ariaText: 可折叠部分
+      collapse: 折叠
+      expand: 展开
     sortable:
       aria_description: 可拖动项目。按空格键提起。
       aria_lift: 您已将一个项目提起到位 {{source}}。使用箭头键移动，使用空格键放下，使用 Esc 键取消。
@@ -100,6 +103,7 @@ zh:
       less_about: 显示关于{{topic}}的更少信息
     listBox:
       trigger:
+        clear_selection: 清除选择
         placeholder: 选择…
       filter:
         a11y_text: 搜索
@@ -117,6 +121,7 @@ zh:
       placeholder: 选择…
       no_results_found: 未找到结果
       all_items_have_been_selected: "已选择所有项"
+      a11y_text_trigger: "多选选项：{{options}}"
     search:
       searchTerm: 搜索词…
     actionBar:
@@ -195,3 +200,6 @@ zh:
         is_after: 晚于
         true: "真"
         false: "假"
+    input:
+      clear_button:
+        aria_label: 清除输入

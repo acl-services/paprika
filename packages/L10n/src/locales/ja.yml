@@ -9,6 +9,7 @@ ja:
       pm: 午後
     back: 戻る
     remove: 削除
+    remove_a11y: "{{value}}を削除"
     moreInformation: 詳しい情報
     close: 閉じる
     dataGrid:
@@ -81,6 +82,8 @@ ja:
       escape: エスケープ
     collapsible:
       ariaText: 縮小可能セクション
+      collapse: 折りたたむ
+      expand: 展開する
     sortable:
       aria_description: ドラッグ可能な項目。スペースを押して取り除きます。
       aria_lift: '{{source}}のポジションにある項目を 1 つ取り除きました。移動するには矢印、ドロップするにはスペース、そしてキャンセルするにはエスケープ キーを使用します。'
@@ -100,6 +103,7 @@ ja:
       less_about: '{{topic}}について少なく表示'
     listBox:
       trigger:
+        clear_selection: 選択をクリア
         placeholder: 選択...
       filter:
         a11y_text: 検索
@@ -117,6 +121,7 @@ ja:
       placeholder: 選択…
       no_results_found: 結果が見つかりません
       all_items_have_been_selected: "すべての項目が選択されています"
+      a11y_text_trigger: "多数選択オプション: {{options}}"
     search:
       searchTerm: 用語の検索...
     actionBar:
@@ -195,3 +200,6 @@ ja:
         is_after: 'は次より後である:'
         true: "真"
         false: "偽"
+    input:
+      clear_button:
+        aria_label: 入力をクリア

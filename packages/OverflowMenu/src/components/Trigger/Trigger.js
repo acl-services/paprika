@@ -11,7 +11,7 @@ const ButtonComponentMap = {
 };
 
 function Trigger(props) {
-  const { children, isOpen, onOpenMenu, menuRefId, triggerRef, buttonType, ...otherProps } = props;
+  const { children, isOpen, onClick, onOpenMenu, menuRefId, triggerRef, buttonType, ...otherProps } = props;
   const TriggerComponent = ButtonComponentMap[buttonType];
 
   return (
@@ -19,8 +19,11 @@ function Trigger(props) {
       ref={triggerRef}
       aria-controls={menuRefId}
       aria-expanded={isOpen}
-      aria-haspopup="true"
-      onClick={onOpenMenu}
+      aria-haspopup
+      onClick={e => {
+        onOpenMenu();
+        onClick(e);
+      }}
       isSemantic={false}
       {...otherProps}
     >
@@ -39,6 +42,7 @@ const propTypes = {
   buttonType: PropTypes.oneOf([Trigger.types.button.ICON, Trigger.types.button.RAW, Trigger.types.button.SIMPLE]),
   isOpen: PropTypes.bool,
   menuRefId: PropTypes.string,
+  onClick: PropTypes.func,
   onOpenMenu: PropTypes.func,
   triggerRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }) || null,
 };
@@ -49,6 +53,7 @@ const defaultProps = {
   menuRefId: "",
   triggerRef: null,
   isOpen: false,
+  onClick: () => {},
   onOpenMenu: () => {},
 };
 

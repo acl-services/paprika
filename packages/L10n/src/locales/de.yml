@@ -9,6 +9,7 @@ de:
       pm: PM
     back: Zurück
     remove: entfernen
+    remove_a11y: "{{value}} entfernen"
     moreInformation: weitere Informationen
     close: Schließen
     dataGrid:
@@ -81,6 +82,8 @@ de:
       escape: Escape
     collapsible:
       ariaText: Einklappbarer Abschnitt
+      collapse: Reduzieren
+      expand: Erweitern
     sortable:
       aria_description: Ziehbares Element. Drücken Sie zum Anheben die Leertaste.
       aria_lift: Sie haben ein Element in Position {{source}} angehoben. Verwenden Sie die Pfeiltasten, um es zu bewegen, die Leertaste, um es fallen zu lassen, und Esc, um Aktion abzubrechen.
@@ -100,6 +103,7 @@ de:
       less_about: Weniger über {{topic}} anzeigen
     listBox:
       trigger:
+        clear_selection: Auswahl entfernen
         placeholder: Auswählen...
       filter:
         a11y_text: Suchen
@@ -117,6 +121,7 @@ de:
       placeholder: Auswählen…
       no_results_found: Keine Ergebnisse gefunden
       all_items_have_been_selected: "Alle Elemente wurden ausgewählt"
+      a11y_text_trigger: "Option zur Mehrfachauswahl: {{options}}"
     search:
       searchTerm: Suchbegriff...
     actionBar:
@@ -195,3 +200,6 @@ de:
         is_after: ist nach
         true: "wahr"
         false: "falsch"
+    input:
+      clear_button:
+        aria_label: Transparente Eingabe

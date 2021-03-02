@@ -9,6 +9,7 @@ en:
       pm: pm
     back: Back
     remove: remove
+    remove_a11y: "Remove {{value}}"
     moreInformation: more information
     close: Close
     dataGrid:
@@ -81,6 +82,8 @@ en:
       escape: escape
     collapsible:
       ariaText: Collapsible section
+      collapse: Collapse
+      expand: Expand
     sortable:
       aria_description: Draggable item. Press space to lift.
       aria_lift: You have lifted an item in position {{source}}. Use the arrow keys to move, space to drop, and escape to cancel.
@@ -100,6 +103,7 @@ en:
       less_about: show less about {{topic}}
     listBox:
       trigger:
+        clear_selection: Clear selection
         placeholder: Select...
       filter:
         a11y_text: Search
@@ -117,6 +121,7 @@ en:
       placeholder: Select…
       no_results_found: No results found
       all_items_have_been_selected: "All items have been selected"
+      a11y_text_trigger: "Multi-select option: {{options}}"
     search:
       searchTerm: Search term...
     actionBar:

@@ -9,6 +9,7 @@ fr:
       pm: pm
     back: Retour
     remove: supprimer
+    remove_a11y: "Supprimer {{value}}"
     moreInformation: plus d'informations
     close: Fermer
     dataGrid:
@@ -81,6 +82,8 @@ fr:
       escape: Échap
     collapsible:
       ariaText: Section réductible
+      collapse: Réduire
+      expand: Développer
     sortable:
       aria_description: Élément déplaçable. Appuyez sur la touche espace pour lever.
       aria_lift: Vous avez élevé un élément dans la position {{source}}. Utilisez les touches de direction pour déplacer, la touche Espace pour déposer et Échap pour annuler.
@@ -100,6 +103,7 @@ fr:
       less_about: Afficher moins sur {{topic}}
     listBox:
       trigger:
+        clear_selection: Effacer la sélection
         placeholder: Sélectionner...
       filter:
         a11y_text: Rechercher
@@ -117,6 +121,7 @@ fr:
       placeholder: Sélectionner...
       no_results_found: Aucun résultat trouvé
       all_items_have_been_selected: "Tous les éléments ont été sélectionnés"
+      a11y_text_trigger: "Option multi-sélection : {{options}}"
     search:
       searchTerm: Rechercher le terme...
     actionBar:
@@ -195,3 +200,6 @@ fr:
         is_after: est après
         true: "vrai"
         false: "faux"
+    input:
+      clear_button:
+        aria_label: Effacer l'entrée

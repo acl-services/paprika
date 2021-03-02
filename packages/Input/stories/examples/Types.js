@@ -24,7 +24,7 @@ const TypesExampleStory = () => {
           <code>type=&quot;number&quot;</code>
         </small>
       </h3>
-      Don&apos;t do this. Use the &lt;InputNumber&gt; component.
+      Don&apos;t do this. Use &lt;Input type=&quot;text&quot; /&gt;
     </InputStory>
   );
 };

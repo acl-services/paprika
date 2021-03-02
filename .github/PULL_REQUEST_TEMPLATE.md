@@ -5,9 +5,10 @@ _clear, one sentence description of primary purpose of this PR_
 _details of code change / secondary purposes of this PR_
 
 ### Updates 📦
-- [ ] MAJOR (breaking) change to _these packages_ (if the package you are breaking is a dependency in other packages, be sure to add a commit with a "BREAKING CHANGE" message to those other packages as well)
-- [ ] MINOR (backward compatible) change to _these packages_
-- [ ] PATCH (bug fix) change to _these packages_
+If you have changed a component's source code (not stories, specs, or docs), before merging your branch run `yarn changeset`. This will prompt you to:
+- indicate if changes were patch/minor/major for each modified package
+- enter a release message
+
 
 ### Storybook 📕
 http://storybooks.highbond-s3.com/paprika/your-branch-name

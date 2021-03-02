@@ -8,6 +8,7 @@ const storyTree = [
       "Heading",
       "Icon",
       "Pill",
+      "Tag"
     ],
   },
   {

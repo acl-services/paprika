@@ -6,14 +6,20 @@ import * as types from "../../types";
 const blueSelected = tokens.color.blueLighten50;
 
 const activeStyles = css`
-  border: 2px solid Highlight;
-  border-radius: 3px;
+  ${stylers.focusRing()}
 `;
 
 const disabledStyles = css`
   background: transparent;
   border: 0;
   color: ${tokens.color.blackLighten60};
+  outline: none;
+
+  &:focus {
+    ${stylers.focusRing.subtle()}
+    border-bottom-color: transparent;
+    border-radius: ${tokens.border.radius};
+  }
 `;
 
 const fontSize = {
@@ -28,6 +34,19 @@ const fontSize = {
   `,
 };
 
+const stateStyles = ({ isSelected, hasPreventDefaultOnSelect }) => css`
+  &:hover {
+    ${hasPreventDefaultOnSelect ? "background: transparent;" : ""};
+    background: ${isSelected ? blueSelected : tokens.color.blackLighten70};
+  }
+
+  &:focus {
+    ${stylers.focusRing()}
+    border-bottom-color: transparent;
+    border-radius: ${tokens.border.radius};
+  }
+`;
+
 export const Option = styled.li(
   ({ size, isDisabled, hasPreventDefaultOnSelect, isSelected, isActive, listBoxHasFocus }) => css`
     border: 2px solid transparent;
@@ -35,20 +54,16 @@ export const Option = styled.li(
     cursor: pointer;
     margin-bottom: ${tokens.spaceSm};
     padding: ${tokens.spaceSm};
-
     ${fontSize[size]}
 
     &:hover {
-      ${isDisabled ? "background: transparent; cursor: not-allowed;" : ""};
-      ${hasPreventDefaultOnSelect ? "background: transparent;" : ""};
-
-      background: ${isSelected ? blueSelected : tokens.color.blackLighten70};
-    }
-
+      ${isDisabled ? "cursor: not-allowed;" : ""};
+    } 
+  
     ${isActive && listBoxHasFocus && hasPreventDefaultOnSelect ? `border-color: ${tokens.color.blackLighten60}` : ""};
     ${isActive && listBoxHasFocus ? activeStyles : ""}
     ${hasPreventDefaultOnSelect}
     ${isSelected ? `background: ${blueSelected};` : ""}
-    ${isDisabled ? disabledStyles : ""}
+    ${isDisabled ? disabledStyles : stateStyles}
   `
 );

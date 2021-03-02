@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import tokens from "@paprika/tokens";
 
 export const List = styled.ul(
   ({ noResultsFound, height, hasOptions }) => css`
@@ -7,6 +8,7 @@ export const List = styled.ul(
     margin: 0;
     max-height: ${height}px;
     overflow: auto;
+    ${noResultsFound || !hasOptions ? "padding: 0;" : `padding: ${tokens.space};`}
 
     &:focus {
       outline: none;
@@ -15,7 +17,5 @@ export const List = styled.ul(
     li {
       box-sizing: border-box;
     }
-
-    ${noResultsFound || !hasOptions ? "padding: 0" : "padding: 8px;"}
   `
 );

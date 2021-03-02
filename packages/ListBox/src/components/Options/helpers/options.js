@@ -120,22 +120,40 @@ export function getNextOptionActiveIndexLooping(state) {
   return getNextOptionActiveIndex(state) || getNextOptionActiveIndex(state, false);
 }
 
-export function handleArrowKeys({ event, state, dispatch, isArrowDown = null, onChangeContext }) {
-  if (!state.isInline && !state.isOpen) {
+export function handleArrowKeys({ event, providedProps, state, dispatch, isArrowDown = null, onChangeContext }) {
+  if (!providedProps.isInline && !state.isOpen) {
     dispatch({ type: useListBox.types.openPopover });
     return;
   }
 
-  event.preventDefault();
   const next = getNextOptionActiveIndex(state, isArrowDown);
+  event.preventDefault();
+
+  if (next === null && event.nativeEvent.key === "ArrowUp" && state.hasFilter) {
+    state.refFilterInput.current.focus();
+    if (state.isMulti) {
+      dispatch({
+        type: useListBox.types.setActiveOption,
+        payload: { activeOptionIndex: null, isOpen: true },
+      });
+    }
+  }
+
   if (next !== null) {
+    state.refListBox.current.children[next].focus();
     if (state.isMulti) {
       dispatch({
         type: useListBox.types.setActiveOption,
         payload: { activeOptionIndex: next, isOpen: true },
       });
     } else {
-      selectSingleOption({ activeOptionIndex: next, isOpen: true, dispatch, onChangeContext, eventType: KEY_PRESS });
+      selectSingleOption({
+        activeOptionIndex: next,
+        isOpen: true,
+        dispatch,
+        onChangeContext,
+        eventType: KEY_PRESS,
+      });
     }
   }
 }
@@ -154,13 +172,11 @@ export const toggleOption = ({ index, isMulti, dispatch, onChangeContext }) => {
   selectSingleOption({ activeOptionIndex: index, isOpen: false, dispatch, onChangeContext });
 };
 
-export const handleClickOption = ({ props, state, dispatch, onChangeContext }) => event => {
+export const handleClickOption = ({ props, isDisabled, state, dispatch, onChangeContext }) => event => {
+  if (isDisabled) return;
   const { index } = props;
   const { options, hasFilter, isMulti, refFilterInput } = state;
   const hasPreventDefaultOnSelect = options[index].preventDefaultOnSelect;
-  if (state.isDisabled || props.isDisabled) {
-    return;
-  }
 
   const focusListBoxContentIfHasNotFilter =
     state.refListBox.current.contains(event.target) && document.activeElement === document.body && !hasFilter;
@@ -200,17 +216,7 @@ export const handleClickOption = ({ props, state, dispatch, onChangeContext }) =
   selectSingleOption({ activeOptionIndex: index, isOpen: false, dispatch, onChangeContext, eventType: CLICK });
 };
 
-export function handleEnterOrSpace({ event, state, dispatch, onChangeContext }) {
-  const pressedSpaceKeyWhileHavingFilter = state.hasFilter && event.key === " " && event.target.value !== "";
-
-  const isEventOnFooter = state.refFooterContainer.current
-    ? state.refFooterContainer.current.contains(event.target)
-    : false;
-
-  if (pressedSpaceKeyWhileHavingFilter || isEventOnFooter) {
-    return;
-  }
-
+export function handleEnterOrSpace({ event, providedProps, state, dispatch, onChangeContext }) {
   event.preventDefault();
 
   const option = state.options[state.activeOption];
@@ -226,7 +232,7 @@ export function handleEnterOrSpace({ event, state, dispatch, onChangeContext }) 
   }
 
   if (state.activeOption === null) {
-    if (state.isInline) {
+    if (providedProps.isInline) {
       return;
     }
 
@@ -245,7 +251,7 @@ export function handleEnterOrSpace({ event, state, dispatch, onChangeContext }) 
     }
   }
 
-  if (state.isOpen || state.isInline) {
+  if (state.isOpen || providedProps.isInline) {
     if (typeof state.options[state.activeOption] !== "undefined" && state.options[state.activeOption].onClick) {
       state.options[state.activeOption].onClick();
     }

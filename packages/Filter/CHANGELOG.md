@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.1.5
+
+### Patch Changes
+
+- Updated dependencies [0a31c86]
+  - @paprika/panel@2.0.8
+
+## 1.1.5-next.0
+
+### Patch Changes
+
+- Updated dependencies [0a31c86]
+  - @paprika/panel@2.0.8-next.0
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
