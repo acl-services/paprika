@@ -17,6 +17,7 @@ const renderTrigger = ({
   isDisabled,
   isReadOnly,
   onRemove,
+  placeholder,
   renderTag,
   selectedOptions,
   size,
@@ -86,7 +87,7 @@ const renderTrigger = ({
           })}
           {selectedOptions.length ? null : (
             <sc.Placeholder isDisabled={isDisabled} size={size}>
-              {t("listBoxWithTags.placeholder")}
+              {placeholder || t("listBoxWithTags.placeholder")}
             </sc.Placeholder>
           )}
         </Tags>
@@ -113,6 +114,7 @@ export default function ListBoxWithTags(props) {
     onAddCustomOption,
     onChange,
     onRemove,
+    placeholder,
     tagLabelKey,
     renderTag,
     selectedOptions,
@@ -162,6 +164,7 @@ export default function ListBoxWithTags(props) {
             isDisabled,
             isReadOnly,
             onRemove,
+            placeholder,
             renderTag,
             selectedOptions,
             size: validSize,
@@ -243,6 +246,9 @@ ListBoxWithTags.propTypes = {
   /** Callback once a tag is remove from the Trigger */
   onRemove: PropTypes.func,
 
+  /** Default label for trigger when the ListBox has no option selected */
+  placeholder: PropTypes.string,
+
   /** Render prop to override the default Tag style, see example for it's uses.  */
   renderTag: PropTypes.func,
 
@@ -266,6 +272,7 @@ ListBoxWithTags.defaultProps = {
   isReadOnly: false,
   noResultsMessage: null,
   onAddCustomOption: null,
+  placeholder: null,
   onChange: () => {},
   onRemove: () => {},
   renderTag: null,

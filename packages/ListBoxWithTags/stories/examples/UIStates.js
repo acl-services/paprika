@@ -9,6 +9,15 @@ const items = [
   { label: "Readymade hammock succulents" },
 ];
 
+function renderItems(isSelected) {
+  return items.map(item =>
+    !isSelected(item.label) ? (
+      <ListBox.Option key={item.label} value={item.label} label={item.label}>
+        {item.label}
+      </ListBox.Option>
+    ) : null
+  );
+}
 export default function UIStatesExample() {
   const { isSelected, filteredData, getSelectedOptions, ...moreUseListBoxWithTagsProps } = useListBoxWithTags({
     key: "label",
@@ -46,13 +55,17 @@ export default function UIStatesExample() {
       <Gap />
       <StoryHeading level={2}>hasError</StoryHeading>
       <ListBox {...moreUseListBoxWithTagsProps} hasError selectedOptions={getSelectedOptions()}>
-        {items.map(item =>
-          !isSelected(item.label) ? (
-            <ListBox.Option key={item.label} value={item.label} label={item.label}>
-              {item.label}
-            </ListBox.Option>
-          ) : null
-        )}
+        {renderItems(isSelected)}
+      </ListBox>
+
+      <Gap />
+      <StoryHeading level={2}>placeholder</StoryHeading>
+      <ListBox
+        {...moreUseListBoxWithTagsProps}
+        selectedOptions={getSelectedOptions()}
+        placeholder="Choose your favourite lorem hipsums"
+      >
+        {renderItems(isSelected)}
       </ListBox>
     </>
   );
