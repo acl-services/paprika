@@ -27,6 +27,8 @@ interface ListBoxWithTagsProps {
   onChange?: (...args: any[]) => any;
   /** Callback once a tag is remove from the Trigger */
   onRemove?: (...args: any[]) => any;
+  /** Default label for trigger when the ListBox has no option selected */
+  placeholder?: string;
   /** Render prop to override the default Tag style, see example for it's uses. */
   renderTag?: (...args: any[]) => any;
   /** An array of id that helps the ListBoxWithTags to known what elements are selected */

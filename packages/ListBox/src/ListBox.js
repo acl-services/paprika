@@ -228,7 +228,7 @@ export const propTypes = {
   /** Callback returning the current selection on the ListBox */
   onChange: PropTypes.func,
 
-  /** Defaults label to display when the ListBox has not option selected */
+  /** Default label for trigger when the ListBox has no option selected */
   placeholder: PropTypes.string,
 
   /** Size of the trigger and options (font size, height, padding, etc). */
