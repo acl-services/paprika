@@ -23,7 +23,7 @@ interface ListBoxProps {
   isReadOnly?: boolean;
   /** Callback returning the current selection on the ListBox */
   onChange?: (...args: any[]) => any;
-  /** Defaults label to display when the ListBox has not option selected */
+  /** Default label for trigger when the ListBox has no option selected */
   placeholder?: string;
   /** Size of the trigger and options (font size, height, padding, etc). */
   size?: ListBoxContainer.types.size.SMALL | ListBoxContainer.types.size.MEDIUM | ListBoxContainer.types.size.LARGE;

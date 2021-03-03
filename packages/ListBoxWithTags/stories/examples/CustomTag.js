@@ -15,11 +15,13 @@ export default function CustomTrigger() {
 
   function renderTag({ option, Tag, onRemove }) {
     const color = getAvatarColors(option.label);
+    const avatar = (
+      <Avatar size={Avatar.types.size.SMALL} isRound backgroundColor={color.backgroundColor} color={color.fontColor}>
+        {getInitialsFromText(option.label)}
+      </Avatar>
+    );
     return (
-      <Tag onRemove={onRemove} key={option.label}>
-        <Avatar size={Avatar.types.size.SMALL} isRound backgroundColor={color.backgroundColor} color={color.fontColor}>
-          {getInitialsFromText(option.label)}
-        </Avatar>
+      <Tag onRemove={onRemove} key={option.label} avatar={avatar}>
         {option.label}
       </Tag>
     );
