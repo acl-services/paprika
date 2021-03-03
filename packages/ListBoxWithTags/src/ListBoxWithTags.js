@@ -6,7 +6,7 @@ import * as constants from "@paprika/constants/lib/Constants";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import ListBox from "@paprika/list-box";
 import { filter } from "@paprika/list-box/lib/helpers/filter";
-import renderTrigger from "./renderTrigger";
+import TriggerWithTags from "./components/TriggerWithTags";
 
 export default function ListBoxWithTags(props) {
   const {
@@ -61,24 +61,25 @@ export default function ListBoxWithTags(props) {
 
   const noResultMessageProp = noResultsMessage === null ? {} : { noResultsMessage };
 
+  const triggerProps = {
+    allOptionsAreSelected,
+    hasError,
+    idListBoxContent,
+    isDisabled,
+    isReadOnly,
+    onRemove,
+    placeholder,
+    renderTag,
+    selectedOptions,
+    size: validSize,
+    tagLabelKey,
+  };
+
   return (
     <div ref={refDivRoot}>
       <ListBox isMulti size={validSize} onChange={handleChange} {...moreProps}>
         <ListBox.Trigger>
-          {renderTrigger({
-            allOptionsAreSelected,
-            hasError,
-            idListBoxContent,
-            isDisabled,
-            isReadOnly,
-            onRemove,
-            placeholder,
-            renderTag,
-            selectedOptions,
-            size: validSize,
-            tagLabelKey,
-            t,
-          })}
+          {(...[, , , attributes]) => <TriggerWithTags {...triggerProps} {...attributes} />}
         </ListBox.Trigger>
         <ListBox.Box id={idListBoxContent} />
         {allOptionsAreSelected ? null : (
@@ -112,8 +113,8 @@ ListBoxWithTags.filter = filter;
 
 ListBoxWithTags.types = {
   size: {
-    MEDIUM: [constants.size.MEDIUM],
-    LARGE: [constants.size.LARGE],
+    MEDIUM: constants.size.MEDIUM,
+    LARGE: constants.size.LARGE,
   },
 };
 

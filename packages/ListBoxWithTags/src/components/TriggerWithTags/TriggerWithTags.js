@@ -1,22 +1,34 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { RefOf } from "@paprika/helpers";
 import Tag, { Tags } from "@paprika/tag";
-import * as sc from "./ListBoxWithTags.styles";
+import useI18n from "@paprika/l10n/lib/useI18n";
+import * as sc from "../../ListBoxWithTags.styles";
 
-const renderTrigger = ({
-  allOptionsAreSelected,
-  hasError,
-  idListBoxContent,
-  isDisabled,
-  isReadOnly,
-  onRemove,
-  placeholder,
-  renderTag,
-  selectedOptions,
-  size,
-  tagLabelKey,
-  t,
-}) => (...args) => {
-  const [, , , { dispatch, handleKeyDown, handleKeyUp, isOpen, propsForTrigger, refTrigger, types }] = args;
+export default function TriggerWithTags(props) {
+  const {
+    allOptionsAreSelected,
+    hasError,
+    idListBoxContent,
+    isDisabled,
+    isReadOnly,
+    onRemove,
+    placeholder,
+    renderTag,
+    selectedOptions,
+    size,
+    tagLabelKey,
+    // attributes
+    dispatch,
+    handleKeyDown,
+    handleKeyUp,
+    isOpen,
+    propsForTrigger,
+    refTrigger,
+    types,
+  } = props;
+
+  const { t } = useI18n();
 
   function handleClick(event) {
     event.stopPropagation();
@@ -34,10 +46,11 @@ const renderTrigger = ({
   }
 
   const triggerProps = propsForTrigger();
+  const bestPlaceholder = placeholder || t("listBoxWithTags.placeholder");
   const a11yTextOptions = selectedOptions.map(item => {
     return tagLabelKey === null ? item.label : item[tagLabelKey];
   });
-  const a11yText = selectedOptions.length === 0 ? t("listBoxWithTags.placeholder") : a11yTextOptions.join(", ");
+  const a11yText = selectedOptions.length === 0 ? bestPlaceholder : a11yTextOptions.join(", ");
 
   return (
     <>
@@ -77,7 +90,7 @@ const renderTrigger = ({
           })}
           {selectedOptions.length ? null : (
             <sc.Placeholder isDisabled={isDisabled} size={size}>
-              {placeholder || t("listBoxWithTags.placeholder")}
+              {bestPlaceholder}
             </sc.Placeholder>
           )}
         </Tags>
@@ -88,6 +101,37 @@ const renderTrigger = ({
       </sc.TriggerLabel>
     </>
   );
+}
+
+TriggerWithTags.displayName = "ListBoxWithTags.TriggerWithTags";
+
+TriggerWithTags.propTypes = {
+  allOptionsAreSelected: PropTypes.bool.isRequired,
+  hasError: PropTypes.bool.isRequired,
+  idListBoxContent: PropTypes.string.isRequired,
+  isDisabled: PropTypes.bool.isRequired,
+  isReadOnly: PropTypes.bool.isRequired,
+  onRemove: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+  renderTag: PropTypes.func,
+  selectedOptions: PropTypes.arrayOf(PropTypes.object),
+  size: PropTypes.string.isRequired,
+  tagLabelKey: PropTypes.string,
+  // attributes
+  dispatch: PropTypes.func.isRequired,
+  handleKeyDown: PropTypes.func.isRequired,
+  handleKeyUp: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool,
+  propsForTrigger: PropTypes.func.isRequired,
+  refTrigger: RefOf().isRequired,
+  types: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
-export default renderTrigger;
+TriggerWithTags.defaultProps = {
+  placeholder: null,
+  renderTag: null,
+  selectedOptions: null,
+  tagLabelKey: null,
+  // attributes
+  isOpen: false,
+};

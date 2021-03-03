@@ -21,7 +21,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Support for `isDisabled`, `isReadOnly`, and `hasError` props. [@mikrotron](https://github.com/mikrotron)
 - Support for `<ListBoxWithTags.A11y>` props collector. [@mikrotron](https://github.com/mikrotron)
-- Support for `placeholder` prop. [@mikrotron](https://github.com/mikrotron)
 
 ## [1.0.5-alpha.3] - 2021-02-12
 
