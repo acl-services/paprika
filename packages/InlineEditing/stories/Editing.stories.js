@@ -1,11 +1,16 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
-import Edit from "./examples/Edit";
+import Table from "./examples/Table";
+import ListBox from "./examples/ListBox";
 
 export default {
   title: getStoryName("InlineEditing"),
 };
 
-export const Editing = () => {
-  return <Edit />;
+export const WithInATable = () => {
+  return <Table />;
+};
+
+export const ListBoxWithInlineEditing = () => {
+  return <ListBox />;
 };

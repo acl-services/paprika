@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
 import ColumnDefinition from "./components/ColumnDefinition";
 import * as sc from "./Table.styles";
-import { handleBlur, handleFocus, handleKeyDown, handleClick } from "./event";
 
 const Table = React.forwardRef((props, ref) => {
   const {
@@ -25,8 +24,6 @@ const Table = React.forwardRef((props, ref) => {
   } = props;
   const [tableId] = React.useState(() => `table_${uuidv4()}`);
 
-  const refFocus = React.useRef(null);
-
   const { "Table.ColumnDefinition": extractedColumnDefinitions } = extractChildren(children, [
     "Table.ColumnDefinition",
   ]);
@@ -38,29 +35,8 @@ const Table = React.forwardRef((props, ref) => {
     ColumnDefinitions = [extractedColumnDefinitions];
   }
 
-  const qty = {
-    columnsLength: extractedColumnDefinitions.length,
-    rowsLength: data.length,
-  };
-
-  const arrowKeyNavigationProps = enableArrowKeyNavigation
-    ? {
-        onFocus: handleFocus({ refFocus, tableId, onFocus }),
-        onBlur: handleBlur({ refFocus, tableId, onBlur }),
-        onKeyDown: handleKeyDown({ refFocus, tableId, onFocus, ...qty }),
-        onClick: handleClick({ refFocus, tableId, onClick }),
-        tabIndex: -1,
-      }
-    : {};
-
   return (
-    <sc.Table
-      {...(enableArrowKeyNavigation ? { role: "grid" } : {})}
-      aria-label={a11yText}
-      id={tableId}
-      {...moreProps}
-      ref={ref}
-    >
+    <sc.Table aria-label={a11yText} id={tableId} {...moreProps} ref={ref}>
       <sc.Thead>
         <tr>
           {ColumnDefinitions.map((columnDefinition, columnIndex) => {
@@ -101,8 +77,6 @@ const Table = React.forwardRef((props, ref) => {
                       width={width}
                       {...moreColumnProps}
                       {...position}
-                      {...arrowKeyNavigationProps}
-                      {...(columnIndex === 0 && rowIndex === 0 ? { tabIndex: 0 } : {})}
                     >
                       {cell({ row, rowIndex, columnIndex })}
                     </sc.TD>
@@ -115,8 +89,6 @@ const Table = React.forwardRef((props, ref) => {
                       key={columnIndex}
                       {...moreColumnProps}
                       {...position}
-                      {...arrowKeyNavigationProps}
-                      {...(columnIndex === 0 && rowIndex === 0 ? { tabIndex: 0 } : {})}
                     >
                       {typeof row[cell] !== "undefined" ? row[cell] : `Error: ${cell} doesn't exist`}
                     </sc.TD>

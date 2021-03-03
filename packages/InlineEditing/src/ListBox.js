@@ -1,71 +1,65 @@
-/* eslint-disable react/prop-types */
 import React from "react";
+import PropTypes from "prop-types";
 import ListBox from "@paprika/list-box";
 import Editor from "./Editor";
 
+const isPopoverVisible = ({ rowIndex, columnIndex }) => {
+  return (
+    document
+      .querySelector([`[data-paprika-anchor-inline-cell="${rowIndex}-${columnIndex}"]`])
+      .parentElement.getAttribute("aria-hidden") === "true"
+  );
+};
+
 export default function InlineListBox(props) {
-  /** These props are only consumable by the Author no need to expose them */
   const {
+    isEditing,
+    onChange,
+    onSubmit,
     setIsEditing,
+    /** These props are only consumable by the Author no need to expose them */
+    /* eslint-disable react/prop-types */
     rowIndex,
     columnIndex,
-    onChange,
-    isEditing,
     value,
     placeHolder,
     children,
+    /* eslint-enable react/prop-types */
     ...moreProps
   } = props;
+
   const refInput = React.useRef(null);
   const refSwitcher = React.useRef(null);
-
-  const close = () => {
-    setIsEditing(false);
-  };
+  const [nextValue, setNextValue] = React.useState(null);
 
   function handleKeyUp(event) {
     if (event.key === "Escape") {
+      setNextValue(null);
       setIsEditing(false);
       window.requestAnimationFrame(() => {
         refSwitcher.current.focus();
       });
     }
-
-    // if (event.key === "Enter") {
-    //   submit(event);
-    // }
   }
 
   function handleClose() {
     setIsEditing(false);
     window.requestAnimationFrame(() => {
-      refSwitcher.current.focus();
+      if (refSwitcher.current) refSwitcher.current.focus();
     });
   }
 
   function handleBlur() {
-    const $parent = document.querySelector([`[data-paprika-anchor-inline-cell="${rowIndex}-${columnIndex}"]`])
-      .parentElement;
-
-    if ($parent.getAttribute("aria-hidden") === "true") {
+    if (isPopoverVisible({ rowIndex, columnIndex })) {
       window.requestAnimationFrame(() => {
         handleClose();
       });
     }
   }
 
-  function submit(event) {
-    event.preventDefault();
-    onChange({ rowIndex, columnIndex, close, nextValue: refInput.current.value });
-  }
-
-  function handleChange(args) {
-    console.log("change", args);
-    // handleClose();
-  }
-
-  function handleAccept(args) {
-    console.log("accept", args);
+  function handleChange(...args) {
+    setNextValue(args);
+    onChange(args);
   }
 
   React.useEffect(() => {
@@ -77,6 +71,12 @@ export default function InlineListBox(props) {
     }
   }, [setIsEditing, value]);
 
+  React.useEffect(() => {
+    if (!isEditing && nextValue !== null) {
+      onSubmit(...nextValue, { rowIndex, columnIndex });
+    }
+  }, [isEditing, nextValue, value, onChange]);
+
   const dataIsEditing = {
     "data-paprika-anchor-inline-cell": `${rowIndex}-${columnIndex}`,
   };
@@ -84,7 +84,11 @@ export default function InlineListBox(props) {
   return (
     <Editor
       onEdit={() => {
-        refInput.current.focus();
+        if (isPopoverVisible({ rowIndex, columnIndex })) {
+          window.requestAnimationFrame(() => {
+            refInput.current.focus();
+          });
+        }
       }}
       {...props}
       ref={refSwitcher}
@@ -92,14 +96,16 @@ export default function InlineListBox(props) {
       <Editor.Edit>
         <ListBox {...moreProps} onChange={handleChange} ref={refInput}>
           <ListBox.Box {...dataIsEditing} />
-          <ListBox.Trigger onKeyUp={handleKeyUp} onBlur={handleBlur} />
+          <ListBox.Trigger onKeyUp={handleKeyUp} onBlur={handleBlur} hasClearButton={false} />
           <ListBox.Popover onClose={handleClose} />
-          <ListBox.Footer isClearVisible={false} onClickAccept={handleAccept} onClickCancel={handleClose} />
           {children}
         </ListBox>
       </Editor.Edit>
       <Editor.Value>
-        <span>{placeHolder}</span>
+        <div style={{ width: "100%", display: "inline-flex", justifyContent: "space-between", alignItems: "center" }}>
+          <div style={{ flexBasis: "100%" }}>{value || placeHolder} </div>
+          <div>▾</div>
+        </div>
       </Editor.Value>
     </Editor>
   );
@@ -108,3 +114,17 @@ export default function InlineListBox(props) {
 Object.keys(ListBox).forEach(key => {
   InlineListBox[key] = ListBox[key];
 });
+
+InlineListBox.propTypes = {
+  onChange: PropTypes.func,
+  onSubmit: PropTypes.func,
+  setIsEditing: PropTypes.func,
+  isEditing: PropTypes.bool,
+};
+
+InlineListBox.defaultProps = {
+  onChange: () => {},
+  onSubmit: () => {},
+  setIsEditing: () => {},
+  isEditing: false,
+};

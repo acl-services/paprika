@@ -19,7 +19,7 @@ const Editor = React.forwardRef((props, ref) => {
   return isEditing ? (
     edit.props.children
   ) : (
-    <RawButton ref={ref} onClick={() => setIsEditing(true)}>
+    <RawButton className="inline-editing-raw-button" ref={ref} onClick={() => setIsEditing(true)}>
       {editorValue.props.children}
     </RawButton>
   );

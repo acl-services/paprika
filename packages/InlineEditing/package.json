@@ -26,7 +26,8 @@
     "@paprika/raw-button": "^1.0.3",
     "@paprika/stylers": "^1.0.0",
     "@paprika/table": "1.0.10-alpha.0",
-    "@paprika/textarea": "^1.0.4",
+    "@paprika/tag": "^0.0.2",
+    "@paprika/textarea": "^1.0.6",
     "@paprika/tokens": "^1.0.0",
     "prop-types": "^15.7.2",
     "react-icons": "^4.2.0"

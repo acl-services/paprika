@@ -64,9 +64,13 @@ export default function InlineTextarea(props) {
         />
       </Editor.Edit>
       <Editor.Value>
-        <CollapsibleText collapsedLength={collapsedLength} a11yText="cardigans">
+        {typeof collapsedLength !== "undefined" ? (
+          <CollapsibleText collapsedLength={collapsedLength} a11yText="cardigans">
+            <p>{value}</p>
+          </CollapsibleText>
+        ) : (
           <p>{value}</p>
-        </CollapsibleText>
+        )}
       </Editor.Value>
     </Editor>
   );
@@ -77,5 +81,5 @@ InlineTextarea.propTypes = {
 };
 
 InlineTextarea.defaultProps = {
-  collapsedLength: 120,
+  collapsedLength: undefined,
 };
