@@ -6,99 +6,7 @@ import * as constants from "@paprika/constants/lib/Constants";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import ListBox from "@paprika/list-box";
 import { filter } from "@paprika/list-box/lib/helpers/filter";
-import Tag, { Tags } from "@paprika/tag";
-import * as sc from "./ListBoxWithTags.styles";
-
-// TODO: Extract this to a separate component
-const renderTrigger = ({
-  allOptionsAreSelected,
-  hasError,
-  idListBoxContent,
-  isDisabled,
-  isReadOnly,
-  onRemove,
-  placeholder,
-  renderTag,
-  selectedOptions,
-  size,
-  tagLabelKey,
-  t,
-}) => (...args) => {
-  const [, , , attributes] = args;
-  const { propsForTrigger, refTrigger, dispatch, types, handleKeyDown, handleKeyUp, isOpen } = attributes;
-
-  function handleClick(event) {
-    event.stopPropagation();
-
-    if (event.key === "Enter" || event.key === " ") return;
-    dispatch({ type: types.togglePopover });
-  }
-
-  const handleRemove = option => () => {
-    onRemove(option);
-  };
-
-  function renderCaret(isDisabled) {
-    return isOpen ? <sc.UpIcon isDisabled={isDisabled} /> : <sc.DownIcon isDisabled={isDisabled} />;
-  }
-
-  const triggerProps = propsForTrigger();
-  const a11yTextOptions = selectedOptions.map(item => {
-    return tagLabelKey === null ? item.label : item[tagLabelKey];
-  });
-  const a11yText = selectedOptions.length === 0 ? t("listBoxWithTags.placeholder") : a11yTextOptions.join(", ");
-
-  return (
-    <>
-      <sc.Trigger
-        {...triggerProps}
-        aria-controls={idListBoxContent}
-        allOptionsAreSelected={allOptionsAreSelected}
-        hasError={hasError}
-        isDisabled={isDisabled || isReadOnly}
-        isReadOnly={isReadOnly}
-        onClick={handleClick}
-        onKeyUp={handleKeyUp}
-        onKeyDown={handleKeyDown}
-        ref={refTrigger}
-        size={size}
-      >
-        <Tags>
-          {selectedOptions.map(item => {
-            if (typeof renderTag === "function") {
-              return renderTag({ option: item, Tag, onRemove: handleRemove(item) });
-            }
-
-            const label = tagLabelKey === null ? item.label : item[tagLabelKey];
-
-            if (typeof label !== "string") {
-              throw Error(
-                `Your item ${JSON.stringify(
-                  item
-                )} must include the attribute "label", or you must indicate which attribute should be rendered as the label via the "tagLabelKey" prop.`
-              );
-            }
-
-            return (
-              <Tag as="li" key={label} onRemove={handleRemove(item)} size={size}>
-                {label}
-              </Tag>
-            );
-          })}
-          {selectedOptions.length ? null : (
-            <sc.Placeholder isDisabled={isDisabled} size={size}>
-              {placeholder || t("listBoxWithTags.placeholder")}
-            </sc.Placeholder>
-          )}
-        </Tags>
-        {allOptionsAreSelected ? null : renderCaret(isDisabled)}
-      </sc.Trigger>
-      <sc.TriggerLabel id={`${triggerProps.id}__label`}>
-        {t("listBoxWithTags.a11y_text_trigger", { options: a11yText })}
-      </sc.TriggerLabel>
-    </>
-  );
-};
+import renderTrigger from "./renderTrigger";
 
 export default function ListBoxWithTags(props) {
   const {
@@ -121,8 +29,8 @@ export default function ListBoxWithTags(props) {
     size,
     ...moreProps
   } = props;
-  const { t } = useI18n();
 
+  const { t } = useI18n();
   const refDivRoot = React.useRef(null);
   const refFilter = React.useRef(null);
   const [idListBoxContent] = React.useState(() => `list-box_${uuidv4()}__content`);
