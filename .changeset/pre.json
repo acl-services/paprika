@@ -72,6 +72,7 @@
     "@paprika/seducer": "2.0.0"
   },
   "changesets": [
-    "fuzzy-keys-melt"
+    "fuzzy-keys-melt",
+    "olive-pillows-tease"
   ]
 }
