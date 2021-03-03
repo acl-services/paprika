@@ -5,7 +5,7 @@ import ExampleStory from "storybook/components/ExampleStory";
 import Sizes from "./examples/Sizes";
 import Controlled from "./examples/Controlled";
 import AllOptionsAreSelected from "./examples/AllOptionsAreSelected";
-import CustomTrigger from "./examples/CustomTrigger";
+import CustomTag from "./examples/CustomTag";
 import RenderTagLabel from "./examples/RenderTagLabel";
 import Uncontrolled from "./examples/Uncontrolled";
 import UncontrolledUser from "./examples/UncontrolledUser";
@@ -45,12 +45,12 @@ export const AllOptionsAreSelectedStory = () => (
 );
 AllOptionsAreSelectedStory.story = { name: "All Options Are Selected", parameters: exampleStoryParameters };
 
-export const CustomTriggerStory = () => (
-  <ExampleStory storyName="Custom Trigger" component="ListBoxWithTags" fileName="examples/CustomTrigger.js">
-    <CustomTrigger />
+export const CustomTagStory = () => (
+  <ExampleStory storyName="Custom Tag" component="ListBoxWithTags" fileName="examples/CustomTag.js">
+    <CustomTag />
   </ExampleStory>
 );
-CustomTriggerStory.story = { name: "Custom Trigger", parameters: exampleStoryParameters };
+CustomTagStory.story = { name: "Custom Tag", parameters: exampleStoryParameters };
 
 export const RenderTagLabelStory = () => (
   <ExampleStory storyName="Render Tag Label" component="ListBoxWithTags" fileName="examples/RenderTagLabel.js">
