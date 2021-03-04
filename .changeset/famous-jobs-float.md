@@ -2,4 +2,4 @@
 "@paprika/collapsible-card": patch
 ---
 
-Gave header a background colour on hover
+Change header border colour on hover
