@@ -19,7 +19,7 @@ export const Header = styled.div(
 
     :hover {
       background-color: ${tokens.color.blackLighten70};
-      border: 2px solid ${tokens.color.blackLighten50};
+      border: 2px solid ${tokens.color.blackLighten30};
       margin: 0px;
     }
 

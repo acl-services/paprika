@@ -8,6 +8,5 @@ export const Group = styled.div(
     border: 1px solid ${tokens.color.blackLighten60};
     border-radius: ${getBorderRadius(null, false, false)};
     box-shadow: ${tokens.card.shadow};
-    overflow: hidden;
   `
 );
