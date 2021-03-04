@@ -5,6 +5,11 @@ import PropTypes from "prop-types";
 const propTypes = {
   cell: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
   header: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
+  sticky: PropTypes.number,
+};
+
+const defaultProps = {
+  sticky: undefined,
 };
 
 export default function ColumnDefinition() {
@@ -12,4 +17,6 @@ export default function ColumnDefinition() {
 }
 
 ColumnDefinition.propTypes = propTypes;
+ColumnDefinition.defaultProps = defaultProps;
+
 ColumnDefinition.displayName = "Table.ColumnDefinition";

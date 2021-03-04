@@ -40,17 +40,17 @@ const Table = React.forwardRef((props, ref) => {
       <sc.Thead>
         <tr>
           {ColumnDefinitions.map((columnDefinition, columnIndex) => {
-            const { cell, header, ...moreColumnProps } = columnDefinition.props;
+            const { cell, header, sticky, ...moreColumnProps } = columnDefinition.props;
 
             if (typeof header === "function")
               return (
-                <sc.TH borderType={borderType} key={columnIndex} {...moreColumnProps}>
+                <sc.TH sticky={sticky} borderType={borderType} key={columnIndex} {...moreColumnProps}>
                   {header({ header: columnDefinition.props, columnIndex })}
                 </sc.TH>
               );
             if (typeof header === "string")
               return (
-                <sc.TH borderType={borderType} key={columnIndex} {...moreColumnProps}>
+                <sc.TH sticky={sticky} borderType={borderType} key={columnIndex} {...moreColumnProps}>
                   {header}
                 </sc.TH>
               );
@@ -66,7 +66,7 @@ const Table = React.forwardRef((props, ref) => {
               {ColumnDefinitions.map((columnDefinition, columnIndex) => {
                 const position = { "data-row-index": rowIndex, "data-column-index": columnIndex };
 
-                const { cell, header, width, ...moreColumnProps } = columnDefinition.props;
+                const { cell, header, width, sticky, ...moreColumnProps } = columnDefinition.props;
 
                 if (typeof cell === "function")
                   return (
@@ -75,6 +75,7 @@ const Table = React.forwardRef((props, ref) => {
                       borderType={borderType}
                       key={columnIndex}
                       width={width}
+                      sticky={sticky}
                       {...moreColumnProps}
                       {...position}
                     >

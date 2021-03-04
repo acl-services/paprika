@@ -3742,22 +3742,6 @@
   dependencies:
     "@paprika/tokens" "^0.1.18"
 
-"@paprika/table@1.0.10-alpha.0":
-  version "1.0.10-alpha.0"
-  resolved "https://registry.yarnpkg.com/@paprika/table/-/table-1.0.10-alpha.0.tgz#7af96a6142f121e0414e78743d5462b572caa3dd"
-  integrity sha512-+APzxGdP/6n/6TWlAqNENTYzSBisuPt3mBmUZZvIIk5T2Q4mjLnG0tEWq32u8JO/Y6ctVAQaWBgYZ9GULFEcpg==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-    "@paprika/button" "^1.0.8-alpha.0"
-    "@paprika/constants" "^1.0.0"
-    "@paprika/helpers" "^2.1.1-alpha.0"
-    "@paprika/overflow-menu" "^1.0.12-alpha.0"
-    "@paprika/pill" "^1.0.7-alpha.0"
-    "@paprika/stylers" "^1.0.0"
-    "@paprika/tokens" "^1.0.0"
-    prop-types "^15.7.2"
-    uuid "^8.3.2"
-
 "@paprika/tokens@^0.1.18", "@paprika/tokens@^0.1.18-alpha.1":
   version "0.1.18"
   resolved "https://registry.yarnpkg.com/@paprika/tokens/-/tokens-0.1.18.tgz#6522daf57c46c095ea50f16dd2ea4fd55869eb31"

@@ -3,7 +3,7 @@ import ListBox from "../../src/ListBox";
 import { Table } from "../../src";
 import getUsers from "./mock";
 
-const users = getUsers(10);
+const users = getUsers(50);
 const cellTypes = ["name", "status", "role", "subscription", "reportsRole", "an", "activations", "signed"];
 
 const cellRenders = {
