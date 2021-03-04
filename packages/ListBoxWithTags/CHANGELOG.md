@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0-next.1
+
+### Minor Changes
+
+- 72576a4: Add support for `placeholder` prop.
+
 ## 1.1.0-next.0
 
 ### Minor Changes
