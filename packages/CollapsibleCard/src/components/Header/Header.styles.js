@@ -6,7 +6,6 @@ import getBorderRadius from "../../helper.styles";
 export const Header = styled.div(
   ({ isEditing, isCollapsed, position }) => css`
     align-items: flex-start;
-    border: 2px solid transparent;
     border-radius: ${getBorderRadius(position, isCollapsed, true)};
     cursor: pointer;
     display: flex;
@@ -19,7 +18,7 @@ export const Header = styled.div(
 
     :hover {
       background-color: ${tokens.color.blackLighten70};
-      border: 2px solid ${tokens.color.blackLighten50};
+      box-shadow: 0 0 0 1px ${tokens.color.blackLighten30}, 0 1px 3px 0 ${tokens.color.blackLighten50};
       margin: 0px;
     }
 
@@ -28,7 +27,7 @@ export const Header = styled.div(
     }
 
     [data-whatinput="keyboard"] &:focus {
-      border: 2px solid ${tokens.highlight.active.noBorder.borderColor};
+      box-shadow: ${tokens.highlight.active.withBorder.boxShadow};
       margin: 0px;
     }
   `

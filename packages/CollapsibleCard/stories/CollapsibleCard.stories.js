@@ -8,6 +8,7 @@ import Group from "./examples/Group";
 import SegmentsAndBreakpoints from "./examples/SegmentsAndBreakpoints";
 import RealWorld from "./examples/RealWorld";
 import ControlledAndUncontrolled from "./examples/ControlledAndUncontrolled";
+import Sandbox from "./examples/Sandbox";
 
 export default {
   title: getStoryName("CollapsibleCard"),
@@ -68,6 +69,14 @@ export const controlledAndUncontrolled = () => <ControlledAndUncontrolled />;
 controlledAndUncontrolled.story = {
   parameters: {
     docs: { page: ControlledAndUncontrolled },
+    parameters,
+  },
+};
+
+export const sandbox = () => <Sandbox />;
+sandbox.story = {
+  parameters: {
+    docs: { page: Sandbox },
     parameters,
   },
 };
