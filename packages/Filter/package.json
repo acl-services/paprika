@@ -1,6 +1,6 @@
 {
   "name": "@paprika/filter",
-  "version": "1.1.6-next.0",
+  "version": "1.1.6",
   "description": "Filter",
   "author": "@paprika",
   "license": "MIT",
@@ -20,7 +20,7 @@
     "@paprika/date-picker": "^1.0.10",
     "@paprika/icon": "^1.0.4",
     "@paprika/input": "^3.0.0",
-    "@paprika/list-box": "^2.1.0-next.0",
+    "@paprika/list-box": "^2.1.0",
     "@paprika/panel": "^2.0.8",
     "@paprika/radio": "^1.0.8",
     "@paprika/select": "^1.0.6",

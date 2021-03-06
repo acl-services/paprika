@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.1.0
+
+### Minor Changes
+
+- 9797e84: Add support for isDisabled, isReadOnly, and hasError props to <ListBoxWithTags> and handle the a11yProps provided by <FormElement.Content> via <ListBoxWithTags.A11y> prop collector component.
+- 72576a4: Add support for `placeholder` prop.
+
+### Patch Changes
+
+- Updated dependencies [9797e84]
+  - @paprika/list-box@2.1.0
+
 ## 1.1.0-next.1
 
 ### Minor Changes

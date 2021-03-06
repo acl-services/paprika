@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.11
+
+### Patch Changes
+
+- 39045e4: Change header border colour on hover
+
 ## 1.1.11-next.0
 
 ### Patch Changes
