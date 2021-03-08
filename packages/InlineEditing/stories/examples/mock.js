@@ -43,6 +43,7 @@ export default function users(num = 10) {
         ...item,
         name: names[getRandomInt(0, names.length - 1)],
         subscription: subscriptionTypes[getRandomInt(0, subscriptionTypes.length - 1)],
+        an: Boolean(getRandomInt(0, 2)),
       };
     });
 }

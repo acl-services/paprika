@@ -3,6 +3,8 @@ import Blocks, { Block } from "storybook/components/Blocks";
 import { getStoryName } from "storybook/storyTree";
 import { AppInlineInput } from "./examples/InlineInput.simple.js";
 import TextAreaStory from "./examples/Textarea.js";
+import InputStory from "./examples/Input.js";
+import { ListBoxSingleStory, ListBoxMultipleStory } from "./examples/ListBox.js";
 
 export const params = {
   options: {
@@ -107,12 +109,18 @@ An because wiring a fully functionally InlineEditing component can be tedious an
 
 ### Input
 
+<Blocks>
+  <Block>
+    <InputStory />
+  </Block>
+  <Block>
+
 ```jsx
 import Input from "@paprika/inline-editing/lib/Input";
 
 const [isEditing, setIsEditing] = React.useState(false);
 
-<Input
+<Textarea
   value="your value"
   onSubmit={handleSubmit}
   onEditingClose={() => setIsEditing(false)}
@@ -120,6 +128,9 @@ const [isEditing, setIsEditing] = React.useState(false);
   isEditing={isEditing}
 />;
 ```
+
+  </Block>
+</Blocks>
 
 ### TextArea
 
@@ -130,7 +141,7 @@ const [isEditing, setIsEditing] = React.useState(false);
   <Block>
 
 ```jsx
-import TextArea from "@paprika/inline-editing/lib/Input";
+import TextArea from "@paprika/inline-editing/lib/Textarea";
 
 const [isEditing, setIsEditing] = React.useState(false);
 
@@ -148,16 +159,34 @@ const [isEditing, setIsEditing] = React.useState(false);
 
 ### ListBox
 
+<Blocks>
+  <Block>
+    <ListBoxSingleStory />
+    <div style={{ width: "100%", height: "44px" }}></div>
+    <ListBoxMultipleStory />
+  </Block>
+  <Block>
+
 ```jsx
-import ListBox from "@paprika/inline-editing/lib/Input";
+import ListBox from "@paprika/inline-editing/lib/ListBox";
 
 const [isEditing, setIsEditing] = React.useState(false);
 
 <ListBox
-  value="your value"
-  onSubmit={handleSubmit}
-  onEditingClose={() => setIsEditing(false)}
-  onEditingOpen={() => setIsEditing(true)}
   isEditing={isEditing}
-/>;
+  onChange={() => {}}
+  onClose={() => {}}
+  onEditing={() => {}}
+  onSubmit={handleSubmit}
+  value={value}
+>
+  {subscriptionTypes.map(subscription => (
+    <ListBox.Option value={subscription} isSelected={subscription === value} key={subscription}>
+      {subscription}
+    </ListBox.Option>
+  ))}
+</ListBox>;
 ```
+
+  </Block>
+</Blocks>

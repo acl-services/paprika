@@ -18,12 +18,13 @@ export default function InlineListBox(props) {
     onSubmit,
     onEditing,
     onClose,
+    value,
+    renderValue,
     /** These props are only consumable by the Author no need to expose them */
     /* eslint-disable react/prop-types */
+    placeHolder,
     rowIndex,
     columnIndex,
-    value,
-    placeHolder,
     children,
     getRefTable,
     /* eslint-enable react/prop-types */
@@ -31,7 +32,7 @@ export default function InlineListBox(props) {
   } = props;
 
   const refListBox = React.useRef(null);
-  const refEditor = React.useRef(null);
+  const refListBoxEditor = React.useRef(null);
   const [nextValue, setNextValue] = React.useState(null);
 
   function handleKeyUp(event) {
@@ -39,7 +40,7 @@ export default function InlineListBox(props) {
       setNextValue(null);
       onClose();
       window.requestAnimationFrame(() => {
-        refEditor.current.focus();
+        refListBoxEditor.current.focus();
       });
     }
   }
@@ -47,7 +48,7 @@ export default function InlineListBox(props) {
   function handleClose() {
     onClose();
     window.requestAnimationFrame(() => {
-      if (refEditor.current) refEditor.current.focus();
+      if (refListBoxEditor.current) refListBoxEditor.current.focus();
     });
   }
 
@@ -71,24 +72,19 @@ export default function InlineListBox(props) {
   // this effect force to close the input once the
   // value has change, that's why is not looking at the isEditing
   React.useEffect(() => {
-    console.log(value);
     if (isEditing) {
       onClose();
       window.requestAnimationFrame(() => {
-        refEditor.current.focus();
+        refListBoxEditor.current.focus();
       });
     }
   }, [value]);
 
   React.useEffect(() => {
     if (!isEditing && nextValue !== null) {
-      const focus = () => {
-        refEditor.current.focus();
-      };
-
-      onSubmit(...nextValue, { rowIndex, columnIndex, focus });
+      onSubmit(...nextValue, { rowIndex, columnIndex });
     }
-  }, [isEditing, nextValue, value, onChange, onSubmit, rowIndex, columnIndex, getRefTable]);
+  }, [isEditing, nextValue, rowIndex, columnIndex]);
 
   React.useEffect(() => {
     if (isEditing) {
@@ -101,7 +97,7 @@ export default function InlineListBox(props) {
   };
 
   return (
-    <Editor onClick={handleClick} isEditing={isEditing} ref={refEditor}>
+    <Editor onClick={handleClick} isEditing={isEditing} ref={refListBoxEditor}>
       <Editor.Edit>
         <ListBox isOpen {...moreProps} onChange={handleChange} ref={refListBox}>
           <ListBox.Box {...dataIsEditing} />
@@ -112,7 +108,9 @@ export default function InlineListBox(props) {
       </Editor.Edit>
       <Editor.Value>
         <div style={{ width: "100%", display: "inline-flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div style={{ flexBasis: "100%", padding: "4px" }}>{value || placeHolder} </div>
+          <div style={{ flexBasis: "100%", padding: "4px" }}>
+            <div>{typeof renderValue === "function" ? renderValue(value) : value || placeHolder} </div>
+          </div>
           <div>▾</div>
         </div>
       </Editor.Value>
@@ -130,6 +128,9 @@ InlineListBox.propTypes = {
   onClose: PropTypes.func,
   onEditing: PropTypes.func,
   onSubmit: PropTypes.func,
+  renderValue: PropTypes.func,
+  // eslint-disable-next-line react/forbid-prop-types
+  value: PropTypes.any,
 };
 
 InlineListBox.defaultProps = {
@@ -138,4 +139,6 @@ InlineListBox.defaultProps = {
   onClose: () => {},
   onEditing: () => {},
   onSubmit: () => {},
+  renderValue: undefined,
+  value: null,
 };

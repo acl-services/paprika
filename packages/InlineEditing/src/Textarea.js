@@ -27,8 +27,9 @@ export default function InlineTextarea(props) {
   const [nextValue, setNextValue] = React.useState(value);
 
   function handleChange(event) {
-    setNextValue(event.target.value);
-    onChange(nextValue, { rowIndex, columnIndex });
+    const next = event.target.value;
+    setNextValue(next);
+    onChange(next, { rowIndex, columnIndex });
   }
 
   function handleBlur() {
@@ -63,7 +64,7 @@ export default function InlineTextarea(props) {
       // or require action from the consumer
       setTimeout(() => {
         refTextAreaEditor.current.focus();
-      }, 200);
+      }, 0);
     }
   }
 

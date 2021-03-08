@@ -1,16 +1,11 @@
 import React from "react";
-import Textarea from "../../src/Textarea";
+import Input from "../../src/Input";
 import Card from "../../../Card/src";
 import Toast from "../../../Toast/src";
 
-export default function TextareaStory() {
+export default function InputStory() {
   const [isEditing, setIsEditing] = React.useState(false);
-  const [value, setValue] = React.useState(
-    `Click to edit this text \n
-- use enter to submit your changes
-- use shift+enter for a break-line \n
-Hack up furballs stare out cat door then go back inside and stare out cat door then go back inside yet massacre a bird in the living room and then look like the cutest and most innocent animal on the planet.`
-  );
+  const [value, setValue] = React.useState("Click to edit this text");
 
   function handleOnEditing() {
     setIsEditing(true);
@@ -32,7 +27,7 @@ Hack up furballs stare out cat door then go back inside and stare out cat door t
   return (
     <Card style={{ padding: "16px", width: "320px" }}>
       <Toast hasCloseButton={false}>WIP: Still requires Product Designer approval</Toast>
-      <Textarea
+      <Input
         isEditing={isEditing}
         isOpen
         onChange={handleChange}

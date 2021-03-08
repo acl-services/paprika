@@ -1,84 +1,95 @@
-/* eslint-disable react/prop-types */
 import React from "react";
+import PropTypes from "prop-types";
 import Input from "@paprika/input";
 import Editor from "./Editor";
 
 export default function InlineInput(props) {
-  /** These props are only consumable by the Author no need to expose them */
-  const { setIsEditing, rowIndex, columnIndex, onChange, isEditing, value, ...moreProps } = props;
+  const {
+    onClose,
+    onEditing,
+    isEditing,
+    onChange,
+    onSubmit,
+    value,
+
+    /* eslint-disable react/prop-types */
+    rowIndex,
+    columnIndex,
+    /* eslint-enable react/prop-types */
+    ...moreProps
+  } = props;
   const refInput = React.useRef(null);
-  const refSwitcher = React.useRef(null);
+  const refInputEditor = React.useRef(null);
+  const [nextValue, setNextValue] = React.useState(value);
 
-  const close = () => {
-    setIsEditing(false);
-  };
+  function handleBlur() {
+    onClose();
+    window.requestAnimationFrame(() => {
+      refInputEditor.current.focus();
+    });
+  }
 
-  function submit(event) {
-    event.preventDefault();
-    onChange({ rowIndex, columnIndex, close, nextValue: refInput.current.value });
+  function handleKeyUp(event) {
+    if (event.key === "Escape") {
+      onClose();
+      window.requestAnimationFrame(() => {
+        refInputEditor.current.focus();
+      });
+      setNextValue(value);
+    }
+
+    if (event.key === "Enter") {
+      onSubmit(nextValue, { rowIndex, columnIndex, event });
+      // hacking and waiting for react to update the dom
+      // and then focus on the element :/
+      // can't figure it out a better way without using a useEffect
+      // or require action from the consumer
+      setTimeout(() => {
+        refInputEditor.current.focus();
+      }, 0);
+    }
+  }
+
+  function handleChange(event) {
+    const next = event.target.value;
+    onChange(next, { rowIndex, columnIndex, event });
+    setNextValue(next);
   }
 
   React.useEffect(() => {
     if (isEditing) {
-      setIsEditing(false);
+      onClose();
       window.requestAnimationFrame(() => {
-        refSwitcher.current.focus();
+        refInputEditor.current.focus();
       });
     }
-  }, [setIsEditing, value]);
+  }, [value]);
+
+  React.useEffect(() => {
+    if (isEditing) {
+      refInput.current.focus();
+    }
+  }, [isEditing]);
 
   return (
     <Editor
-      onEdit={() => {
-        refInput.current.focus();
-      }}
       onClick={() => {
-        setIsEditing(true);
+        onEditing();
       }}
       {...props}
-      ref={refSwitcher}
+      ref={refInputEditor}
     >
       <Editor.Edit>
         <div style={{ position: "relative", height: "100%" }}>
-          {isEditing ? (
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                height: "100%",
-                position: "absolute",
-                right: "4px",
-                color: "#AAA",
-                zIndex: 3,
-              }}
-            >
-              ↵
-            </div>
-          ) : null}
           <Input
             {...moreProps}
             ref={refInput}
             style={{ paddingRight: "24px" }}
-            onBlur={() => {
-              setIsEditing(false);
-              window.requestAnimationFrame(() => {
-                refSwitcher.current.focus();
-              });
-            }}
-            onKeyUp={event => {
-              if (event.key === "Escape") {
-                setIsEditing(false);
-                window.requestAnimationFrame(() => {
-                  refSwitcher.current.focus();
-                });
-              }
-
-              if (event.key === "Enter") {
-                submit(event);
-              }
-            }}
+            onBlur={handleBlur}
+            onKeyUp={handleKeyUp}
+            onChange={handleChange}
             type="text"
-            defaultValue={value}
+            value={nextValue}
           />
         </div>
       </Editor.Edit>
@@ -88,3 +99,24 @@ export default function InlineInput(props) {
     </Editor>
   );
 }
+
+const propTypes = {
+  isEditing: PropTypes.bool,
+  onChange: PropTypes.func,
+  onClose: PropTypes.func,
+  onEditing: PropTypes.func,
+  onSubmit: PropTypes.func,
+  value: PropTypes.string,
+};
+
+const defaultProps = {
+  isEditing: false,
+  onChange: () => {},
+  onClose: () => {},
+  onEditing: () => {},
+  onSubmit: () => {},
+  value: "",
+};
+
+InlineInput.propTypes = propTypes;
+InlineInput.defaultProps = defaultProps;
