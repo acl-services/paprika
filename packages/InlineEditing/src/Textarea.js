@@ -5,62 +5,99 @@ import CollapsibleText from "@paprika/collapsible-text";
 import Editor from "./Editor";
 
 export default function InlineTextarea(props) {
-  // eslint-disable-next-line react/prop-types
-  const { setIsEditing, rowIndex, columnIndex, onChange, isEditing, value, collapsedLength, ...moreProps } = props;
+  const {
+    onEditing,
+    onChange,
+    onSubmit,
+    onClose,
+    /* eslint-disable react/prop-types */
+    rowIndex,
+    columnIndex,
+    isEditing,
+    value,
+    collapsedLength,
+    /* eslint-enable react/prop-types */
+    ...moreProps
+  } = props;
+
+  const refTextAreaEditor = React.useRef(null);
   const refTextarea = React.useRef(null);
-  const refSwitcher = React.useRef(null);
 
-  const close = () => {
-    setIsEditing(false);
-  };
+  // our textarea can't be uncontrolled quite sad :(
+  const [nextValue, setNextValue] = React.useState(value);
 
-  function submit(event) {
-    event.preventDefault();
-    onChange({ rowIndex, columnIndex, close, nextValue: refTextarea.current.value });
+  function handleChange(event) {
+    setNextValue(event.target.value);
+    onChange(nextValue, { rowIndex, columnIndex });
+  }
+
+  function handleBlur() {
+    onClose();
+    window.requestAnimationFrame(() => {
+      refTextAreaEditor.current.focus();
+    });
+  }
+
+  function handleKeyDown(event) {
+    if (event.key === "Enter") {
+      if (event.shiftKey) {
+        return;
+      }
+      event.preventDefault();
+    }
+
+    if (event.key === "Escape") {
+      onClose();
+      window.requestAnimationFrame(() => {
+        refTextAreaEditor.current.focus();
+      });
+    }
+  }
+
+  function handleKeyUp(event) {
+    if (event.key === "Enter" && !event.shiftKey) {
+      onSubmit(nextValue, { rowIndex, columnIndex });
+      // hacking and waiting for react to update the dom
+      // and then focus on the element :/
+      // can't figure it out a better way without using a useEffect
+      // or require action from the consumer
+      setTimeout(() => {
+        refTextAreaEditor.current.focus();
+      }, 200);
+    }
+  }
+
+  function handleClick() {
+    onEditing();
   }
 
   React.useEffect(() => {
     if (isEditing) {
-      setIsEditing(false);
+      onClose();
       window.requestAnimationFrame(() => {
-        refSwitcher.current.focus();
+        refTextAreaEditor.current.focus();
       });
     }
-  }, [setIsEditing, value]);
+  }, [value]);
+
+  React.useEffect(() => {
+    if (isEditing) {
+      refTextarea.current.focus();
+    }
+  }, [isEditing]);
 
   return (
-    <Editor
-      onEdit={() => {
-        refTextarea.current.focus();
-      }}
-      {...props}
-      ref={refSwitcher}
-    >
+    <Editor isEditing={isEditing} onClick={handleClick} ref={refTextAreaEditor}>
       <Editor.Edit>
         <Textarea
           {...moreProps}
           ref={refTextarea}
-          style={{ paddingRight: "24px" }}
-          onBlur={() => {
-            setIsEditing(false);
-            window.requestAnimationFrame(() => {
-              refSwitcher.current.focus();
-            });
-          }}
-          onKeyUp={event => {
-            if (event.key === "Escape") {
-              setIsEditing(false);
-              window.requestAnimationFrame(() => {
-                refSwitcher.current.focus();
-              });
-            }
-
-            if (event.key === "Enter") {
-              submit(event);
-            }
-          }}
+          onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
+          onKeyUp={handleKeyUp}
+          onChange={handleChange}
           type="text"
-          defaultValue={value}
+          value={nextValue}
         />
       </Editor.Edit>
       <Editor.Value>
@@ -69,7 +106,7 @@ export default function InlineTextarea(props) {
             <p>{value}</p>
           </CollapsibleText>
         ) : (
-          <p>{value}</p>
+          <p style={{ whiteSpace: "pre-wrap", padding: "4px" }}>{value}</p>
         )}
       </Editor.Value>
     </Editor>
@@ -78,8 +115,16 @@ export default function InlineTextarea(props) {
 
 InlineTextarea.propTypes = {
   collapsedLength: PropTypes.number,
+  onChange: PropTypes.func,
+  onClose: PropTypes.func,
+  onEditing: PropTypes.func,
+  onSubmit: PropTypes.func,
 };
 
 InlineTextarea.defaultProps = {
   collapsedLength: undefined,
+  onChange: () => {},
+  onClose: () => {},
+  onEditing: () => {},
+  onSubmit: () => {},
 };

@@ -4,11 +4,11 @@ import { Table } from "../../src";
 import getUsers from "./mock";
 
 const users = getUsers(50);
-const cellTypes = ["name", "status", "role", "subscription", "reportsRole", "an", "activations", "signed"];
+const cellTypes = ["an", "name", "status", "role", "subscription", "reportsRole", "activations", "signed"];
 
 const cellRenders = {
   an: () => ({ row }) => {
-    return <span>{row.an ? "No" : "Yes"}</span>;
+    return <input type="checkbox" defaultIsChecked={row.an} />;
   },
   subscription: ({ setData }) => props => {
     const subscriptionTypes = ["Professional", "Oversight", "Contributor", "Results Lite Contributor", "None"];
@@ -19,13 +19,17 @@ const cellRenders = {
         onChange={value => {
           console.log("onChange", value);
         }}
-        onSubmit={(index, options, _, { rowIndex }) => {
+        onSubmit={(index, options, _, { rowIndex, focus }) => {
           const nextValue = options[index].value;
           if (nextValue !== props.row.subscription) {
             setData(prevData => {
               const nextData = prevData.slice(0);
               nextData[rowIndex].subscription = nextValue;
               return nextData;
+            });
+
+            window.requestAnimationFrame(() => {
+              focus();
             });
           }
         }}

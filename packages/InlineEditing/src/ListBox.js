@@ -16,7 +16,8 @@ export default function InlineListBox(props) {
     isEditing,
     onChange,
     onSubmit,
-    setIsEditing,
+    onEditing,
+    onClose,
     /** These props are only consumable by the Author no need to expose them */
     /* eslint-disable react/prop-types */
     rowIndex,
@@ -24,28 +25,29 @@ export default function InlineListBox(props) {
     value,
     placeHolder,
     children,
+    getRefTable,
     /* eslint-enable react/prop-types */
     ...moreProps
   } = props;
 
-  const refInput = React.useRef(null);
-  const refSwitcher = React.useRef(null);
+  const refListBox = React.useRef(null);
+  const refEditor = React.useRef(null);
   const [nextValue, setNextValue] = React.useState(null);
 
   function handleKeyUp(event) {
     if (event.key === "Escape") {
       setNextValue(null);
-      setIsEditing(false);
+      onClose();
       window.requestAnimationFrame(() => {
-        refSwitcher.current.focus();
+        refEditor.current.focus();
       });
     }
   }
 
   function handleClose() {
-    setIsEditing(false);
+    onClose();
     window.requestAnimationFrame(() => {
-      if (refSwitcher.current) refSwitcher.current.focus();
+      if (refEditor.current) refEditor.current.focus();
     });
   }
 
@@ -62,39 +64,46 @@ export default function InlineListBox(props) {
     onChange(args);
   }
 
+  function handleClick() {
+    onEditing();
+  }
+
+  // this effect force to close the input once the
+  // value has change, that's why is not looking at the isEditing
   React.useEffect(() => {
+    console.log(value);
     if (isEditing) {
-      setIsEditing(false);
+      onClose();
       window.requestAnimationFrame(() => {
-        refSwitcher.current.focus();
+        refEditor.current.focus();
       });
     }
-  }, [setIsEditing, value]);
+  }, [value]);
 
   React.useEffect(() => {
     if (!isEditing && nextValue !== null) {
-      onSubmit(...nextValue, { rowIndex, columnIndex });
+      const focus = () => {
+        refEditor.current.focus();
+      };
+
+      onSubmit(...nextValue, { rowIndex, columnIndex, focus });
     }
-  }, [isEditing, nextValue, value, onChange]);
+  }, [isEditing, nextValue, value, onChange, onSubmit, rowIndex, columnIndex, getRefTable]);
+
+  React.useEffect(() => {
+    if (isEditing) {
+      refListBox.current.focus();
+    }
+  }, [isEditing]);
 
   const dataIsEditing = {
     "data-paprika-anchor-inline-cell": `${rowIndex}-${columnIndex}`,
   };
 
   return (
-    <Editor
-      onEdit={() => {
-        if (isPopoverVisible({ rowIndex, columnIndex })) {
-          window.requestAnimationFrame(() => {
-            refInput.current.focus();
-          });
-        }
-      }}
-      {...props}
-      ref={refSwitcher}
-    >
+    <Editor onClick={handleClick} isEditing={isEditing} ref={refEditor}>
       <Editor.Edit>
-        <ListBox {...moreProps} onChange={handleChange} ref={refInput}>
+        <ListBox isOpen {...moreProps} onChange={handleChange} ref={refListBox}>
           <ListBox.Box {...dataIsEditing} />
           <ListBox.Trigger onKeyUp={handleKeyUp} onBlur={handleBlur} hasClearButton={false} />
           <ListBox.Popover onClose={handleClose} />
@@ -103,7 +112,7 @@ export default function InlineListBox(props) {
       </Editor.Edit>
       <Editor.Value>
         <div style={{ width: "100%", display: "inline-flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div style={{ flexBasis: "100%" }}>{value || placeHolder} </div>
+          <div style={{ flexBasis: "100%", padding: "4px" }}>{value || placeHolder} </div>
           <div>▾</div>
         </div>
       </Editor.Value>
@@ -116,15 +125,17 @@ Object.keys(ListBox).forEach(key => {
 });
 
 InlineListBox.propTypes = {
-  onChange: PropTypes.func,
-  onSubmit: PropTypes.func,
-  setIsEditing: PropTypes.func,
   isEditing: PropTypes.bool,
+  onChange: PropTypes.func,
+  onClose: PropTypes.func,
+  onEditing: PropTypes.func,
+  onSubmit: PropTypes.func,
 };
 
 InlineListBox.defaultProps = {
-  onChange: () => {},
-  onSubmit: () => {},
-  setIsEditing: () => {},
   isEditing: false,
+  onChange: () => {},
+  onClose: () => {},
+  onEditing: () => {},
+  onSubmit: () => {},
 };

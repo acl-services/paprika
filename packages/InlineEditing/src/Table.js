@@ -5,13 +5,24 @@ import * as sc from "./Table.styles";
 
 function Editable({ children }) {
   const [isEditing, setIsEditing] = React.useState(false);
-  return React.cloneElement(children, { ...children.props, isEditing, setIsEditing });
+
+  const handleClose = React.useCallback(() => {
+    setIsEditing(false);
+  }, []);
+
+  const handleEditing = React.useCallback(() => {
+    setIsEditing(true);
+  }, []);
+
+  return React.cloneElement(children, { ...children.props, isEditing, onClose: handleClose, onEditing: handleEditing });
 }
 
 export default function InlineEditingTable(props) {
   const { children, ...moreProps } = props;
+
   const clonedColumnDefinition = React.useMemo(() => {
     const cloned = [];
+
     React.Children.forEach(props.children, (child, index) => {
       const { cell: Component, width } = child.props;
       cloned.push(

@@ -35,6 +35,8 @@ declare namespace Table {
     cell: string | func;
 
     header: string | func;
+
+    sticky?: number;
   }
 }
 

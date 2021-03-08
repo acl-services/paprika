@@ -5,8 +5,4 @@ export const Table = styled(TableProp)`
   td {
     height: 40px;
   }
-
-  td [data-pka-anchor="raw-button"].inline-editing-raw-button {
-    width: 100%;
-  }
 `;

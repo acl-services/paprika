@@ -1,5 +1,8 @@
 import { Meta } from "@storybook/addon-docs/blocks";
+import Blocks, { Block } from "storybook/components/Blocks";
 import { getStoryName } from "storybook/storyTree";
+import { AppInlineInput } from "./examples/InlineInput.simple.js";
+import TextAreaStory from "./examples/Textarea.js";
 
 export const params = {
   options: {
@@ -12,28 +15,149 @@ export const params = {
 
 # Inline Editing
 
-```js
-import InlineEditing, { widgets } from "@paprika/inline-editing";
+The `<InlineEditing />` component allows you to display two values for the user one when the componet is not in editing mode and an input whenever the user interact and set
+the component into editing mode.
 
-<InlineEditing
-  widget={widgets.text}
-  onChange={({ close, setError, setIdle, setFocusBack, nextValue }) => {}}
-  value={}
+## How does it works?
+
+The InlineEditing package includes a component name `<Editor />` that you can use to encapsulated this kind of interaction. The `<Editor />` Component comes with two
+subcomponent `<Editor.Value />` and `<Editor.Edit />`. This two component will switch between each other whenever the prop `isEditing` on the `Editor` component chages.
+
+The following is an example of usign the Editor component to build a simple Text (value) `->` Text (input) interaction:
+
+<Blocks>
+  <Block>
+    <AppInlineInput />
+  </Block>
+  <Block>
+
+```jsx
+function InlineInput(props) {
+  const { value, onSubmit, isEditing, onClick } = props;
+  const refInput = React.useRef(null);
+
+  function handleClick() {
+    onClick();
+  }
+
+  function submit() {
+    onSubmit({ nextValue: refInput.current.value });
+  }
+
+  return (
+    <Editor onEdit={() => {}} isEditing={isEditing} onClick={handleClick}>
+      <Editor.Edit>
+        {/** we are going to only report back when the user hits Enter */}
+        <Input
+          defaultValue={value}
+          type="text"
+          ref={refInput}
+          onKeyUp={event => {
+            if (event.key === "Enter") {
+              submit();
+            }
+          }}
+        />
+      </Editor.Edit>
+      <Editor.Value>
+        <span style={{ textDecoration: "underline" }}>{value}</span>
+      </Editor.Value>
+    </Editor>
+  );
+}
+
+export function App() {
+  const [value, setValue] = React.useState("Click on it to edit it");
+  const [isEditing, setIsEditing] = React.useState(false);
+
+  function handleClick() {
+    setIsEditing(true);
+  }
+
+  function handleSubmit({ nextValue }) {
+    setValue(nextValue);
+    setIsEditing(false);
+  }
+
+  // prettier-ignore
+  return (
+    <InlineInput 
+      value={value} 
+      onClick={handleClick} 
+      isEditing={isEditing} 
+      onSubmit={handleSubmit} 
+    />
+  )
+}
+```
+
+  </Block>
+</Blocks>
+
+The previous example is a simple attempt to create a InlineEditng Input, to have it fully functionable will still required more work with the keyboard interactions,
+add focus onClick, cancel it onKeyUp === "Escape", etc.
+
+An because wiring a fully functionally InlineEditing component can be tedious and tricky to make it work properly, we currently are providing three components ready to use:
+
+- Input type text
+- TextArea
+- ListBox
+
+## Available InlineEditing Components
+
+### Input
+
+```jsx
+import Input from "@paprika/inline-editing/lib/Input";
+
+const [isEditing, setIsEditing] = React.useState(false);
+
+<Input
+  value="your value"
+  onSubmit={handleSubmit}
+  onEditingClose={() => setIsEditing(false)}
+  onEditingOpen={() => setIsEditing(true)}
+  isEditing={isEditing}
 />;
 ```
 
-```js
-const widget = {
-  text: {
-    Input(props) {
-      const { value, boundingClientRect, onAccept, onCancel, onClear } = props;
-      return <InComponent />;
-    },
-    Output(props) {
-      const { value } = props;
-      return React.forwardRef((props, ref) => <OutComponent ref={ref} />);
-    },
-    wrap: types.inline | types.popover | types.panel | types.takeover | types.modal,
-  },
-};
+### TextArea
+
+<Blocks>
+  <Block>
+    <TextAreaStory />
+  </Block>
+  <Block>
+
+```jsx
+import TextArea from "@paprika/inline-editing/lib/Input";
+
+const [isEditing, setIsEditing] = React.useState(false);
+
+<Textarea
+  value="your value"
+  onSubmit={handleSubmit}
+  onEditingClose={() => setIsEditing(false)}
+  onEditingOpen={() => setIsEditing(true)}
+  isEditing={isEditing}
+/>;
+```
+
+  </Block>
+</Blocks>
+
+### ListBox
+
+```jsx
+import ListBox from "@paprika/inline-editing/lib/Input";
+
+const [isEditing, setIsEditing] = React.useState(false);
+
+<ListBox
+  value="your value"
+  onSubmit={handleSubmit}
+  onEditingClose={() => setIsEditing(false)}
+  onEditingOpen={() => setIsEditing(true)}
+  isEditing={isEditing}
+/>;
 ```

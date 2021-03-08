@@ -4,22 +4,20 @@ import PropTypes from "prop-types";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 
 const Editor = React.forwardRef((props, ref) => {
-  const { onEdit: onEditProps, isEditing, setIsEditing } = props;
+  const { isEditing, onClick } = props;
   const { "Editor.Value": editorValue, "Editor.Edit": edit } = extractChildren(props.children, [
     "Editor.Value",
     "Editor.Edit",
   ]);
 
-  React.useEffect(() => {
-    if (isEditing) {
-      onEditProps();
-    }
-  }, [isEditing, onEditProps]);
+  function handleClick(event) {
+    onClick(event);
+  }
 
   return isEditing ? (
     edit.props.children
   ) : (
-    <RawButton className="inline-editing-raw-button" ref={ref} onClick={() => setIsEditing(true)}>
+    <RawButton style={{ width: "100%" }} data-pka-anchor="inline-editing.raw-button" ref={ref} onClick={handleClick}>
       {editorValue.props.children}
     </RawButton>
   );
@@ -39,10 +37,14 @@ Editor.Edit.displayName = "Editor.Edit";
 const propTypes = {
   children: PropTypes.node.isRequired,
   isEditing: PropTypes.bool.isRequired,
-  onEdit: PropTypes.func.isRequired,
-  setIsEditing: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
+};
+
+const defaultProps = {
+  onClick: () => {},
 };
 
 Editor.propTypes = propTypes;
+Editor.defaultProps = defaultProps;
 
 export default Editor;

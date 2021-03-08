@@ -32,6 +32,9 @@ export default function InlineInput(props) {
       onEdit={() => {
         refInput.current.focus();
       }}
+      onClick={() => {
+        setIsEditing(true);
+      }}
       {...props}
       ref={refSwitcher}
     >
