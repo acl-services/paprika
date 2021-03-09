@@ -34,6 +34,7 @@ export function ListBoxSingleStory() {
         }}
         onSubmit={handleSubmit}
       >
+        <ListBox.Filter />
         {subscriptionTypes.map(subscription => (
           <ListBox.Option value={subscription} isSelected={subscription === value} key={subscription}>
             {subscription}

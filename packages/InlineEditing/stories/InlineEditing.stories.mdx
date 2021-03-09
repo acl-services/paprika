@@ -4,6 +4,9 @@ import { getStoryName } from "storybook/storyTree";
 import { AppInlineInput } from "./examples/InlineInput.simple.js";
 import TextAreaStory from "./examples/Textarea.js";
 import InputStory from "./examples/Input.js";
+import TableStory from "./examples/Table.js";
+import Toast from "../../Toast/src";
+
 import { ListBoxSingleStory, ListBoxMultipleStory } from "./examples/ListBox.js";
 
 export const params = {
@@ -14,6 +17,11 @@ export const params = {
 };
 
 <Meta title={`${getStoryName("InlineEditing")}/Docs`} parameters={params} />
+
+<Toast kind={Toast.types.kind.WARNING} hasCloseButton={false}>
+  Work in progress ahead, this component still requires some more work to be ready for production, but the API is
+  stable, so you can start integrating it into your application.
+</Toast>
 
 # Inline Editing
 
@@ -172,6 +180,11 @@ import ListBox from "@paprika/inline-editing/lib/ListBox";
 
 const [isEditing, setIsEditing] = React.useState(false);
 
+/** 
+  Be aware that ListBox isMulti and the single select option have a different signature for the onChange and onEditing event 
+  isMulti={true} ([indexes], options, selectedIndex, {options})
+  isMulti={false} ([indexes], options, selectedIndex, {options})
+*/
 <ListBox
   isEditing={isEditing}
   onChange={() => {}}
@@ -180,7 +193,7 @@ const [isEditing, setIsEditing] = React.useState(false);
   onSubmit={handleSubmit}
   value={value}
 >
-  {subscriptionTypes.map(subscription => (
+  {someOptions.map(subscription => (
     <ListBox.Option value={subscription} isSelected={subscription === value} key={subscription}>
       {subscription}
     </ListBox.Option>
@@ -190,3 +203,66 @@ const [isEditing, setIsEditing] = React.useState(false);
 
   </Block>
 </Blocks>
+
+## Within a Table
+
+The InlineEditing packages offers as well a Table component which compose the [Table](https://github.com/acl-services/paprika/tree/master/packages/Table) component to provide
+an inline editing experience in a table to use it is quite straighfoward:
+
+```jsx
+import Table from "@paprika/inline-editing/lib/Table";
+import ListBox from "@paprika/inline-editing/lib/ListBox";
+
+export default function App() {
+  const [data, setData] = React.useState([...someData]);
+
+  return (
+    <Table data={data} a11yText="My Table">
+      <Table.ColumnDefinition
+        key="key"
+        header={key}
+        cell={props => {
+
+          const { row } = props;
+
+          const someOptions = [...someOptionValue];
+          return (
+            <ListBox
+              {/* The props MUST spread on the component*/}
+              {...props}
+              value={row.someValue}
+              {/* The signature will depend if the ListBox isMulti or Single */}
+              onChange={(...args) => {
+                console.log("onChange", args);
+              }}
+              {/* The signature will depend if the ListBox isMulti or Single */}
+              onSubmit={(index, options, _, { rowIndex }) => {
+                const nextValue = options[index].value;
+                if (nextValue !== row.subscription) {
+                  setData(prevData => {
+                    const nextData = prevData.slice(0);
+                    nextData[rowIndex].subscription = nextValue;
+                    return nextData;
+                  });
+                }
+              }}
+            >
+              {someOptions.map(option => (
+                <ListBox.Option
+                  value={option}
+                  isSelected={option === row.someValue}
+                  key={option}
+                >
+                  {option}
+                </ListBox.Option>
+              ))}
+            </ListBox>
+          );
+        }}
+      />
+    </Table>
+  );
+}
+```
+
+<TableStory />

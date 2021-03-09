@@ -5,8 +5,9 @@ import Table from "../src";
 import getUsers from "./mock";
 
 const storyName = getStoryName("Table");
-const users = getUsers(1000);
+const users = getUsers(100);
 const cellTypes = [
+  "index",
   "an",
   "name",
   "status",
@@ -17,13 +18,12 @@ const cellTypes = [
   "signed",
   "status",
   "role",
-  "subscription",
-  "reportsRole",
-  "activations",
-  "signed",
 ];
 
 const cellRenders = {
+  index: () => ({ rowIndex }) => {
+    return <div style={{ width: "40px" }}>{rowIndex}</div>;
+  },
   name: () => ({ row }) => {
     return <div style={{ width: "400px" }}>{row.name}</div>;
   },
@@ -37,25 +37,39 @@ const cellRenders = {
 };
 
 const columnDefinitionProps = {
-  name: { sticky: 57 },
   an: { sticky: 0 },
+  name: { sticky: 57 },
 };
 
 function TableStory() {
   const [data, setData] = React.useState(users);
 
+  function handleAdd100More() {
+    setData(prev => {
+      const next100 = prev.slice(0, 99);
+      return prev.concat(next100);
+    });
+  }
+
   return (
-    <Table data={data} hasZebraStripes a11yText="My Table">
-      {cellTypes.map(key => {
-        console.log("key:", key);
-        const cell =
-          key in cellRenders
-            ? cellRenders[key]({ setData })
-            : ({ row }) => <div style={{ width: "210px" }}>{row[key]}</div>;
-        const extraProps = key in columnDefinitionProps ? columnDefinitionProps[key] : {};
-        return <Table.ColumnDefinition key="key" header={key} cell={cell} {...extraProps} />;
-      })}
-    </Table>
+    <>
+      <div style={{ width: "1024px", height: "720px", overflow: "auto" }}>
+        <Table data={data} hasZebraStripes a11yText="My Table">
+          {cellTypes.map(key => {
+            const cell =
+              key in cellRenders
+                ? cellRenders[key]({ setData })
+                : ({ row }) => <div style={{ width: "210px" }}>{row[key]}</div>;
+
+            const extraProps = key in columnDefinitionProps ? columnDefinitionProps[key] : {};
+            return <Table.ColumnDefinition key="key" header={key} cell={cell} {...extraProps} />;
+          })}
+        </Table>
+      </div>
+      <button type="button" onClick={handleAdd100More}>
+        Add 100+
+      </button>
+    </>
   );
 }
 

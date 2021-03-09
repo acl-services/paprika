@@ -3,7 +3,7 @@ import ListBox from "../../src/ListBox";
 import { Table } from "../../src";
 import getUsers from "./mock";
 
-const users = getUsers(50);
+const users = getUsers(20);
 const cellTypes = ["an", "name", "status", "role", "subscription", "reportsRole", "activations", "signed"];
 
 const cellRenders = {
@@ -52,10 +52,6 @@ export default function TableStory() {
       {cellTypes.map(key => {
         const cell = key in cellRenders ? cellRenders[key]({ setData }) : ({ row }) => row[key];
         const extraProps = key in columnDefinitionProps ? columnDefinitionProps[key] : {};
-        console.log(
-          "TableColumnDefinition:::",
-          <Table.ColumnDefinition key="key" header={key} cell={cell} {...extraProps} />
-        );
         return <Table.ColumnDefinition key="key" header={key} cell={cell} {...extraProps} />;
       })}
     </Table>

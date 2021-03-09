@@ -1,5 +1,6 @@
 import { Meta, Props, Story } from "@storybook/addon-docs/blocks";
 import Table from "../src/";
+import Toast from "../../Toast/src";
 
 # Table
 
@@ -184,3 +185,39 @@ The table can further be customized by adjusting the borders. The table can be s
   <Table.ColumnDefinition header="Name" cell="name" />
   <Table.ColumnDefinition header="LastName" cell="lastName" />
 </Table>
+
+## Sticky
+
+The Table support sticky header and columns.
+
+```jsx
+<Table>
+  <Table.ColumnDefinition sticky header="..." cell={() => {}} />
+  <Table.ColumnDefinition header="..." cell={() => {}} />
+  <Table.ColumnDefinition header="..." cell={() => {}} />
+</Table>
+```
+
+<Toast hasCloseButton={false}>The sticky prop accepts a number value, by default is zero.</Toast>
+
+Unlike the DataGrid where you can use a `isSticky` props in the columnDefinition to mark a column as a sticky, for the table, you have to assign to `sticky` the number
+in pixels of the space between the left side and your desired column.
+
+If you want to have only one sticky column only, you can mark it just with the `sticky` prop and you are ready to go.
+
+But once the table needs two or more sticky columns, you need to assigned a numeric value representing the left space between their position and the table's left side.
+
+As an example:
+
+```jsx
+// assuming that the first column width is 150px width
+// assuming that the second column width is 100px width
+<Table>
+  <Table.ColumnDefinition sticky={0} header="..." cell={() => {}} />
+  <Table.ColumnDefinition sticky={150} header="..." cell={() => {}} />
+  <Table.ColumnDefinition sticky={250} header="..." cell={() => {}} />
+  <Table.ColumnDefinition header="..." cell={() => {}} />
+  <Table.ColumnDefinition header="..." cell={() => {}} />
+  <Table.ColumnDefinition header="..." cell={() => {}} />
+</Table>
+```
