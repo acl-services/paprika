@@ -150,6 +150,7 @@ export default function Trigger(props) {
         {...getDOMAttributesForListBoxButton({
           idListBox,
           idFormLabel: idFormLabel.current,
+          isOpen,
         })}
         {...a11yProps}
         data-pka-anchor="list-box-trigger"
@@ -202,15 +203,15 @@ export default function Trigger(props) {
     if (hasRenderTrigger) {
       const attributes = {
         dispatch,
-        handleKeyDown: handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext }),
-        handleKeyUp: handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext }),
+        handleKeyDown: handleKeyDownKeyboardKeys({ providedProps, state, dispatch, onChangeContext }),
+        handleKeyUp: handleKeyUpKeyboardKeys({ providedProps, state, dispatch, onChangeContext }),
         isOpen,
-        isReadOnly,
         onChangeContext,
         propsForTrigger: () =>
           getDOMAttributesForListBoxButton({
             idListBox,
             idFormLabel: idFormLabel.current,
+            isOpen,
           }),
         refTrigger,
         types: sanitizeActionTypes(useListBox.types),
@@ -225,18 +226,7 @@ export default function Trigger(props) {
       const [selected, options] = getSelectedOptionSingle(state);
       return children(selected, options, attributes);
     }
-  }, [
-    children,
-    dispatch,
-    hasRenderTrigger,
-    idListBox,
-    isMulti,
-    isOpen,
-    isReadOnly,
-    onChangeContext,
-    refTrigger,
-    state,
-  ]);
+  }, [children, dispatch, hasRenderTrigger, idListBox, isMulti, isOpen, onChangeContext, refTrigger, state]);
 
   if (isHidden && isInline) {
     return <sc.ListBoxTrigger data-pka-anchor="list-box-trigger" isHidden />;

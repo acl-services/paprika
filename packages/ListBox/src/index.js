@@ -65,7 +65,7 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
   const providedProps = {
     a11yProps: moreA11yProps,
     hasError,
-    idListBox: id || `list-box-trigger_${uuidv4()}`,
+    idListBox: id || `list-box_${uuidv4()}`,
     isDisabled,
     isInline,
     isReadOnly,

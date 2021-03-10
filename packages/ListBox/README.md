@@ -34,7 +34,7 @@ npm install @paprika/list-box
 | isOpen         | bool                                                                                                        | false    | null                               | Indicates if the popover is visible                                |
 | isReadOnly     | bool                                                                                                        | false    | false                              | The ListBox will not allow value to be changed                     |
 | onChange       | func                                                                                                        | false    | () => {}                           | Callback returning the current selection on the ListBox            |
-| placeholder    | string                                                                                                      | false    | null                               | Defaults label to display when the ListBox has not option selected |
+| placeholder    | string                                                                                                      | false    | null                               | Default label for trigger when the ListBox has no option selected  |
 | size           | [ ListBoxContainer.types.size.SMALL, ListBoxContainer.types.size.MEDIUM, ListBoxContainer.types.size.LARGE] | false    | ListBoxContainer.types.size.MEDIUM | Size of the trigger and options (font size, height, padding, etc). |
 
 ### ListBox.A11y

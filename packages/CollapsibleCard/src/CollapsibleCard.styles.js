@@ -43,11 +43,9 @@ function getBorder(isEditing, position) {
 
 export const CollapsibleCard = styled.div(
   ({ isEditing, isCollapsed, position }) => css`
-    background-color: ${tokens.color.white};
     border: ${getBorder(isEditing, position)};
     border-radius: ${getBorderRadius(position, isCollapsed, false)};
     box-shadow: ${getBoxShadow(isEditing, position)};
-    overflow: hidden;
 
     ${isEditing &&
       css`

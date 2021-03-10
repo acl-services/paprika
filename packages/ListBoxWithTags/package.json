@@ -1,6 +1,6 @@
 {
   "name": "@paprika/list-box-with-tags",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Allowed the consumer to display a ListBox that show the selected option in a shape of pills",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -16,8 +16,10 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/constants": "^1.0.0",
+    "@paprika/helpers": "^2.1.1",
     "@paprika/icon": "^1.0.4",
-    "@paprika/list-box": "^2.0.0",
+    "@paprika/list-box": "^2.1.0",
     "@paprika/raw-button": "^1.0.3",
     "@paprika/stylers": "^1.0.0",
     "@paprika/tag": "^0.0.2",

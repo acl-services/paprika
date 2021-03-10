@@ -80,27 +80,25 @@ export default function Controlled() {
   );
 
   return (
-    <div style={{ padding: "32px" }}>
-      <ListBox
-        noResultsMessage="No results found"
-        onChange={handleChange}
-        onAddCustomOption={handleAddedOption}
-        onRemove={handleRemove}
-        selectedOptions={selectedKeys.length ? animals.filter(item => selectedKeys.includes(item.label)) : []}
-        filter={handleFilterDebounce}
-      >
-        {dataFiltered.map(option => {
-          if (typeof option.isCustom !== "undefined") {
-            return null;
-          }
+    <ListBox
+      noResultsMessage="No results found"
+      onChange={handleChange}
+      onAddCustomOption={handleAddedOption}
+      onRemove={handleRemove}
+      selectedOptions={selectedKeys.length ? animals.filter(item => selectedKeys.includes(item.label)) : []}
+      filter={handleFilterDebounce}
+    >
+      {dataFiltered.map(option => {
+        if (typeof option.isCustom !== "undefined") {
+          return null;
+        }
 
-          return !checkIfIsSelected(option.label) ? (
-            <ListBox.Option value={option.label} key={option.label} label={option.label}>
-              {option.label}
-            </ListBox.Option>
-          ) : null;
-        })}
-      </ListBox>
-    </div>
+        return !checkIfIsSelected(option.label) ? (
+          <ListBox.Option value={option.label} key={option.label} label={option.label}>
+            {option.label}
+          </ListBox.Option>
+        ) : null;
+      })}
+    </ListBox>
   );
 }
