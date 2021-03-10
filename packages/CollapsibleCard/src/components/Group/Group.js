@@ -10,16 +10,6 @@ export default function Group(props) {
   const newChildren = [];
 
   React.Children.map(children, (child, index) => {
-    if (child.type.displayName === "Header") {
-      if (index > 0) {
-        console.error(`The "Header" must be the first child of CollapsibleCard.Group`);
-      }
-    } else if (child.type.displayName !== "CollapsibleCard") {
-      console.error(
-        `Invalid child of CollapsibleCard.Group; expected "CollapsibleCard" and received "${child.type.displayName}".`
-      );
-    }
-
     let position;
     if (index === 0) {
       position = POSITIONS.FIRST;
