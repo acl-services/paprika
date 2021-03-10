@@ -87,10 +87,19 @@ const Filter = React.forwardRef((props, ref) => {
   };
 
   React.useEffect(() => {
+    let id = null;
+
     if (!isOpen) {
-      reset();
+      id = window.requestAnimationFrame(() => {
+        applyFilter(dispatch, applyFilterType)([], false);
+        setTextSearch("");
+      });
     }
-  }, [reset, isOpen]);
+
+    return () => {
+      window.cancelAnimationFrame(id);
+    };
+  }, [isOpen]);
 
   React.useEffect(() => {
     dispatch({

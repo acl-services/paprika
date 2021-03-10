@@ -31,11 +31,12 @@ declare namespace Table {
   function ColumnDefinition(props: ColumnDefinitionProps): JSX.Element;
   interface ColumnDefinitionProps {
     [x: string]: any;
-
+    /** Each time a cell is renderer this prop will be call either to read a string value or to execute a cell function */
     cell: string | func;
-
+    /** Represent the header for the column can either be a string or a function */
     header: string | func;
-
+    /** Determine if a column should behave as a sticky column or not, received a number representing the space between the left side and the column pixels
+ internally the default value is zero */
     sticky?: number;
   }
 }

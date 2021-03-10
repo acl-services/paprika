@@ -8,6 +8,7 @@ export function ListBoxSingleStory() {
   const [isEditing, setIsEditing] = React.useState(false);
   const subscriptionTypes = ["Professional", "Oversight", "Contributor", "Results Lite Contributor", "None"];
   const [value, setValue] = React.useState(subscriptionTypes[1]);
+  const [valueOnChange, setValueOnChange] = React.useState("");
 
   function handleOnEditing() {
     setIsEditing(true);
@@ -21,18 +22,22 @@ export function ListBoxSingleStory() {
     setValue(options[index].value);
   }
 
+  function handleChange(index, options) {
+    setValueOnChange(options[index].value);
+  }
+
   return (
     <Card style={{ padding: "16px", width: "320px" }}>
       <Toast hasCloseButton={false}>The API is stable need some design tweaks</Toast>
+      <span>onChange:{valueOnChange}</span>
+      <br />
       <ListBox
         isEditing={isEditing}
-        onEditing={handleOnEditing}
+        onChange={handleChange}
         onClose={handleClose}
-        value={value}
-        onChange={props => {
-          console.log("onChange", props);
-        }}
+        onEditing={handleOnEditing}
         onSubmit={handleSubmit}
+        value={value}
       >
         <ListBox.Filter />
         {subscriptionTypes.map(subscription => (

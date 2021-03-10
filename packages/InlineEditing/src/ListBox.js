@@ -62,7 +62,7 @@ export default function InlineListBox(props) {
 
   function handleChange(...args) {
     setNextValue(args);
-    onChange(args);
+    onChange(...args);
   }
 
   function handleClick() {
