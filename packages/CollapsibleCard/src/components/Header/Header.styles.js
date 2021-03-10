@@ -20,10 +20,12 @@ export const Header = styled.div(
       background-color: ${tokens.color.blackLighten70};
       box-shadow: 0 0 0 1px ${tokens.color.blackLighten30}, 0 1px 3px 0 ${tokens.color.blackLighten50};
       margin: 0px;
+      position: relative;
     }
 
     &:focus {
       outline: none;
+      position: relative;
     }
 
     [data-whatinput="keyboard"] &:focus {
