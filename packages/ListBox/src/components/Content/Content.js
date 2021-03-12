@@ -37,9 +37,6 @@ const handleBlur = (state, dispatch, onCancelFooter) => () => {
   });
 };
 
-const handleContentFocusChange = (hasFocus, dispatch) =>
-  dispatch({ type: useListBox.types.setListBoxHasFocus, payload: { hasFocus } });
-
 export default function Content(props) {
   const { children, onCancelFooter, ...moreProps } = props;
   const onChangeContext = React.useContext(OnChangeContext);
@@ -55,12 +52,6 @@ export default function Content(props) {
         {...moreProps}
         {...getDOMAttributesForListBox({ idListBox, refLabel, ...state })}
         data-pka-anchor="list-box-content-inline" // TODO: rename "list-box.content-inline"
-        onBlur={() => {
-          if (!isDisabled) handleContentFocusChange(false, dispatch);
-        }}
-        onFocus={() => {
-          if (!isDisabled) handleContentFocusChange(true, dispatch);
-        }}
         onKeyDown={handleKeyDownKeyboardKeys({ providedProps, state, dispatch, onChangeContext })}
         onKeyUp={handleKeyUpKeyboardKeys({ providedProps, state, dispatch, onChangeContext })}
         ref={refListBoxContainer}

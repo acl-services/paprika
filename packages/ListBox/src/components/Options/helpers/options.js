@@ -1,6 +1,84 @@
+import "@paprika/helpers/lib/polyfills/elementClosest";
 import useListBox from "../../../useListBox";
 import invokeOnChange from "../../../helpers/invokeOnChange";
 import { KEY_PRESS, CLICK } from "../../../types";
+
+function getOptions(event) {
+  let list = null;
+  if (event.target.dataset.pkaAnchor && event.target.dataset.pkaAnchor === "list-filter-input") {
+    // the event is coming from the filter
+    list = event.target.closest("[data-pka-anchor='list-box-box']").querySelector("[data-pka-anchor='styled-list']");
+  } else {
+    list = event.target.querySelector("[data-pka-anchor='styled-list']");
+  }
+
+  // filtering only results with role="option" attribute
+  return [...list.children].filter(li => li.hasAttribute("role"));
+}
+
+function getNextUp(event) {
+  function next(element) {
+    const list = event.target.closest("[data-pka-anchor='styled-list']");
+    const options = list.children;
+    if (list && [...options].indexOf(element) > 0) {
+      const sibling = element.previousSibling;
+
+      // if the next sibling has aria-hidden we skip it and call
+      // again previousSibling
+      if (sibling.hasAttribute("aria-hidden")) {
+        next(sibling);
+      }
+
+      return sibling;
+    }
+
+    return null;
+  }
+
+  // an activeElement is an option
+  if (document.activeElement.getAttribute("role") === "option") {
+    return next(document.activeElement);
+  }
+
+  const options = getOptions(event);
+  if (options.length) {
+    return options[0];
+  }
+
+  return null;
+}
+
+function getNextDown(event) {
+  function next(element) {
+    const list = event.target.closest("[data-pka-anchor='styled-list']");
+    const options = list.children;
+    if (list && [...options].indexOf(element) < options.length - 1) {
+      const sibling = element.nextSibling;
+
+      // if the next sibling has aria-hidden we skip it and call
+      // again nextSibling
+      if (sibling.hasAttribute("aria-hidden")) {
+        next(sibling);
+      }
+
+      return sibling;
+    }
+
+    return null;
+  }
+
+  // an activeElement is an option
+  if (document.activeElement.getAttribute("role") === "option") {
+    return next(document.activeElement);
+  }
+
+  const options = getOptions(event);
+  if (options.length) {
+    return options[0];
+  }
+
+  return null;
+}
 
 export function selectSingleOption({
   activeOptionIndex,
@@ -65,90 +143,22 @@ export function isOptionVisible(state, key) {
   return !state.filteredOptions.length || state.filteredOptions.includes(keyInt);
 }
 
-function isDisabled(state, key) {
-  return state.options[key].isDisabled;
-}
-
-export function getNextOptionActiveIndex(state, isAscending = true) {
-  const { activeOption, filteredOptions, options } = state;
-  const optionsKeys = Object.keys(state.options);
-
-  if (state.noResultsFound) return null;
-
-  if (optionsKeys.length === 1) {
-    if (state.options[0].isDisabled) {
-      return null;
-    }
-    return 0;
-  }
-
-  if (optionsKeys.length - 1 < activeOption) return 0;
-
-  let key = state.activeOption === null ? -1 : state.options[activeOption].index;
-
-  let keepIterating = true;
-
-  while (keepIterating) {
-    if (isAscending) {
-      if (filteredOptions.length === 1) {
-        keepIterating = false;
-        return filteredOptions[0];
-      }
-
-      if (key > -1 && ((filteredOptions.length && key + 1 > options.length) || key + 1 > optionsKeys.length - 1)) {
-        keepIterating = false;
-        return null;
-      }
-
-      key++;
-    } else {
-      if ((filteredOptions.length && key - 1 < 0) || key - 1 < 0) {
-        keepIterating = false;
-        return null;
-      }
-
-      key--;
-    }
-
-    if (isOptionVisible(state, key) && !isDisabled(state, key)) {
-      return key;
-    }
-  }
-}
-
-export function getNextOptionActiveIndexLooping(state) {
-  return getNextOptionActiveIndex(state) || getNextOptionActiveIndex(state, false);
-}
-
 export function handleArrowKeys({ event, providedProps, state, dispatch, isArrowDown = null, onChangeContext }) {
-  if (!providedProps.isInline && !state.isOpen) {
-    dispatch({ type: useListBox.types.openPopover });
-    return;
-  }
-
-  const next = getNextOptionActiveIndex(state, isArrowDown);
   event.preventDefault();
 
-  if (next === null && event.nativeEvent.key === "ArrowUp" && state.hasFilter) {
-    state.refFilterInput.current.focus();
-    if (state.isMulti) {
-      dispatch({
-        type: useListBox.types.setActiveOption,
-        payload: { activeOptionIndex: null, isOpen: true },
-      });
-    }
-  }
+  const nextElement = event.key === "ArrowUp" ? getNextUp(event) : getNextDown(event);
+  if (nextElement) {
+    nextElement.focus();
+    const activeOptionIndex = state.optionsIndex[document.activeElement.getAttribute("id")];
 
-  if (next !== null) {
-    state.refListBox.current.children[next].focus();
     if (state.isMulti) {
       dispatch({
         type: useListBox.types.setActiveOption,
-        payload: { activeOptionIndex: next, isOpen: true },
+        payload: { activeOptionIndex, isOpen: true },
       });
     } else {
       selectSingleOption({
-        activeOptionIndex: next,
+        activeOptionIndex,
         isOpen: true,
         dispatch,
         onChangeContext,
@@ -186,7 +196,7 @@ export const handleClickOption = ({ props, isDisabled, state, dispatch, onChange
   }
 
   if (hasFilter && isMulti) {
-    refFilterInput.current.focus();
+    // refFilterInput.current.focus();
   }
 
   if (props.onClick || hasPreventDefaultOnSelect) {

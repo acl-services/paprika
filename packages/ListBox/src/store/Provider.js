@@ -22,7 +22,7 @@ function initializeState(props) {
   } = props;
 
   // initialize state for options and groups
-  const options = getDataOptions(childrenOptions);
+  const { options, optionsIndex } = getDataOptions(childrenOptions);
   const selectedOptions = Object.keys(options)
     .filter(key => options[key].isSelected)
     .map(key => Number.parseInt(key, 10));
@@ -46,6 +46,7 @@ function initializeState(props) {
     noResultsFound: false,
     onChangeFn: null,
     options,
+    optionsIndex,
     refFilterInput,
     refFooterContainer,
     refListBox,

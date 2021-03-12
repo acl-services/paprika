@@ -48,7 +48,7 @@ const stateStyles = ({ isSelected, hasPreventDefaultOnSelect }) => css`
 `;
 
 export const Option = styled.li(
-  ({ size, isDisabled, hasPreventDefaultOnSelect, isSelected, isActive, listBoxHasFocus }) => css`
+  ({ size, isDisabled, hasPreventDefaultOnSelect, isSelected }) => css`
     border: 2px solid transparent;
     border-radius: 3px;
     cursor: pointer;
@@ -60,9 +60,7 @@ export const Option = styled.li(
       ${isDisabled ? "cursor: not-allowed;" : ""};
     } 
   
-    ${isActive && listBoxHasFocus && hasPreventDefaultOnSelect ? `border-color: ${tokens.color.blackLighten60}` : ""};
-    ${isActive && listBoxHasFocus ? activeStyles : ""}
-    ${hasPreventDefaultOnSelect}
+    ${hasPreventDefaultOnSelect} 
     ${isSelected ? `background: ${blueSelected};` : ""}
     ${isDisabled ? disabledStyles : stateStyles}
   `
