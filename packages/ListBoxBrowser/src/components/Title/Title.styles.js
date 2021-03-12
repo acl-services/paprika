@@ -11,7 +11,7 @@ export const title = css`
   flex-grow: 1;
   font-size: ${stylers.fontSize(-1)};
   font-weight: bold;
-  min-height: 20px;
+  min-height: 22px;
   min-width: 0;
   overflow: hidden;
   padding: ${tokens.spaceSm} ${tokens.space} ${tokens.spaceSm} ${tokens.spaceLg};

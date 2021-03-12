@@ -7,7 +7,7 @@ export const Flex = styled.div(
     display: flex;
     justify-content: center;
 
-    [data-pka-anchor="list-box-content-inline"]:last-child {
+    [data-pka-anchor="list-box"]:last-child {
       border-left: 1px solid ${tokens.border.color};
     }
 
@@ -15,7 +15,7 @@ export const Flex = styled.div(
       ? ""
       : css`
           display: inline;
-          [data-pka-anchor="list-box-content-inline"]:last-child {
+          [data-pka-anchor="list-box"]:last-child {
             border: 0;
             border-radius: ${tokens.border.radius};
           }
@@ -30,7 +30,7 @@ export const Container = styled.div(
     position: relative;
     width: 100%;
 
-    [data-pka-anchor="list-box-content-inline"] {
+    [data-pka-anchor="list-box"] {
       border: 0;
       flex-basis: 50%;
       min-height: ${height}px;
