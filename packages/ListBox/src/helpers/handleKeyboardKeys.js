@@ -4,17 +4,8 @@ import useListBox from "../useListBox";
 export const handleKeyDownKeyboardKeys = ({ providedProps, state, dispatch, onChangeContext }) => event => {
   if (providedProps.isDisabled) return;
 
-  switch (event.key) {
-    case "ArrowUp":
-      handleArrowKeys({ event, providedProps, state, dispatch, onChangeContext, isArrowDown: false });
-      break;
-
-    case "ArrowDown":
-      handleArrowKeys({ event, providedProps, state, dispatch, onChangeContext, isArrowDown: true });
-      break;
-
-    default:
-      break;
+  if (["ArrowUp", "ArrowDown"].includes(event.key)) {
+    handleArrowKeys({ event, state, dispatch, onChangeContext });
   }
 };
 

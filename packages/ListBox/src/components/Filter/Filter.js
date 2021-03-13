@@ -67,25 +67,6 @@ const Filter = React.forwardRef((props, ref) => {
     applyFilter(dispatch, applyFilterType)(filteredOptions, noResultsFound);
   };
 
-  const handleBlur = () => {
-    window.requestAnimationFrame(() => {
-      if (hasFooter) {
-        // if has footer the responsible of closing is the Footer no the onblur event
-        return;
-      }
-
-      if (document.activeElement !== refListBoxContainer.current) {
-        // this will reset the activeOption and close the Popover
-        dispatch({
-          type: useListBox.types.setActiveOption,
-          payload: {
-            activeOptionIndex: null,
-          },
-        });
-      }
-    });
-  };
-
   React.useEffect(() => {
     if (!isOpen) {
       reset();
@@ -121,7 +102,6 @@ const Filter = React.forwardRef((props, ref) => {
           data-pka-anchor="list-filter-input"
           icon={hasSearchIcon ? <SearchIcon /> : null}
           isDisabled={isDisabled}
-          onBlur={handleBlur}
           onChange={handleChangeFilter}
           onKeyDown={props.onKeyDown}
           placeholder={placeholder || I18n.t("listBox.filter.placeholder")}

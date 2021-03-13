@@ -21,15 +21,20 @@ function getNextUp(event) {
     const list = event.target.closest("[data-pka-anchor='styled-list']");
     const options = list.children;
     if (list && [...options].indexOf(element) > 0) {
-      const sibling = element.previousSibling;
-
+      const sibling = element.previousElementSibling;
       // if the next sibling has aria-hidden we skip it and call
       // again previousSibling
       if (sibling.hasAttribute("aria-hidden")) {
-        next(sibling);
+        return next(sibling);
       }
 
       return sibling;
+    }
+
+    const box = document.activeElement.closest("[data-pka-anchor='list-box-box']");
+    const filter = box.querySelector("[data-pka-anchor='list-filter-input']");
+    if (filter) {
+      filter.focus();
     }
 
     return null;
@@ -40,6 +45,12 @@ function getNextUp(event) {
     return next(document.activeElement);
   }
 
+  // filter is already focussed just ignore the event
+  if (document.activeElement.dataset.pkaAnchor === "list-filter-input") {
+    return null;
+  }
+
+  // focus the first option
   const options = getOptions(event);
   if (options.length) {
     return options[0];
@@ -53,12 +64,12 @@ function getNextDown(event) {
     const list = event.target.closest("[data-pka-anchor='styled-list']");
     const options = list.children;
     if (list && [...options].indexOf(element) < options.length - 1) {
-      const sibling = element.nextSibling;
+      const sibling = element.nextElementSibling;
 
       // if the next sibling has aria-hidden we skip it and call
-      // again nextSibling
+      // again nextElementSibling
       if (sibling.hasAttribute("aria-hidden")) {
-        next(sibling);
+        return next(sibling);
       }
 
       return sibling;
@@ -143,7 +154,7 @@ export function isOptionVisible(state, key) {
   return !state.filteredOptions.length || state.filteredOptions.includes(keyInt);
 }
 
-export function handleArrowKeys({ event, providedProps, state, dispatch, isArrowDown = null, onChangeContext }) {
+export function handleArrowKeys({ event, state, dispatch, onChangeContext }) {
   event.preventDefault();
 
   const nextElement = event.key === "ArrowUp" ? getNextUp(event) : getNextDown(event);
@@ -156,7 +167,10 @@ export function handleArrowKeys({ event, providedProps, state, dispatch, isArrow
         type: useListBox.types.setActiveOption,
         payload: { activeOptionIndex, isOpen: true },
       });
-    } else {
+      return;
+    }
+
+    if (!state.options[activeOptionIndex].isDisabled) {
       selectSingleOption({
         activeOptionIndex,
         isOpen: true,
@@ -185,7 +199,7 @@ export const toggleOption = ({ index, isMulti, dispatch, onChangeContext }) => {
 export const handleClickOption = ({ props, isDisabled, state, dispatch, onChangeContext }) => event => {
   if (isDisabled) return;
   const { index } = props;
-  const { options, hasFilter, isMulti, refFilterInput } = state;
+  const { options, hasFilter, isMulti } = state;
   const hasPreventDefaultOnSelect = options[index].preventDefaultOnSelect;
 
   const focusListBoxContentIfHasNotFilter =
@@ -277,10 +291,14 @@ export function handleEnterOrSpace({ event, providedProps, state, dispatch, onCh
     }
 
     // for single select the option is set when the user interact with up and down arrows
-    // no need to notify which option is selected just close the popover
-    dispatch({ type: useListBox.types.closePopover });
-    if (state.refTrigger.current) {
-      state.refTrigger.current.focus();
+    // no need to notify which option is selected just close the popover unless the option is disabled
+    const id = state.optionsIndex[document.activeElement.getAttribute("id")];
+    if (!state.options[id].isDisabled) {
+      dispatch({ type: useListBox.types.closePopover });
+
+      if (state.refTrigger.current) {
+        state.refTrigger.current.focus();
+      }
     }
   } else {
     dispatch({ type: useListBox.types.openPopover });

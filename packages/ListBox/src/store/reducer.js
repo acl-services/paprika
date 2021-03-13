@@ -93,14 +93,10 @@ export default function reducer(state, { type, payload }) {
     }
 
     case useListBox.types.applyFilter: {
-      let activeOption = null;
-      // FIX THIS ONE
-
       return {
         ...state,
         filteredOptions: payload.filteredOptions,
         noResultsFound: payload.noResultsFound,
-        activeOption,
       };
     }
 

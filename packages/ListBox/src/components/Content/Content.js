@@ -43,7 +43,7 @@ export default function Content(props) {
   const [state, dispatch] = useListBox();
   const { refListBoxContainer } = state;
   const providedProps = React.useContext(PropsContext);
-  const { a11yProps, idListBox, isDisabled, isInline, refLabel } = providedProps;
+  const { a11yProps, idListBox, isInline, refLabel } = providedProps;
 
   if (isInline) {
     return (

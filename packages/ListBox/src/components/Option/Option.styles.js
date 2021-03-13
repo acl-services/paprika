@@ -5,10 +5,6 @@ import * as types from "../../types";
 
 const blueSelected = tokens.color.blueLighten50;
 
-const activeStyles = css`
-  ${stylers.focusRing()}
-`;
-
 const disabledStyles = css`
   background: transparent;
   border: 0;
