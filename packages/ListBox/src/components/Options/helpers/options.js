@@ -221,10 +221,6 @@ export const handleClickOption = ({ props, isDisabled, state, dispatch, onChange
     state.refListBoxContainer.current.focus();
   }
 
-  if (hasFilter && isMulti) {
-    // refFilterInput.current.focus();
-  }
-
   if (props.onClick || hasPreventDefaultOnSelect) {
     const onClick = props.onClick ? props.onClick : () => {};
 
