@@ -2,37 +2,15 @@
 "@paprika/list-box": major
 ---
 
-💥 The breaking change is:
+## 💥 BREAKING CHANGE
 
-Refactored keyboard events for ↑ and ↓ for the list component:
+Refactored keyboard events for ↑ and ↓ for the list component
+Refactor for the ↑ and ↓ keyboard navigation (`ListBox`), most consumer shouldn't be affected by it.
 
-This is a partial refactor for the keyboard navigation for the `ListBox` component we switched from tracking the options on the state against tracking the actually rendered option on the HTML. The previous help to only track the real options that we should consider each time the user press ↑ or ↓.
+## why the change was made:
 
-✏️ why the change was made:
-The original implementation for the keyboard navigation for the ListBox didn't take in consideration the focus() event and uses the options state to figure out if the next element can be selected, there are ListBox.Divider, ListBox.RawOption, ListBox.Option `isDisabled`, and a case when the options are filtered.
+We change the way the listbox navigates the options in the Component more details can be found on this PR: [#973](https://github.com/acl-services/paprika/pull/973)
 
-So instead of tracking all possible cases and combinations now we only track whatever the ListBox has rendered and each time the user press ↑ or ↓ the component looks for the next available sibling from the current one focus which is more efficient than trying to find the next available in the options list.
+## 👷 Moving from 2.1.0 to 3.0.0:
 
-👷 How a consumer should update their code:
-There is not really an action from the consumer side of things, this is marked as a breaking change because might break side code if you were in somehow depending on the previous implementation. But most likely you won't need to take further actions
-
-- `Content.js` No longer requires to handle onBlur and onFocus state.
-- `Filter.js` onBlur is no longer required, also fixed the missing cleaning function for two hooks and fixed a minor bug that will scroll the popover if the user use the mouse wheel
-- `optionState.js` Now is possible to access `state.optionsIndex` and access the index of any given rendered by their uuid
-- `option.js` remove `listBoxHasFocus={listBoxHasFocus}` prop not longer relevant.
-
-**option.js**
-
-- ✅ Added getOptions, getNextUp and getNextDown methods to detect which is the next focusable option
-- 🗑 Remove getNextOptionActiveIndex and getNextOptionActiveIndexLooping which were really confusing methods not long necessary!
-- ✨ `handleArrowKeys` method is cleaner and easier to understand
-
-**Trigger.js**
-
-- Now the ListBox will focus automatically in the first selected option when multi and in the selected option in single
-- When there is not a selected option in multi will focus on the first element while in single will not do anything apart from opening the options
-
-**reducer.js**
-
-- 🙅‍♀️ useListBox.types.setListBoxHasFocus no longer necessary
-- ✨ useListBox.types.applyFilter simplified version now
+No action required. There is not really an action from the consumer, this is marked as a breaking change because might break side code if you were in somehow depending on the previous implementation. But most likely you won't need to take any further actions
