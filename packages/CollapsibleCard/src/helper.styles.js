@@ -15,9 +15,10 @@ export default function getBorderRadius(position, isCollapsed, isHeader) {
     }
 
     if (position === POSITIONS.LAST) {
-      if (isCollapsed) {
+      if (isCollapsed || !isHeader) {
         return `0 0 ${tokens.card.borderRadius} ${tokens.card.borderRadius}`;
       }
+
       return `unset`;
     }
   } else if (isExpanded && isHeader) {

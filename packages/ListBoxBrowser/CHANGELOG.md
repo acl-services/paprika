@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.14
+
+### Patch Changes
+
+- da9bc25: Fixed column styling, adjusted alignment of checkboxes/radios
+
+## 1.0.14-next.0
+
+### Patch Changes
+
+- da9bc25: Fixed column styling, adjusted alignment of checkboxes/radios
+
 ## 1.0.13
 
 ### Patch Changes

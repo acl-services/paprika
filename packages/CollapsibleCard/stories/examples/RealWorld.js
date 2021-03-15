@@ -7,10 +7,10 @@ import Checkbox from "@paprika/checkbox";
 import OverflowMenu from "@paprika/overflow-menu";
 import StatusTracker from "@paprika/status-tracker";
 import Switch from "@paprika/switch";
-import Tabs from "@paprika/tabs";
 import Toast from "@paprika/toast";
 import CollapsibleCard from "../../src";
 import HeaderLayout from "../../src/components/HeaderLayout";
+import RealWorldTabsStory from "./RealWorld-Tabs";
 
 const heading = "COVID-19 Aggregate Regulatory Feeds";
 const metadata =
@@ -184,29 +184,7 @@ const RealWorldStory = () => {
         </CollapsibleCard.Body>
       </CollapsibleCard>
       <br />
-      <CollapsibleCard.Group>
-        <CollapsibleCard.Group.Header>
-          <Tabs size={Tabs.types.size.LARGE}>
-            <Tabs.List>
-              <Tabs.Tab key="one">First Tab</Tabs.Tab>
-              <Tabs.Tab key="two">Second Tab</Tabs.Tab>
-              <Tabs.Tab key="three">Third Tab</Tabs.Tab>
-            </Tabs.List>
-          </Tabs>
-        </CollapsibleCard.Group.Header>
-        <CollapsibleCard>
-          <CollapsibleCard.Header>
-            <CollapsibleCard.Segment>First card</CollapsibleCard.Segment>
-          </CollapsibleCard.Header>
-          <CollapsibleCard.Body>Put your body here1.</CollapsibleCard.Body>
-        </CollapsibleCard>
-        <CollapsibleCard>
-          <CollapsibleCard.Header>
-            <CollapsibleCard.Segment>Last card</CollapsibleCard.Segment>
-          </CollapsibleCard.Header>
-          <CollapsibleCard.Body>Put your body here2.</CollapsibleCard.Body>
-        </CollapsibleCard>
-      </CollapsibleCard.Group>
+      <RealWorldTabsStory />
     </Story>
   );
 };
