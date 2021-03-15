@@ -76,7 +76,12 @@ export default function Trigger(props) {
   }, [refLabel, refTrigger, idListBox]);
 
   React.useEffect(() => {
-    if (isOpen && document.activeElement.dataset.pkaAnchor === "list-box-trigger" && state.selectedOptions.length) {
+    if (
+      isOpen &&
+      document.activeElement &&
+      document.activeElement.dataset.pkaAnchor === "list-box-trigger" &&
+      state.selectedOptions.length
+    ) {
       setTimeout(() => {
         document.getElementById(state.options[state.selectedOptions[0]].id).focus();
       }, 350); // popover animation :/
@@ -88,11 +93,15 @@ export default function Trigger(props) {
       // so is better to just open the dropdown and waits for the user to click down or up
       if (
         isOpen &&
+        document.activeElement &&
         document.activeElement.getAttribute("role") !== "option" &&
         document.activeElement.dataset.pkaAnchor !== "list-filter-input" &&
         state.isMulti
       ) {
-        document.getElementById(state.options[0].id).focus();
+        const element = document.getElementById(state.options[0].id);
+        if (element) {
+          document.getElementById(state.options[0].id).focus();
+        }
       }
     }, 350); // popover animation + has to wait to check if the search has already the focus :/
   }, [isOpen, state.options, state.selectedOptions, state.isMulti]);

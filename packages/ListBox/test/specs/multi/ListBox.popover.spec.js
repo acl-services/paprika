@@ -52,8 +52,8 @@ describe("ListBox.Popover", () => {
     expect(queryByTestId("popover.content")).toBeNull();
   });
 
-  it("should focus on option container as soon as the Popover is open", done => {
-    const { openSelect, getByTestId } = renderComponent();
+  it("should focus on the first option container as soon as the Popover when is multi", done => {
+    const { openSelect } = renderComponent();
 
     openSelect();
     // THIS IS A CRAPPY TEST. The ListBox wait until the popover finish animating
@@ -61,7 +61,8 @@ describe("ListBox.Popover", () => {
     // ends we can improve this test :/
 
     setTimeout(() => {
-      expect(document.activeElement).toBe(getByTestId("popover.content"));
+      expect(document.activeElement.getAttribute("role")).toBe("option");
+      expect(document.activeElement.textContent).toBe("Venus");
       done();
     }, 350);
   });

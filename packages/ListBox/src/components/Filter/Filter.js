@@ -14,25 +14,19 @@ function hasNoResults(textSearchValue, filteredOptions) {
 const Filter = React.forwardRef((props, ref) => {
   const I18n = useI18n();
   const [state, dispatch] = useListBox();
-  const { hasFooter, isOpen, refFilterInput, refListBoxContainer } = state;
+  const { isOpen, refFilterInput } = state;
   const { isDisabled, isInline, size } = React.useContext(PropsContext);
 
   const [textSearch, setTextSearch] = React.useState(props.value);
   const applyFilterType = useListBox.types.applyFilter;
-
-  const reset = React.useCallback(() => {
-    window.requestAnimationFrame(() => {
-      applyFilter(dispatch, applyFilterType)([], false);
-      setTextSearch("");
-    });
-  }, [applyFilterType, dispatch]);
 
   React.useImperativeHandle(ref, () => ({
     clear: () => {
       setTextSearch(() => "");
     },
     reset: () => {
-      reset();
+      applyFilter(dispatch, applyFilterType)([], false);
+      setTextSearch("");
     },
   }));
 
@@ -68,10 +62,18 @@ const Filter = React.forwardRef((props, ref) => {
   };
 
   React.useEffect(() => {
+    let id = null;
     if (!isOpen) {
-      reset();
+      id = window.requestAnimationFrame(() => {
+        applyFilter(dispatch, applyFilterType)([], false);
+        setTextSearch("");
+      });
+
+      return () => {
+        cancelAnimationFrame(id);
+      };
     }
-  }, [reset, isOpen]);
+  }, [applyFilterType, dispatch, isOpen]);
 
   React.useEffect(() => {
     dispatch({
