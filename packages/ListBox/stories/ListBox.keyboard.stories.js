@@ -3,7 +3,14 @@ import { Story } from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
 import Toast from "../../Toast/src";
 
-import { SimpleStory, WithFilterStory, WithDividers, WithDisabled, WithRawItems } from "./examples/Keyboard";
+import {
+  SimpleStory,
+  WithDisabled,
+  WithDividers,
+  WithFilterStory,
+  WithInline,
+  WithRawItems,
+} from "./examples/Keyboard";
 
 const storyName = getStoryName("ListBox");
 
@@ -26,6 +33,8 @@ export function Single() {
           <WithDisabled />
           <hr />
           <WithRawItems />
+          <hr />
+          <WithInline />
         </Story>
       </div>
     </div>

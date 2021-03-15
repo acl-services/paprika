@@ -293,3 +293,47 @@ export function WithRawItems() {
     </>
   );
 }
+
+export function WithInline() {
+  return (
+    <>
+      <h2>With Inline stories</h2>
+      <Blocks>
+        <Block>
+          <h3>Single</h3>
+
+          <Card>
+            <ListBox isInline>
+              <ListBox.Filter />
+              <ListBox.Divider>Anti-heroes</ListBox.Divider>
+              {characters.antiHeroes}
+              <ListBox.Divider>Heroes</ListBox.Divider>
+              {characters.heroes}
+              <ListBox.Divider>Villians</ListBox.Divider>
+              {characters.villians}
+            </ListBox>
+          </Card>
+
+          <h3>Multi</h3>
+          <Card>
+            <ListBox isMulti isInline>
+              <ListBox.Filter />
+              <ListBox.Divider>Anti-heroes</ListBox.Divider>
+              {characters.antiHeroes}
+              <ListBox.Divider>Heroes</ListBox.Divider>
+              {characters.heroes}
+              <ListBox.Divider>Villians</ListBox.Divider>
+              {characters.villians}
+            </ListBox>
+          </Card>
+        </Block>
+        <Block>
+          <CheckListItem>
+            The user is allowed to navigate over disabled elements but can not selected them or interact with them. This
+            might required further discussion of what we really want to do.
+          </CheckListItem>
+        </Block>
+      </Blocks>
+    </>
+  );
+}

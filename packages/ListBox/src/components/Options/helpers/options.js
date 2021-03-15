@@ -159,24 +159,36 @@ export function handleArrowKeys({ event, state, dispatch, onChangeContext }) {
 
   const nextElement = event.key === "ArrowUp" ? getNextUp(event) : getNextDown(event);
   if (nextElement) {
-    nextElement.focus();
-    const activeOptionIndex = state.optionsIndex[document.activeElement.getAttribute("id")];
+    const activeOptionIndex = state.optionsIndex[nextElement.getAttribute("id")];
 
     if (state.isMulti) {
       dispatch({
         type: useListBox.types.setActiveOption,
         payload: { activeOptionIndex, isOpen: true },
       });
+
+      // this fixed a weird bug when the list is filtered the dom stop focusing correctly
+      // seems like a browser issue :/
+      window.requestAnimationFrame(() => {
+        nextElement.focus();
+      });
       return;
     }
 
-    if (!state.options[activeOptionIndex].isDisabled) {
+    const option = state.options[activeOptionIndex];
+    if (option && !option.isDisabled) {
       selectSingleOption({
         activeOptionIndex,
         isOpen: true,
         dispatch,
         onChangeContext,
         eventType: KEY_PRESS,
+      });
+
+      // this fixed a weird bug when the list is filtered the dom stop focusing correctly
+      // seems like a browser issue :/
+      window.requestAnimationFrame(() => {
+        nextElement.focus();
       });
     }
   }
