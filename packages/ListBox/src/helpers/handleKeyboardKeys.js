@@ -4,6 +4,11 @@ import useListBox from "../useListBox";
 export const handleKeyDownKeyboardKeys = ({ providedProps, state, dispatch, onChangeContext }) => event => {
   if (providedProps.isDisabled) return;
 
+  if (event.key === " ") {
+    // prevents spacebar to scroll the page
+    event.preventDefault();
+  }
+
   if (["ArrowUp", "ArrowDown"].includes(event.key)) {
     handleArrowKeys({ event, state, dispatch, onChangeContext });
   }

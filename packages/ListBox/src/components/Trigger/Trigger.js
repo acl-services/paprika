@@ -76,6 +76,18 @@ export default function Trigger(props) {
   }, [refLabel, refTrigger, idListBox]);
 
   React.useEffect(() => {
+    if (
+      isOpen &&
+      document.activeElement &&
+      document.activeElement.dataset.pkaAnchor === "list-box-trigger" &&
+      state.selectedOptions.length &&
+      !state.isMulti
+    ) {
+      setTimeout(() => {
+        document.getElementById(state.options[state.selectedOptions[0]].id).focus();
+      }, 350); // popover animation :/
+    }
+
     setTimeout(() => {
       // autofocus on the first element can't work on this iteration
       // when single selects is on without a filter, the options is selected as soon as the user interacts with it
