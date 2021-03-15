@@ -304,7 +304,6 @@ export function WithInline() {
 
           <Card>
             <ListBox isInline>
-              <ListBox.Filter />
               <ListBox.Divider>Anti-heroes</ListBox.Divider>
               {characters.antiHeroes}
               <ListBox.Divider>Heroes</ListBox.Divider>
@@ -317,7 +316,6 @@ export function WithInline() {
           <h3>Multi</h3>
           <Card>
             <ListBox isMulti isInline>
-              <ListBox.Filter />
               <ListBox.Divider>Anti-heroes</ListBox.Divider>
               {characters.antiHeroes}
               <ListBox.Divider>Heroes</ListBox.Divider>
