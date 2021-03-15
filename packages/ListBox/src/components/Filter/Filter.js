@@ -92,7 +92,7 @@ const Filter = React.forwardRef((props, ref) => {
     return () => {
       document.removeEventListener("scroll", handleScroll);
     };
-  }, [refFilterInput]);
+  }, [dispatch, refFilterInput]);
 
   React.useEffect(() => {
     dispatch({

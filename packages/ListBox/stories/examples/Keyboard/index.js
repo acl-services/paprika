@@ -329,8 +329,8 @@ export function WithInline() {
         </Block>
         <Block>
           <CheckListItem>
-            The user is allowed to navigate over disabled elements but can not selected them or interact with them. This
-            might required further discussion of what we really want to do.
+            When the ListBox is on inline state, the keyboard navigation should behave exactly to any of the previous
+            examples
           </CheckListItem>
         </Block>
       </Blocks>
