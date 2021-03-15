@@ -57,7 +57,7 @@ describe("ListBox.Popover", () => {
     setTimeout(() => {
       expect(document.activeElement).not.toBe(getByTestId("popover.content"));
       done();
-    }, 350);
+    }, 450);
   });
 
   it("should have popover open already ", () => {
