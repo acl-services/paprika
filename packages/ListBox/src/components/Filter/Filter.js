@@ -62,9 +62,8 @@ const Filter = React.forwardRef((props, ref) => {
   };
 
   React.useEffect(() => {
-    let id = null;
     if (!isOpen) {
-      id = window.requestAnimationFrame(() => {
+      const id = window.requestAnimationFrame(() => {
         applyFilter(dispatch, applyFilterType)([], false);
         setTextSearch("");
       });

@@ -4,23 +4,25 @@ import invokeOnChange from "../../../helpers/invokeOnChange";
 import { KEY_PRESS, CLICK } from "../../../types";
 
 function getOptions(event) {
-  let list = null;
-  if (event.target.dataset.pkaAnchor && event.target.dataset.pkaAnchor === "list-filter-input") {
+  let HTMLNodeList = null;
+  if (event.target.dataset?.pkaAnchor === "list-filter-input") {
     // the event is coming from the filter
-    list = event.target.closest("[data-pka-anchor='list-box-box']").querySelector("[data-pka-anchor='styled-list']");
+    HTMLNodeList = event.target
+      .closest("[data-pka-anchor='list-box-box']")
+      .querySelector("[data-pka-anchor='styled-list']");
   } else {
-    list = event.target.querySelector("[data-pka-anchor='styled-list']");
+    HTMLNodeList = event.target.querySelector("[data-pka-anchor='styled-list']");
   }
 
   // filtering only results with role="option" attribute
-  return [...list.children].filter(li => li.hasAttribute("role"));
+  return [...HTMLNodeList.children].filter(li => li.hasAttribute("role"));
 }
 
 function getNextUp(event) {
   function next(element) {
     const list = event.target.closest("[data-pka-anchor='styled-list']");
-    const options = list.children;
-    if (list && [...options].indexOf(element) > 0) {
+    const HTMLChildren = list.children;
+    if (list && [...HTMLChildren].indexOf(element) > 0) {
       const sibling = element.previousElementSibling;
       // if the next sibling has aria-hidden we skip it and call
       // again previousSibling
@@ -41,12 +43,12 @@ function getNextUp(event) {
   }
 
   // an activeElement is an option
-  if (document.activeElement.getAttribute("role") === "option") {
+  if (document.activeElement && document.activeElement.getAttribute("role") === "option") {
     return next(document.activeElement);
   }
 
   // filter is already focussed just ignore the event
-  if (document.activeElement.dataset.pkaAnchor === "list-filter-input") {
+  if (document.activeElement.dataset?.pkaAnchor === "list-filter-input") {
     return null;
   }
 
@@ -62,8 +64,8 @@ function getNextUp(event) {
 function getNextDown(event) {
   function next(element) {
     const list = event.target.closest("[data-pka-anchor='styled-list']");
-    const options = list.children;
-    if (list && [...options].indexOf(element) < options.length - 1) {
+    const HTMLOptions = list.children;
+    if (list && [...HTMLOptions].indexOf(element) < HTMLOptions.length - 1) {
       const sibling = element.nextElementSibling;
 
       // if the next sibling has aria-hidden we skip it and call
@@ -274,7 +276,7 @@ export function handleEnterOrSpace({ event, providedProps, state, dispatch, onCh
 
     if (state.isMulti) {
       // if the "Enter" occurs using in the filter input, prevent it.
-      if (event.target.dataset.pkaAnchor === "list-filter-input") {
+      if (event.target.dataset?.pkaAnchor === "list-filter-input") {
         return;
       }
 
