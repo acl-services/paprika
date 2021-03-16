@@ -37,14 +37,14 @@ const stateStyles = ({ isSelected, hasPreventDefaultOnSelect }) => css`
   }
 
   &:focus {
-    ${stylers.focusRing()}
     border-bottom-color: transparent;
     border-radius: ${tokens.border.radius};
+    ${hasPreventDefaultOnSelect ? stylers.focusRing.subtle() : stylers.focusRing()}
   }
 `;
 
 export const Option = styled.li(
-  ({ size, isDisabled, hasPreventDefaultOnSelect, isSelected }) => css`
+  ({ size, isDisabled, isSelected }) => css`
     border: 2px solid transparent;
     border-radius: 3px;
     cursor: pointer;
@@ -54,9 +54,8 @@ export const Option = styled.li(
 
     &:hover {
       ${isDisabled ? "cursor: not-allowed;" : ""};
-    } 
-  
-    ${hasPreventDefaultOnSelect} 
+    }
+
     ${isSelected ? `background: ${blueSelected};` : ""}
     ${isDisabled ? disabledStyles : stateStyles}
   `

@@ -76,19 +76,22 @@ export default function Trigger(props) {
   }, [refLabel, refTrigger, idListBox]);
 
   React.useEffect(() => {
+    let id = null;
     if (
       isOpen &&
       document.activeElement &&
-      document.activeElement.dataset.pkaAnchor === "list-box-trigger" &&
+      document.activeElement.dataset?.pkaAnchor === "list-box-trigger" &&
       state.selectedOptions.length &&
       !state.isMulti
     ) {
-      setTimeout(() => {
+      id = setTimeout(() => {
         document.getElementById(state.options[state.selectedOptions[0]].id).focus();
       }, 350); // popover animation :/
+
+      return;
     }
 
-    setTimeout(() => {
+    id = setTimeout(() => {
       // autofocus on the first element can't work on this iteration
       // when single selects is on without a filter, the options is selected as soon as the user interacts with it
       // so is better to just open the dropdown and waits for the user to click down or up
@@ -96,7 +99,7 @@ export default function Trigger(props) {
         isOpen &&
         document.activeElement &&
         document.activeElement.getAttribute("role") !== "option" &&
-        document.activeElement.dataset.pkaAnchor !== "list-filter-input" &&
+        document.activeElement.dataset?.pkaAnchor !== "list-filter-input" &&
         state.isMulti
       ) {
         const element = document.getElementById(state.options[0].id);
@@ -105,6 +108,10 @@ export default function Trigger(props) {
         }
       }
     }, 350); // popover animation + has to wait to check if the search has already the focus :/
+
+    return () => {
+      clearTimeout(id);
+    };
   }, [isOpen, state.options, state.selectedOptions, state.isMulti]);
 
   const handleClick = () => {

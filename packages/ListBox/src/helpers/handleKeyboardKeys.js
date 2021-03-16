@@ -1,9 +1,7 @@
 import { handleEnterOrSpace, handleArrowKeys } from "../components/Options/helpers/options";
 import useListBox from "../useListBox";
 
-export const handleKeyDownKeyboardKeys = ({ providedProps, state, dispatch, onChangeContext }) => event => {
-  if (providedProps.isDisabled) return;
-
+export const handleKeyDownKeyboardKeys = ({ state, dispatch, onChangeContext }) => event => {
   if (event.key === " ") {
     // prevents spacebar to scroll the page
     event.preventDefault();
@@ -29,6 +27,7 @@ export const handleKeyUpKeyboardKeys = ({ providedProps, state, dispatch, onChan
 
     case "Enter":
     case " ":
+      if (providedProps.isDisabled) return;
       handleEnterOrSpace({ event, providedProps, state, dispatch, onChangeContext });
       break;
 

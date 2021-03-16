@@ -186,13 +186,12 @@ export function handleArrowKeys({ event, state, dispatch, onChangeContext }) {
         onChangeContext,
         eventType: KEY_PRESS,
       });
-
-      // this fixed a weird bug when the list is filtered the dom stop focusing correctly
-      // seems like a browser issue :/
-      window.requestAnimationFrame(() => {
-        nextElement.focus();
-      });
     }
+    // this fixed a weird bug when the list is filtered the dom stop focusing correctly
+    // seems like a browser issue :/
+    window.requestAnimationFrame(() => {
+      nextElement.focus();
+    });
   }
 }
 
