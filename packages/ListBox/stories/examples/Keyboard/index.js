@@ -65,8 +65,8 @@ export function SimpleStory() {
           </CheckListItem>
           <CheckListItem>
             Once a value has been selected and the popover has been closed, when the user interacts again with the
-            ListBox this one after the popover has opened, it should focus on the latest selected item if has single
-            selection on. In case has the isMulti prop on, it should focus on the first selected value by the user
+            ListBox and the popover has been opened, the focus should focus on the latest selected item if has the
+            single selection prop on. Meanwhile if has isMulti on should just open the ListBox.
             <br />
             <br />
           </CheckListItem>
@@ -74,10 +74,6 @@ export function SimpleStory() {
             If the user reaches the top or the bottom length of the List, the focus should remain in the first or last
             item depending the cases. We are not looping the list to avoid confusion to our users.
           </CheckListItem>
-          <Toast kind={Toast.types.kind.WARNING} hasCloseButton>
-            There still exploration to do to decided which element should be the one to get the focus for isMulti. (the
-            first one, the last one?)
-          </Toast>
         </Block>
       </Blocks>
     </>

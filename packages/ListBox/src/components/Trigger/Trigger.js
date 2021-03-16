@@ -76,7 +76,6 @@ export default function Trigger(props) {
   }, [refLabel, refTrigger, idListBox]);
 
   React.useEffect(() => {
-    let id = null;
     if (
       isOpen &&
       document.activeElement &&
@@ -84,34 +83,14 @@ export default function Trigger(props) {
       state.selectedOptions.length &&
       !state.isMulti
     ) {
-      id = setTimeout(() => {
+      const id = setTimeout(() => {
         document.getElementById(state.options[state.selectedOptions[0]].id).focus();
       }, 350); // popover animation :/
 
-      return;
+      return () => {
+        clearTimeout(id);
+      };
     }
-
-    id = setTimeout(() => {
-      // autofocus on the first element can't work on this iteration
-      // when single selects is on without a filter, the options is selected as soon as the user interacts with it
-      // so is better to just open the dropdown and waits for the user to click down or up
-      if (
-        isOpen &&
-        document.activeElement &&
-        document.activeElement.getAttribute("role") !== "option" &&
-        document.activeElement.dataset?.pkaAnchor !== "list-filter-input" &&
-        state.isMulti
-      ) {
-        const element = document.getElementById(state.options[0].id);
-        if (element) {
-          document.getElementById(state.options[0].id).focus();
-        }
-      }
-    }, 350); // popover animation + has to wait to check if the search has already the focus :/
-
-    return () => {
-      clearTimeout(id);
-    };
   }, [isOpen, state.options, state.selectedOptions, state.isMulti]);
 
   const handleClick = () => {
@@ -121,6 +100,12 @@ export default function Trigger(props) {
     }
 
     dispatch({ type: useListBox.types.openPopover });
+  };
+
+  const handleKeyDown = event => {
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+    }
   };
 
   const handleKeyUp = event => {
@@ -196,6 +181,7 @@ export default function Trigger(props) {
         isDisabled={isDisabled}
         onClick={handleClick}
         onKeyUp={handleKeyUp}
+        onKeyDown={handleKeyDown}
         ref={refTrigger}
       >
         <Label
