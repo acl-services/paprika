@@ -285,7 +285,7 @@ export function WithRawItems() {
         </Block>
         <Block>
           <CheckListItem>
-            The user is allowed to navigate over disabled elements but can not selected them or interact with them. This
+            The user is allowed to navigate over RawItem elements but can not select them or interact with them. This
             might required further discussion of what we really want to do.
           </CheckListItem>
         </Block>
