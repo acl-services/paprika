@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, configure } from "@testing-library/react";
+import { render, fireEvent, configure, waitFor } from "@testing-library/react";
 import ListBox from "../../../src";
 
 configure({ testIdAttribute: "data-pka-anchor" });
@@ -32,32 +32,14 @@ describe("ListBox.Popover", () => {
     expect(queryByTestId("popover.content")).toBeNull();
   });
 
-  it("should focus on option container as soon as the Popover is open", done => {
-    const { openSelect, getByTestId } = renderComponent();
+  it("should focus on option container as soon as the Popover is open", async () => {
+    const { openSelect } = renderComponent();
 
     openSelect();
-    setTimeout(() => {
-      expect(document.activeElement).toBe(getByTestId("popover.content"));
-      done();
-    }, 350);
-  });
-
-  it("should not focus on option container as soon as the Popover is open", done => {
-    const { getByText, getByTestId } = render(
-      <ListBox>
-        <ListBox.Popover key="Popover" shouldKeepFocus />
-        <ListBox.Option>Venus</ListBox.Option>
-        <ListBox.Option>Jupiter</ListBox.Option>
-      </ListBox>
-    );
-
-    fireEvent.click(getByText(/Select/));
-
-    // NOT BEST PRACTICE: fix later, this is due the timer I had to put on the ListBox becaue the PopoverTimer
-    setTimeout(() => {
-      expect(document.activeElement).not.toBe(getByTestId("popover.content"));
-      done();
-    }, 450);
+    await waitFor(() => {
+      const activeElementPkaAnchor = document.activeElement.dataset.pkaAnchor;
+      expect(activeElementPkaAnchor).toBe("popover.content");
+    });
   });
 
   it("should have popover open already ", () => {
