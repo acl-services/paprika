@@ -1,5 +1,5 @@
 import React from "react";
-import { configure, render, fireEvent, waitFor } from "@testing-library/react";
+import { configure, render, fireEvent } from "@testing-library/react";
 import ListBox from "../../../src";
 
 configure({ testIdAttribute: "data-pka-anchor" });
@@ -52,14 +52,19 @@ describe("ListBox.Popover", () => {
     expect(queryByTestId("popover.content")).toBeNull();
   });
 
-  it("should focus on the first option container as soon as the Popover when is multi", async () => {
+  it("should focus on the first option container as soon as the Popover when is multi", async done => {
     const { openSelect } = renderComponent();
 
     openSelect();
-    await waitFor(() => {
+    // THIS IS A CRAPPY TEST. The ListBox wait until the popover finish animating
+    // to trigger the focus, one we improved the way of the Popover communicated when the animation
+    // ends we can improve this test :/
+
+    setTimeout(() => {
       expect(document.activeElement.getAttribute("role")).toBe("option");
       expect(document.activeElement.textContent).toBe("Venus");
-    });
+      done();
+    }, 350);
   });
 
   it("should not focus on option container as soon as the Popover is open", () => {

@@ -74,25 +74,6 @@ const Filter = React.forwardRef((props, ref) => {
     }
   }, [applyFilterType, dispatch, isOpen]);
 
-  React.useLayoutEffect(() => {
-    /**
-     * This prevents from scrolling on the input search and moving the popover into a wrong absolute position
-     */
-    function handleScroll() {
-      if (document.activeElement.dataset?.pkaAnchor === "list-filter-input") {
-        dispatch({
-          type: useListBox.types.closePopover,
-        });
-      }
-    }
-
-    document.addEventListener("scroll", handleScroll);
-
-    return () => {
-      document.removeEventListener("scroll", handleScroll);
-    };
-  }, [dispatch, refFilterInput]);
-
   React.useEffect(() => {
     dispatch({
       type: useListBox.types.hasFilter,
