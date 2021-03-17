@@ -18,7 +18,7 @@ export default {
   title: `${storyName}/Backyard/Keyboard`,
 };
 
-export function Single() {
+export function Keyboard() {
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <div style={{ width: "720px" }}>
