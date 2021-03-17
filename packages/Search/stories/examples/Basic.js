@@ -32,13 +32,11 @@ export default function Basic() {
      * the Search.js File
      * or request help from the paprika team.
      * */
-    console.log(actions);
     const { setInput, close } = actions;
 
     setFilterData(Search.filter(value.label, data));
     setInput(value.label);
     close();
-    console.log(value);
     setValueSelected(`→${value.label}`);
   }
 

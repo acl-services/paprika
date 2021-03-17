@@ -75,6 +75,24 @@ export default function Trigger(props) {
     };
   }, [refLabel, refTrigger, idListBox]);
 
+  React.useEffect(() => {
+    if (
+      isOpen &&
+      document.activeElement &&
+      document.activeElement.dataset?.pkaAnchor === "list-box-trigger" &&
+      state.selectedOptions.length &&
+      !state.isMulti
+    ) {
+      const id = setTimeout(() => {
+        document.getElementById(state.options[state.selectedOptions[0]].id).focus();
+      }, 350); // popover animation :/
+
+      return () => {
+        clearTimeout(id);
+      };
+    }
+  }, [isOpen, state.options, state.selectedOptions, state.isMulti]);
+
   const handleClick = () => {
     if (isOpen) {
       dispatch({ type: useListBox.types.closePopover });
@@ -82,6 +100,12 @@ export default function Trigger(props) {
     }
 
     dispatch({ type: useListBox.types.openPopover });
+  };
+
+  const handleKeyDown = event => {
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+    }
   };
 
   const handleKeyUp = event => {
@@ -157,6 +181,7 @@ export default function Trigger(props) {
         isDisabled={isDisabled}
         onClick={handleClick}
         onKeyUp={handleKeyUp}
+        onKeyDown={handleKeyDown}
         ref={refTrigger}
       >
         <Label

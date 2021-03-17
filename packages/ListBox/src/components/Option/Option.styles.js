@@ -5,10 +5,6 @@ import * as types from "../../types";
 
 const blueSelected = tokens.color.blueLighten50;
 
-const activeStyles = css`
-  ${stylers.focusRing()}
-`;
-
 const disabledStyles = css`
   background: transparent;
   border: 0;
@@ -41,14 +37,14 @@ const stateStyles = ({ isSelected, hasPreventDefaultOnSelect }) => css`
   }
 
   &:focus {
-    ${stylers.focusRing()}
     border-bottom-color: transparent;
     border-radius: ${tokens.border.radius};
+    ${hasPreventDefaultOnSelect ? stylers.focusRing.subtle() : stylers.focusRing()}
   }
 `;
 
 export const Option = styled.li(
-  ({ size, isDisabled, hasPreventDefaultOnSelect, isSelected, isActive, listBoxHasFocus }) => css`
+  ({ size, isDisabled, isSelected }) => css`
     border: 2px solid transparent;
     border-radius: 3px;
     cursor: pointer;
@@ -58,11 +54,8 @@ export const Option = styled.li(
 
     &:hover {
       ${isDisabled ? "cursor: not-allowed;" : ""};
-    } 
-  
-    ${isActive && listBoxHasFocus && hasPreventDefaultOnSelect ? `border-color: ${tokens.color.blackLighten60}` : ""};
-    ${isActive && listBoxHasFocus ? activeStyles : ""}
-    ${hasPreventDefaultOnSelect}
+    }
+
     ${isSelected ? `background: ${blueSelected};` : ""}
     ${isDisabled ? disabledStyles : stateStyles}
   `

@@ -14,25 +14,19 @@ function hasNoResults(textSearchValue, filteredOptions) {
 const Filter = React.forwardRef((props, ref) => {
   const I18n = useI18n();
   const [state, dispatch] = useListBox();
-  const { hasFooter, isOpen, refFilterInput, refListBoxContainer } = state;
+  const { isOpen, refFilterInput } = state;
   const { isDisabled, isInline, size } = React.useContext(PropsContext);
 
   const [textSearch, setTextSearch] = React.useState(props.value);
   const applyFilterType = useListBox.types.applyFilter;
-
-  const reset = React.useCallback(() => {
-    window.requestAnimationFrame(() => {
-      applyFilter(dispatch, applyFilterType)([], false);
-      setTextSearch("");
-    });
-  }, [applyFilterType, dispatch]);
 
   React.useImperativeHandle(ref, () => ({
     clear: () => {
       setTextSearch(() => "");
     },
     reset: () => {
-      reset();
+      applyFilter(dispatch, applyFilterType)([], false);
+      setTextSearch("");
     },
   }));
 
@@ -67,30 +61,18 @@ const Filter = React.forwardRef((props, ref) => {
     applyFilter(dispatch, applyFilterType)(filteredOptions, noResultsFound);
   };
 
-  const handleBlur = () => {
-    window.requestAnimationFrame(() => {
-      if (hasFooter) {
-        // if has footer the responsible of closing is the Footer no the onblur event
-        return;
-      }
-
-      if (document.activeElement !== refListBoxContainer.current) {
-        // this will reset the activeOption and close the Popover
-        dispatch({
-          type: useListBox.types.setActiveOption,
-          payload: {
-            activeOptionIndex: null,
-          },
-        });
-      }
-    });
-  };
-
   React.useEffect(() => {
     if (!isOpen) {
-      reset();
+      const id = window.requestAnimationFrame(() => {
+        applyFilter(dispatch, applyFilterType)([], false);
+        setTextSearch("");
+      });
+
+      return () => {
+        cancelAnimationFrame(id);
+      };
     }
-  }, [reset, isOpen]);
+  }, [applyFilterType, dispatch, isOpen]);
 
   React.useEffect(() => {
     dispatch({
@@ -121,7 +103,6 @@ const Filter = React.forwardRef((props, ref) => {
           data-pka-anchor="list-filter-input"
           icon={hasSearchIcon ? <SearchIcon /> : null}
           isDisabled={isDisabled}
-          onBlur={handleBlur}
           onChange={handleChangeFilter}
           onKeyDown={props.onKeyDown}
           placeholder={placeholder || I18n.t("listBox.filter.placeholder")}

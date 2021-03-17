@@ -8,7 +8,6 @@ export function sanitizeActionTypes() {
     openPopover: actionTypes.openPopover,
     reset: actionTypes.reset,
     selectSingleOption: actionTypes.selectSingleOption,
-    setActiveOption: actionTypes.setActiveOption,
     togglePopover: actionTypes.togglePopover,
     unhideOptions: actionTypes.unhideOptions,
     unselectOptions: actionTypes.unselectOptions,
