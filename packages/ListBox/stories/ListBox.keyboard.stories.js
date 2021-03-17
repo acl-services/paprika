@@ -15,7 +15,7 @@ import {
 const storyName = getStoryName("ListBox");
 
 export default {
-  title: `${storyName}/Backyard/Keyboard`,
+  title: `${storyName}/Backyard/KeyboardTesting`,
 };
 
 export function Keyboard() {

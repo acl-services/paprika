@@ -14,7 +14,7 @@ const CheckListItem = ({ children }) => {
     <div style={{ padding: "8px", display: "flex", position: "relative" }}>
       <label>
         <div style={{ position: "absolute", top: "10px", left: "-20px" }}>
-          <input type="checkbox" />
+          <input type="checkbox" tabIndex="-1" />
         </div>
         <div>{children}</div>
       </label>
@@ -56,9 +56,7 @@ export function SimpleStory() {
           <CheckListItem>
             while the menu is open and there is not previous selection and is single selection, the component should
             wait for an interaction from the user before selecting something either clicking or <Up />
-            <Down />. <br />
-            In case the ListBox has a multi prop enable, then it should focus on the first element if the component has
-            not selection.
+            <Down />. In case there is a previous selection in single selection the selected option will be focus.
           </CheckListItem>
           <CheckListItem>
             it should be possible to navigate with <Up /> <Down /> across all the items
@@ -111,7 +109,8 @@ export function WithFilterStory() {
             filter input after the popover opened, this applies to both case isMulti and single selection
           </CheckListItem>
           <CheckListItem>
-            Once the ListBox has at least one selected option, it should focus on it even if the filter exists.
+            Once the <strong>Single option ListBox</strong> has at least one selected option, it should focus on it even
+            if the filter exists.
           </CheckListItem>
           <CheckListItem>
             If the user filtered the options, the keyboard navigation should not change. It should keep behaving
