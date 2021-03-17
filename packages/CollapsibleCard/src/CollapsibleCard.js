@@ -76,3 +76,6 @@ CollapsibleCard.Body = Body;
 CollapsibleCard.Header = Header;
 CollapsibleCard.Segment = Segment;
 CollapsibleCard.Group = Group;
+CollapsibleCard.types = {
+  position: POSITIONS,
+};

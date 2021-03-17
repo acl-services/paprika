@@ -39,7 +39,8 @@ export const HeaderContent = styled.div(
   ({ isBroken }) => css`
     align-self: center;
     display: flex;
-    flex: 1 1 auto;
+    flex-grow: 1;
+    flex-wrap: nowrap;
     margin-right: ${spacer(2)};
 
     ${isBroken &&
