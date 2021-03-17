@@ -127,11 +127,11 @@ const propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})),
   /** For authors use only, use case: inline editing. */
   enableArrowKeyNavigation: PropTypes.bool,
-  /** It will be call each time a new cell received the focus */
+  /** Will fire each time a new cell receives focus */
   onFocus: PropTypes.func,
-  /** It will be call each time a current selected cell lose focus */
+  /** Will fire each time a selected cell loses focus */
   onBlur: PropTypes.func,
-  /** It will be fire each time an user click on a cell */
+  /** Will fire each time user clicks on a cell */
   onClick: PropTypes.func,
 };
 
