@@ -208,7 +208,7 @@ const [isEditing, setIsEditing] = React.useState(false);
 
 The inline-editing components provide two different callbacks onChange and onSubmit
 
-- `onChange` Will fire each time the component get an interaction from the user. (typing, selecting, etc)
+- `onChange` Will fire each time the component gets an interaction from the user. (typing, selecting, etc)
 - `onSubmit` Will occurs only after the user either click `enter` (for certain component) or click outside of the editing state (onBlur)
 
 **NOTE:** if the user clicks `Esc` the onSubmit event will not fire. We aren't providing a `onEscape` callback neither, therefore would be hard to rollback an interaction
