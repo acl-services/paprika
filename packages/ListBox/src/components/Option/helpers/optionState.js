@@ -25,20 +25,23 @@ function createOption({ index, child, groupLabel = null, groupId = null }) {
 }
 
 export function getDataOptions(children) {
-  if (!children) throw new Error("ListBox.Options is a required prop, please check you are passing correctly the data");
+  if (!children) throw new Error("ListBox.Option is a required prop, please check you are passing correctly the data");
   if (!children.length) return [];
 
   const options = {};
+  const optionsIndex = {};
   let index = 0;
 
   React.Children.toArray(children).forEach(child => {
     if (child.type && isWhiteListed(child.type.displayName)) {
-      options[index] = createOption({ index, child, groupId: child.props.groupId });
+      const option = createOption({ index, child, groupId: child.props.groupId });
+      options[index] = option;
+      optionsIndex[option.id] = index;
       index += 1;
     }
 
     return child;
   });
 
-  return options;
+  return { options, optionsIndex };
 }

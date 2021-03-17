@@ -11,7 +11,6 @@ import * as sc from "./Option.styles";
 export default function Option(props) {
   const { index, groupId, label, ...moreProps } = props; // eslint-disable-line
   const [state, dispatch] = useListBox();
-  const { activeOption, listBoxHasFocus } = state;
   const providedProps = React.useContext(PropsContext);
   const { isReadOnly, size } = providedProps;
   const onChangeContext = React.useContext(OnChangeContext);
@@ -32,8 +31,6 @@ export default function Option(props) {
       {...getA11yAttributesForOption(isSelected)}
       hasPreventDefaultOnSelect={props.preventDefaultOnSelect}
       id={id}
-      listBoxHasFocus={listBoxHasFocus}
-      isActive={activeOption === index}
       isDisabled={isDisabled}
       isSelected={isSelected}
       size={size}
