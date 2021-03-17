@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.1-next.0
+
+### Patch Changes
+
+- 6a1fbbd: Support position prop to be passed in
+
 ## 2.0.0
 
 ### Major Changes
