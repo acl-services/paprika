@@ -38,7 +38,7 @@ function InlineInput(props) {
 }
 
 export function AppInlineInput() {
-  const [value, setValue] = React.useState("Click on it to edit it");
+  const [value, setValue] = React.useState("Click here to edit");
   const [isEditing, setIsEditing] = React.useState(false);
 
   function handleClick() {
