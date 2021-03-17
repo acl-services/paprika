@@ -211,7 +211,7 @@ The inline-editing components provide two different callbacks onChange and onSub
 - `onChange` Will fire each time the component gets an interaction from the user. (typing, selecting, etc)
 - `onSubmit` Will occurs only after the user either click `enter` (for certain component) or click outside of the editing state (onBlur)
 
-**NOTE:** if the user clicks `Esc` the onSubmit event will not fire. We aren't providing a `onEscape` callback neither, therefore would be hard to rollback an interaction
+**NOTE:** if the user clicks `Esc` the onSubmit event will not fire. We aren't providing an `onEscape` callback either, therefore it would be hard to rollback an interaction
 for an user if your are using the onChange event to update your component, for that purpose the `onSubmit` event is more stable
 
 ## Within a Table
