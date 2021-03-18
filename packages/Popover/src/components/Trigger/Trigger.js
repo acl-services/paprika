@@ -56,12 +56,16 @@ function Trigger(props) {
     });
   }
 
+  const commonAttributes = {
+    a11yText,
+    "aria-haspopup": true,
+    "data-pka-anchor": "popover.trigger",
+  };
+
   if (isEager) {
     return (
       <sc.Trigger
-        a11yText={a11yText}
-        aria-haspopup
-        data-pka-anchor="popover.trigger"
+        {...commonAttributes}
         onMouseOver={handleTriggerEvent}
         onMouseOut={handleTriggerEvent}
         onFocus={handleTriggerEvent}
@@ -76,9 +80,7 @@ function Trigger(props) {
 
   return (
     <RawButton
-      a11yText={a11yText}
-      aria-haspopup
-      data-pka-anchor="popover.trigger"
+      {...commonAttributes}
       onClick={handleTriggerEvent}
       onBlur={shouldKeepFocus ? handleTriggerEvent : null}
       {...moreProps}
