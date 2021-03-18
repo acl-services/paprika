@@ -29,11 +29,10 @@ function Content(props) {
     "aria-required": isRequired || null,
     disabled: isDisabled || null,
     id: labelId,
-    refLabel,
   };
 
   const renderChildren = () => {
-    return typeof children === "function" ? children(a11yProps) : children;
+    return typeof children === "function" ? children(a11yProps, refLabel) : children;
   };
 
   const contextValue = { fieldsetAriaDescribedBy: ariaDescribedByIdsString };
@@ -50,8 +49,9 @@ function Content(props) {
 }
 
 const propTypes = {
-  /** Input field and layout elements. May be a render function with a11yProps object as an argument.
-   * a11yProps includes: { id, refLabel, disabled?, "aria-disabled"?, "aria-describedby"?, "aria-required"? }
+  /** Input field and layout elements. May be a render function with a11yProps object and refLabel.
+   * a11yProps includes: { id, disabled?, "aria-disabled"?, "aria-describedby"?, "aria-required"? }
+   * refLabel is a React ref for the `<FormElement.Label />`
    */
   children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
 };
