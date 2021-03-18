@@ -11,11 +11,11 @@ export default function List(props) {
   const {
     activeIndex,
     focusIndex,
-    handleClickTab,
     hasInsetFocusStyle,
     hasTruncation,
     isVertical,
     kind,
+    onClickTab,
     onKeyDown,
     refList,
     size,
@@ -35,7 +35,7 @@ export default function List(props) {
         hasTruncation,
         isSelected: activeIndex === index,
         isVertical,
-        onClick: e => handleClickTab(e, index),
+        onClick: e => onClickTab(e, index),
         onKeyDownArrows: onKeyDown,
         size,
         tabHeight,
@@ -43,7 +43,13 @@ export default function List(props) {
     });
 
   return (
-    <sc.TabList {...moreProps} role="tablist" ref={refList} data-pka-anchor="tabs.list">
+    <sc.TabList
+      {...moreProps}
+      aria-orientation={isVertical ? "vertical" : "horizontal"}
+      data-pka-anchor="tabs.list"
+      ref={refList}
+      role="tablist"
+    >
       {childrenWithProps}
     </sc.TabList>
   );
@@ -53,7 +59,5 @@ List.propTypes = {
   /** List of Tabs.Tab elements. */
   children: PropTypes.node.isRequired,
 };
-
-List.defaultProps = {};
 
 List.displayName = "Tabs.List";

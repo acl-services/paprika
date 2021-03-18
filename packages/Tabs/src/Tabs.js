@@ -2,19 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import types from "./types";
 import TabsContext from "./TabsContext";
+import { keyTypes, isItemDisabled, getItems, getItemIndexes } from "./helpers";
 import Panel from "./components/Panel/Panel";
 import Panels from "./components/Panels/Panels";
 import Tab from "./components/Tab/Tab";
 import List from "./components/List/List";
-
-const keyTypes = {
-  PREV: "ArrowLeft",
-  NEXT: "ArrowRight",
-  FIRST: "Home",
-  LAST: "End",
-};
-
-const itemSelector = "[role='tab']";
 
 export default function Tabs(props) {
   const {
@@ -33,34 +25,27 @@ export default function Tabs(props) {
 
   const isControlled = Boolean(onClickTab);
 
-  const indexToUse = index !== null ? index : defaultIndex;
+  function getIndex() {
+    if (index === null) {
+      return defaultIndex >= 0 ? defaultIndex : null;
+    }
+    return index >= 0 ? index : null;
+  }
+
+  const indexToUse = getIndex();
   const [activeIndex, setActiveIndex] = React.useState(indexToUse);
-  const [focusIndex, setFocusIndex] = React.useState(indexToUse);
+  const [focusIndex, setFocusIndex] = React.useState(indexToUse || 0);
   const refList = React.useRef(null);
-
-  function isItemDisabled(item) {
-    return item.getAttribute("aria-disabled") === "true";
-  }
-
-  function getItems() {
-    if (!refList.current) return [];
-    return Array.from(refList.current.querySelectorAll(itemSelector));
-  }
-
-  function getItemIndexes({ hasDisabledItems } = { hasDisabledItems: true }) {
-    return getItems()
-      .map((item, index) => (!hasDisabledItems && isItemDisabled(item) ? null : index))
-      .filter(index => index !== null);
-  }
 
   React.useLayoutEffect(() => {
     setActiveIndex(indexToUse);
   }, [indexToUse]);
 
   React.useLayoutEffect(() => {
-    const items = getItems();
-    if (index === null && items.length > 0 && isItemDisabled(items[indexToUse])) {
-      const itemIndexes = getItemIndexes({ hasDisabledItems: false });
+    const items = getItems(refList);
+    if (indexToUse !== null && items.length > 0 && isItemDisabled(items[indexToUse])) {
+      const itemIndexes = getItemIndexes(refList, { hasDisabledItems: false });
+
       if (itemIndexes.length > 0) {
         setActiveIndex(itemIndexes[0]);
       }
@@ -68,7 +53,7 @@ export default function Tabs(props) {
   }, []);
 
   function focusItem(index) {
-    getItems()[index].focus();
+    getItems(refList)[index].focus();
     setFocusIndex(index);
   }
 
@@ -87,15 +72,17 @@ export default function Tabs(props) {
     if (Object.values(keyTypes).includes(event.key)) {
       event.stopPropagation();
 
-      const itemIndexes = getItemIndexes();
+      const itemIndexes = getItemIndexes(refList);
       const enabledSelectedIndex = itemIndexes.indexOf(focusIndex);
       const count = itemIndexes.length;
 
       switch (event.key) {
-        case keyTypes.NEXT:
+        case keyTypes.RIGHT:
+        case keyTypes.DOWN:
           focusItem(itemIndexes[(enabledSelectedIndex + 1) % count]);
           break;
-        case keyTypes.PREV:
+        case keyTypes.LEFT:
+        case keyTypes.UP:
           focusItem(itemIndexes[(enabledSelectedIndex - 1 + count) % count]);
           break;
         case keyTypes.FIRST:
@@ -113,12 +100,12 @@ export default function Tabs(props) {
   const contextValue = {
     activeIndex,
     focusIndex,
-    handleClickTab,
     hasInsetFocusStyle,
     hasTruncation,
     isDisabled,
     isVertical,
     kind,
+    onClickTab: handleClickTab,
     onKeyDown: handleKeyDown,
     refList,
     size,

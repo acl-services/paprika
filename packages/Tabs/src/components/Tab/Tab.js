@@ -21,6 +21,7 @@ export default function Tab(props) {
       <sc.Link
         {...moreProps}
         aria-label={a11yText}
+        aria-selected={isSelected}
         data-pka-anchor="tab-link"
         href={href}
         onKeyDown={e => handleKeyDown(e, focusIndex)}

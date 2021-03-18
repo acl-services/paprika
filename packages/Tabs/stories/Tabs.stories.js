@@ -17,7 +17,63 @@ import Tabs from "../src/Tabs";
 
 const storyName = getStoryName("Tabs");
 
-function TabsExample() {
+function KeyboardTest() {
+  return (
+    <>
+      <Button>Before Tabs</Button>
+      <Gap.Large />
+      <Tabs hasInsetFocusStyle defaultIndex={-1}>
+        <Tabs.List>
+          {true === false ? <Tabs.Tab>Impossible Tab</Tabs.Tab> : null}
+          <div>
+            <Tabs.Tab>Zero Tab</Tabs.Tab>
+          </div>
+          <Tabs.Tab isDisabled>First Tab</Tabs.Tab>
+          <Tabs.Tab>Second Tab</Tabs.Tab>
+          <Tabs.Tab isDisabled href="https://youtu.be/cvh0nX08nRw">
+            Third Tab
+          </Tabs.Tab>
+          <Tabs.Tab href="https://youtu.be/cvh0nX08nRw" target="_blank" rel="noopener noreferrer">
+            Fourth Tab
+          </Tabs.Tab>
+          <Tabs.Tab>Fifth Tab</Tabs.Tab>
+        </Tabs.List>
+        <Tabs.Panels>
+          {true === false ? (
+            <Tabs.Panel>
+              <p>Impossible panel.</p>
+            </Tabs.Panel>
+          ) : null}
+          <div>
+            <Tabs.Panel>
+              <p>Zero panel.</p>
+            </Tabs.Panel>
+          </div>
+          <Tabs.Panel>
+            <p>First panel.</p>
+            <Button size={Button.types.size.SMALL}>Inside Tabs.Panel</Button>
+          </Tabs.Panel>
+          <Tabs.Panel>
+            <p>Second panel.</p>
+          </Tabs.Panel>
+          <Tabs.Panel>
+            <p>Third panel.</p>
+          </Tabs.Panel>
+          <Tabs.Panel>
+            <p>Fourth panel.</p>
+          </Tabs.Panel>
+          <Tabs.Panel>
+            <p>Fifth panel.</p>
+          </Tabs.Panel>
+        </Tabs.Panels>
+      </Tabs>
+      <Gap.Large />
+      <Button>After Tabs</Button>
+    </>
+  );
+}
+
+function Cypress() {
   return (
     <React.Fragment>
       <Tabs>
@@ -60,11 +116,6 @@ storiesOf(storyName, module)
 storiesOf(`${storyName}/Examples`, module)
   .add("Controlled", ControlledStory)
   .add("Uncontrolled", UncontrolledStory)
-  .add("Tabs test", () => (
-    <Story>
-      <TabsExample />
-    </Story>
-  ))
   .add("Tab links", () => (
     <Story>
       <Tabs>
@@ -123,7 +174,6 @@ storiesOf(`${storyName}/Examples`, module)
             <Icon4 />
             VHS humblebrag
           </Tabs.Tab>
-          {true === false ? <Tabs.Tab>Impossible tab</Tabs.Tab> : null}
         </Tabs.List>
         <Tabs.Panels>
           <Tabs.Panel>
@@ -149,10 +199,15 @@ storiesOf(`${storyName}/Examples`, module)
               chicharrones small batch, tofu waistcoat mlkshk unicorn trust fund beard cronut.
             </p>
           </Tabs.Panel>
-          {true === false ? <Tabs.Panel>Impossible panel</Tabs.Panel> : null}
         </Tabs.Panels>
       </Tabs>
     </Story>
   ));
 
-storiesOf(`${storyName}/Backyard/Tests`, module).add("Cypress", () => <TabsExample />);
+storiesOf(`${storyName}/Backyard/Tests`, module)
+  .add("Cypress", () => <Cypress />)
+  .add("Keyboard", () => (
+    <Story>
+      <KeyboardTest />
+    </Story>
+  ));
