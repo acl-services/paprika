@@ -13,7 +13,7 @@ const defaultData = [
 ];
 
 export function Open() {
-  const { isSelected, filteredData, getSelectedOptions, ...moreProps } = useListBoxWithTags({
+  const { isSelected, filteredData, getSelectedOptions, listBoxWithTagsProps } = useListBoxWithTags({
     key: "name",
     defaultData,
     defaultFilteredData: defaultData,
@@ -28,7 +28,7 @@ export function Open() {
         noResultsMessage="No results found, but you can add an email and then press enter..."
         selectedOptions={selectedOptions}
         tagLabelKey="name"
-        {...moreProps}
+        {...listBoxWithTagsProps}
         isOpen
       >
         {filteredData.map(option => {
@@ -40,7 +40,7 @@ export function Open() {
 }
 
 export function Selected() {
-  const { isSelected, filteredData, getSelectedOptions, ...moreProps } = useListBoxWithTags({
+  const { isSelected, filteredData, getSelectedOptions, listBoxWithTagsProps } = useListBoxWithTags({
     key: "name",
     defaultData,
     defaultFilteredData: defaultData,
@@ -55,7 +55,7 @@ export function Selected() {
         noResultsMessage="No results found, but you can add an email and then press enter..."
         selectedOptions={selectedOptions}
         tagLabelKey="name"
-        {...moreProps}
+        {...listBoxWithTagsProps}
         isOpen
       >
         {filteredData.map(option => {
