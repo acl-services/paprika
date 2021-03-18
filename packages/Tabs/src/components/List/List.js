@@ -10,16 +10,16 @@ export default function List(props) {
   const { children, ...moreProps } = props;
   const {
     activeIndex,
-    kind,
     currentFocusIndex,
+    handleClickTab,
     hasInsetFocusStyle,
     hasTruncation,
-    tabHeight,
     isVertical,
+    kind,
     onKeyDown,
-    handleClickTab,
-    setTabListRef,
+    refList,
     size,
+    tabHeight,
   } = context;
 
   const childrenWithProps = React.Children.map(children, (tab, index) => {
@@ -40,7 +40,7 @@ export default function List(props) {
   });
 
   return (
-    <sc.TabList {...moreProps} role="tablist" ref={ref => setTabListRef(ref)} data-pka-anchor="tabs.list">
+    <sc.TabList {...moreProps} role="tablist" ref={refList} data-pka-anchor="tabs.list">
       {childrenWithProps}
     </sc.TabList>
   );

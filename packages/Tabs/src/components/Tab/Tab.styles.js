@@ -31,12 +31,16 @@ const activeStyles = ({ isVertical, kind }) => css`
     `}
 `;
 
-const disabledStyles = css`
+const disabledStyles = ({ hasInsetFocusStyle }) => css`
   &&& {
     border-bottom-color: transparent;
   }
   color: ${tokens.color.blackDisabled};
   cursor: not-allowed;
+
+  &:focus {
+    ${stylers.focusRing.subtle(hasInsetFocusStyle)}
+  }
 `;
 
 function getHeightValue(height) {
