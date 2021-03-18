@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import TabsContext from "../../TabsContext";
+import Tab from "../Tab/Tab";
 import * as sc from "./List.styles";
 
 export default function List(props) {
@@ -10,7 +10,7 @@ export default function List(props) {
   const { children, ...moreProps } = props;
   const {
     activeIndex,
-    currentFocusIndex,
+    focusIndex,
     handleClickTab,
     hasInsetFocusStyle,
     hasTruncation,
@@ -22,22 +22,25 @@ export default function List(props) {
     tabHeight,
   } = context;
 
-  const childrenWithProps = React.Children.map(children, (tab, index) => {
-    if (!tab) return;
-
-    return React.cloneElement(tab, {
-      kind,
-      currentFocusIndex,
-      hasInsetFocusStyle,
-      hasTruncation,
-      tabHeight,
-      isSelected: activeIndex === index,
-      isVertical,
-      onClick: e => handleClickTab(e, index),
-      onKeyDownArrows: onKeyDown,
-      size,
+  const childrenWithProps = React.Children.toArray(children)
+    .filter(child => {
+      return child !== null && child.type.displayName === Tab.displayName;
+    })
+    .map((tab, index) => {
+      return React.cloneElement(tab, {
+        focusIndex,
+        kind,
+        hasFocus: focusIndex === index,
+        hasInsetFocusStyle,
+        hasTruncation,
+        isSelected: activeIndex === index,
+        isVertical,
+        onClick: e => handleClickTab(e, index),
+        onKeyDownArrows: onKeyDown,
+        size,
+        tabHeight,
+      });
     });
-  });
 
   return (
     <sc.TabList {...moreProps} role="tablist" ref={refList} data-pka-anchor="tabs.list">

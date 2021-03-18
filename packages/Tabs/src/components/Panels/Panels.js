@@ -1,23 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
 import TabsContext from "../../TabsContext";
+import Panel from "../Panel/Panel";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
 };
 
 const Panels = props => {
-  const context = React.useContext(TabsContext);
-
   const { children, ...moreProps } = props;
+  const { activeIndex } = React.useContext(TabsContext);
 
-  const childrenWithProps = React.Children.map(children, (panel, index) => {
-    if (!panel) return;
+  const childrenWithProps = React.Children.toArray(children)
+    .filter(child => {
+      return child !== null && child.type.displayName === Panel.displayName;
+    })
+    .map((panel, index) => {
+      if (!panel) return;
 
-    return React.cloneElement(panel, {
-      isSelected: context.activeIndex === index,
+      return React.cloneElement(panel, {
+        isSelected: activeIndex === index,
+      });
     });
-  });
 
   return <div {...moreProps}>{childrenWithProps}</div>;
 };

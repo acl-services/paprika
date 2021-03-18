@@ -5,8 +5,8 @@ import * as sc from "./Tab.styles";
 
 export default function Tab(props) {
   const context = React.useContext(TabsContext);
-  const { a11yText, children, href, isSelected, onClick, onKeyDownArrows, ...moreProps } = props;
-  const { activeIndex, currentFocusIndex, kind } = context;
+  const { a11yText, children, hasFocus, href, isSelected, onClick, onKeyDownArrows, ...moreProps } = props;
+  const { activeIndex, focusIndex, kind } = context;
 
   const handleKeyDown = (event, index) => {
     onKeyDownArrows(event, index);
@@ -14,16 +14,16 @@ export default function Tab(props) {
 
   const isDisabled = context.isDisabled || props.isDisabled;
   const handleClick = isDisabled ? () => {} : onClick;
-  const tabIndex = isSelected ? 0 : -1;
+  const tabIndex = hasFocus ? 0 : -1;
 
   if (href && !isDisabled) {
     return (
       <sc.Link
         {...moreProps}
         aria-label={a11yText}
-        data-pka-anchor="tab"
+        data-pka-anchor="tab-link"
         href={href}
-        onKeyDown={e => handleKeyDown(e, currentFocusIndex)}
+        onKeyDown={e => handleKeyDown(e, focusIndex)}
         role="tab"
         tabIndex={tabIndex}
       >
@@ -38,11 +38,11 @@ export default function Tab(props) {
       aria-label={a11yText}
       aria-selected={isSelected}
       kind={kind}
-      data-pka-anchor="tab-link"
+      data-pka-anchor="tab"
       isDisabled={isDisabled}
       isSelected={isSelected}
       onClick={e => handleClick(e, activeIndex)}
-      onKeyDown={e => handleKeyDown(e, currentFocusIndex)}
+      onKeyDown={e => handleKeyDown(e, focusIndex)}
       role="tab"
       tabIndex={tabIndex}
     >
@@ -58,13 +58,16 @@ Tab.propTypes = {
   /** Label for the tab */
   children: PropTypes.node,
 
+  /** Internal only: if tab has focus */
+  hasFocus: PropTypes.bool,
+
   /** Sets a url the tab goes to */
   href: PropTypes.string,
 
   /** If the tab is disabled  */
   isDisabled: PropTypes.bool,
 
-  /** Controls if the option is selected or not */
+  /** Internal only: if tab is selected */
   isSelected: PropTypes.bool,
 
   /** Callback onClick */
@@ -77,6 +80,7 @@ Tab.propTypes = {
 Tab.defaultProps = {
   a11yText: null,
   children: null,
+  hasFocus: false,
   href: null,
   isDisabled: false,
   isSelected: false,

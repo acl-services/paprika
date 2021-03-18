@@ -16,8 +16,6 @@ const keyTypes = {
 
 const itemSelector = "[role='tab']";
 
-const shouldFocusDisabledItems = true;
-
 export default function Tabs(props) {
   const {
     children,
@@ -33,54 +31,56 @@ export default function Tabs(props) {
     tabHeight,
   } = props;
 
+  const isControlled = Boolean(onClickTab);
+
   const indexToUse = index !== null ? index : defaultIndex;
-
   const [activeIndex, setActiveIndex] = React.useState(indexToUse);
-  const [currentFocusIndex, setFocusIndex] = React.useState(indexToUse);
-  // const [currentFocusValue, setFocusValue] = React.useState(null);
-  // const [itemRefs, setItemRefs] = React.useState([]);
-
+  const [focusIndex, setFocusIndex] = React.useState(indexToUse);
   const refList = React.useRef(null);
+
+  function isItemDisabled(item) {
+    return item.getAttribute("aria-disabled") === "true";
+  }
 
   function getItems() {
     if (!refList.current) return [];
     return Array.from(refList.current.querySelectorAll(itemSelector));
   }
 
-  function isItemDisabled(item) {
-    return item.getAttribute("aria-disabled") === "true" || item.hasAttribute("disabled");
-  }
-
-  function getItemIndexes() {
+  function getItemIndexes({ hasDisabledItems } = { hasDisabledItems: true }) {
     return getItems()
-      .map((item, index) => (!shouldFocusDisabledItems && isItemDisabled(item) ? null : index))
+      .map((item, index) => (!hasDisabledItems && isItemDisabled(item) ? null : index))
       .filter(index => index !== null);
   }
 
   React.useLayoutEffect(() => {
     setActiveIndex(indexToUse);
-  }, [indexToUse, setActiveIndex]);
+  }, [indexToUse]);
+
+  React.useLayoutEffect(() => {
+    const items = getItems();
+    if (index === null && items.length > 0 && isItemDisabled(items[indexToUse])) {
+      const itemIndexes = getItemIndexes({ hasDisabledItems: false });
+      if (itemIndexes.length > 0) {
+        setActiveIndex(itemIndexes[0]);
+      }
+    }
+  }, []);
 
   function focusItem(index) {
     getItems()[index].focus();
     setFocusIndex(index);
   }
 
-  // React.useLayoutEffect(() => {
-  //   const enabledIndexes = getItemIndexes();
-  //   if (enabledIndexes.length > 0) {
-  //     setFocusIndex(enabledIndexes[0]);
-  //   }
-  // }, []);
-
   const handleClickTab = (event, index) => {
     event.preventDefault();
 
-    if (onClickTab) {
+    if (isControlled) {
       onClickTab(index);
     } else {
       setActiveIndex(index);
     }
+    setFocusIndex(index);
   };
 
   const handleKeyDown = event => {
@@ -88,7 +88,7 @@ export default function Tabs(props) {
       event.stopPropagation();
 
       const itemIndexes = getItemIndexes();
-      const enabledSelectedIndex = itemIndexes.indexOf(currentFocusIndex);
+      const enabledSelectedIndex = itemIndexes.indexOf(focusIndex);
       const count = itemIndexes.length;
 
       switch (event.key) {
@@ -112,7 +112,7 @@ export default function Tabs(props) {
 
   const contextValue = {
     activeIndex,
-    currentFocusIndex,
+    focusIndex,
     handleClickTab,
     hasInsetFocusStyle,
     hasTruncation,
