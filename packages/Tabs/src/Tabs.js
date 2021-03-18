@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { v4 as uuidv4 } from "uuid";
 import types from "./types";
 import TabsContext from "./TabsContext";
 import { keyTypes, isItemDisabled, getItems, getItemIndexes } from "./helpers";
@@ -10,6 +11,7 @@ import List from "./components/List/List";
 
 export default function Tabs(props) {
   const {
+    a11yText,
     children,
     defaultIndex,
     hasInsetFocusStyle,
@@ -36,6 +38,7 @@ export default function Tabs(props) {
   const [activeIndex, setActiveIndex] = React.useState(indexToUse);
   const [focusIndex, setFocusIndex] = React.useState(indexToUse || 0);
   const refList = React.useRef(null);
+  const [idTabs] = React.useState(uuidv4());
 
   React.useLayoutEffect(() => {
     setActiveIndex(indexToUse);
@@ -98,10 +101,12 @@ export default function Tabs(props) {
   };
 
   const contextValue = {
+    a11yText,
     activeIndex,
     focusIndex,
     hasInsetFocusStyle,
     hasTruncation,
+    idTabs,
     isDisabled,
     isVertical,
     kind,
@@ -118,8 +123,8 @@ export default function Tabs(props) {
 Tabs.types = types;
 
 Tabs.propTypes = {
-  /** The visual theme of the tabs list. */
-  kind: PropTypes.oneOf([Tabs.types.kind.PRIMARY, Tabs.types.kind.SECONDARY]),
+  /** Description of the purpose of the tabs for assistive technology. */
+  a11yText: PropTypes.string,
 
   /** Expects Tabs.List and Tabs.Panels. */
   children: PropTypes.node.isRequired,
@@ -142,6 +147,9 @@ Tabs.propTypes = {
   /** If the tabs are stacked vertically. */
   isVertical: PropTypes.bool,
 
+  /** The visual theme of the tabs list. */
+  kind: PropTypes.oneOf([Tabs.types.kind.PRIMARY, Tabs.types.kind.SECONDARY]),
+
   /** Use this prop when you want to use Tabs as a controlled component (also you must use 'index' prop). When the user clicks on a tab, this gets fired (the tab index is passed to it). */
   onClickTab: PropTypes.func,
 
@@ -153,13 +161,14 @@ Tabs.propTypes = {
 };
 
 Tabs.defaultProps = {
-  kind: Tabs.types.kind.PRIMARY,
+  a11yText: null,
   defaultIndex: 0,
   hasInsetFocusStyle: false,
   hasTruncation: false,
   index: null,
   isDisabled: false,
   isVertical: false,
+  kind: Tabs.types.kind.PRIMARY,
   onClickTab: null,
   size: Tabs.types.size.MEDIUM,
   tabHeight: 48,

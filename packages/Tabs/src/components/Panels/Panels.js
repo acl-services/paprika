@@ -9,7 +9,7 @@ const propTypes = {
 
 const Panels = props => {
   const { children, ...moreProps } = props;
-  const { activeIndex } = React.useContext(TabsContext);
+  const { activeIndex, idTabs } = React.useContext(TabsContext);
 
   const childrenWithProps = React.Children.toArray(children)
     .filter(child => {
@@ -19,7 +19,9 @@ const Panels = props => {
       if (!panel) return;
 
       return React.cloneElement(panel, {
+        "aria-labelledby": `${idTabs}-tab-${index}`,
         isSelected: activeIndex === index,
+        id: `${idTabs}-panel-${index}`,
       });
     });
 

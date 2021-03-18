@@ -22,7 +22,7 @@ function KeyboardTest() {
     <>
       <Button>Before Tabs</Button>
       <Gap.Large />
-      <Tabs hasInsetFocusStyle defaultIndex={-1}>
+      <Tabs hasInsetFocusStyle defaultIndex={-1} a11yText="Testing Tabs">
         <Tabs.List>
           {true === false ? <Tabs.Tab>Impossible Tab</Tabs.Tab> : null}
           <div>

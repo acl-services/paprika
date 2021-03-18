@@ -5,14 +5,14 @@ import Tab from "../Tab/Tab";
 import * as sc from "./List.styles";
 
 export default function List(props) {
-  const context = React.useContext(TabsContext);
-
   const { children, ...moreProps } = props;
   const {
+    a11yText,
     activeIndex,
     focusIndex,
     hasInsetFocusStyle,
     hasTruncation,
+    idTabs,
     isVertical,
     kind,
     onClickTab,
@@ -20,7 +20,7 @@ export default function List(props) {
     refList,
     size,
     tabHeight,
-  } = context;
+  } = React.useContext(TabsContext);
 
   const childrenWithProps = React.Children.toArray(children)
     .filter(child => {
@@ -28,11 +28,13 @@ export default function List(props) {
     })
     .map((tab, index) => {
       return React.cloneElement(tab, {
+        "aria-controls": `${idTabs}-panel-${index}`,
         focusIndex,
         kind,
         hasFocus: focusIndex === index,
         hasInsetFocusStyle,
         hasTruncation,
+        id: `${idTabs}-tab-${index}`,
         isSelected: activeIndex === index,
         isVertical,
         onClick: e => onClickTab(e, index),
@@ -45,6 +47,7 @@ export default function List(props) {
   return (
     <sc.TabList
       {...moreProps}
+      aria-label={a11yText}
       aria-orientation={isVertical ? "vertical" : "horizontal"}
       data-pka-anchor="tabs.list"
       ref={refList}
