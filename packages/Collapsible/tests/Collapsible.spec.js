@@ -1,5 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
+import { axe } from "jest-axe";
 import Collapsible from "../src";
 
 const searchableContent = "The body of the collapsible";
@@ -78,5 +79,10 @@ describe("Collapsible", () => {
     const iconExpand = <span className="custom-expand" />;
     const { container } = renderComponent({ iconExpand });
     expect(container.querySelector(".custom-expand")).toBeVisible();
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = renderComponent();
+    expect(await axe(container)).toHaveNoViolations();
   });
 });
