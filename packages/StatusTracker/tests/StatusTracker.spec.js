@@ -1,6 +1,5 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { axe } from "jest-axe";
 import OverflowMenu from "@paprika/overflow-menu";
 import StatusTracker from "../src";
 
@@ -40,10 +39,5 @@ describe("StatusTracker", () => {
 
     fireEvent.focus(points[2]);
     expect(await screen.findByText("Done")).toBeVisible();
-  });
-
-  it("should not fail any accessibility tests", async () => {
-    const { container } = renderComponent();
-    expect(await axe(container)).toHaveNoViolations();
   });
 });
