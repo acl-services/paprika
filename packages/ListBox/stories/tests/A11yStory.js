@@ -6,10 +6,9 @@ export const A11yMultiStory = () => (
   <ListBox isMulti>
     <ListBox.Filter />
     <ListBox.Divider>Test</ListBox.Divider>
-    <ListBox.RawItem>Hello!</ListBox.RawItem>
     {characters.villians}
+    <ListBox.RawItem>Hello!</ListBox.RawItem>
     {characters.heroes}
-    <ListBox.Footer />
   </ListBox>
 );
 

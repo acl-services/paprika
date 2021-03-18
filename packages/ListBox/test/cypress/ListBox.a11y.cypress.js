@@ -5,11 +5,11 @@ import selectors from "../helpers/selectors";
 const storyPrefix = `${getStoryUrlPrefix("ListBox")}`;
 
 function arrowUpKeyPress() {
-  cy.focused().type("{downarrow}", { force: true });
+  cy.focused().type("{uparrow}", { force: true });
 }
 
 function arrowDownKeyPress() {
-  cy.focused().type("{uparrow}", { force: true });
+  cy.focused().type("{downarrow}", { force: true });
 }
 
 function optionHasFocus(optionName) {
@@ -17,10 +17,12 @@ function optionHasFocus(optionName) {
     .findByText(optionName)
     .should("have.focus");
 }
+
 describe("ListBox MultiSelect a11y", () => {
   beforeEach(() => {
     cy.visitStorybook(`${storyPrefix}-backyard-tests--a-11-y-tests-story`);
     toggleDropdown();
+    cy.wait(350);
   });
 
   it("focus should be moved to the filter input once dropdown is opened", () => {
@@ -28,10 +30,9 @@ describe("ListBox MultiSelect a11y", () => {
   });
 
   it("focus should be moved to the option once arrow key down is pressed", () => {
-    cy.wait(400);
-    arrowUpKeyPress();
+    arrowDownKeyPress();
     optionHasFocus("The Joker");
-    arrowUpKeyPress();
+    arrowDownKeyPress();
     optionHasFocus("Darth Vader");
   });
 
@@ -43,9 +44,21 @@ describe("ListBox MultiSelect a11y", () => {
 
   it("focus should be moved to the filter after going to first option and arrowing up", () => {
     cy.get(selectors.filterInput).should("have.focus");
-    arrowUpKeyPress();
-    optionHasFocus("The Joker");
     arrowDownKeyPress();
+    optionHasFocus("The Joker");
+    arrowUpKeyPress();
+    cy.get(selectors.filterInput).should("have.focus");
+  });
+
+  it("focus moves to first option in list after selecting options", () => {
+    cy.get(selectors.filterInput).should("have.focus");
+    arrowDownKeyPress();
+    cy.focused().type("{enter}", { force: true });
+    arrowDownKeyPress();
+    cy.focused().type("{enter}", { force: true });
+    toggleDropdown();
+    cy.wait(350);
+    toggleDropdown();
     cy.get(selectors.filterInput).should("have.focus");
   });
 });
@@ -54,17 +67,20 @@ describe("ListBox SingleSelect a11y", () => {
   beforeEach(() => {
     cy.visitStorybook(`${storyPrefix}-backyard-tests--a-11-y-single-tests-story`);
     toggleDropdown();
+    cy.wait(350);
   });
 
-  xit("focus should be moved to the first available option", () => {
+  it("focus should be moved to the first option when arrow key down is pressed", () => {
+    arrowDownKeyPress();
     optionHasFocus("The Joker");
   });
 
   it("focus should be moved to the option after selected option", () => {
-    optionHasFocus("Lord Voldemort");
-    cy.wait(400);
+    arrowDownKeyPress();
+    arrowDownKeyPress();
+    cy.focused().type("{enter}", { force: true });
+    cy.wait(350);
     toggleDropdown();
-    cy.wait(400);
-    arrowUpKeyPress();
+    optionHasFocus("Darth Vader");
   });
 });
