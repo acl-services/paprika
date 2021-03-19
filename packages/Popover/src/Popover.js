@@ -27,6 +27,10 @@ const focusableElementSelector =
 // TODO: To handle cases where there are multiple scrolling containers, we need to implement
 //       getScrollContainer as oneOfType([func, arrayOf(func)])
 
+function isDescendantOfActiveElement() {
+  return isDescendant(document.activeElement, "data-pka-anchor", "popover.content");
+}
+
 class Popover extends React.Component {
   constructor(props) {
     super(props);
@@ -245,7 +249,7 @@ class Popover extends React.Component {
   }, throttleDelay);
 
   handleKeyUp = event => {
-    if (event.key === "Escape" && isDescendant(document.activeElement, "popover.content")) {
+    if (event.key === "Escape" && isDescendantOfActiveElement()) {
       event.stopPropagation();
       this.close();
       if (this.$trigger) this.$trigger.focus();

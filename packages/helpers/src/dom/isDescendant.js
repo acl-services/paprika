@@ -1,18 +1,10 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-cond-assign */
-export default function isDescendant(el, parentId) {
-  let isChild = false;
-
-  if (el.getAttribute("data-pka-anchor") === parentId) {
-    // is this the element itself?
-    isChild = true;
+export default function isDescendant(el, attr, value) {
+  const doesElementHaveAttribute = el => el?.getAttribute(attr) === value;
+  let isChild = doesElementHaveAttribute(el);
+  while (!isChild && (el = el.parentNode)) {
+    isChild = doesElementHaveAttribute(el);
   }
-
-  while ((el = el.parentNode)) {
-    if (el.getAttribute && el.getAttribute("data-pka-anchor") == parentId) {
-      isChild = true;
-    }
-  }
-
   return isChild;
 }

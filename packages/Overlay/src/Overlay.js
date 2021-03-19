@@ -62,6 +62,16 @@ const defaultProps = {
   zIndex: null,
 };
 
+function isDescendantOfActiveElement() {
+  return isDescendant(document.activeElement, "id", "overlay");
+}
+
+function handleTransitionEnter(node) {
+  // https://github.com/reactjs/react-transition-group/blob/6dbadb594c7c2a2f15bc47afc6b4374cfd73c7c0/src/CSSTransition.js#L44
+  // eslint-disable-next-line no-unused-expressions
+  node.scrollTop;
+}
+
 const Overlay = props => {
   const {
     backdropClassName,
@@ -76,14 +86,8 @@ const Overlay = props => {
     ...moreProps
   } = props;
 
-  function handleTransitionEnter(node) {
-    // https://github.com/reactjs/react-transition-group/blob/6dbadb594c7c2a2f15bc47afc6b4374cfd73c7c0/src/CSSTransition.js#L44
-    // eslint-disable-next-line no-unused-expressions
-    node.scrollTop;
-  }
-
   function handleKeyDown(event) {
-    if (event.key === "Escape" && isOpen && isDescendant(document.activeElement, "takeover.content")) {
+    if (event.key === "Escape" && isOpen && isDescendantOfActiveElement()) {
       // incorrect id here
       event.stopPropagation();
       onClose();
@@ -109,7 +113,7 @@ const Overlay = props => {
           onExited={onAfterClose}
         >
           {state => (
-            <sc.Overlay data-pka-anchor="overlay" {...moreProps} onKeyDown={handleKeyDown}>
+            <sc.Overlay id="overlay" data-pka-anchor="overlay" {...moreProps} onKeyDown={handleKeyDown}>
               {hasBackdrop && (
                 <sc.Backdrop
                   className={backdropClassName}
