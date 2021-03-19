@@ -14,7 +14,7 @@ import Group from "./components/Group";
 import FocusLock from "./components/FocusLock";
 import * as types from "./types";
 
-import { extractChildren, warnOfPropErrors } from "./helpers";
+import { extractChildren, warnOfPropErrors, isElementInsidePaprikaPopover } from "./helpers";
 import { useOffsetScroll } from "./hooks";
 
 const PUSH_REF_TRANSITION_STYLE = "margin-right 0.2s ease";
@@ -129,6 +129,16 @@ export default function Panel(props) {
     }
   }
 
+  function handleWhiteList(activeElement) {
+    if (isElementInsidePaprikaPopover(activeElement)) {
+      return false;
+    }
+    if (focusLockProps.whiteList) {
+      return focusLockProps.whiteList(activeElement);
+    }
+    return true;
+  }
+
   const ariaLabel = a11yText || (headerExtracted ? headerExtracted.props.children : null);
 
   let sidePanel = null;
@@ -167,7 +177,9 @@ export default function Panel(props) {
     } else if (!overlayExtracted) {
       sidePanel = (
         <Portal active>
-          <ReactFocusLock {...focusLockProps}>{dialog}</ReactFocusLock>
+          <ReactFocusLock {...focusLockProps} whiteList={handleWhiteList}>
+            {dialog}
+          </ReactFocusLock>
         </Portal>
       );
     } else {

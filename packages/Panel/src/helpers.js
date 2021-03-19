@@ -53,3 +53,9 @@ export function warnOfPropErrors(props) {
     );
   });
 }
+
+export function isElementInsidePaprikaPopover(element) {
+  if (!element || !element.getAttribute) return false;
+  if (element.getAttribute("data-pka-anchor") === "popover.content") return true;
+  return isElementInsidePaprikaPopover(element.parentNode);
+}
