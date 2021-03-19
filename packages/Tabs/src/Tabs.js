@@ -61,14 +61,14 @@ export default function Tabs(props) {
   }
 
   const handleClickTab = (event, index) => {
-    event.preventDefault();
-
+    const isLink = event.target.tagName.toLowerCase() === "a";
+    if (!isLink) event.preventDefault();
+    setFocusIndex(index);
     if (isControlled) {
       onClickTab(index);
-    } else {
+    } else if (!isLink) {
       setActiveIndex(index);
     }
-    setFocusIndex(index);
   };
 
   const handleKeyDown = event => {

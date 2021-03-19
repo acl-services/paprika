@@ -24,6 +24,7 @@ export default function Tab(props) {
         aria-selected={isSelected}
         data-pka-anchor="tab-link"
         href={href}
+        onClick={e => handleClick(e, activeIndex)}
         onKeyDown={e => handleKeyDown(e, focusIndex)}
         role="tab"
         tabIndex={tabIndex}
