@@ -129,7 +129,7 @@ Tabs.propTypes = {
   /** Expects Tabs.List and Tabs.Panels. */
   children: PropTypes.node.isRequired,
 
-  /** Sets what tabindex is active by default (uncontrolled component). */
+  /** Sets what tabindex is active by default (uncontrolled component). -1 for no active tab. */
   defaultIndex: PropTypes.number,
 
   /** If the visual focus ring for the tabs should be displayed with an inset style. */
@@ -138,7 +138,7 @@ Tabs.propTypes = {
   /** Tab labels will be truncated when they run out of space instead of breaking to multiple lines (ignored when isVertical is false). */
   hasTruncation: PropTypes.bool,
 
-  /** Sets what tabindex is active (controlled component). */
+  /** Sets what tabindex is active (controlled component). -1 for no active tab. */
   index: PropTypes.number,
 
   /** If the tabs are all disabled. */
