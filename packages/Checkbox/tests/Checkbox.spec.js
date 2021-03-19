@@ -1,4 +1,5 @@
 import { render } from "@testing-library/react";
+import { axe } from "jest-axe";
 import React from "react";
 import Checkbox from "../src/Checkbox";
 
@@ -33,5 +34,17 @@ describe("Checkbox", () => {
   it("Renders checkState is disabled", () => {
     const { getByRole } = renderComponent({ isDisabled: true });
     expect(getByRole("checkbox").disabled).toBe(true);
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = renderComponent();
+    // Checkbox component is isolated and is not associated with label
+    expect(
+      await axe(container, {
+        rules: {
+          label: { enabled: false },
+        },
+      })
+    ).toHaveNoViolations();
   });
 });

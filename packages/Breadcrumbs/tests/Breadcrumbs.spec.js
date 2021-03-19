@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
+import { axe } from "jest-axe";
 import L10n from "@paprika/l10n";
 import Breadcrumbs from "../src";
 
@@ -38,5 +39,17 @@ describe("Breadcrumbs", () => {
 
     expect(await screen.queryByText(/parent page/i)).toBeVisible();
     expect(screen.queryByTestId("breadcrumbs.expand-button")).not.toBeVisible();
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = render(
+      <L10n>
+        <Breadcrumbs>
+          <Breadcrumbs.Link href="mock_url">Home page</Breadcrumbs.Link>
+          <Breadcrumbs.Link href="mock_url">Parent page</Breadcrumbs.Link>
+        </Breadcrumbs>
+      </L10n>
+    );
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

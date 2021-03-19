@@ -1,5 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
+import { axe } from "jest-axe";
 import Heading from "../src";
 
 describe("Heading", () => {
@@ -29,5 +30,10 @@ describe("Heading", () => {
     );
 
     expect(container.querySelector("div[role='heading']")).toBeInTheDocument();
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = render(<Heading level={1}>Hello this is me</Heading>);
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

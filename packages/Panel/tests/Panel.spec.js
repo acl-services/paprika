@@ -1,5 +1,6 @@
 import React from "react";
 import { render as renderReactTestingLibrary, configure, fireEvent } from "@testing-library/react";
+import { axe } from "jest-axe";
 import Panel from "../src";
 
 configure({ testIdAttribute: "data-pka-anchor" });
@@ -33,6 +34,13 @@ describe("Panel", () => {
     fireEvent.keyDown(getByRole("dialog"), { key: "Escape", keyCode: 27, which: 27 });
 
     expect(fn).toHaveBeenCalled();
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = render({
+      children: "some content",
+    });
+    expect(await axe(container)).toHaveNoViolations();
   });
 
   describe("Panel.Header", () => {

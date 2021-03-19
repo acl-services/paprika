@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
+import { axe } from "jest-axe";
 import ProgressBar from "../src";
 
 function renderComponent(props = {}) {
@@ -15,5 +16,10 @@ describe("ProgressBar", () => {
     renderComponent();
     expect(screen.queryByText("Preparing your file...")).toBeVisible();
     expect(screen.queryAllByText(/This might take more than 15secs/i)[0]).toBeVisible();
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = renderComponent();
+    expect(await axe(container)).toHaveNoViolations();
   });
 });
