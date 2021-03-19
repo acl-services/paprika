@@ -6,6 +6,7 @@ export { default as isDevEnv } from "./isDevEnv";
 
 // dom
 export { default as isElementContainsFocus } from "./dom/isElementContainsFocus";
+export { default as isDescendant } from "./dom/isDescendant";
 
 // components
 export { default as LockBodyScroll } from "./components/LockBodyScroll";

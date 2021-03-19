@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Transition } from "react-transition-group";
 import FocusLock from "react-focus-lock";
-import { LockBodyScroll, Portal } from "@paprika/helpers";
+import { LockBodyScroll, Portal, isDescendant } from "@paprika/helpers";
 import tokens from "@paprika/tokens";
 import * as sc from "./Overlay.styles";
 
@@ -82,10 +82,10 @@ const Overlay = props => {
     node.scrollTop;
   }
 
-  function handleEscKey(event) {
-    if (event.key === "Escape" && isOpen) {
+  function handleKeyDown(event) {
+    if (event.key === "Escape" && isOpen && isDescendant(document.activeElement, "id", "overlay")) {
+      // incorrect id here
       event.stopPropagation();
-
       onClose();
     }
   }
@@ -109,7 +109,7 @@ const Overlay = props => {
           onExited={onAfterClose}
         >
           {state => (
-            <sc.Overlay data-pka-anchor="overlay" {...moreProps} onKeyDown={handleEscKey}>
+            <sc.Overlay id="overlay" data-pka-anchor="overlay" {...moreProps} onKeyDown={handleKeyDown}>
               {hasBackdrop && (
                 <sc.Backdrop
                   className={backdropClassName}

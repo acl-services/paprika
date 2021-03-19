@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import * as constants from "@paprika/constants/lib/Constants";
 import tokens from "@paprika/tokens";
 import { zValue } from "@paprika/stylers/lib/helpers";
+import { isDescendant } from "@paprika/helpers";
 import * as types from "./types";
 import isInsideBoundaries from "./helpers/isInsideBoundaries";
 import { getContentCoordinates, getTipCoordinates } from "./helpers/getPosition";
@@ -244,7 +245,8 @@ class Popover extends React.Component {
   }, throttleDelay);
 
   handleKeyUp = event => {
-    if (event.key === "Escape") {
+    if (event.key === "Escape" && isDescendant(document.activeElement, "data-pka-anchor", "popover.content")) {
+      event.stopPropagation();
       this.close();
       if (this.$trigger) this.$trigger.focus();
     }
@@ -375,8 +377,6 @@ class Popover extends React.Component {
 
   addListeners() {
     if (this.$content) {
-      document.addEventListener("keyup", this.handleKeyUp, false);
-      document.addEventListener("keydown", this.handleKeyDown, false);
       document.addEventListener("resize", this.handleReposition, false);
       document.addEventListener("scroll", this.handleReposition, false);
 
@@ -399,9 +399,6 @@ class Popover extends React.Component {
       } else {
         this.props.getScrollContainer().removeEventListener("scroll", this.handleReposition);
       }
-
-      document.removeEventListener("keyup", this.handleKeyUp);
-      document.removeEventListener("keydown", this.handleKeyDown);
 
       this.$content.removeEventListener("transitionend", this.handleTransitionEnd);
       this.hasListeners = false;
@@ -447,7 +444,13 @@ class Popover extends React.Component {
     return (
       <ThemeContext.Provider value={isDark}>
         <PopoverContext.Provider value={contextValue}>
-          <sc.Popover data-pka-anchor="popover" {...moreProps} ref={this.$popover}>
+          <sc.Popover
+            data-pka-anchor="popover"
+            {...moreProps}
+            ref={this.$popover}
+            onKeyUp={this.handleKeyUp}
+            onKeyDown={this.handleKeyDown}
+          >
             <PopoverChildren onChildChange={this.handleChildChange}>{this.props.children}</PopoverChildren>
           </sc.Popover>
         </PopoverContext.Provider>

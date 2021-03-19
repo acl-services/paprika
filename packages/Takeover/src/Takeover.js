@@ -100,7 +100,7 @@ export default function Takeover(props) {
         >
           {headerExtracted && <sc.Header {...headerExtracted.props} onClose={onClose} />}
           {contentExtracted && (
-            <sc.Content role="region" tabIndex="0">
+            <sc.Content role="region" tabIndex="0" data-pka-anchor="takeover.content">
               {contentExtracted}
             </sc.Content>
           )}
