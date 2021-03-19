@@ -3,10 +3,11 @@ import { v4 as uuidv4 } from "uuid";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import { extractChildrenProps, extractChildren } from "@paprika/helpers";
 import ListBox, { propTypes, defaultProps } from "./ListBox";
-import Divider from "./components/Divider";
 import Box from "./components/Box/BoxShell";
+import Divider from "./components/Divider";
 import Filter from "./components/Filter";
 import Footer from "./components/Footer";
+import InfiniteScroll from "./components/InfiniteScroll";
 import Option from "./components/Option";
 import Popover from "./components/Popover";
 import RawItem from "./components/RawItem";
@@ -49,6 +50,7 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
     "ListBox.Box": box,
     "ListBox.Filter": filter,
     "ListBox.Footer": footer,
+    "ListBox.InfiniteScroll": infiniteScroll,
     "ListBox.Popover": popover,
     "ListBox.Trigger": trigger,
     children: options,
@@ -56,6 +58,7 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
     "ListBox.Box",
     "ListBox.Filter",
     "ListBox.Footer",
+    "ListBox.InfiniteScroll",
     "ListBox.Popover",
     "ListBox.Trigger",
   ]);
@@ -83,6 +86,7 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
             box={box}
             filter={filter}
             footer={footer}
+            infiniteScroll={infiniteScroll}
             popover={popover}
             trigger={trigger}
             ref={ref}
@@ -102,6 +106,7 @@ ListBoxWithProvider.Box = Box;
 ListBoxWithProvider.Divider = Divider;
 ListBoxWithProvider.Filter = Filter;
 ListBoxWithProvider.Footer = Footer;
+ListBoxWithProvider.InfiniteScroll = InfiniteScroll;
 ListBoxWithProvider.Option = Option;
 ListBoxWithProvider.Popover = Popover;
 ListBoxWithProvider.RawItem = RawItem;

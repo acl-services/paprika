@@ -14,8 +14,7 @@ function getOptions(event) {
     HTMLNodeList = event.target.querySelector("[data-pka-anchor='styled-list']");
   }
 
-  // filtering only results with role="option" attribute
-  return [...HTMLNodeList.children].filter(li => li.hasAttribute("role"));
+  return HTMLNodeList.querySelectorAll("[role=option]");
 }
 
 function getNextUp(event) {
@@ -64,10 +63,8 @@ function getNextUp(event) {
 function getNextDown(event) {
   function next(element) {
     const list = event.target.closest("[data-pka-anchor='styled-list']");
-    const HTMLOptions = list.children;
-    if (list && [...HTMLOptions].indexOf(element) < HTMLOptions.length - 1) {
+    if (list && element.dataset?.pkaOptionIndex * 1 < list.children.length - 1) {
       const sibling = element.nextElementSibling;
-
       // if the next sibling has aria-hidden we skip it and call
       // again nextElementSibling
       if (sibling.hasAttribute("aria-hidden")) {

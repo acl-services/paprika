@@ -44,6 +44,7 @@ export function ListBox(props) {
     box,
     filter,
     footer,
+    infiniteScroll,
     trigger: _trigger,
     /* eslint-enable react/prop-types */
 
@@ -86,7 +87,11 @@ export function ListBox(props) {
         <Content {...contentProps}>
           <Box {...boxProps}>
             {isReadOnly ? null : filter}
-            <List {...listProps}>
+            <List
+              {...listProps}
+              optionsOffset={infiniteScroll?.props.optionsOffset}
+              onReachedOffset={infiniteScroll?.props.onReachedOffset}
+            >
               <Options isPopoverOpen={isOpen}>{children}</Options>
             </List>
             {filter ? <NoResults label={noResultsMessage} /> : null}
@@ -127,6 +132,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     box,
     filter,
     footer,
+    infiniteScroll,
     popover,
     trigger,
     /* eslint-enable react/prop-types */
@@ -168,6 +174,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     filter,
     footer,
     trigger,
+    infiniteScroll,
 
     ...(providedProps.isInline ? moreProps : {}),
   };

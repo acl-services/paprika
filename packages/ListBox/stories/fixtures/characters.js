@@ -1,7 +1,7 @@
 import React from "react";
 import ListBox from "../../src";
 
-export const antiHeroes = [
+export const antiHeroesArray = [
   "Punisher",
   "Catwoman",
   "Venom",
@@ -10,9 +10,9 @@ export const antiHeroes = [
   "Deadpool",
   "Spawn",
   "Wolverine",
-].map(hero => <ListBox.Option key={hero}>{hero}</ListBox.Option>);
+];
 
-export const villians = [
+export const villiansArray = [
   "The Joker",
   "Darth Vader",
   "Hannibal Lecter",
@@ -20,9 +20,9 @@ export const villians = [
   "Freddy Krueger",
   "Palpatine",
   "Agent Smith",
-].map(villian => <ListBox.Option key={villian}>{villian}</ListBox.Option>);
+];
 
-export const heroes = [
+export const heroesArray = [
   "Black Panther",
   "Wonder Woman",
   "Spiderman",
@@ -31,7 +31,11 @@ export const heroes = [
   "Batman",
   "Iron Man",
   "Doctor Strange",
-].map(hero => <ListBox.Option key={hero}>{hero}</ListBox.Option>);
+];
+
+export const antiHeroes = antiHeroesArray.map(hero => <ListBox.Option key={hero}>{hero}</ListBox.Option>);
+export const villians = villiansArray.map(villian => <ListBox.Option key={villian}>{villian}</ListBox.Option>);
+export const heroes = heroesArray.map(hero => <ListBox.Option key={hero}>{hero}</ListBox.Option>);
 
 export const antiHeroesRaw = [
   { label: "Black Panther", isSelected: false },

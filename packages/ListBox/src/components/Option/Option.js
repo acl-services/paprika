@@ -36,6 +36,7 @@ export default function Option(props) {
       size={size}
       key={index}
       onClick={handleClickOption({ props, isDisabled, state, dispatch, onChangeContext })}
+      data-pka-option-index={index}
       data-pka-anchor={isSelected ? "list-option--is-selected" : "list-option"}
       data-pka-prevent-default-on-select={props.preventDefaultOnSelect}
       tabIndex={-1}
