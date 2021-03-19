@@ -1,5 +1,6 @@
 import React from "react";
 import { render, fireEvent, waitFor } from "@testing-library/react";
+import { axe } from "jest-axe";
 import CopyInput from "../src";
 
 describe("CopyInput", () => {
@@ -17,5 +18,17 @@ describe("CopyInput", () => {
     await waitFor(() => expect(getAllByText("Copied")).toBeTruthy());
 
     setTimeout(() => expect(queryAllByText("Copied")).toBeNull(), 5000);
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = render(<CopyInput value="test" />);
+    // CopyInput component is isolated and is not associated with label
+    expect(
+      await axe(container, {
+        rules: {
+          label: { enabled: false },
+        },
+      })
+    ).toHaveNoViolations();
   });
 });

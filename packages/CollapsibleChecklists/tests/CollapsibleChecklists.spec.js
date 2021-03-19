@@ -1,5 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
+import { axe } from "jest-axe";
 import CollapsibleChecklists from "../src";
 
 const defaultProps = {
@@ -105,5 +106,10 @@ describe("CollapsibleChecklists", () => {
     const { container } = renderComponent();
     const petuniasHeading = container.querySelectorAll('[data-pka-anchor="collapsible.heading"]')[5];
     expect(petuniasHeading.querySelector('input[type="checkbox"]').checked).toBe(true);
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = renderComponent();
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

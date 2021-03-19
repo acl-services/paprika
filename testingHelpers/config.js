@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from "react";
 import { configure, render } from "@testing-library/react";
+import { toHaveNoViolations } from "jest-axe";
 import L10n from "@paprika/l10n";
 
 configure({ testIdAttribute: "data-pka-anchor" });
@@ -21,3 +22,5 @@ global.renderWithL10n = (reactElement, ...otherArgs) => {
 };
 
 global.context = describe;
+
+expect.extend(toHaveNoViolations);

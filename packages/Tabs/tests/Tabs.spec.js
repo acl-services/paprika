@@ -1,5 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
+import { axe } from "jest-axe";
 import Tabs from "../src";
 
 function renderTabsComponent(props = {}) {
@@ -48,6 +49,11 @@ describe("Tabs", () => {
     const { getByText } = renderTabsComponent({ defaultIndex: 1 });
 
     expect(getByText(/Content for second tab/i)).toBeInTheDocument();
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = renderTabsComponent();
+    expect(await axe(container)).toHaveNoViolations();
   });
 
   describe("disabled", () => {
