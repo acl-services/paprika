@@ -2,7 +2,7 @@ import React from "react";
 import { render as renderReactTestingLibrary, fireEvent, getByRole, queryByRole } from "@testing-library/react";
 import { axe } from "jest-axe";
 import Button from "@paprika/button";
-import Modal from "../src";
+import Modal from "../../src";
 
 const noop = () => {};
 
@@ -28,14 +28,6 @@ describe("Modal", () => {
     it("renders outside of container", () => {
       expect(queryByRole(given.rendered.container, "dialog")).toBeNull();
       expect(getByRole(given.rendered.baseElement, "dialog")).toBeVisible();
-    });
-
-    it("triggers onClose when ESC press", () => {
-      given("onClose", () => jest.fn());
-
-      fireEvent.keyDown(given.rendered.getByRole("dialog"), { key: "Escape", keyCode: 27, which: 27 });
-
-      expect(given.onClose).toHaveBeenCalled();
     });
 
     it("should not fail any accessibility tests", async () => {

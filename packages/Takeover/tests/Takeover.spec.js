@@ -31,14 +31,6 @@ describe("Takeover", () => {
       expect(getByRole(given.rendered.baseElement, "dialog")).toBeVisible();
     });
 
-    it("triggers onClose when ESC press", () => {
-      given("onClose", () => jest.fn());
-
-      fireEvent.keyDown(given.rendered.getByRole("dialog"), { key: "Escape", keyCode: 27, which: 27 });
-
-      expect(given.onClose).toHaveBeenCalled();
-    });
-
     it("should not fail any accessibility tests", async () => {
       expect(await axe(given.rendered.container)).toHaveNoViolations();
     });
