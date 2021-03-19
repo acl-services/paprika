@@ -29,7 +29,7 @@ describe("ListBox MultiSelect a11y", () => {
     cy.get(selectors.filterInput).should("have.focus");
   });
 
-  it("focus should be moved to the option once arrow key down is pressed", () => {
+  it("should be able to focus on options via keyboard", () => {
     arrowDownKeyPress();
     optionHasFocus("The Joker");
     arrowDownKeyPress();
@@ -50,7 +50,7 @@ describe("ListBox MultiSelect a11y", () => {
     cy.get(selectors.filterInput).should("have.focus");
   });
 
-  it("focus moves to first option in list after selecting options", () => {
+  it("focus moves to filter input in list after selecting options", () => {
     cy.get(selectors.filterInput).should("have.focus");
     arrowDownKeyPress();
     cy.focused().type("{enter}", { force: true });
@@ -60,6 +60,13 @@ describe("ListBox MultiSelect a11y", () => {
     cy.wait(350);
     toggleDropdown();
     cy.get(selectors.filterInput).should("have.focus");
+  });
+
+  it("focus can be moved to a raw item", () => {
+    arrowDownKeyPress();
+    arrowDownKeyPress();
+    arrowDownKeyPress();
+    optionHasFocus("Raw Item");
   });
 });
 
