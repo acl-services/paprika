@@ -245,7 +245,7 @@ class Popover extends React.Component {
   }, throttleDelay);
 
   handleKeyUp = event => {
-    if (event.key === "Escape" && isDescendant(document.activeElement, "data-pka-anchor", "popover.content")) {
+    if (event.key === "Escape" && isDescendant(document.activeElement, "popover.content")) {
       event.stopPropagation();
       this.close();
       if (this.$trigger) this.$trigger.focus();

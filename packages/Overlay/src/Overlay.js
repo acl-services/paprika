@@ -83,7 +83,7 @@ const Overlay = props => {
   }
 
   function handleKeyDown(event) {
-    if (event.key === "Escape" && isOpen && isDescendant(document.activeElement, "id", "overlay")) {
+    if (event.key === "Escape" && isOpen && isDescendant(document.activeElement, "takeover.content")) {
       // incorrect id here
       event.stopPropagation();
       onClose();
@@ -109,7 +109,7 @@ const Overlay = props => {
           onExited={onAfterClose}
         >
           {state => (
-            <sc.Overlay id="overlay" data-pka-anchor="overlay" {...moreProps} onKeyDown={handleKeyDown}>
+            <sc.Overlay data-pka-anchor="overlay" {...moreProps} onKeyDown={handleKeyDown}>
               {hasBackdrop && (
                 <sc.Backdrop
                   className={backdropClassName}
