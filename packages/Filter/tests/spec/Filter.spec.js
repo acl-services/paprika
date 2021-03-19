@@ -1,5 +1,6 @@
 import React from "react";
 import { screen, fireEvent, waitFor, within } from "@testing-library/react";
+import { axe } from "jest-axe";
 import Filter from "../../src";
 
 const noop = () => {};
@@ -204,5 +205,10 @@ describe("ActionBar Filter", () => {
     fireEvent.click(within(screen.getByTestId("filter.item.columnSelector")).getByTestId("list-box-trigger"));
 
     expect(screen.queryByTestId("list-filter")).not.toBeInTheDocument();
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = renderComponent();
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

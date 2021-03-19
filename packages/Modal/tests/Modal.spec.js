@@ -1,5 +1,6 @@
 import React from "react";
 import { render as renderReactTestingLibrary, fireEvent, getByRole, queryByRole } from "@testing-library/react";
+import { axe } from "jest-axe";
 import Button from "@paprika/button";
 import Modal from "../src";
 
@@ -35,6 +36,10 @@ describe("Modal", () => {
       fireEvent.keyDown(given.rendered.getByRole("dialog"), { key: "Escape", keyCode: 27, which: 27 });
 
       expect(given.onClose).toHaveBeenCalled();
+    });
+
+    it("should not fail any accessibility tests", async () => {
+      expect(await axe(given.rendered.container)).toHaveNoViolations();
     });
 
     context("with Modal.Header", () => {
