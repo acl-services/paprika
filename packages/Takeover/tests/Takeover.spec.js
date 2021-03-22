@@ -1,5 +1,6 @@
 import React from "react";
 import { render as renderReactTestingLibrary, fireEvent, getByRole, queryByRole } from "@testing-library/react";
+import { axe } from "jest-axe";
 import Takeover from "../src";
 
 const noop = () => {};
@@ -36,6 +37,10 @@ describe("Takeover", () => {
       fireEvent.keyDown(given.rendered.getByRole("dialog"), { key: "Escape", keyCode: 27, which: 27 });
 
       expect(given.onClose).toHaveBeenCalled();
+    });
+
+    it("should not fail any accessibility tests", async () => {
+      expect(await axe(given.rendered.container)).toHaveNoViolations();
     });
 
     context("with Takeover.Header", () => {

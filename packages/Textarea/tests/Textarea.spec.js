@@ -1,5 +1,6 @@
 import React from "react";
 import { render, cleanup } from "@testing-library/react";
+import { axe } from "jest-axe";
 import Textarea from "../src/Textarea";
 
 beforeEach(cleanup);
@@ -21,6 +22,19 @@ describe("Textarea", () => {
   it("should be visible", () => {
     const { getByText } = renderComponent({ value: "placeholder value" });
     expect(getByText(/placeholder value/i)).toBeInTheDocument();
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = renderComponent();
+
+    // Textarea component is isolated and is not associated with label
+    expect(
+      await axe(container, {
+        rules: {
+          label: { enabled: false },
+        },
+      })
+    ).toHaveNoViolations();
   });
 });
 

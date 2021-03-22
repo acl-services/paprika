@@ -1,5 +1,6 @@
 import React from "react";
 import { configure, render, fireEvent } from "@testing-library/react";
+import { axe } from "jest-axe";
 import ListBox from "../../../src";
 
 configure({ testIdAttribute: "data-pka-anchor" });
@@ -67,6 +68,11 @@ describe("ListBox multi select", () => {
       });
 
       expect(getByTestId("styled-list").getAttribute("height")).toMatch("600");
+    });
+
+    it("should not fail any accessibility tests", async () => {
+      const { container } = renderComponent();
+      expect(await axe(container)).toHaveNoViolations();
     });
   });
 });

@@ -1,5 +1,6 @@
 import React from "react";
 import { screen, render, fireEvent } from "@testing-library/react";
+import { axe } from "jest-axe";
 import CollapsibleCard from "../src";
 
 describe("CollapsibleCard", () => {
@@ -81,5 +82,17 @@ describe("CollapsibleCard", () => {
 
     fireEvent.click(screen.getByText(headingText));
     expect(screen.getByText(bodyText)).not.toBeVisible();
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = render(
+      <CollapsibleCard>
+        <CollapsibleCard.Header>
+          <CollapsibleCard.Segment>{headingText}</CollapsibleCard.Segment>
+        </CollapsibleCard.Header>
+        <CollapsibleCard.Body>{bodyText}</CollapsibleCard.Body>
+      </CollapsibleCard>
+    );
+    expect(await axe(container)).toHaveNoViolations();
   });
 });
