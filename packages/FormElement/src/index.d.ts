@@ -23,8 +23,9 @@ declare namespace FormElement {
   function Content(props: ContentProps): JSX.Element;
   interface ContentProps {
     [x: string]: any;
-    /** Input field and layout elements. May be a render function with a11yProps object as an argument.
-a11yProps includes: { id, refLabel, disabled?, "aria-disabled"?, "aria-describedby"?, "aria-required"? } */
+    /** Input field and layout elements. May be a render function with a11yProps object and refLabel.
+a11yProps includes: { id, disabled?, "aria-disabled"?, "aria-describedby"?, "aria-required"? }
+refLabel is a React ref for the `<FormElement.Label />` */
     children: func | node;
   }
 }

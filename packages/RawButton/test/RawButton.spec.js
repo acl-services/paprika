@@ -2,6 +2,7 @@
 
 import React from "react";
 import { render, fireEvent, act } from "@testing-library/react";
+import { axe } from "jest-axe";
 import RawButton from "../src";
 
 const noop = () => {};
@@ -126,5 +127,10 @@ describe("RawButton", () => {
     act(() => buttonRef.focus());
 
     expect(document.activeElement.getAttribute("role")).toEqual("button");
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = renderComponent();
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

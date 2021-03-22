@@ -1,5 +1,6 @@
 import React from "react";
 import { render, configure, fireEvent, waitFor } from "@testing-library/react";
+import { axe } from "jest-axe";
 import Confirmation from "../src";
 
 configure({ testIdAttribute: "data-pka-anchor" });
@@ -47,5 +48,10 @@ describe("Confirmation", () => {
     await waitFor(() => {
       expect(onCloseFunc).toHaveBeenCalled();
     });
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = renderComponent({ defaultIsOpen: true });
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

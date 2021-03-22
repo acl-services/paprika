@@ -1,5 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
+import { axe } from "jest-axe";
 import Table from "../../src/Table";
 
 const data = [
@@ -54,5 +55,10 @@ describe("Table", () => {
     ].forEach(name => {
       expect(getByText(name)).toBeVisible();
     });
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = renderComponent();
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

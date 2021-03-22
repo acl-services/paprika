@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
+import { axe } from "jest-axe";
 import SideNavigation from "../src";
 
 describe("SideNavigation", () => {
@@ -17,5 +18,15 @@ describe("SideNavigation", () => {
     fireEvent.click(await screen.findByTestId("sideNavigation.trigger"));
     expect(screen.queryByText("First item (0)"));
     expect(screen.queryByText("Second item (1000)"));
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = render(
+      <SideNavigation>
+        <SideNavigation.Item>First item (0)</SideNavigation.Item>
+        <SideNavigation.Item isCurrent>Second item (1000)</SideNavigation.Item>
+      </SideNavigation>
+    );
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

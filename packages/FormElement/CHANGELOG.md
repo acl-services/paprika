@@ -1,5 +1,17 @@
 # Changelog
 
+## 4.0.7
+
+### Patch Changes
+
+- 900b180: Move `refLabel` out from `a11yProps` parameter when rendering content
+
+## 4.0.7-next.0
+
+### Patch Changes
+
+- 900b180: Move `refLabel` out from `a11yProps` parameter when rendering content
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).

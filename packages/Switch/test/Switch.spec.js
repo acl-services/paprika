@@ -1,5 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
+import { axe } from "jest-axe";
 import Switch from "../src";
 
 function renderComponent(props = {}) {
@@ -45,5 +46,10 @@ describe("Switch", () => {
     fireEvent.click(switchElement);
 
     expect(handleChange).toHaveBeenCalled();
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = renderComponent({ a11yText: "custom label" });
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

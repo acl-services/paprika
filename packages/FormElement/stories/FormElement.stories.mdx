@@ -100,8 +100,8 @@ This works because the properties included in the `a11yProps` argument of the re
 <FormElement>
   <FormElement.Label>Field label</FormElement.Label>
   <FormElement.Content>
-    {a11yProps => <>
-      <ListBox {...a11yProps}>
+    {(a11yProps, refLabel) => <>
+      <ListBox {...a11yProps} refLabel={refLabel}>
         <ListBox.Option>Option #1</ListBox.Option>
         <ListBox.Option>Option #2</ListBox.Option>
         <ListBox.Option>Option #3</ListBox.Option>

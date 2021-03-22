@@ -1,5 +1,6 @@
 import React from "react";
 import { render, configure, fireEvent, waitFor } from "@testing-library/react";
+import { axe } from "jest-axe";
 import L10n from "@paprika/l10n";
 import Confirmation from "@paprika/confirmation";
 import OverflowMenu from "../src";
@@ -125,5 +126,10 @@ describe("OverflowMenu", () => {
         expect(getByText(/confirm delete/i)).toHaveAttribute("aria-disabled", "true");
       });
     });
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = renderComponent({ isOpen: true });
+    expect(await axe(container)).toHaveNoViolations();
   });
 });
