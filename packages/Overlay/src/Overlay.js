@@ -88,7 +88,6 @@ const Overlay = props => {
 
   function handleKeyDown(event) {
     if (event.key === "Escape" && isOpen && isDescendantOfActiveElement()) {
-      // incorrect id here
       event.stopPropagation();
       onClose();
     }
