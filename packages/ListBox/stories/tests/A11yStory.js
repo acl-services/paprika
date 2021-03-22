@@ -13,6 +13,7 @@ export const A11yMultiStory = () => (
 
 export const A11ySingleStory = () => (
   <ListBox>
+    <ListBox.Filter />
     <ListBox.Option>The Joker</ListBox.Option>
     <ListBox.Option>Darth Vader</ListBox.Option>
   </ListBox>
