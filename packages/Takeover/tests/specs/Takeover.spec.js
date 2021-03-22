@@ -1,7 +1,7 @@
 import React from "react";
 import { render as renderReactTestingLibrary, fireEvent, getByRole, queryByRole } from "@testing-library/react";
 import { axe } from "jest-axe";
-import Takeover from "../src";
+import Takeover from "../../src/Takeover";
 
 const noop = () => {};
 
