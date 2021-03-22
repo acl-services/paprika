@@ -1,19 +1,14 @@
-// Todo Fix keyboard close test
-// import { getStoryName } from "storybook/storyTree";
+import { getStoryUrlPrefix } from "../../../../.storybook/storyTree";
 
-// const storyName = getStoryName("Modal");
+describe("Modal", () => {
+  beforeEach(() => {
+    cy.visitStorybook(`${getStoryUrlPrefix("Modal")}--showcase`);
+  });
 
-// describe("ListBox single select", () => {
-//   beforeEach(() => {
-//     cy.visitStorybook(`${storyName}`);
-//   });
-
-//   it("should toggle the list-box popover while triggering enter on the keyboard", () => {
-//     const anchor = cy.get("[data-pka-anchor='modal.wrapper']");
-//     anchor.should("be.visible");
-
-//     anchor.trigger("keyup", { key: "Escape" });
-
-//     anchor.should("not.be.visible");
-//   });
-// });
+  it("should close on ESC key press", () => {
+    const anchor = cy.get("[data-pka-anchor='modal.wrapper']");
+    anchor.should("be.visible");
+    cy.get("[data-pka-anchor='modal.header.close-button']").trigger("keydown", { key: "Escape" });
+    anchor.should("not.exist");
+  });
+});
