@@ -7,13 +7,13 @@ interface TabsProps {
   a11yText?: string;
   /** Expects Tabs.List and Tabs.Panels. */
   children: React.ReactNode;
-  /** Sets what tabindex is active by default (uncontrolled component). -1 for no active tab. */
+  /** Sets what tabindex is active by default (uncontrolled component). Use null for no active tab. */
   defaultIndex?: number;
   /** If the visual focus ring for the tabs should be displayed with an inset style. */
   hasInsetFocusStyle?: boolean;
   /** Tab labels will be truncated when they run out of space instead of breaking to multiple lines (ignored when isVertical is false). */
   hasTruncation?: boolean;
-  /** Sets what tabindex is active (controlled component). -1 for no active tab. */
+  /** Sets what tabindex is active (controlled component). Use null for no active tab. */
   index?: number;
   /** If the tabs are all disabled. */
   isDisabled?: boolean;
