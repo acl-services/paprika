@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.0.1-next.1
+
+### Patch Changes
+
+- 0b3b614: #### Fixed
+
+  - Ensure "no results" message is read by screen readers.
+
+  [@mikrotron](https://github.com/mikrotron)
+
+- Updated dependencies [0b3b614]
+  - @paprika/toast@1.1.0-next.0
+
 ## 3.0.1-next.0
 
 ### Patch Changes

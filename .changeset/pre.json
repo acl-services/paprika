@@ -72,6 +72,8 @@
     "@paprika/seducer": "2.0.0"
   },
   "changesets": [
-    "breezy-panthers-explode"
+    "breezy-panthers-explode",
+    "fifty-carpets-hide",
+    "rude-shirts-agree"
   ]
 }
