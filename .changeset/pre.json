@@ -71,5 +71,7 @@
     "@paprika/helpers": "2.1.1",
     "@paprika/seducer": "2.0.0"
   },
-  "changesets": []
+  "changesets": [
+    "breezy-panthers-explode"
+  ]
 }

@@ -1,6 +1,6 @@
 {
   "name": "@paprika/form-element",
-  "version": "4.0.7",
+  "version": "4.0.8-next.0",
   "description": "FormElement component displays a user input field",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -19,7 +19,7 @@
     "@paprika/constants": "^1.0.0",
     "@paprika/helpers": "^2.1.1",
     "@paprika/icon": "^1.0.4",
-    "@paprika/popover": "^1.0.9",
+    "@paprika/popover": "^1.1.0-next.0",
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",
     "prop-types": "^15.7.2",
