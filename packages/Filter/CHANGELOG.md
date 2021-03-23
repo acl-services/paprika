@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.8-next.0
+
+### Patch Changes
+
+- @paprika/date-picker@1.0.11-next.0
+- @paprika/list-box@3.0.1-next.0
+
 ## 1.1.7
 
 ### Patch Changes

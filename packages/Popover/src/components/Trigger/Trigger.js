@@ -49,23 +49,30 @@ function Trigger(props) {
 
   const { children, a11yText, ...moreProps } = props;
 
+  const tooltipA11yProps = { "aria-describedby": content.ariaId };
+  const popoverA11yProps = { ...tooltipA11yProps, "aria-haspopup": true };
+  const a11yAttributes = isEager ? tooltipA11yProps : popoverA11yProps;
+
   if (typeof children === "function") {
-    const a11yAttributes = { "aria-describedby": content.ariaId };
     return React.cloneElement(children(handleTriggerEvent, a11yAttributes, isOpen), {
       ...moreProps,
     });
   }
 
+  const commonAttributes = {
+    a11yText,
+    "data-pka-anchor": "popover.trigger",
+    ...a11yAttributes,
+  };
+
   if (isEager) {
     return (
       <sc.Trigger
-        a11yText={a11yText}
-        data-pka-anchor="popover.trigger"
+        {...commonAttributes}
         onMouseOver={handleTriggerEvent}
         onMouseOut={handleTriggerEvent}
         onFocus={handleTriggerEvent}
         onBlur={handleTriggerEvent}
-        aria-describedby={content.ariaId}
         {...moreProps}
       >
         {children}
@@ -75,8 +82,7 @@ function Trigger(props) {
 
   return (
     <RawButton
-      a11yText={a11yText}
-      data-pka-anchor="popover.trigger"
+      {...commonAttributes}
       onClick={handleTriggerEvent}
       onBlur={shouldKeepFocus ? handleTriggerEvent : null}
       {...moreProps}

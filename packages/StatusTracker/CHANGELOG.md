@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.10-next.0
+
+### Patch Changes
+
+- Updated dependencies [12938b6]
+  - @paprika/popover@1.1.0-next.0
+  - @paprika/overflow-menu@1.0.13-next.0
+
 ## [Unreleased]
 
 ## [0.0.2-alpha.0] - 2020-12-01
