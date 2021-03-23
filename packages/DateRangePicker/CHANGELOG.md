@@ -1,6 +1,7 @@
 # @paprika/date-range-picker
 
 ## 1.0.11-next.0
+
 ### Patch Changes
 
 - Updated dependencies [12938b6]
