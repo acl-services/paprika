@@ -8,7 +8,7 @@ export default function Keyboard() {
     <>
       <Button>Before Tabs</Button>
       <Gap.Large />
-      <Tabs defaultIndex={-1} a11yText="Testing Tabs">
+      <Tabs defaultIndex={null} a11yText="Testing Tabs">
         <Tabs.List>
           {true === false ? <Tabs.Tab>Impossible Tab</Tabs.Tab> : null}
           <div>

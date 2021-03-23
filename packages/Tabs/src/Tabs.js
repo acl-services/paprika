@@ -25,32 +25,31 @@ export default function Tabs(props) {
     tabHeight,
   } = props;
 
-  const isControlled = Boolean(onClickTab);
+  const [idTabs] = React.useState(uuidv4());
+  const refList = React.useRef(null);
 
-  function getIndex() {
-    if (index === null) {
-      return defaultIndex >= 0 ? defaultIndex : null;
-    }
-    return index >= 0 ? index : null;
+  const isControlled = index !== undefined;
+  const initIndex = defaultIndex === undefined ? 0 : defaultIndex;
+  const [internalIndex, setInternalIndex] = React.useState(initIndex);
+  const [focusIndex, setFocusIndex] = React.useState(isControlled ? index || 0 : initIndex);
+  const activeIndex = isControlled ? index : internalIndex;
+
+  if (isControlled && !onClickTab) {
+    console.warn(
+      `The index prop was provided to @paprika/${Tabs.displayName} but no onClickTab callback prop was provided to notify when the user selects a tab.`
+    );
   }
 
-  const indexToUse = getIndex();
-  const [activeIndex, setActiveIndex] = React.useState(indexToUse);
-  const [focusIndex, setFocusIndex] = React.useState(indexToUse || 0);
-  const refList = React.useRef(null);
-  const [idTabs] = React.useState(uuidv4());
+  React.useLayoutEffect(function ensureValidInitIndex() {
+    if (isControlled || defaultIndex === null) return;
 
-  React.useLayoutEffect(() => {
-    setActiveIndex(indexToUse);
-  }, [indexToUse]);
-
-  React.useLayoutEffect(() => {
     const items = getItems(refList);
-    if (indexToUse !== null && items.length > 0 && isItemDisabled(items[indexToUse])) {
-      const itemIndexes = getItemIndexes(refList, { hasDisabledItems: false });
+    const isDefaultIndexInvalid = items.length > 0 && (initIndex >= items.length || isItemDisabled(items[initIndex]));
 
+    if (isDefaultIndexInvalid) {
+      const itemIndexes = getItemIndexes(refList, { hasDisabledItems: false });
       if (itemIndexes.length > 0) {
-        setActiveIndex(itemIndexes[0]);
+        setInternalIndex(itemIndexes[0]);
       }
     }
   }, []);
@@ -63,11 +62,11 @@ export default function Tabs(props) {
   const handleClickTab = (event, index) => {
     const isLink = event.target.tagName.toLowerCase() === "a";
     if (!isLink) event.preventDefault();
+
+    if (onClickTab) onClickTab(index);
     setFocusIndex(index);
-    if (isControlled) {
-      onClickTab(index);
-    } else if (!isLink) {
-      setActiveIndex(index);
+    if (!isControlled && !isLink) {
+      setInternalIndex(index);
     }
   };
 
@@ -129,7 +128,7 @@ Tabs.propTypes = {
   /** Expects Tabs.List and Tabs.Panels. */
   children: PropTypes.node.isRequired,
 
-  /** Sets what tabindex is active by default (uncontrolled component). -1 for no active tab. */
+  /** Sets what tabindex is active by default (uncontrolled component). Use null for no active tab. */
   defaultIndex: PropTypes.number,
 
   /** If the visual focus ring for the tabs should be displayed with an inset style. */
@@ -138,7 +137,7 @@ Tabs.propTypes = {
   /** Tab labels will be truncated when they run out of space instead of breaking to multiple lines (ignored when isVertical is false). */
   hasTruncation: PropTypes.bool,
 
-  /** Sets what tabindex is active (controlled component). -1 for no active tab. */
+  /** Sets what tabindex is active (controlled component). Use null for no active tab. */
   index: PropTypes.number,
 
   /** If the tabs are all disabled. */
@@ -162,10 +161,10 @@ Tabs.propTypes = {
 
 Tabs.defaultProps = {
   a11yText: null,
-  defaultIndex: 0,
+  defaultIndex: undefined,
   hasInsetFocusStyle: false,
   hasTruncation: false,
-  index: null,
+  index: undefined,
   isDisabled: false,
   isVertical: false,
   kind: Tabs.types.kind.PRIMARY,
