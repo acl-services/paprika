@@ -84,7 +84,8 @@ class Popover extends React.Component {
       shouldKeepFocus,
       tip,
       zIndex,
-      ariaIdForContent
+      ariaIdForContent,
+      triggerElement
     ) => ({
       content: {
         ...content,
@@ -107,6 +108,7 @@ class Popover extends React.Component {
       refTip,
       shouldKeepFocus,
       tip,
+      triggerElement,
     })
   );
 
@@ -243,13 +245,6 @@ class Popover extends React.Component {
     }
   }, throttleDelay);
 
-  handleKeyUp = event => {
-    if (event.key === "Escape") {
-      this.close();
-      if (this.$trigger) this.$trigger.focus();
-    }
-  };
-
   handleKeyDown = event => {
     if (event.key === "Tab" && this.isOpen() && this.$trigger) {
       const isFocusOnFirst = this.focusIsOnCertainElementInPopover("first") || document.activeElement === this.$content;
@@ -375,8 +370,6 @@ class Popover extends React.Component {
 
   addListeners() {
     if (this.$content) {
-      document.addEventListener("keyup", this.handleKeyUp, false);
-      document.addEventListener("keydown", this.handleKeyDown, false);
       document.addEventListener("resize", this.handleReposition, false);
       document.addEventListener("scroll", this.handleReposition, false);
 
@@ -399,9 +392,6 @@ class Popover extends React.Component {
       } else {
         this.props.getScrollContainer().removeEventListener("scroll", this.handleReposition);
       }
-
-      document.removeEventListener("keyup", this.handleKeyUp);
-      document.removeEventListener("keydown", this.handleKeyDown);
 
       this.$content.removeEventListener("transitionend", this.handleTransitionEnd);
       this.hasListeners = false;
@@ -441,13 +431,14 @@ class Popover extends React.Component {
       this.props.shouldKeepFocus,
       this.state.tip,
       zIndex,
-      this.ariaIdForContent
+      this.ariaIdForContent,
+      this.$trigger
     );
 
     return (
       <ThemeContext.Provider value={isDark}>
         <PopoverContext.Provider value={contextValue}>
-          <sc.Popover data-pka-anchor="popover" {...moreProps} ref={this.$popover}>
+          <sc.Popover data-pka-anchor="popover" {...moreProps} ref={this.$popover} onKeyDown={this.handleKeyDown}>
             <PopoverChildren onChildChange={this.handleChildChange}>{this.props.children}</PopoverChildren>
           </sc.Popover>
         </PopoverContext.Provider>
