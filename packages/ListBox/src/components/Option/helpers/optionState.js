@@ -2,15 +2,13 @@ import React from "react";
 import { v4 as uuidv4 } from "uuid";
 import { isWhiteListed } from "../../Options/helpers/options";
 
-function createOption({ index, child, groupLabel = null, groupId = null }) {
+function createOption({ index, child }) {
   const { isDisabled, isHidden, label, onClick, preventDefaultOnSelect, value } = child.props;
 
   const isSelected = child.props.isSelected || child.props.defaultIsSelected || false;
 
   return {
     content: child,
-    groupId,
-    groupLabel,
     hasLabel: label,
     id: `opt_${uuidv4()}`,
     index,
@@ -34,7 +32,7 @@ export function getDataOptions(children) {
 
   React.Children.toArray(children).forEach(child => {
     if (child.type && isWhiteListed(child.type.displayName)) {
-      const option = createOption({ index, child, groupId: child.props.groupId });
+      const option = createOption({ index, child });
       options[index] = option;
       optionsIndex[option.id] = index;
       index += 1;

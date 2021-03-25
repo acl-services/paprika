@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { labelStyles } from "./Label.styles";
+import { PropsContext } from "../../store/PropsProvider";
 
 const propTypes = {
   selectedOptions: PropTypes.arrayOf(PropTypes.number).isRequired,
@@ -33,9 +34,18 @@ function getFormattedLabel(selectedOptions, options) {
 }
 
 export default function LabelMulti(props) {
-  const optionsLength = props.selectedOptions.length;
+  const { virtualize } = React.useContext(PropsContext);
 
-  const label = getFormattedLabel(props.selectedOptions, props.options);
+  const optionsLength = virtualize ? virtualize.onSelectedOptions().length : props.selectedOptions.length;
+
+  const label = virtualize
+    ? virtualize
+        .onSelectedOptions()
+        .map(index => {
+          return virtualize.onRenderLabel(index);
+        })
+        .join(", ")
+    : getFormattedLabel(props.selectedOptions, props.options);
 
   if (optionsLength > 1) {
     return (

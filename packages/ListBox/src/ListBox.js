@@ -1,11 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "@paprika/helpers/lib/polyfills/elementScroll";
+import { FixedSizeList as VirtualizeList } from "react-window";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import * as constants from "@paprika/constants/lib/Constants";
 import Box from "./components/Box";
 import Content from "./components/Content";
 import List from "./components/List";
+
 import NoResults from "./components/NoResults";
 import Options from "./components/Options";
 import Popover from "./components/Popover";
@@ -22,6 +24,16 @@ import {
   useOnScrolled,
   useOptionSelected,
 } from "./hooks";
+
+const VirtualizeOption = ({ index, style }) => {
+  const context = React.useContext(PropsContext);
+  const { onRenderOption, isOptionSelected } = context.virtualize;
+  if (onRenderOption && isOptionSelected) {
+    return <div style={style}>{onRenderOption({ index, isOptionSelected, hasVirtualization: true })}</div>;
+  }
+
+  throw Error("When using <ListBox.Virtualize> you need to provide the onRenderOption and isOptionSelected option");
+};
 
 export function ListBox(props) {
   const {
@@ -79,7 +91,26 @@ export function ListBox(props) {
 
   const trigger = _trigger ? React.cloneElement(_trigger, { ..._trigger.props }) : <Trigger {...propsForTrigger} />;
 
-  const listBox = (
+  const providedProps = React.useContext(PropsContext);
+  const { virtualize } = providedProps;
+
+  const listBox = virtualize ? (
+    <>
+      {trigger}
+      <Content {...contentProps}>
+        <Box {...boxProps}>
+          {isReadOnly ? null : filter}
+          <List {...listProps}>
+            <VirtualizeList height={150} itemCount={1000} itemSize={35} width={200}>
+              {VirtualizeOption}
+            </VirtualizeList>
+          </List>
+          {filter ? <NoResults label={noResultsMessage} /> : null}
+          {footer && !isReadOnly ? React.cloneElement(footer, { ref: refFooterContainer }) : null}
+        </Box>
+      </Content>
+    </>
+  ) : (
     <>
       {trigger}
       {isInline || !isReadOnly ? (
@@ -97,13 +128,15 @@ export function ListBox(props) {
     </>
   );
 
-  return isInline ? (
-    <div data-pka-anchor="list-box" {...moreProps}>
-      {listBox}
-    </div>
-  ) : (
-    listBox
-  );
+  if (isInline) {
+    return (
+      <div data-pka-anchor="list-box" {...moreProps}>
+        {listBox}
+      </div>
+    );
+  }
+
+  return listBox;
 }
 
 const ListBoxContainer = React.forwardRef((props, ref) => {

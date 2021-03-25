@@ -34,7 +34,17 @@ export default function Trigger(props) {
     ...moreProps
   } = props;
 
-  const { a11yProps, hasError, idListBox, isDisabled, isInline, isReadOnly, refLabel, size } = providedProps;
+  const {
+    a11yProps,
+    hasError,
+    idListBox,
+    isDisabled,
+    isInline,
+    isReadOnly,
+    refLabel,
+    size,
+    virtualize,
+  } = providedProps;
 
   const {
     activeOption,
@@ -75,15 +85,20 @@ export default function Trigger(props) {
     };
   }, [refLabel, refTrigger, idListBox]);
 
+  const optionsLength = virtualize ? virtualize.onSelectedOptions().length : state.selectedOptions.length;
+
   React.useEffect(() => {
     if (
       isOpen &&
       document.activeElement &&
       document.activeElement.dataset?.pkaAnchor === "list-box-trigger" &&
-      state.selectedOptions.length &&
+      optionsLength &&
       !state.isMulti
     ) {
       const id = setTimeout(() => {
+        // we can't be known if the element has been rendered in the ListBox when opens
+        if (virtualize) return;
+
         document.getElementById(state.options[state.selectedOptions[0]].id).focus();
       }, 350); // popover animation :/
 
@@ -91,7 +106,7 @@ export default function Trigger(props) {
         clearTimeout(id);
       };
     }
-  }, [isOpen, state.options, state.selectedOptions, state.isMulti]);
+  }, [isOpen, state.options, state.selectedOptions, state.isMulti, optionsLength, virtualize]);
 
   const handleClick = () => {
     if (isOpen) {
@@ -121,6 +136,11 @@ export default function Trigger(props) {
 
   const handleClickClear = () => {
     if (isDisabled) {
+      return;
+    }
+
+    if (virtualize && typeof virtualize.onClickClear === "function") {
+      virtualize.onClickClear();
       return;
     }
 

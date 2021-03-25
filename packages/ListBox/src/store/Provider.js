@@ -10,6 +10,7 @@ function initializeState(props) {
     height,
     isMulti,
     isOpen,
+    virtualize,
 
     childrenOptions,
 
@@ -22,14 +23,20 @@ function initializeState(props) {
   } = props;
 
   // initialize state for options and groups
-  const { options, optionsIndex } = getDataOptions(childrenOptions);
+  const { options, optionsIndex } = virtualize ? { options: {}, optionsIndex: {} } : getDataOptions(childrenOptions);
+
   const selectedOptions = Object.keys(options)
     .filter(key => options[key].isSelected)
     .map(key => Number.parseInt(key, 10));
 
   let activeOption = null;
-  if (selectedOptions.length && !props.isMulti) {
+
+  if (!virtualize && selectedOptions.length && !props.isMulti) {
     activeOption = selectedOptions[0];
+  }
+
+  if (virtualize) {
+    activeOption = virtualize.props.onSelectedOptions()[0];
   }
 
   const initialState = {

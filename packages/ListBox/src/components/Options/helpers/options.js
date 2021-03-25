@@ -213,7 +213,7 @@ export const handleClickOption = ({ props, isDisabled, state, dispatch, onChange
   if (isDisabled) return;
   const { index } = props;
   const { options, hasFilter, isMulti } = state;
-  const hasPreventDefaultOnSelect = options[index].preventDefaultOnSelect;
+  const hasPreventDefaultOnSelect = options[index]?.preventDefaultOnSelect;
 
   const focusListBoxContentIfHasNotFilter =
     state.refListBox.current.contains(event.target) && document.activeElement === document.body && !hasFilter;

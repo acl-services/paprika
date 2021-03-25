@@ -1,8 +1,10 @@
 import React from "react";
 import { isWhiteListed } from "./helpers/options";
 
-export default function Options(props) {
+const OptionProcessed = React.memo(props => {
+  // eslint-disable-next-line react/prop-types
   const { children, isPopoverOpen } = props;
+
   let index = -1;
   return React.Children.map(children, child => {
     if (child === null) return null;
@@ -16,4 +18,8 @@ export default function Options(props) {
 
     return child;
   });
+});
+
+export default function Options(props) {
+  return <OptionProcessed {...props} />;
 }

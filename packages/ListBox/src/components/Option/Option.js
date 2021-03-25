@@ -9,7 +9,16 @@ import useIsSelectedOption from "./useIsSelectedOption";
 import * as sc from "./Option.styles";
 
 export default function Option(props) {
-  const { index, groupId, label, ...moreProps } = props; // eslint-disable-line
+  const {
+    /* eslint-disable react/prop-types */
+    id: idProp,
+    index,
+    isOptionSelected: isOptionSelectedVirtualized,
+    /* eslint- react/prop-types */
+    label,
+    hasVirtualization,
+    ...moreProps
+  } = props;
   const [state, dispatch] = useListBox();
   const providedProps = React.useContext(PropsContext);
   const { isReadOnly, size } = providedProps;
@@ -17,13 +26,13 @@ export default function Option(props) {
 
   useIsSelectedOption({ index, props });
 
-  if (typeof state.options[index] === "undefined" || !isOptionVisible(state, index)) {
+  if ((typeof state.options[index] === "undefined" || !isOptionVisible(state, index)) && !hasVirtualization) {
     return null;
   }
 
-  const isSelected = isOptionSelected(state, index);
+  const isSelected = hasVirtualization ? isOptionSelectedVirtualized(index) : isOptionSelected(state, index);
   const isDisabled = providedProps.isDisabled || props.isDisabled || isReadOnly;
-  const id = state.options[index].id;
+  const id = hasVirtualization ? idProp : state.options[index].id;
 
   return (
     <sc.Option
@@ -74,6 +83,9 @@ Option.propTypes = {
 
   /** Internal prop, which shouldn't be documented */
   preventDefaultOnSelect: PropTypes.bool,
+
+  /** indicates if the option is under a virtualized component */
+  hasVirtualization: PropTypes.bool,
 };
 
 Option.defaultProps = {
@@ -85,4 +97,5 @@ Option.defaultProps = {
   label: null,
   onClick: null,
   value: null,
+  hasVirtualization: false,
 };

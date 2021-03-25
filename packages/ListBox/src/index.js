@@ -11,6 +11,7 @@ import Option from "./components/Option";
 import Popover from "./components/Popover";
 import RawItem from "./components/RawItem";
 import Trigger from "./components/Trigger";
+import Virtualize from "./components/Virtualize";
 import A11y from "./components/A11y";
 import Provider from "./store/Provider";
 import OnChangeProvider from "./store/OnChangeProvider";
@@ -51,6 +52,7 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
     "ListBox.Footer": footer,
     "ListBox.Popover": popover,
     "ListBox.Trigger": trigger,
+    "ListBox.Virtualize": virtualize,
     children: options,
   } = extractChildren(_children, [
     "ListBox.Box",
@@ -58,10 +60,14 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
     "ListBox.Footer",
     "ListBox.Popover",
     "ListBox.Trigger",
+    "ListBox.Virtualize",
   ]);
 
   const a11yProps = extractChildrenProps(_children, A11y);
   const { id, refLabel, ...moreA11yProps } = a11yProps;
+
+  const virtualizeProps = virtualize ? { ...virtualize.props } : null;
+
   const providedProps = {
     a11yProps: moreA11yProps,
     hasError,
@@ -72,10 +78,11 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
     placeholder: placeholder || I18n.t("listBox.trigger.placeholder"),
     refLabel,
     size,
+    virtualize: virtualizeProps,
   };
 
   return (
-    <Provider {...moreProps} childrenOptions={options}>
+    <Provider {...moreProps} virtualize={virtualize} childrenOptions={options}>
       <OnChangeProvider onChange={props.onChange}>
         <PropsProvider {...providedProps}>
           <ListBox
@@ -85,6 +92,7 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
             footer={footer}
             popover={popover}
             trigger={trigger}
+            virtualize={virtualize}
             ref={ref}
           >
             {options}
@@ -106,6 +114,7 @@ ListBoxWithProvider.Option = Option;
 ListBoxWithProvider.Popover = Popover;
 ListBoxWithProvider.RawItem = RawItem;
 ListBoxWithProvider.Trigger = Trigger;
+ListBoxWithProvider.Virtualize = Virtualize;
 
 ListBoxWithProvider.displayName = "ListBox";
 ListBoxWithProvider.propTypes = propTypes;

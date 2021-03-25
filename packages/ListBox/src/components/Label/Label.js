@@ -10,29 +10,24 @@ export default function Label(props) {
   const { hasImplicitAll, placeholder, label: customLabel, isDisabled, ...moreProps } = props;
   const [state] = useListBox();
   const { selectedOptions, isMulti, options } = state;
-  const { isReadOnly } = React.useContext(PropsContext);
-  const [label, setLabel] = React.useState(placeholder);
+  const { isReadOnly, virtualize } = React.useContext(PropsContext);
 
-  React.useEffect(() => {
-    if (selectedOptions.length) {
-      const _label = isMulti ? (
-        <LabelMulti options={options} selectedOptions={selectedOptions} />
-      ) : (
-        <LabelSingle options={options} selectedOptions={selectedOptions} />
-      );
+  const optionsLength = virtualize ? virtualize.onSelectedOptions().length : selectedOptions.length;
+  let label = placeholder;
 
-      setLabel(_label);
-      return;
-    }
-
-    setLabel(placeholder);
-  }, [isMulti, options, placeholder, selectedOptions]);
+  if (optionsLength) {
+    label = isMulti ? (
+      <LabelMulti options={options} selectedOptions={selectedOptions} />
+    ) : (
+      <LabelSingle options={options} selectedOptions={selectedOptions} />
+    );
+  }
 
   return (
     <sc.Label
       {...moreProps}
       hasImplicitAll={hasImplicitAll}
-      isPlaceholder={!selectedOptions.length}
+      isPlaceholder={!optionsLength}
       isDisabled={isDisabled}
       isReadOnly={isReadOnly}
     >
