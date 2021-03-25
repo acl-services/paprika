@@ -29,7 +29,7 @@ const VirtualizeOption = ({ index, style }) => {
   const context = React.useContext(PropsContext);
   const { onRenderOption, isOptionSelected } = context.virtualize;
   if (onRenderOption && isOptionSelected) {
-    return <div style={style}>{onRenderOption({ index, isOptionSelected, hasVirtualization: true })}</div>;
+    return onRenderOption({ index, isOptionSelected, hasVirtualization: true, style });
   }
 
   throw Error("When using <ListBox.Virtualize> you need to provide the onRenderOption and isOptionSelected option");
@@ -63,7 +63,7 @@ export function ListBox(props) {
   } = props;
 
   const I18n = useI18n();
-  const [{ noResultsFound, refFooterContainer }] = useListBox();
+  const [{ noResultsFound, refFooterContainer, triggerWidth }] = useListBox();
   const { isInline, isReadOnly } = React.useContext(PropsContext);
 
   /* eslint-disable react/prop-types */
@@ -101,7 +101,14 @@ export function ListBox(props) {
         <Box {...boxProps}>
           {isReadOnly ? null : filter}
           <List {...listProps}>
-            <VirtualizeList height={150} itemCount={1000} itemSize={35} width={200}>
+            <VirtualizeList
+              overscanCount={virtualize.overscanCount}
+              innerElementType="ul"
+              height={virtualize.height}
+              itemCount={virtualize.itemCount}
+              itemSize={virtualize.itemSize}
+              width={triggerWidth}
+            >
               {VirtualizeOption}
             </VirtualizeList>
           </List>

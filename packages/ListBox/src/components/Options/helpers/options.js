@@ -3,6 +3,18 @@ import useListBox from "../../../useListBox";
 import invokeOnChange from "../../../helpers/invokeOnChange";
 import { KEY_PRESS, CLICK } from "../../../types";
 
+function getList(element) {
+  // depending if its virtualize or not it will be ending a wrapper or should be a descendant
+  const list =
+    element.closest("[data-pka-anchor='styled-list']") || element.querySelector("[data-pka-anchor='styled-list']");
+
+  if (list.nodeName === "DIV") {
+    return list.querySelector("ul");
+  }
+
+  return list;
+}
+
 function getOptions(event) {
   let HTMLNodeList = null;
   if (event.target.dataset?.pkaAnchor === "list-filter-input") {
@@ -11,7 +23,7 @@ function getOptions(event) {
       .closest("[data-pka-anchor='list-box-box']")
       .querySelector("[data-pka-anchor='styled-list']");
   } else {
-    HTMLNodeList = event.target.querySelector("[data-pka-anchor='styled-list']");
+    HTMLNodeList = getList(event.target);
   }
 
   // filtering only results with role="option" attribute
@@ -20,7 +32,7 @@ function getOptions(event) {
 
 function getNextUp(event) {
   function next(element) {
-    const list = event.target.closest("[data-pka-anchor='styled-list']");
+    const list = getList(event.target);
     const HTMLChildren = list.children;
     if (list && [...HTMLChildren].indexOf(element) > 0) {
       const sibling = element.previousElementSibling;
@@ -63,7 +75,8 @@ function getNextUp(event) {
 
 function getNextDown(event) {
   function next(element) {
-    const list = event.target.closest("[data-pka-anchor='styled-list']");
+    const list = getList(element);
+
     const HTMLOptions = list.children;
     if (list && [...HTMLOptions].indexOf(element) < HTMLOptions.length - 1) {
       const sibling = element.nextElementSibling;

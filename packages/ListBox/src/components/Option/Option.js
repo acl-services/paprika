@@ -36,8 +36,8 @@ export default function Option(props) {
 
   return (
     <sc.Option
-      {...moreProps}
       {...getA11yAttributesForOption(isSelected)}
+      {...moreProps}
       hasPreventDefaultOnSelect={props.preventDefaultOnSelect}
       id={id}
       isDisabled={isDisabled}

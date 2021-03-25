@@ -65,7 +65,6 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
 
   const a11yProps = extractChildrenProps(_children, A11y);
   const { id, refLabel, ...moreA11yProps } = a11yProps;
-
   const virtualizeProps = virtualize ? { ...virtualize.props } : null;
 
   const providedProps = {

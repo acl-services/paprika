@@ -14,11 +14,13 @@ export const propTypes = {
   height: PropTypes.number,
   itemCount: PropTypes.number.isRequired,
   itemSize: PropTypes.number,
+  overscanCount: PropTypes.number,
 };
 
 export const defaultProps = {
   height: 280,
   itemSize: 32,
+  overscanCount: 6,
 };
 
 Virtualize.displayName = "ListBox.Virtualize";
