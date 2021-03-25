@@ -23,11 +23,9 @@ export default function List(props) {
   } = React.useContext(TabsContext);
 
   const childrenWithProps = React.Children.toArray(children)
-    .filter(child => {
-      return child !== null && child.type.displayName === Tab.displayName;
-    })
-    .map((tab, index) => {
-      return React.cloneElement(tab, {
+    .filter(child => child !== null && child.type.displayName === Tab.displayName)
+    .map((tab, index) =>
+      React.cloneElement(tab, {
         "aria-controls": `${idTabs}-panel-${index}`,
         focusIndex,
         kind,
@@ -41,8 +39,8 @@ export default function List(props) {
         onKeyDownArrows: onKeyDown,
         size,
         tabHeight,
-      });
-    });
+      })
+    );
 
   return (
     <sc.TabList

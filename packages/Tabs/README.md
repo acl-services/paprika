@@ -53,9 +53,9 @@ npm install @paprika/tabs
 
 ### Tabs.Panels
 
-| Prop     | Type | required | default | Description |
-| -------- | ---- | -------- | ------- | ----------- |
-| children | node | true     | -       |             |
+| Prop     | Type | required | default | Description                  |
+| -------- | ---- | -------- | ------- | ---------------------------- |
+| children | node | true     | -       | List of Tabs.Panel elements. |
 
 ### Tabs.Tab
 

@@ -53,7 +53,7 @@ declare namespace Tabs {
   function Panels(props: PanelsProps): JSX.Element;
   interface PanelsProps {
     [x: string]: any;
-
+    /** List of Tabs.Panel elements. */
     children: React.ReactNode;
   }
 }
