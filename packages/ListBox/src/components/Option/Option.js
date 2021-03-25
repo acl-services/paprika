@@ -38,15 +38,19 @@ export default function Option(props) {
     <sc.Option
       {...getA11yAttributesForOption(isSelected)}
       {...moreProps}
+      data-pka-anchor={isSelected ? "list-option--is-selected" : "list-option"}
+      data-pka-index={index}
+      data-pka-is-disabled={isDisabled}
+      data-pka-is-selected={isSelected}
+      data-pka-prevent-default-on-select={props.preventDefaultOnSelect}
       hasPreventDefaultOnSelect={props.preventDefaultOnSelect}
+      hasVirtualization={hasVirtualization}
       id={id}
       isDisabled={isDisabled}
       isSelected={isSelected}
-      size={size}
       key={index}
       onClick={handleClickOption({ props, isDisabled, state, dispatch, onChangeContext })}
-      data-pka-anchor={isSelected ? "list-option--is-selected" : "list-option"}
-      data-pka-prevent-default-on-select={props.preventDefaultOnSelect}
+      size={size}
       tabIndex={-1}
     >
       {typeof props.children === "function" ? props.children({ isSelected, isDisabled, id }) : props.children}

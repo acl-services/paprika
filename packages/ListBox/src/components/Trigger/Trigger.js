@@ -96,11 +96,24 @@ export default function Trigger(props) {
       !state.isMulti
     ) {
       const id = setTimeout(() => {
-        // we can't be known if the element has been rendered in the ListBox when opens
-        if (virtualize) return;
+        if (virtualize) {
+          const list = document.activeElement.querySelector("ul");
+          const selectedOption = list.querySelector("li[aria-selected=true]");
+          if (selectedOption) {
+            const HTMLList = Array.from(list.children);
+            const index = HTMLList.findIndex(element => {
+              return element.isEqualNode(selectedOption);
+            });
+            HTMLList[index].focus();
+            return;
+          }
+
+          list.children[virtualize.overscanCount].focus();
+          return;
+        }
 
         document.getElementById(state.options[state.selectedOptions[0]].id).focus();
-      }, 350); // popover animation :/
+      }, 300); // popover animation :/
 
       return () => {
         clearTimeout(id);

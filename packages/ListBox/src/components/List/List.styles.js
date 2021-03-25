@@ -24,7 +24,7 @@ export const List = styled.ul(({ noResultsFound, height, hasOptions, $virtualize
       ? `
         & ul {
           margin: 0;
-          padding: 0;
+          padding: 4px;
           box-sizing: border-box;
           list-style: none;
           &:focus {
@@ -38,7 +38,7 @@ export const List = styled.ul(({ noResultsFound, height, hasOptions, $virtualize
           li {
             display: flex;
             align-items: center;
-            padding: 0;
+            padding: 0 4px;
             box-sizing:border-box;
           }
 

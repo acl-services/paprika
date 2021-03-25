@@ -265,6 +265,40 @@ export const handleClickOption = ({ props, isDisabled, state, dispatch, onChange
 export function handleEnterOrSpace({ event, providedProps, state, dispatch, onChangeContext }) {
   event.preventDefault();
 
+  if (providedProps.virtualize) {
+    if (!state.isOpen) {
+      dispatch({ type: useListBox.types.openPopover });
+      return;
+    }
+
+    const activeElement = document.activeElement;
+    if (activeElement.getAttribute("role") !== "option") return;
+    if (activeElement.dataset.pkaPreventDefaultOnSelect === "true") return;
+    if (activeElement.dataset.pkaIsDisabled === "true") return;
+    if (providedProps.isInline) return;
+
+    const index = activeElement.dataset.pkaIndex;
+    // we are missing validation if option is disabled we could add a data attribute exposing that.
+
+    if (state.isMulti) {
+      toggleMultipleOption({
+        activeOptionIndex: index,
+        dispatch,
+        onChangeContext,
+        eventType: KEY_PRESS,
+      });
+      return;
+    }
+
+    selectSingleOption({ activeOptionIndex: index, isOpen: false, dispatch, onChangeContext, eventType: CLICK });
+
+    if (state.refTrigger.current) {
+      state.refTrigger.current.focus();
+    }
+
+    return;
+  }
+
   const option = state.options[state.activeOption];
 
   if (option && (option.isDisabled || option.preventDefaultOnSelect)) {

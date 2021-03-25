@@ -30,7 +30,7 @@ const fontSize = {
   `,
 };
 
-const stateStyles = ({ isSelected, hasPreventDefaultOnSelect }) => css`
+const stateStyles = ({ isSelected, hasPreventDefaultOnSelect, hasVirtualization }) => css`
   &:hover {
     ${hasPreventDefaultOnSelect ? "background: transparent;" : ""};
     background: ${isSelected ? blueSelected : tokens.color.blackLighten70};
@@ -40,6 +40,7 @@ const stateStyles = ({ isSelected, hasPreventDefaultOnSelect }) => css`
     border-bottom-color: transparent;
     border-radius: ${tokens.border.radius};
     ${hasPreventDefaultOnSelect ? stylers.focusRing.subtle() : stylers.focusRing()}
+    ${hasVirtualization ? "box-shadow: inset 0 0 0 2px #99cbfc;" : ""}
   }
 `;
 

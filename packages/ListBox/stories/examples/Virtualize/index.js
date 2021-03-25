@@ -36,11 +36,11 @@ export function VirtualizeStory() {
               }}
             >
               <ListBox.Virtualize
-                onClickClear={() => {
-                  setSelectedSingle(new Set());
-                }}
                 isOptionSelected={index => {
                   return selectedSingle.has(data[index]);
+                }}
+                onClickClear={() => {
+                  setSelectedSingle(new Set());
                 }}
                 onSelectedOptions={() => {
                   return Array.from(selectedSingle);
@@ -48,10 +48,13 @@ export function VirtualizeStory() {
                 onRenderLabel={() => {
                   return `label ${selectedSingle.values().next().value.id}`;
                 }}
-                itemCount={sizeItemCount}
                 onRenderOption={props => {
-                  if ([0, 15].includes(props.index)) {
-                    return <ListBox.Divider>Hi</ListBox.Divider>;
+                  if ([0, 5].includes(props.index)) {
+                    return (
+                      <ListBox.Divider key={props.index} {...props}>
+                        Hi
+                      </ListBox.Divider>
+                    );
                   }
                   return (
                     <ListBox.Option {...props} label={`${props.index}`}>
@@ -59,6 +62,7 @@ export function VirtualizeStory() {
                     </ListBox.Option>
                   );
                 }}
+                itemCount={sizeItemCount}
               />
             </ListBox>
           </Card>

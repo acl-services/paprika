@@ -4,11 +4,12 @@ import * as sc from "./Divider.styles";
 import { PropsContext } from "../../store/PropsProvider";
 
 export default function Divider(props) {
+  const { children, ...moreProps } = props;
   const { isDisabled: isDisabledStyle } = React.useContext(PropsContext);
 
   return (
-    <sc.Divider aria-hidden data-pka-anchor="list-box.divider" isDisabled={isDisabledStyle}>
-      {props.children}
+    <sc.Divider aria-hidden data-pka-anchor="list-box.divider" isDisabled={isDisabledStyle} {...moreProps}>
+      {children}
     </sc.Divider>
   );
 }
