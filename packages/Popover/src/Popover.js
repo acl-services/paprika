@@ -85,7 +85,7 @@ class Popover extends React.Component {
       tip,
       zIndex,
       ariaIdForContent,
-      triggerElement
+      handleKeyDown
     ) => ({
       content: {
         ...content,
@@ -108,7 +108,7 @@ class Popover extends React.Component {
       refTip,
       shouldKeepFocus,
       tip,
-      triggerElement,
+      handleKeyDown,
     })
   );
 
@@ -246,6 +246,11 @@ class Popover extends React.Component {
   }, throttleDelay);
 
   handleKeyDown = event => {
+    if (event.key === "Escape" && this.isOpen() && this.$trigger) {
+      event.stopPropagation();
+      this.close();
+      if (this.$trigger) this.$trigger.focus();
+    }
     if (event.key === "Tab" && this.isOpen() && this.$trigger) {
       const isFocusOnFirst = this.focusIsOnCertainElementInPopover("first") || document.activeElement === this.$content;
       const isFocusOnLast = this.focusIsOnCertainElementInPopover("last");
@@ -432,7 +437,7 @@ class Popover extends React.Component {
       this.state.tip,
       zIndex,
       this.ariaIdForContent,
-      this.$trigger
+      this.handleKeyDown
     );
 
     return (

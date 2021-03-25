@@ -30,7 +30,7 @@ const Content = React.forwardRef((props, ref) => {
     onDelayedOpen,
     portalElement,
     refContent,
-    triggerElement,
+    handleKeyDown,
   } = React.useContext(PopoverContext);
 
   // TODO: extract this to Storybook story somehow so supporting numbers as strings is not required
@@ -80,14 +80,6 @@ const Content = React.forwardRef((props, ref) => {
     }
   };
 
-  const handleKeyUp = event => {
-    if (event.key === "Escape") {
-      event.stopPropagation();
-      onClose();
-      if (triggerElement) triggerElement.focus();
-    }
-  };
-
   const contentStyles = {
     left: content.x,
     top: content.y,
@@ -101,7 +93,6 @@ const Content = React.forwardRef((props, ref) => {
   /* eslint-disable jsx-a11y/mouse-events-have-key-events */
   const ContentStyledComponent = (
     <ContentStyled
-      onKeyUp={handleKeyUp}
       aria-hidden={!isOpen}
       data-component-name="PopoverContent"
       data-pka-anchor="popover.content"
@@ -112,9 +103,13 @@ const Content = React.forwardRef((props, ref) => {
       onMouseOut={handleMouseEvent}
       onMouseOver={handleMouseEvent}
       style={contentStyles}
-      tabIndex="0"
+      tabIndex="-1"
       zIndex={content.zIndex}
       {...moreProps}
+      onKeyDown={e => {
+        console.log("calling on key up");
+        handleKeyDown(e);
+      }}
     >
       {props.children}
     </ContentStyled>
