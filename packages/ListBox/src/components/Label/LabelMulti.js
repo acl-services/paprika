@@ -4,7 +4,8 @@ import { labelStyles } from "./Label.styles";
 import { PropsContext } from "../../store/PropsProvider";
 
 const propTypes = {
-  selectedOptions: PropTypes.arrayOf(PropTypes.number).isRequired,
+  selectedOptions: PropTypes.oneOfType(PropTypes.arrayOf(PropTypes.string), PropTypes.arrayOf(PropTypes.number))
+    .isRequired,
   // complex object not worth declaring the shape of the strcuture
   options: PropTypes.object.isRequired, // eslint-disable-line
 };
@@ -41,8 +42,8 @@ export default function LabelMulti(props) {
   const label = virtualize
     ? virtualize
         .onSelectedOptions()
-        .map(index => {
-          return virtualize.onRenderLabel(index);
+        .map(option => {
+          return virtualize.onRenderLabel(option);
         })
         .join(", ")
     : getFormattedLabel(props.selectedOptions, props.options);

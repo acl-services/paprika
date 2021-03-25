@@ -4,9 +4,6 @@ import Blocks, { Block } from "storybook/components/Blocks";
 import ListBox from "../../../src";
 import CardComponent from "../../../../Card/src";
 
-import * as characters from "../../fixtures/characters";
-import List from "../../../src/components/List";
-
 const Card = ({ children }) => <CardComponent style={{ padding: "16px", width: "280px" }}>{children}</CardComponent>;
 
 const sizeItemCount = 500;
@@ -16,7 +13,7 @@ for (let i = 0, len = sizeItemCount; i < len; i++) {
 }
 
 export function VirtualizeStory() {
-  const [selected, setSelected] = React.useState(new Set([data[1], data[3], data[6]]));
+  const [selectedMultiple, setSelectedMultiple] = React.useState(new Set([data[1], data[3], data[6]]));
   const [selectedSingle, setSelectedSingle] = React.useState(new Set([data[2]]));
 
   return (
@@ -68,25 +65,50 @@ export function VirtualizeStory() {
           </Card>
           <h3>Multi</h3>
           <Card>
-            <ListBox isMulti>
+            <ListBox
+              isMulti
+              onChange={(...args) => {
+                setSelectedMultiple(prevSet => {
+                  const [, , index] = args;
+                  const nextSet = new Set(prevSet);
+                  if (nextSet.has(data[index])) {
+                    nextSet.delete(data[index]);
+                    return nextSet;
+                  }
+
+                  nextSet.add(data[index]);
+                  return nextSet;
+                });
+              }}
+            >
               <ListBox.Virtualize
                 isOptionSelected={index => {
-                  return selected.has(index);
+                  return selectedMultiple.has(data[index]);
+                }}
+                onClickClear={() => {
+                  setSelectedMultiple(new Set());
                 }}
                 onSelectedOptions={() => {
-                  return Array.from(selected);
+                  return Array.from(selectedMultiple);
                 }}
-                onRenderLabel={index => {
-                  return `label ${index}`;
+                onRenderLabel={option => {
+                  return `${option.label}`;
                 }}
-                itemCount={sizeItemCount}
                 onRenderOption={props => {
+                  if ([0, 5].includes(props.index)) {
+                    return (
+                      <ListBox.Divider key={props.index} {...props}>
+                        Hi
+                      </ListBox.Divider>
+                    );
+                  }
                   return (
-                    <ListBox.Option id={data[props.index]} {...props} label={`${props.index}`}>
+                    <ListBox.Option {...props} label={`${props.index}`}>
                       {props.index}
                     </ListBox.Option>
                   );
                 }}
+                itemCount={sizeItemCount}
               />
             </ListBox>
           </Card>
