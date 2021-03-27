@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 import * as constants from "@paprika/constants/lib/Constants";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import ListBox from "@paprika/list-box";
+import ListBox from "../../ListBox/src";
 import { filter } from "@paprika/list-box/lib/helpers/filter";
 import TriggerWithTags from "./components/TriggerWithTags";
 
@@ -102,14 +102,11 @@ export default function ListBoxWithTags(props) {
 
 ListBoxWithTags.displayName = "ListBoxWithTags";
 
-ListBoxWithTags.A11y = ListBox.A11y;
-ListBoxWithTags.Box = ListBox.Box;
-ListBoxWithTags.Divider = ListBox.Divider;
-ListBoxWithTags.Footer = ListBox.Footer;
-ListBoxWithTags.Option = ListBox.Option;
-ListBoxWithTags.Popover = ListBox.Popover;
-ListBoxWithTags.RawItem = ListBox.RawItem;
-ListBoxWithTags.filter = filter;
+for (const attribute in ListBox) {
+  if (Object.prototype.hasOwnProperty.call(ListBox, attribute)) {
+    ListBoxWithTags[attribute] = ListBox[attribute];
+  }
+}
 
 ListBoxWithTags.types = {
   size: {

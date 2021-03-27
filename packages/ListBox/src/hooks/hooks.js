@@ -14,7 +14,7 @@ export function useChildrenChange(children) {
   React.useEffect(() => {
     const { options = null } = getDataOptions(children);
 
-    if (options === null) return;
+    if (options === null || typeof options === "undefined") return;
 
     if (Object.keys(state.options).length === Object.keys(options).length) {
       const difference = Object.values(state.options).find(

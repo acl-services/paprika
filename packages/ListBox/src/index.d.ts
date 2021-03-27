@@ -142,6 +142,8 @@ declare namespace ListBox {
     value?: any;
     /** Internal prop, which shouldn't be documented */
     preventDefaultOnSelect?: boolean;
+    /** indicates if the option is under a virtualized component */
+    hasVirtualization?: boolean;
   }
 }
 declare namespace ListBox {

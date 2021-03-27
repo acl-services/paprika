@@ -2,16 +2,17 @@ import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import { exampleStoryParameters } from "storybook/assets/storyParameters";
 import ExampleStory from "storybook/components/ExampleStory";
-import Sizes from "./examples/Sizes";
-import Controlled from "./examples/Controlled";
 import AllOptionsAreSelected from "./examples/AllOptionsAreSelected";
+import Controlled from "./examples/Controlled";
 import CustomTag from "./examples/CustomTag";
-import RenderTagLabel from "./examples/RenderTagLabel";
-import Uncontrolled from "./examples/Uncontrolled";
-import UncontrolledUser from "./examples/UncontrolledUser";
-import UncontrolledFooter from "./examples/UncontrolledFooter";
 import FormElement from "./examples/FormElement";
+import RenderTagLabel from "./examples/RenderTagLabel";
+import Sizes from "./examples/Sizes";
 import UIStates from "./examples/UIStates";
+import Uncontrolled from "./examples/Uncontrolled";
+import UncontrolledFooter from "./examples/UncontrolledFooter";
+import UncontrolledUser from "./examples/UncontrolledUser";
+import UncontrolledVirtualize from "./examples/Uncontrolled.virtualize";
 
 const storyName = getStoryName("ListBoxWithTags");
 
@@ -72,6 +73,17 @@ export const UncontrolledUserStory = () => (
   </ExampleStory>
 );
 UncontrolledUserStory.story = { name: "Uncontrolled Users", parameters: exampleStoryParameters };
+
+export const UncontrolledVirtualizeStory = () => (
+  <ExampleStory
+    storyName="Uncontrolled Virtualize"
+    component="ListBoxWithTags"
+    fileName="examples/Uncontrolled.virtualize.js"
+  >
+    <UncontrolledVirtualize />
+  </ExampleStory>
+);
+UncontrolledVirtualizeStory.story = { name: "Uncontrolled Virtualize", parameters: exampleStoryParameters };
 
 export const UncontrolledFooterStory = () => (
   <ExampleStory

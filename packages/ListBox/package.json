@@ -31,7 +31,8 @@
       "Option",
       "Popover",
       "RawItem",
-      "Trigger"
+      "Trigger",
+      "Virtualize "
     ]
   },
   "devDependencies": {

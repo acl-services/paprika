@@ -26,6 +26,7 @@ import {
 } from "./hooks";
 
 const VirtualizeOption = ({ index, style }) => {
+  console.log("index", index);
   const context = React.useContext(PropsContext);
   const { onRenderOption, isOptionSelected } = context.virtualize;
   if (onRenderOption && isOptionSelected) {
@@ -94,46 +95,56 @@ export function ListBox(props) {
   const providedProps = React.useContext(PropsContext);
   const { virtualize } = providedProps;
 
-  const listBox = virtualize ? (
-    <>
-      {trigger}
-      <Content {...contentProps}>
-        <Box {...boxProps}>
-          {isReadOnly ? null : filter}
-          <List {...listProps}>
-            <VirtualizeList
-              overscanCount={virtualize.overscanCount}
-              innerElementType="ul"
-              height={virtualize.height}
-              itemCount={virtualize.itemCount}
-              itemSize={virtualize.itemSize}
-              width={triggerWidth}
-            >
-              {VirtualizeOption}
-            </VirtualizeList>
-          </List>
-          {filter ? <NoResults label={noResultsMessage} /> : null}
-          {footer && !isReadOnly ? React.cloneElement(footer, { ref: refFooterContainer }) : null}
-        </Box>
-      </Content>
-    </>
-  ) : (
-    <>
-      {trigger}
-      {isInline || !isReadOnly ? (
+  let listBox = null;
+
+  if (virtualize) {
+    const { overscanCount, height, itemCount, itemSize, idKey, ...morePropsVirtualize } = virtualize;
+
+    listBox = (
+      <>
+        {trigger}
         <Content {...contentProps}>
           <Box {...boxProps}>
             {isReadOnly ? null : filter}
             <List {...listProps}>
-              <Options isPopoverOpen={isOpen}>{children}</Options>
+              <VirtualizeList
+                overscanCount={overscanCount}
+                innerElementType="ul"
+                height={height}
+                itemCount={itemCount}
+                itemSize={itemSize}
+                width={triggerWidth}
+                key={idKey}
+                {...morePropsVirtualize}
+              >
+                {VirtualizeOption}
+              </VirtualizeList>
             </List>
             {filter ? <NoResults label={noResultsMessage} /> : null}
             {footer && !isReadOnly ? React.cloneElement(footer, { ref: refFooterContainer }) : null}
           </Box>
         </Content>
-      ) : null}
-    </>
-  );
+      </>
+    );
+  } else {
+    listBox = (
+      <>
+        {trigger}
+        {isInline || !isReadOnly ? (
+          <Content {...contentProps}>
+            <Box {...boxProps}>
+              {isReadOnly ? null : filter}
+              <List {...listProps}>
+                <Options isPopoverOpen={isOpen}>{children}</Options>
+              </List>
+              {filter ? <NoResults label={noResultsMessage} /> : null}
+              {footer && !isReadOnly ? React.cloneElement(footer, { ref: refFooterContainer }) : null}
+            </Box>
+          </Content>
+        ) : null}
+      </>
+    );
+  }
 
   if (isInline) {
     return (
