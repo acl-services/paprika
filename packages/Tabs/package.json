@@ -1,6 +1,6 @@
 {
   "name": "@paprika/tabs",
-  "version": "2.2.0-next.0",
+  "version": "2.2.0",
   "description": "Tabs component displays tabs with panels associated with each tab",
   "author": "@paprika",
   "license": "MIT",

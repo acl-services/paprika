@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.1.1
+
+### Patch Changes
+
+- Updated dependencies [12938b6]
+  - @paprika/popover@1.1.0
+  - @paprika/date-picker@1.0.11
+
 ## 2.1.1-next.0
 
 ### Patch Changes

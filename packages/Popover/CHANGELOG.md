@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0
+
+### Minor Changes
+
+- 12938b6: Added aria-haspopup to trigger
+
 ## 1.1.0-next.0
 
 ### Minor Changes
