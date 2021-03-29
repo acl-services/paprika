@@ -14,7 +14,7 @@ interface TabsProps {
   /** Tab labels will be truncated when they run out of space instead of breaking to multiple lines (ignored when isVertical is false). */
   hasTruncation?: boolean;
   /** Sets what tabindex is active (controlled component). Use null for no active tab. */
-  index?: number;
+  index?: number | custom;
   /** If the tabs are all disabled. */
   isDisabled?: boolean;
   /** If the tabs are stacked vertically. */
