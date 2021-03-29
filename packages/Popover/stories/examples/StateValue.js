@@ -18,7 +18,9 @@ export default function StateValue() {
       <Popover defaultIsOpen>
         <Popover.Trigger>
           {(handler, a11yAttributes, isOpen) => (
-            <Button onClick={handler}>{isOpen ? "Click to close" : "Click to open"}</Button>
+            <Button onClick={handler} {...a11yAttributes}>
+              {isOpen ? "Click to close" : "Click to open"}
+            </Button>
           )}
         </Popover.Trigger>
         <Popover.Content>
