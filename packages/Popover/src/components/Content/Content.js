@@ -96,7 +96,7 @@ const Content = React.forwardRef((props, ref) => {
       data-component-name="PopoverContent"
       data-pka-anchor="popover.content"
       ref={handleRef}
-      id={isEager ? content.ariaId : null}
+      id={content.ariaId}
       isOpen={isOpen}
       onBlur={handleBlur}
       onMouseOut={handleMouseEvent}
