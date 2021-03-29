@@ -50,7 +50,7 @@ function Trigger(props) {
   const { children, a11yText, ...moreProps } = props;
 
   const tooltipA11yProps = { "aria-describedby": content.ariaId };
-  const popoverA11yProps = { ...tooltipA11yProps, "aria-haspopup": true };
+  const popoverA11yProps = { "aria-haspopup": true, "aria-controls": true, "aria-expanded": true };
   const a11yAttributes = isEager ? tooltipA11yProps : popoverA11yProps;
 
   if (typeof children === "function") {
