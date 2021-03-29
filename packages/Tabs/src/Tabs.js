@@ -129,7 +129,7 @@ Tabs.propTypes = {
   children: PropTypes.node.isRequired,
 
   /** Sets what tabindex is active by default (uncontrolled component). Use null for no active tab. */
-  defaultIndex: PropTypes.number,
+  defaultIndex: PropTypes.oneOfType([PropTypes.number, null]),
 
   /** If the visual focus ring for the tabs should be displayed with an inset style. */
   hasInsetFocusStyle: PropTypes.bool,
@@ -138,7 +138,7 @@ Tabs.propTypes = {
   hasTruncation: PropTypes.bool,
 
   /** Sets what tabindex is active (controlled component). Use null for no active tab. */
-  index: PropTypes.number,
+  index: PropTypes.oneOfType([PropTypes.number, null]),
 
   /** If the tabs are all disabled. */
   isDisabled: PropTypes.bool,
