@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "@paprika/input";
 import Editor from "../../src/Editor";
-import Card from "../../../Card/src";
+import Card from "@paprika/card";
 
 function InlineInput(props) {
   const { value, onSubmit, isEditing, onClick } = props;
