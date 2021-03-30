@@ -6,6 +6,8 @@ import { v4 as uuidv4 } from "uuid";
 import * as constants from "@paprika/constants/lib/Constants";
 import tokens from "@paprika/tokens";
 import { zValue } from "@paprika/stylers/lib/helpers";
+import { callAll } from "@paprika/helpers";
+
 import * as types from "./types";
 import isInsideBoundaries from "./helpers/isInsideBoundaries";
 import { getContentCoordinates, getTipCoordinates } from "./helpers/getPosition";
@@ -245,7 +247,7 @@ class Popover extends React.Component {
     }
   }, throttleDelay);
 
-  handleKeyDown = (event, onKeyDown) => {
+  handleKeyDown = event => {
     if (event.key === "Escape" && this.isOpen() && this.$trigger) {
       event.stopPropagation();
       this.close();
@@ -261,8 +263,6 @@ class Popover extends React.Component {
         event.preventDefault();
         this.focusableElements[this.triggerFocusIndex + 1].focus();
       }
-    } else if (onKeyDown) {
-      onKeyDown(event);
     }
   };
 
@@ -444,7 +444,12 @@ class Popover extends React.Component {
     return (
       <ThemeContext.Provider value={isDark}>
         <PopoverContext.Provider value={contextValue}>
-          <sc.Popover data-pka-anchor="popover" {...moreProps} ref={this.$popover} onKeyDown={this.handleKeyDown}>
+          <sc.Popover
+            data-pka-anchor="popover"
+            ref={this.$popover}
+            {...moreProps}
+            onKeyDown={callAll(this.handleKeyDown, moreProps.onKeyDown)}
+          >
             <PopoverChildren onChildChange={this.handleChildChange}>{this.props.children}</PopoverChildren>
           </sc.Popover>
         </PopoverContext.Provider>

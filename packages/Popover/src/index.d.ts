@@ -53,10 +53,6 @@ declare namespace Popover {
     [x: string]: any;
 
     children?: React.ReactNode;
-    /** Callback to indicate the element loses focus */
-    onBlur?: (...args: any[]) => any;
-
-    onKeyDown?: (...args: any[]) => any;
   }
 }
 declare namespace Popover {
