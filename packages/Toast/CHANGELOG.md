@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.1.0
+
+### Minor Changes
+
+- 0b3b614: #### Added
+
+  - `renderDelay` prop.
+
+  #### Fixed
+
+  - Render delay is always implemented, regardless of `isPolite` value.
+
+  [@mikrotron](https://github.com/mikrotron)
+
 ## 1.1.0-next.0
 
 ### Minor Changes

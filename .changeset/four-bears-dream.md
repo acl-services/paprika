@@ -2,4 +2,4 @@
 "@paprika/popover": minor
 ---
 
-Added aria-haspopup to trigger
+Fixed aria tags on popover
