@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0-next.0
+
+### Minor Changes
+
+- c265721: Fixed aria tags on popover
+
 ## 1.1.0
 
 ### Minor Changes

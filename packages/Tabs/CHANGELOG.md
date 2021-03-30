@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.1-next.0
+
+### Patch Changes
+
+- 7979fb6: Add null to defaultIndex and index proptype
+
 ## 2.2.0
 
 ### Minor Changes
