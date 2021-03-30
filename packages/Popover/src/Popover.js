@@ -245,13 +245,12 @@ class Popover extends React.Component {
     }
   }, throttleDelay);
 
-  handleKeyDown = event => {
+  handleKeyDown = (event, onKeyDown) => {
     if (event.key === "Escape" && this.isOpen() && this.$trigger) {
       event.stopPropagation();
       this.close();
       if (this.$trigger) this.$trigger.focus();
-    }
-    if (event.key === "Tab" && this.isOpen() && this.$trigger) {
+    } else if (event.key === "Tab" && this.isOpen() && this.$trigger) {
       const isFocusOnFirst = this.focusIsOnCertainElementInPopover("first") || document.activeElement === this.$content;
       const isFocusOnLast = this.focusIsOnCertainElementInPopover("last");
 
@@ -262,6 +261,8 @@ class Popover extends React.Component {
         event.preventDefault();
         this.focusableElements[this.triggerFocusIndex + 1].focus();
       }
+    } else if (onKeyDown) {
+      onKeyDown(event);
     }
   };
 

@@ -10,15 +10,17 @@ const propTypes = {
   children: PropTypes.node,
   /** Callback to indicate the element loses focus */
   onBlur: PropTypes.func,
+  onKeyDown: PropTypes.func,
 };
 
 const defaultProps = {
   children: null,
   onBlur: () => {},
+  onKeyDown: () => {},
 };
 
 const Content = React.forwardRef((props, ref) => {
-  const { onBlur, children, ...moreProps } = props;
+  const { onBlur, children, onKeyDown, ...moreProps } = props;
 
   const {
     content,
@@ -107,8 +109,7 @@ const Content = React.forwardRef((props, ref) => {
       zIndex={content.zIndex}
       {...moreProps}
       onKeyDown={e => {
-        console.log("calling on key up");
-        handleKeyDown(e);
+        handleKeyDown(e, onKeyDown);
       }}
     >
       {props.children}
