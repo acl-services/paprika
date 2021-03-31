@@ -19,11 +19,11 @@ interface TableProps {
   data?: shape[];
   /** For authors use only, use case: inline editing. */
   enableArrowKeyNavigation?: boolean;
-  /** It will be call each time a new cell received the focus */
+  /** Will fire each time a new cell receives focus */
   onFocus?: (...args: any[]) => any;
-  /** It will be call each time a current selected cell lose focus */
+  /** Will fire each time a selected cell loses focus */
   onBlur?: (...args: any[]) => any;
-  /** It will be fire each time an user click on a cell */
+  /** Will fire each time user clicks on a cell */
   onClick?: (...args: any[]) => any;
 }
 
