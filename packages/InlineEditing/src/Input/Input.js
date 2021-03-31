@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Input from "@paprika/input";
-import Editor from "./Editor";
+import Editor from "../Editor";
+import * as sc from "./Input.styles";
 
 export default function InlineInput(props) {
   const {
@@ -59,14 +60,18 @@ export default function InlineInput(props) {
   React.useEffect(() => {
     if (isEditing) {
       onClose();
-      window.requestAnimationFrame(() => {
+      const id = window.requestAnimationFrame(() => {
         refInputEditor.current.focus();
       });
+
+      return () => {
+        window.cancelAnimationFrame(id);
+      };
     }
-  }, [value]);
+  }, [value]); // we want to run it only when the value change
 
   React.useEffect(() => {
-    if (isEditing) {
+    if (isEditing && refInput.current) {
       refInput.current.focus();
     }
   }, [isEditing]);
@@ -80,7 +85,7 @@ export default function InlineInput(props) {
       ref={refInputEditor}
     >
       <Editor.Edit>
-        <div style={{ position: "relative", height: "100%" }}>
+        <sc.Container>
           <Input
             {...moreProps}
             ref={refInput}
@@ -91,7 +96,7 @@ export default function InlineInput(props) {
             type="text"
             value={nextValue}
           />
-        </div>
+        </sc.Container>
       </Editor.Edit>
       <Editor.Value>
         <span>{value}</span>

@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ListBox from "@paprika/list-box";
-import Editor from "./Editor";
+import Editor from "../Editor";
+import * as sc from "./ListBox.styles";
 
 const isPopoverVisible = ({ rowIndex, columnIndex }) => {
   return (
@@ -74,9 +75,12 @@ export default function InlineListBox(props) {
   React.useEffect(() => {
     if (isEditing) {
       onClose();
-      window.requestAnimationFrame(() => {
+      const id = window.requestAnimationFrame(() => {
         refListBoxEditor.current.focus();
       });
+      return () => {
+        window.cancelAnimationFrame(id);
+      };
     }
   }, [value]);
 
@@ -87,7 +91,7 @@ export default function InlineListBox(props) {
   }, [isEditing, nextValue, rowIndex, columnIndex]);
 
   React.useEffect(() => {
-    if (isEditing) {
+    if (isEditing && refListBox.current) {
       refListBox.current.focus();
     }
   }, [isEditing]);
@@ -107,12 +111,12 @@ export default function InlineListBox(props) {
         </ListBox>
       </Editor.Edit>
       <Editor.Value>
-        <div style={{ width: "100%", display: "inline-flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div style={{ flexBasis: "100%", padding: "4px" }}>
+        <sc.ValueContainer>
+          <sc.ValueContainerChild>
             <div>{typeof renderValue === "function" ? renderValue(value) : value || placeHolder} </div>
-          </div>
+          </sc.ValueContainerChild>
           <div>▾</div>
-        </div>
+        </sc.ValueContainer>
       </Editor.Value>
     </Editor>
   );

@@ -182,8 +182,13 @@ const [isEditing, setIsEditing] = React.useState(false);
 
 /** 
   Be aware that ListBox isMulti and the single select option have a different signature for the onChange and onEditing event 
-  isMulti={true} ([indexes], options, selectedIndex, {options})
-  isMulti={false} ([indexes], options, selectedIndex, {options})
+
+  isMulti={true} 
+  signature: ([selected], options, selectedOption, {...more}, {rowIndex, columnIndex})
+
+  isMulti={false}
+  signature: (index, options, {...more}, {rowIndex, columnIndex}?)
+
 */
 <ListBox
   isEditing={isEditing}

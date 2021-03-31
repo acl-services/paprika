@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Textarea from "@paprika/textarea";
 import CollapsibleText from "@paprika/collapsible-text";
-import Editor from "./Editor";
+import Editor from "../Editor";
 
 export default function InlineTextarea(props) {
   const {
@@ -75,14 +75,18 @@ export default function InlineTextarea(props) {
   React.useEffect(() => {
     if (isEditing) {
       onClose();
-      window.requestAnimationFrame(() => {
+      const id = window.requestAnimationFrame(() => {
         refTextAreaEditor.current.focus();
       });
+
+      return () => {
+        window.cancelAnimationFrame(id);
+      };
     }
   }, [value]);
 
   React.useEffect(() => {
-    if (isEditing) {
+    if (isEditing && refTextarea.current) {
       refTextarea.current.focus();
     }
   }, [isEditing]);
@@ -102,12 +106,12 @@ export default function InlineTextarea(props) {
         />
       </Editor.Edit>
       <Editor.Value>
-        {typeof collapsedLength !== "undefined" ? (
+        {typeof collapsedLength === "undefined" ? (
+          <p style={{ whiteSpace: "pre-wrap", padding: "4px" }}>{value}</p>
+        ) : (
           <CollapsibleText collapsedLength={collapsedLength} a11yText="cardigans">
             <p>{value}</p>
           </CollapsibleText>
-        ) : (
-          <p style={{ whiteSpace: "pre-wrap", padding: "4px" }}>{value}</p>
         )}
       </Editor.Value>
     </Editor>

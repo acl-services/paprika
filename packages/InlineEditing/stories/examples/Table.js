@@ -1,6 +1,6 @@
 import React from "react";
 import ListBox from "../../src/ListBox";
-import { Table } from "../../src";
+import Table from "../../src/Table";
 import getUsers from "./mock";
 
 const users = getUsers(20);
