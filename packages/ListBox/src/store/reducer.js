@@ -1,5 +1,4 @@
 import useListBox from "../useListBox";
-import { getNextOptionActiveIndexLooping } from "../components/Options/helpers/options";
 
 export default function reducer(state, { type, payload }) {
   switch (type) {
@@ -68,14 +67,6 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
-    case useListBox.types.setListBoxHasFocus: {
-      const { hasFocus } = payload;
-      return {
-        ...state,
-        listBoxHasFocus: hasFocus,
-      };
-    }
-
     case useListBox.types.toggleMultipleOption: {
       const selectedOptionsArray = state.selectedOptions.slice();
       const { activeOptionIndex, onChangeFn } = payload;
@@ -102,20 +93,10 @@ export default function reducer(state, { type, payload }) {
     }
 
     case useListBox.types.applyFilter: {
-      let activeOption = null;
-      if (payload.filteredOptions.length === 1) {
-        activeOption = payload.filteredOptions[0];
-      }
-
-      if (payload.filteredOptions.length > 1) {
-        activeOption = getNextOptionActiveIndexLooping(state);
-      }
-
       return {
         ...state,
         filteredOptions: payload.filteredOptions,
         noResultsFound: payload.noResultsFound,
-        activeOption,
       };
     }
 

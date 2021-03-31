@@ -1,5 +1,81 @@
 # Changelog
 
+## 3.0.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [c265721]
+  - @paprika/popover@1.2.0-next.0
+
+## 3.0.1
+
+### Patch Changes
+
+- 0b3b614: #### Fixed
+
+  - Ensure "no results" message is read by screen readers.
+
+  [@mikrotron](https://github.com/mikrotron)
+
+- Updated dependencies [12938b6]
+- Updated dependencies [0b3b614]
+  - @paprika/popover@1.1.0
+  - @paprika/toast@1.1.0
+
+## 3.0.1-next.1
+
+### Patch Changes
+
+- 0b3b614: #### Fixed
+
+  - Ensure "no results" message is read by screen readers.
+
+  [@mikrotron](https://github.com/mikrotron)
+
+- Updated dependencies [0b3b614]
+  - @paprika/toast@1.1.0-next.0
+
+## 3.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [12938b6]
+  - @paprika/popover@1.1.0-next.0
+
+## 3.0.0
+
+### Major Changes
+
+- 47607db: ## 💥 BREAKING CHANGE
+
+  Refactored keyboard events for ↑ and ↓ for the list component
+  Refactor for the ↑ and ↓ keyboard navigation (`ListBox`), most consumer shouldn't be affected by it.
+
+  ## why the change was made:
+
+  We change the way the listbox navigates the options in the Component more details can be found on this PR: [#973](https://github.com/acl-services/paprika/pull/973)
+
+  ## 👷 Moving from 2.1.0 to 3.0.0:
+
+  No action required. There is not really an action from the consumer, this is marked as a breaking change because might break side code if you were in somehow depending on the previous implementation. But most likely you won't need to take any further actions
+
+## 3.0.0-next.0
+
+### Major Changes
+
+- 47607db: ## 💥 BREAKING CHANGE
+
+  Refactored keyboard events for ↑ and ↓ for the list component
+  Refactor for the ↑ and ↓ keyboard navigation (`ListBox`), most consumer shouldn't be affected by it.
+
+  ## why the change was made:
+
+  We change the way the listbox navigates the options in the Component more details can be found on this PR: [#973](https://github.com/acl-services/paprika/pull/973)
+
+  ## 👷 Moving from 2.1.0 to 3.0.0:
+
+  No action required. There is not really an action from the consumer, this is marked as a breaking change because might break side code if you were in somehow depending on the previous implementation. But most likely you won't need to take any further actions
+
 ## 2.1.0
 
 ### Minor Changes

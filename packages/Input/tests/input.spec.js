@@ -1,5 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
+import { axe } from "jest-axe";
 import { ShirtSizes } from "@paprika/helpers";
 import Input from "../src";
 
@@ -51,5 +52,18 @@ describe("Input", () => {
     expect(getByTestId("input").value).toBe(initialValue);
     fireEvent.change(getByTestId("input"), { target: { value: updatedValue } });
     expect(node.value).toBe(updatedValue);
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = renderComponent();
+
+    // Input component is isolated and is not associated with label
+    expect(
+      await axe(container, {
+        rules: {
+          label: { enabled: false },
+        },
+      })
+    ).toHaveNoViolations();
   });
 });

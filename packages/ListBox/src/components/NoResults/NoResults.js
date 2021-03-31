@@ -14,7 +14,7 @@ export default function NoResults(props) {
     return (
       <>
         <sc.NoResults data-pka-anchor="no-results">{label}</sc.NoResults>
-        <Toast kind={Toast.types.kind.VISUALLY_HIDDEN} aria-hidden>
+        <Toast autoCloseDelay={2500} canAutoClose isPolite kind={Toast.types.kind.VISUALLY_HIDDEN} renderDelay={1000}>
           {label}
         </Toast>
       </>

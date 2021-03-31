@@ -1,6 +1,97 @@
+import "@paprika/helpers/lib/polyfills/elementClosest";
 import useListBox from "../../../useListBox";
 import invokeOnChange from "../../../helpers/invokeOnChange";
 import { KEY_PRESS, CLICK } from "../../../types";
+
+function getOptions(event) {
+  let HTMLNodeList = null;
+  if (event.target.dataset?.pkaAnchor === "list-filter-input") {
+    // the event is coming from the filter
+    HTMLNodeList = event.target
+      .closest("[data-pka-anchor='list-box-box']")
+      .querySelector("[data-pka-anchor='styled-list']");
+  } else {
+    HTMLNodeList = event.target.querySelector("[data-pka-anchor='styled-list']");
+  }
+
+  // filtering only results with role="option" attribute
+  return [...HTMLNodeList.children].filter(li => li.hasAttribute("role"));
+}
+
+function getNextUp(event) {
+  function next(element) {
+    const list = event.target.closest("[data-pka-anchor='styled-list']");
+    const HTMLChildren = list.children;
+    if (list && [...HTMLChildren].indexOf(element) > 0) {
+      const sibling = element.previousElementSibling;
+      // if the next sibling has aria-hidden we skip it and call
+      // again previousSibling
+      if (sibling.hasAttribute("aria-hidden")) {
+        return next(sibling);
+      }
+
+      return sibling;
+    }
+
+    const box = document.activeElement.closest("[data-pka-anchor='list-box-box']");
+    const filter = box.querySelector("[data-pka-anchor='list-filter-input']");
+    if (filter) {
+      filter.focus();
+    }
+
+    return null;
+  }
+
+  // an activeElement is an option
+  if (document.activeElement && document.activeElement.getAttribute("role") === "option") {
+    return next(document.activeElement);
+  }
+
+  // filter is already focussed just ignore the event
+  if (document.activeElement.dataset?.pkaAnchor === "list-filter-input") {
+    return null;
+  }
+
+  // focus the first option
+  const options = getOptions(event);
+  if (options.length) {
+    return options[0];
+  }
+
+  return null;
+}
+
+function getNextDown(event) {
+  function next(element) {
+    const list = event.target.closest("[data-pka-anchor='styled-list']");
+    const HTMLOptions = list.children;
+    if (list && [...HTMLOptions].indexOf(element) < HTMLOptions.length - 1) {
+      const sibling = element.nextElementSibling;
+
+      // if the next sibling has aria-hidden we skip it and call
+      // again nextElementSibling
+      if (sibling.hasAttribute("aria-hidden")) {
+        return next(sibling);
+      }
+
+      return sibling;
+    }
+
+    return null;
+  }
+
+  // an activeElement is an option
+  if (document.activeElement.getAttribute("role") === "option") {
+    return next(document.activeElement);
+  }
+
+  const options = getOptions(event);
+  if (options.length) {
+    return options[0];
+  }
+
+  return null;
+}
 
 export function selectSingleOption({
   activeOptionIndex,
@@ -65,96 +156,42 @@ export function isOptionVisible(state, key) {
   return !state.filteredOptions.length || state.filteredOptions.includes(keyInt);
 }
 
-function isDisabled(state, key) {
-  return state.options[key].isDisabled;
-}
-
-export function getNextOptionActiveIndex(state, isAscending = true) {
-  const { activeOption, filteredOptions, options } = state;
-  const optionsKeys = Object.keys(state.options);
-
-  if (state.noResultsFound) return null;
-
-  if (optionsKeys.length === 1) {
-    if (state.options[0].isDisabled) {
-      return null;
-    }
-    return 0;
-  }
-
-  if (optionsKeys.length - 1 < activeOption) return 0;
-
-  let key = state.activeOption === null ? -1 : state.options[activeOption].index;
-
-  let keepIterating = true;
-
-  while (keepIterating) {
-    if (isAscending) {
-      if (filteredOptions.length === 1) {
-        keepIterating = false;
-        return filteredOptions[0];
-      }
-
-      if (key > -1 && ((filteredOptions.length && key + 1 > options.length) || key + 1 > optionsKeys.length - 1)) {
-        keepIterating = false;
-        return null;
-      }
-
-      key++;
-    } else {
-      if ((filteredOptions.length && key - 1 < 0) || key - 1 < 0) {
-        keepIterating = false;
-        return null;
-      }
-
-      key--;
-    }
-
-    if (isOptionVisible(state, key) && !isDisabled(state, key)) {
-      return key;
-    }
-  }
-}
-
-export function getNextOptionActiveIndexLooping(state) {
-  return getNextOptionActiveIndex(state) || getNextOptionActiveIndex(state, false);
-}
-
-export function handleArrowKeys({ event, providedProps, state, dispatch, isArrowDown = null, onChangeContext }) {
-  if (!providedProps.isInline && !state.isOpen) {
-    dispatch({ type: useListBox.types.openPopover });
-    return;
-  }
-
-  const next = getNextOptionActiveIndex(state, isArrowDown);
+export function handleArrowKeys({ event, state, dispatch, onChangeContext }) {
   event.preventDefault();
 
-  if (next === null && event.nativeEvent.key === "ArrowUp" && state.hasFilter) {
-    state.refFilterInput.current.focus();
-    if (state.isMulti) {
-      dispatch({
-        type: useListBox.types.setActiveOption,
-        payload: { activeOptionIndex: null, isOpen: true },
-      });
-    }
-  }
+  const nextElement = event.key === "ArrowUp" ? getNextUp(event) : getNextDown(event);
+  if (nextElement) {
+    const activeOptionIndex = state.optionsIndex[nextElement.getAttribute("id")];
 
-  if (next !== null) {
-    state.refListBox.current.children[next].focus();
     if (state.isMulti) {
       dispatch({
         type: useListBox.types.setActiveOption,
-        payload: { activeOptionIndex: next, isOpen: true },
+        payload: { activeOptionIndex, isOpen: true },
       });
-    } else {
+
+      // this fixed a weird bug when the list is filtered the dom stop focusing correctly
+      // seems like a browser issue :/
+      window.requestAnimationFrame(() => {
+        nextElement.focus();
+      });
+      return;
+    }
+
+    const option = state.options[activeOptionIndex];
+    if (option && !option.isDisabled) {
       selectSingleOption({
-        activeOptionIndex: next,
+        activeOptionIndex,
         isOpen: true,
         dispatch,
         onChangeContext,
         eventType: KEY_PRESS,
       });
     }
+    // this fixed a weird bug when the list is filtered the dom stop focusing correctly
+    // seems like a browser issue :/
+    window.requestAnimationFrame(() => {
+      nextElement.focus();
+    });
   }
 }
 
@@ -175,7 +212,7 @@ export const toggleOption = ({ index, isMulti, dispatch, onChangeContext }) => {
 export const handleClickOption = ({ props, isDisabled, state, dispatch, onChangeContext }) => event => {
   if (isDisabled) return;
   const { index } = props;
-  const { options, hasFilter, isMulti, refFilterInput } = state;
+  const { options, hasFilter, isMulti } = state;
   const hasPreventDefaultOnSelect = options[index].preventDefaultOnSelect;
 
   const focusListBoxContentIfHasNotFilter =
@@ -183,10 +220,6 @@ export const handleClickOption = ({ props, isDisabled, state, dispatch, onChange
 
   if (focusListBoxContentIfHasNotFilter) {
     state.refListBoxContainer.current.focus();
-  }
-
-  if (hasFilter && isMulti) {
-    refFilterInput.current.focus();
   }
 
   if (props.onClick || hasPreventDefaultOnSelect) {
@@ -242,7 +275,7 @@ export function handleEnterOrSpace({ event, providedProps, state, dispatch, onCh
 
     if (state.isMulti) {
       // if the "Enter" occurs using in the filter input, prevent it.
-      if (event.target.dataset.pkaAnchor === "list-filter-input") {
+      if (event.target.dataset?.pkaAnchor === "list-filter-input") {
         return;
       }
 
@@ -267,10 +300,14 @@ export function handleEnterOrSpace({ event, providedProps, state, dispatch, onCh
     }
 
     // for single select the option is set when the user interact with up and down arrows
-    // no need to notify which option is selected just close the popover
-    dispatch({ type: useListBox.types.closePopover });
-    if (state.refTrigger.current) {
-      state.refTrigger.current.focus();
+    // no need to notify which option is selected just close the popover unless the option is disabled
+    const id = state.optionsIndex[document.activeElement.getAttribute("id")];
+    if (!state.options[id].isDisabled) {
+      dispatch({ type: useListBox.types.closePopover });
+
+      if (state.refTrigger.current) {
+        state.refTrigger.current.focus();
+      }
     }
   } else {
     dispatch({ type: useListBox.types.openPopover });

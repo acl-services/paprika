@@ -25,6 +25,7 @@ const getKnobs = () => ({
     ],
     types.toastKinds.INFO
   ),
+  renderDelay: number("renderDelay", 20),
   zIndex: number("zIndex", undefined),
 });
 

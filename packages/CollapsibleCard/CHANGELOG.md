@@ -1,5 +1,29 @@
 # Changelog
 
+## 2.0.1
+
+### Patch Changes
+
+- 6a1fbbd: Support position prop to be passed in
+
+## 2.0.1-next.0
+
+### Patch Changes
+
+- 6a1fbbd: Support position prop to be passed in
+
+## 2.0.0
+
+### Major Changes
+
+- 4e31449: Fix version; a previous release was marked as a fix, but it was a major release. Update story.
+
+## 2.0.0-next.0
+
+### Major Changes
+
+- 4e31449: Fix version; a previous release was marked as a fix, but it was a major release. Update story.
+
 ## 1.1.11
 
 ### Patch Changes

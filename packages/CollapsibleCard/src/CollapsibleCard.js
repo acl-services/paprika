@@ -14,7 +14,7 @@ export const POSITIONS = {
 };
 
 export default function CollapsibleCard(props) {
-  const { children, initialIsCollapsed, isEditing, onToggleIsCollapsed, position } = props;
+  const { children, initialIsCollapsed, isEditing, onToggleIsCollapsed, position, ...moreProps } = props;
   const [isCollapsed, setIsCollapsed] = React.useState(() =>
     props.isCollapsed === null ? initialIsCollapsed : props.isCollapsed
   );
@@ -43,6 +43,7 @@ export default function CollapsibleCard(props) {
         isCollapsed={isCollapsed}
         isEditing={isEditing}
         position={position}
+        {...moreProps}
       >
         {children}
       </sc.CollapsibleCard>
@@ -75,3 +76,6 @@ CollapsibleCard.Body = Body;
 CollapsibleCard.Header = Header;
 CollapsibleCard.Segment = Segment;
 CollapsibleCard.Group = Group;
+CollapsibleCard.types = {
+  position: POSITIONS,
+};

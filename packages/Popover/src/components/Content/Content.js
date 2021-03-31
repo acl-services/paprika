@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
+import { callAll } from "@paprika/helpers";
 import isElementContainsFocus from "../../helpers/isElementContainsFocus";
 import PopoverContext from "../../PopoverContext";
 import { consts as PopoverConstants } from "../../Popover.styles";
@@ -8,17 +9,14 @@ import { ContentStyled } from "./Content.styles";
 
 const propTypes = {
   children: PropTypes.node,
-  /** Callback to indicate the element loses focus */
-  onBlur: PropTypes.func,
 };
 
 const defaultProps = {
   children: null,
-  onBlur: () => {},
 };
 
 const Content = React.forwardRef((props, ref) => {
-  const { onBlur, children, ...moreProps } = props;
+  const { children, ...moreProps } = props;
 
   const {
     content,
@@ -30,6 +28,7 @@ const Content = React.forwardRef((props, ref) => {
     onDelayedOpen,
     portalElement,
     refContent,
+    handleKeyDown,
   } = React.useContext(PopoverContext);
 
   // TODO: extract this to Storybook story somehow so supporting numbers as strings is not required
@@ -62,7 +61,7 @@ const Content = React.forwardRef((props, ref) => {
     setTimeout(() => {
       if (!isElementContainsFocus(currentTarget)) {
         onClose();
-        onBlur();
+        if (moreProps.onBlur) moreProps.onBlur();
       }
     }, parseInt(PopoverConstants.transition, 10));
   }
@@ -95,16 +94,17 @@ const Content = React.forwardRef((props, ref) => {
       aria-hidden={!isOpen}
       data-component-name="PopoverContent"
       data-pka-anchor="popover.content"
-      ref={handleRef}
-      id={isEager ? content.ariaId : null}
+      id={content.ariaId}
       isOpen={isOpen}
-      onBlur={handleBlur}
-      onMouseOut={handleMouseEvent}
-      onMouseOver={handleMouseEvent}
+      ref={handleRef}
       style={contentStyles}
       tabIndex="-1"
       zIndex={content.zIndex}
       {...moreProps}
+      onBlur={handleBlur}
+      onMouseOut={callAll(handleMouseEvent, moreProps.onMouseOut)}
+      onMouseOver={callAll(handleMouseEvent, moreProps.onMouseOver)}
+      onKeyDown={callAll(handleKeyDown, moreProps.onKeyDown)}
     >
       {props.children}
     </ContentStyled>

@@ -1,5 +1,6 @@
 import React from "react";
 import { render, fireEvent, configure } from "@testing-library/react";
+import { axe } from "jest-axe";
 import { Controlled } from "../../../stories/examples/Single/Controlled";
 import ListBox from "../../../src";
 
@@ -105,5 +106,10 @@ describe("ListBox single select", () => {
 
     expect(getAllByTestId("list-option--is-selected").length).toBe(1);
     expect(getByTestId("list-option--is-selected").textContent).toBe("Spiderman");
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = renderComponent();
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

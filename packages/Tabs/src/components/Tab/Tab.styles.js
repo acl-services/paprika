@@ -31,12 +31,16 @@ const activeStyles = ({ isVertical, kind }) => css`
     `}
 `;
 
-const disabledStyles = css`
+const disabledStyles = ({ hasInsetFocusStyle }) => css`
   &&& {
     border-bottom-color: transparent;
   }
   color: ${tokens.color.blackDisabled};
   cursor: not-allowed;
+
+  &:focus {
+    ${stylers.focusRing.subtle(hasInsetFocusStyle)}
+  }
 `;
 
 function getHeightValue(height) {
@@ -105,17 +109,14 @@ export const Tab = styled(RawButton)(baseStyles);
 
 export const Link = styled.a(
   ({ hasInsetFocusStyle }) => css`
-  ${baseStyles}
-  color: ${tokens.color.black};
-  text-decoration: none;
+    ${baseStyles}
+    text-decoration: none;
 
-  &:focus {
-    box-shadow: ${
-      hasInsetFocusStyle
+    &:focus {
+      box-shadow: ${hasInsetFocusStyle
         ? tokens.highlight.active.withBorder.insetBoxShadow
-        : tokens.highlight.active.withBorder.boxShadow
-    };
-    outline: none;
-  }
-`
+        : tokens.highlight.active.withBorder.boxShadow};
+      outline: none;
+    }
+  `
 );

@@ -6,6 +6,8 @@ import { v4 as uuidv4 } from "uuid";
 import * as constants from "@paprika/constants/lib/Constants";
 import tokens from "@paprika/tokens";
 import { zValue } from "@paprika/stylers/lib/helpers";
+import { callAll } from "@paprika/helpers";
+
 import * as types from "./types";
 import isInsideBoundaries from "./helpers/isInsideBoundaries";
 import { getContentCoordinates, getTipCoordinates } from "./helpers/getPosition";
@@ -84,7 +86,8 @@ class Popover extends React.Component {
       shouldKeepFocus,
       tip,
       zIndex,
-      ariaIdForContent
+      ariaIdForContent,
+      handleKeyDown
     ) => ({
       content: {
         ...content,
@@ -107,6 +110,7 @@ class Popover extends React.Component {
       refTip,
       shouldKeepFocus,
       tip,
+      handleKeyDown,
     })
   );
 
@@ -243,15 +247,12 @@ class Popover extends React.Component {
     }
   }, throttleDelay);
 
-  handleKeyUp = event => {
-    if (event.key === "Escape") {
+  handleKeyDown = event => {
+    if (event.key === "Escape" && this.isOpen() && this.$trigger) {
+      event.stopPropagation();
       this.close();
       if (this.$trigger) this.$trigger.focus();
-    }
-  };
-
-  handleKeyDown = event => {
-    if (event.key === "Tab" && this.isOpen() && this.$trigger) {
+    } else if (event.key === "Tab" && this.isOpen() && this.$trigger) {
       const isFocusOnFirst = this.focusIsOnCertainElementInPopover("first") || document.activeElement === this.$content;
       const isFocusOnLast = this.focusIsOnCertainElementInPopover("last");
 
@@ -375,8 +376,6 @@ class Popover extends React.Component {
 
   addListeners() {
     if (this.$content) {
-      document.addEventListener("keyup", this.handleKeyUp, false);
-      document.addEventListener("keydown", this.handleKeyDown, false);
       document.addEventListener("resize", this.handleReposition, false);
       document.addEventListener("scroll", this.handleReposition, false);
 
@@ -399,9 +398,6 @@ class Popover extends React.Component {
       } else {
         this.props.getScrollContainer().removeEventListener("scroll", this.handleReposition);
       }
-
-      document.removeEventListener("keyup", this.handleKeyUp);
-      document.removeEventListener("keydown", this.handleKeyDown);
 
       this.$content.removeEventListener("transitionend", this.handleTransitionEnd);
       this.hasListeners = false;
@@ -441,13 +437,19 @@ class Popover extends React.Component {
       this.props.shouldKeepFocus,
       this.state.tip,
       zIndex,
-      this.ariaIdForContent
+      this.ariaIdForContent,
+      this.handleKeyDown
     );
 
     return (
       <ThemeContext.Provider value={isDark}>
         <PopoverContext.Provider value={contextValue}>
-          <sc.Popover data-pka-anchor="popover" {...moreProps} ref={this.$popover}>
+          <sc.Popover
+            data-pka-anchor="popover"
+            ref={this.$popover}
+            {...moreProps}
+            onKeyDown={callAll(this.handleKeyDown, moreProps.onKeyDown)}
+          >
             <PopoverChildren onChildChange={this.handleChildChange}>{this.props.children}</PopoverChildren>
           </sc.Popover>
         </PopoverContext.Provider>

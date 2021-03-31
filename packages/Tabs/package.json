@@ -1,7 +1,7 @@
 {
   "name": "@paprika/tabs",
-  "version": "2.1.2",
-  "description": "Tabs component displays horizontal tabs with panels associated with each tab",
+  "version": "2.2.1-next.0",
+  "description": "Tabs component displays tabs with panels associated with each tab",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
@@ -22,7 +22,8 @@
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",
     "classnames": "^2.2.6",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "uuid": "^8.3.2"
   },
   "peerDependencies": {
     "react": "^16.8.4",

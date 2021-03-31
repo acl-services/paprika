@@ -1,5 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
+import { axe } from "jest-axe";
 import DataGrid from "../src";
 
 const data = [
@@ -24,5 +25,18 @@ describe("DataGrid", () => {
     expect(getByText("hi")).toBeInTheDocument();
     expect(getByText("hello")).toBeInTheDocument();
     expect(getByText("hola")).toBeInTheDocument();
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = renderComponent();
+
+    // TODO: Violation - "Certain ARIA roles must contain particular children (aria-required-children)"
+    expect(
+      await axe(container, {
+        rules: {
+          "aria-required-children": { enabled: false },
+        },
+      })
+    ).toHaveNoViolations();
   });
 });
