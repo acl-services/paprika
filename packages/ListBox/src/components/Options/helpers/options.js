@@ -5,10 +5,11 @@ import { KEY_PRESS, CLICK } from "../../../types";
 
 function getList(element) {
   // depending if its virtualize or not it will be ending a wrapper or should be a descendant
+
   const list =
     element.closest("[data-pka-anchor='styled-list']") || element.querySelector("[data-pka-anchor='styled-list']");
 
-  if (list.nodeName === "DIV") {
+  if (list?.nodeName === "DIV") {
     return list.querySelector("ul");
   }
 
@@ -26,8 +27,11 @@ function getOptions(event) {
     HTMLNodeList = getList(event.target);
   }
 
+  const children =
+    HTMLNodeList.nodeName === "DIV" ? [...HTMLNodeList.querySelector("ul").children] : [...HTMLNodeList.children];
+
   // filtering only results with role="option" attribute
-  return [...HTMLNodeList.children].filter(li => li.hasAttribute("role"));
+  return children.filter(li => li.hasAttribute("role"));
 }
 
 function getNextUp(event) {
@@ -170,6 +174,11 @@ export function isOptionVisible(state, key) {
 }
 
 export function handleArrowKeys({ event, state, dispatch, onChangeContext }) {
+  if (!state.isOpen) {
+    dispatch({ type: useListBox.types.openPopover });
+    return;
+  }
+
   event.preventDefault();
 
   const nextElement = event.key === "ArrowUp" ? getNextUp(event) : getNextDown(event);

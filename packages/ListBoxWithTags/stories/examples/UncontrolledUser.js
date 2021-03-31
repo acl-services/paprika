@@ -79,6 +79,8 @@ export default function UncontrolledUsers() {
     setHasSubmitted(true);
   }
 
+  const selectedOptions = React.useMemo(() => getSelectedOptions(), [getSelectedOptions]);
+
   return (
     <form onSubmit={handleSubmit}>
       <div>Select your favorite Oscar winners:</div>
@@ -86,7 +88,7 @@ export default function UncontrolledUsers() {
         <>
           <div>your selections: </div>
           <ul>
-            {getSelectedOptions().map(option => (
+            {selectedOptions.map(option => (
               <li key={option.name}>
                 {option.name} {option.userName}
               </li>
@@ -95,7 +97,7 @@ export default function UncontrolledUsers() {
         </>
       ) : null}
       <ListBox
-        allOptionsAreSelected={defaultFilteredData.length === getSelectedOptions().length}
+        allOptionsAreSelected={defaultFilteredData.length === selectedOptions.length}
         allOptionsAreSelectedMessage="All directors have been selected"
         onAddCustomOption={onAddCustomOption(label => {
           // This allowed you override the default behaviour when creating a custom option
@@ -110,7 +112,7 @@ export default function UncontrolledUsers() {
           };
         })}
         renderTag={renderTag}
-        selectedOptions={getSelectedOptions()}
+        selectedOptions={selectedOptions}
         {...moreUseListBoxWithTagsProps}
       >
         {filteredData.map(option => {

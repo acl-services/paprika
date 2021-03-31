@@ -26,7 +26,6 @@ import {
 } from "./hooks";
 
 const VirtualizeOption = ({ index, style }) => {
-  console.log("index", index);
   const context = React.useContext(PropsContext);
   const { onRenderOption, isOptionSelected } = context.virtualize;
   if (onRenderOption && isOptionSelected) {

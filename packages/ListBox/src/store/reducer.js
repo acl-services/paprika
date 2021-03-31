@@ -69,17 +69,17 @@ export default function reducer(state, { type, payload }) {
 
     case useListBox.types.toggleMultipleOption: {
       const selectedOptionsArray = state.selectedOptions.slice();
-      const { activeOptionIndex, onChangeFn } = payload;
-      if (selectedOptionsArray.includes(activeOptionIndex)) {
-        const index = selectedOptionsArray.indexOf(activeOptionIndex);
+      const { onChangeFn } = payload;
+      if (selectedOptionsArray.includes(payload.activeOptionIndex)) {
+        const index = selectedOptionsArray.indexOf(payload.activeOptionIndex);
         selectedOptionsArray.splice(index, 1);
       } else {
-        selectedOptionsArray.push(activeOptionIndex);
+        selectedOptionsArray.push(payload.activeOptionIndex);
       }
 
       return {
         ...state,
-        activeOption: activeOptionIndex,
+        activeOption: payload.activeOptionIndex,
         onChangeFn,
         selectedOptions: selectedOptionsArray,
       };

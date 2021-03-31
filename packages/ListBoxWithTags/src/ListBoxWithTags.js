@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 import * as constants from "@paprika/constants/lib/Constants";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import ListBox from "../../ListBox/src";
+import ListBox from "@paprika/list-box";
 import { filter } from "@paprika/list-box/lib/helpers/filter";
 import TriggerWithTags from "./components/TriggerWithTags";
 
@@ -52,10 +52,6 @@ export default function ListBoxWithTags(props) {
   }
 
   function handleChange(...args) {
-    if (selectedOptions !== null && "length" in selectedOptions) {
-      refFilter.current.reset();
-    }
-
     onChange(...args);
   }
 
@@ -75,9 +71,11 @@ export default function ListBoxWithTags(props) {
     tagLabelKey,
   };
 
+  const { snapshotSelectedKeys, data, ...rest } = moreProps;
+
   return (
     <div ref={refDivRoot}>
-      <ListBox isMulti size={validSize} onChange={handleChange} {...moreProps}>
+      <ListBox isMulti size={validSize} onChange={handleChange} {...rest}>
         <ListBox.Trigger>
           {(...[, , , attributes]) => <TriggerWithTags {...triggerProps} {...attributes} />}
         </ListBox.Trigger>
@@ -107,6 +105,8 @@ for (const attribute in ListBox) {
     ListBoxWithTags[attribute] = ListBox[attribute];
   }
 }
+
+ListBoxWithTags.filter = filter;
 
 ListBoxWithTags.types = {
   size: {

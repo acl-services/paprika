@@ -49,8 +49,6 @@ export default function useWithTags({
 
       return [...new Set(prevClone.concat([id]))];
     });
-
-    setFilteredData(defaultData);
   }
 
   function getSelectedOptions() {
