@@ -48,12 +48,14 @@ export default function TableStory() {
   const [data, setData] = React.useState(users);
 
   return (
-    <Table data={data} hasZebraStripes a11yText="My Table">
-      {cellTypes.map(key => {
-        const cell = key in cellRenders ? cellRenders[key]({ setData }) : ({ row }) => row[key];
-        const extraProps = key in columnDefinitionProps ? columnDefinitionProps[key] : {};
-        return <Table.ColumnDefinition key="key" header={key} cell={cell} {...extraProps} />;
-      })}
-    </Table>
+    <>
+      <Table data={data} hasZebraStripes a11yText="My Table">
+        {cellTypes.map(key => {
+          const cell = key in cellRenders ? cellRenders[key]({ setData }) : ({ row }) => row[key];
+          const extraProps = key in columnDefinitionProps ? columnDefinitionProps[key] : {};
+          return <Table.ColumnDefinition key="key" header={key} cell={cell} {...extraProps} />;
+        })}
+      </Table>
+    </>
   );
 }

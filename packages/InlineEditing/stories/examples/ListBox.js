@@ -93,7 +93,7 @@ export function ListBoxMultipleStory() {
           return (
             <Tags>
               {indexes.map(index => {
-                return <Tag>{subscriptionTypes[index - 1].label}</Tag>;
+                return <Tag key={subscriptionTypes[index - 1].label}>{subscriptionTypes[index - 1].label}</Tag>;
               })}
             </Tags>
           );
