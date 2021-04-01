@@ -32,8 +32,9 @@ export default function InlineTextarea(props) {
     onChange(next, { rowIndex, columnIndex });
   }
 
-  function handleBlur() {
+  function handleBlur(event) {
     onClose();
+    onSubmit(nextValue, { rowIndex, columnIndex, event });
     window.requestAnimationFrame(() => {
       refTextAreaEditor.current.focus();
     });
@@ -49,6 +50,7 @@ export default function InlineTextarea(props) {
 
     if (event.key === "Escape") {
       onClose();
+      setNextValue(value);
       window.requestAnimationFrame(() => {
         refTextAreaEditor.current.focus();
       });

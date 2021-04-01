@@ -23,8 +23,9 @@ export default function InlineInput(props) {
   const refInputEditor = React.useRef(null);
   const [nextValue, setNextValue] = React.useState(value);
 
-  function handleBlur() {
+  function handleBlur(event) {
     onClose();
+    onSubmit(nextValue, { rowIndex, columnIndex, event });
     window.requestAnimationFrame(() => {
       refInputEditor.current.focus();
     });
@@ -33,6 +34,7 @@ export default function InlineInput(props) {
   function handleKeyUp(event) {
     if (event.key === "Escape") {
       onClose();
+      setNextValue(value);
       window.requestAnimationFrame(() => {
         refInputEditor.current.focus();
       });
