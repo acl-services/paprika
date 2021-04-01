@@ -5,12 +5,12 @@ import * as constants from "@paprika/constants/lib/Constants";
 import * as sc from "./Textarea.styles";
 
 const Textarea = React.forwardRef((props, ref) => {
-  const textareaRef = React.useRef(null);
+  const refTextarea = React.useRef(null);
 
   const resize = () => {
-    if (textareaRef.current && textareaRef.current.style) {
-      textareaRef.current.style.height = 0;
-      textareaRef.current.style.height = `${textareaRef.current.scrollHeight + 2}px`;
+    if (refTextarea.current && refTextarea.current.style) {
+      refTextarea.current.style.height = 0;
+      refTextarea.current.style.height = `${refTextarea.current.scrollHeight + 2}px`;
     }
   };
 
@@ -26,6 +26,12 @@ const Textarea = React.forwardRef((props, ref) => {
     size,
     ...moreProps
   } = props;
+
+  React.useImperativeHandle(ref, () => ({
+    focus: () => {
+      refTextarea.current.focus();
+    },
+  }));
 
   React.useEffect(() => {
     if (canExpand) {
@@ -43,13 +49,6 @@ const Textarea = React.forwardRef((props, ref) => {
       resize();
     }
   }, [canExpand]);
-
-  const setRef = node => {
-    textareaRef.current = node;
-    if (ref) {
-      ref(node);
-    }
-  };
 
   if (moreProps.value) {
     delete moreProps.defaultValue;
@@ -84,7 +83,7 @@ const Textarea = React.forwardRef((props, ref) => {
         disabled={isDisabled}
         readOnly={isReadOnly}
         onChange={handleChange}
-        ref={setRef}
+        ref={refTextarea}
         style={{ maxHeight }}
         {...moreProps}
       />

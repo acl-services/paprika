@@ -1,6 +1,6 @@
 import { Meta, Props, Story } from "@storybook/addon-docs/blocks";
 import { getStoryName } from "storybook/storyTree";
-import CollapsibleCard from "@paprika/collapsible-card";
+import CollapsibleCard from "../../CollapsibleCard/src";
 import Basic from "./examples/useReducer.basic";
 import Blocks, { Block } from "storybook/components/Blocks";
 import BasicWithContext from "./examples/useReducerWithContext.basic";
@@ -137,7 +137,12 @@ so if you are interested in learning more about that.
 ## Reusability - Advance
 
 <br />
-<CollapsibleCard label="Reusability with useSeducer">
+
+<CollapsibleCard>
+  <CollapsibleCard.Header>
+    <CollapsibleCard.Segment>Reusability with useSeducer</CollapsibleCard.Segment>
+  </CollapsibleCard.Header>
+  <CollapsibleCard.Body>
 
 Reusing components and features within the React ecosystem is a complex topic, there are many patterns and ways to make
 your components reusable.
@@ -211,9 +216,16 @@ export default function YourReusableComponent({ store: storeProps, ...moreProps 
 
 That's it you created a control and uncontrolled component.
 
+  </CollapsibleCard.Body>
 </CollapsibleCard>
+
 <br />
-<CollapsibleCard label="Reusability with useSeducerWithContext">
+
+<CollapsibleCard>
+  <CollapsibleCard.Header>
+    <CollapsibleCard.Segment>Reusability with useSeducerWithContext</CollapsibleCard.Segment>
+  </CollapsibleCard.Header>
+  <CollapsibleCard.Body>
 
 The recipe for useSeducerWithContext goes like this:
 
@@ -279,6 +291,7 @@ function Root() {
 }
 ```
 
+  </CollapsibleCard.Body>
 </CollapsibleCard>
 
 ## More Examples

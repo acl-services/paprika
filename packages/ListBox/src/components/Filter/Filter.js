@@ -69,7 +69,7 @@ const Filter = React.forwardRef((props, ref) => {
       });
 
       return () => {
-        cancelAnimationFrame(id);
+        window.cancelAnimationFrame(id);
       };
     }
   }, [applyFilterType, dispatch, isOpen]);

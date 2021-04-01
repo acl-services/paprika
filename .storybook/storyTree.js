@@ -56,6 +56,7 @@ const storyTree = [
       "Textarea",
       "TimePicker",
       "Uploader",
+      "InlineEditors",
     ],
   },
 
