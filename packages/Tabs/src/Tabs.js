@@ -31,7 +31,7 @@ export default function Tabs(props) {
   const isControlled = index !== undefined;
   const initIndex = defaultIndex === undefined ? 0 : defaultIndex;
   const [internalIndex, setInternalIndex] = React.useState(initIndex);
-  const [focusIndex, setFocusIndex] = React.useState(isControlled ? index || 0 : initIndex);
+  const [focusIndex, setFocusIndex] = React.useState(isControlled ? index || 0 : initIndex || 0);
   const activeIndex = isControlled ? index : internalIndex;
 
   if (isControlled && !onClickTab) {
@@ -50,6 +50,7 @@ export default function Tabs(props) {
       const itemIndexes = getItemIndexes(refList, { hasDisabledItems: false });
       if (itemIndexes.length > 0) {
         setInternalIndex(itemIndexes[0]);
+        setFocusIndex(itemIndexes[0]);
       }
     }
   }, []);
