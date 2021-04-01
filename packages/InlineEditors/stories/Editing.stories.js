@@ -5,7 +5,7 @@ import { ListBoxSingleStory } from "./examples/ListBox";
 import Input from "./examples/Input";
 
 export default {
-  title: getStoryName("InlineEditing"),
+  title: getStoryName("InlineEditors"),
 };
 
 export const WithInATable = () => {
