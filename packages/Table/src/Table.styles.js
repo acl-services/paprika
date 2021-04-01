@@ -23,11 +23,11 @@ export const TBody = styled.tbody(({ hasZebraStripes }) => {
   let zebras = "";
   if (hasZebraStripes) {
     zebras = css`
-      & tr {
+      & td {
         background: ${tokens.table.row.backgroundColor};
       }
 
-      & tr:nth-child(even) {
+      & tr:nth-child(even) td {
         background-color: ${tokens.table.rowEven.backgroundColor};
       }
     `;
@@ -39,7 +39,7 @@ export const TBody = styled.tbody(({ hasZebraStripes }) => {
 
 export const Thead = styled.thead`
   background: ${tokens.table.header.backgroundColor};
-
+  position: relative;
   text-align: left;
 `;
 
@@ -60,20 +60,29 @@ const borderTypesStyles = {
   `,
 };
 
-export const TD = styled.td(({ borderType }) => {
+export const TD = styled.td(({ borderType, cellPropsResetCSS, width = null, sticky }) => {
+  const px = Number.isNaN(width) ? "" : "px";
   return css`
-    ${borderType in borderTypesStyles ? borderTypesStyles[borderType] : ""}
-    padding: ${tokens.space};
+    ${typeof sticky !== "undefined" ? `position: sticky; left: ${!Number.isNaN(sticky) ? sticky : 0}px;` : ""};
+    ${borderType in borderTypesStyles ? borderTypesStyles[borderType] : ""};
+    ${cellPropsResetCSS ? "" : `padding: ${tokens.space};`};
+    ${width ? `width: ${width}${px}; max-width: ${width}${px};` : ""};
     text-align: left;
+    z-index: 1;
   `;
 });
 
-export const TH = styled.th(({ borderType }) => {
+export const TH = styled.th(({ borderType, sticky }) => {
   return css`
     ${fontSize()}
     ${borderType in borderTypesStyles ? borderTypesStyles[borderType] : ""}
+    background: ${tokens.table.header.backgroundColor};
     font-weight: bold;
     padding: ${tokens.space};
+    position: sticky;
     text-align: left;
+    top: 0;
+    z-index: 2;
+    ${typeof sticky !== "undefined" ? `z-index: 3; left: ${!Number.isNaN(sticky) ? sticky : 0}px;` : ""};
   `;
 });
