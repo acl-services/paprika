@@ -6,7 +6,7 @@ import Editor from "../Editor";
 
 export default function InlineTextarea(props) {
   const {
-    onEditing,
+    onStart,
     onChange,
     onSubmit,
     onClose,
@@ -69,7 +69,7 @@ export default function InlineTextarea(props) {
   }
 
   function handleClick() {
-    onEditing();
+    onStart();
   }
 
   React.useEffect(() => {
@@ -122,7 +122,7 @@ InlineTextarea.propTypes = {
   collapsedLength: PropTypes.number,
   onChange: PropTypes.func,
   onClose: PropTypes.func,
-  onEditing: PropTypes.func,
+  onStart: PropTypes.func,
   onSubmit: PropTypes.func,
 };
 
@@ -130,6 +130,6 @@ InlineTextarea.defaultProps = {
   collapsedLength: undefined,
   onChange: () => {},
   onClose: () => {},
-  onEditing: () => {},
+  onStart: () => {},
   onSubmit: () => {},
 };

@@ -14,7 +14,7 @@ function Editable({ children }) {
     setIsEditing(true);
   }, []);
 
-  return React.cloneElement(children, { ...children.props, isEditing, onClose: handleClose, onEditing: handleEditing });
+  return React.cloneElement(children, { ...children.props, isEditing, onClose: handleClose, onStart: handleEditing });
 }
 
 export default function InlineEditingTable(props) {

@@ -7,7 +7,7 @@ import * as sc from "./Input.styles";
 export default function InlineInput(props) {
   const {
     onClose,
-    onEditing,
+    onStart,
     isEditing,
     onChange,
     onSubmit,
@@ -79,7 +79,7 @@ export default function InlineInput(props) {
   return (
     <Editor
       onClick={() => {
-        onEditing();
+        onStart();
       }}
       {...props}
       ref={refInputEditor}
@@ -109,7 +109,7 @@ const propTypes = {
   isEditing: PropTypes.bool,
   onChange: PropTypes.func,
   onClose: PropTypes.func,
-  onEditing: PropTypes.func,
+  onStart: PropTypes.func,
   onSubmit: PropTypes.func,
   value: PropTypes.string,
 };
@@ -118,7 +118,7 @@ const defaultProps = {
   isEditing: false,
   onChange: () => {},
   onClose: () => {},
-  onEditing: () => {},
+  onStart: () => {},
   onSubmit: () => {},
   value: "",
 };

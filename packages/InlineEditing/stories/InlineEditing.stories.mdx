@@ -30,10 +30,25 @@ the component into editing mode.
 
 ## How does it works?
 
-The InlineEditing package includes a component name `<Editor />` that you can use to encapsulate this kind of interaction. The `<Editor />` Component comes with two
+The `inline-editors` package includes a series of composed components by the `<Editor />` component which encapsulated inline-editing capabilities. The `<Editor />` Component comes with two
 subcomponents: `<Editor.Value />` and `<Editor.Edit />`. These two components will switch between each other whenever the prop `isEditing` on the `Editor` component changes.
 
-The following is an example of using the Editor component to build a simple Text (value) `->` Text (input) interaction:
+---
+
+<Toast kind={Toast.types.kind.info} hasCloseButton={false}>
+  If you just want to use the component without reading about, check the following box
+</Toast>
+
+```
+- Input `@paprika/inline-editors/lib/Input`
+- ListBox `@paprika/inline-editors/lib/ListBox`
+- Textarea `@paprika/inline-editors/lib/Textarea`
+- Table `@paprika/inline-editors/lib/Table`
+```
+
+---
+
+The following is an example of using the Editor component to build a simple example for a `Text (output) / Text (input)` interaction:
 
 <Blocks>
   <Block>
@@ -124,15 +139,15 @@ And because wiring a fully functionally InlineEditing component can be tedious a
   <Block>
 
 ```jsx
-import Input from "@paprika/inline-editing/lib/Input";
+import Input from "@paprika/inline-editors/lib/Input";
 
 const [isEditing, setIsEditing] = React.useState(false);
 
 <Textarea
   value="your value"
   onSubmit={handleSubmit}
-  onEditingClose={() => setIsEditing(false)}
-  onEditingOpen={() => setIsEditing(true)}
+  onStartClose={() => setIsEditing(false)}
+  onStartOpen={() => setIsEditing(true)}
   isEditing={isEditing}
 />;
 ```
@@ -149,15 +164,15 @@ const [isEditing, setIsEditing] = React.useState(false);
   <Block>
 
 ```jsx
-import TextArea from "@paprika/inline-editing/lib/Textarea";
+import TextArea from "@paprika/inline-editors/lib/Textarea";
 
 const [isEditing, setIsEditing] = React.useState(false);
 
 <Textarea
   value="your value"
   onSubmit={handleSubmit}
-  onEditingClose={() => setIsEditing(false)}
-  onEditingOpen={() => setIsEditing(true)}
+  onStartClose={() => setIsEditing(false)}
+  onStartOpen={() => setIsEditing(true)}
   isEditing={isEditing}
 />;
 ```
@@ -176,12 +191,12 @@ const [isEditing, setIsEditing] = React.useState(false);
   <Block>
 
 ```jsx
-import ListBox from "@paprika/inline-editing/lib/ListBox";
+import ListBox from "@paprika/inline-editors/lib/ListBox";
 
 const [isEditing, setIsEditing] = React.useState(false);
 
 /** 
-  Be aware that ListBox isMulti and the single select option have a different signature for the onChange and onEditing event 
+  Be aware that ListBox isMulti and the single select option have a different signature for the onChange and onStart event 
 
   isMulti={true} 
   signature: ([selected], options, selectedOption, {...more}, {rowIndex, columnIndex})
@@ -194,7 +209,7 @@ const [isEditing, setIsEditing] = React.useState(false);
   isEditing={isEditing}
   onChange={() => {}}
   onClose={() => {}}
-  onEditing={() => {}}
+  onStart={() => {}}
   onSubmit={handleSubmit}
   value={value}
 >
@@ -225,8 +240,8 @@ The InlineEditing package also offers a Table component which compose the [Table
 an inline editing experience in a table. To use it is quite straightforward:
 
 ```jsx
-import Table from "@paprika/inline-editing/lib/Table";
-import ListBox from "@paprika/inline-editing/lib/ListBox";
+import Table from "@paprika/inline-editors/lib/Table";
+import ListBox from "@paprika/inline-editors/lib/ListBox";
 
 export default function App() {
   const [data, setData] = React.useState([...someData]);

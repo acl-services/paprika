@@ -17,7 +17,7 @@ export default function InlineListBox(props) {
     isEditing,
     onChange,
     onSubmit,
-    onEditing,
+    onStart,
     onClose,
     value,
     renderValue,
@@ -67,7 +67,7 @@ export default function InlineListBox(props) {
   }
 
   function handleClick() {
-    onEditing();
+    onStart();
   }
 
   // this effect force to close the input once the
@@ -130,7 +130,7 @@ InlineListBox.propTypes = {
   isEditing: PropTypes.bool,
   onChange: PropTypes.func,
   onClose: PropTypes.func,
-  onEditing: PropTypes.func,
+  onStart: PropTypes.func,
   onSubmit: PropTypes.func,
   renderValue: PropTypes.func,
   // eslint-disable-next-line react/forbid-prop-types
@@ -141,7 +141,7 @@ InlineListBox.defaultProps = {
   isEditing: false,
   onChange: () => {},
   onClose: () => {},
-  onEditing: () => {},
+  onStart: () => {},
   onSubmit: () => {},
   renderValue: undefined,
   value: null,

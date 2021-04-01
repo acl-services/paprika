@@ -10,7 +10,7 @@ export function ListBoxSingleStory() {
   const [value, setValue] = React.useState(subscriptionTypes[1]);
   const [valueOnChange, setValueOnChange] = React.useState("");
 
-  function handleOnEditing() {
+  function handleonStart() {
     setIsEditing(true);
   }
 
@@ -35,7 +35,7 @@ export function ListBoxSingleStory() {
         isEditing={isEditing}
         onChange={handleChange}
         onClose={handleClose}
-        onEditing={handleOnEditing}
+        onStart={handleonStart}
         onSubmit={handleSubmit}
         value={value}
       >
@@ -61,7 +61,7 @@ export function ListBoxMultipleStory() {
   ];
   const [value, setValue] = React.useState([1, 2]);
 
-  function handleOnEditing() {
+  function handleonStart() {
     setIsEditing(true);
   }
 
@@ -82,7 +82,7 @@ export function ListBoxMultipleStory() {
       <Toast hasCloseButton={false}>The API is stable need some design tweaks</Toast>
       <ListBox
         isEditing={isEditing}
-        onEditing={handleOnEditing}
+        onStart={handleonStart}
         onClose={handleClose}
         value={value}
         isMulti

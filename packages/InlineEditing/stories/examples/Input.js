@@ -7,7 +7,7 @@ export default function InputStory() {
   const [isEditing, setIsEditing] = React.useState(false);
   const [value, setValue] = React.useState("Click to edit this text");
 
-  function handleOnEditing() {
+  function handleonStart() {
     setIsEditing(true);
   }
 
@@ -32,7 +32,7 @@ export default function InputStory() {
         isOpen
         onChange={handleChange}
         onClose={handleClose}
-        onEditing={handleOnEditing}
+        onStart={handleonStart}
         onSubmit={handleSubmit}
         value={value}
       />

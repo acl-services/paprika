@@ -1,5 +1,5 @@
 {
-  "name": "@paprika/inline-editing",
+  "name": "@paprika/inline-editors",
   "version": "0.1.0",
   "description": "Great flexibility to present a pattern where the user has to interact with an output component in order to trigger an input component",
   "author": "@paprika",

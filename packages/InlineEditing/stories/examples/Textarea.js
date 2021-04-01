@@ -12,7 +12,7 @@ export default function TextareaStory() {
 Hack up furballs stare out cat door then go back inside and stare out cat door then go back inside yet massacre a bird in the living room and then look like the cutest and most innocent animal on the planet.`
   );
 
-  function handleOnEditing() {
+  function handleonStart() {
     setIsEditing(true);
   }
 
@@ -37,7 +37,7 @@ Hack up furballs stare out cat door then go back inside and stare out cat door t
         isOpen
         onChange={handleChange}
         onClose={handleClose}
-        onEditing={handleOnEditing}
+        onStart={handleonStart}
         onSubmit={handleSubmit}
         value={value}
       />
