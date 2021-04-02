@@ -1,6 +1,7 @@
 # @paprika/inline-editors
 
 ## 0.1.1-next.0
+
 ### Patch Changes
 
 - Updated dependencies [9f4c925]
