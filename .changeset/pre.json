@@ -69,12 +69,17 @@
     "@paprika/tokens": "1.0.0",
     "@paprika/uploader": "2.0.7",
     "@paprika/helpers": "2.1.1",
-    "@paprika/seducer": "2.0.0"
+    "@paprika/seducer": "2.0.0",
+    "@paprika/inline-editors": "0.1.0"
   },
   "changesets": [
+    "forty-poets-drum",
     "four-bears-dream",
     "good-swans-reflect",
+    "rare-pears-buy",
+    "short-elephants-yell",
     "smooth-cats-battle",
-    "tender-flies-pretend"
+    "tender-flies-pretend",
+    "two-kiwis-grow"
   ]
 }

@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.2-next.1
+
+### Patch Changes
+
+- 9f4c925: minor missing window declaration
+
 ## 3.0.2-next.0
 
 ### Patch Changes
