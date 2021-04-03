@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.0.2
+
+### Patch Changes
+
+- 9f4c925: minor missing window declaration
+- Updated dependencies [c265721]
+- Updated dependencies [26a610a]
+  - @paprika/popover@1.2.0
+
 ## 3.0.2-next.1
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.0
+
+### Minor Changes
+
+- c265721: Fixed aria tags on popover
+- 26a610a: When popover opened pressing ESC key only closes popover content and stops propagation. Benefical if using the popover in a Panel or TakeOver component
+
 ## 1.2.0-next.1
 
 ### Minor Changes

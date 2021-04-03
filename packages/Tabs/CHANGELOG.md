@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.2.1
+
+### Patch Changes
+
+- 7979fb6: Add null to defaultIndex and index proptype
+- fe143b3: ### Fixed
+
+  - Set initial `focusIndex` to selected tab index, or first tab index if no tab is selected.
+
+  [@mikrotron](https://github.com/mikrotron)
+
 ## 2.2.1-next.1
 
 ### Patch Changes

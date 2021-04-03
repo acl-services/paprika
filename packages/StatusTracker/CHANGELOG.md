@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.11
+
+### Patch Changes
+
+- Updated dependencies [c265721]
+- Updated dependencies [26a610a]
+  - @paprika/popover@1.2.0
+  - @paprika/overflow-menu@1.0.14
+
 ## 1.0.11-next.0
 
 ### Patch Changes

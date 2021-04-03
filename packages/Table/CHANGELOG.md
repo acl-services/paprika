@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.1.0
+
+### Minor Changes
+
+- 9f4c925: - Now Includes STICKY Columns!!!
+  - Remove keyboard navigation from the table for now, meanwhile we decided which is the best rout for this, we can bring it back later (no body is using it)
+  - now the table support forward ref
+
+### Patch Changes
+
+- @paprika/overflow-menu@1.0.14
+
 ## 1.1.0-next.1
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.1
+
+### Patch Changes
+
+- 9f4c925: Update documentation with proper collapsible card
+
 ## 2.0.1-next.0
 
 ### Patch Changes
