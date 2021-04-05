@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.9
+
+### Patch Changes
+
+- Updated dependencies [9f4c925]
+  - @paprika/list-box@3.0.2
+  - @paprika/date-picker@1.0.12
+
 ## 1.1.9-next.0
 
 ### Patch Changes
