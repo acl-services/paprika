@@ -1,0 +1,13 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+
+export const params = {
+  options: {
+    isToolshown: true,
+    showPanel: false,
+  },
+};
+
+<Meta title={`${getStoryName("TextEditor")}/Docs`} parameters={params} />
+
+# TextEditor
