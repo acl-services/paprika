@@ -203,3 +203,14 @@ en:
     input:
       clear_button: 
         aria_label: Clear input
+    sort:
+        actions:
+          add: Add sort
+          reset: Reset
+          delete: Delete
+        label: Sort
+        label_with_count: "{{count}} sorted"
+        add_field: Add a field to sort by
+        directions:
+          ASCEND: Sort ascending
+          DESCEND: Sort descending

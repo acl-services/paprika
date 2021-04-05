@@ -27,7 +27,9 @@ const defaultProps = {
 };
 
 function filterChildren(children) {
-  return React.Children.toArray(children).filter(child => child.type.displayName === "Sortable.Item");
+  return React.Children.toArray(children).filter(
+    child => child.type.displayName === "Sortable.Item" || child.type.displayName === "Sort.Field"
+  );
 }
 
 const Sortable = ({ children, onChange, hasNumbers, hasZebraStripes, onRemove, ...moreProps }) => {
