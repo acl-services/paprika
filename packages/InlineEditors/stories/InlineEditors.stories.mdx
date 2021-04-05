@@ -16,21 +16,21 @@ export const params = {
   },
 };
 
-<Meta title={`${getStoryName("InlineEditing")}/Docs`} parameters={params} />
+<Meta title={`${getStoryName("InlineEditors")}/Docs`} parameters={params} />
 
 <Toast kind={Toast.types.kind.WARNING} hasCloseButton={false}>
   Work in progress ahead, this component still requires some more work to be ready for production, but the API is
   stable, so you can start integrating it into your application.
 </Toast>
 
-# Inline Editing
+# Inline Editors
 
-The `<InlineEditing />` component allows you to display two values to the user: one when the component is not in editing mode and an input whenever the user interact and set
+The `Inline-editors` packages allows you to display two values to the user: one when the component is not in editing mode and an input whenever the user interact and set
 the component into editing mode.
 
 ## How does it works?
 
-The `inline-editors` package includes a series of composed components by the `<Editor />` component which encapsulated inline-editing capabilities. The `<Editor />` Component comes with two
+The `inline-editors` package includes a series of composed components by the `<Editor />` component which encapsulated inline editing capabilities. The `<Editor />` Component comes with two
 subcomponents: `<Editor.Value />` and `<Editor.Edit />`. These two components will switch between each other whenever the prop `isEditing` on the `Editor` component changes.
 
 ---
@@ -122,13 +122,13 @@ export function App() {
 The previous example is a simple attempt to create an InlineEditng Input. To have it fully functional will still require more work with the keyboard interactions,
 add focus onClick, cancel it onKeyUp === "Escape", etc.
 
-And because wiring a fully functionally InlineEditing component can be tedious and tricky to make it work properly, we are currently providing three components ready to use:
+And because wiring a fully functionally inline editor component can be tedious and tricky to make it work properly, we are currently providing three components ready to use:
 
 - Input type text
 - TextArea
 - ListBox
 
-## Available InlineEditing Components
+## Available inline editors Components
 
 ### Input
 
@@ -236,7 +236,7 @@ for a user if your are using the onChange event to update your component, for th
 
 ## Within a Table
 
-The InlineEditing package also offers a Table component which compose the [Table](https://github.com/acl-services/paprika/tree/master/packages/Table) component to provide
+The inline editors package also offers a Table component which compose the [Table](https://github.com/acl-services/paprika/tree/master/packages/Table) component to provide
 an inline editing experience in a table. To use it is quite straightforward:
 
 ```jsx
