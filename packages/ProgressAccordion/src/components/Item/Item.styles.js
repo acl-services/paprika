@@ -5,8 +5,6 @@ import stylers from "@paprika/stylers";
 
 const incompleteHeight = `${Number.parseInt(tokens.space, 10) * 5 + 1}px`;
 
-// border-bottom: 1px solid ${tokens.border.color};
-
 export const Item = styled(Collapsible)`
   border-bottom: ${({ hasBorder = true }) => (hasBorder ? `1px solid ${tokens.border.color}` : "none")};
   color: ${tokens.textColor.subtle};
