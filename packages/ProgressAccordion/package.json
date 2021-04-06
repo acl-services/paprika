@@ -1,7 +1,7 @@
 {
   "name": "@paprika/progress-accordion",
   "version": "1.0.6",
-  "description": "The ProgressAccordion component displays questionnaire responses in a collapsible accordion format.",
+  "description": "The ProgressAccordion component is a progress bar in a collapsible accordion format.",
   "author": "@paprika",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

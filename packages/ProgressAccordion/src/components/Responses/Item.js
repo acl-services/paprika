@@ -5,13 +5,14 @@ import { emptyValueStyles } from "./Responses.styles";
 
 const propTypes = {
   /** The title / question / term for this Response item. */
-  heading: PropTypes.node.isRequired,
+  heading: PropTypes.node,
 
   /** The content / body / answer / definition for this Response item. */
   children: PropTypes.node,
 };
 
 const defaultProps = {
+  heading: null,
   children: null,
 };
 
