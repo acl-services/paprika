@@ -4,8 +4,37 @@ import { extractChildren } from "@paprika/helpers";
 import { Editor } from "@tinymce/tinymce-react";
 import { kind as kindType } from "./types";
 import Tiny from "./components/Tiny";
-
 import * as simpleConfig from "./config/simple.config";
+
+const propTypes = {
+  /** TinyMCE Api Key */
+  apiKey: PropTypes.string,
+  /** Initial value to be use as uncontrolled component */
+  defaultValue: PropTypes.string,
+  /** controls the height of the text editor */
+  height: PropTypes.number,
+  /** Dictate if the text editor can be edit or not */
+  isDisabled: PropTypes.bool,
+  /** Reports the latest change on the TextEditor on HTML Format */
+  onChange: PropTypes.func,
+  /** value when the text editor is used as a controlled component */
+  value: PropTypes.string,
+  /** predefined toolbar and plugins for the text editor */
+  kind: PropTypes.string,
+  /** required only if you are extending the editor */
+  children: PropTypes.node,
+};
+
+const defaultProps = {
+  apiKey: "no-api-key",
+  defaultValue: null,
+  height: 240,
+  isDisabled: false,
+  kind: kindType.SIMPLE,
+  onChange: () => {},
+  value: null,
+  children: undefined,
+};
 
 function getPlugins(kind) {
   if (kind === kindType.SIMPLE) {
@@ -62,27 +91,8 @@ export default function TextEditor(props) {
   );
 }
 
-TextEditor.propTypes = {
-  apiKey: PropTypes.string,
-  defaultValue: PropTypes.string,
-  height: PropTypes.number,
-  isDisabled: PropTypes.bool,
-  onChange: PropTypes.func,
-  value: PropTypes.string,
-  kind: PropTypes.string,
-  children: PropTypes.node,
-};
-
-TextEditor.defaultProps = {
-  apiKey: "no-api-key",
-  defaultValue: null,
-  height: 240,
-  isDisabled: false,
-  kind: kindType.SIMPLE,
-  onChange: () => {},
-  value: null,
-  children: undefined,
-};
+TextEditor.propTypes = propTypes;
+TextEditor.defaultProps = defaultProps;
 
 TextEditor.types = {
   kind: kindType,
