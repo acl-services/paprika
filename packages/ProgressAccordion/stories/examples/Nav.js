@@ -3,9 +3,10 @@ import ProgressAccordion from "../../src";
 
 const NavStory = () => {
   return (
-    <ProgressAccordion activeIndex={2} activeStatus="" a11yText="" expandAll>
+    <ProgressAccordion activeIndex={2} activeStatus="" a11yText="" kind={ProgressAccordion.kinds.NAVIGATION}>
       {[1, 2, 3, 4].map(index => (
         <ProgressAccordion.Item
+          key={index}
           label={`Step ${index}`}
           onClick={() => {
             console.log(`clicked step ${index}`);
