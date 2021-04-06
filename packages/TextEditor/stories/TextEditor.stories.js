@@ -20,8 +20,7 @@ export const Uncontrolled = () => {
         <TextEditorUncontrolled />
       </Card>
       <SyntaxHighlighter language="javascript">
-        {`// env var will depend on your pillar please contact #paprika for assistance
-const API_KEY = process.env?.STORYBOOK_TINY_MCE_API_KEY;
+        {`const API_KEY = "tiny-mce-highbond-api-key";
 return <TextEditor defaultValue={'<p>This is a text editor</p>'} apiKey={API_KEY} />;`}
       </SyntaxHighlighter>
     </Story>
@@ -36,8 +35,7 @@ export const Controlled = () => {
       </Card>
 
       <SyntaxHighlighter language="javascript">
-        {`// env var will depend on your pillar please contact #paprika for assistance
-const API_KEY = process.env?.STORYBOOK_TINY_MCE_API_KEY;
+        {`const API_KEY = "tiny-mce-highbond-api-key";
 const [value, setValue] = React.useState("Type something...");
 
 function handleChange(nextValue) {
@@ -57,8 +55,7 @@ export const IsDisabled = () => {
         <TextEditorIsDisabled />
       </Card>
       <SyntaxHighlighter language="javascript">
-        {`// env var will depend on your pillar please contact #paprika for assistance
-const API_KEY = process.env?.STORYBOOK_TINY_MCE_API_KEY;
+        {`const API_KEY = "tiny-mce-highbond-api-key";
 return <TextEditor isDisabled defaultValue={'<p>This is a text editor</p>'} apiKey={API_KEY} />;`}
       </SyntaxHighlighter>
     </Story>
