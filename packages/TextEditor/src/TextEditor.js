@@ -17,7 +17,7 @@ function getToolbar(paramKind) {
 }
 
 export default function TextEditor(props) {
-  const { height, isDisabled, apiKey = "no-api-key", onChange, value, defaultValue, kind } = props;
+  const { height, isDisabled, apiKey, onChange, value, defaultValue, kind } = props;
 
   if (value && defaultValue) {
     throw Error("The component can only accept a value or a defaultValue prop, no both");
@@ -40,7 +40,7 @@ export default function TextEditor(props) {
       init={{
         a11y_advanced_options: true,
         a11ychecker_html_version: "html5",
-        a11ychecker_level: "aaa",
+        a11ychecker_level: "aa",
         branding: false,
         contextmenu: false,
         height,

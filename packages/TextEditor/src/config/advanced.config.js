@@ -1,4 +1,4 @@
-// FUTURE home for ADVANCE CONFIG
+// FUTURE home for ADVANCED CONFIG
 // `
 //           hr checklist lists advlist a11ychecker image imagetools autolink link print anchor
 //           searchreplace visualblocks code fullscreen
