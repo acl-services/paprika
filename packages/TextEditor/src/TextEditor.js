@@ -20,11 +20,11 @@ export default function TextEditor(props) {
   const { height, isDisabled, apiKey, onChange, value, defaultValue, kind } = props;
 
   if (value && defaultValue) {
-    throw Error("The component can only accept a value or a defaultValue prop, no both");
+    throw Error("The component can only accept a value or a defaultValue prop, not both");
   }
 
   if (!value && !defaultValue) {
-    throw Error("The TextEditor require to have at least on prop of type value or defaultValue");
+    throw Error("The TextEditor is required to have at either the `value` or `defaultValue` prop");
   }
 
   const valueFromProps = value ? { value } : { initialValue: defaultValue };
