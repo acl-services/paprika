@@ -4,7 +4,7 @@
 
 ## Description
 
-The ProgressAccordion component displays questionnaire responses in a collapsible accordion format.
+The ProgressAccordion component is a progress bar in a collapsible accordion format.
 
 ## Installation
 

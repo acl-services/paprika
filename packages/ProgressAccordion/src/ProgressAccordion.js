@@ -21,6 +21,9 @@ const propTypes = {
 
   /** List items (must be of type <ProgressAccordion.Item>. */
   children: PropTypes.node,
+
+  /** Should all children be expanded (and cannot be collapsed) */
+  expandAll: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -28,6 +31,7 @@ const defaultProps = {
   activeIndex: 0,
   activeStatus: null,
   children: null,
+  expandAll: false,
 };
 
 function filterChildren(children) {
@@ -35,7 +39,7 @@ function filterChildren(children) {
 }
 
 const ProgressAccordion = props => {
-  const { a11yText, activeIndex, activeStatus, children, ...moreProps } = props;
+  const { a11yText, activeIndex, activeStatus, children, expandAll, ...moreProps } = props;
 
   const I18n = useI18n();
 
@@ -70,7 +74,11 @@ const ProgressAccordion = props => {
             // eslint-disable-next-line react/no-array-index-key
             <sc.Item key={index} role="listitem" data-pka-anchor="progress-accordion.item">
               <Indicator {...indicatorProps} />
-              {React.cloneElement(child, { label: getLabel(child.props.label, index), isComplete })}
+              {React.cloneElement(child, {
+                label: getLabel(child.props.label, index),
+                isComplete,
+                expandAll,
+              })}
             </sc.Item>
           );
         })}
