@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
+    "@tinymce/tinymce-react": "^3.12.2",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
