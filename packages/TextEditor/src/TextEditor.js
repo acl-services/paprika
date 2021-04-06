@@ -24,7 +24,7 @@ export default function TextEditor(props) {
   }
 
   if (!value && !defaultValue) {
-    throw Error("The TextEditor require to have at least on prop of type value or defaultValue");
+    throw Error("The TextEditor is required to have at either the `value` or `defaultValue` prop");
   }
 
   const valueFromProps = value ? { value } : { initialValue: defaultValue };
