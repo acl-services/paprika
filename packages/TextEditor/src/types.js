@@ -1,4 +1,4 @@
 export const kind = {
   SIMPLE: "simple",
-  ADVANCE: "advance",
+  ADVANCED: "advanced",
 };
