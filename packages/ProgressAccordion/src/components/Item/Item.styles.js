@@ -6,7 +6,7 @@ import stylers from "@paprika/stylers";
 const incompleteHeight = `${Number.parseInt(tokens.space, 10) * 5 + 1}px`;
 
 export const Item = styled(Collapsible)`
-  border-bottom: 1px solid ${tokens.border.color};
+  border-bottom: ${({ hasBorder = true }) => (hasBorder ? `1px solid ${tokens.border.color}` : "none")};
   color: ${tokens.textColor.subtle};
   max-width: calc(100% - 36px); /* 36px = indicatorSize + margin-right */
 

@@ -11,4 +11,6 @@ interface ProgressAccordionProps {
   activeStatus?: React.ReactNode;
   /** List items (must be of type <ProgressAccordion.Item>. */
   children?: React.ReactNode;
+  /** When kind is "navigation", all the children are expanded and cannot be collapsed */
+  kind?: "" | kinds.NAVIGATION;
 }

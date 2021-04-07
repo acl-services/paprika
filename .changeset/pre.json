@@ -70,7 +70,10 @@
     "@paprika/tokens": "1.0.0",
     "@paprika/uploader": "2.0.8",
     "@paprika/helpers": "2.1.1",
-    "@paprika/seducer": "2.0.1"
+    "@paprika/seducer": "2.0.1",
+    "@paprika/text-editor": "0.1.0"
   },
-  "changesets": []
+  "changesets": [
+    "three-jokes-doubt"
+  ]
 }
