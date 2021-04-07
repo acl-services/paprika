@@ -32,9 +32,8 @@ const defaultProps = {
 };
 
 function filterChildren(children) {
-  return React.Children.toArray(children).filter(
-    child =>
-      child.type && (child.type.displayName === Item.displayName || child.type.displayName === NavItem.displayName)
+  return React.Children.toArray(children).filter(child =>
+    [Item.displayName, NavItem.displayName].includes(child.type?.displayName)
   );
 }
 
