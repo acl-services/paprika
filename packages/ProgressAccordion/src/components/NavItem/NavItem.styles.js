@@ -20,6 +20,10 @@ export const NavItem = styled(Collapsible)`
 
   [data-pka-anchor="collapsible.trigger"] {
     cursor: ${({ isClickable }) => (isClickable ? "default" : "pointer")};
+
+    :hover {
+      text-decoration: ${({ isClickable }) => (isClickable ? "none" : "underline")};
+    }
   }
 `;
 
