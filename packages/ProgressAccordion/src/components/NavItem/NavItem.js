@@ -9,7 +9,7 @@ const propTypes = {
   /** The title of the nav item. */
   label: PropTypes.node.isRequired,
 
-  /** If the step is complete (and should have checkbox and be clickable). */
+  /** If the step is complete. */
   isComplete: PropTypes.bool,
 
   /** Function to call when click on an item. */
@@ -30,6 +30,7 @@ const NavItem = props => {
       iconAlign={null}
       iconCollapse={null}
       iconExpand={null}
+      isClickable={onClick === null}
       isCollapsed={false}
       isComplete={isComplete}
       label={<sc.ItemLabel isClickable={onClick === null}>{label}</sc.ItemLabel>}
