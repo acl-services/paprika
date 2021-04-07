@@ -17,4 +17,6 @@ interface TextEditorProps {
   value?: string;
 
   kind?: string;
+
+  children?: React.ReactNode;
 }

@@ -3,7 +3,6 @@ export const plugins = `
   anchor
   autolink
   checklist
-  code
   fullscreen
   help
   hr
@@ -11,7 +10,6 @@ export const plugins = `
   imagetools
   link
   lists
-  media
   paste
   print
   tinymcespellchecker
