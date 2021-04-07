@@ -55,7 +55,6 @@ export default function TextEditor(props) {
   const { height, isDisabled, apiKey, onChange, value, defaultValue, kind, children } = props;
 
   // requires to reset the component with newer props due the tinyMCE uncontrolled nature
-  const [idKey, setNextIdKey] = React.useState(0);
   const { "TextEditor.Tiny": tiny } = extractChildren(children, ["TextEditor.Tiny"]);
 
   if (value && defaultValue) {
@@ -67,19 +66,14 @@ export default function TextEditor(props) {
   }
 
   const valueFromProps = value ? { value } : { initialValue: defaultValue };
-
   const toolbar = getToolbar(kind);
   const plugins = getPlugins(kind);
 
   const initExtended = (tiny?.props && tiny.props?.init) || {};
 
-  React.useEffect(() => {
-    setNextIdKey(prev => prev + 1);
-  }, [kind]);
-
   return (
     <Editor
-      key={idKey}
+      key={kind}
       {...valueFromProps}
       apiKey={apiKey}
       disabled={isDisabled}
