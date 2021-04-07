@@ -12,7 +12,6 @@ export const plugins = `
   lists
   paste
   print
-  tinymcespellchecker
 `;
 
 export const toolbar = `
@@ -22,6 +21,5 @@ export const toolbar = `
   removeformat |
   link image hr |
   fullscreen | 
-  spellchecker language spellcheckdialog |
   a11ycheck
 `;

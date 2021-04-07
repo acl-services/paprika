@@ -5,6 +5,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import { kind as kindType } from "./types";
 import Tiny from "./components/Tiny";
 import * as simpleConfig from "./config/simple.config";
+import * as advancedConfig from "./config/advanced.config";
 
 const propTypes = {
   /** TinyMCE Api Key */
@@ -40,16 +41,20 @@ function getPlugins(kind) {
   if (kind === kindType.SIMPLE) {
     return simpleConfig.plugins;
   }
+  return advancedConfig.plugins;
 }
 
 function getToolbar(paramKind) {
   if (paramKind === kindType.SIMPLE) {
     return simpleConfig.toolbar;
   }
+  return advancedConfig.toolbar;
 }
 
 export default function TextEditor(props) {
   const { height, isDisabled, apiKey, onChange, value, defaultValue, kind, children } = props;
+
+  // requires to reset the component with newer props due the tinyMCE uncontrolled nature
   const { "TextEditor.Tiny": tiny } = extractChildren(children, ["TextEditor.Tiny"]);
 
   if (value && defaultValue) {
@@ -61,7 +66,6 @@ export default function TextEditor(props) {
   }
 
   const valueFromProps = value ? { value } : { initialValue: defaultValue };
-
   const toolbar = getToolbar(kind);
   const plugins = getPlugins(kind);
 
@@ -69,6 +73,7 @@ export default function TextEditor(props) {
 
   return (
     <Editor
+      key={kind}
       {...valueFromProps}
       apiKey={apiKey}
       disabled={isDisabled}
@@ -76,7 +81,6 @@ export default function TextEditor(props) {
         plugins,
         toolbar,
         menubar: false,
-        statusbar: false,
         branding: false,
         contextmenu: false,
         height,
@@ -85,6 +89,7 @@ export default function TextEditor(props) {
         a11y_advanced_options: true,
         a11ychecker_html_version: "html5",
         a11ychecker_level: "aa",
+        statusbar: kindType.ADVANCED === kind,
       }}
       onEditorChange={onChange}
     />
