@@ -1,9 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
 import * as constants from "@paprika/constants/lib/Constants";
 import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
-import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import { callAll } from "@paprika/helpers";
 import * as types from "./types";
@@ -64,41 +62,30 @@ const Input = React.forwardRef((props, ref) => {
     const iconSize = size === types.LARGE ? types.MEDIUM : types.SMALL;
 
     return (
-      <Button.Icon
+      <sc.ClearButton
         a11yText={i18n.t("input.clear_button.aria_label")}
-        className="form-input__clear"
+        isSemantic={false}
         kind={types.MINOR}
-        size={iconSize}
         onClick={inputClearHandler}
+        size={iconSize}
       >
         {clearIcon || <TimesCircleIcon />}
-      </Button.Icon>
+      </sc.ClearButton>
     );
   };
 
-  const renderIcon = () => {
-    if (!props.icon) return null;
-    return <span className="form-input__icon">{props.icon}</span>;
-  };
-
   const styleProps = {
-    size,
     hasClearButton,
+    hasError,
+    hasIcon: Boolean(icon),
+    isDisabled,
+    isReadOnly,
+    size,
   };
-
-  const rootClasses = classNames(
-    "form-input",
-    `form-input--${size}`,
-    { "form-input--has-icon": icon },
-    { "form-input--is-disabled": isDisabled },
-    { "form-input--is-readonly": isReadOnly },
-    { "form-input--has-error": hasError },
-    className
-  );
 
   return (
-    <sc.Input {...styleProps} className={rootClasses}>
-      {renderIcon(a11yText)}
+    <sc.Input {...styleProps}>
+      {icon ? <sc.Icon {...styleProps}>{icon}</sc.Icon> : null}
       <input
         aria-invalid={hasError}
         aria-label={a11yText}
@@ -106,7 +93,6 @@ const Input = React.forwardRef((props, ref) => {
         disabled={isDisabled}
         readOnly={isReadOnly}
         {...moreProps}
-        className="form-input__input"
         value={isControlled ? value : undefined}
         defaultValue={!isControlled ? defaultValue : undefined}
         onChange={callAll(handleChange, onChange)}
