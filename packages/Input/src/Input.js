@@ -20,7 +20,6 @@ const Input = React.forwardRef((props, ref) => {
     hasClearButton,
     hasError,
     onChange,
-    refInput,
     size,
     value,
     ...moreProps
@@ -28,6 +27,7 @@ const Input = React.forwardRef((props, ref) => {
 
   const isControlled = value !== undefined;
   const containerProps = extractChildrenProps(children, InputPropsCollector);
+  const refInput = ref || React.useRef();
   const i18n = useI18n();
 
   const [shouldShowClearButton, setShouldShowClearButton] = React.useState(
@@ -37,15 +37,6 @@ const Input = React.forwardRef((props, ref) => {
   React.useEffect(() => {
     setShouldShowClearButton(hasClearButton && !isDisabled && !isReadOnly && (value || defaultValue));
   }, [hasClearButton, isDisabled, isReadOnly, value, defaultValue]);
-
-  const _refInput = React.useRef();
-  const refDOM = refInput || _refInput;
-
-  React.useImperativeHandle(ref, () => ({
-    focus: () => {
-      refDOM.current.focus();
-    },
-  }));
 
   const handleChange = event => {
     if (!hasClearButton || isDisabled || isReadOnly) return;
@@ -58,7 +49,7 @@ const Input = React.forwardRef((props, ref) => {
 
   const inputClearHandler = () => {
     if (!isControlled) {
-      if (refDOM.current) refDOM.current.value = "";
+      if (refInput.current) refInput.current.value = "";
       setShouldShowClearButton(false);
     }
     onChange(null);
@@ -103,7 +94,7 @@ const Input = React.forwardRef((props, ref) => {
         value={isControlled ? value : undefined}
         defaultValue={!isControlled ? defaultValue : undefined}
         onChange={callAll(handleChange, onChange)}
-        ref={refDOM}
+        ref={refInput}
         {...styleProps}
         {...moreProps}
       />
