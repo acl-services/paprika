@@ -4,10 +4,10 @@ import { v4 as uuidv4 } from "uuid";
 import * as constants from "@paprika/constants/lib/Constants";
 import Button from "@paprika/button";
 import Heading from "@paprika/heading";
-import { extractChildren } from "@paprika/helpers";
+import { extractChildren, extractChildrenProps } from "@paprika/helpers";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Popover from "@paprika/popover";
-import Content from "./components/Content";
+import ConfirmationContentPropsCollector from "./ConfirmationContentPropsCollector";
 import TriggerButton from "./components/TriggerButton";
 import * as types from "./types";
 import { confirmStyles, confirmBodyStyles, confirmFooterStyles } from "./Confirmation.styles";
@@ -71,11 +71,8 @@ const Confirmation = props => {
     onConfirm(handleCloseConfirm);
   };
 
-  const { "Confirmation.TriggerButton": TriggerButton, "Confirmation.Content": Content } = extractChildren(children, [
-    "Confirmation.TriggerButton",
-    "Confirmation.Content",
-  ]);
-  const ContentProps = Content && Content.props ? Content.props : null;
+  const { "Confirmation.TriggerButton": TriggerButton } = extractChildren(children, ["Confirmation.TriggerButton"]);
+  const ContentProps = extractChildrenProps(children, ConfirmationContentPropsCollector);
 
   const renderTrigger = () => {
     // wrapping the returned item in a function to avoid wrapping children in
@@ -197,7 +194,7 @@ const defaultProps = {
 Confirmation.displayName = "Confirmation";
 Confirmation.propTypes = propTypes;
 Confirmation.defaultProps = defaultProps;
-Confirmation.Content = Content;
+Confirmation.Content = ConfirmationContentPropsCollector;
 Confirmation.TriggerButton = TriggerButton;
 
 export default Confirmation;
