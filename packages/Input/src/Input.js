@@ -3,15 +3,16 @@ import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
 import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import { callAll } from "@paprika/helpers";
+import { callAll, extractChildrenProps } from "@paprika/helpers";
+import InputPropsCollector from "./InputPropsCollector";
 import * as types from "./types";
 import * as sc from "./Input.styles";
 
 const Input = React.forwardRef((props, ref) => {
   const {
     a11yText,
+    children,
     clearIcon,
-    className,
     defaultValue,
     icon,
     isDisabled,
@@ -25,7 +26,7 @@ const Input = React.forwardRef((props, ref) => {
   } = props;
 
   const isControlled = value !== undefined;
-
+  const containerProps = extractChildrenProps(children, InputPropsCollector);
   const i18n = useI18n();
 
   const [shouldShowClearButton, setShouldShowClearButton] = React.useState(
@@ -84,7 +85,7 @@ const Input = React.forwardRef((props, ref) => {
   };
 
   return (
-    <sc.Input {...styleProps}>
+    <sc.Input data-pka-anchor="input.container" {...styleProps} {...containerProps}>
       {icon ? <sc.Icon {...styleProps}>{icon}</sc.Icon> : null}
       <input
         aria-invalid={hasError}
@@ -92,11 +93,11 @@ const Input = React.forwardRef((props, ref) => {
         data-pka-anchor="input"
         disabled={isDisabled}
         readOnly={isReadOnly}
-        {...moreProps}
         value={isControlled ? value : undefined}
         defaultValue={!isControlled ? defaultValue : undefined}
         onChange={callAll(handleChange, onChange)}
         ref={ref || refInput}
+        {...moreProps}
       />
       {renderClear()}
     </sc.Input>
@@ -108,12 +109,12 @@ Input.types = {
   type: types.inputValidTypes,
 };
 
-const propTypes = {
+Input.propTypes = {
   /** Provides a non-visible label for this input for assistive technologies. */
   a11yText: PropTypes.string,
 
-  /** Sets the class for the input. */
-  className: PropTypes.string,
+  /** Optional Input.Container to collect props for root DOM element.  */
+  children: PropTypes.node,
 
   /** Custom icon for the clear action in the input. */
   clearIcon: PropTypes.node,
@@ -139,7 +140,7 @@ const propTypes = {
   /**
    * Callback to be executed when the input value is changed. Receives the
    * onChange event as an argument, except when the clear button is clicked,
-   * then the argument is null. Needed when value prop is provided (component
+   * then the argument is null. Required when value prop is provided (component
    * is controlled).
    */
   onChange: PropTypes.func,
@@ -162,10 +163,10 @@ const propTypes = {
   value: PropTypes.string,
 };
 
-const defaultProps = {
+Input.defaultProps = {
   a11yText: null,
+  children: null,
   clearIcon: null,
-  className: null,
   defaultValue: null,
   hasClearButton: false,
   hasError: false,
@@ -179,7 +180,7 @@ const defaultProps = {
 };
 
 Input.displayName = "Input";
-Input.propTypes = propTypes;
-Input.defaultProps = defaultProps;
+
+Input.Container = InputPropsCollector;
 
 export default Input;

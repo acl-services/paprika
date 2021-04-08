@@ -41,7 +41,6 @@ export const Input = styled.div(
     padding-right: ${hasClearButton ? stylers.spacer(3) : tokens.space};
     transition: box-shadow 0.2s, color 0.2s;
     width: 100%;
-
     ${stylers.placeholders}
     ${sizeStyles[size]}
     ${hasIcon && hasIconStyles}
@@ -110,19 +109,19 @@ export const Icon = styled.span(
 );
 
 export const ClearButton = styled(Button.Icon)`
-    ${iconStyles}
-    border-radius: ${tokens.border.radius};
-    color: ${tokens.color.blackLighten50};
-    right: ${tokens.spaceSm};
-    transition: color 0.2s ease-out;
+  border-radius: ${tokens.border.radius};
+  color: ${tokens.color.blackLighten50};
+  right: ${tokens.spaceSm};
+  transition: color 0.2s ease-out;
+  ${iconStyles}
 
-    &:hover {
-      color: ${tokens.color.blackLighten30};
-      background-color: transparent;
-    }
+  &:hover {
+    color: ${tokens.color.blackLighten30};
+    background-color: transparent;
+  }
 
-    &:active {
-      color: ${tokens.color.black};
-      transform: translateY(-50%);
-    }
-  `;
+  &:active {
+    color: ${tokens.color.black};
+    transform: translateY(-50%);
+  }
+`;
