@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Item from "./components/Item";
+import NavItem from "./components/NavItem";
 import Indicator from "./components/Indicator";
 import Responses from "./components/Responses";
 import * as sc from "./ProgressAccordion.styles";
-import * as kinds from "./kinds";
 
 const propTypes = {
   /** A11y text for assistive technologies to descibe the semantic list. */
@@ -22,9 +22,6 @@ const propTypes = {
 
   /** List items (must be of type <ProgressAccordion.Item>. */
   children: PropTypes.node,
-
-  /** When kind is "navigation", all the children are expanded and cannot be collapsed */
-  kind: PropTypes.oneOf(["", kinds.NAVIGATION]),
 };
 
 const defaultProps = {
@@ -32,15 +29,16 @@ const defaultProps = {
   activeIndex: 0,
   activeStatus: null,
   children: null,
-  kind: "",
 };
 
 function filterChildren(children) {
-  return React.Children.toArray(children).filter(child => child.type && child.type.displayName === Item.displayName);
+  return React.Children.toArray(children).filter(child =>
+    [Item.displayName, NavItem.displayName].includes(child.type?.displayName)
+  );
 }
 
 const ProgressAccordion = props => {
-  const { a11yText, activeIndex, activeStatus, children, kind, ...moreProps } = props;
+  const { a11yText, activeIndex, activeStatus, children, ...moreProps } = props;
 
   const I18n = useI18n();
 
@@ -60,10 +58,8 @@ const ProgressAccordion = props => {
     );
   };
 
-  const role = kind === kinds.NAVIGATION ? "navigation" : "list";
-
   return (
-    <sc.Accordion {...moreProps} role={role} aria-label={a11yText} data-pka-anchor="progress-accordion">
+    <sc.Accordion {...moreProps} role="list" aria-label={a11yText} data-pka-anchor="progress-accordion">
       {validChildren.length > 0 &&
         validChildren.map((child, index) => {
           const isComplete = activeIndex > index;
@@ -80,7 +76,6 @@ const ProgressAccordion = props => {
               {React.cloneElement(child, {
                 label: getLabel(child.props.label, index),
                 isComplete,
-                kind,
               })}
             </sc.Item>
           );
@@ -94,8 +89,8 @@ ProgressAccordion.propTypes = propTypes;
 ProgressAccordion.defaultProps = defaultProps;
 
 ProgressAccordion.Item = Item;
+ProgressAccordion.NavItem = NavItem;
 ProgressAccordion.Indicator = Indicator;
 ProgressAccordion.Responses = Responses;
 
-ProgressAccordion.kinds = kinds;
 export default ProgressAccordion;
