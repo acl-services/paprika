@@ -23,12 +23,17 @@ const hasIconStyles = ({ size }) => css`
   padding-left: ${size === types.LARGE ? stylers.spacer(4) : stylers.spacer(3)};
 `;
 
-export const Input = styled.div(
-  ({ hasClearButton, hasError, hasIcon, isDisabled, isReadOnly, size }) => css`
+export const InputContainer = styled.div`
   line-height: 1;
   position: relative;
 
-  input {
+  input::-webkit-search-cancel-button {
+    display: none;
+  }
+`;
+
+export const Input = styled.input(
+  ({ hasClearButton, hasError, hasIcon, isDisabled, isReadOnly, size }) => css`
     background-color: ${tokens.color.white};
     border: 1px solid ${tokens.border.color};
     border-radius: ${tokens.border.radius};
@@ -56,11 +61,6 @@ export const Input = styled.div(
     &::-ms-clear {
       display: none;
     }
-  }
-
-  input::-webkit-search-cancel-button {
-    display: none;
-  }
 `
 );
 

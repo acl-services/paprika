@@ -92,9 +92,9 @@ const Input = React.forwardRef((props, ref) => {
   };
 
   return (
-    <sc.Input data-pka-anchor="input.container" {...styleProps} {...containerProps}>
+    <sc.InputContainer data-pka-anchor="input.container" {...styleProps} {...containerProps}>
       {icon ? <sc.Icon {...styleProps}>{icon}</sc.Icon> : null}
-      <input
+      <sc.Input
         aria-invalid={hasError}
         aria-label={a11yText}
         data-pka-anchor="input"
@@ -104,10 +104,11 @@ const Input = React.forwardRef((props, ref) => {
         defaultValue={!isControlled ? defaultValue : undefined}
         onChange={callAll(handleChange, onChange)}
         ref={refDOM}
+        {...styleProps}
         {...moreProps}
       />
       {renderClear()}
-    </sc.Input>
+    </sc.InputContainer>
   );
 });
 
