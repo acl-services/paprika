@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0-next.1
+
+### Patch Changes
+
+- f461483: Refactored so more logical to use as a nav. Style changes.
+
 ## 1.1.0-next.0
 
 ### Minor Changes
