@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
 import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import { callAll, extractChildrenProps } from "@paprika/helpers";
+import { callAll, extractChildrenProps, RefOf } from "@paprika/helpers";
 import InputPropsCollector from "./InputPropsCollector";
 import * as types from "./types";
 import * as sc from "./Input.styles";
@@ -20,6 +20,7 @@ const Input = React.forwardRef((props, ref) => {
     hasClearButton,
     hasError,
     onChange,
+    refInput,
     size,
     value,
     ...moreProps
@@ -37,8 +38,14 @@ const Input = React.forwardRef((props, ref) => {
     setShouldShowClearButton(hasClearButton && !isDisabled && !isReadOnly && (value || defaultValue));
   }, [hasClearButton, isDisabled, isReadOnly, value, defaultValue]);
 
-  const refInput = React.useRef();
-  const refBest = ref || refInput;
+  const _refInput = React.useRef();
+  const refDOM = refInput || _refInput;
+
+  React.useImperativeHandle(ref, () => ({
+    focus: () => {
+      refDOM.current.focus();
+    },
+  }));
 
   const handleChange = event => {
     if (!hasClearButton || isDisabled || isReadOnly) return;
@@ -51,7 +58,7 @@ const Input = React.forwardRef((props, ref) => {
 
   const inputClearHandler = () => {
     if (!isControlled) {
-      if (refBest.current) refBest.current.value = "";
+      if (refDOM.current) refDOM.current.value = "";
       setShouldShowClearButton(false);
     }
     onChange(null);
@@ -96,7 +103,7 @@ const Input = React.forwardRef((props, ref) => {
         value={isControlled ? value : undefined}
         defaultValue={!isControlled ? defaultValue : undefined}
         onChange={callAll(handleChange, onChange)}
-        ref={ref || refInput}
+        ref={refDOM}
         {...moreProps}
       />
       {renderClear()}
@@ -145,6 +152,9 @@ Input.propTypes = {
    */
   onChange: PropTypes.func,
 
+  /** Ref for the input DOM element. */
+  refInput: RefOf(PropTypes.instanceOf(Element)),
+
   /** Changes the size of the input. */
   size: PropTypes.oneOf([Input.types.size.SMALL, Input.types.size.MEDIUM, Input.types.size.LARGE]),
 
@@ -174,6 +184,7 @@ Input.defaultProps = {
   isDisabled: false,
   isReadOnly: false,
   onChange: () => {},
+  refInput: null,
   size: Input.types.size.MEDIUM,
   type: Input.types.type.TEXT,
   value: undefined,
