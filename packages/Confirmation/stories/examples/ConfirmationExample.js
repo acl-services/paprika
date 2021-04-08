@@ -30,7 +30,9 @@ const ConfirmationExample = () => {
           heading="Delete filter?"
           getPositioningElement={() => document.getElementById("triggerElement")}
           offset={4}
-        />
+        >
+          <Confirmation.Content data-your-custom-attribute="your-custom-attribute-value" />
+        </Confirmation>
       ) : null}
     </div>
   );
