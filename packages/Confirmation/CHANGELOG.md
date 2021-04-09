@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0-next.0
+
+### Minor Changes
+
+- 855c717: Support passing props down to popover.
+
 ## 1.0.12
 
 ### Patch Changes

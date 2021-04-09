@@ -74,6 +74,7 @@
     "@paprika/text-editor": "0.1.0"
   },
   "changesets": [
+    "dirty-lobsters-camp",
     "thin-windows-arrive",
     "three-jokes-doubt"
   ]
