@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.12-next.0
+
+### Patch Changes
+
+- 77c5fdd: Fix internal state
+
 ## 1.1.11
 
 ### Patch Changes
