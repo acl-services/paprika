@@ -1,6 +1,7 @@
 import React from "react";
-import InputExample from "./InputExample";
+// import InputExample from "./InputExample";
 import { InputStory } from "../Input.stories.styles";
+import Input from "../../src";
 
 const TypesExampleStory = () => {
   return (
@@ -10,14 +11,14 @@ const TypesExampleStory = () => {
           <code>type=&quot;text&quot;</code>
         </small>
       </h3>
-      <InputExample type="text" value="p@$$w0rD" />
+      <Input type="text" value="p@$$w0rD" />
       <br />
       <h3>
         <small>
           <code>type=&quot;password&quot;</code>
         </small>
       </h3>
-      <InputExample type="password" value="p@$$w0rD" />
+      <Input type="password" value="p@$$w0rD" />
       <br />
       <h3>
         <small>

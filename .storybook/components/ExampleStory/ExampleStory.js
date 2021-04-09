@@ -34,7 +34,7 @@ const defaultTaglines = {
   ),
 };
 
-export const ExampleStory = props => {
+const ExampleStory = props => {
   const { children, component, fileName, storyName, tagline } = props;
   return (
     <Story>

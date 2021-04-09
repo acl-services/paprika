@@ -1,0 +1,19 @@
+import { Meta, Description, Canvas } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import { docsStoryParameters } from "storybook/assets/storyParameters";
+import Readme from "../README.md";
+import Input from "../src";
+
+<Meta title={`${getStoryName("Input")}/Docs`} component={Input} parameters={{ ...docsStoryParameters }} />
+
+<Description markdown={Readme} />
+
+## More
+
+- onChange after clicking clear button
+
+- moreprops spread onto input DOM el
+
+- Input.Container to spread attributes to container div el
+
+- ref to input DOM el

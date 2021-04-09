@@ -1,7 +1,8 @@
 import React from "react";
 import SearchIcon from "@paprika/icon/lib/Search";
-import InputExample from "./InputExample";
+// import InputExample from "./InputExample";
 import { InputStory } from "../Input.stories.styles";
+import Input from "../../src";
 
 const WithCustomClearIconStory = () => {
   return (
@@ -11,7 +12,7 @@ const WithCustomClearIconStory = () => {
           <code>custom clear icon</code>
         </small>
       </h3>
-      <InputExample hasClearButton clearIcon={<SearchIcon />} placeholder="Search" />
+      <Input hasClearButton clearIcon={<SearchIcon />} placeholder="Search" />
     </InputStory>
   );
 };

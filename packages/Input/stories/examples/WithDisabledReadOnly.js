@@ -1,6 +1,7 @@
 import React from "react";
-import InputExample from "./InputExample";
+// import InputExample from "./InputExample";
 import { InputStory } from "../Input.stories.styles";
+import Input from "../../src";
 
 const WithDisabledReadOnlyExampleStory = () => {
   return (
@@ -10,25 +11,25 @@ const WithDisabledReadOnlyExampleStory = () => {
           <code>isDisabled</code>
         </small>
       </h3>
-      <InputExample isDisabled placeholder="First Name" />
-      <InputExample isDisabled value="Sam Bennett" />
+      <Input isDisabled placeholder="First Name" />
+      <Input isDisabled value="Sam Bennett" />
       <br />
       <h3>
         <small>
           <code>disabled</code>
         </small>
       </h3>
-      <InputExample disabled placeholder="First Name" />
-      <InputExample disabled value="Sam Bennett" />
+      <Input disabled placeholder="First Name" />
+      <Input disabled value="Sam Bennett" />
       <br />
       <h3>
         <small>
           <code>isReadOnly</code>
         </small>
       </h3>
-      <InputExample isReadOnly placeholder="First Name" />
-      <InputExample isReadOnly value="Sam Bennett" />
-      <InputExample isReadOnly value="This is a very long text to test that you can scroll this input horizontally." />
+      <Input isReadOnly placeholder="First Name" />
+      <Input isReadOnly value="Sam Bennett" />
+      <Input isReadOnly value="This is a very long text to test that you can scroll this input horizontally." />
     </InputStory>
   );
 };

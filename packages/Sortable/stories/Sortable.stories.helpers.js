@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import Input from "@paprika/input";
+import Select from "@paprika/select";
 import Sortable from "../src";
-import Input from "../../Input/stories/examples/InputExample";
-import Select from "../../Select/stories/examples/SelectExample";
 
 export const storyStyles = `
   max-width: 360px;

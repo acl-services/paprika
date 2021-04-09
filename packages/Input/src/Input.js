@@ -136,12 +136,7 @@ Input.propTypes = {
   /** If true it makes the input read only. */
   isReadOnly: PropTypes.bool,
 
-  /**
-   * Callback to be executed when the input value is changed. Receives the
-   * onChange event as an argument, except when the clear button is clicked,
-   * then the argument is null. Required when value prop is provided (component
-   * is controlled).
-   */
+  /** Callback to be executed when the input value is changed. Receives the onChange event as an argument, except when the clear button is clicked, then the argument is null. Required when value prop is provided (component is controlled). */
   onChange: PropTypes.func,
 
   /** Ref for the input DOM element. */
@@ -153,7 +148,6 @@ Input.propTypes = {
   /** Allows user to specify the type of input. */
   type: PropTypes.oneOf([
     Input.types.type.EMAIL,
-    Input.types.type.NUMBER,
     Input.types.type.PASSWORD,
     Input.types.type.SEARCH,
     Input.types.type.TELEPHONE,
