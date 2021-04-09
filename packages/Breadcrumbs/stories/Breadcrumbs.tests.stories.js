@@ -1,6 +1,7 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import Screener from "./examples/Screener";
+import RerenderBreadcrumbs from "./examples/RerenderBreadcrumbs";
 
 const storyName = getStoryName("Breadcrumbs");
 
@@ -10,6 +11,17 @@ export default {
 };
 
 export const screener = () => <Screener />;
+screener.story = {
+  parameters: {
+    docs: { page: null },
+    options: {
+      isToolshown: true,
+      showPanel: false,
+    },
+  },
+};
+
+export const rerenderBreadcrumbs = () => <RerenderBreadcrumbs />;
 screener.story = {
   parameters: {
     docs: { page: null },

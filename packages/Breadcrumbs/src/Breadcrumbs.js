@@ -15,6 +15,10 @@ function Breadcrumbs(props) {
   const hasOnlyOneChild = React.Children.count(children) === 1;
   const [isCollapsed, setIsCollapsed] = React.useState(shouldShowExpandButton);
 
+  React.useLayoutEffect(() => {
+    setIsCollapsed(shouldShowExpandButton);
+  }, [children, shouldShowExpandButton]);
+
   function handleExpand() {
     setIsCollapsed(false);
   }
