@@ -27,8 +27,11 @@ const Input = React.forwardRef((props, ref) => {
 
   const isControlled = value !== undefined;
   const containerProps = extractChildrenProps(children, InputPropsCollector);
-  const refInput = ref || React.useRef();
+
   const i18n = useI18n();
+
+  const _refInput = React.useRef();
+  const refInput = ref || _refInput;
 
   const [shouldShowClearButton, setShouldShowClearButton] = React.useState(
     hasClearButton && !isDisabled && !isReadOnly && (value || defaultValue)
