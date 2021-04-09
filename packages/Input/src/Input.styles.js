@@ -23,6 +23,10 @@ const hasIconStyles = ({ size }) => css`
   padding-left: ${size === types.LARGE ? stylers.spacer(4) : stylers.spacer(3)};
 `;
 
+const shouldShowClearButtonStyles = ({ size }) => css`
+  padding-right: ${size === types.LARGE ? stylers.spacer(4) : stylers.spacer(3)};
+`;
+
 export const InputContainer = styled.div`
   line-height: 1;
   position: relative;
@@ -33,7 +37,7 @@ export const InputContainer = styled.div`
 `;
 
 export const Input = styled.input(
-  ({ hasClearButton, hasError, hasIcon, isDisabled, isReadOnly, size }) => css`
+  ({ hasError, hasIcon, isDisabled, isReadOnly, shouldShowClearButton, size }) => css`
     background-color: ${tokens.color.white};
     border: 1px solid ${tokens.border.color};
     border-radius: ${tokens.border.radius};
@@ -42,13 +46,13 @@ export const Input = styled.input(
     color: ${tokens.color.black};
     display: block;
     margin: 0;
-    padding: 0 0 0 ${tokens.space};
-    padding-right: ${hasClearButton ? stylers.spacer(3) : tokens.space};
+    padding: 0 ${tokens.space};
     transition: box-shadow 0.2s, color 0.2s;
     width: 100%;
     ${stylers.placeholders}
     ${sizeStyles[size]}
     ${hasIcon && hasIconStyles}
+    ${shouldShowClearButton && shouldShowClearButtonStyles}
     ${hasError && stylers.errorFormStyles}
     ${isDisabled && stylers.disabledFormStyles}
     ${isReadOnly && stylers.readOnlyFormStyles}

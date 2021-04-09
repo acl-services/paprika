@@ -74,11 +74,11 @@ const Input = React.forwardRef((props, ref) => {
   };
 
   const styleProps = {
-    hasClearButton,
     hasError,
     hasIcon: Boolean(icon),
     isDisabled,
     isReadOnly,
+    shouldShowClearButton,
     size,
   };
 
