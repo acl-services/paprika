@@ -1,33 +1,40 @@
 import React from "react";
-// import InputExample from "./InputExample";
-import { InputStory } from "../Input.stories.styles";
+import SearchIcon from "@paprika/icon/lib/Search";
+import StoryHeading from "storybook/components/StoryHeading";
+import { Gap, CodeHeading } from "storybook/assets/styles/common.styles";
 import Input from "../../src";
 
-const TypesExampleStory = () => {
+const TypesExample = () => {
   return (
-    <InputStory>
-      <h3>
-        <small>
-          <code>type=&quot;text&quot;</code>
-        </small>
-      </h3>
-      <Input type="text" value="p@$$w0rD" />
-      <br />
-      <h3>
-        <small>
-          <code>type=&quot;password&quot;</code>
-        </small>
-      </h3>
-      <Input type="password" value="p@$$w0rD" />
-      <br />
-      <h3>
-        <small>
-          <code>type=&quot;number&quot;</code>
-        </small>
-      </h3>
-      Don&apos;t do this. Use &lt;Input type=&quot;text&quot; /&gt;
-    </InputStory>
+    <>
+      <CodeHeading>
+        {`type={Input.types.type.TEXT}`} <span>(default)</span>
+      </CodeHeading>
+      <Input type={Input.types.type.TEXT} value="Dillon Dubé" />
+      <Gap />
+      <CodeHeading>{`type={Input.types.type.PASSWORD}`} </CodeHeading>
+      <Input type={Input.types.type.PASSWORD} value="p@$$w0rD" />
+      <Gap />
+      <CodeHeading>{`type={Input.types.type.SEARCH}`} </CodeHeading>
+      <Input type={Input.types.type.SEARCH} placeholder="Search..." icon={<SearchIcon />} />
+      <Gap />
+      <CodeHeading>{`type={Input.types.type.NUMBER}`} </CodeHeading>
+      <strong>Deprecated.</strong> Don‘t do this. Use <code>{`<Input type={Input.types.type.TEXT} />`}</code> instead.
+      <Gap />
+      <StoryHeading level={3}>Also Available</StoryHeading>
+      <ul>
+        <li>
+          <code>Input.types.type.EMAIL</code>
+        </li>
+        <li>
+          <code>Input.types.type.TELEPHONE</code>
+        </li>
+        <li>
+          <code>Input.types.type.URL</code>
+        </li>
+      </ul>
+    </>
   );
 };
 
-export default TypesExampleStory;
+export default TypesExample;

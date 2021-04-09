@@ -1,5 +1,6 @@
 import React from "react";
 import SearchIcon from "@paprika/icon/lib/Search";
+import ClearIcon from "@paprika/icon/lib/Times";
 import StoryHeading from "storybook/components/StoryHeading";
 import { Gap, CodeHeading } from "storybook/assets/styles/common.styles";
 import Input from "../../src";
@@ -17,6 +18,11 @@ const Variations = () => {
       <Gap.Small />
       <CodeHeading>hasClearButton</CodeHeading>
       <Input defaultValue="Mahatma Gandhi" hasClearButton />
+      <Gap.Small />
+      <CodeHeading>
+        <span>Custom</span> clearIcon
+      </CodeHeading>
+      <Input defaultValue="Mahatma Gandhi" hasClearButton clearIcon={<ClearIcon />} />
       <Gap.Small />
       <CodeHeading>{`icon={<Icon />}`}</CodeHeading>
       <Input icon={<SearchIcon />} />

@@ -8,12 +8,20 @@ import Input from "../src";
 
 <Description markdown={Readme} />
 
-## More
+## Notes
 
-- onChange after clicking clear button
+- Clicking the **Clear Button** will fire the `onChange` callback with `null`
+  for the `event` argument.
 
-- moreprops spread onto input DOM el
+- Additional props and DOM attributes provided to `<Input>` will be spread onto
+  the underlying `<input>` DOM element.
 
-- Input.Container to spread attributes to container div el
+- The `<Input.Container>` component can be used as a `child` of `<Input>` to
+  spread attributes to the root `<div>` container element.
 
-- ref to input DOM el
+- The `ref` will be forwarded to the underlying `<input>` DOM element.
+
+- It is very important for **accessibility** that every `<input>` has a label.
+  Usually this will be provided as a visible label with the Paprika
+  `<FormElement.Label>`, but a label can also be provided directly for assistive
+  technology clients (like screen readers) via the `a11yText` prop.

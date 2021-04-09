@@ -4,6 +4,10 @@ import { exampleStoryParameters } from "storybook/assets/storyParameters";
 import { InputStory } from "./Input.stories.styles";
 import Uncontrolled from "./examples/Uncontrolled";
 import Controlled from "./examples/Controlled";
+import Types from "./examples/Types";
+import CustomAttributes from "./examples/CustomAttributes";
+import Ref from "./examples/Ref";
+import OldRef from "./examples/OldRef";
 
 const storyName = getStoryName("Input");
 
@@ -28,5 +32,45 @@ export const controlled = () => (
 );
 controlled.story = {
   name: "Controlled",
+  parameters: exampleStoryParameters,
+};
+
+export const types = () => (
+  <InputStory storyName="Types" component="Input" fileName="examples/Types.js">
+    <Types />
+  </InputStory>
+);
+types.story = {
+  name: "Types",
+  parameters: exampleStoryParameters,
+};
+
+export const customAttributes = () => (
+  <InputStory storyName="Custom Attributes" component="Input" fileName="examples/CustomAttributes.js">
+    <CustomAttributes />
+  </InputStory>
+);
+customAttributes.story = {
+  name: "Custom Attributes",
+  parameters: exampleStoryParameters,
+};
+
+export const ref = () => (
+  <InputStory storyName="Ref" component="Input" fileName="examples/Ref.js">
+    <Ref />
+  </InputStory>
+);
+ref.story = {
+  name: "Ref",
+  parameters: exampleStoryParameters,
+};
+
+export const oldref = () => (
+  <InputStory storyName="Old Ref" component="Input" fileName="examples/OldRef.js">
+    <OldRef />
+  </InputStory>
+);
+oldref.story = {
+  name: "Old Ref",
   parameters: exampleStoryParameters,
 };
