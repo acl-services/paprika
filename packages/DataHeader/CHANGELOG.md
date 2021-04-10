@@ -1,5 +1,11 @@
 <!-- content -->
 
+## 1.0.13
+
+### Patch Changes
+
+- @paprika/overflow-menu@1.0.15
+
 ## 1.0.13-next.0
 
 ### Patch Changes

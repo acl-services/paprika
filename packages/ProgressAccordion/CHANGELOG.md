@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.0
+
+### Minor Changes
+
+- 81e3efc: Make it usable as a Nav (expand all items and they cant be collapsed, add onClick to items, remove bottom border).
+
+### Patch Changes
+
+- f461483: Refactored so more logical to use as a nav. Style changes.
+
 ## 1.1.0-next.1
 
 ### Patch Changes
