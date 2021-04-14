@@ -152,7 +152,7 @@ export function App() {
             onPressEnter={handleOpenSidepanel}
             onPressSpaceBar={handleOpenSidepanel}
           >
-            {renderColumnIndicator({ onChecked: handleOnSelect })}
+            {renderColumnIndicator({ onCheck: handleOnSelect })}
             {renderColumnExpand()}
             <DataGrid.ColumnDefinition
               isSticky
