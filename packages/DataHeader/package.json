@@ -24,6 +24,7 @@
     "@paprika/overflow-menu": "^1.0.15",
     "@paprika/popover": "^1.2.0",
     "@paprika/raw-button": "^1.0.3",
+    "@paprika/stylers": "1.0.0",
     "@paprika/toast": "^1.1.0",
     "@paprika/tokens": "^1.0.0",
     "prop-types": "^15.7.2"
