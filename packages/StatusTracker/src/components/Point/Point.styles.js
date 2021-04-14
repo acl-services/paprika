@@ -6,11 +6,19 @@ import { fontSize, lineHeight, spacer } from "@paprika/stylers/lib/helpers";
 import * as types from "../../types";
 
 const passedPath = css`
-  border-bottom: 2px solid ${tokens.color.greenLighten10};
+  border-bottom: 2px solid ${tokens.color.black};
 `;
 
 const futurePath = css`
   border-bottom: 2px dashed ${tokens.color.blackLighten20};
+`;
+
+const pathWidth = css`
+  max-width: ${spacer(8)};
+`;
+
+const currentPathWidth = css`
+  max-width: ${spacer(16)};
 `;
 
 export const PointWrapper = styled.li`
@@ -18,6 +26,9 @@ export const PointWrapper = styled.li`
   display: inline-flex;
   flex-grow: 1;
   list-style: none;
+  max-width: ${({ hasOverflowMenu }) => (hasOverflowMenu ? spacer(18) : "")} !important;
+
+  ${({ kind }) => (kind === types.kinds.CURRENT ? currentPathWidth : pathWidth)}
 
   &::after {
     content: "";
@@ -45,7 +56,7 @@ const basicPoint = css`
 `;
 
 const pastPoint = css`
-  background-color: ${tokens.color.greenLighten10};
+  background-color: ${tokens.color.black};
 `;
 
 const futurePoint = css`
