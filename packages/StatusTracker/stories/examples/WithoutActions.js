@@ -32,7 +32,19 @@ const ExampleStory = () => {
         <CodeViewer>
           <StatusTracker>
             <StatusTracker.Point name="Draft" kind={StatusTracker.types.kind.PAST} description={getDesc()} />
-
+            <StatusTracker.Point name="Draft" kind={StatusTracker.types.kind.PAST} description={getDesc()} />
+            <StatusTracker.Point
+              name="In review"
+              description={getDesc()}
+              kind={StatusTracker.types.kind.CURRENT}
+              ref={currentPointRef}
+            />
+            <StatusTracker.Point name="Approve" kind={StatusTracker.types.kind.FUTURE} />
+            <StatusTracker.Point name="Done" kind={StatusTracker.types.kind.FUTURE} />
+          </StatusTracker>
+        </CodeViewer>
+        <CodeViewer>
+          <StatusTracker>
             <StatusTracker.Point
               name="In review"
               description={getDesc()}

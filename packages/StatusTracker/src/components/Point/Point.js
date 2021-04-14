@@ -146,7 +146,12 @@ const Point = React.forwardRef((props, ref) => {
   }
 
   return (
-    <sc.PointWrapper aria-current={kind === kinds.CURRENT} kind={kind} {...moreProps}>
+    <sc.PointWrapper
+      aria-current={kind === kinds.CURRENT}
+      kind={kind}
+      hasOverflowMenu={extractedOverflowMenu}
+      {...moreProps}
+    >
       <sc.Popover isEager isDark isOpen={isTooltipOpen}>
         <Popover.Trigger>{getTrigger}</Popover.Trigger>
         <Popover.Content>
