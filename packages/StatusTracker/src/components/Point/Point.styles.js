@@ -17,10 +17,6 @@ const pathWidth = css`
   max-width: ${spacer(8)};
 `;
 
-const firstChildPathWidth = css`
-  max-width: ${spacer(12)};
-`;
-
 const currentPathWidth = css`
   max-width: ${spacer(16)};
 `;
@@ -30,7 +26,7 @@ export const PointWrapper = styled.li`
   display: inline-flex;
   flex-grow: 1;
   list-style: none;
-  max-width: ${({ hasOverflowMenu }) => (hasOverflowMenu !== undefined ? spacer(18) : "")} !important;
+  max-width: ${({ hasOverflowMenu }) => (hasOverflowMenu ? spacer(18) : "")} !important;
 
   ${({ kind }) => (kind === types.kinds.CURRENT ? currentPathWidth : pathWidth)}
 
@@ -42,21 +38,6 @@ export const PointWrapper = styled.li`
     vertical-align: middle;
 
     ${({ kind }) => (kind === types.kinds.PAST ? passedPath : futurePath)}
-  }
-
-  &:first-child {
-    ${({ kind }) => (kind === types.kinds.CURRENT ? currentPathWidth : firstChildPathWidth)}
-
-    ::before {
-      content: "";
-      display: ${({ kind }) => (kind === types.kinds.CURRENT ? "none" : "inline-block")};
-      flex-grow: 1;
-      vertical-align: middle;
-      border-style: solid;
-      border-width: 1px;
-      margin-right: -${spacer(3)};
-      border-image: linear-gradient(45deg, ${tokens.color.white} 0%, ${tokens.color.black} 60%) 1;
-    }
   }
 
   &:last-child {

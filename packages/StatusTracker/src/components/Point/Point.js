@@ -149,7 +149,7 @@ const Point = React.forwardRef((props, ref) => {
     <sc.PointWrapper
       aria-current={kind === kinds.CURRENT}
       kind={kind}
-      hasOverflowMenu={extractedOverflowMenu}
+      hasOverflowMenu={!!extractedOverflowMenu}
       {...moreProps}
     >
       <sc.Popover isEager isDark isOpen={isTooltipOpen}>

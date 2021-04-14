@@ -5,6 +5,8 @@ interface StatusTrackerProps {
   [x: string]: any;
 
   children?: React.ReactNode;
+  /** Displays extension line if true. */
+  hasExtensionLine?: boolean;
 }
 
 declare namespace StatusTracker {

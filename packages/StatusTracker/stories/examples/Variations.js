@@ -24,7 +24,7 @@ const ExampleStory = () => {
       </Heading>
       <Tagline>
         <big>
-          <strong>without actions</strong>
+          <strong>Variations</strong>
         </big>
       </Tagline>
       <Rule />
@@ -44,7 +44,7 @@ const ExampleStory = () => {
           </StatusTracker>
         </CodeViewer>
         <CodeViewer>
-          <StatusTracker>
+          <StatusTracker hasExtensionLine={false}>
             <StatusTracker.Point
               name="In review"
               description={getDesc()}
