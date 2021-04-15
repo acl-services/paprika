@@ -74,6 +74,7 @@
     "@paprika/seducer": "2.0.1"
   },
   "changesets": [
-    "bright-readers-reflect"
+    "bright-readers-reflect",
+    "khaki-steaks-taste"
   ]
 }

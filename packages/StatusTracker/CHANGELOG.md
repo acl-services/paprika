@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.13-next.0
+
+### Patch Changes
+
+- ed29caf: Update styling based on updated mocks, add extension line
+
 ## 1.0.12
 
 ### Patch Changes
