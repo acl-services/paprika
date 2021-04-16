@@ -4,7 +4,7 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 import sort from "./sort";
 import * as types from "../../types";
 
-function sortData({ sortedFields, columns, data, locale }) {
+export function sortData({ sortedFields, columns, data, locale }) {
   let sortedData = data;
   if (sortedFields.length > 0) {
     sortedFields.forEach(field => {
