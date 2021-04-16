@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.3-next.0
+
+### Patch Changes
+
+- 72ebde0: Export `sortData` function.
+
 ## 2.1.2
 
 ### Patch Changes
