@@ -1,5 +1,11 @@
 <!-- content -->
 
+## 1.0.14
+
+### Patch Changes
+
+- 86a0afe: Fix css issues for longer header text
+
 ## 1.0.14-next.0
 
 ### Patch Changes
