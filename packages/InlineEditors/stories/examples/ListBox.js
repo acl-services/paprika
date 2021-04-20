@@ -27,26 +27,70 @@ export function ListBoxSingleStory() {
   }
 
   return (
-    <Card style={{ padding: "16px", width: "320px" }}>
-      <Toast hasCloseButton={false}>The API is stable need some design tweaks</Toast>
-      <span>onChange:{valueOnChange}</span>
+    <>
+      <Card style={{ padding: "16px", width: "320px" }}>
+        <Toast hasCloseButton={false}>The API is stable need some design tweaks</Toast>
+        <span>onChange:{valueOnChange}</span>
+        <br />
+        <ListBox
+          isEditing={isEditing}
+          onChange={handleChange}
+          onClose={handleClose}
+          onStart={handleonStart}
+          onSubmit={handleSubmit}
+          value={value}
+        >
+          <ListBox.Filter />
+          {subscriptionTypes.map(subscription => (
+            <ListBox.Option value={subscription} isSelected={subscription === value} key={subscription}>
+              {subscription}
+            </ListBox.Option>
+          ))}
+        </ListBox>
+      </Card>
       <br />
-      <ListBox
-        isEditing={isEditing}
-        onChange={handleChange}
-        onClose={handleClose}
-        onStart={handleonStart}
-        onSubmit={handleSubmit}
-        value={value}
-      >
-        <ListBox.Filter />
-        {subscriptionTypes.map(subscription => (
-          <ListBox.Option value={subscription} isSelected={subscription === value} key={subscription}>
-            {subscription}
-          </ListBox.Option>
-        ))}
-      </ListBox>
-    </Card>
+      <br />
+      <br />
+      <Card style={{ padding: "16px", width: "320px" }}>
+        <Toast hasCloseButton={false}>Display an error</Toast>
+        <ListBox value={value} status={ListBox.types.status.ERROR}>
+          <ListBox.Filter />
+          {subscriptionTypes.map(subscription => (
+            <ListBox.Option value={subscription} isSelected={subscription === value} key={subscription}>
+              {subscription}
+            </ListBox.Option>
+          ))}
+        </ListBox>
+      </Card>
+      <br />
+      <br />
+      <br />
+      <Card style={{ padding: "16px", width: "320px" }}>
+        <Toast hasCloseButton={false}>Display an error</Toast>
+        <ListBox value={value} status={ListBox.types.status.LOADING}>
+          <ListBox.Filter />
+          {subscriptionTypes.map(subscription => (
+            <ListBox.Option value={subscription} key={subscription}>
+              {subscription}
+            </ListBox.Option>
+          ))}
+        </ListBox>
+      </Card>
+      <br />
+      <br />
+      <br />
+      <Card style={{ padding: "16px", width: "320px" }}>
+        <Toast hasCloseButton={false}>Display an error</Toast>
+        <ListBox value={value} status={ListBox.types.status.SUCCEED}>
+          <ListBox.Filter />
+          {subscriptionTypes.map(subscription => (
+            <ListBox.Option value={subscription} key={subscription}>
+              {subscription}
+            </ListBox.Option>
+          ))}
+        </ListBox>
+      </Card>
+    </>
   );
 }
 

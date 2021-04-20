@@ -1,10 +1,53 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Table from "@paprika/table";
+import { useSeducerWithContext, Provider } from "@paprika/seducer";
 import * as sc from "./Table.styles";
+import { status as statusType } from "../types";
+
+const initialState = {
+  status: new Map(),
+};
+
+export function useTable({ rowIndex, columnIndex } = {}) {
+  const [state, dispatch, actionsTypes] = useSeducerWithContext();
+  function setStatus(nextStatus) {
+    dispatch(actionsTypes.setStatus, { status: nextStatus, rowIndex, columnIndex });
+  }
+
+  return {
+    setStatus,
+    statusType,
+    getStatus: () => {
+      return state.status.get(`${rowIndex}-${columnIndex}`);
+    },
+    status: state.status,
+  };
+}
+
+const actions = {
+  setStatus(state, { rowIndex, columnIndex, status }) {
+    const nextStatus = new Map(state.status);
+    nextStatus.set(`${rowIndex}-${columnIndex}`, status);
+    return { ...state, status: nextStatus };
+  },
+};
+
+function TableProvider(props) {
+  return (
+    /* eslint-disable react/prop-types */
+    <Provider initialState={initialState} actions={actions}>
+      {props.children}
+    </Provider>
+    /* eslint-enable react/prop-types */
+  );
+}
 
 function Editable({ children }) {
   const [isEditing, setIsEditing] = React.useState(false);
+  const { status } = useTable();
+
+  const cellStatus = status.get(`${children.props.rowIndex}-${children.props.columnIndex}`);
 
   const handleClose = React.useCallback(() => {
     setIsEditing(false);
@@ -14,7 +57,13 @@ function Editable({ children }) {
     setIsEditing(true);
   }, []);
 
-  return React.cloneElement(children, { ...children.props, isEditing, onClose: handleClose, onStart: handleEditing });
+  return React.cloneElement(children, {
+    ...children.props,
+    isEditing,
+    onClose: handleClose,
+    onStart: handleEditing,
+    status: cellStatus ? cellStatus.status : statusType.IDLE,
+  });
 }
 
 export default function InlineEditingTable(props) {
@@ -53,7 +102,11 @@ export default function InlineEditingTable(props) {
     return cloned;
   }, [props.children]);
 
-  return <sc.Table {...moreProps}>{clonedColumnDefinition}</sc.Table>;
+  return (
+    <TableProvider>
+      <sc.Table {...moreProps}>{clonedColumnDefinition}</sc.Table>
+    </TableProvider>
+  );
 }
 
 const propTypes = {

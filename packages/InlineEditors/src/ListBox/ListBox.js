@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import ListBox from "@paprika/list-box";
 import Editor from "../Editor";
 import * as sc from "./ListBox.styles";
+import { status } from "../types";
 
 const isPopoverVisible = ({ rowIndex, columnIndex }) => {
   return (
@@ -23,6 +24,7 @@ export default function InlineListBox(props) {
     renderValue,
     /** These props are only consumable by the Author no need to expose them */
     /* eslint-disable react/prop-types */
+    status,
     placeHolder,
     rowIndex,
     columnIndex,
@@ -101,7 +103,7 @@ export default function InlineListBox(props) {
   };
 
   return (
-    <Editor onClick={handleClick} isEditing={isEditing} ref={refListBoxEditor}>
+    <Editor onClick={handleClick} isEditing={isEditing} ref={refListBoxEditor} status={status}>
       <Editor.Edit>
         <ListBox isOpen {...moreProps} onChange={handleChange} ref={refListBox}>
           <ListBox.Box {...dataIsEditing} />
@@ -115,7 +117,6 @@ export default function InlineListBox(props) {
           <sc.ValueContainerChild>
             <div>{typeof renderValue === "function" ? renderValue(value) : value || placeHolder} </div>
           </sc.ValueContainerChild>
-          <div>▾</div>
         </sc.ValueContainer>
       </Editor.Value>
     </Editor>
@@ -145,4 +146,8 @@ InlineListBox.defaultProps = {
   onSubmit: () => {},
   renderValue: undefined,
   value: null,
+};
+
+InlineListBox.types = {
+  status,
 };

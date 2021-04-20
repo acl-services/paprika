@@ -24,6 +24,8 @@
     "@paprika/list-box": "3.0.2",
     "@paprika/popover": "^1.2.0",
     "@paprika/raw-button": "^1.0.3",
+    "@paprika/seducer": "^2.0.1",
+    "@paprika/spinner": "^1.0.6",
     "@paprika/stylers": "^1.0.0",
     "@paprika/table": "1.1.1",
     "@paprika/tag": "^0.0.2",
