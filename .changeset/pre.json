@@ -72,5 +72,7 @@
     "@paprika/helpers": "2.1.1",
     "@paprika/seducer": "2.0.1"
   },
-  "changesets": []
+  "changesets": [
+    "tiny-cameras-deny"
+  ]
 }
