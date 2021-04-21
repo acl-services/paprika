@@ -47,7 +47,7 @@ const columnsSettings = [
 export default function WithLocalStorageEnabled() {
   const { orderedColumnIds, isColumnHidden, ...handlers } = useColumnsArrangement({
     defaultOrderedColumnIds: ["name", "goals", "status", "country", "joined", "shareable", "level", "position"],
-    localStorageKey: "paprika-storybook-example",
+    localStoragePrefix: "paprika-storybook-example",
     disabledColumnIds: ["name"],
   });
 
@@ -55,8 +55,8 @@ export default function WithLocalStorageEnabled() {
     <Story>
       <Heading level={2}>ActionBar with Custom Button</Heading>
       <Tagline>
-        If you want to save user show/hide preferences in localStorage, you can pass <code>localStorageKey</code> while
-        using <code>useColumnsArrangement</code>
+        If you want to save user show/hide preferences in localStorage, you can pass <code>localStoragePrefix</code>{" "}
+        while using <code>useColumnsArrangement</code>
       </Tagline>
       <br />
       <ActionBar>

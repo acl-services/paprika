@@ -1,14 +1,25 @@
 import React from "react";
 import produce from "immer";
 
-function getHiddenColumnIdsfromLocalStorage(localStorageKey) {
+const savedItem = {
+  VISIBILITY: "VISIBILITY",
+  ORDERS: "ORDERS",
+};
+
+function getLocalStorageKey(localStoragePrefix, typeOfSavedItem) {
+  return `${localStoragePrefix}--${typeOfSavedItem}`;
+}
+
+function getColumnIdsfromLocalStorage(localStorageKey) {
   const prevDataInString = window.localStorage.getItem(localStorageKey);
+
   if (prevDataInString) return JSON.parse(prevDataInString);
   return [];
 }
 
-function updateHiddenColumnIdFromLocalStorage(localStorageKey, columnId, isVisible) {
-  const prevData = getHiddenColumnIdsfromLocalStorage(localStorageKey);
+function updateHiddenColumnIdFromLocalStorage(localStoragePrefix, columnId, isVisible) {
+  const localStorageKey = getLocalStorageKey(localStoragePrefix, savedItem.VISIBILITY);
+  const prevData = getColumnIdsfromLocalStorage(localStorageKey);
   const result = prevData.filter(item => item !== columnId);
 
   if (isVisible) {
@@ -23,13 +34,13 @@ export default function useColumnsArrangement({
   defaultOrderedColumnIds: defaultOrder,
   disabledColumnIds = [],
   defaultHiddenColumnIds = [],
-  localStorageKey = null,
+  localStoragePrefix = null,
 }) {
-  const isLocalStorageEnabled = localStorageKey !== null;
+  const isLocalStorageEnabled = localStoragePrefix !== null;
   const [order, setOrder] = React.useState(defaultOrder);
   const [hiddenColumnIds, setHiddenColumnIds] = React.useState(() =>
     isLocalStorageEnabled
-      ? new Set(getHiddenColumnIdsfromLocalStorage(localStorageKey))
+      ? new Set(getColumnIdsfromLocalStorage(getLocalStorageKey(localStoragePrefix, savedItem.VISIBILITY)))
       : new Set(defaultHiddenColumnIds)
   );
 
@@ -65,7 +76,10 @@ export default function useColumnsArrangement({
     setHiddenColumnIds(new Set(newHiddenColumnIds));
 
     if (isLocalStorageEnabled) {
-      window.localStorage.setItem(localStorageKey, JSON.stringify(newHiddenColumnIds));
+      window.localStorage.setItem(
+        getLocalStorageKey(localStoragePrefix, savedItem.VISIBILITY),
+        JSON.stringify(newHiddenColumnIds)
+      );
     }
   }
 
@@ -73,7 +87,7 @@ export default function useColumnsArrangement({
     setHiddenColumnIds(new Set());
 
     if (isLocalStorageEnabled) {
-      window.localStorage.setItem(localStorageKey, "[]");
+      window.localStorage.setItem(getLocalStorageKey(localStoragePrefix, savedItem.VISIBILITY), "[]");
     }
   }
 
@@ -85,8 +99,9 @@ export default function useColumnsArrangement({
         } else {
           draft.add(columnId);
         }
-        if (isLocalStorageEnabled)
-          updateHiddenColumnIdFromLocalStorage(localStorageKey, columnId, !draft.has(columnId));
+        if (isLocalStorageEnabled) {
+          updateHiddenColumnIdFromLocalStorage(localStoragePrefix, columnId, !draft.has(columnId));
+        }
         return new Set(draft);
       })
     );
