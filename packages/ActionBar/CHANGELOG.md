@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.0-next.2
+
+### Patch Changes
+
+- 8b41e75: Bug fix for saving show/hide columns in localStorage
+
 ## 3.0.0-next.1
 
 ### Major Changes
