@@ -77,7 +77,9 @@ export default function WithLocalStorageEnabled() {
         <thead>
           <tr>
             <th>id</th>
-            {orderedColumnIds.map(id => (isColumnHidden(id) ? null : <th key={id}>{id}</th>))}
+            {orderedColumnIds.map(id =>
+              isColumnHidden(id) ? null : <th key={id}>{columnsSettings.find(column => column.id === id).label}</th>
+            )}
           </tr>
         </thead>
         <tbody>
