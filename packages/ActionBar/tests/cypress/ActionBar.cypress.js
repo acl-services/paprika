@@ -1,7 +1,21 @@
 import { getStoryUrlPrefix } from "../../../../.storybook/storyTree";
 
+function toggleSwitchFor(columnName) {
+  cy.findByTestId("sortable").within(() => {
+    cy.findByText(columnName)
+      .parent()
+      .within(() => {
+        cy.findByRole("switch").click();
+      });
+  });
+}
+
 beforeEach(() => {
   cy.visitStorybook(`${getStoryUrlPrefix("ActionBar")}--showcase`);
+});
+
+afterEach(() => {
+  window.localStorage.setItem("paprika-storybook-example--VISIBILITY", "[]");
 });
 
 describe("ActionBar", () => {
@@ -194,5 +208,45 @@ describe("ActionBar Arrange Columns", () => {
       .eq(0)
       .contains("Goals")
       .should("be.visible");
+  });
+
+  it.only("Should save user preferences for columns arrangement in localStorage", () => {
+    cy.visitStorybook(`${getStoryUrlPrefix("ActionBar")}-examples--with-localstorage-enabled`);
+    cy.findByText("Arrange").click();
+
+    toggleSwitchFor("Status");
+    toggleSwitchFor("Level");
+
+    cy.reload();
+
+    cy.findByRole("table").within(() => {
+      cy.findByText("Status").should("not.exist");
+      cy.findByText("Level").should("not.exist");
+    });
+
+    cy.findByText("2 columns hidden").click();
+    toggleSwitchFor("Status");
+
+    cy.reload();
+
+    cy.findByRole("table").within(() => {
+      cy.findByText("Status").should("be.visible");
+      cy.findByText("Level").should("not.exist");
+    });
+
+    cy.findByText("1 column hidden").click();
+    cy.findByText("Hide all").click();
+
+    cy.reload();
+
+    cy.findAllByRole("columnheader").should("have.length", 2);
+
+    cy.findByText("7 columns hidden").click();
+    cy.findByText("Show all").click();
+
+    cy.reload();
+
+    cy.findAllByRole("columnheader").should("have.length", 9);
+    cy.findByText("Arrange");
   });
 });

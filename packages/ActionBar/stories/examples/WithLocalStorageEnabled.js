@@ -1,7 +1,8 @@
 import React from "react";
+import { Story, Tagline } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
-import ActionBar, { ColumnsArrangement, SearchInput, Sort, useColumnsArrangement, useSort } from "../../src";
-import data from "./data";
+import ActionBar, { ColumnsArrangement, useColumnsArrangement } from "../../src";
+import data from "../ShowcaseApp/data";
 
 const columnsSettings = [
   {
@@ -43,63 +44,30 @@ const columnsSettings = [
   },
 ];
 
-export default function App() {
-  const [searchTerm, setSearchTerm] = React.useState("");
-  const { sortedFields, sortedData, onDeleteSort, onChangeSort, ...sortProps } = useSort({
-    columns: columnsSettings,
-    data,
-    maxSortFields: 3,
-  });
+export default function WithLocalStorageEnabled() {
   const { orderedColumnIds, isColumnHidden, ...handlers } = useColumnsArrangement({
-    defaultOrderedColumnIds: ["goals", "name", "status", "country", "joined", "shareable", "level", "position"],
+    defaultOrderedColumnIds: ["name", "goals", "status", "country", "joined", "shareable", "level", "position"],
+    localStoragePrefix: "paprika-storybook-example",
     disabledColumnIds: ["name"],
   });
 
-  const subset = React.useMemo(() => {
-    return sortedData.filter(item =>
-      searchTerm
-        ? !!Object.values(item).find(value => {
-            return new RegExp(`${searchTerm}`, "i").test(`${value}`);
-          })
-        : true
-    );
-  }, [searchTerm, sortedData]);
-
   return (
-    <React.Fragment>
-      <Heading level={2}>ActionBar showcase</Heading>
-
+    <Story>
+      <Heading level={2}>ActionBar with Custom Button</Heading>
+      <Tagline>
+        If you want to save user show/hide preferences in localStorage, you can pass <code>localStoragePrefix</code>{" "}
+        while using <code>useColumnsArrangement</code>
+      </Tagline>
+      <br />
       <ActionBar>
-        <SearchInput
-          onChange={term => {
-            setSearchTerm(term);
-          }}
-        />
-
-        <Sort {...sortProps} columns={columnsSettings}>
-          {sortedFields.map((field, index) => {
-            return (
-              <Sort.Field
-                columnId={field.columnId}
-                direction={field.direction}
-                id={field.id}
-                isFirst={index === 0}
-                key={field.id}
-                onChange={onChangeSort}
-                onDelete={onDeleteSort}
-              />
-            );
-          })}
-        </Sort>
-
         <ColumnsArrangement orderedColumnIds={orderedColumnIds} {...handlers}>
           {columnsSettings.map(column => (
             <ColumnsArrangement.ColumnDefinition
               key={column.id}
               id={column.id}
               label={column.label}
-              isDisabled={column.id === "name"}
               isHidden={isColumnHidden(column.id)}
+              isDisabled={column.id === "name"}
             />
           ))}
         </ColumnsArrangement>
@@ -109,11 +77,13 @@ export default function App() {
         <thead>
           <tr>
             <th>id</th>
-            {orderedColumnIds.map(id => (isColumnHidden(id) ? null : <th key={id}>{id}</th>))}
+            {orderedColumnIds.map(id =>
+              isColumnHidden(id) ? null : <th key={id}>{columnsSettings.find(column => column.id === id).label}</th>
+            )}
           </tr>
         </thead>
         <tbody>
-          {subset.map(item => (
+          {data.map(item => (
             <tr key={item.id}>
               <td>{item.id}</td>
               {orderedColumnIds.map(id => (isColumnHidden(id) ? null : <td key={id}>{`${item[id]}`}</td>))}
@@ -121,6 +91,6 @@ export default function App() {
           ))}
         </tbody>
       </table>
-    </React.Fragment>
+    </Story>
   );
 }
