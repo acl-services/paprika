@@ -80,7 +80,7 @@ export default function ColumnsArrangement(props) {
   };
 
   function handleSearch(e) {
-    setSearchTerm(e.target.value);
+    setSearchTerm(e === null ? "" : e.target.value);
   }
 
   return (
@@ -120,23 +120,32 @@ export default function ColumnsArrangement(props) {
             I18n.t("actionBar.no_results")
           ) : (
             <sc.Sortable onChange={handleChangeOrder} hasNumbers={false}>
-              {filteredColumnIds.map(id => (
-                <Sortable.Item
-                  key={id}
-                  sortId={id}
-                  isDragDisabled={columns[id].isDisabled}
-                  handleElement={columns[id].isDisabled ? <sc.LockIcon /> : undefined}
-                >
-                  <ColumnManagingItem
+              {filteredColumnIds.map(id => {
+                if (!columns[id]) {
+                  console.error(
+                    `Failed from rendering the ${id} column. Have you passed the <ColumnsArrangement.ColumnDefinition /> for that column?`
+                  );
+                  return null;
+                }
+
+                return (
+                  <Sortable.Item
                     key={id}
-                    id={id}
-                    label={columns[id].label}
-                    isDisabled={columns[id].isDisabled}
-                    isHidden={columns[id].isHidden}
-                    onChangeVisibility={onChangeVisibility}
-                  />
-                </Sortable.Item>
-              ))}
+                    sortId={id}
+                    isDragDisabled={columns[id].isDisabled}
+                    handleElement={columns[id].isDisabled ? <sc.LockIcon /> : undefined}
+                  >
+                    <ColumnManagingItem
+                      key={id}
+                      id={id}
+                      label={columns[id].label}
+                      isDisabled={columns[id].isDisabled}
+                      isHidden={columns[id].isHidden}
+                      onChangeVisibility={onChangeVisibility}
+                    />
+                  </Sortable.Item>
+                );
+              })}
             </sc.Sortable>
           )}
           {searchTerm.length ? null : (

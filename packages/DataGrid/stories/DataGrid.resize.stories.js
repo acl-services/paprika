@@ -52,13 +52,9 @@ export function CanGrowStressing() {
 }
 
 function AppWithActionBar() {
-  const { orderedColumnIds, isColumnHidden, ...handlers } = useColumnsArrangement([
-    "goals",
-    "name",
-    "status",
-    "country",
-    "joined",
-  ]);
+  const { orderedColumnIds, isColumnHidden, ...handlers } = useColumnsArrangement({
+    defaultOrderedColumnIds: ["goals", "name", "status", "country", "joined"],
+  });
 
   const renderColumns = type => {
     const column = {

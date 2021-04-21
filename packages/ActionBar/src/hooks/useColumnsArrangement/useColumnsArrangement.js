@@ -1,9 +1,37 @@
 import React from "react";
 import produce from "immer";
 
-export default function useColumnsArrangement(defaultOrder, disabledColumnIds = []) {
+function getHiddenColumnIdsfromLocalStorage(localStorageKey) {
+  const prevDataInString = window.localStorage.getItem(localStorageKey);
+  if (prevDataInString) return JSON.parse(prevDataInString);
+  return [];
+}
+
+function updateHiddenColumnIdFromLocalStorage(localStorageKey, columnId, isVisible) {
+  const prevData = getHiddenColumnIdsfromLocalStorage(localStorageKey);
+  const result = prevData.filter(item => item !== columnId);
+
+  if (isVisible) {
+    window.localStorage.setItem(localStorageKey, JSON.stringify(result));
+  } else {
+    result.push(columnId);
+    window.localStorage.setItem(localStorageKey, JSON.stringify(result));
+  }
+}
+
+export default function useColumnsArrangement({
+  defaultOrderedColumnIds: defaultOrder,
+  disabledColumnIds = [],
+  defaultHiddenColumnIds = [],
+  localStorageKey = null,
+}) {
+  const isLocalStorageEnabled = localStorageKey !== null;
   const [order, setOrder] = React.useState(defaultOrder);
-  const [hiddenColumnIds, setHiddenColumnIds] = React.useState(new Set());
+  const [hiddenColumnIds, setHiddenColumnIds] = React.useState(() =>
+    isLocalStorageEnabled
+      ? new Set(getHiddenColumnIdsfromLocalStorage(localStorageKey))
+      : new Set(defaultHiddenColumnIds)
+  );
 
   function canMove({ source, destination }) {
     if (disabledColumnIds.length === 0) return true;
@@ -33,11 +61,20 @@ export default function useColumnsArrangement(defaultOrder, disabledColumnIds = 
   }
 
   function handleHideAll() {
-    setHiddenColumnIds(new Set(order.filter(id => !disabledColumnIds.includes(id))));
+    const newHiddenColumnIds = order.filter(id => !disabledColumnIds.includes(id));
+    setHiddenColumnIds(new Set(newHiddenColumnIds));
+
+    if (isLocalStorageEnabled) {
+      window.localStorage.setItem(localStorageKey, JSON.stringify(newHiddenColumnIds));
+    }
   }
 
   function handleShowAll() {
     setHiddenColumnIds(new Set());
+
+    if (isLocalStorageEnabled) {
+      window.localStorage.setItem(localStorageKey, "[]");
+    }
   }
 
   function handleChangeVisibility(columnId) {
@@ -48,6 +85,8 @@ export default function useColumnsArrangement(defaultOrder, disabledColumnIds = 
         } else {
           draft.add(columnId);
         }
+        if (isLocalStorageEnabled)
+          updateHiddenColumnIdFromLocalStorage(localStorageKey, columnId, !draft.has(columnId));
         return new Set(draft);
       })
     );
