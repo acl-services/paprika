@@ -1,7 +1,6 @@
 import TableProp from "@paprika/table";
 import styled from "styled-components";
 import styler from "@paprika/stylers";
-import tokens from "@paprika/tokens";
 
 export const Table = styled(TableProp)`
   tr {

@@ -8,6 +8,7 @@ import extractChildren from "@paprika/helpers/lib/extractChildren";
 import * as sc from "./Editor.styles";
 import { status as statusTypes } from "../types";
 
+// eslint-disable-next-line react/prop-types
 const Tooltip = ({ Icon = null, message = "" }) => {
   return (
     <Popover isEager isDark>
@@ -36,7 +37,7 @@ const Tooltip = ({ Icon = null, message = "" }) => {
 };
 
 const Editor = React.forwardRef((props, ref) => {
-  const { isEditing, onClick, status } = props;
+  const { isEditing, onClick, status, optimisticValue, onAnimationEndSuccess } = props;
   const { "Editor.Value": editorValue, "Editor.Edit": edit } = extractChildren(props.children, [
     "Editor.Value",
     "Editor.Edit",
@@ -50,11 +51,14 @@ const Editor = React.forwardRef((props, ref) => {
     edit.props.children
   ) : (
     <sc.Value status={status} data-pka-anchor="inline-editing.raw-button" ref={ref} onClick={handleClick}>
-      {editorValue.props.children}
-
+      {status === statusTypes.LOADING && optimisticValue ? (
+        <sc.OptimisticValue>{optimisticValue}</sc.OptimisticValue>
+      ) : (
+        editorValue.props.children
+      )}
       {status === statusTypes.LOADING ? <Spinner size={Spinner.types.size.SMALL} /> : null}
       {status === statusTypes.SUCCEED ? (
-        <sc.Success>
+        <sc.Success onAnimationEnd={onAnimationEndSuccess}>
           <Check />
         </sc.Success>
       ) : null}
@@ -88,11 +92,15 @@ const propTypes = {
   ]),
   children: PropTypes.node.isRequired,
   isEditing: PropTypes.bool.isRequired,
+  onAnimationEndSuccess: PropTypes.func,
   onClick: PropTypes.func,
+  optimisticValue: PropTypes.node,
 };
 
 const defaultProps = {
+  onAnimationEndSuccess: () => {},
   onClick: () => {},
+  optimisticValue: null,
   status: Editor.types.status.IDLE,
 };
 

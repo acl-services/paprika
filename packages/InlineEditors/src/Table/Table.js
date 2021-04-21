@@ -7,17 +7,32 @@ import { status as statusType } from "../types";
 
 const initialState = {
   status: new Map(),
+  optimisticValues: new Map(),
 };
 
 export function useTable({ rowIndex, columnIndex } = {}) {
   const [state, dispatch, actionsTypes] = useSeducerWithContext();
+
+  // when the context is the cell
   function setStatus(nextStatus) {
     dispatch(actionsTypes.setStatus, { status: nextStatus, rowIndex, columnIndex });
   }
 
+  function setOptimisticValue(optimisticValue) {
+    dispatch(actionsTypes.setOptimisticValue, { optimisticValue, rowIndex, columnIndex });
+  }
+
+  // when the context is the table
+  function setStatusByRowIndexColumnIndex({ status, rowIndex, columnIndex }) {
+    dispatch(actionsTypes.setStatus, { status, rowIndex, columnIndex });
+  }
+
   return {
     setStatus,
+    setOptimisticValue,
+    setStatusByRowIndexColumnIndex,
     statusType,
+    optimisticValues: state.optimisticValues,
     getStatus: () => {
       return state.status.get(`${rowIndex}-${columnIndex}`);
     },
@@ -30,6 +45,11 @@ const actions = {
     const nextStatus = new Map(state.status);
     nextStatus.set(`${rowIndex}-${columnIndex}`, status);
     return { ...state, status: nextStatus };
+  },
+  setOptimisticValue(state, { rowIndex, columnIndex, optimisticValue }) {
+    const nextOptimisticValues = new Map(state.optimisticValues);
+    nextOptimisticValues.set(`${rowIndex}-${columnIndex}`, optimisticValue);
+    return { ...state, optimisticValues: nextOptimisticValues };
   },
 };
 
@@ -45,9 +65,11 @@ function TableProvider(props) {
 
 function Editable({ children }) {
   const [isEditing, setIsEditing] = React.useState(false);
-  const { status } = useTable();
+  const { optimisticValues, status, setStatusByRowIndexColumnIndex } = useTable();
 
-  const cellStatus = status.get(`${children.props.rowIndex}-${children.props.columnIndex}`);
+  const key = `${children.props.rowIndex}-${children.props.columnIndex}`;
+  const cellOptimisticValue = optimisticValues.get(key);
+  const cellStatus = status.get(key);
 
   const handleClose = React.useCallback(() => {
     setIsEditing(false);
@@ -57,12 +79,18 @@ function Editable({ children }) {
     setIsEditing(true);
   }, []);
 
+  function handleAnimationEndSuccess({ rowIndex, columnIndex }) {
+    setStatusByRowIndexColumnIndex({ status: statusType.IDLE, rowIndex, columnIndex });
+  }
+
   return React.cloneElement(children, {
     ...children.props,
     isEditing,
     onClose: handleClose,
     onStart: handleEditing,
-    status: cellStatus ? cellStatus.status : statusType.IDLE,
+    status: cellStatus || statusType.IDLE,
+    optimisticValue: cellOptimisticValue || null,
+    onAnimationEndSuccess: handleAnimationEndSuccess,
   });
 }
 

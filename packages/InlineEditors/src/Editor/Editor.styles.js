@@ -1,6 +1,6 @@
 import RawButton from "@paprika/raw-button";
 import tokens from "@paprika/tokens";
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { status as statusType } from "../types";
 
 export const Value = styled(RawButton)(({ status }) => {
@@ -14,10 +14,38 @@ export const Value = styled(RawButton)(({ status }) => {
   `;
 });
 
+export const OptimisticValue = styled.div(() => {
+  return css`
+    align-items: center;
+    box-sizing: border-box;
+    color: ${tokens.color.cremeDarken30};
+    display: flex;
+    font-style: italic;
+    padding: ${tokens.spaceSm};
+    position: relative;
+    width: 100%;
+  `;
+});
+
+const fadeOut = keyframes`
+    from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+
+`;
+
 export const Success = styled.div(() => {
   return css`
+    animation: ${fadeOut} 0.3s ease-out;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
     color: ${tokens.color.green};
     font-size: 1.3rem;
+    opacity: 1;
     top: 2px;
   `;
 });

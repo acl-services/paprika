@@ -16,12 +16,14 @@ const isPopoverVisible = ({ rowIndex, columnIndex }) => {
 export default function InlineListBox(props) {
   const {
     isEditing,
+    onAnimationEndSuccess,
     onChange,
     onSubmit,
     onStart,
     onClose,
     value,
     renderValue,
+    optimisticValue,
     /** These props are only consumable by the Author no need to expose them */
     /* eslint-disable react/prop-types */
     status,
@@ -72,6 +74,10 @@ export default function InlineListBox(props) {
     onStart();
   }
 
+  function handleAnimationEndSuccess() {
+    onAnimationEndSuccess({ rowIndex, columnIndex });
+  }
+
   // this effect force to close the input once the
   // value has change, that's why is not looking at the isEditing
   React.useEffect(() => {
@@ -103,7 +109,14 @@ export default function InlineListBox(props) {
   };
 
   return (
-    <Editor onClick={handleClick} isEditing={isEditing} ref={refListBoxEditor} status={status}>
+    <Editor
+      isEditing={isEditing}
+      onAnimationEndSuccess={handleAnimationEndSuccess}
+      onClick={handleClick}
+      optimisticValue={optimisticValue}
+      ref={refListBoxEditor}
+      status={status}
+    >
       <Editor.Edit>
         <ListBox isOpen {...moreProps} onChange={handleChange} ref={refListBox}>
           <ListBox.Box {...dataIsEditing} />
@@ -129,23 +142,27 @@ Object.keys(ListBox).forEach(key => {
 
 InlineListBox.propTypes = {
   isEditing: PropTypes.bool,
+  onAnimationEndSuccess: PropTypes.func,
   onChange: PropTypes.func,
   onClose: PropTypes.func,
   onStart: PropTypes.func,
   onSubmit: PropTypes.func,
   renderValue: PropTypes.func,
+  optimisticValue: PropTypes.node,
   // eslint-disable-next-line react/forbid-prop-types
   value: PropTypes.any,
 };
 
 InlineListBox.defaultProps = {
   isEditing: false,
+  onAnimationEndSuccess: () => {},
   onChange: () => {},
   onClose: () => {},
   onStart: () => {},
   onSubmit: () => {},
   renderValue: undefined,
   value: null,
+  optimisticValue: null,
 };
 
 InlineListBox.types = {

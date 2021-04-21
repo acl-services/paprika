@@ -80,7 +80,7 @@ export function ListBoxSingleStory() {
       <br />
       <br />
       <Card style={{ padding: "16px", width: "320px" }}>
-        <Toast hasCloseButton={false}>Display an error</Toast>
+        <Toast hasCloseButton={false}>Display a success check icon for a brief period of time</Toast>
         <ListBox value={value} status={ListBox.types.status.SUCCEED}>
           <ListBox.Filter />
           {subscriptionTypes.map(subscription => (
