@@ -1,21 +1,37 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
+// import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
-
+import { showcaseStoryParameters } from "storybook/assets/storyParameters";
+import ExampleStory from "storybook/components/ExampleStory";
 import Showcase from "./examples/Showcase";
-import ProgressBarModal from "./examples/ProgressBarModal";
-import Screener from "./examples/Screener";
-import Loading from "./examples/Loading";
+// import ProgressBarModal from "./examples/ProgressBarModal";
+// import Screener from "./examples/Screener";
+// import Loading from "./examples/Loading";
 
 const storyName = getStoryName("ProgressBar");
 
-storiesOf(storyName, module)
-  .addDecorator(withKnobs)
-  .add("Showcase", Showcase);
+export default {
+  title: storyName,
+};
 
-storiesOf(`${storyName}/Examples`, module)
-  .add("ProgressBar in Modal", () => <ProgressBarModal />)
-  .add("Loading ProgressBar", () => <Loading />);
+export const showcase = () => (
+  <ExampleStory storyName="ProgressBar" tagline={ExampleStory.defaultTaglines.showcase}>
+    <Showcase />
+  </ExampleStory>
+);
+showcase.story = {
+  name: "Showcase",
+  decorators: [withKnobs],
+  parameters: showcaseStoryParameters,
+};
 
-storiesOf(`${storyName}/Backyard/Tests`, module).add("Screener", () => <Screener />);
+// storiesOf(storyName, module)
+//   .addDecorator(withKnobs)
+//   .add("Showcase", Showcase);
+
+// storiesOf(`${storyName}/Examples`, module)
+//   .add("ProgressBar in Modal", () => <ProgressBarModal />)
+//   .add("Loading ProgressBar", () => <Loading />);
+
+// storiesOf(`${storyName}/Backyard/Tests`, module).add("Screener", () => <Screener />);
