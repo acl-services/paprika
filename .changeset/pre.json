@@ -73,6 +73,7 @@
     "@paprika/seducer": "2.0.1"
   },
   "changesets": [
+    "late-seas-guess",
     "tiny-cameras-deny"
   ]
 }

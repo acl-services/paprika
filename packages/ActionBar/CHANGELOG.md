@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.0-next.1
+
+### Major Changes
+
+- be95ee4: The parameters of `useColumnsArrangement` has been changed. Check [here](https://github.com/acl-services/paprika/pull/1014) for the details.
+
 ## 2.1.4-next.0
 
 ### Patch Changes
