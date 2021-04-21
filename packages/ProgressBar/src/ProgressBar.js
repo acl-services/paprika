@@ -14,8 +14,11 @@ const propTypes = {
   /** Specifies how much progress has been completed from 0-100 */
   completed: PropTypes.number,
 
-  /** Header text for the ProgressBar */
-  header: PropTypes.string,
+  /** Text for the heading displayed above ProgressBar */
+  header: PropTypes.node,
+
+  /** Semantic heading level of header */
+  headerLevel: PropTypes.oneOf[(1, 2, 3, 4, 5, 6)],
 
   /** If ProgressBar is displayed in a compact style */
   isCompact: PropTypes.bool,
@@ -26,15 +29,20 @@ const defaultProps = {
   bodyText: null,
   completed: 0,
   header: null,
+  headerLevel: 3,
   isCompact: false,
 };
 
 function ProgressBar(props) {
-  const { a11yText, bodyText, completed, header, isCompact, ...moreProps } = props;
+  const { a11yText, bodyText, completed, header, headerLevel, isCompact, ...moreProps } = props;
 
   return (
     <sc.ProgressBar {...moreProps}>
-      {header ? <Heading level={3}>{header}</Heading> : null}
+      {header ? (
+        <Heading displayLevel={3} level={headerLevel}>
+          {header}
+        </Heading>
+      ) : null}
       <sc.Bar isCompact={isCompact}>
         <sc.BarFiller
           aria-valuemin="0"
