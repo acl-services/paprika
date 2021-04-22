@@ -1,28 +1,39 @@
 import React from "react";
-import { Story } from "storybook/assets/styles/common.styles";
-import Modal from "@paprika/modal";
 import ProgressBar from "../../src";
+
+const DELAY = 100;
+const DECAY = 0.9;
+const BASE_INCREMENT = 0.35;
+const BASE_THRESHOLD = 10;
 
 export default function Loading() {
   const [value, setValue] = React.useState(0);
-  const [a11yText, setA11yText] = React.useState("");
+  const [a11yText, setA11yText] = React.useState("loading");
 
-  if (value <= 100) {
-    setTimeout(() => {
-      setValue(value => value + 15);
-    }, 1000);
-  } else {
-    setValue(100);
-    setA11yText("Loading complete");
-  }
+  const increment = React.useRef(BASE_INCREMENT);
+  const threshold = React.useRef(BASE_THRESHOLD);
+  const thresholdIncrement = React.useRef(BASE_THRESHOLD);
+
+  React.useEffect(() => {
+    if (value >= threshold.current) {
+      thresholdIncrement.current *= DECAY;
+      increment.current *= DECAY;
+      threshold.current += thresholdIncrement.current;
+    }
+
+    if (value <= 100) {
+      setTimeout(() => {
+        setValue(value => value + increment.current);
+      }, DELAY);
+    } else {
+      setValue(100);
+      setA11yText("loading complete");
+    }
+  }, [value]);
 
   return (
-    <Story>
-      <Modal isOpen>
-        <Modal.Content>
-          <ProgressBar completed={value} a11yText={a11yText} />
-        </Modal.Content>
-      </Modal>
-    </Story>
+    <>
+      <ProgressBar completed={value} a11yText={a11yText} isCompact />
+    </>
   );
 }

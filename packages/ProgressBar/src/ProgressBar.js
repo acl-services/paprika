@@ -7,39 +7,54 @@ import * as sc from "./ProgressBar.styles";
 const propTypes = {
   /** Descriptive a11y text for assistive technologies. */
   a11yText: PropTypes.string,
+
   /** Description for the ProgressBar */
   bodyText: PropTypes.string,
-  /** Header text for the ProgressBar */
-  header: PropTypes.string,
+
   /** Specifies how much progress has been completed from 0-100 */
   completed: PropTypes.number,
+
+  /** Text for the heading displayed above ProgressBar */
+  header: PropTypes.node,
+
+  /** Semantic heading level of header */
+  headerLevel: PropTypes.oneOf[(1, 2, 3, 4, 5, 6)],
+
+  /** If ProgressBar is displayed in a compact style */
+  isCompact: PropTypes.bool,
 };
 
 const defaultProps = {
   a11yText: null,
   bodyText: null,
-  header: null,
   completed: 0,
+  header: null,
+  headerLevel: 3,
+  isCompact: false,
 };
 
 function ProgressBar(props) {
-  const { a11yText, header, bodyText, completed, ...moreProps } = props;
-  const bestAria = a11yText || "Loading";
+  const { a11yText, bodyText, completed, header, headerLevel, isCompact, ...moreProps } = props;
+
   return (
     <sc.ProgressBar {...moreProps}>
-      <Heading level={3}>{header}</Heading>
-      <sc.Bar>
+      {header ? (
+        <Heading displayLevel={3} level={headerLevel}>
+          {header}
+        </Heading>
+      ) : null}
+      <sc.Bar isCompact={isCompact}>
         <sc.BarFiller
-          data-pka-anchor="progress-bar"
-          role="progressbar"
           aria-valuemin="0"
           aria-valuemax="100"
           aria-valuenow={completed}
           completed={completed}
+          data-pka-anchor="progress-bar"
+          role="progressbar"
         />
       </sc.Bar>
-      <sc.Body>{bodyText}</sc.Body>
-      <sc.BarAria aria-live="polite">{bestAria}</sc.BarAria>
+      {bodyText ? <sc.Body>{bodyText}</sc.Body> : null}
+      {a11yText ? <sc.A11yText aria-live="polite">{a11yText}</sc.A11yText> : null}
     </sc.ProgressBar>
   );
 }
