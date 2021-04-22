@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Popover from "@paprika/popover";
 import Spinner from "@paprika/spinner";
 import ExclamationCircle from "@paprika/icon/lib/ExclamationCircle";
+import Pencil from "@paprika/icon/lib/Pencil";
 import Check from "@paprika/icon/lib/Check";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import * as sc from "./Editor.styles";
@@ -56,7 +57,17 @@ const Editor = React.forwardRef((props, ref) => {
       ) : (
         editorValue.props.children
       )}
-      {status === statusTypes.LOADING ? <Spinner size={Spinner.types.size.SMALL} /> : null}
+
+      {status === statusTypes.IDLE ? (
+        <sc.Idle data-pka-anchor="inline-editors-table-edit-icon">
+          <Pencil />
+        </sc.Idle>
+      ) : null}
+      {status === statusTypes.LOADING ? (
+        <sc.Loading>
+          <Spinner size={Spinner.types.size.SMALL} />
+        </sc.Loading>
+      ) : null}
       {status === statusTypes.SUCCEED ? (
         <sc.Success onAnimationEnd={onAnimationEndSuccess}>
           <Check />

@@ -5,6 +5,11 @@ import { status as statusType } from "../types";
 
 export const Value = styled(RawButton)(({ status }) => {
   return css`
+    &:hover {
+      border: 1px solid ${tokens.color.blackLighten20}!important;
+      border-radius: ${tokens.border.radius}!important;
+      box-sizing: border-box;
+    }
     align-items: center;
     box-sizing: border-box;
     display: flex;
@@ -38,6 +43,15 @@ const fadeOut = keyframes`
 
 `;
 
+const icon = () => {
+  return css`
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+  `;
+};
+
 export const Success = styled.div(() => {
   return css`
     animation: ${fadeOut} 0.3s ease-out;
@@ -52,10 +66,28 @@ export const Success = styled.div(() => {
 
 export const Error = styled.div(() => {
   return css`
+    ${icon}
     color: ${tokens.color.orange};
     font-size: 1.3rem;
     & > svg {
       top: 4px;
+    }
+  `;
+});
+
+export const Idle = styled.div(() => {
+  return css`
+    ${icon}
+    opacity: 0;
+  `;
+});
+
+export const Loading = styled.div(() => {
+  return css`
+    ${icon}
+    // why does this has a margin? and is a plain className?
+    .spinner__caption {
+      margin: 0;
     }
   `;
 });

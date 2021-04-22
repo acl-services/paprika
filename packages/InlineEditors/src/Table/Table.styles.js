@@ -1,13 +1,19 @@
-import TableProp from "@paprika/table";
+import TablePaprika from "@paprika/table";
 import styled from "styled-components";
 import styler from "@paprika/stylers";
 
-export const Table = styled(TableProp)`
+export const Table = styled(TablePaprika)`
   tr {
     &:hover {
       & td {
         background: transparent;
       }
+
+      & [data-pka-anchor="inline-editors-table-edit-icon"] {
+        opacity: 1;
+      }
+
+      // no toke available
       background: #fdf7ec;
     }
   }
