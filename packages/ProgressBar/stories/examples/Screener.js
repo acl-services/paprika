@@ -19,7 +19,7 @@ export default function ProgressBarModal() {
       <Gap />
       <ProgressBar header="Header (level 3)" bodyText="Body text." completed={66} />
       <Gap.Small />
-      <ProgressBar header="Header  (level 2)" headerLevel={2} bodyText="Body text." completed={75} />
+      <ProgressBar header="Header  (level 2)" headerLevel={2} bodyText="Body text." completed={99} />
     </Story>
   );
 }

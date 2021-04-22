@@ -2,7 +2,7 @@ import styled, { keyframes, css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-const gradientSize = "640px";
+const gradientSize = "100vw";
 export const ProgressBar = styled.div`
   text-align: center;
   width: 100%;
@@ -17,9 +17,9 @@ const completeStyles = css`
   animation: none;
   background-image: linear-gradient(
     90deg,
-    ${tokens.color.green} 30%,
-    ${tokens.color.greenLighten20} 80%,
-    ${tokens.color.green} 100%
+    ${tokens.color.green} 0,
+    ${tokens.color.greenLighten20} 160px,
+    ${tokens.color.green} 320px
   );
   transition: none;
 `;
@@ -29,9 +29,9 @@ export const BarFiller = styled.div(
     animation: ${progress} linear 2s infinite;
     background-image: linear-gradient(
       90deg,
-      ${tokens.color.purple} 30%,
-      ${tokens.color.purpleLighten20} 80%,
-      ${tokens.color.purple} 100%
+      ${tokens.color.purple} 0,
+      ${tokens.color.purpleLighten20} 160px,
+      ${tokens.color.purple} 320px
     );
     background-size: ${gradientSize} auto;
     transition: width 0.2s ease-in-out;
