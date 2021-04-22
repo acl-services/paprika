@@ -3,7 +3,7 @@ import ProgressBar from "../../src";
 
 const DELAY = 100;
 const DECAY = 0.9;
-const BASE_INCREMENT = 1;
+const BASE_INCREMENT = 0.4;
 const BASE_THRESHOLD = 10;
 
 export default function Loading() {
