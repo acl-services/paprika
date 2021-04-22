@@ -13,7 +13,7 @@ export default function ProgressBarModal() {
           <ProgressBar
             header="Preparing your file..."
             bodyText="Control attributes are getting updated. This might take more than 15secs."
-            completed={100}
+            completed={30}
           />
           <p style={{ textAlign: "center" }}>
             <Button onClick={() => setOpen(false)}>Close</Button>
