@@ -34,6 +34,19 @@ export const Header = styled.div(({ $color, $backgroundColor, refHeader }) => {
       * Css lacks of parent selector, we can use javascript to replace that :P
       */
     ${$backgroundColor || $color ? resetHeaderParentContainer() : ""}
+
+    [data-pka-anchor="raw-button"] {
+      padding: 0 2px;
+
+      &:focus {
+        box-shadow: none;
+
+        > svg {
+          box-shadow: ${tokens.highlight.active.withBorder.boxShadow};
+          outline: none;
+        }
+      }
+    }
   `;
 });
 
@@ -47,6 +60,7 @@ export const Label = styled.div(() => {
 
 export const Icon = styled.div(() => {
   return css`
+    color: ${tokens.color.blackLighten20};
     padding-right: ${tokens.spaceSm};
   `;
 });
