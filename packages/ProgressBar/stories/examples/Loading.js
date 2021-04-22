@@ -3,15 +3,16 @@ import ProgressBar from "../../src";
 
 const DELAY = 100;
 const DECAY = 0.9;
-const BASE_INCREMENT = 0.4;
+const BASE_INCREMENT = 0.35;
 const BASE_THRESHOLD = 10;
 
 export default function Loading() {
   const [value, setValue] = React.useState(0);
+  const [a11yText, setA11yText] = React.useState("loading");
+
   const increment = React.useRef(BASE_INCREMENT);
   const threshold = React.useRef(BASE_THRESHOLD);
   const thresholdIncrement = React.useRef(BASE_THRESHOLD);
-  const [a11yText, setA11yText] = React.useState("loading");
 
   React.useEffect(() => {
     if (value >= threshold.current) {
@@ -32,7 +33,7 @@ export default function Loading() {
 
   return (
     <>
-      <ProgressBar completed={value} a11yText={a11yText} />
+      <ProgressBar completed={value} a11yText={a11yText} isCompact />
     </>
   );
 }
