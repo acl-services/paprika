@@ -12,7 +12,7 @@ interface ProgressBarProps {
   /** Text for the heading displayed above ProgressBar */
   header?: React.ReactNode;
   /** Semantic heading level of header */
-  headerLevel?: custom;
+  headerLevel?: 1 | 2 | 3 | 4 | 5 | 6;
   /** If ProgressBar is displayed in a compact style */
   isCompact?: boolean;
 }
