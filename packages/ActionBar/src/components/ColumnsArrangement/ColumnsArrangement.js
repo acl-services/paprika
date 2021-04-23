@@ -85,28 +85,26 @@ export default function ColumnsArrangement(props) {
 
   return (
     <Popover align="bottom" edge="left" minWidth={230} offset={parseInt(tokens.spaceSm, 10)}>
-      <Popover.Trigger>
-        {typeof renderTriggerButton === "function" ? (
-          <Popover.Trigger>
-            {(handler, attributes, isOpen) => renderTriggerButton(handler, attributes, isOpen, hiddenColumns.length)}
-          </Popover.Trigger>
-        ) : (
-          <Popover.Trigger>
-            {(handler, attributes, isOpen) => (
-              <sc.Trigger
-                kind={Button.types.kind.FLAT}
-                {...attributes}
-                onClick={handler}
-                hasColumnsHidden={hiddenColumns.length > 0}
-                isOpen={isOpen}
-              >
-                <sc.HideIcon />
-                {getLabelText(hiddenColumns.length, I18n)}
-              </sc.Trigger>
-            )}
-          </Popover.Trigger>
-        )}
-      </Popover.Trigger>
+      {typeof renderTriggerButton === "function" ? (
+        <Popover.Trigger>
+          {(handler, attributes, isOpen) => renderTriggerButton(handler, attributes, isOpen, hiddenColumns.length)}
+        </Popover.Trigger>
+      ) : (
+        <Popover.Trigger>
+          {(handler, attributes, isOpen) => (
+            <sc.Trigger
+              kind={Button.types.kind.FLAT}
+              {...attributes}
+              onClick={handler}
+              hasColumnsHidden={hiddenColumns.length > 0}
+              isOpen={isOpen}
+            >
+              <sc.HideIcon />
+              {getLabelText(hiddenColumns.length, I18n)}
+            </sc.Trigger>
+          )}
+        </Popover.Trigger>
+      )}
       <Popover.Content>
         <Popover.Card>
           <Input
