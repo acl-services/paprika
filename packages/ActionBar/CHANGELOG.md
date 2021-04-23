@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.0-next.3
+
+### Patch Changes
+
+- d5d7382: Fix extra trigger wrapper
+
 ## 3.0.0-next.2
 
 ### Patch Changes
