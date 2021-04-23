@@ -36,15 +36,11 @@ export const Header = styled.div(({ $color, $backgroundColor, refHeader }) => {
     ${$backgroundColor || $color ? resetHeaderParentContainer() : ""}
 
     [data-pka-anchor="raw-button"] {
-      padding: 0 2px;
+      border-radius: ${tokens.button.borderRadius};
+      padding: 1px 2px;
 
       &:focus {
-        box-shadow: none;
-
-        > svg {
-          box-shadow: ${tokens.highlight.active.withBorder.boxShadow};
-          outline: none;
-        }
+        box-shadow: ${tokens.highlight.active.withBorder.insetBoxShadow};
       }
     }
   `;
