@@ -5,12 +5,17 @@ import { status as statusType } from "../types";
 
 export const Value = styled(RawButton)(({ status }) => {
   return css`
-    &:hover {
-      border: 1px solid ${tokens.color.blackLighten20}!important;
-      border-radius: ${tokens.border.radius}!important;
+    &:hover,
+    &:focus {
+      border: 1px solid ${tokens.color.blackLighten20};
+      border-radius: ${tokens.border.radius};
       box-sizing: border-box;
+      & [data-pka-anchor="inline-editors-table-edit-icon"] {
+        opacity: 1;
+      }
     }
     align-items: center;
+    border: 1px solid transparent;
     box-sizing: border-box;
     display: flex;
     position: relative;
