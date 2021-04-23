@@ -18,7 +18,7 @@ const propTypes = {
   header: PropTypes.node,
 
   /** Semantic heading level of header */
-  headerLevel: PropTypes.oneOf[(1, 2, 3, 4, 5, 6)],
+  headerLevel: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
 
   /** If ProgressBar is displayed in a compact style */
   isCompact: PropTypes.bool,

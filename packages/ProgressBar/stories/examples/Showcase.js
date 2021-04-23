@@ -3,7 +3,7 @@ import { text, number, boolean, select } from "@storybook/addon-knobs";
 import ProgressBar from "../../src";
 
 const progressBarProps = () => ({
-  completed: number("completed", "20"),
+  completed: number("completed", 20),
   isCompact: boolean("isCompact", false),
   header: text("header", "Preparing your file..."),
   headerLevel: select("headerLevel", [1, 2, 3, 4, 5, 6], 3),
