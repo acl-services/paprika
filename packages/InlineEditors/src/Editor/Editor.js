@@ -10,7 +10,7 @@ import * as sc from "./Editor.styles";
 import { status as statusTypes } from "../types";
 
 // eslint-disable-next-line react/prop-types
-const Tooltip = ({ Icon = null, message = "" }) => {
+const Tooltip = ({ Icon = null, message }) => {
   return (
     <Popover isEager isDark>
       <Popover.Trigger>
@@ -38,7 +38,7 @@ const Tooltip = ({ Icon = null, message = "" }) => {
 };
 
 const Editor = React.forwardRef((props, ref) => {
-  const { isEditing, onClick, status, optimisticValue, onAnimationEndSuccess } = props;
+  const { isEditing, onClick, status, optimisticValue, onAnimationEndSuccess, messageError } = props;
   const { "Editor.Value": editorValue, "Editor.Edit": edit } = extractChildren(props.children, [
     "Editor.Value",
     "Editor.Edit",
@@ -75,7 +75,7 @@ const Editor = React.forwardRef((props, ref) => {
       ) : null}
       {status === statusTypes.ERROR ? (
         <sc.Error>
-          <Tooltip Icon={ExclamationCircle} message="theres has been an error" />
+          <Tooltip Icon={ExclamationCircle} message={messageError} />
         </sc.Error>
       ) : null}
     </sc.Value>
@@ -106,6 +106,7 @@ const propTypes = {
   onAnimationEndSuccess: PropTypes.func,
   onClick: PropTypes.func,
   optimisticValue: PropTypes.node,
+  messageError: PropTypes.node,
 };
 
 const defaultProps = {
@@ -113,6 +114,7 @@ const defaultProps = {
   onClick: () => {},
   optimisticValue: null,
   status: Editor.types.status.IDLE,
+  messageError: null,
 };
 
 Editor.propTypes = propTypes;

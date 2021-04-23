@@ -4,11 +4,12 @@ import { useTable } from "./store";
 
 export default function Editable({ children }) {
   const [isEditing, setIsEditing] = React.useState(false);
-  const { optimisticValues, status, setStatusByRowIndexColumnIndex } = useTable();
+  const { optimisticValues, status, setStatusByRowIndexColumnIndex, messagesError } = useTable();
 
   const key = `${children.props.rowIndex}-${children.props.columnIndex}`;
   const cellOptimisticValue = optimisticValues.get(key);
   const cellStatus = status.get(key);
+  const messageError = messagesError.get(key);
 
   const handleClose = React.useCallback(() => {
     setIsEditing(false);
@@ -26,11 +27,12 @@ export default function Editable({ children }) {
 
   return React.cloneElement(children, {
     ...children.props,
+    messageError,
     isEditing,
+    onAnimationEndSuccess: handleAnimationEndSuccess,
     onClose: handleClose,
     onStart: handleEditing,
-    status: cellStatus || statusType.IDLE,
     optimisticValue: cellOptimisticValue || null,
-    onAnimationEndSuccess: handleAnimationEndSuccess,
+    status: cellStatus || statusType.IDLE,
   });
 }

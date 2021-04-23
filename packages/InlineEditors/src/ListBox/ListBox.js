@@ -24,6 +24,7 @@ export default function InlineListBox(props) {
     value,
     renderValue,
     optimisticValue,
+    messageError,
     /** These props are only consumable by the Author no need to expose them */
     /* eslint-disable react/prop-types */
     status,
@@ -116,6 +117,7 @@ export default function InlineListBox(props) {
       optimisticValue={optimisticValue}
       ref={refListBoxEditor}
       status={status}
+      messageError={messageError}
     >
       <Editor.Edit>
         <ListBox isOpen {...moreProps} onChange={handleChange} ref={refListBox}>
@@ -141,14 +143,15 @@ Object.keys(ListBox).forEach(key => {
 });
 
 InlineListBox.propTypes = {
+  messageError: PropTypes.node,
   isEditing: PropTypes.bool,
   onAnimationEndSuccess: PropTypes.func,
   onChange: PropTypes.func,
   onClose: PropTypes.func,
   onStart: PropTypes.func,
   onSubmit: PropTypes.func,
-  renderValue: PropTypes.func,
   optimisticValue: PropTypes.node,
+  renderValue: PropTypes.func,
   // eslint-disable-next-line react/forbid-prop-types
   value: PropTypes.any,
 };
@@ -163,6 +166,7 @@ InlineListBox.defaultProps = {
   renderValue: undefined,
   value: null,
   optimisticValue: null,
+  messageError: null,
 };
 
 InlineListBox.types = {
