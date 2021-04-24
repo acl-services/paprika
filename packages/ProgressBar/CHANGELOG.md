@@ -1,5 +1,13 @@
 # @paprika/progress-bar
 
+## 1.1.0-next.1
+
+### Patch Changes
+
+- 498b686: ### Fixed
+
+  - Fix PropTypes to eliminate console warnings.
+
 ## 1.1.0-next.0
 
 ### Minor Changes
