@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0
+
+### Minor Changes
+
+- e95da34: Adjust current status styling so that it will fit with any text values
+
 ## 1.1.0-next.0
 
 ### Minor Changes
