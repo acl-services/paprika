@@ -21,7 +21,9 @@ export const Value = styled(RawButton)(({ status }) => {
     display: flex;
     position: relative;
     width: 100%;
-    ${status === statusType.ERROR ? `border: 1px solid ${tokens.color.orange};` : ""}
+    ${status === statusType.ERROR
+      ? `border: 1px solid ${tokens.color.orange}; border-radius: ${tokens.border.radius}; background: ${tokens.color.white};`
+      : ""}
   `;
 });
 
@@ -55,6 +57,8 @@ const icon = () => {
     display: flex;
     height: 100%;
     justify-content: center;
+    padding-right: 2px;
+    position: relative;
   `;
 };
 
@@ -73,11 +77,11 @@ export const Success = styled.div(() => {
 export const Error = styled.div(() => {
   return css`
     ${icon}
+    background: transparent;
     color: ${tokens.color.orange};
     font-size: 1.3rem;
-    & > svg {
-      top: 4px;
-    }
+    position: relative;
+    top: 2px;
   `;
 });
 

@@ -16,7 +16,7 @@ export default function Editable({ children }) {
   }, []);
 
   const handleEditing = React.useCallback(() => {
-    if (cellStatus === statusType.IDLE || typeof cellStatus === "undefined") {
+    if (cellStatus === statusType.IDLE || cellStatus === statusType.ERROR || typeof cellStatus === "undefined") {
       setIsEditing(true);
     }
   }, [cellStatus]);

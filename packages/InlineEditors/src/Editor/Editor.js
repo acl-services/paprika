@@ -12,7 +12,7 @@ import { status as statusTypes } from "../types";
 // eslint-disable-next-line react/prop-types
 const Tooltip = ({ Icon = null, message }) => {
   return (
-    <Popover isEager isDark>
+    <Popover isEager>
       <Popover.Trigger>
         {(handler, a11yAttributes) => {
           return Icon ? (
@@ -52,6 +52,11 @@ const Editor = React.forwardRef((props, ref) => {
     edit.props.children
   ) : (
     <sc.Value status={status} data-pka-anchor="inline-editing.raw-button" ref={ref} onClick={handleClick}>
+      {status === statusTypes.ERROR ? (
+        <sc.Error>
+          <Tooltip Icon={ExclamationCircle} message={messageError} />
+        </sc.Error>
+      ) : null}
       {status === statusTypes.LOADING && optimisticValue ? (
         <sc.OptimisticValue>{optimisticValue}</sc.OptimisticValue>
       ) : (
@@ -72,11 +77,6 @@ const Editor = React.forwardRef((props, ref) => {
         <sc.Success onAnimationEnd={onAnimationEndSuccess}>
           <Check />
         </sc.Success>
-      ) : null}
-      {status === statusTypes.ERROR ? (
-        <sc.Error>
-          <Tooltip Icon={ExclamationCircle} message={messageError} />
-        </sc.Error>
       ) : null}
     </sc.Value>
   );
