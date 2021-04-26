@@ -45,6 +45,7 @@ export default function ColumnsArrangement(props) {
     onHideAll,
     onShowAll,
     renderTriggerButton,
+    ...moreProps
   } = props;
   const I18n = useI18n();
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -84,7 +85,7 @@ export default function ColumnsArrangement(props) {
   }
 
   return (
-    <Popover align="bottom" edge="left" minWidth={230} offset={parseInt(tokens.spaceSm, 10)}>
+    <Popover align="bottom" edge="left" minWidth={230} offset={parseInt(tokens.spaceSm, 10)} {...moreProps}>
       {typeof renderTriggerButton === "function" ? (
         <Popover.Trigger>
           {(handler, attributes, isOpen) => renderTriggerButton(handler, attributes, isOpen, hiddenColumns.length)}
