@@ -7,6 +7,7 @@ export const Value = styled(RawButton)(({ status }) => {
   return css`
     &:hover,
     &:focus {
+      background: ${tokens.color.white};
       border: 1px solid ${tokens.color.blackLighten20};
       border-radius: ${tokens.border.radius};
       box-sizing: border-box;
