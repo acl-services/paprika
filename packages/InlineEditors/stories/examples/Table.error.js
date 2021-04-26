@@ -24,7 +24,7 @@ const cellRenders = {
         onChange={value => {
           console.log("onChange", value);
         }}
-        onSubmit={(index, options, _, { rowIndex }) => {
+        onSubmit={(index, options, _, { rowIndex, columnIndex }) => {
           const nextValue = options[index].value;
           if (nextValue !== props.row.subscription) {
             setOptimisticValue(nextValue);
@@ -33,8 +33,10 @@ const cellRenders = {
             setTimeout(() => {
               setData(prevData => {
                 const nextData = prevData.slice(0);
-                nextData[rowIndex].subscription = nextValue;
-                setStatus(statusType.SUCCEED);
+                // something went wrong, example
+                setStatus(statusType.ERROR, {
+                  messageError: `rowIndex:${rowIndex} columnIndex:${columnIndex} has an error`,
+                });
                 return nextData;
               });
             }, 1200);
@@ -55,7 +57,7 @@ const columnDefinitionProps = {
   subscription: { width: 140 },
 };
 
-export default function TableStory() {
+export default function TableErrorStory() {
   const [data, setData] = React.useState(users);
 
   return (

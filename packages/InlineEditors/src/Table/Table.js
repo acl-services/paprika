@@ -2,20 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import Table from "@paprika/table";
 import * as sc from "./Table.styles";
-
-function Editable({ children }) {
-  const [isEditing, setIsEditing] = React.useState(false);
-
-  const handleClose = React.useCallback(() => {
-    setIsEditing(false);
-  }, []);
-
-  const handleEditing = React.useCallback(() => {
-    setIsEditing(true);
-  }, []);
-
-  return React.cloneElement(children, { ...children.props, isEditing, onClose: handleClose, onStart: handleEditing });
-}
+import { useTable, TableProvider } from "./store";
+import Editable from "./Editable";
 
 export default function InlineEditingTable(props) {
   const { children, ...moreProps } = props;
@@ -53,7 +41,11 @@ export default function InlineEditingTable(props) {
     return cloned;
   }, [props.children]);
 
-  return <sc.Table {...moreProps}>{clonedColumnDefinition}</sc.Table>;
+  return (
+    <TableProvider>
+      <sc.Table {...moreProps}>{clonedColumnDefinition}</sc.Table>
+    </TableProvider>
+  );
 }
 
 const propTypes = {
@@ -61,3 +53,5 @@ const propTypes = {
 };
 
 InlineEditingTable.propTypes = propTypes;
+
+export { useTable };
