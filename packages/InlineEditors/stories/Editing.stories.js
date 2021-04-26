@@ -8,6 +8,9 @@ import {
   ListBoxMultipleWithLoading,
   ListBoxMultipleWithSuccess,
 } from "./examples/ListBox";
+
+import { WithScreener as WithScreenerStory } from "./screener/Editing.screener.stories";
+
 import Input from "./examples/Input";
 
 export default {
@@ -37,4 +40,8 @@ export const ListBoxSingleMultipleWithSuccess = () => {
 
 export const WithInput = () => {
   return <Input />;
+};
+
+export const WithScreener = () => {
+  return <WithScreenerStory />;
 };
