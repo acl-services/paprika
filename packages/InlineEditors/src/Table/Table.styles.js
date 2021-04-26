@@ -13,7 +13,7 @@ export const Table = styled(TablePaprika)`
         opacity: 1;
       }
 
-      // no toke available
+      /* no token available */
       background: #fdf7ec;
     }
   }

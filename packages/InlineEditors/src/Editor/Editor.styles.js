@@ -76,7 +76,7 @@ export const Success = styled.div(() => {
 
 export const Error = styled.div(() => {
   return css`
-    ${icon}
+    ${icon};
     background: transparent;
     color: ${tokens.color.orange};
     font-size: 1.3rem;
@@ -87,15 +87,15 @@ export const Error = styled.div(() => {
 
 export const Idle = styled.div(() => {
   return css`
-    ${icon}
+    ${icon};
     opacity: 0;
   `;
 });
 
 export const Loading = styled.div(() => {
   return css`
-    ${icon}
-    // why does this has a margin? and is a plain className?
+    ${icon};
+    /* why does this has a margin? and is a plain className? */
     .spinner__caption {
       margin: 0;
     }
