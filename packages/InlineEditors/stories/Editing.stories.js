@@ -1,7 +1,7 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import Table from "./examples/Table";
-import TableErrorStory from "./examples/Tabl.error";
+import TableErrorStory from "./examples/Table.error";
 import {
   ListBoxSingleStory,
   ListBoxMultipleWithError,
