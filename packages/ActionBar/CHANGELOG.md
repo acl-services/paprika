@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.0.0
+
+### Major Changes
+
+- be95ee4: The parameters of `useColumnsArrangement` has been changed. Check [here](https://github.com/acl-services/paprika/pull/1014) for the details.
+
+### Patch Changes
+
+- 8b41e75: Bug fix for saving show/hide columns in localStorage
+- 89b1bf6: Remove unused dependencies
+- d5d7382: Fix extra trigger wrapper
+
 ## 3.0.0-next.3
 
 ### Patch Changes

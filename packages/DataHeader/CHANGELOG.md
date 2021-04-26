@@ -1,5 +1,12 @@
 <!-- content -->
 
+## 1.0.15
+
+### Patch Changes
+
+- f9ec560: Fixed some small css issues.
+- d5d7382: CSS fix
+
 ## 1.0.15-next.1
 
 ### Patch Changes
