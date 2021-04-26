@@ -16,7 +16,7 @@ const isPopoverVisible = ({ rowIndex, columnIndex }) => {
 export default function InlineListBox(props) {
   const {
     isEditing,
-    onAnimationEndSuccess,
+    onSuccessAnimationEnd,
     onChange,
     onSubmit,
     onStart,
@@ -76,7 +76,7 @@ export default function InlineListBox(props) {
   }
 
   function handleAnimationEndSuccess() {
-    onAnimationEndSuccess({ rowIndex, columnIndex });
+    onSuccessAnimationEnd({ rowIndex, columnIndex });
   }
 
   // this effect force to close the input once the
@@ -112,7 +112,7 @@ export default function InlineListBox(props) {
   return (
     <Editor
       isEditing={isEditing}
-      onAnimationEndSuccess={handleAnimationEndSuccess}
+      onSuccessAnimationEnd={handleAnimationEndSuccess}
       onClick={handleClick}
       optimisticValue={optimisticValue}
       ref={refListBoxEditor}
@@ -145,7 +145,7 @@ Object.keys(ListBox).forEach(key => {
 InlineListBox.propTypes = {
   messageError: PropTypes.node,
   isEditing: PropTypes.bool,
-  onAnimationEndSuccess: PropTypes.func,
+  onSuccessAnimationEnd: PropTypes.func,
   onChange: PropTypes.func,
   onClose: PropTypes.func,
   onStart: PropTypes.func,
@@ -158,7 +158,7 @@ InlineListBox.propTypes = {
 
 InlineListBox.defaultProps = {
   isEditing: false,
-  onAnimationEndSuccess: () => {},
+  onSuccessAnimationEnd: () => {},
   onChange: () => {},
   onClose: () => {},
   onStart: () => {},

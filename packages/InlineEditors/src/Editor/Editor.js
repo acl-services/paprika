@@ -38,7 +38,7 @@ const Tooltip = ({ Icon = null, message }) => {
 };
 
 const Editor = React.forwardRef((props, ref) => {
-  const { isEditing, onClick, status, optimisticValue, onAnimationEndSuccess, messageError } = props;
+  const { isEditing, onClick, status, optimisticValue, onSuccessAnimationEnd, messageError } = props;
   const { "Editor.Value": editorValue, "Editor.Edit": edit } = extractChildren(props.children, [
     "Editor.Value",
     "Editor.Edit",
@@ -74,7 +74,7 @@ const Editor = React.forwardRef((props, ref) => {
         </sc.Loading>
       ) : null}
       {status === statusTypes.SUCCEED ? (
-        <sc.Success onAnimationEnd={onAnimationEndSuccess}>
+        <sc.Success onAnimationEnd={onSuccessAnimationEnd}>
           <Check />
         </sc.Success>
       ) : null}
@@ -103,14 +103,14 @@ const propTypes = {
   ]),
   children: PropTypes.node.isRequired,
   isEditing: PropTypes.bool.isRequired,
-  onAnimationEndSuccess: PropTypes.func,
+  onSuccessAnimationEnd: PropTypes.func,
   onClick: PropTypes.func,
   optimisticValue: PropTypes.node,
   messageError: PropTypes.node,
 };
 
 const defaultProps = {
-  onAnimationEndSuccess: () => {},
+  onSuccessAnimationEnd: () => {},
   onClick: () => {},
   optimisticValue: null,
   status: Editor.types.status.IDLE,

@@ -21,7 +21,7 @@ export default function Editable({ children }) {
     }
   }, [cellStatus]);
 
-  function handleAnimationEndSuccess({ rowIndex, columnIndex }) {
+  function handleSuccessAnimationEnd({ rowIndex, columnIndex }) {
     setStatusByRowIndexColumnIndex({ status: statusType.IDLE, rowIndex, columnIndex });
   }
 
@@ -29,7 +29,7 @@ export default function Editable({ children }) {
     ...children.props,
     messageError,
     isEditing,
-    onAnimationEndSuccess: handleAnimationEndSuccess,
+    onSuccessAnimationEnd: handleSuccessAnimationEnd,
     onClose: handleClose,
     onStart: handleEditing,
     optimisticValue: cellOptimisticValue || null,
