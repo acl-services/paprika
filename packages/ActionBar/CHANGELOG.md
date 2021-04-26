@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.1-next.0
+
+### Patch Changes
+
+- ab296ef: Support moreProps for ColumnsArrangement
+
 ## 3.0.0
 
 ### Major Changes
