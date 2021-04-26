@@ -1,25 +1,16 @@
 import React from "react";
-import { text, number } from "@storybook/addon-knobs";
-import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
-import Heading from "@paprika/heading";
+import { text, number, boolean, select } from "@storybook/addon-knobs";
 import ProgressBar from "../../src";
 
 const progressBarProps = () => ({
-  a11yText: text("a11yText", ""),
+  completed: number("completed", 20),
+  isCompact: boolean("isCompact", false),
   header: text("header", "Preparing your file..."),
+  headerLevel: select("headerLevel", [1, 2, 3, 4, 5, 6], 3),
   bodyText: text("bodyText", ""),
-  completed: number("completed", "20"),
+  a11yText: text("a11yText", ""),
 });
 
-const ExampleStory = props => (
-  <Story>
-    <Heading level={1} displayLevel={2} isLight>
-      ProgressBar Showcase
-    </Heading>
-    <Tagline>Use the knobs to tinker with the props.</Tagline>
-    <Rule />
-    <ProgressBar {...props} />
-  </Story>
-);
+const ExampleStory = props => <ProgressBar {...props} />;
 
 export default () => <ExampleStory {...progressBarProps()} />;

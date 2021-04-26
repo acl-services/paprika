@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.1.0
+
+### Minor Changes
+
+- e95da34: Adjust current status styling so that it will fit with any text values
+
+## 1.1.0-next.0
+
+### Minor Changes
+
+- e95da34: Adjust current status styling so that it will fit with any text values
+
+## 1.0.13
+
+### Patch Changes
+
+- ed29caf: Update styling based on updated mocks, add extension line
+
 ## 1.0.13-next.0
 
 ### Patch Changes

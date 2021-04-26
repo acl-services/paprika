@@ -17,8 +17,9 @@ const pathWidth = css`
   max-width: ${spacer(8)};
 `;
 
-const currentPathWidth = css`
-  max-width: ${spacer(16)};
+const currentPathStyle = css`
+  flex-grow: 0;
+  max-width: auto;
 `;
 
 export const PointWrapper = styled.li`
@@ -26,9 +27,8 @@ export const PointWrapper = styled.li`
   display: inline-flex;
   flex-grow: 1;
   list-style: none;
-  max-width: ${({ hasOverflowMenu }) => (hasOverflowMenu ? spacer(18) : "")} !important;
 
-  ${({ kind }) => (kind === types.kinds.CURRENT ? currentPathWidth : pathWidth)}
+  ${({ kind }) => (kind === types.kinds.CURRENT ? currentPathStyle : pathWidth)}
 
   &::after {
     content: "";
@@ -37,6 +37,7 @@ export const PointWrapper = styled.li`
     margin: 0;
     vertical-align: middle;
 
+    ${({ kind }) => (kind === types.kinds.CURRENT ? `width: ${spacer(6)};` : "")}
     ${({ kind }) => (kind === types.kinds.PAST ? passedPath : futurePath)}
   }
 

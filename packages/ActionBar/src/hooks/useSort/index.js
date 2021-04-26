@@ -1,1 +1,1 @@
-export { default } from "./useSort";
+export { default, sortData } from "./useSort";
