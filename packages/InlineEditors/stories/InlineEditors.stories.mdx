@@ -298,4 +298,92 @@ export default function App() {
 }
 ```
 
+### Managing cell state withing the table
+
+The inlineEditor provides a hook that you can use to change the current status of individuals cell:
+
+```jsx
+import Table, { useTable } from "../../src/Table";
+```
+
+The hook returns an object with two methods and object with the different status types `{ setStatus, setOptimisticValue, statusType }`
+to initialize this hook you should pass the `{rowIndex and columnIndex}` of the cell that will consume it:
+
+```jsx
+const { setStatus, setOptimisticValue, statusType } = useTable({
+  rowIndex: props.rowIndex,
+  columnIndex: props.columnIndex,
+});
+```
+
+#### setStatus
+
+once you have access to `setStatus` you can controll the statu's cell and set it into four different state:
+
+- statusType.IDLE (default)
+- statusType.LOADING
+- statusType.SUCCEED
+- statusType.ERROR
+
+```jsx
+setStatus(statusType.LOADING);
+
+// when using ERROR you should provide a message describing the error
+
+setStatus(statusType.ERROR, { messageError: "my error message" });
+```
+
+#### setOptimisticValue
+
+There can be cases when you want to provide a fast feedback to the user once they change a value, and you don't want to wait until the value has been updated on the server or you want to
+avoid to wait for the `data` prop in the Table component get rerender.
+
+To do this you can make use of `setOptimisticValue` which will give you access to render a "temporal" component while the Table rerender the component.
+
+**NOTE** Let's not forget that the Table is a Controlled component so this technique is just cosmetic, the real state of the table is hold by the `data` prop and owned by the consumer
+
+#### Full example
+
+Let's to put everything together and you can see the output in the incoming example.
+
+```jsx
+({ setData }) => props => {
+  const { setStatus, setOptimisticValue, statusType } = useTable({
+    rowIndex: props.rowIndex,
+    columnIndex: props.columnIndex,
+  });
+
+  const subscriptionTypes = ["Professional", "Oversight", "Contributor", "Results Lite Contributor", "None"];
+
+  return (
+    <ListBox
+      {...props}
+      value={props.row.subscription}
+      onChange={value => {
+        console.log("onChange", value);
+      }}
+      onSubmit={(index, options, _, { rowIndex }) => {
+        const nextValue = options[index].value;
+        if (nextValue !== props.row.subscription) {
+          setOptimisticValue(nextValue);
+          setStatus(statusType.LOADING);
+          setData(prevData => {
+            const nextData = prevData.slice(0);
+            nextData[rowIndex].subscription = nextValue;
+            setStatus(statusType.SUCCEED);
+            return nextData;
+          });
+        }
+      }}
+    >
+      {subscriptionTypes.map(subscription => (
+        <ListBox.Option value={subscription} isSelected={subscription === props.row.subscription} key={subscription}>
+          {subscription}
+        </ListBox.Option>
+      ))}
+    </ListBox>
+  );
+};
+```
+
 <TableStory />
