@@ -210,8 +210,10 @@ describe("ActionBar Arrange Columns", () => {
       .should("be.visible");
   });
 
-  it.only("Should save user preferences for columns arrangement in localStorage", () => {
+  it("Should save user preferences for columns arrangement in localStorage", () => {
     cy.visitStorybook(`${getStoryUrlPrefix("ActionBar")}-examples--with-localstorage-enabled`);
+
+    // Show/hide
     cy.findByText("Arrange").click();
 
     toggleSwitchFor("Status");
@@ -248,5 +250,25 @@ describe("ActionBar Arrange Columns", () => {
 
     cy.findAllByRole("columnheader").should("have.length", 9);
     cy.findByText("Arrange");
+
+    // Order
+
+    cy.findByText("Arrange").click();
+    cy.findAllByTestId("sortable.item")
+      .eq(3)
+      .trigger("mousedown", { button: 0 })
+      .trigger("mousemove", { button: 0, clientX: 24, clientY: 72 })
+      .wait(100)
+      .get('[data-pka-anchor="sortable"]')
+      .trigger("mousemove", { button: 0, clientX: 24, clientY: 100 })
+      .trigger("mouseup")
+      .wait(500);
+
+    cy.reload();
+    cy.findByText("Arrange").click();
+    cy.findAllByTestId("sortable.item")
+      .eq(3)
+      .contains("Joined by")
+      .should("be.visible");
   });
 });
