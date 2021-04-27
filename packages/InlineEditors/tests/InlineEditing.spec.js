@@ -49,7 +49,7 @@ test("Inline editing / ListBox / onSubmit event", async () => {
   userEvent.click(screen.queryByText(regexOption2));
   await waitForElementToBeRemoved(screen.getByTestId("list-box-box"));
   expect(screen.queryByText(regexOption1)).not.toBeInTheDocument();
-  expect(screen.getByTestId("inline-editing.raw-button").textContent).toBe("Results Lite Contributor ▾");
+  expect(screen.getByTestId("inline-editing.raw-button").textContent).toBe("Results Lite Contributor ");
 });
 
 test("Inline editing / ListBox / onChange event", async () => {
@@ -60,5 +60,5 @@ test("Inline editing / ListBox / onChange event", async () => {
   userEvent.click(screen.queryByText(regexOption2));
   await waitForElementToBeRemoved(screen.getByTestId("list-box-box"));
   expect(screen.queryByText(/onChange:Results Lite Contributor/i)).toBeInTheDocument();
-  expect(screen.getByTestId("inline-editing.raw-button").textContent).toBe("Results Lite Contributor ▾");
+  expect(screen.getByTestId("inline-editing.raw-button").textContent).toBe("Results Lite Contributor ");
 });

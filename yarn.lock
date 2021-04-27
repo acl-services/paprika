@@ -3655,22 +3655,6 @@
     "@paprika/tokens" "^0.1.18"
     prop-types "^15.7.2"
 
-"@paprika/input@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@paprika/input/-/input-1.0.6.tgz#3cd20ea2cfc9bd0059c9a46fbe76077870fcba54"
-  integrity sha512-CcRW4jrJGtUyJVcpaom6ztiJyEr3ncy7wDXACsSru4Eq8hiBjz0VCIVm38PwS+O9mHlvagZYNIFB5i+6Yzv4Zw==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-    "@paprika/button" "^1.0.6"
-    "@paprika/constants" "^1.0.0"
-    "@paprika/helpers" "^2.0.1"
-    "@paprika/icon" "^1.0.4"
-    "@paprika/raw-button" "^1.0.3"
-    "@paprika/stylers" "^1.0.0"
-    "@paprika/tokens" "^1.0.0"
-    classnames "^2.2.6"
-    prop-types "^15.7.2"
-
 "@paprika/raw-button@^0.2.21", "@paprika/raw-button@^0.2.21-alpha.1":
   version "0.2.21"
   resolved "https://registry.yarnpkg.com/@paprika/raw-button/-/raw-button-0.2.21.tgz#540c3225af94056af154e4ea9423f750babc0586"

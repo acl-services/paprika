@@ -73,6 +73,9 @@
     "@paprika/seducer": "2.0.1"
   },
   "changesets": [
+    "chilled-meals-joke",
+    "chilled-rice-arrive",
+    "gorgeous-crabs-own",
     "olive-days-kneel"
   ]
 }

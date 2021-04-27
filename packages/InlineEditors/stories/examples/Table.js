@@ -1,6 +1,6 @@
 import React from "react";
 import ListBox from "../../src/ListBox";
-import Table from "../../src/Table";
+import Table, { useTable } from "../../src/Table";
 import getUsers from "./mock";
 
 const users = getUsers(20);
@@ -11,7 +11,12 @@ const cellRenders = {
     return <input type="checkbox" defaultChecked={row.an} />;
   },
   subscription: ({ setData }) => props => {
+    const { setStatus, setOptimisticValue, statusType } = useTable({
+      rowIndex: props.rowIndex,
+      columnIndex: props.columnIndex,
+    });
     const subscriptionTypes = ["Professional", "Oversight", "Contributor", "Results Lite Contributor", "None"];
+
     return (
       <ListBox
         {...props}
@@ -22,11 +27,17 @@ const cellRenders = {
         onSubmit={(index, options, _, { rowIndex }) => {
           const nextValue = options[index].value;
           if (nextValue !== props.row.subscription) {
-            setData(prevData => {
-              const nextData = prevData.slice(0);
-              nextData[rowIndex].subscription = nextValue;
-              return nextData;
-            });
+            setOptimisticValue(nextValue);
+            setStatus(statusType.LOADING);
+
+            setTimeout(() => {
+              setData(prevData => {
+                const nextData = prevData.slice(0);
+                nextData[rowIndex].subscription = nextValue;
+                setStatus(statusType.SUCCEED);
+                return nextData;
+              });
+            }, 1200);
           }
         }}
       >

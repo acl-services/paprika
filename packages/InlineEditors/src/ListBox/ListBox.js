@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import ListBox from "@paprika/list-box";
 import Editor from "../Editor";
 import * as sc from "./ListBox.styles";
+import { status } from "../types";
 
 const isPopoverVisible = ({ rowIndex, columnIndex }) => {
   return (
@@ -15,14 +16,18 @@ const isPopoverVisible = ({ rowIndex, columnIndex }) => {
 export default function InlineListBox(props) {
   const {
     isEditing,
+    onSuccessAnimationEnd,
     onChange,
     onSubmit,
     onStart,
     onClose,
     value,
     renderValue,
+    optimisticValue,
+    messageError,
     /** These props are only consumable by the Author no need to expose them */
     /* eslint-disable react/prop-types */
+    status,
     placeHolder,
     rowIndex,
     columnIndex,
@@ -70,6 +75,10 @@ export default function InlineListBox(props) {
     onStart();
   }
 
+  function handleAnimationEndSuccess() {
+    onSuccessAnimationEnd({ rowIndex, columnIndex });
+  }
+
   // this effect force to close the input once the
   // value has change, that's why is not looking at the isEditing
   React.useEffect(() => {
@@ -101,7 +110,15 @@ export default function InlineListBox(props) {
   };
 
   return (
-    <Editor onClick={handleClick} isEditing={isEditing} ref={refListBoxEditor}>
+    <Editor
+      isEditing={isEditing}
+      onSuccessAnimationEnd={handleAnimationEndSuccess}
+      onClick={handleClick}
+      optimisticValue={optimisticValue}
+      ref={refListBoxEditor}
+      status={status}
+      messageError={messageError}
+    >
       <Editor.Edit>
         <ListBox isOpen {...moreProps} onChange={handleChange} ref={refListBox}>
           <ListBox.Box {...dataIsEditing} />
@@ -115,7 +132,6 @@ export default function InlineListBox(props) {
           <sc.ValueContainerChild>
             <div>{typeof renderValue === "function" ? renderValue(value) : value || placeHolder} </div>
           </sc.ValueContainerChild>
-          <div>▾</div>
         </sc.ValueContainer>
       </Editor.Value>
     </Editor>
@@ -127,11 +143,14 @@ Object.keys(ListBox).forEach(key => {
 });
 
 InlineListBox.propTypes = {
+  messageError: PropTypes.node,
   isEditing: PropTypes.bool,
+  onSuccessAnimationEnd: PropTypes.func,
   onChange: PropTypes.func,
   onClose: PropTypes.func,
   onStart: PropTypes.func,
   onSubmit: PropTypes.func,
+  optimisticValue: PropTypes.node,
   renderValue: PropTypes.func,
   // eslint-disable-next-line react/forbid-prop-types
   value: PropTypes.any,
@@ -139,10 +158,17 @@ InlineListBox.propTypes = {
 
 InlineListBox.defaultProps = {
   isEditing: false,
+  onSuccessAnimationEnd: () => {},
   onChange: () => {},
   onClose: () => {},
   onStart: () => {},
   onSubmit: () => {},
   renderValue: undefined,
   value: null,
+  optimisticValue: null,
+  messageError: null,
+};
+
+InlineListBox.types = {
+  status,
 };

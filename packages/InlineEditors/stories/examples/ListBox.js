@@ -4,13 +4,15 @@ import Toast from "../../../Toast/src";
 import Tag, { Tags } from "../../../Tag/src";
 import ListBox from "../../src/ListBox";
 
-export function ListBoxSingleStory() {
+const subscriptionTypes = ["Professional", "Oversight", "Contributor", "Results Lite Contributor", "None"];
+
+// this coding can be inside of your component is not necessary to be a hook
+function useListBoxExample() {
   const [isEditing, setIsEditing] = React.useState(false);
-  const subscriptionTypes = ["Professional", "Oversight", "Contributor", "Results Lite Contributor", "None"];
   const [value, setValue] = React.useState(subscriptionTypes[1]);
   const [valueOnChange, setValueOnChange] = React.useState("");
 
-  function handleonStart() {
+  function handleOnStart() {
     setIsEditing(true);
   }
 
@@ -26,6 +28,20 @@ export function ListBoxSingleStory() {
     setValueOnChange(options[index].value);
   }
 
+  return {
+    onChange: handleChange,
+    onSubmit: handleSubmit,
+    onClose: handleClose,
+    onStart: handleOnStart,
+    isEditing,
+    value,
+    valueOnChange,
+  };
+}
+
+export function ListBoxSingleStory() {
+  const { isEditing, onChange, onClose, onStart, onSubmit, value, valueOnChange } = useListBoxExample();
+
   return (
     <Card style={{ padding: "16px", width: "320px" }}>
       <Toast hasCloseButton={false}>The API is stable need some design tweaks</Toast>
@@ -33,11 +49,89 @@ export function ListBoxSingleStory() {
       <br />
       <ListBox
         isEditing={isEditing}
-        onChange={handleChange}
-        onClose={handleClose}
-        onStart={handleonStart}
-        onSubmit={handleSubmit}
+        onChange={onChange}
+        onClose={onClose}
+        onStart={onStart}
+        onSubmit={onSubmit}
         value={value}
+      >
+        <ListBox.Filter />
+        {subscriptionTypes.map(subscription => (
+          <ListBox.Option value={subscription} isSelected={subscription === value} key={subscription}>
+            {subscription}
+          </ListBox.Option>
+        ))}
+      </ListBox>
+    </Card>
+  );
+}
+
+export function ListBoxMultipleWithError() {
+  const { isEditing, onChange, onClose, onStart, onSubmit, value } = useListBoxExample();
+
+  return (
+    <Card style={{ padding: "16px", width: "320px" }}>
+      <Toast hasCloseButton={false}>Display an error</Toast>
+      <ListBox
+        isEditing={isEditing}
+        onChange={onChange}
+        onClose={onClose}
+        onStart={onStart}
+        onSubmit={onSubmit}
+        value={value}
+        status={ListBox.types.status.ERROR}
+      >
+        <ListBox.Filter />
+        {subscriptionTypes.map(subscription => (
+          <ListBox.Option value={subscription} isSelected={subscription === value} key={subscription}>
+            {subscription}
+          </ListBox.Option>
+        ))}
+      </ListBox>
+    </Card>
+  );
+}
+
+export function ListBoxMultipleWithLoading() {
+  const { isEditing, onChange, onClose, onStart, onSubmit, value } = useListBoxExample();
+
+  return (
+    <Card style={{ padding: "16px", width: "320px" }}>
+      <Toast hasCloseButton={false}>Set the state in a loading state</Toast>
+      <ListBox
+        isEditing={isEditing}
+        onChange={onChange}
+        onClose={onClose}
+        onStart={onStart}
+        onSubmit={onSubmit}
+        value={value}
+        status={ListBox.types.status.LOADING}
+      >
+        <ListBox.Filter />
+        {subscriptionTypes.map(subscription => (
+          <ListBox.Option value={subscription} isSelected={subscription === value} key={subscription}>
+            {subscription}
+          </ListBox.Option>
+        ))}
+      </ListBox>
+    </Card>
+  );
+}
+
+export function ListBoxMultipleWithSuccess() {
+  const { isEditing, onChange, onClose, onStart, onSubmit, value } = useListBoxExample();
+
+  return (
+    <Card style={{ padding: "16px", width: "320px" }}>
+      <Toast hasCloseButton={false}>Briefly display a success message which later returns to an IDLE state</Toast>
+      <ListBox
+        isEditing={isEditing}
+        onChange={onChange}
+        onClose={onClose}
+        onStart={onStart}
+        onSubmit={onSubmit}
+        value={value}
+        status={ListBox.types.status.SUCCEED}
       >
         <ListBox.Filter />
         {subscriptionTypes.map(subscription => (
@@ -61,7 +155,7 @@ export function ListBoxMultipleStory() {
   ];
   const [value, setValue] = React.useState([1, 2]);
 
-  function handleonStart() {
+  function handleOnStart() {
     setIsEditing(true);
   }
 
@@ -82,7 +176,7 @@ export function ListBoxMultipleStory() {
       <Toast hasCloseButton={false}>The API is stable need some design tweaks</Toast>
       <ListBox
         isEditing={isEditing}
-        onStart={handleonStart}
+        onStart={handleOnStart}
         onClose={handleClose}
         value={value}
         isMulti

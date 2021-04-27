@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.16-next.0
+
+### Patch Changes
+
+- Updated dependencies [5d0db59]
+  - @paprika/icon@1.1.0-next.0
+  - @paprika/button@1.0.9-next.0
+  - @paprika/confirmation@1.1.1-next.0
+
 ## 1.0.15
 
 ### Patch Changes
