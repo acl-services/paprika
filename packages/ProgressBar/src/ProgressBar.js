@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import { v4 as uuidv4 } from "uuid";
 import Heading from "@paprika/heading";
 import * as sc from "./ProgressBar.styles";
 
@@ -35,6 +35,7 @@ const defaultProps = {
 
 function ProgressBar(props) {
   const { a11yText, bodyText, completed, header, headerLevel, isCompact, ...moreProps } = props;
+  const randomId = a11yText ? uuidv4() : null;
 
   return (
     <sc.ProgressBar {...moreProps}>
@@ -51,10 +52,15 @@ function ProgressBar(props) {
           completed={completed}
           data-pka-anchor="progress-bar"
           role="progressbar"
+          aria-labelledby={randomId}
         />
       </sc.Bar>
       {bodyText ? <sc.Body>{bodyText}</sc.Body> : null}
-      {a11yText ? <sc.A11yText aria-live="polite">{a11yText}</sc.A11yText> : null}
+      {a11yText ? (
+        <sc.A11yText aria-live="polite" id={randomId}>
+          {a11yText}
+        </sc.A11yText>
+      ) : null}
     </sc.ProgressBar>
   );
 }
