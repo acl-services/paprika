@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.1.10-next.0
+
+### Patch Changes
+
+- Updated dependencies [5d0db59]
+  - @paprika/icon@1.1.0-next.0
+  - @paprika/button@1.0.9-next.0
+  - @paprika/input@3.0.1-next.0
+  - @paprika/list-box@3.0.3-next.0
+  - @paprika/panel@2.0.9-next.0
+  - @paprika/radio@1.0.9-next.0
+  - @paprika/date-picker@1.0.13-next.0
+
 ## 1.1.9
 
 ### Patch Changes
