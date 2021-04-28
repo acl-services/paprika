@@ -1,6 +1,5 @@
 import React from "react";
 import produce from "immer";
-import difference from "lodash.difference";
 
 const savedItem = {
   VISIBILITY: "VISIBILITY",
@@ -35,12 +34,10 @@ function updateHiddenColumnIdFromLocalStorage(localStoragePrefix, columnId, isVi
 function hasDifferences(originalArray, newArray) {
   if (originalArray.length !== newArray.length) return true;
 
-  return difference(originalArray, newArray).length > 0 || difference(newArray, originalArray).length > 0;
+  return originalArray.find(item => !newArray.includes(item)) || newArray.find(item => !originalArray.includes(item));
 }
 
-function getInitialOrder({ defaultOrder, isLocalStorageEnabled, localStoragePrefix }) {
-  if (!isLocalStorageEnabled) return defaultOrder;
-
+function getInitialOrder({ defaultOrder, localStoragePrefix }) {
   const cachedOrder = getColumnIdsfromLocalStorage(
     getLocalStorageKey(localStoragePrefix, savedItem.ORDER),
     defaultOrder
@@ -54,14 +51,7 @@ function getInitialOrder({ defaultOrder, isLocalStorageEnabled, localStoragePref
   return cachedOrder;
 }
 
-function getInitialHiddenColumnIds({
-  defaultHiddenColumnIds,
-  defaultOrder,
-  isLocalStorageEnabled,
-  localStoragePrefix,
-}) {
-  if (!isLocalStorageEnabled) return new Set(defaultHiddenColumnIds);
-
+function getInitialHiddenColumnIds({ defaultHiddenColumnIds, defaultOrder, localStoragePrefix }) {
   const cachedHiddenColumns = getColumnIdsfromLocalStorage(
     getLocalStorageKey(localStoragePrefix, savedItem.VISIBILITY),
     defaultHiddenColumnIds
@@ -86,17 +76,17 @@ export default function useColumnsArrangement({
   localStoragePrefix = null,
 }) {
   const isLocalStorageEnabled = localStoragePrefix !== null;
-  const [order, setOrder] = React.useState(
-    getInitialOrder({ defaultOrder, isLocalStorageEnabled, localStoragePrefix })
+  const [order, setOrder] = React.useState(() =>
+    isLocalStorageEnabled ? getInitialOrder({ defaultOrder, localStoragePrefix }) : defaultOrder
   );
-
-  const [hiddenColumnIds, setHiddenColumnIds] = React.useState(
-    getInitialHiddenColumnIds({
-      defaultHiddenColumnIds,
-      defaultOrder,
-      isLocalStorageEnabled,
-      localStoragePrefix,
-    })
+  const [hiddenColumnIds, setHiddenColumnIds] = React.useState(() =>
+    isLocalStorageEnabled
+      ? getInitialHiddenColumnIds({
+          defaultHiddenColumnIds,
+          defaultOrder,
+          localStoragePrefix,
+        })
+      : new Set(defaultHiddenColumnIds)
   );
 
   function canMove({ source, destination }) {
