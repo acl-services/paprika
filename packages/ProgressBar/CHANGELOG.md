@@ -1,5 +1,11 @@
 # @paprika/progress-bar
 
+## 1.1.1-next.0
+
+### Patch Changes
+
+- 36c99ae: Fix "serious" axe issue even though have provided a11yText
+
 ## 1.1.0
 
 ### Minor Changes
