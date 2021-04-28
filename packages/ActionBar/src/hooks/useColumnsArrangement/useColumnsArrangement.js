@@ -34,7 +34,7 @@ function updateHiddenColumnIdFromLocalStorage(localStoragePrefix, columnId, isVi
 function hasDifferences(originalArray, newArray) {
   if (originalArray.length !== newArray.length) return true;
 
-  return originalArray.find(item => !newArray.includes(item)) || newArray.find(item => !originalArray.includes(item));
+  return originalArray.some(item => !newArray.includes(item)) || newArray.some(item => !originalArray.includes(item));
 }
 
 function getInitialOrder({ defaultOrder, localStoragePrefix }) {
