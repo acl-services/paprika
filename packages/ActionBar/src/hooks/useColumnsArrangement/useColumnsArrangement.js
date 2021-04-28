@@ -3,7 +3,7 @@ import produce from "immer";
 
 const savedItem = {
   VISIBILITY: "VISIBILITY",
-  ORDERS: "ORDERS",
+  ORDER: "ORDER",
 };
 
 function getLocalStorageKey(localStoragePrefix, typeOfSavedItem) {
@@ -31,6 +31,44 @@ function updateHiddenColumnIdFromLocalStorage(localStoragePrefix, columnId, isVi
   }
 }
 
+function hasDifferences(originalArray, newArray) {
+  if (originalArray.length !== newArray.length) return true;
+
+  return originalArray.some(item => !newArray.includes(item)) || newArray.some(item => !originalArray.includes(item));
+}
+
+function getInitialOrder({ defaultOrder, localStoragePrefix }) {
+  const cachedOrder = getColumnIdsfromLocalStorage(
+    getLocalStorageKey(localStoragePrefix, savedItem.ORDER),
+    defaultOrder
+  );
+
+  if (hasDifferences(cachedOrder, defaultOrder)) {
+    window.localStorage.setItem(getLocalStorageKey(localStoragePrefix, savedItem.ORDER), JSON.stringify(defaultOrder));
+    return defaultOrder;
+  }
+
+  return cachedOrder;
+}
+
+function getInitialHiddenColumnIds({ defaultHiddenColumnIds, defaultOrder, localStoragePrefix }) {
+  const cachedHiddenColumns = getColumnIdsfromLocalStorage(
+    getLocalStorageKey(localStoragePrefix, savedItem.VISIBILITY),
+    defaultHiddenColumnIds
+  );
+
+  const updatedHiddenColumns = cachedHiddenColumns.filter(columnId => defaultOrder.includes(columnId));
+
+  if (hasDifferences(updatedHiddenColumns, cachedHiddenColumns)) {
+    window.localStorage.setItem(
+      getLocalStorageKey(localStoragePrefix, savedItem.VISIBILITY),
+      JSON.stringify(updatedHiddenColumns)
+    );
+  }
+
+  return new Set(updatedHiddenColumns);
+}
+
 export default function useColumnsArrangement({
   defaultOrderedColumnIds: defaultOrder,
   disabledColumnIds = [],
@@ -38,15 +76,16 @@ export default function useColumnsArrangement({
   localStoragePrefix = null,
 }) {
   const isLocalStorageEnabled = localStoragePrefix !== null;
-  const [order, setOrder] = React.useState(defaultOrder);
+  const [order, setOrder] = React.useState(() =>
+    isLocalStorageEnabled ? getInitialOrder({ defaultOrder, localStoragePrefix }) : defaultOrder
+  );
   const [hiddenColumnIds, setHiddenColumnIds] = React.useState(() =>
     isLocalStorageEnabled
-      ? new Set(
-          getColumnIdsfromLocalStorage(
-            getLocalStorageKey(localStoragePrefix, savedItem.VISIBILITY),
-            defaultHiddenColumnIds
-          )
-        )
+      ? getInitialHiddenColumnIds({
+          defaultHiddenColumnIds,
+          defaultOrder,
+          localStoragePrefix,
+        })
       : new Set(defaultHiddenColumnIds)
   );
 
@@ -76,6 +115,13 @@ export default function useColumnsArrangement({
       produce(draftOrder => {
         const movedChild = draftOrder.splice(source, 1);
         draftOrder.splice(destination, 0, ...movedChild);
+
+        if (isLocalStorageEnabled) {
+          window.localStorage.setItem(
+            getLocalStorageKey(localStoragePrefix, savedItem.ORDER),
+            JSON.stringify(draftOrder)
+          );
+        }
       })
     );
   }

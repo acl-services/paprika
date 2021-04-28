@@ -53,10 +53,17 @@ export default function WithLocalStorageEnabled() {
 
   return (
     <Story>
-      <Heading level={2}>ActionBar with Custom Button</Heading>
+      <Heading level={2}>ActionBar with localStorage enabled</Heading>
       <Tagline>
         If you want to save user show/hide preferences in localStorage, you can pass <code>localStoragePrefix</code>{" "}
         while using <code>useColumnsArrangement</code>
+        <div>
+          Please make sure the <code>localStoragePrefix</code> is unique and sufficient in your use cases. Also, please
+          be aware of we will save the column ids in <code>localStorage</code>.{" "}
+          <u>
+            <b>Please do not use sensitive data as column ids.</b>
+          </u>
+        </div>
       </Tagline>
       <br />
       <ActionBar>
