@@ -26,7 +26,7 @@ npm install @paprika/side-navigation
 | -------- | ------ | -------- | ------- | ------------------------------ |
 | a11yText | string | false    | null    | Aria-label on the nav element. |
 | children | node   | false    | null    |                                |
-| header   | node   | false    | null    | Header text in the side panel. |
+| header   | node   | true     | -       | Header text in the side panel. |
 
 ### SideNavigation.Item
 

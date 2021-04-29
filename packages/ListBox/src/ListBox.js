@@ -186,6 +186,10 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     return PopoverClone;
   }
 
+  delete moreProps.selectedKeys;
+  delete moreProps.setSelectedKeys;
+  delete moreProps.snapshotSelectedKeys;
+
   return (
     <div data-pka-anchor="list-box" {...moreProps}>
       <Popover>{listBox}</Popover>

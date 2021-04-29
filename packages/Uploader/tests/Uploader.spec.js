@@ -5,9 +5,9 @@ import Uploader from "../src";
 
 function renderComponent() {
   return render(
-    <Uploader>
+    <Uploader endpoint="https://api.youtube.com">
       <Uploader.DropZone />
-      <Uploader.FileList />
+      <Uploader.FileList maxFileSize={100} supportedMimeTypes={["audio/wav"]} />
     </Uploader>
   );
 }
