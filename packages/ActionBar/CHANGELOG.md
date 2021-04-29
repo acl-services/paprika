@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.1.0-next.2
+
+### Minor Changes
+
+- e6b7618: Support saving order in localStorage for ColumnsArrangement
+
 ## 3.0.1-next.1
 
 ### Patch Changes
