@@ -48,6 +48,8 @@ describe("DateInput", () => {
   });
 
   it("should show error state if it cannot parse the typing string", () => {
+    jest.spyOn(console, "warn").mockImplementation(() => {}); // suppress a momentjs warning
+
     const { getByTestId } = render();
 
     fireEvent.change(getByTestId("dateinput"), { target: { value: "abc" } });
