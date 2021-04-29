@@ -8,7 +8,7 @@ interface OverlayProps {
 
   children?: (...args: any[]) => any;
   /** container of the Overlay element */
-  container?: instanceOf;
+  container?: React.ReactNode;
 
   focusLockOptions?: shape;
 

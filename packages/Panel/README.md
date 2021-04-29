@@ -71,18 +71,18 @@ npm install @paprika/panel
 
 ### Panel.Overlay
 
-| Prop              | Type       | required | default | Description                      |
-| ----------------- | ---------- | -------- | ------- | -------------------------------- |
-| backdropClassName | string     | false    | -       |                                  |
-| children          | func       | false    | -       |                                  |
-| container         | instanceOf | false    | -       | container of the Overlay element |
-| focusLockOptions  | shape      | false    | -       |                                  |
-| hasBackdrop       | bool       | false    | -       |                                  |
-| isOpen            | bool       | false    | -       |                                  |
-| onClose           | func       | false    | -       |                                  |
-| onAfterOpen       | func       | false    | -       |                                  |
-| onAfterClose      | func       | false    | -       |                                  |
-| zIndex            | number     | false    | -       | The z-index of the Panel Overlay |
+| Prop              | Type   | required | default | Description                      |
+| ----------------- | ------ | -------- | ------- | -------------------------------- |
+| backdropClassName | string | false    | -       |                                  |
+| children          | func   | false    | -       |                                  |
+| container         | node   | false    | -       | container of the Overlay element |
+| focusLockOptions  | shape  | false    | -       |                                  |
+| hasBackdrop       | bool   | false    | -       |                                  |
+| isOpen            | bool   | false    | -       |                                  |
+| onClose           | func   | false    | -       |                                  |
+| onAfterOpen       | func   | false    | -       |                                  |
+| onAfterClose      | func   | false    | -       |                                  |
+| zIndex            | number | false    | -       | The z-index of the Panel Overlay |
 
 ### Panel.Trigger
 
