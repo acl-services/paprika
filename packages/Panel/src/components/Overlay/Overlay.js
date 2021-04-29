@@ -9,7 +9,7 @@ const propTypes = {
   children: PropTypes.func,
 
   /** container of the Overlay element */
-  container: PropTypes.instanceOf(Element),
+  container: PropTypes.node,
 
   focusLockOptions: PropTypes.shape(FocusPropTypes),
   hasBackdrop: PropTypes.bool,

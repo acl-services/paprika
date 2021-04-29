@@ -123,14 +123,18 @@ const OverflowMenu = React.forwardRef((props, ref) => {
 
   const onKeyDown = (event, currentIndex) => {
     if (event.key === "ArrowDown") {
+      event.preventDefault();
       const indexToFocus = currentIndex === overflowLastItemIndex ? 0 : currentIndex + 1;
       focusAndSetIndex(indexToFocus);
     } else if (event.key === "ArrowUp") {
+      event.preventDefault();
       const indexToFocus = currentIndex === 0 ? overflowLastItemIndex : currentIndex - 1;
       focusAndSetIndex(indexToFocus);
     } else if (event.key === "Home") {
+      event.preventDefault();
       focusAndSetIndex(0);
     } else if (event.key === "End") {
+      event.preventDefault();
       focusAndSetIndex(overflowLastItemIndex);
     } else if (event.key === "Enter" || event.key === " ") {
       // do nothing
