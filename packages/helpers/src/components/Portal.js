@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const propTypes = {
   children: PropTypes.node,
   active: PropTypes.bool,
-  container: PropTypes.instanceOf(Element),
+  container: PropTypes.node,
 };
 
 const defaultProps = {
