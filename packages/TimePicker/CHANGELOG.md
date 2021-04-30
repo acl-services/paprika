@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.13-next.1
+
+### Patch Changes
+
+- Updated dependencies [9ad9c79]
+  - @paprika/helpers@2.1.2-next.0
+  - @paprika/input@3.0.1-next.1
+  - @paprika/popover@1.2.1-next.0
+
 ## 1.0.13-next.0
 
 ### Patch Changes

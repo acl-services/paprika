@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.8-next.1
+
+### Patch Changes
+
+- Updated dependencies [9ad9c79]
+  - @paprika/helpers@2.1.2-next.0
+  - @paprika/button@1.0.9-next.1
+
 ## 1.1.8-next.0
 
 ### Patch Changes

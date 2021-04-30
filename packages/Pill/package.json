@@ -1,6 +1,6 @@
 {
   "name": "@paprika/pill",
-  "version": "1.0.7",
+  "version": "1.0.8-next.0",
   "description": "The Pill component is for showing metadata like status, type, or levels.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -17,7 +17,7 @@
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/constants": "^1.0.0",
-    "@paprika/helpers": "^2.1.1",
+    "@paprika/helpers": "^2.1.2-next.0",
     "@paprika/raw-button": "^1.0.3",
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",
