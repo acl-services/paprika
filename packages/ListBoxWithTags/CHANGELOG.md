@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.1.4
+
+### Patch Changes
+
+- Updated dependencies [5d0db59]
+- Updated dependencies [33f39a7]
+- Updated dependencies [9ad9c79]
+  - @paprika/icon@1.1.0
+  - @paprika/list-box@3.0.3
+  - @paprika/helpers@2.1.2
+  - @paprika/tag@0.0.3
+
 ## 1.1.4-next.1
 
 ### Patch Changes

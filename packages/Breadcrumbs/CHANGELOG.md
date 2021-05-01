@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.1.13
+
+### Patch Changes
+
+- Updated dependencies [5d0db59]
+- Updated dependencies [9ad9c79]
+  - @paprika/icon@1.1.0
+  - @paprika/helpers@2.1.2
+  - @paprika/button@1.0.9
+  - @paprika/popover@1.2.1
+
 ## 1.1.13-next.1
 
 ### Patch Changes

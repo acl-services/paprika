@@ -1,5 +1,20 @@
 # Changelog
 
+## 3.0.3
+
+### Patch Changes
+
+- 33f39a7: Remove some keys from props so they dont get added to DOM, which causes a console warning.
+- 9ad9c79: Change PropTypes.instanceOf(Element) to PropTypes.node to fix SSR issue
+- Updated dependencies [5d0db59]
+- Updated dependencies [9ad9c79]
+  - @paprika/icon@1.1.0
+  - @paprika/helpers@2.1.2
+  - @paprika/button@1.0.9
+  - @paprika/input@3.0.1
+  - @paprika/popover@1.2.1
+  - @paprika/toast@1.1.1
+
 ## 3.0.3-next.1
 
 ### Patch Changes

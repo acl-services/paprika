@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.2
+
+### Patch Changes
+
+- 9ad9c79: Change PropTypes.instanceOf(Element) to PropTypes.node to fix SSR issue
+
 ## 2.1.2-next.0
 
 ### Patch Changes

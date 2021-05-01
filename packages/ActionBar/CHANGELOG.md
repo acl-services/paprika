@@ -1,5 +1,25 @@
 # Changelog
 
+## 3.1.0
+
+### Minor Changes
+
+- e6b7618: Support saving order in localStorage for ColumnsArrangement
+
+### Patch Changes
+
+- ab296ef: Support moreProps for ColumnsArrangement
+- Updated dependencies [5d0db59]
+- Updated dependencies [9ad9c79]
+  - @paprika/icon@1.1.0
+  - @paprika/helpers@2.1.2
+  - @paprika/button@1.0.9
+  - @paprika/input@3.0.1
+  - @paprika/popover@1.2.1
+  - @paprika/select@1.0.7
+  - @paprika/sortable@1.1.8
+  - @paprika/switch@1.0.8
+
 ## 3.1.0-next.3
 
 ### Patch Changes

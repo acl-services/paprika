@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies [9ad9c79]
+  - @paprika/helpers@2.1.2
+  - @paprika/calendar@1.0.10
+  - @paprika/date-input@1.0.9
+  - @paprika/popover@1.2.1
+
 ## 1.0.13-next.1
 
 ### Patch Changes

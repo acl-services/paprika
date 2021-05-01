@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.0.9
+
+### Patch Changes
+
+- 9ad9c79: Change PropTypes.instanceOf(Element) to PropTypes.node to fix SSR issue
+- Updated dependencies [5d0db59]
+- Updated dependencies [9ad9c79]
+  - @paprika/icon@1.1.0
+  - @paprika/overlay@1.0.7
+  - @paprika/helpers@2.1.2
+  - @paprika/button@1.0.9
+
 ## 2.0.9-next.1
 
 ### Patch Changes

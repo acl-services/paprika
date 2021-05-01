@@ -1,6 +1,6 @@
 {
   "name": "@paprika/helpers",
-  "version": "2.1.2-next.0",
+  "version": "2.1.2",
   "description": "JavaScript and React helper utilities",
   "author": "@paprika",
   "license": "MIT",

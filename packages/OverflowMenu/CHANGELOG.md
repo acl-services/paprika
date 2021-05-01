@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.0.16
+
+### Patch Changes
+
+- 5672dd9: Block default behaviour when press up/down/home/end key so page doesnt scroll when navigating through options.
+- Updated dependencies [5d0db59]
+- Updated dependencies [9ad9c79]
+  - @paprika/icon@1.1.0
+  - @paprika/helpers@2.1.2
+  - @paprika/button@1.0.9
+  - @paprika/confirmation@1.1.1
+  - @paprika/popover@1.2.1
+
 ## 1.0.16-next.1
 
 ### Patch Changes
