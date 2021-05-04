@@ -42,9 +42,9 @@ describe("DateInput", () => {
   });
 
   it("should render input as error state hasError", () => {
-    render({ date: moment("2019-01-02"), hasError: true });
+    const { getByTestId } = render({ date: moment("2019-01-02"), hasError: true });
 
-    expect(document.getElementsByClassName("form-input--has-error").length).toEqual(1);
+    expect(getByTestId("dateinput")).toHaveAttribute("aria-invalid", "true");
   });
 
   it("should show error state if it cannot parse the typing string", () => {
@@ -54,7 +54,7 @@ describe("DateInput", () => {
     fireEvent.change(getByTestId("dateinput"), { target: { value: "abc" } });
     fireEvent.keyUp(getByTestId("dateinput"), { key: "Enter", code: 13 });
 
-    expect(document.getElementsByClassName("form-input--has-error").length).toEqual(1);
+    expect(getByTestId("dateinput")).toHaveAttribute("aria-invalid", "true");
     spy.mockRestore();
   });
 

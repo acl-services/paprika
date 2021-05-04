@@ -88,9 +88,7 @@ describe("<DatePicker />", () => {
     cy.findByTestId("datepicker.input").type("abc{enter}");
 
     cy.tick(5000);
-    cy.findByTestId("datepicker.input")
-      .parent()
-      .should("have.class", "form-input--has-error");
+    cy.findByTestId("datepicker.input").should("have.attr", "aria-invalid", "true");
   });
 
   it("should handle time change", () => {
