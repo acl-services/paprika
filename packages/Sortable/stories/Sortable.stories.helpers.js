@@ -43,9 +43,13 @@ const MultiBox = styled.div`
     min-width: 4em;
   }
 
-  .form-input {
-    width: 100%;
+  [data-pka-anchor="input.container"] {
+    flex-grow: 1;
   }
+`;
+
+const InputBox = styled.div`
+  flex-grow: 1;
 `;
 
 export function basicChildren(numChildren) {
@@ -90,12 +94,9 @@ export function inputChildren(numChildren) {
   for (let index = 1; index <= numChildren; index++) {
     children.push(
       <Sortable.Item key={index} sortId={index}>
-        <Input
-          value={hipsums[index % hipsums.length]}
-          css={`
-            width: 100%;
-          `}
-        />
+        <InputBox>
+          <Input value={hipsums[index % hipsums.length]} />
+        </InputBox>
       </Sortable.Item>
     );
   }
