@@ -20,7 +20,7 @@ export const StatusTracker = styled.ol`
         vertical-align: middle;
         border-style: solid;
         border-width: 1px;
-        border-image: linear-gradient(45deg, ${tokens.color.white} 0%, ${tokens.color.black} 100%) 1;
+        border-image: linear-gradient(45deg, ${tokens.color.white} 0%, ${tokens.color.blackLighten10} 100%) 1;
         max-width: ${spacer(3)};        
       }
     `}
