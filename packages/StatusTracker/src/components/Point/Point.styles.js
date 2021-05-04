@@ -6,7 +6,7 @@ import { fontSize, lineHeight, spacer } from "@paprika/stylers/lib/helpers";
 import * as types from "../../types";
 
 const passedPath = css`
-  border-bottom: 2px solid ${tokens.color.black};
+  border-bottom: 2px solid ${tokens.color.blackLighten10};
 `;
 
 const futurePath = css`
@@ -57,7 +57,8 @@ const basicPoint = css`
 `;
 
 const pastPoint = css`
-  background-color: ${tokens.color.black};
+  background-color: ${tokens.color.blackLighten20};
+  border: 2px solid ${tokens.color.blackLighten10};
 `;
 
 const futurePoint = css`
