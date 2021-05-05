@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.2-next.0
+
+### Patch Changes
+
+- b154295: update status tracker with new colours
+
 ## 1.1.1
 
 ### Patch Changes
