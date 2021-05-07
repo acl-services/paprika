@@ -251,15 +251,18 @@ class Popover extends React.Component {
     if (event.key === "Escape" && this.isOpen() && this.$trigger) {
       event.stopPropagation();
       this.close();
-      if (this.$trigger) this.$trigger.focus();
+      this.$trigger.focus();
     } else if (event.key === "Tab" && this.isOpen() && this.$trigger) {
       const isFocusOnFirst = this.focusIsOnCertainElementInPopover("first") || document.activeElement === this.$content;
       const isFocusOnLast = this.focusIsOnCertainElementInPopover("last");
+      const isFocusOnOnly =
+        (document.activeElement === this.$content &&
+          this.$content.querySelectorAll(focusableElementSelector).length) === 0;
 
       if (event.shiftKey && isFocusOnFirst) {
         event.preventDefault();
         this.focusableElements[this.triggerFocusIndex].focus();
-      } else if (!event.shiftKey && isFocusOnLast) {
+      } else if (!event.shiftKey && (isFocusOnLast || isFocusOnOnly)) {
         event.preventDefault();
         this.focusableElements[this.triggerFocusIndex + 1].focus();
       }

@@ -61,7 +61,6 @@ const Content = React.forwardRef((props, ref) => {
     setTimeout(() => {
       if (!isElementContainsFocus(currentTarget)) {
         onClose();
-        if (moreProps.onBlur) moreProps.onBlur();
       }
     }, parseInt(PopoverConstants.transition, 10));
   }
@@ -87,7 +86,6 @@ const Content = React.forwardRef((props, ref) => {
   if (content.width && content.width !== "auto") {
     contentStyles.width = content.width;
   }
-
   /* eslint-disable jsx-a11y/mouse-events-have-key-events */
   const ContentStyledComponent = (
     <ContentStyled
@@ -101,7 +99,7 @@ const Content = React.forwardRef((props, ref) => {
       tabIndex="-1"
       zIndex={content.zIndex}
       {...moreProps}
-      onBlur={handleBlur}
+      onBlur={callAll(handleBlur, moreProps.onBlur)}
       onMouseOut={callAll(handleMouseEvent, moreProps.onMouseOut)}
       onMouseOver={callAll(handleMouseEvent, moreProps.onMouseOver)}
       onKeyDown={callAll(handleKeyDown, moreProps.onKeyDown)}
