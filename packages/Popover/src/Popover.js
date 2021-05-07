@@ -284,7 +284,7 @@ class Popover extends React.Component {
     return false;
   };
 
-  getPopoverTriggerFocusIndex = () => {
+  setPopoverTriggerFocusIndex = () => {
     this.focusableElements.forEach((focusableElement, index) => {
       if (focusableElement === this.$trigger) {
         this.triggerFocusIndex = index;
@@ -293,11 +293,8 @@ class Popover extends React.Component {
   };
 
   handleTransitionEnd = event => {
-    // NOTE: do this should make more that only focus the content div? should as well
-    //       find the first focusable element like button, input, etc?
-    //       can focus automatically
-    if (!this.props.shouldKeepFocus && !this.props.isEager && this.isOpen() && event.propertyName === "visibility") {
-      this.getPopoverTriggerFocusIndex();
+    if (!this.props.shouldKeepFocus && !this.props.isEager && this.isOpen() && event.propertyName === "opacity") {
+      this.setPopoverTriggerFocusIndex();
       event.target.focus();
     }
   };
@@ -384,7 +381,6 @@ class Popover extends React.Component {
       }
 
       this.$content.addEventListener("transitionend", this.handleTransitionEnd, false);
-
       this.hasListeners = true;
     }
   }
