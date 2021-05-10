@@ -57,7 +57,7 @@
     "@paprika/side-navigation": "2.0.0",
     "@paprika/sortable": "1.1.8",
     "@paprika/spinner": "1.0.7",
-    "@paprika/status-tracker": "1.1.1",
+    "@paprika/status-tracker": "1.1.2",
     "@paprika/stylers": "1.0.0",
     "@paprika/switch": "1.0.8",
     "@paprika/table": "1.1.2",
@@ -72,7 +72,5 @@
     "@paprika/helpers": "2.1.2",
     "@paprika/seducer": "2.0.1"
   },
-  "changesets": [
-    "spicy-lizards-film"
-  ]
+  "changesets": []
 }
