@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
 import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import { callAll, extractChildrenProps, RefOf } from "@paprika/helpers";
+import { callAll, extractChildrenProps } from "@paprika/helpers";
 import InputPropsCollector from "./InputPropsCollector";
 import * as types from "./types";
 import * as sc from "./Input.styles";
@@ -66,6 +66,7 @@ const Input = React.forwardRef((props, ref) => {
     return (
       <sc.ClearButton
         a11yText={i18n.t("input.clear_button.aria_label")}
+        data-pka-anchor="input.clear-button"
         isSemantic={false}
         kind={types.MINOR}
         onClick={inputClearHandler}
@@ -87,7 +88,11 @@ const Input = React.forwardRef((props, ref) => {
 
   return (
     <sc.InputContainer data-pka-anchor="input.container" {...styleProps} {...containerProps}>
-      {icon ? <sc.Icon {...styleProps}>{icon}</sc.Icon> : null}
+      {icon ? (
+        <sc.Icon data-pka-anchor="input.icon" {...styleProps}>
+          {icon}
+        </sc.Icon>
+      ) : null}
       <sc.Input
         aria-invalid={hasError}
         aria-label={a11yText}
@@ -142,9 +147,6 @@ Input.propTypes = {
   /** Callback to be executed when the input value is changed. Receives the onChange event as an argument, except when the clear button is clicked, then the argument is null. Required when value prop is provided (component is controlled). */
   onChange: PropTypes.func,
 
-  /** Ref for the input DOM element. */
-  refInput: RefOf(PropTypes.instanceOf(Element)),
-
   /** Changes the size of the input. */
   size: PropTypes.oneOf([Input.types.size.SMALL, Input.types.size.MEDIUM, Input.types.size.LARGE]),
 
@@ -173,7 +175,6 @@ Input.defaultProps = {
   isDisabled: false,
   isReadOnly: false,
   onChange: () => {},
-  refInput: null,
   size: Input.types.size.MEDIUM,
   type: Input.types.type.TEXT,
   value: undefined,

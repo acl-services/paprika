@@ -23,8 +23,6 @@ interface InputProps {
   isReadOnly?: boolean;
   /** Callback to be executed when the input value is changed. Receives the onChange event as an argument, except when the clear button is clicked, then the argument is null. Required when value prop is provided (component is controlled). */
   onChange?: (...args: any[]) => any;
-  /** Ref for the input DOM element. */
-  refInput?: custom;
   /** Changes the size of the input. */
   size?: Input.types.size.SMALL | Input.types.size.MEDIUM | Input.types.size.LARGE;
   /** Allows user to specify the type of input. */
