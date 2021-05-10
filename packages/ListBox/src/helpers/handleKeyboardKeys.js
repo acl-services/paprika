@@ -2,8 +2,8 @@ import { handleEnterOrSpace, handleArrowKeys } from "../components/Options/helpe
 import useListBox from "../useListBox";
 
 export const handleKeyDownKeyboardKeys = ({ state, dispatch, onChangeContext }) => event => {
-  if (event.key === " ") {
-    // prevents spacebar to scroll the page
+  // only prevent space events from scrolling page when in 'options view'
+  if (event.key === " " && event.target.getAttribute("data-pka-anchor") !== "list-filter-input") {
     event.preventDefault();
   }
 
