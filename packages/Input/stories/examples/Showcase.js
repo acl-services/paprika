@@ -13,13 +13,13 @@ const iconSelections = {
 
 const getKnobs = () => ({
   size: select("size", Object.values(Input.types.size), Input.types.size.MEDIUM),
-  placeholder: text("placeholder", "Enter some text"),
-  icon: iconSelections[select("icon", Object.keys(iconSelections), null)],
   hasClearButton: boolean("hasClearButton", false),
   isDisabled: boolean("isDisabled", false),
   isReadOnly: boolean("isReadOnly", false),
   hasError: boolean("hasError", false),
-  type: select("type", Object.values(Input.types.type)),
+  placeholder: text("placeholder", ""),
+  icon: iconSelections[select("icon", Object.keys(iconSelections), null)],
+  type: select("type", Object.values(Input.types.type), Input.types.type.TEXT),
   a11yText: text("a11yText", null),
 });
 

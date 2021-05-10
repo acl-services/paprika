@@ -1,7 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import { axe } from "jest-axe";
-import { ShirtSizes } from "@paprika/helpers";
 import Input from "../src";
 
 const renderComponent = props => render(<Input {...props} />);
@@ -11,11 +10,6 @@ const initialValue = "initial value";
 const updatedValue = "changed value";
 
 describe("Input", () => {
-  it("should be visible and render large text", () => {
-    const { container } = renderComponent({ size: ShirtSizes.LARGE });
-    expect(container.firstChild.classList.contains("form-input--large")).toBe(true);
-  });
-
   it("should change value controlled when value changes", async () => {
     let changeValue = null;
     const onChangeFunc = e => {

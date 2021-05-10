@@ -54,9 +54,9 @@ describe("DatePicker", () => {
   });
 
   it("should render input as error state hasError", () => {
-    render({ date: moment("2019-01-02"), hasError: true });
+    const { getByTestId } = render({ date: moment("2019-01-02"), hasError: true });
 
-    expect(document.getElementsByClassName("form-input--has-error").length).toEqual(1);
+    expect(getByTestId("datepicker.input")).toHaveAttribute("aria-invalid", "true");
   });
 
   it("should render date correctly with different timezones", () => {
