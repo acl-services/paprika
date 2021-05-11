@@ -1,0 +1,27 @@
+import { Meta, Description, Canvas } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import { docsStoryParameters } from "storybook/assets/storyParameters";
+import Readme from "../README.md";
+import Input from "../src";
+
+<Meta title={`${getStoryName("Input")}/Docs`} component={Input} parameters={{ ...docsStoryParameters }} />
+
+<Description markdown={Readme} />
+
+## Notes
+
+- Clicking the **Clear Button** will fire the `onChange` callback with `null`
+  for the `event` argument.
+
+- Additional props and DOM attributes provided to `<Input>` will be spread onto
+  the underlying `<input>` DOM element.
+
+- The `<Input.Container>` component can be used as a `child` of `<Input>` to
+  spread attributes to the root `<div>` container element.
+
+- The `ref` will be forwarded to the underlying `<input>` DOM element.
+
+- It is very important for **accessibility** that every `<input>` has a label.
+  Usually this will be provided as a visible label with the Paprika
+  `<FormElement.Label>`, but a label can also be provided directly for assistive
+  technology clients (like screen readers) via the `a11yText` prop.

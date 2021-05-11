@@ -1,19 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
 import * as constants from "@paprika/constants/lib/Constants";
 import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
-import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import { callAll } from "@paprika/helpers";
+import { callAll, extractChildrenProps } from "@paprika/helpers";
+import InputPropsCollector from "./InputPropsCollector";
 import * as types from "./types";
 import * as sc from "./Input.styles";
 
 const Input = React.forwardRef((props, ref) => {
   const {
     a11yText,
+    children,
     clearIcon,
-    className,
     defaultValue,
     icon,
     isDisabled,
@@ -27,8 +26,12 @@ const Input = React.forwardRef((props, ref) => {
   } = props;
 
   const isControlled = value !== undefined;
+  const containerProps = extractChildrenProps(children, InputPropsCollector);
 
   const i18n = useI18n();
+
+  const _refInput = React.useRef();
+  const refInput = ref || _refInput;
 
   const [shouldShowClearButton, setShouldShowClearButton] = React.useState(
     hasClearButton && !isDisabled && !isReadOnly && (value || defaultValue)
@@ -37,9 +40,6 @@ const Input = React.forwardRef((props, ref) => {
   React.useEffect(() => {
     setShouldShowClearButton(hasClearButton && !isDisabled && !isReadOnly && (value || defaultValue));
   }, [hasClearButton, isDisabled, isReadOnly, value, defaultValue]);
-
-  const refInput = React.useRef();
-  const refBest = ref || refInput;
 
   const handleChange = event => {
     if (!hasClearButton || isDisabled || isReadOnly) return;
@@ -52,7 +52,7 @@ const Input = React.forwardRef((props, ref) => {
 
   const inputClearHandler = () => {
     if (!isControlled) {
-      if (refBest.current) refBest.current.value = "";
+      if (refInput.current) refInput.current.value = "";
       setShouldShowClearButton(false);
     }
     onChange(null);
@@ -64,56 +64,50 @@ const Input = React.forwardRef((props, ref) => {
     const iconSize = size === types.LARGE ? types.MEDIUM : types.SMALL;
 
     return (
-      <Button.Icon
+      <sc.ClearButton
         a11yText={i18n.t("input.clear_button.aria_label")}
-        className="form-input__clear"
+        data-pka-anchor="input.clear-button"
+        isSemantic={false}
         kind={types.MINOR}
-        size={iconSize}
         onClick={inputClearHandler}
+        size={iconSize}
       >
         {clearIcon || <TimesCircleIcon />}
-      </Button.Icon>
+      </sc.ClearButton>
     );
   };
 
-  const renderIcon = () => {
-    if (!props.icon) return null;
-    return <span className="form-input__icon">{props.icon}</span>;
-  };
-
   const styleProps = {
+    hasError,
+    hasIcon: Boolean(icon),
+    isDisabled,
+    isReadOnly,
+    shouldShowClearButton,
     size,
-    hasClearButton,
   };
-
-  const rootClasses = classNames(
-    "form-input",
-    `form-input--${size}`,
-    { "form-input--has-icon": icon },
-    { "form-input--is-disabled": isDisabled },
-    { "form-input--is-readonly": isReadOnly },
-    { "form-input--has-error": hasError },
-    className
-  );
 
   return (
-    <sc.Input {...styleProps} className={rootClasses}>
-      {renderIcon(a11yText)}
-      <input
+    <sc.InputContainer data-pka-anchor="input.container" {...styleProps} {...containerProps}>
+      {icon ? (
+        <sc.Icon data-pka-anchor="input.icon" {...styleProps}>
+          {icon}
+        </sc.Icon>
+      ) : null}
+      <sc.Input
         aria-invalid={hasError}
         aria-label={a11yText}
         data-pka-anchor="input"
         disabled={isDisabled}
         readOnly={isReadOnly}
-        {...moreProps}
-        className="form-input__input"
         value={isControlled ? value : undefined}
         defaultValue={!isControlled ? defaultValue : undefined}
         onChange={callAll(handleChange, onChange)}
-        ref={ref || refInput}
+        ref={refInput}
+        {...styleProps}
+        {...moreProps}
       />
       {renderClear()}
-    </sc.Input>
+    </sc.InputContainer>
   );
 });
 
@@ -122,12 +116,12 @@ Input.types = {
   type: types.inputValidTypes,
 };
 
-const propTypes = {
+Input.propTypes = {
   /** Provides a non-visible label for this input for assistive technologies. */
   a11yText: PropTypes.string,
 
-  /** Sets the class for the input. */
-  className: PropTypes.string,
+  /** Optional Input.Container to collect props for root DOM element.  */
+  children: PropTypes.node,
 
   /** Custom icon for the clear action in the input. */
   clearIcon: PropTypes.node,
@@ -150,12 +144,7 @@ const propTypes = {
   /** If true it makes the input read only. */
   isReadOnly: PropTypes.bool,
 
-  /**
-   * Callback to be executed when the input value is changed. Receives the
-   * onChange event as an argument, except when the clear button is clicked,
-   * then the argument is null. Needed when value prop is provided (component
-   * is controlled).
-   */
+  /** Callback to be executed when the input value is changed. Receives the onChange event as an argument, except when the clear button is clicked, then the argument is null. Required when value prop is provided (component is controlled). */
   onChange: PropTypes.func,
 
   /** Changes the size of the input. */
@@ -164,7 +153,6 @@ const propTypes = {
   /** Allows user to specify the type of input. */
   type: PropTypes.oneOf([
     Input.types.type.EMAIL,
-    Input.types.type.NUMBER,
     Input.types.type.PASSWORD,
     Input.types.type.SEARCH,
     Input.types.type.TELEPHONE,
@@ -176,10 +164,10 @@ const propTypes = {
   value: PropTypes.string,
 };
 
-const defaultProps = {
+Input.defaultProps = {
   a11yText: null,
+  children: null,
   clearIcon: null,
-  className: null,
   defaultValue: null,
   hasClearButton: false,
   hasError: false,
@@ -193,7 +181,7 @@ const defaultProps = {
 };
 
 Input.displayName = "Input";
-Input.propTypes = propTypes;
-Input.defaultProps = defaultProps;
+
+Input.Container = InputPropsCollector;
 
 export default Input;

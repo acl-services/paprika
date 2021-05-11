@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0
+
+### Minor Changes
+
+- 5d0db59: Addding Pencil icon into the package
+
 ## 1.1.0-next.0
 
 ### Minor Changes

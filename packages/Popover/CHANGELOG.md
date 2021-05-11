@@ -1,5 +1,30 @@
 # Changelog
 
+## 1.2.2-next.0
+
+### Patch Changes
+
+- 14bd5f5: ### Fixed
+
+  - Ensure `<Popover.Content>` receives focus after opening so its `onBlur` event will cause it to close.
+  - Ensure proper `tab` focus order when `<Popover.Content>` has no focussable elements.
+
+  Author: [@mikrotron](https://github.com/mikrotron)
+
+## 1.2.1
+
+### Patch Changes
+
+- Updated dependencies [9ad9c79]
+  - @paprika/helpers@2.1.2
+
+## 1.2.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [9ad9c79]
+  - @paprika/helpers@2.1.2-next.0
+
 ## 1.2.0
 
 ### Minor Changes

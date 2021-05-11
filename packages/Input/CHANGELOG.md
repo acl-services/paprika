@@ -1,5 +1,44 @@
 # Changelog
 
+## 4.0.0-next.0
+
+### Major Changes
+
+- 45d341f: ### Added
+
+  - Added an imperative `focus()` method.
+  - Added a props collector component, `<Input.Container>`, to apply attributes to root `<div>` element.
+
+  ### Removed
+
+  - Removed `className` prop.
+  - Removed all classNames from DOM elements.
+
+  ### Migration Guide
+
+  - If a custom class name is required on the root element, it can be added like `<Input><Input.Container className="custom"></Input>`.
+  - If classNames were used to target the `<input>`, they will need to be udpated to use attributes like `data-pka-anchor`, `aria-invalid`, etc.
+
+  Author: [@mikrotron](https://github.com/mikrotron)
+
+## 3.0.1
+
+### Patch Changes
+
+- Updated dependencies [5d0db59]
+- Updated dependencies [9ad9c79]
+  - @paprika/icon@1.1.0
+  - @paprika/helpers@2.1.2
+  - @paprika/button@1.0.9
+
+## 3.0.1-next.1
+
+### Patch Changes
+
+- Updated dependencies [9ad9c79]
+  - @paprika/helpers@2.1.2-next.0
+  - @paprika/button@1.0.9-next.1
+
 ## 3.0.1-next.0
 
 ### Patch Changes

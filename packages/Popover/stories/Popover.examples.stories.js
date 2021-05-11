@@ -4,6 +4,7 @@ import ExampleStory from "storybook/components/ExampleStory";
 import { exampleStoryParameters } from "storybook/assets/storyParameters";
 import ButtonTriggerExample from "./examples/ButtonTrigger";
 import TooltipExample from "./examples/Tooltip";
+import MultipleExample from "./examples/Multiple";
 import ShouldKeepFocusExample from "./examples/ShouldKeepFocus";
 import StateValueExample from "./examples/StateValue";
 import PositioningElementExample from "./examples/PositioningElement";
@@ -33,6 +34,16 @@ export const TooltipStory = () => (
 );
 TooltipStory.story = {
   name: "Tooltip",
+  parameters: exampleStoryParameters,
+};
+
+export const MultipleStory = () => (
+  <ExampleStory storyName="Multiple Popovers" component="Popover" fileName="sandbox/Multiple.js">
+    <MultipleExample />
+  </ExampleStory>
+);
+MultipleStory.story = {
+  name: "Multiple Popovers",
   parameters: exampleStoryParameters,
 };
 
