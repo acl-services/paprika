@@ -5,6 +5,12 @@ import * as constants from "@paprika/constants/lib/Constants";
 import * as sc from "./Select.styles";
 
 const Select = React.forwardRef((props, ref) => {
+  const { a11yText, children, hasError, isDisabled, isReadOnly, size, placeholder, value, ...moreProps } = props;
+
+  if (a11yText || placeholder) {
+    moreProps["aria-label"] = a11yText || placeholder;
+  }
+
   const renderPlaceholder = () => {
     const { placeholder } = props;
     if (!placeholder) return null;
@@ -15,31 +21,13 @@ const Select = React.forwardRef((props, ref) => {
     );
   };
 
-  const {
-    a11yText,
-    className,
-    children,
-    hasError,
-    isDisabled,
-    isReadOnly,
-    size,
-    placeholder,
-    value,
-    ...moreProps
-  } = props;
-
-  if (a11yText || placeholder) {
-    moreProps["aria-label"] = a11yText || placeholder;
-  }
-
   const rootClasses = classNames(
     "form-select",
     `form-select--${size}`,
     { "form-select--placeholder": !value && placeholder },
     { "form-select--is-disabled": isDisabled },
     { "form-select--is-readonly": isReadOnly },
-    { "form-select--has-error": hasError },
-    className
+    { "form-select--has-error": hasError }
   );
 
   return (
@@ -63,32 +51,43 @@ Select.types = {
   size: constants.defaultSize,
 };
 
-const propTypes = {
+Select.propTypes = {
+  /** Provides a non-visible label for this select element for assistive technologies. */
   a11yText: PropTypes.string,
-  className: PropTypes.string,
+
+  /** List of options as standard option elements. */
   children: PropTypes.node,
+
+  /** If true displays a red border around select element to indicate error. */
   hasError: PropTypes.bool,
+
+  /** If true it makes the select element disabled. */
   isDisabled: PropTypes.bool,
+
+  /** If true it makes the select element read only. */
   isReadOnly: PropTypes.bool,
+
+  /** Display value for a disabled first option with an empty string value. */
   placeholder: PropTypes.string,
+
+  /** Specifies the visual size of the select element. */
   size: PropTypes.oneOf([Select.types.size.SMALL, Select.types.size.MEDIUM, Select.types.size.LARGE]),
+
+  /** The selected value for the select element. */
   value: PropTypes.string,
 };
 
-const defaultProps = {
+Select.defaultProps = {
   a11yText: null,
-  className: null,
   children: null,
   hasError: false,
   isDisabled: false,
   isReadOnly: false,
   placeholder: null,
   size: Select.types.size.MEDIUM,
-  value: "",
+  value: undefined,
 };
 
 Select.displayName = "Select";
-Select.propTypes = propTypes;
-Select.defaultProps = defaultProps;
 
 export default Select;

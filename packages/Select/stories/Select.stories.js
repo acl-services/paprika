@@ -14,6 +14,7 @@ storiesOf(storyName, module)
   .add("Showcase", ShowcaseStory);
 
 storiesOf(`${storyName}/Examples`, module)
+  .add("Basic", () => <Select.Basic />)
   .add("With Selected Option", () => <Select.WithSelectedOption />)
   .add("With isDisabled", () => <Select.DisableSelect />)
   .add("With isReadOnly", () => <Select.ReadOnlySelect />)
