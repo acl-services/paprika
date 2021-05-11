@@ -1,5 +1,14 @@
 <!-- content -->
 
+## 1.0.17-next.0
+
+### Patch Changes
+
+- Updated dependencies [14bd5f5]
+  - @paprika/popover@1.2.2-next.0
+  - @paprika/data-field@1.0.14-next.0
+  - @paprika/overflow-menu@1.0.17-next.0
+
 ## 1.0.16
 
 ### Patch Changes

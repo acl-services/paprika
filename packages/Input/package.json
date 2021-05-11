@@ -1,6 +1,6 @@
 {
   "name": "@paprika/input",
-  "version": "3.0.1",
+  "version": "4.0.0-next.0",
   "description": "The Input component is a standard text input with some enhancements.",
   "author": "@paprika",
   "license": "MIT",

@@ -1,6 +1,6 @@
 {
   "name": "@paprika/side-navigation",
-  "version": "2.0.0",
+  "version": "2.0.1-next.0",
   "description": "Side Navigation component",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -19,7 +19,7 @@
     "@paprika/button": "^1.0.9",
     "@paprika/helpers": "^2.1.2",
     "@paprika/icon": "^1.1.0",
-    "@paprika/popover": "^1.2.1",
+    "@paprika/popover": "^1.2.2-next.0",
     "@paprika/raw-button": "^1.0.3",
     "@paprika/sidepanel": "^0.4.22-alpha.4",
     "@paprika/stylers": "^1.0.0",

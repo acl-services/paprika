@@ -72,5 +72,9 @@
     "@paprika/helpers": "2.1.2",
     "@paprika/seducer": "2.0.1"
   },
-  "changesets": []
+  "changesets": [
+    "beige-kangaroos-own",
+    "curly-ghosts-pull",
+    "moody-snails-live"
+  ]
 }
