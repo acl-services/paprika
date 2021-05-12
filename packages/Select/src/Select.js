@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { callAll } from "@paprika/helpers";
+import { callAll, extractChildrenProps } from "@paprika/helpers";
 import * as constants from "@paprika/constants/lib/Constants";
+import SelectPropsCollector from "./SelectPropsCollector";
 import * as sc from "./Select.styles";
 
 const Select = React.forwardRef((props, ref) => {
@@ -20,6 +21,7 @@ const Select = React.forwardRef((props, ref) => {
   } = props;
 
   const isControlled = value !== undefined;
+  const containerProps = extractChildrenProps(children, SelectPropsCollector);
   const [hasNoValue, setHasNoValue] = React.useState(isControlled ? !value : !defaultValue);
 
   const _refSelect = React.useRef();
@@ -53,7 +55,7 @@ const Select = React.forwardRef((props, ref) => {
   };
 
   return (
-    <sc.SelectContainer data-pka-anchor="select.container">
+    <sc.SelectContainer data-pka-anchor="select.container" {...containerProps}>
       <sc.Select
         aria-invalid={hasError}
         aria-readonly={isReadOnly}
@@ -125,5 +127,7 @@ Select.defaultProps = {
 };
 
 Select.displayName = "Select";
+
+Select.Container = SelectPropsCollector;
 
 export default Select;
