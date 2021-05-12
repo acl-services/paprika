@@ -1,5 +1,4 @@
 import React from "react";
-import classNames from "classnames";
 import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
 import * as sc from "./Select.styles";
@@ -7,43 +6,42 @@ import * as sc from "./Select.styles";
 const Select = React.forwardRef((props, ref) => {
   const { a11yText, children, hasError, isDisabled, isReadOnly, size, placeholder, value, ...moreProps } = props;
 
-  if (a11yText || placeholder) {
-    moreProps["aria-label"] = a11yText || placeholder;
-  }
-
   const renderPlaceholder = () => {
     const { placeholder } = props;
     if (!placeholder) return null;
     return (
-      <option disabled value="" key="placeholder">
+      <option disabled value="" key="placeholder" data-pka-anchor="select.placeholder">
         {placeholder}
       </option>
     );
   };
 
-  const rootClasses = classNames(
-    "form-select",
-    `form-select--${size}`,
-    { "form-select--placeholder": !value && placeholder },
-    { "form-select--is-disabled": isDisabled },
-    { "form-select--is-readonly": isReadOnly },
-    { "form-select--has-error": hasError }
-  );
+  const styleProps = {
+    hasError,
+    isDisabled,
+    isPlaceHolderSelected: value === "" && !!placeholder,
+    isReadOnly,
+    size,
+  };
 
   return (
-    <sc.Select className={rootClasses} data-pka-anchor="select">
-      <select
+    <sc.SelectContainer data-pka-anchor="select.container">
+      <sc.Select
         aria-invalid={hasError}
-        className="form-select__select"
+        aria-readonly={isReadOnly}
+        aria-label={a11yText}
+        data-pka-anchor="select"
         disabled={isDisabled || isReadOnly}
         ref={ref}
         value={value}
+        {...styleProps}
         {...moreProps}
       >
         {renderPlaceholder()}
         {children}
-      </select>
-    </sc.Select>
+      </sc.Select>
+      <sc.CaretIcon data-pka-anchor="select.arrow-icon" isDisabled={isDisabled || isReadOnly} />
+    </sc.SelectContainer>
   );
 });
 
