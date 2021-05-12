@@ -1,27 +1,55 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { callAll } from "@paprika/helpers";
 import * as constants from "@paprika/constants/lib/Constants";
 import * as sc from "./Select.styles";
 
 const Select = React.forwardRef((props, ref) => {
-  const { a11yText, children, hasError, isDisabled, isReadOnly, size, placeholder, value, ...moreProps } = props;
+  const {
+    a11yText,
+    children,
+    defaultValue,
+    hasError,
+    isDisabled,
+    isReadOnly,
+    onChange,
+    placeholder,
+    size,
+    value,
+    ...moreProps
+  } = props;
 
-  const renderPlaceholder = () => {
-    const { placeholder } = props;
-    if (!placeholder) return null;
-    return (
-      <option disabled value="" key="placeholder" data-pka-anchor="select.placeholder">
-        {placeholder}
-      </option>
-    );
-  };
+  const isControlled = value !== undefined;
+  const [hasNoValue, setHasNoValue] = React.useState(isControlled ? !value : !defaultValue);
+
+  const _refSelect = React.useRef();
+  const refSelect = ref || _refSelect;
 
   const styleProps = {
     hasError,
     isDisabled,
-    isPlaceHolderSelected: value === "" && !!placeholder,
+    isPlaceHolderSelected: !!placeholder && hasNoValue,
     isReadOnly,
     size,
+  };
+
+  function handleChange(event) {
+    const newValue = event.target.value;
+    if (hasNoValue && newValue !== "") {
+      setHasNoValue(false);
+    }
+    if (!hasNoValue && newValue === "") {
+      setHasNoValue(true);
+    }
+  }
+
+  const renderPlaceholder = () => {
+    if (!placeholder) return null;
+    return (
+      <option disabled={isControlled ? true : undefined} value="" data-pka-anchor="select.placeholder">
+        {placeholder}
+      </option>
+    );
   };
 
   return (
@@ -31,8 +59,10 @@ const Select = React.forwardRef((props, ref) => {
         aria-readonly={isReadOnly}
         aria-label={a11yText}
         data-pka-anchor="select"
+        defaultValue={defaultValue}
         disabled={isDisabled || isReadOnly}
-        ref={ref}
+        onChange={callAll(handleChange, onChange)}
+        ref={refSelect}
         value={value}
         {...styleProps}
         {...moreProps}
@@ -56,6 +86,9 @@ Select.propTypes = {
   /** List of options as standard option elements. */
   children: PropTypes.node,
 
+  /** Sets the default selected value for an uncontrolled component. */
+  defaultValue: PropTypes.string,
+
   /** If true displays a red border around select element to indicate error. */
   hasError: PropTypes.bool,
 
@@ -64,6 +97,9 @@ Select.propTypes = {
 
   /** If true it makes the select element read only. */
   isReadOnly: PropTypes.bool,
+
+  /** Callback to be executed when the selected value is changed. Receives the onChange event as an argument.  Required when value prop is provided (component is controlled). */
+  onChange: PropTypes.func,
 
   /** Display value for a disabled first option with an empty string value. */
   placeholder: PropTypes.string,
@@ -78,9 +114,11 @@ Select.propTypes = {
 Select.defaultProps = {
   a11yText: null,
   children: null,
+  defaultValue: null,
   hasError: false,
   isDisabled: false,
   isReadOnly: false,
+  onChange: () => {},
   placeholder: null,
   size: Select.types.size.MEDIUM,
   value: undefined,
