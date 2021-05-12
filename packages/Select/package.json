@@ -1,7 +1,7 @@
 {
   "name": "@paprika/select",
   "version": "1.0.7",
-  "description": "Select component allows users to select an item from a drop-down list",
+  "description": "The Select component is a standard select drop-down form input.",
   "author": "@paprika",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -21,7 +21,6 @@
     "@paprika/icon": "^v1.1.0",
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",
-    "classnames": "^2.2.6",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
