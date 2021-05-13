@@ -72,7 +72,7 @@ export const Select = styled.select(
     line-height: 1;
     margin: 0;
     outline: none;
-    padding: 0 ${stylers.spacer(3)} 0 ${stylers.spacer(1)};
+    padding: 0 ${stylers.spacer(4)} 0 ${stylers.spacer(1)};
     width: 100%;
 
     ${sizeStyles[size]}
