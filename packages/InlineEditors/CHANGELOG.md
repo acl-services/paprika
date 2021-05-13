@@ -1,5 +1,12 @@
 # @paprika/inline-editors
 
+## 0.2.1-next.1
+
+### Patch Changes
+
+- Updated dependencies [18a908e]
+  - @paprika/table@1.2.0-next.1
+
 ## 0.2.1-next.0
 
 ### Patch Changes
