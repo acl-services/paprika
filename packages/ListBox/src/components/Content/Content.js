@@ -53,12 +53,13 @@ export default function Content(props) {
         {...getDOMAttributesForListBox({ idListBox, refLabel, ...state })}
         data-pka-anchor="list-box-content-inline" // TODO: rename "list-box.content-inline"
         onKeyDown={handleKeyDownKeyboardKeys({ providedProps, state, dispatch, onChangeContext })}
-        onKeyUp={handleKeyUpKeyboardKeys({ providedProps, state, dispatch, onChangeContext })}
         ref={refListBoxContainer}
         role="listbox"
         tabIndex="0"
       >
-        {children}
+        {React.cloneElement(props.children, {
+          handleKeyUp: handleKeyUpKeyboardKeys({ providedProps, state, dispatch, onChangeContext }),
+        })}
       </sc.Content>
     );
   }
@@ -68,11 +69,12 @@ export default function Content(props) {
       {...getDOMAttributesForListBox({ idListBox, refLabel, ...state })}
       onBlur={handleBlur(state, dispatch, onCancelFooter)}
       onKeyDown={handleKeyDownKeyboardKeys({ providedProps, state, dispatch, onChangeContext })}
-      onKeyUp={handleKeyUpKeyboardKeys({ providedProps, state, dispatch, onChangeContext })}
       ref={refListBoxContainer}
       role="listbox"
     >
-      {props.children}
+      {React.cloneElement(props.children, {
+        handleKeyUp: handleKeyUpKeyboardKeys({ providedProps, state, dispatch, onChangeContext }),
+      })}
     </Popover.Content>
   );
 }

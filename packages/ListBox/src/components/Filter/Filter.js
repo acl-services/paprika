@@ -90,6 +90,7 @@ const Filter = React.forwardRef((props, ref) => {
       filter,
       hasSearchIcon,
       noResultsMessage,
+      handleKeyUp,
       ...moreProps
     } = props;
     if (renderFilter) {
@@ -149,6 +150,8 @@ Filter.propTypes = {
 
   /** Sets a value for filter */
   value: PropTypes.string,
+
+  handleKeyUp: PropTypes.func,
 };
 
 Filter.defaultProps = {
@@ -161,4 +164,5 @@ Filter.defaultProps = {
   noResultsMessage: null,
   renderFilter: null,
   value: null,
+  handleKeyUp: () => {},
 };

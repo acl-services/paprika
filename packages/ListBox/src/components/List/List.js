@@ -4,7 +4,7 @@ import useListBox from "../../useListBox";
 import * as sc from "./List.styles";
 
 export default function List(props) {
-  const { children, height, hasOptions } = props;
+  const { children, height, hasOptions, handleKeyUp } = props;
   const [{ noResultsFound, refListBox }] = useListBox();
 
   return (
@@ -14,11 +14,15 @@ export default function List(props) {
       height={height}
       noResultsFound={noResultsFound}
       ref={refListBox}
+      onKeyUp={handleKeyUp}
     >
       {children}
     </sc.List>
   );
 }
+List.defaultProps = {
+  handleKeyUp: () => {},
+};
 
 List.propTypes = {
   /** Body content of the list. */
@@ -28,4 +32,6 @@ List.propTypes = {
 
   /** Sets the height for the list */
   height: PropTypes.number.isRequired,
+
+  handleKeyUp: PropTypes.func,
 };

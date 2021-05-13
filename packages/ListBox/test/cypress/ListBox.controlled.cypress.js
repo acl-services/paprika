@@ -5,8 +5,6 @@ import { toggleDropdown } from "../helpers/toggleHelpers";
 const storyPrefix = `${getStoryUrlPrefix("ListBox")}`;
 const typingDelay = { delay: 250 };
 
-// TODO: should this go in ally or stay in separate controlled tests
-
 describe("Controlled ListBox single select", () => {
   beforeEach(() => {
     cy.visitStorybook(`${storyPrefix}-backyard-sandbox--list-box-directory-story`);
@@ -44,13 +42,16 @@ describe("Controlled ListBox multi select filter", () => {
   });
 
   it("should be be able to select multiple entries using keyboard only", () => {
-    // don't know if there is a better way to do it sequentially
     cy.get(selectors.filterInput)
+      .should("have.focus")
       .type("{downarrow}", typingDelay)
+      .focused()
       .type("{enter}")
-      .type("{downarrow}{downarrow}", typingDelay)
+      .type("{downarrow}", typingDelay)
+      .focused()
       .type("{enter}")
-      .type("{downarrow}{downarrow}{downarrow}", typingDelay)
+      .type("{downarrow}", typingDelay)
+      .focused()
       .type("{enter}");
 
     cy.get("body").click({ force: true });
