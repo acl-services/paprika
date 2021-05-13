@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.0-next.1
+
+### Minor Changes
+
+- 18a908e: ### Added
+
+  - Added support for cellProps prop on ColumnDefinition allowing to control props on top of each cell, styles, class, anchors, etc.
+
 ## 1.1.3-next.0
 
 ### Patch Changes

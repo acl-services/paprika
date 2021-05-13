@@ -66,7 +66,19 @@ const Table = React.forwardRef((props, ref) => {
               {ColumnDefinitions.map((columnDefinition, columnIndex) => {
                 const position = { "data-row-index": rowIndex, "data-column-index": columnIndex };
 
-                const { cell, header, width, sticky, ...moreColumnProps } = columnDefinition.props;
+                const {
+                  cell,
+                  header,
+                  width,
+                  sticky,
+                  cellProps: _cellProps,
+                  ...moreColumnProps
+                } = columnDefinition.props;
+
+                const cellProps =
+                  typeof _cellProps === "function"
+                    ? _cellProps({ ...columnDefinition.props, row, rowIndex, columnIndex })
+                    : {};
 
                 if (typeof cell === "function")
                   return (
@@ -76,6 +88,7 @@ const Table = React.forwardRef((props, ref) => {
                       key={columnIndex}
                       width={width}
                       sticky={sticky}
+                      {...cellProps}
                       {...moreColumnProps}
                       {...position}
                     >
@@ -88,6 +101,7 @@ const Table = React.forwardRef((props, ref) => {
                       cellPropsResetCSS={cellPropsResetCSS}
                       borderType={borderType}
                       key={columnIndex}
+                      {...cellProps}
                       {...moreColumnProps}
                       {...position}
                     >
