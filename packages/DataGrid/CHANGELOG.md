@@ -1,5 +1,28 @@
 # Changelog
 
+## 1.0.10
+
+### Patch Changes
+
+- 00693b0: Prevent data grid from throwing error.
+- Updated dependencies [5d0db59]
+- Updated dependencies [9ad9c79]
+  - @paprika/icon@1.1.0
+  - @paprika/helpers@2.1.2
+  - @paprika/button@1.0.9
+  - @paprika/checkbox@1.0.9
+  - @paprika/spinner@1.0.7
+
+## 1.0.10-next.2
+
+### Patch Changes
+
+- Updated dependencies [9ad9c79]
+  - @paprika/helpers@2.1.2-next.0
+  - @paprika/button@1.0.9-next.1
+  - @paprika/checkbox@1.0.9-next.1
+  - @paprika/spinner@1.0.7-next.0
+
 ## 1.0.10-next.1
 
 ### Patch Changes

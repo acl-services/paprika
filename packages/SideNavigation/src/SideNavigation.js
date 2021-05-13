@@ -83,13 +83,12 @@ const propTypes = {
   children: PropTypes.node,
 
   /** Header text in the side panel. */
-  header: PropTypes.node,
+  header: PropTypes.node.isRequired,
 };
 
 const defaultProps = {
   a11yText: null,
   children: null,
-  header: null,
 };
 
 SideNavigation.displayName = "SideNavigation";

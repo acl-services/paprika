@@ -110,7 +110,28 @@ export function WithZebras() {
   );
 }
 
+export function WithCustomCellProps() {
+  return (
+    <bordersStyles.Container>
+      <bordersStyles.Gap>
+        <h4>Default value</h4>
+        <Table a11yText="" data={data} hasZebraStripes>
+          <Table.ColumnDefinition
+            cellProps={() => ({
+              style: { background: "purple", color: "white" },
+            })}
+            header="Name"
+            cell="name"
+          />
+          <Table.ColumnDefinition header="LastName" cell="lastName" />
+        </Table>
+      </bordersStyles.Gap>
+    </bordersStyles.Container>
+  );
+}
+
 storiesOf(`${storyName}`, module)
   .add("Basic", () => <Basic />)
   .add("Has Zebra stripes", () => <WithZebras />)
-  .add("Border types", () => <Borders />);
+  .add("Border types", () => <Borders />)
+  .add("Cell props", () => <WithCustomCellProps />);

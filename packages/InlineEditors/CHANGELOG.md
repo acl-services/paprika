@@ -1,5 +1,61 @@
 # @paprika/inline-editors
 
+## 0.2.1-next.1
+
+### Patch Changes
+
+- Updated dependencies [18a908e]
+  - @paprika/table@1.2.0-next.1
+
+## 0.2.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [45d341f]
+- Updated dependencies [45d341f]
+- Updated dependencies [14bd5f5]
+  - @paprika/list-box@3.0.4-next.0
+  - @paprika/input@4.0.0-next.0
+  - @paprika/popover@1.2.2-next.0
+  - @paprika/table@1.1.3-next.0
+
+## 0.2.0
+
+### Minor Changes
+
+- 5d0db59: Adding support for managing cell status statusType.IDLE statusType.ERROR statusType.LOADING statusType.SUCCESS
+
+### Patch Changes
+
+- Updated dependencies [5d0db59]
+- Updated dependencies [33f39a7]
+- Updated dependencies [9ad9c79]
+  - @paprika/icon@1.1.0
+  - @paprika/list-box@3.0.3
+  - @paprika/helpers@2.1.2
+  - @paprika/collapsible-text@1.0.10
+  - @paprika/input@3.0.1
+  - @paprika/popover@1.2.1
+  - @paprika/spinner@1.0.7
+  - @paprika/table@1.1.2
+  - @paprika/tag@0.0.3
+  - @paprika/textarea@2.0.1
+
+## 0.2.0-next.1
+
+### Patch Changes
+
+- Updated dependencies [33f39a7]
+- Updated dependencies [9ad9c79]
+  - @paprika/list-box@3.0.3-next.1
+  - @paprika/helpers@2.1.2-next.0
+  - @paprika/input@3.0.1-next.1
+  - @paprika/popover@1.2.1-next.0
+  - @paprika/spinner@1.0.7-next.0
+  - @paprika/table@1.1.2-next.1
+  - @paprika/tag@0.0.3-next.1
+  - @paprika/textarea@2.0.1-next.0
+
 ## 0.2.0-next.0
 
 ### Minor Changes

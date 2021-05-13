@@ -1,5 +1,48 @@
 # Changelog
 
+## 3.0.4-next.0
+
+### Patch Changes
+
+- 45d341f: ### Changed
+
+  - Adjusted styling of `<ListBox.Filter>` input.
+
+  Author: [@mikrotron](https://github.com/mikrotron)
+
+- Updated dependencies [45d341f]
+- Updated dependencies [14bd5f5]
+  - @paprika/input@4.0.0-next.0
+  - @paprika/popover@1.2.2-next.0
+
+## 3.0.3
+
+### Patch Changes
+
+- 33f39a7: Remove some keys from props so they dont get added to DOM, which causes a console warning.
+- 9ad9c79: Change PropTypes.instanceOf(Element) to PropTypes.node to fix SSR issue
+- Updated dependencies [5d0db59]
+- Updated dependencies [9ad9c79]
+  - @paprika/icon@1.1.0
+  - @paprika/helpers@2.1.2
+  - @paprika/button@1.0.9
+  - @paprika/input@3.0.1
+  - @paprika/popover@1.2.1
+  - @paprika/toast@1.1.1
+
+## 3.0.3-next.1
+
+### Patch Changes
+
+- 33f39a7: Remove some keys from props so they dont get added to DOM, which causes a console warning.
+- 9ad9c79: Change PropTypes.instanceOf(Element) to PropTypes.node to fix SSR issue
+- Updated dependencies [9ad9c79]
+  - @paprika/helpers@2.1.2-next.0
+  - @paprika/button@1.0.9-next.1
+  - @paprika/input@3.0.1-next.1
+  - @paprika/popover@1.2.1-next.0
+  - @paprika/toast@1.1.1-next.1
+
 ## 3.0.3-next.0
 
 ### Patch Changes

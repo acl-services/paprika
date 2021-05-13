@@ -1,5 +1,47 @@
 # Changelog
 
+## 1.1.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [14bd5f5]
+  - @paprika/popover@1.2.2-next.0
+  - @paprika/overflow-menu@1.0.17-next.0
+
+## 1.1.2
+
+### Patch Changes
+
+- b154295: update status tracker with new colours
+
+## 1.1.2-next.0
+
+### Patch Changes
+
+- b154295: update status tracker with new colours
+
+## 1.1.1
+
+### Patch Changes
+
+- Updated dependencies [5672dd9]
+- Updated dependencies [9ad9c79]
+  - @paprika/overflow-menu@1.0.16
+  - @paprika/helpers@2.1.2
+  - @paprika/button@1.0.9
+  - @paprika/popover@1.2.1
+
+## 1.1.1-next.1
+
+### Patch Changes
+
+- Updated dependencies [5672dd9]
+- Updated dependencies [9ad9c79]
+  - @paprika/overflow-menu@1.0.16-next.1
+  - @paprika/helpers@2.1.2-next.0
+  - @paprika/button@1.0.9-next.1
+  - @paprika/popover@1.2.1-next.0
+
 ## 1.1.1-next.0
 
 ### Patch Changes

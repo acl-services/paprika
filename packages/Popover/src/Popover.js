@@ -251,15 +251,18 @@ class Popover extends React.Component {
     if (event.key === "Escape" && this.isOpen() && this.$trigger) {
       event.stopPropagation();
       this.close();
-      if (this.$trigger) this.$trigger.focus();
+      this.$trigger.focus();
     } else if (event.key === "Tab" && this.isOpen() && this.$trigger) {
       const isFocusOnFirst = this.focusIsOnCertainElementInPopover("first") || document.activeElement === this.$content;
       const isFocusOnLast = this.focusIsOnCertainElementInPopover("last");
+      const isFocusOnOnly =
+        (document.activeElement === this.$content &&
+          this.$content.querySelectorAll(focusableElementSelector).length) === 0;
 
       if (event.shiftKey && isFocusOnFirst) {
         event.preventDefault();
         this.focusableElements[this.triggerFocusIndex].focus();
-      } else if (!event.shiftKey && isFocusOnLast) {
+      } else if (!event.shiftKey && (isFocusOnLast || isFocusOnOnly)) {
         event.preventDefault();
         this.focusableElements[this.triggerFocusIndex + 1].focus();
       }
@@ -284,7 +287,7 @@ class Popover extends React.Component {
     return false;
   };
 
-  getPopoverTriggerFocusIndex = () => {
+  setPopoverTriggerFocusIndex = () => {
     this.focusableElements.forEach((focusableElement, index) => {
       if (focusableElement === this.$trigger) {
         this.triggerFocusIndex = index;
@@ -293,11 +296,8 @@ class Popover extends React.Component {
   };
 
   handleTransitionEnd = event => {
-    // NOTE: do this should make more that only focus the content div? should as well
-    //       find the first focusable element like button, input, etc?
-    //       can focus automatically
-    if (!this.props.shouldKeepFocus && !this.props.isEager && this.isOpen() && event.propertyName === "visibility") {
-      this.getPopoverTriggerFocusIndex();
+    if (!this.props.shouldKeepFocus && !this.props.isEager && this.isOpen() && event.propertyName === "opacity") {
+      this.setPopoverTriggerFocusIndex();
       event.target.focus();
     }
   };
@@ -384,7 +384,6 @@ class Popover extends React.Component {
       }
 
       this.$content.addEventListener("transitionend", this.handleTransitionEnd, false);
-
       this.hasListeners = true;
     }
   }

@@ -4,7 +4,7 @@
 
 ## Description
 
-The Input component is an input that can be used controlled or un-controlled
+The Input component is a standard text input with some enhancements.
 
 ## Installation
 
@@ -22,59 +22,59 @@ npm install @paprika/input
 
 ### Input
 
-| Prop           | Type   | required | default  | Description                                                              |
-| -------------- | ------ | -------- | -------- | ------------------------------------------------------------------------ |
-| a11yText       | string | false    | null     | Provides a non-visible label for this input for assistive technologies.  |
-| className      | string | false    | null     | Sets the class for the input.                                            |
-| clearIcon      | node   | false    | null     | Custom icon for the clear action in the input.                           |
-| defaultValue   | string | false    | null     | Sets the default input value for an uncontrolled component.              |
-| hasClearButton | bool   | false    | false    | If true displays a clear button inside the input if it contains a value. |
-| hasError       | bool   | false    | false    | If true displays a red border around input to show error.                |
-| icon           | node   | false    | null     | Displays an icon inside the input.                                       |
-| isDisabled     | bool   | false    | false    | If true it makes the input disabled.                                     |
-| isReadOnly     | bool   | false    | false    | If true it makes the input read only.                                    |
-| onChange       | func   | false    | () => {} | Callback to be executed when the input value is changed. Receives the    |
-
-onChange event as an argument, except when the clear button is clicked,
-then the argument is null. Needed when value prop is provided (component
-is controlled).|
-|size|[ Input.types.size.SMALL, Input.types.size.MEDIUM, Input.types.size.LARGE]|false|Input.types.size.MEDIUM| Changes the size of the input.|
-|type|[ Input.types.type.EMAIL, Input.types.type.NUMBER, Input.types.type.PASSWORD, Input.types.type.SEARCH, Input.types.type.TELEPHONE, Input.types.type.TEXT, Input.types.type.URL]|false|Input.types.type.TEXT| Allows user to specify the type of input.|
-|value|string|false|undefined| The value inside of the input|
+| Prop           | Type                                                                                                                                                   | required | default                 | Description                                                                                                                                                                                                                              |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| a11yText       | string                                                                                                                                                 | false    | null                    | Provides a non-visible label for this input for assistive technologies.                                                                                                                                                                  |
+| children       | node                                                                                                                                                   | false    | null                    | Optional Input.Container to collect props for root DOM element.                                                                                                                                                                          |
+| clearIcon      | node                                                                                                                                                   | false    | null                    | Custom icon for the clear action in the input.                                                                                                                                                                                           |
+| defaultValue   | string                                                                                                                                                 | false    | null                    | Sets the default input value for an uncontrolled component.                                                                                                                                                                              |
+| hasClearButton | bool                                                                                                                                                   | false    | false                   | If true displays a clear button inside the input if it contains a value.                                                                                                                                                                 |
+| hasError       | bool                                                                                                                                                   | false    | false                   | If true displays a red border around input to show error.                                                                                                                                                                                |
+| icon           | node                                                                                                                                                   | false    | null                    | Displays an icon inside the input.                                                                                                                                                                                                       |
+| isDisabled     | bool                                                                                                                                                   | false    | false                   | If true it makes the input disabled.                                                                                                                                                                                                     |
+| isReadOnly     | bool                                                                                                                                                   | false    | false                   | If true it makes the input read only.                                                                                                                                                                                                    |
+| onChange       | func                                                                                                                                                   | false    | () => {}                | Callback to be executed when the input value is changed. Receives the onChange event as an argument, except when the clear button is clicked, then the argument is null. Required when value prop is provided (component is controlled). |
+| size           | [ Input.types.size.SMALL, Input.types.size.MEDIUM, Input.types.size.LARGE]                                                                             | false    | Input.types.size.MEDIUM | Changes the size of the input.                                                                                                                                                                                                           |
+| type           | [ Input.types.type.EMAIL, Input.types.type.PASSWORD, Input.types.type.SEARCH, Input.types.type.TELEPHONE, Input.types.type.TEXT, Input.types.type.URL] | false    | Input.types.type.TEXT   | Allows user to specify the type of input.                                                                                                                                                                                                |
+| value          | string                                                                                                                                                 | false    | undefined               | The value inside of the input                                                                                                                                                                                                            |
 
 <!-- end: Autogenerated - do not modify -->
 <!-- content -->
 
-### Usage
+### Input.Container
 
-The Input can be used as a controlled or an un-controlled component.
+All props and attributes are spread onto the root container `<div>` element.
+
+## Usage
+
+The `<Input>` can be used as a controlled or an uncontrolled component.
 
 To use it as controlled:
 
 ```js
 import Input from "@paprika/input";
 ...
-const [val, setVal] = React.useState("Hello world");
+const [value, setValue] = React.useState("default value");
 return (
   <Input
-    value={val}
-    onChange={e => {
-      setVal(e.target.value);
+    value={value}
+    onChange={event => {
+      setValue(event ? event.target.value : "");
     }}
   />;
 );
 ```
 
-To use it as an un-controlled component:
+To use it as an uncontrolled component:
 
 ```js
 import Input from "@paprika/input";
 ...
 return (
   <Input
-    defaultValue="Hello world"
-    onChange={e => {
-      console.log(`The new value is ${e.target.value}`);
+    defaultValue="default value"
+    onChange={event => {
+      console.log(`The new value is ${event.target.value}`);
     }}
   />
 );

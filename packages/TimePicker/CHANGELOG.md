@@ -1,5 +1,34 @@
 # Changelog
 
+## 1.0.14-next.0
+
+### Patch Changes
+
+- Updated dependencies [45d341f]
+- Updated dependencies [14bd5f5]
+  - @paprika/input@4.0.0-next.0
+  - @paprika/popover@1.2.2-next.0
+
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies [5d0db59]
+- Updated dependencies [9ad9c79]
+  - @paprika/icon@1.1.0
+  - @paprika/helpers@2.1.2
+  - @paprika/input@3.0.1
+  - @paprika/popover@1.2.1
+
+## 1.0.13-next.1
+
+### Patch Changes
+
+- Updated dependencies [9ad9c79]
+  - @paprika/helpers@2.1.2-next.0
+  - @paprika/input@3.0.1-next.1
+  - @paprika/popover@1.2.1-next.0
+
 ## 1.0.13-next.0
 
 ### Patch Changes

@@ -33,6 +33,8 @@ declare namespace Table {
     [x: string]: any;
     /** Each time a cell is renderer this prop will be call either to read a string value or to execute a cell function */
     cell: string | func;
+    /** Give you access to return an object (styles, className, data-qa, etc) to render on top of each <td /> element */
+    cellProps?: (...args: any[]) => any;
     /** Represent the header for the column can either be a string or a function */
     header: string | func;
     /** Determine if a column should behave as a sticky column or not, received a number representing the space between the left side and the column pixels

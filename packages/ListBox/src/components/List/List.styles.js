@@ -8,7 +8,7 @@ export const List = styled.ul(
     margin: 0;
     max-height: ${height}px;
     overflow: auto;
-    ${noResultsFound || !hasOptions ? "padding: 0;" : `padding: ${tokens.space};`}
+    ${noResultsFound || !hasOptions ? `padding: 0 ${tokens.space};` : `padding: ${tokens.space};`}
 
     &:focus {
       outline: none;

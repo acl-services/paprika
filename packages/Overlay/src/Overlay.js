@@ -11,7 +11,7 @@ const propTypes = {
   children: PropTypes.func,
 
   /** container of the Overlay element */
-  container: PropTypes.instanceOf(Element),
+  container: PropTypes.node,
 
   focusLockOptions: PropTypes.shape({
     // properties copy from https://github.com/theKashey/react-focus-lock/blob/dee9b4c625eba0ca183fbda89005a5d09053086f/src/Lock.js#L160
