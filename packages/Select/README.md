@@ -4,7 +4,7 @@
 
 ## Description
 
-The Select component is a standard select drop-down form input.
+The Select component is a styled select drop-down form input that can be used as a controlled or uncontrolled component.
 
 ## Installation
 
@@ -51,18 +51,15 @@ To use it as a controlled component:
 ```js
 import Select from "@paprika/select";
 ...
-const [value, setValue] = React.useState("default value");
+const [value, setValue] = React.useState("Coke");
 ...
-return (
-  <Select
-    value={value}
-    onChange={event => setValue(event.target.value)}
-  >
-    <option value="Coke">Coke</option>
-    <option value="Pepsi">Pepsi</option>
-  </Select>
-
-);
+<Select
+  value={value}
+  onChange={event => setValue(event.target.value)}
+>
+  <option value="Coke">Coke</option>
+  <option value="Pepsi">Pepsi</option>
+</Select>
 ```
 
 To use it as an uncontrolled component:
@@ -70,19 +67,15 @@ To use it as an uncontrolled component:
 ```js
 import Select from "@paprika/select";
 ...
-return (
-  <Select
-    defaultValue="Coke"
-    onChange={event => {
-      console.log(`The new value is ${event.target.value}`);
-    }}
-  >
-    <option value="Coke">Coke</option>
-    <option value="Pepsi">Pepsi</option>
-  </Select>
-
-);
+<Select defaultValue="Coke">
+  <option value="Coke">Coke</option>
+  <option value="Pepsi">Pepsi</option>
+</Select>
 ```
+
+To access the value of an uncontrolled component, you can pass a handler function for the `onChange` prop that will have the `event` as an argument. You can use the `event.target.value` as needed.
+
+Alternatively, you can include a `ref` on the component and access `ref.current.value` at any time.
 
 <!-- eoContent -->
 

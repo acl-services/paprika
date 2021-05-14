@@ -1,25 +1,39 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
-import A11yStory from "./examples/test/A11y";
-import ScreenerStory from "./examples/test/Screener";
-import ShowcaseStory from "./examples/Showcase";
-import * as Select from "./examples/Basic";
+import { showcaseStoryParameters, variationsStoryParameters } from "storybook/assets/storyParameters";
+import { SelectStory } from "./Select.stories.styles";
+import Showcase from "./examples/Showcase";
+import Variations from "./examples/Variations";
 
 const storyName = getStoryName("Select");
 
-storiesOf(storyName, module)
-  .addDecorator(withKnobs)
-  .add("Showcase", ShowcaseStory);
+export default {
+  title: storyName,
+};
 
-storiesOf(`${storyName}/Examples`, module)
-  .add("Basic", () => <Select.Basic />)
-  .add("With Selected Option", () => <Select.WithSelectedOption />)
-  .add("With isDisabled", () => <Select.DisableSelect />)
-  .add("With isReadOnly", () => <Select.ReadOnlySelect />)
-  .add("With hasError", () => <Select.HasErrorSelect />);
+export const showcase = () => (
+  <SelectStory storyName="Select" tagline={SelectStory.defaultTaglines.showcase}>
+    <Showcase />
+  </SelectStory>
+);
+showcase.story = {
+  name: "Showcase",
+  decorators: [withKnobs],
+  parameters: showcaseStoryParameters,
+};
 
-storiesOf(`${storyName}/Backyard/Tests`, module)
-  .add("Screener", () => <ScreenerStory />)
-  .add("Accessibility", () => <A11yStory />);
+export const variations = () => (
+  <SelectStory
+    storyName="Select"
+    tagline={SelectStory.defaultTaglines.variations}
+    component="Select"
+    fileName="examples/Variations.js"
+  >
+    <Variations />
+  </SelectStory>
+);
+variations.story = {
+  name: "Variations",
+  parameters: variationsStoryParameters,
+};

@@ -1,7 +1,7 @@
 {
   "name": "@paprika/select",
   "version": "1.0.7",
-  "description": "The Select component is a standard select drop-down form input.",
+  "description": "The Select component is a styled select drop-down form input that can be used as a controlled or uncontrolled component.",
   "author": "@paprika",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
