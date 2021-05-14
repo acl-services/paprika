@@ -54,7 +54,11 @@ const Select = React.forwardRef((props, ref) => {
     );
   };
 
-  const bestDefaultValue = defaultValue === null && !!placeholder ? "" : defaultValue;
+  function getDefaultValue() {
+    if (isControlled) return undefined;
+    if (defaultValue === null && !!placeholder) return "";
+    return defaultValue;
+  }
 
   return (
     <sc.SelectContainer data-pka-anchor="select.container" {...containerProps}>
@@ -63,7 +67,7 @@ const Select = React.forwardRef((props, ref) => {
         aria-readonly={isReadOnly}
         aria-label={a11yText}
         data-pka-anchor="select"
-        defaultValue={bestDefaultValue}
+        defaultValue={getDefaultValue()}
         disabled={isDisabled || isReadOnly}
         onChange={callAll(handleChange, onChange)}
         ref={refSelect}

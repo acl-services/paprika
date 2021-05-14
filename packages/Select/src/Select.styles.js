@@ -82,9 +82,8 @@ export const Select = styled.select(
     ${isReadOnly && stylers.readOnlyFormStyles}
 
     &:focus {
+      ${stylers.focusRing.bordered()}
       background-color: ${tokens.color.white};
-      border-color: ${tokens.highlight.active.noBorder.borderColor};
-      box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
     }
   `
 );
