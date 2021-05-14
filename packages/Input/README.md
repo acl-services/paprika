@@ -4,7 +4,7 @@
 
 ## Description
 
-The Input component is a standard text input with some enhancements.
+The Input component is a standard text input with some enhancements that can be used as a controlled or uncontrolled component.
 
 ## Installation
 
@@ -79,6 +79,10 @@ return (
   />
 );
 ```
+
+## Dependencies
+
+The `<L10n>` component is a required context provider when the `hasClearButton` prop is provided. It should wrap the `<Input>` (or your application) for localization of the clear button's ARIA label.
 
 <!-- eoContent -->
 
