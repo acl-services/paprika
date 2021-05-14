@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.14-next.1
+
+### Patch Changes
+
+- bd2bdaa: Fixed cursor changes when hovering over clock icon when the time picker is read only or disabled
+
 ## 1.0.14-next.0
 
 ### Patch Changes
