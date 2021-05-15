@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.11
+
+### Patch Changes
+
+- Updated dependencies [45d341f]
+- Updated dependencies [14bd5f5]
+  - @paprika/input@4.0.0
+  - @paprika/popover@1.2.2
+
 ## 1.1.11-next.0
 
 ### Patch Changes

@@ -1,5 +1,20 @@
 # Changelog
 
+## 3.0.4
+
+### Patch Changes
+
+- 45d341f: ### Changed
+
+  - Adjusted styling of `<ListBox.Filter>` input.
+
+  Author: [@mikrotron](https://github.com/mikrotron)
+
+- Updated dependencies [45d341f]
+- Updated dependencies [14bd5f5]
+  - @paprika/input@4.0.0
+  - @paprika/popover@1.2.2
+
 ## 3.0.4-next.0
 
 ### Patch Changes

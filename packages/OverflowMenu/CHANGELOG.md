@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.17
+
+### Patch Changes
+
+- Updated dependencies [14bd5f5]
+  - @paprika/popover@1.2.2
+  - @paprika/confirmation@1.1.2
+
 ## 1.0.17-next.0
 
 ### Patch Changes

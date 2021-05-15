@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.10
+
+### Patch Changes
+
+- Updated dependencies [14bd5f5]
+  - @paprika/popover@1.2.2
+
 ## 2.0.10-next.0
 
 ### Patch Changes
