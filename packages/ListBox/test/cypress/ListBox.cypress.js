@@ -66,6 +66,18 @@ describe("ListBox single select", () => {
       cy.get(selectors.trigger).should("contain", "Catwoman");
     });
 
+    it("should be able to type spaces to filter options to select one", () => {
+      cy.get(selectors.filterInput)
+        .focus()
+        .type("Freddy Krueger", typingDelay);
+      cy.get(selectors.popoverList)
+        .children()
+        .should("have.length", 1)
+        .contains(/Freddy Krueger/i)
+        .click();
+      cy.get(selectors.trigger).should("contain", "Freddy Krueger");
+    });
+
     it("should show all options after erasing filtered input", () => {
       cy.get(selectors.filterInput)
         .focus()

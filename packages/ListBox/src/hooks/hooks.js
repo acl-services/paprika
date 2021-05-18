@@ -12,7 +12,7 @@ function waitForPopoverAnimation(func) {
 export function useChildrenChange(children) {
   const [state, dispatch] = useListBox();
   React.useEffect(() => {
-    const { options } = getDataOptions(children);
+    const { options, optionsIndex } = getDataOptions(children);
 
     if (Object.keys(state.options).length === Object.keys(options).length) {
       const difference = Object.values(state.options).find(
@@ -26,7 +26,7 @@ export function useChildrenChange(children) {
 
     dispatch({
       type: useListBox.types.updateOptions,
-      payload: options,
+      payload: { options, optionsIndex },
     });
   }, [children, dispatch, state.hasFooter, state.options]);
 }
