@@ -1,5 +1,12 @@
 <!-- content -->
 
+## 1.0.14
+
+### Patch Changes
+
+- Updated dependencies [14bd5f5]
+  - @paprika/popover@1.2.2
+
 ## 1.0.14-next.0
 
 ### Patch Changes

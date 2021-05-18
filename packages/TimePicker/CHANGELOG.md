@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.0.14
+
+### Patch Changes
+
+- bd2bdaa: Fixed cursor changes when hovering over clock icon when the time picker is read only or disabled
+- Updated dependencies [45d341f]
+- Updated dependencies [14bd5f5]
+  - @paprika/input@4.0.0
+  - @paprika/popover@1.2.2
+
+## 1.0.14-next.1
+
+### Patch Changes
+
+- bd2bdaa: Fixed cursor changes when hovering over clock icon when the time picker is read only or disabled
+
 ## 1.0.14-next.0
 
 ### Patch Changes

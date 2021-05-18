@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.2.0
+
+### Minor Changes
+
+- 18a908e: ### Added
+
+  - Added support for cellProps prop on ColumnDefinition allowing to control props on top of each cell, styles, class, anchors, etc.
+
+### Patch Changes
+
+- @paprika/overflow-menu@1.0.17
+
 ## 1.2.0-next.1
 
 ### Minor Changes
