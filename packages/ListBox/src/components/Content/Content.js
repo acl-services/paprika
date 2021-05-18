@@ -57,7 +57,7 @@ export default function Content(props) {
         role="listbox"
         tabIndex="0"
       >
-        {props.children}
+        {children}
       </sc.Content>
     );
   }
@@ -70,7 +70,7 @@ export default function Content(props) {
       ref={refListBoxContainer}
       role="listbox"
     >
-      {props.children}
+      {children}
     </Popover.Content>
   );
 }
