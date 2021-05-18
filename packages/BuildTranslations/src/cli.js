@@ -16,8 +16,8 @@ function parseArgumentsIntoOptions(rawArgs) {
 
   return {
     sourcePath,
-    outputPath: args["--out-dir"] || sourcePath,
-    yamlFileExtension: args["--yaml-file-ext"] || "yml",
+    outputPath: args["--out-dir"],
+    yamlFileExtension: args["--yaml-file-ext"],
   };
 }
 

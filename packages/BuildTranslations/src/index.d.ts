@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 interface Options {
   sourcePath: string;
-  outputPath: string;
+  outputPath?: string;
   yamlFileExtension?: string;
 }
 

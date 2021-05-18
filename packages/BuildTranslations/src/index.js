@@ -20,7 +20,7 @@ const removeTranslationFiles = outputPath => {
   });
 };
 
-export default function buildTranslations({ sourcePath, outputPath, yamlFileExtension }) {
+export default function buildTranslations({ sourcePath, outputPath = sourcePath, yamlFileExtension = "yml" }) {
   console.log("🦁 Transfering L10n Locales");
   const isYamlFile = fileName => fileName.split(".")[1] === yamlFileExtension;
   const createTranslationFile = yamlFileName => {
