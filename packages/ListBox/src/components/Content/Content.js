@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Popover from "@paprika/popover";
 import { getDOMAttributesForListBox } from "../../helpers/DOMAttributes";
-import { handleKeyUpKeyboardKeys, handleKeyDownKeyboardKeys } from "../../helpers/handleKeyboardKeys";
+import { handleKeyDownKeyboardKeys } from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../useListBox";
 import { OnChangeContext } from "../../store/OnChangeProvider";
 import { PropsContext } from "../../store/PropsProvider";
@@ -57,9 +57,7 @@ export default function Content(props) {
         role="listbox"
         tabIndex="0"
       >
-        {React.cloneElement(props.children, {
-          handleKeyUp: handleKeyUpKeyboardKeys({ providedProps, state, dispatch, onChangeContext }),
-        })}
+        {props.children}
       </sc.Content>
     );
   }
@@ -72,9 +70,7 @@ export default function Content(props) {
       ref={refListBoxContainer}
       role="listbox"
     >
-      {React.cloneElement(props.children, {
-        handleKeyUp: handleKeyUpKeyboardKeys({ providedProps, state, dispatch, onChangeContext }),
-      })}
+      {props.children}
     </Popover.Content>
   );
 }

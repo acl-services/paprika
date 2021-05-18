@@ -5,7 +5,7 @@ import useListBox from "../../useListBox";
 import { PropsContext } from "../../store/PropsProvider";
 
 export default function Box(props) {
-  const { children, handleKeyUp, ...moreProps } = props;
+  const { children, ...moreProps } = props;
   const [{ triggerWidth }] = useListBox();
   const { isInline, isReadOnly, hasError } = React.useContext(PropsContext);
 
@@ -18,20 +18,14 @@ export default function Box(props) {
       isReadOnly={isReadOnly}
       triggerWidth={triggerWidth}
     >
-      {React.Children.map(children, child => (child ? React.cloneElement(child, { handleKeyUp }) : null))}
+      {children}
     </sc.Box>
   );
 }
 
 Box.displayName = "ListBox.Box";
 
-Box.defaultProps = {
-  handleKeyUp: () => {},
-};
-
 Box.propTypes = {
   /** Body content of the box. */
   children: PropTypes.node.isRequired,
-
-  handleKeyUp: PropTypes.func,
 };
