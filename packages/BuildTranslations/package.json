@@ -1,0 +1,26 @@
+{
+  "name": "@paprika/build-translations",
+  "version": "0.1.0",
+  "description": "An utility tool to convert translation yml files to js.",
+  "author": "@paprika",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "bin": {
+    "@paprika/build-translations": "lib/build-translations",
+    "build-translations": "lib/build-translations"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/BuildTranslations"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "arg": "^5.0.0",
+    "esm": "^3.2.25",
+    "js-yaml": "^3.13.1"
+  }
+}

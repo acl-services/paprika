@@ -22,7 +22,18 @@ const shell = require("shelljs");
 const { getStoryUrlPrefix } = require("../.storybook/storyTree");
 const parseFileToReactDoc = require("./parseFileToReactDoc");
 
-const skipPackages = ["helpers", "Stylers", "Tokens", "Guard", "Icon", "Overlay", "Select", "Calendar", "Constants"];
+const skipPackages = [
+  "helpers",
+  "Stylers",
+  "Tokens",
+  "Guard",
+  "Icon",
+  "Overlay",
+  "Select",
+  "Calendar",
+  "Constants",
+  "BuildTranslations",
+];
 
 const githubIssueBody = encodeURIComponent(`
 # Help wanted
