@@ -23,5 +23,8 @@ function parseArgumentsIntoOptions(rawArgs) {
 
 export async function cli(args) {
   const options = parseArgumentsIntoOptions(args);
+
+  console.log("🦁 Transfering L10n Locales");
   await buildTranslations(options);
+  console.log("🦁 locales have been processed");
 }

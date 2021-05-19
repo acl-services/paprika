@@ -11,16 +11,19 @@ Utility tool. Converting yml/yaml files to js files.
 ```
 # Using yarn:
 yarn global add @paprika/build-translations --dev
+build-translations <sourcePath> --out-dir <outPath> --yaml-file-ext yml
 # Or via npx:
 npx @paprika/build-translations <sourcePath> --out-dir <outPath> --yaml-file-ext yml
 ```
 
 #### Options
 
-| Option          | Required | Default              |
-| --------------- | -------- | -------------------- |
-| --out-dir       | false    | Same as <sourcePath> |
-| --yaml-file-ext | false    | `yml`                |
+`<sourcePath>` will be default to current path.
+
+| Option          | Required | Default                |
+| --------------- | -------- | ---------------------- |
+| --out-dir       | false    | Same as `<sourcePath>` |
+| --yaml-file-ext | false    | `yml`                  |
 
 ### with node
 
@@ -33,8 +36,9 @@ yarn add @paprika/build-translations --dev
 ```js
 import buildTranslations from "@paprika/build-translations";
 
+// default values are same with running from CLI
 buildTranslations({
-  sourcePath: "./src/locale", // required
+  sourcePath: "./src/locale",
   outputPath: "./src/locale-js",
   yamlFileExtension: "yaml",
 });

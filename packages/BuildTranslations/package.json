@@ -5,10 +5,7 @@
   "author": "@paprika",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "bin": {
-    "@paprika/build-translations": "lib/build-translations",
-    "build-translations": "lib/build-translations"
-  },
+  "bin": "lib/build-translations.js",
   "license": "MIT",
   "repository": {
     "type": "git",
