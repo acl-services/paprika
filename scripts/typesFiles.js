@@ -5,7 +5,7 @@ const shell = require("shelljs");
 const parseFileToReactDoc = require("./parseFileToReactDoc");
 
 const packagesProcessInTsc = ["Tokens", "Constants"];
-const skipPackages = ["Guard", "Icon", "Stylers", "helpers", "Calendar"];
+const skipPackages = ["Guard", "Icon", "Stylers", "helpers", "Calendar", "BuildTranslations"];
 
 const fileName = "index.d.ts";
 
