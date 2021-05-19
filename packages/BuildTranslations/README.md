@@ -43,3 +43,7 @@ buildTranslations({
   yamlFileExtension: "yaml",
 });
 ```
+
+## Notes
+
+There's no tests for this tool yet, we were going to add some, but it's unpossible to mock `process.cwd()` in jest, see [facebook/jest#5146](https://github.com/facebook/jest/issues/5146).
