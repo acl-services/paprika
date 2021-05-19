@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.0.5-next.0
+
+### Patch Changes
+
+- aaf5263: Fixed issues related to keyboard operations:
+
+  - fixed inability to press 'space' button when in filter search bar
+  - fixed inability to select option(s) using only keyboard (i.e. space or enter operation) for single/ multi controlled ListBox
+  - fixed issue when selecting options in multi listbox, then typing space in filter bar that causes the selection/de-selection of the previously selected option
+
 ## 3.0.4
 
 ### Patch Changes
