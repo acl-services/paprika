@@ -24,9 +24,6 @@ const Select = React.forwardRef((props, ref) => {
   const containerProps = extractChildrenProps(children, SelectPropsCollector);
   const [hasNoValue, setHasNoValue] = React.useState(isControlled ? !value : !defaultValue);
 
-  const _refSelect = React.useRef();
-  const refSelect = ref || _refSelect;
-
   const styleProps = {
     hasError,
     isDisabled,
@@ -70,7 +67,7 @@ const Select = React.forwardRef((props, ref) => {
         defaultValue={getDefaultValue()}
         disabled={isDisabled || isReadOnly}
         onChange={callAll(handleChange, onChange)}
-        ref={refSelect}
+        ref={ref}
         value={value}
         {...styleProps}
         {...moreProps}
