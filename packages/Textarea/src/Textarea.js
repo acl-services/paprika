@@ -1,8 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
 import { callAll } from "@paprika/helpers";
-// import { callAll, extractChildrenProps } from "@paprika/helpers";
 import * as constants from "@paprika/constants/lib/Constants";
 import * as sc from "./Textarea.styles";
 
@@ -22,7 +20,6 @@ const Textarea = React.forwardRef((props, ref) => {
   } = props;
 
   const isControlled = value !== undefined;
-  // const containerProps = extractChildrenProps(children, InputPropsCollector);
 
   const _refTextarea = React.useRef();
   const refTextarea = ref || _refTextarea;
@@ -57,34 +54,32 @@ const Textarea = React.forwardRef((props, ref) => {
     }
   }
 
-  const rootClasses = classNames(
-    "form-textarea",
-    `form-textarea--${size}`,
-    { "form-textarea--is-disabled": isDisabled },
-    { "form-textarea--is-readonly": isReadOnly },
-    { "form-textarea--has-error": hasError }
-  );
+  const styleProps = {
+    hasError,
+    isDisabled,
+    isReadOnly,
+    size,
+  };
 
   const heightStyle = {
     maxHeight: Number.isNaN(Number(maxHeight)) ? maxHeight : `${maxHeight}px`,
   };
 
   return (
-    <sc.Textarea className={rootClasses}>
-      <textarea
-        aria-invalid={hasError}
-        aria-label={a11yText}
-        data-pka-anchor="textarea"
-        defaultValue={!isControlled ? defaultValue : undefined}
-        disabled={isDisabled}
-        onChange={callAll(handleChange, onChange)}
-        readOnly={isReadOnly}
-        ref={refTextarea}
-        style={heightStyle}
-        value={isControlled ? value : undefined}
-        {...moreProps}
-      />
-    </sc.Textarea>
+    <sc.Textarea
+      aria-invalid={hasError}
+      aria-label={a11yText}
+      data-pka-anchor="textarea"
+      defaultValue={!isControlled ? defaultValue : undefined}
+      disabled={isDisabled}
+      onChange={callAll(handleChange, onChange)}
+      readOnly={isReadOnly}
+      ref={refTextarea}
+      style={heightStyle}
+      value={isControlled ? value : undefined}
+      {...styleProps}
+      {...moreProps}
+    />
   );
 });
 
@@ -138,7 +133,5 @@ Textarea.defaultProps = {
 };
 
 Textarea.displayName = "Textarea";
-
-// Input.Container = InputPropsCollector;
 
 export default Textarea;
