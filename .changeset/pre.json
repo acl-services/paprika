@@ -74,6 +74,7 @@
     "@paprika/build-translations": "0.1.0"
   },
   "changesets": [
+    "chilly-spoons-march",
     "smooth-squids-joke",
     "tame-jeans-sin"
   ]
