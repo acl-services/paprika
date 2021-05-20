@@ -11,18 +11,18 @@ const AttributesExample = () => {
       </Select>
       <p>
         This <code>{`<Select>`}</code> demonstrates:
-        <ul>
-          <li>
-            Custom <code>classNames</code>
-          </li>
-          <li>
-            <code>data-testid</code> attributes
-          </li>
-          <li>
-            <code>a11yText</code> prop
-          </li>
-        </ul>
       </p>
+      <ul>
+        <li>
+          Custom <code>classNames</code>
+        </li>
+        <li>
+          <code>data-testid</code> attributes
+        </li>
+        <li>
+          <code>a11yText</code> prop
+        </li>
+      </ul>
     </>
   );
 };
