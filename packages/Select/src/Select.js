@@ -22,23 +22,24 @@ const Select = React.forwardRef((props, ref) => {
 
   const isControlled = value !== undefined;
   const containerProps = extractChildrenProps(children, SelectPropsCollector);
-  const [hasNoValue, setHasNoValue] = React.useState(isControlled ? !value : !defaultValue);
+  const [hasValue, setHasValue] = React.useState(isControlled ? Boolean(value) : Boolean(defaultValue));
+  const hasPlaceholder = Boolean(placeholder);
 
   const styleProps = {
     hasError,
     isDisabled,
-    isPlaceHolderSelected: !!placeholder && hasNoValue,
+    isPlaceHolderSelected: hasPlaceholder && !hasValue,
     isReadOnly,
     size,
   };
 
   function handleChange(event) {
     const newValue = event.target.value;
-    if (hasNoValue && newValue !== "") {
-      setHasNoValue(false);
+    if (!hasValue && newValue !== "") {
+      setHasValue(true);
     }
-    if (!hasNoValue && newValue === "") {
-      setHasNoValue(true);
+    if (hasValue && newValue === "") {
+      setHasValue(false);
     }
   }
 
@@ -53,7 +54,7 @@ const Select = React.forwardRef((props, ref) => {
 
   function getDefaultValue() {
     if (isControlled) return undefined;
-    if (defaultValue === null && !!placeholder) return "";
+    if (defaultValue === null && hasPlaceholder) return "";
     return defaultValue;
   }
 
