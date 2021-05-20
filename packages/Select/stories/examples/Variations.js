@@ -1,4 +1,6 @@
 import React from "react";
+import ListBox from "@paprika/list-box";
+import ListBoxWithTags from "@paprika/list-box-with-tags";
 import StoryHeading from "storybook/components/StoryHeading";
 import { Gap, CodeHeading } from "storybook/assets/styles/common.styles";
 import Select from "../../src";
@@ -79,6 +81,27 @@ export default function Variations() {
       <Select hasError>
         <MockOptions />
       </Select>
+
+      <Gap />
+
+      <StoryHeading level={1}>Comparison</StoryHeading>
+      <CodeHeading>
+        {`<Select>`} <span>vs</span> {`<ListBox>`} <span>vs</span> {`<ListBoxWithTags>`}
+      </CodeHeading>
+      <Select placeholder="Select...">
+        <option value="Coke">Coke</option>
+        <option value="Pepsi">Pepsi</option>
+      </Select>
+      <Gap.Small />
+      <ListBox>
+        <ListBox.Option>Coke</ListBox.Option>
+        <ListBox.Option>Pepsi</ListBox.Option>
+      </ListBox>
+      <Gap.Small />
+      <ListBoxWithTags selectedOptions={[]}>
+        <ListBoxWithTags.Option>Coke</ListBoxWithTags.Option>
+        <ListBoxWithTags.Option>Pepsi</ListBoxWithTags.Option>
+      </ListBoxWithTags>
     </>
   );
 }
