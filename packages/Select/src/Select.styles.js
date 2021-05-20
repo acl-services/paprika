@@ -43,7 +43,7 @@ const placeholderStyles = ({ isDisabled }) => css`
 export const CaretIcon = styled(CaretDownIcon)(
   ({ isDisabled }) => css`
     color: ${isDisabled ? tokens.color.blackLighten60 : tokens.textColor.icon};
-    font-size: 19px;
+    font-size: 20px;
     height: 100%;
     pointer-events: none;
     position: absolute;
@@ -72,7 +72,7 @@ export const Select = styled.select(
     line-height: 1;
     margin: 0;
     outline: none;
-    padding: 0 ${stylers.spacer(4)} 0 ${stylers.spacer(1)};
+    padding: 0 ${stylers.spacer(4)} 0 ${tokens.space};
     width: 100%;
 
     ${sizeStyles[size]}

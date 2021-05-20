@@ -80,14 +80,13 @@ export const ListBoxTrigger = styled.div`
 `;
 
 const iconStyles = ({ isDisabled }) => css`
-  color: ${tokens.color.black};
+  color: ${isDisabled ? tokens.color.blackLighten60 : tokens.textColor.icon};
+  font-size: 20px;
   height: 100%;
   pointer-events: none;
   position: absolute;
   right: ${tokens.space};
   top: 0;
-  ${stylers.fontSize(-1)}
-  ${isDisabled ? `color: ${tokens.color.blackLighten60};` : ""}
 `;
 
 export const UpIcon = styled(CaretUpIcon)`
@@ -110,14 +109,16 @@ export const ClearButton = styled(Button.Icon)(
     right: ${shouldHideCaret ? 0 : "22px"};
     top: 0;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background-color: transparent;
       border-color: transparent;
     }
-    
+
     [data-pka-anchor="button.icon"] svg {
       ${iconStyles}
-      color: ${isDisabled ? tokens.color.blackLighten60 : tokens.color.blackLighten20};
+      color: ${isDisabled ? tokens.color.blackLighten60 : tokens.textColor.icon};
+      font-size: 14px;
       vertical-align: text-top;
     }
   `
