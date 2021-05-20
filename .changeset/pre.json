@@ -70,9 +70,11 @@
     "@paprika/tokens": "1.0.0",
     "@paprika/uploader": "2.0.10",
     "@paprika/helpers": "2.1.2",
-    "@paprika/seducer": "2.0.1"
+    "@paprika/seducer": "2.0.1",
+    "@paprika/build-translations": "0.1.0"
   },
   "changesets": [
-    "smooth-squids-joke"
+    "smooth-squids-joke",
+    "tame-jeans-sin"
   ]
 }
