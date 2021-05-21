@@ -1,7 +1,7 @@
 import React from "react";
 import Textarea from "../../src";
 
-function Attributes() {
+export default function Attributes() {
   return (
     <>
       <Textarea a11yText="custom textarea" className="custom-textarea" data-testid="custom-textarea">
@@ -24,5 +24,3 @@ function Attributes() {
     </>
   );
 }
-
-export default Attributes;

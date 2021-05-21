@@ -2,7 +2,7 @@ import React from "react";
 import { action } from "@storybook/addon-actions";
 import Input from "../../src";
 
-function ControlledExample() {
+export default function Controlled() {
   const [value, setValue] = React.useState("default mustache hoodie");
 
   return (
@@ -16,5 +16,3 @@ function ControlledExample() {
     />
   );
 }
-
-export default ControlledExample;

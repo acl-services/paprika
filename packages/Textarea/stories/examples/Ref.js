@@ -1,7 +1,7 @@
 import React from "react";
 import Textarea from "../../src";
 
-function Ref() {
+export default function Ref() {
   const theRef = React.useRef();
 
   setTimeout(() => {
@@ -17,5 +17,3 @@ function Ref() {
     </>
   );
 }
-
-export default Ref;

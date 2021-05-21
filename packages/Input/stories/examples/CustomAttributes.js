@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "../../src";
 
-const AttributesExample = () => {
+export default function Attributes() {
   return (
     <>
       <Input a11yText="custom input" className="custom-input" data-testid="custom-input">
@@ -23,6 +23,4 @@ const AttributesExample = () => {
       </ul>
     </>
   );
-};
-
-export default AttributesExample;
+}

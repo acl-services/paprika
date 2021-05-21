@@ -5,7 +5,7 @@ import StoryHeading from "storybook/components/StoryHeading";
 import { Gap, CodeHeading } from "storybook/assets/styles/common.styles";
 import Input from "../../src";
 
-const Variations = () => {
+export default function Variations() {
   return (
     <>
       <Input />
@@ -76,6 +76,4 @@ const Variations = () => {
       <Input value="Sam Bennett" hasError />
     </>
   );
-};
-
-export default Variations;
+}

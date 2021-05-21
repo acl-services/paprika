@@ -6,7 +6,7 @@ import Textarea from "../../src";
 const veryLongText =
   "Raindrops the size of bullets thundered on the castle windows for days on end; the lake rose, the flower beds turned into muddy streams, and Hagrids pumpkins swelled to the size of garden sheds. Oliver Woods enthusiasm for regular training sessions, however, was not dampened, which was why Harry was to be found, late one stormy Saturday afternoon a few days before Halloween, returning to Gryffindor Tower, drenched to the skin and splattered with mud. Even aside from the rain and wind it had not been a happy practice session. Fred and George, who had been spying on the Slytherin team, had seen for themselves the speed of those new Nimbus Two Thousand and Ones. They reported that the Slytherin team was no more than seven greenish blurs, shooting through the air like missiles.";
 
-function Variations() {
+export default function Variations() {
   return (
     <>
       <Textarea />
@@ -69,5 +69,3 @@ function Variations() {
     </>
   );
 }
-
-export default Variations;
