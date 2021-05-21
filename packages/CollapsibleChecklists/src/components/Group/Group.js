@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Checkbox from "@paprika/checkbox";
 import Collapsible from "@paprika/collapsible";
 import CollapsibleChecklistsContext from "../../CollapsibleChecklistsContext";
 import Item from "../Item";
@@ -28,13 +29,6 @@ const defaultProps = {
   onExpand: null,
 };
 
-function useIsIndeterminate(checkboxRef) {
-  const [, setIsIndeterminate] = React.useState(null);
-  React.useEffect(() => {
-    setIsIndeterminate(checkboxRef.current.indeterminate);
-  }, [checkboxRef.current.indeterminate]);
-}
-
 function getChildData(children, isCheckedByDefault) {
   let allChildItemsAreChecked = true;
   let allChildItemsAreUnChecked = true;
@@ -62,30 +56,24 @@ function getChildData(children, isCheckedByDefault) {
   return { numberOfChildItems, allChildItemsAreChecked, allChildItemsAreUnChecked };
 }
 
-function setIsIndeterminate(children, checkboxRef, isCheckedByDefault, isIndeterminateByDefault) {
-  const { numberOfChildItems, allChildItemsAreChecked, allChildItemsAreUnChecked } = getChildData(
-    children,
-    isCheckedByDefault
-  );
-
-  if (numberOfChildItems === 0 && isIndeterminateByDefault) {
-    checkboxRef.current.indeterminate = true; // eslint-disable-line no-param-reassign
-  } else if (numberOfChildItems > 0 && (allChildItemsAreChecked || allChildItemsAreUnChecked)) {
-    checkboxRef.current.indeterminate = false; // eslint-disable-line no-param-reassign
-  } else if (numberOfChildItems > 0) {
-    checkboxRef.current.indeterminate = true; // eslint-disable-line no-param-reassign
-  }
-}
-
 function Group(props) {
   const { children, isCheckedByDefault, isDisabled, isIndeterminateByDefault, onExpand, title, ...moreProps } = props;
   const onChange = React.useContext(CollapsibleChecklistsContext);
   const [isCollapsed, setIsCollapsed] = React.useState(true);
-  const checkboxRef = React.useRef({});
-  useIsIndeterminate(checkboxRef);
 
-  setIsIndeterminate(children, checkboxRef, isCheckedByDefault, isIndeterminateByDefault);
-  const { allChildItemsAreChecked } = getChildData(children, isCheckedByDefault);
+  const checkedState = React.useMemo(() => {
+    const { allChildItemsAreChecked, allChildItemsAreUnChecked } = getChildData(children, isCheckedByDefault);
+
+    if (allChildItemsAreChecked) {
+      return Checkbox.types.state.CHECKED;
+    }
+
+    if (allChildItemsAreUnChecked) {
+      return Checkbox.types.state.UNCHECKED;
+    }
+
+    return Checkbox.types.state.INDETERMINATE;
+  }, [children, isCheckedByDefault]);
 
   function toggleChildren() {
     const childItems = [];
@@ -114,6 +102,10 @@ function Group(props) {
   }
 
   function expandGroupAndToggleChildren() {
+    if (isDisabled) {
+      return;
+    }
+
     if (isCollapsed) {
       setIsCollapsed(false);
 
@@ -132,18 +124,16 @@ function Group(props) {
 
   /* eslint-disable jsx-a11y/label-has-associated-control */
   const label = (
-    <React.Fragment>
-      <label>
-        <input
-          ref={checkboxRef}
-          checked={allChildItemsAreChecked}
-          type="checkbox"
-          disabled={isDisabled}
-          onChange={expandGroupAndToggleChildren}
-        />
-        {title}
-      </label>
-    </React.Fragment>
+    <label>
+      <Checkbox
+        checkedState={checkedState}
+        data-checkbox-group-is-indeterminate={checkedState === Checkbox.types.state.INDETERMINATE ? "true" : "false"}
+        isDisabled={isDisabled}
+        onChange={expandGroupAndToggleChildren}
+        size={Checkbox.types.size.SMALL}
+      />
+      {title}
+    </label>
   );
   /* eslint-enable jsx-a11y/label-has-associated-control */
 
