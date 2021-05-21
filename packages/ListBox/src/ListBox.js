@@ -41,6 +41,7 @@ export function ListBox(props) {
     size,
 
     /* eslint-disable react/prop-types */
+    data,
     box,
     filter,
     footer,

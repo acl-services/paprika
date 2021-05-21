@@ -122,20 +122,17 @@ function Group(props) {
     toggleChildren();
   }
 
-  /* eslint-disable jsx-a11y/label-has-associated-control */
   const label = (
-    <label>
-      <Checkbox
-        checkedState={checkedState}
-        data-checkbox-group-is-indeterminate={checkedState === Checkbox.types.state.INDETERMINATE ? "true" : "false"}
-        isDisabled={isDisabled}
-        onChange={expandGroupAndToggleChildren}
-        size={Checkbox.types.size.SMALL}
-      />
+    <Checkbox
+      checkedState={checkedState}
+      data-checkbox-group-is-indeterminate={checkedState === Checkbox.types.state.INDETERMINATE ? "true" : "false"}
+      isDisabled={isDisabled}
+      onChange={expandGroupAndToggleChildren}
+      size={Checkbox.types.size.SMALL}
+    >
       {title}
-    </label>
+    </Checkbox>
   );
-  /* eslint-enable jsx-a11y/label-has-associated-control */
 
   const modifiedChildren = [];
   React.Children.forEach(children, (child, index) => {

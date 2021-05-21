@@ -1,5 +1,21 @@
 # Changelog
 
+## 3.1.0-next.1
+
+### Minor Changes
+
+- f54c146: Use consistent styling for carets across selectable components
+
+### Patch Changes
+
+- 9d2079c: Removing data prop from spreding into the main div
+- Updated dependencies [32904f2]
+- Updated dependencies [f54c146]
+  - @paprika/input@4.0.1-next.0
+  - @paprika/icon@1.1.1-next.0
+  - @paprika/button@1.0.10-next.0
+  - @paprika/toast@1.1.2-next.0
+
 ## 3.0.5-next.0
 
 ### Patch Changes

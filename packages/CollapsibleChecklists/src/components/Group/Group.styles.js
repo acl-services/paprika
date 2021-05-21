@@ -27,7 +27,7 @@ const groupStyles = css`
         }
 
         [data-pka-anchor="checkbox"] {
-          margin: 2px ${tokens.space} 0 0;
+          margin: ${tokens.spaceSm} ${tokens.space} 0 0;
         }
       }
     `;
