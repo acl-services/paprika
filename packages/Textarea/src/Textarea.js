@@ -25,12 +25,12 @@ const Textarea = React.forwardRef((props, ref) => {
   const _refTextarea = React.useRef();
   const refTextarea = ref || _refTextarea;
 
-  function handleResize() {
+  const handleResize = React.useCallback(() => {
     if (refTextarea.current && refTextarea.current.style) {
       refTextarea.current.style.height = 0;
       refTextarea.current.style.height = `${refTextarea.current.scrollHeight + 2}px`;
     }
-  }
+  }, [refTextarea]);
 
   function handleChange() {
     if (canExpand) {
@@ -47,13 +47,13 @@ const Textarea = React.forwardRef((props, ref) => {
     return function cleanup() {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [canExpand, handleResize]);
 
   React.useLayoutEffect(() => {
     if (canExpand) {
       handleResize();
     }
-  }, [canExpand, minHeight, maxHeight]);
+  }, [canExpand, minHeight, maxHeight, handleResize]);
 
   const styleProps = {
     hasError,
