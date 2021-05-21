@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.0.1-next.0
+
+### Patch Changes
+
+- 32904f2: Minor clean up
+
+  - Removed unused dependencies from package.json
+  - Don't highlight so obviously on focus when `isReadOnly=true`
+
+- Updated dependencies [f54c146]
+  - @paprika/icon@1.1.1-next.0
+  - @paprika/button@1.0.10-next.0
+
 ## 4.0.0
 
 ### Major Changes

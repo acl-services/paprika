@@ -1,5 +1,17 @@
 # @paprika/search
 
+## 1.0.12-next.1
+
+### Patch Changes
+
+- Updated dependencies [32904f2]
+- Updated dependencies [f54c146]
+- Updated dependencies [f54c146]
+- Updated dependencies [9d2079c]
+  - @paprika/input@4.0.1-next.0
+  - @paprika/icon@1.1.1-next.0
+  - @paprika/list-box@3.1.0-next.1
+
 ## 1.0.12-next.0
 
 ### Patch Changes
