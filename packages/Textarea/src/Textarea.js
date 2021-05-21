@@ -1,13 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { callAll } from "@paprika/helpers";
+import { callAll, extractChildrenProps } from "@paprika/helpers";
 import * as constants from "@paprika/constants/lib/Constants";
+import TextareaPropsCollector from "./TextareaPropsCollector";
 import * as sc from "./Textarea.styles";
 
 const Textarea = React.forwardRef((props, ref) => {
   const {
     a11yText,
     canExpand,
+    children,
     defaultValue,
     hasError,
     isDisabled,
@@ -21,6 +23,7 @@ const Textarea = React.forwardRef((props, ref) => {
   } = props;
 
   const isControlled = value !== undefined;
+  const containerProps = extractChildrenProps(children, TextareaPropsCollector);
 
   const _refTextarea = React.useRef();
   const refTextarea = ref || _refTextarea;
@@ -65,19 +68,21 @@ const Textarea = React.forwardRef((props, ref) => {
   };
 
   return (
-    <sc.Textarea
-      aria-invalid={hasError}
-      aria-label={a11yText}
-      data-pka-anchor="textarea"
-      defaultValue={!isControlled ? defaultValue : undefined}
-      disabled={isDisabled}
-      onChange={callAll(handleChange, onChange)}
-      readOnly={isReadOnly}
-      ref={refTextarea}
-      value={isControlled ? value : undefined}
-      {...styleProps}
-      {...moreProps}
-    />
+    <div data-pka-anchor="textarea.container" {...containerProps}>
+      <sc.Textarea
+        aria-invalid={hasError}
+        aria-label={a11yText}
+        data-pka-anchor="textarea"
+        defaultValue={!isControlled ? defaultValue : undefined}
+        disabled={isDisabled}
+        onChange={callAll(handleChange, onChange)}
+        readOnly={isReadOnly}
+        ref={refTextarea}
+        value={isControlled ? value : undefined}
+        {...styleProps}
+        {...moreProps}
+      />
+    </div>
   );
 });
 
@@ -91,6 +96,9 @@ Textarea.propTypes = {
 
   /** If true the height will expand automatically to fit content up to the value of maxHeight. */
   canExpand: PropTypes.bool,
+
+  /** Optional Textarea.Container to collect props for root DOM element.  */
+  children: PropTypes.node,
 
   /** Sets the default textarea value for an uncontrolled component. */
   defaultValue: PropTypes.string,
@@ -123,6 +131,7 @@ Textarea.propTypes = {
 Textarea.defaultProps = {
   a11yText: null,
   canExpand: true,
+  children: null,
   defaultValue: null,
   hasError: false,
   isDisabled: false,
@@ -135,5 +144,7 @@ Textarea.defaultProps = {
 };
 
 Textarea.displayName = "Textarea";
+
+Textarea.Container = TextareaPropsCollector;
 
 export default Textarea;

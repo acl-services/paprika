@@ -7,6 +7,8 @@ interface TextareaProps {
   a11yText?: string;
   /** If true the height will expand automatically to fit content up to the value of maxHeight. */
   canExpand?: boolean;
+  /** Optional Textarea.Container to collect props for root DOM element. */
+  children?: React.ReactNode;
   /** Sets the default textarea value for an uncontrolled component. */
   defaultValue?: string;
   /** If true displays a red border around textarea to indicate an error. */
