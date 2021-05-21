@@ -10,7 +10,7 @@ const propTypes = {
   component: PropTypes.string,
   fileName: PropTypes.string,
   storyName: PropTypes.string,
-  tagline: PropTypes.string,
+  tagline: PropTypes.node,
 };
 
 const defaultProps = {

@@ -23,16 +23,15 @@ const { getStoryUrlPrefix } = require("../.storybook/storyTree");
 const parseFileToReactDoc = require("./parseFileToReactDoc");
 
 const skipPackages = [
-  "helpers",
-  "Stylers",
-  "Tokens",
-  "Guard",
-  "Icon",
-  "Overlay",
-  "Select",
+  "BuildTranslations",
   "Calendar",
   "Constants",
-  "BuildTranslations",
+  "Guard",
+  "helpers",
+  "Icon",
+  "Overlay",
+  "Stylers",
+  "Tokens",
 ];
 
 const githubIssueBody = encodeURIComponent(`

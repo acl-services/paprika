@@ -58,8 +58,7 @@ export const Input = styled.input(
     ${isReadOnly && stylers.readOnlyFormStyles}
 
     &:focus {
-      ${stylers.focusRing.bordered()}
-      background-color: ${tokens.color.white};
+      ${isReadOnly ? stylers.focusRing.subtle() : stylers.focusRing.bordered()}
     }
 
     &::-ms-clear {
