@@ -66,12 +66,14 @@ To use it as an uncontrolled component:
 ```js
 import Textarea from "@paprika/textarea";
 ...
+const refTextarea = React.useRef();
+...
 <Textarea
   defaultValue="Hello world"
-  onChange={event => {
-    console.log(`The new value is ${event.target.value}`);
-  }}
+  ref={refTextarea}
 />
+...
+refTextarea.current.value // latest value
 ```
 
 <!-- eoContent -->
