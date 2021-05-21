@@ -14,6 +14,7 @@ const Textarea = React.forwardRef((props, ref) => {
     onChange,
     isReadOnly,
     maxHeight,
+    minHeight,
     size,
     value,
     ...moreProps
@@ -24,45 +25,43 @@ const Textarea = React.forwardRef((props, ref) => {
   const _refTextarea = React.useRef();
   const refTextarea = ref || _refTextarea;
 
-  const resize = () => {
+  function handleResize() {
     if (refTextarea.current && refTextarea.current.style) {
       refTextarea.current.style.height = 0;
       refTextarea.current.style.height = `${refTextarea.current.scrollHeight + 2}px`;
     }
-  };
+  }
+
+  function handleChange() {
+    if (canExpand) {
+      handleResize();
+    }
+  }
 
   React.useLayoutEffect(() => {
     if (canExpand) {
-      resize();
-      window.addEventListener("resize", resize);
+      handleResize();
+      window.addEventListener("resize", handleResize);
     }
 
     return function cleanup() {
-      window.removeEventListener("resize", resize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   React.useLayoutEffect(() => {
     if (canExpand) {
-      resize();
+      handleResize();
     }
-  }, [canExpand]);
-
-  function handleChange() {
-    if (canExpand) {
-      resize();
-    }
-  }
+  }, [canExpand, minHeight, maxHeight]);
 
   const styleProps = {
     hasError,
     isDisabled,
     isReadOnly,
+    maxHeight,
+    minHeight,
     size,
-  };
-
-  const heightStyle = {
-    maxHeight: Number.isNaN(Number(maxHeight)) ? maxHeight : `${maxHeight}px`,
   };
 
   return (
@@ -75,7 +74,6 @@ const Textarea = React.forwardRef((props, ref) => {
       onChange={callAll(handleChange, onChange)}
       readOnly={isReadOnly}
       ref={refTextarea}
-      style={heightStyle}
       value={isControlled ? value : undefined}
       {...styleProps}
       {...moreProps}
@@ -109,6 +107,9 @@ Textarea.propTypes = {
   /** The maximum height of the textarea. */
   maxHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
+  /** The minimum / default height of the textarea. */
+  minHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
   /** Callback to be executed when the textarea value is changed. Receives the onChange event as an argument. Required when component is controlled. */
   onChange: PropTypes.func,
 
@@ -127,6 +128,7 @@ Textarea.defaultProps = {
   isDisabled: false,
   isReadOnly: false,
   maxHeight: 300,
+  minHeight: 80,
   onChange: () => {},
   size: Textarea.types.size.MEDIUM,
   value: undefined,

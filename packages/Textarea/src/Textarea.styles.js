@@ -16,7 +16,7 @@ const sizeStyles = {
 };
 
 export const Textarea = styled.textarea(
-  ({ hasError, isDisabled, isReadOnly, size }) => css`
+  ({ hasError, isDisabled, isReadOnly, maxHeight, minHeight, size }) => css`
     background-color: ${tokens.color.white};
     border: 1px solid ${tokens.border.color};
     border-radius: ${tokens.border.radius};
@@ -25,7 +25,8 @@ export const Textarea = styled.textarea(
     color: ${tokens.color.black};
     display: block;
     margin: 0;
-    min-height: 80px;
+    max-height: ${Number.isNaN(Number(maxHeight)) ? maxHeight : `${maxHeight}px`};
+    min-height: ${Number.isNaN(Number(minHeight)) ? minHeight : `${minHeight}px`};
     outline: none;
     padding: ${tokens.space};
     resize: none;
