@@ -7,7 +7,7 @@ function Uncontrolled() {
     <Textarea
       defaultValue="Default lorem hipsum authentic listicle freegan banjo tote bag bespoke kombucha single-origin coffee."
       onChange={event => {
-        action("value changed")(event.target.value);
+        action("value changed")(event.target.value || "''");
       }}
     />
   );

@@ -8,7 +8,7 @@ const UncontrolledExample = () => {
       defaultValue="default jean shorts vinyl"
       hasClearButton
       onChange={event => {
-        action("value changed")(event.target.value);
+        action("value changed")(event ? event.target.value || "''" : "event === null");
       }}
     />
   );

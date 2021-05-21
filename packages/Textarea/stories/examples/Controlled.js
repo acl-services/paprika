@@ -7,12 +7,15 @@ function Controlled() {
     "Default lorem hipsum authentic listicle freegan banjo tote bag bespoke kombucha single-origin coffee."
   );
 
-  function handleChange(event) {
-    setValue(event.target.value);
-    action("value changed")(event.target.value);
-  }
-
-  return <Textarea onChange={handleChange} value={value} />;
+  return (
+    <Textarea
+      onChange={event => {
+        setValue(event.target.value);
+        action("value changed")(event.target.value || "''");
+      }}
+      value={value}
+    />
+  );
 }
 
 export default Controlled;

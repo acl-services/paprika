@@ -1,6 +1,6 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
-import { exampleStoryParameters } from "storybook/assets/storyParameters";
+import { exampleStoryParameters, actionStoryParameters } from "storybook/assets/storyParameters";
 import { TextareaStory } from "./Textarea.stories.styles";
 import Uncontrolled from "./examples/Uncontrolled";
 import Controlled from "./examples/Controlled";
@@ -8,15 +8,6 @@ import CustomAttributes from "./examples/CustomAttributes";
 import Ref from "./examples/Ref";
 
 const storyName = getStoryName("Textarea");
-
-const actionStoryParameters = {
-  ...exampleStoryParameters,
-  options: {
-    ...exampleStoryParameters.options,
-    showPanel: true,
-    panelPosition: "bottom",
-  },
-};
 
 export default {
   title: `${storyName}/Examples`,
