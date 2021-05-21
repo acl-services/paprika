@@ -75,18 +75,41 @@ export default function ListBoxWithTags(props) {
     tagLabelKey,
   };
 
+  const extendedProps = {
+    "ListBox.Trigger": {},
+    "ListBox.Box": {},
+    "ListBox.Filter": {},
+  };
+
+  const filteredChildren = React.useMemo(() => {
+    return React.Children.map(children, child => {
+      if (child && ["ListBox.Trigger", "ListBox.Box", "ListBox.Filter"].includes(child.type.displayName)) {
+        const { children, ...moreProps } = child.props;
+        extendedProps[child.type.displayName] = moreProps;
+        return null;
+      }
+      return child;
+    });
+  }, [children, extendedProps]);
+
   return (
     <div ref={refDivRoot}>
       <ListBox isMulti size={validSize} onChange={handleChange} {...moreProps}>
-        <ListBox.Trigger>
+        <ListBox.Trigger {...extendedProps["ListBox.Trigger"]}>
           {(...[, , , attributes]) => <TriggerWithTags {...triggerProps} {...attributes} />}
         </ListBox.Trigger>
-        <ListBox.Box id={idListBoxContent} />
+        <ListBox.Box id={idListBoxContent} {...extendedProps["ListBox.Box"]} />
         {allOptionsAreSelected ? null : (
-          <ListBox.Filter filter={filter} ref={refFilter} onKeyDown={handleKeyDown} {...noResultMessageProp} />
+          <ListBox.Filter
+            filter={filter}
+            ref={refFilter}
+            onKeyDown={handleKeyDown}
+            {...noResultMessageProp}
+            {...extendedProps["ListBox.Filter"]}
+          />
         )}
         {allOptionsAreSelected ? null : React.Children.count(children) > 0 ? (
-          children
+          filteredChildren
         ) : (
           <ListBox.RawItem>{noResultsMessage}</ListBox.RawItem>
         )}
@@ -100,15 +123,12 @@ export default function ListBoxWithTags(props) {
   );
 }
 
+for (const subComponent in ListBox) {
+  if ({}.hasOwnProperty.call(ListBox, subComponent)) {
+    ListBoxWithTags[subComponent] = ListBox[subComponent];
+  }
+}
 ListBoxWithTags.displayName = "ListBoxWithTags";
-
-ListBoxWithTags.A11y = ListBox.A11y;
-ListBoxWithTags.Box = ListBox.Box;
-ListBoxWithTags.Divider = ListBox.Divider;
-ListBoxWithTags.Footer = ListBox.Footer;
-ListBoxWithTags.Option = ListBox.Option;
-ListBoxWithTags.Popover = ListBox.Popover;
-ListBoxWithTags.RawItem = ListBox.RawItem;
 ListBoxWithTags.filter = filter;
 
 ListBoxWithTags.types = {

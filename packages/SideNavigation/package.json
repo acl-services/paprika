@@ -1,6 +1,6 @@
 {
   "name": "@paprika/side-navigation",
-  "version": "2.0.1",
+  "version": "2.0.2-next.0",
   "description": "Side Navigation component",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -16,9 +16,9 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^1.0.9",
+    "@paprika/button": "^1.0.10-next.0",
     "@paprika/helpers": "^2.1.2",
-    "@paprika/icon": "^1.1.0",
+    "@paprika/icon": "^1.1.1-next.0",
     "@paprika/popover": "^1.2.2",
     "@paprika/raw-button": "^1.0.3",
     "@paprika/sidepanel": "^0.4.22-alpha.4",
