@@ -3,7 +3,10 @@ import StoryHeading from "storybook/components/StoryHeading";
 import { Gap, CodeHeading } from "storybook/assets/styles/common.styles";
 import Textarea from "../../src";
 
-const Variations = () => {
+const veryLongText =
+  "Raindrops the size of bullets thundered on the castle windows for days on end; the lake rose, the flower beds turned into muddy streams, and Hagrids pumpkins swelled to the size of garden sheds. Oliver Woods enthusiasm for regular training sessions, however, was not dampened, which was why Harry was to be found, late one stormy Saturday afternoon a few days before Halloween, returning to Gryffindor Tower, drenched to the skin and splattered with mud. Even aside from the rain and wind it had not been a happy practice session. Fred and George, who had been spying on the Slytherin team, had seen for themselves the speed of those new Nimbus Two Thousand and Ones. They reported that the Slytherin team was no more than seven greenish blurs, shooting through the air like missiles.";
+
+function Variations() {
   return (
     <>
       <Textarea />
@@ -26,6 +29,11 @@ const Variations = () => {
       <Gap.Small />
       <CodeHeading>defaultValue</CodeHeading>
       <Textarea defaultValue="Mahatma Gandhi" />
+      <Gap.Small />
+      <CodeHeading>
+        <span>Very long</span> defaultValue
+      </CodeHeading>
+      <Textarea defaultValue={veryLongText} />
 
       <Gap />
 
@@ -47,24 +55,19 @@ const Variations = () => {
       <CodeHeading>isDisabled</CodeHeading>
       <Textarea isDisabled hasClearButton placeholder="Enter name" />
       <Gap.Small />
-      <Textarea isDisabled hasClearButton value="Sam Bennett" />
+      <Textarea isDisabled hasClearButton value="Mahatma Gandhi" />
       <Gap.Small />
       <CodeHeading>isReadOnly</CodeHeading>
       <Textarea isReadOnly hasClearButton placeholder="Enter name" />
       <Gap.Small />
-      <Textarea isReadOnly hasClearButton value="Sam Bennett" />
+      <Textarea isReadOnly hasClearButton value="Mahatma Gandhi" />
       <Gap.Small />
-      <Textarea
-        isReadOnly
-        hasClearButton
-        canExpand={false}
-        value="This is a very long text to test that you can scroll this textarea vertically. This is a very long text to test that you can scroll this textarea vertically. This is a very long text to test that you can scroll this textarea vertically. This is a very long text to test that you can scroll this textarea vertically."
-      />
+      <Textarea isReadOnly hasClearButton canExpand={false} value={veryLongText} />
       <Gap.Small />
       <CodeHeading>hasError</CodeHeading>
-      <Textarea value="Sam Bennett" hasError />
+      <Textarea value="Mahatma Gandhi" hasError />
     </>
   );
-};
+}
 
 export default Variations;

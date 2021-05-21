@@ -1,19 +1,16 @@
 import React from "react";
-import { Story } from "storybook/assets/styles/common.styles";
+import { action } from "@storybook/addon-actions";
 import Textarea from "../../src";
 
-const UncontrolledExample = () => {
+function Uncontrolled() {
   return (
-    <Story>
-      <Textarea
-        defaultValue="hello world"
-        canExpand
-        onChange={e => {
-          console.log("the textareas new value is: ", e.target.value);
-        }}
-      />
-    </Story>
+    <Textarea
+      defaultValue="Default lorem hipsum authentic listicle freegan banjo tote bag bespoke kombucha single-origin coffee."
+      onChange={event => {
+        action("value changed")(event.target.value);
+      }}
+    />
   );
-};
+}
 
-export default UncontrolledExample;
+export default Uncontrolled;

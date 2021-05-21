@@ -4,7 +4,7 @@
 
 ## Description
 
-Textarea component is a multiline text input
+The Textarea component is a standard multiline text input with some enhancements that can be used as a controlled or uncontrolled component.
 
 ## Installation
 
@@ -22,56 +22,51 @@ npm install @paprika/textarea
 
 ### Textarea
 
-| Prop         | Type                                                                                | required | default                    | Description                                                                                         |
-| ------------ | ----------------------------------------------------------------------------------- | -------- | -------------------------- | --------------------------------------------------------------------------------------------------- |
-| a11yText     | string                                                                              | false    | null                       | Descriptive a11y text for assistive technologies. By default, text from children node will be used. |
-| canExpand    | bool                                                                                | false    | true                       | Indicate if the textarea is expandable                                                              |
-| className    | string                                                                              | false    | null                       | Sets class name                                                                                     |
-| defaultValue | string                                                                              | false    | ""                         | Do not use in conjunction with value prop                                                           |
-| hasError     | bool                                                                                | false    | false                      |                                                                                                     |
-| isDisabled   | bool                                                                                | false    | false                      | If the textarea is disabled                                                                         |
-| isReadOnly   | bool                                                                                | false    | false                      | If the textarea is read-only                                                                        |
-| maxHeight    | string                                                                              | false    | "300px"                    | Indicates the maximum height of the textarea                                                        |
-| onChange     | func                                                                                | false    | () => {}                   |                                                                                                     |
-| size         | [ Textarea.types.size.SMALL, Textarea.types.size.MEDIUM, Textarea.types.size.LARGE] | false    | Textarea.types.size.MEDIUM |                                                                                                     |
-| value        | string                                                                              | false    | null                       | Do not use in conjunction with defaultValue prop                                                    |
+| Prop         | Type                                                                                | required | default                    | Description                                                                                                                                    |
+| ------------ | ----------------------------------------------------------------------------------- | -------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| a11yText     | string                                                                              | false    | null                       | Provides a non-visible label for this textarea for assistive technologies.                                                                     |
+| canExpand    | bool                                                                                | false    | true                       | If true the height will expand automatically to fit content up to the value of maxHeight.                                                      |
+| defaultValue | string                                                                              | false    | null                       | Sets the default textarea value for an uncontrolled component.                                                                                 |
+| hasError     | bool                                                                                | false    | false                      | If true displays a red border around textarea to indicate an error.                                                                            |
+| isDisabled   | bool                                                                                | false    | false                      | If true it makes the textarea disabled.                                                                                                        |
+| isReadOnly   | bool                                                                                | false    | false                      | If true it makes the textarea read only.                                                                                                       |
+| maxHeight    | [number,string]                                                                     | false    | 300                        | The maximum height of the textarea.                                                                                                            |
+| minHeight    | [number,string]                                                                     | false    | 80                         | The minimum / default height of the textarea.                                                                                                  |
+| onChange     | func                                                                                | false    | () => {}                   | Callback to be executed when the textarea value is changed. Receives the onChange event as an argument. Required when component is controlled. |
+| size         | [ Textarea.types.size.SMALL, Textarea.types.size.MEDIUM, Textarea.types.size.LARGE] | false    | Textarea.types.size.MEDIUM | The size of the textarea input (font size).                                                                                                    |
+| value        | string                                                                              | false    | undefined                  | The value inside of the textarea input. Defining this prop will make this a controlled component. Do not use in conjunction with defaultValue. |
 
 <!-- end: Autogenerated - do not modify -->
 <!-- content -->
 
 ### Usage
 
-The Textarea can be used as a controlled or an un-controlled component.
+The Textarea can be used as a controlled or uncontrolled component.
 
-To use it as controlled:
+To use it as a controlled comnponent:
 
 ```js
 import Textarea from "@paprika/textarea";
 ...
-const [val, setVal] = React.useState("Hello world");
-return (
-  <Textarea
-    value={val}
-    onChange={e => {
-      setVal(e.target.value);
-    }}
-  />;
-);
+const [value, setValue] = React.useState("Hello world");
+...
+<Textarea
+  value={value}
+  onChange={event => { setValue(event.target.value) }}
+/>
 ```
 
-To use it as an un-controlled component:
+To use it as an uncontrolled component:
 
 ```js
 import Textarea from "@paprika/textarea";
 ...
-return (
-  <Textarea
-    defaultValue="Hello world"
-    onChange={e => {
-      console.log(`The new value is ${e.target.value}`);
-    }}
-  />
-);
+<Textarea
+  defaultValue="Hello world"
+  onChange={event => {
+    console.log(`The new value is ${event.target.value}`);
+  }}
+/>
 ```
 
 <!-- eoContent -->
