@@ -1,14 +1,16 @@
 import React from "react";
-import Input from "../../src";
+import Select from "../../src";
 
 const AttributesExample = () => {
   return (
     <>
-      <Input a11yText="custom input" className="custom-input" data-testid="custom-input">
-        <Input.Container className="custom-container" data-testid="custom-container" />
-      </Input>
+      <Select a11yText="custom select" className="custom-select" data-testid="custom-select">
+        <Select.Container className="custom-container" data-testid="custom-container" />
+        <option value="Coke">Coke</option>
+        <option value="Pepsi">Pepsi</option>
+      </Select>
       <p>
-        This <code>{`<Input>`}</code> demonstrates:
+        This <code>{`<Select>`}</code> demonstrates:
       </p>
       <ul>
         <li>

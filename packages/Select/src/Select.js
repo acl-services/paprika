@@ -1,61 +1,83 @@
 import React from "react";
-import classNames from "classnames";
 import PropTypes from "prop-types";
+import { callAll, extractChildrenProps } from "@paprika/helpers";
 import * as constants from "@paprika/constants/lib/Constants";
+import SelectPropsCollector from "./SelectPropsCollector";
 import * as sc from "./Select.styles";
 
 const Select = React.forwardRef((props, ref) => {
+  const {
+    a11yText,
+    children,
+    defaultValue,
+    hasError,
+    isDisabled,
+    isReadOnly,
+    onChange,
+    placeholder,
+    size,
+    value,
+    ...moreProps
+  } = props;
+
+  const isControlled = value !== undefined;
+  const containerProps = extractChildrenProps(children, SelectPropsCollector);
+  const [hasValue, setHasValue] = React.useState(isControlled ? Boolean(value) : Boolean(defaultValue));
+  const hasPlaceholder = Boolean(placeholder);
+
+  const styleProps = {
+    hasError,
+    isDisabled,
+    isPlaceHolderSelected: hasPlaceholder && !hasValue,
+    isReadOnly,
+    size,
+  };
+
+  function handleChange(event) {
+    const newValue = event.target.value;
+    if (!hasValue && newValue !== "") {
+      setHasValue(true);
+    }
+    if (hasValue && newValue === "") {
+      setHasValue(false);
+    }
+  }
+
   const renderPlaceholder = () => {
-    const { placeholder } = props;
     if (!placeholder) return null;
     return (
-      <option disabled value="" key="placeholder">
+      <option disabled value="" data-pka-anchor="select.placeholder">
         {placeholder}
       </option>
     );
   };
 
-  const {
-    a11yText,
-    className,
-    children,
-    hasError,
-    isDisabled,
-    isReadOnly,
-    size,
-    placeholder,
-    value,
-    ...moreProps
-  } = props;
-
-  if (a11yText || placeholder) {
-    moreProps["aria-label"] = a11yText || placeholder;
+  function getDefaultValue() {
+    if (isControlled) return undefined;
+    if (defaultValue === null && hasPlaceholder) return "";
+    return defaultValue;
   }
 
-  const rootClasses = classNames(
-    "form-select",
-    `form-select--${size}`,
-    { "form-select--placeholder": !value && placeholder },
-    { "form-select--is-disabled": isDisabled },
-    { "form-select--is-readonly": isReadOnly },
-    { "form-select--has-error": hasError },
-    className
-  );
-
   return (
-    <sc.Select className={rootClasses} data-pka-anchor="select">
-      <select
+    <sc.SelectContainer data-pka-anchor="select.container" {...containerProps}>
+      <sc.Select
         aria-invalid={hasError}
-        className="form-select__select"
+        aria-readonly={isReadOnly}
+        aria-label={a11yText}
+        data-pka-anchor="select"
+        defaultValue={getDefaultValue()}
         disabled={isDisabled || isReadOnly}
+        onChange={callAll(handleChange, onChange)}
         ref={ref}
         value={value}
+        {...styleProps}
         {...moreProps}
       >
         {renderPlaceholder()}
         {children}
-      </select>
-    </sc.Select>
+      </sc.Select>
+      <sc.CaretIcon data-pka-anchor="select.arrow-icon" isDisabled={isDisabled || isReadOnly} />
+    </sc.SelectContainer>
   );
 });
 
@@ -63,32 +85,53 @@ Select.types = {
   size: constants.defaultSize,
 };
 
-const propTypes = {
+Select.propTypes = {
+  /** Provides a non-visible label for this select element for assistive technologies. */
   a11yText: PropTypes.string,
-  className: PropTypes.string,
+
+  /** List of options as standard option elements. */
   children: PropTypes.node,
+
+  /** Sets the default selected value for an uncontrolled component. */
+  defaultValue: PropTypes.string,
+
+  /** If true displays a red border around select element to indicate error. */
   hasError: PropTypes.bool,
+
+  /** If true it makes the select element disabled. */
   isDisabled: PropTypes.bool,
+
+  /** If true it makes the select element read only. */
   isReadOnly: PropTypes.bool,
+
+  /** Callback to be executed when the selected value is changed. Receives the onChange event as an argument.  Required when value prop is provided (component is controlled). */
+  onChange: PropTypes.func,
+
+  /** Display value for a disabled first option with an empty string value. */
   placeholder: PropTypes.string,
+
+  /** Specifies the visual size of the select element. */
   size: PropTypes.oneOf([Select.types.size.SMALL, Select.types.size.MEDIUM, Select.types.size.LARGE]),
+
+  /** The selected value for the select element. */
   value: PropTypes.string,
 };
 
-const defaultProps = {
+Select.defaultProps = {
   a11yText: null,
-  className: null,
   children: null,
+  defaultValue: null,
   hasError: false,
   isDisabled: false,
   isReadOnly: false,
+  onChange: () => {},
   placeholder: null,
   size: Select.types.size.MEDIUM,
-  value: "",
+  value: undefined,
 };
 
 Select.displayName = "Select";
-Select.propTypes = propTypes;
-Select.defaultProps = defaultProps;
+
+Select.Container = SelectPropsCollector;
 
 export default Select;
