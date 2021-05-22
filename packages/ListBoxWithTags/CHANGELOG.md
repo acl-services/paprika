@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.2.0
+
+### Minor Changes
+
+- f54c146: Use consistent styling for carets across selectable components
+
+### Patch Changes
+
+- 9d2079c: Adding the ability to spread props at any component without affecting the Filter, Box and Trigger config
+- Updated dependencies [f54c146]
+- Updated dependencies [aaf5263]
+- Updated dependencies [f54c146]
+- Updated dependencies [9d2079c]
+  - @paprika/icon@1.1.1
+  - @paprika/list-box@3.1.0
+  - @paprika/tag@0.0.4
+
 ## 1.2.0-next.1
 
 ### Minor Changes

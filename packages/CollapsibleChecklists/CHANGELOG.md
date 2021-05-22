@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.8
+
+### Patch Changes
+
+- 5eb3b5d: Utilize @paprika/checkbox instead of standard input
+  - @paprika/checkbox@1.0.10
+  - @paprika/collapsible@1.1.7
+
 ## 1.0.8-next.1
 
 ### Patch Changes

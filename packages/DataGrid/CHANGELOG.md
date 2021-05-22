@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.11
+
+### Patch Changes
+
+- 3aa0804: Use the @paprika/checkbox component instead of a basic input
+- Updated dependencies [f54c146]
+  - @paprika/icon@1.1.1
+  - @paprika/button@1.0.10
+  - @paprika/checkbox@1.0.10
+
 ## 1.0.11-next.1
 
 ### Patch Changes

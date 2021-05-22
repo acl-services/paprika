@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.1.12
+
+### Patch Changes
+
+- Updated dependencies [32904f2]
+- Updated dependencies [f54c146]
+  - @paprika/input@4.0.1
+  - @paprika/icon@1.1.1
+  - @paprika/button@1.0.10
+  - @paprika/toast@1.1.2
+
 ## 1.1.12-next.0
 
 ### Patch Changes
