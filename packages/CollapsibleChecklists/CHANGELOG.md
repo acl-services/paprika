@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.8-next.1
+
+### Patch Changes
+
+- 5eb3b5d: Utilize @paprika/checkbox instead of standard input
+
 ## 1.0.8-next.0
 
 ### Patch Changes

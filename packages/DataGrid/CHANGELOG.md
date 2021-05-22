@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.11-next.1
+
+### Patch Changes
+
+- 3aa0804: Use the @paprika/checkbox component instead of a basic input
+
 ## 1.0.11-next.0
 
 ### Patch Changes
