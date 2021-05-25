@@ -10,12 +10,10 @@ const RefStory = () => {
 
   return (
     <>
-      <>
-        <Input ref={refInput} />
-        <p>
-          This <code>{`<Input>`}</code> will become focused after 1 second.
-        </p>
-      </>
+      <Input ref={refInput} />
+      <p>
+        This <code>{`<Input>`}</code> will become focused after 1 second.
+      </p>
     </>
   );
 };

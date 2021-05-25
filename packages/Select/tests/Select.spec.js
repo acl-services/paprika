@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import { axe } from "jest-axe";
-import Select from "../stories/examples/SelectExample";
+import Select from "../src";
 
 describe("Select", () => {
   it("should be visible", () => {

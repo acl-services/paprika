@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.2.1
+
+### Patch Changes
+
+- @paprika/button@1.0.10
+- @paprika/overflow-menu@1.0.18
+
+## 1.2.1-next.0
+
+### Patch Changes
+
+- @paprika/button@1.0.10-next.0
+- @paprika/overflow-menu@1.0.18-next.0
+
 ## 1.2.0
 
 ### Minor Changes

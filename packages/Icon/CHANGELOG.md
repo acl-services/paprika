@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.1.1
+
+### Patch Changes
+
+- f54c146: Update svg source for CaretUp and CaretDown to use 20x20 versions
+
+## 1.1.1-next.0
+
+### Patch Changes
+
+- f54c146: Update svg source for CaretUp and CaretDown to use 20x20 versions
+
 ## 1.1.0
 
 ### Minor Changes

@@ -1,5 +1,31 @@
 # Changelog
 
+## 3.1.2
+
+### Patch Changes
+
+- Updated dependencies [32904f2]
+- Updated dependencies [32904f2]
+- Updated dependencies [f54c146]
+  - @paprika/input@4.0.1
+  - @paprika/select@2.0.0
+  - @paprika/icon@1.1.1
+  - @paprika/button@1.0.10
+  - @paprika/sortable@1.1.9
+
+## 3.1.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [32904f2]
+- Updated dependencies [32904f2]
+- Updated dependencies [f54c146]
+  - @paprika/input@4.0.1-next.0
+  - @paprika/select@2.0.0-next.0
+  - @paprika/icon@1.1.1-next.0
+  - @paprika/button@1.0.10-next.0
+  - @paprika/sortable@1.1.9-next.0
+
 ## 3.1.1
 
 ### Patch Changes

@@ -26,8 +26,8 @@ const groupStyles = css`
           margin-top: 2px;
         }
 
-        input[type="checkbox"] {
-          margin: 4px ${tokens.space} 0 ${tokens.spaceSm}
+        [data-pka-anchor="checkbox"] {
+          margin: ${tokens.spaceSm} ${tokens.space} 0 0;
         }
       }
     `;

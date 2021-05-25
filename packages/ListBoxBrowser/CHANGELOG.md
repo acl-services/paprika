@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.0.20
+
+### Patch Changes
+
+- Updated dependencies [f54c146]
+- Updated dependencies [aaf5263]
+- Updated dependencies [f54c146]
+- Updated dependencies [9d2079c]
+  - @paprika/icon@1.1.1
+  - @paprika/list-box@3.1.0
+
+## 1.0.20-next.1
+
+### Patch Changes
+
+- Updated dependencies [f54c146]
+- Updated dependencies [f54c146]
+- Updated dependencies [9d2079c]
+  - @paprika/icon@1.1.1-next.0
+  - @paprika/list-box@3.1.0-next.1
+
 ## 1.0.20-next.0
 
 ### Patch Changes
