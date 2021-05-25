@@ -7,7 +7,7 @@ import tokens from "@paprika/tokens";
 import styled from "styled-components";
 import stylers from "@paprika/stylers";
 import Button from "@paprika/button";
-import SidePanel from "@paprika/sidepanel";
+import Panel from "@paprika/panel";
 import Heading from "@paprika/heading";
 import * as types from "../src/types";
 
@@ -258,7 +258,7 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module)
       </div>
     );
   })
-  .add("with nested SidePanel", () =>
+  .add("with nested Panel", () =>
     React.createElement(() => {
       const [isOpen, setIsOpen] = React.useState(false);
       const toggle = () => {
@@ -268,13 +268,13 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module)
       return (
         <ModalStory>
           <Modal.Content>
-            <SidePanel isOpen={isOpen} onClose={toggle}>
-              <SidePanel.Overlay />
-              <SidePanel.Trigger kind={SidePanel.types.kind.PRIMARY} onClick={toggle}>
+            <Panel isOpen={isOpen} onClose={toggle}>
+              <Panel.Overlay />
+              <Panel.Trigger kind={Panel.types.kind.PRIMARY} onClick={toggle}>
                 {isOpen ? "close" : "open side panel"}
-              </SidePanel.Trigger>
-              <SidePanel.Header>Header</SidePanel.Header>
-            </SidePanel>
+              </Panel.Trigger>
+              <Panel.Header>Header</Panel.Header>
+            </Panel>
           </Modal.Content>
         </ModalStory>
       );
