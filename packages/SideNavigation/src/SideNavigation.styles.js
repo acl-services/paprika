@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import SidePanel from "@paprika/sidepanel";
+import Panel from "@paprika/panel";
 import RawButton from "@paprika/raw-button";
 import tokens from "@paprika/tokens";
 import { spacer, fontSize } from "@paprika/stylers/lib/helpers";
@@ -11,7 +11,7 @@ export const SideNavigationCollapsedWrapper = styled.div`
   width: ${spacer(5)};
 `;
 
-export const SidePanelContent = styled(SidePanel.Content)`
+export const PanelContent = styled(Panel.Content)`
   * {
     box-sizing: border-box;
   }
@@ -23,7 +23,7 @@ export const SidePanelContent = styled(SidePanel.Content)`
     padding: 0;
   }
 
-  &[data-pka-anchor="sidepanel.content"] {
+  &[data-pka-anchor="panel.content"] {
     margin: -${tokens.space};
     padding: 0;
   }

@@ -6,7 +6,7 @@ import { Story, Rule, Tagline, repeat } from "storybook/assets/styles/common.sty
 import { getStoryName } from "storybook/storyTree";
 import stylers from "@paprika/stylers";
 import Button from "@paprika/button";
-import SidePanel from "@paprika/sidepanel";
+import Panel from "@paprika/panel";
 import Popover from "@paprika/popover";
 import Heading from "@paprika/heading";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
@@ -147,7 +147,7 @@ storiesOf(`${storyName}/Examples`, module)
   });
 
 storiesOf(`${storyName}/Backyard/Sandbox`, module)
-  .add("with nested SidePanel", () =>
+  .add("with nested Panel", () =>
     React.createElement(() => {
       const [isOpen, setIsOpen] = React.useState(false);
       const toggle = () => {
@@ -156,13 +156,13 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module)
       return (
         <TakeoverStory>
           <Takeover.Content>
-            <SidePanel isOpen={isOpen} onClose={toggle}>
-              <SidePanel.Overlay />
-              <SidePanel.Trigger kind={SidePanel.Trigger.types.kind.PRIMARY} onClick={toggle}>
+            <Panel isOpen={isOpen} onClose={toggle}>
+              <Panel.Overlay />
+              <Panel.Trigger kind={Panel.Trigger.types.kind.PRIMARY} onClick={toggle}>
                 {isOpen ? "close" : "open side panel"}
-              </SidePanel.Trigger>
-              <SidePanel.Header>Header</SidePanel.Header>
-            </SidePanel>
+              </Panel.Trigger>
+              <Panel.Header>Header</Panel.Header>
+            </Panel>
           </Takeover.Content>
         </TakeoverStory>
       );

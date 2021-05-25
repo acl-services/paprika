@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import * as Sbook from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
-import SidePanel from "@paprika/sidepanel";
+import Panel from "@paprika/panel";
 import styled from "styled-components";
 import Button from "@paprika/button";
 import Spinner from "@paprika/spinner";
@@ -76,12 +76,12 @@ export function App() {
     );
   }
 
-  function handleOpenSidepanel({ row }) {
+  function handleOpenPanel({ row }) {
     setRow(() => row);
     setIsOpen(() => true);
   }
 
-  function handleSidePanelClose() {
+  function handleclosePanel() {
     setIsOpen(() => false);
   }
 
@@ -108,10 +108,10 @@ export function App() {
     console.log("handleOnSelect");
   }
 
-  function renderSidepanel({ row }) {
+  function renderPanel({ row }) {
     return (
-      <SidePanel onClose={handleSidePanelClose} isOpen={isOpen}>
-        <SidePanel.FocusLock
+      <Panel onClose={handleclosePanel} isOpen={isOpen}>
+        <Panel.FocusLock
           onDeactivation={() => {
             // https://github.com/theKashey/react-focus-lock#unmounting-and-focus-management
             setTimeout(() => {
@@ -119,7 +119,7 @@ export function App() {
             }, 0);
           }}
         />
-        <SidePanel.Header>{row.name}</SidePanel.Header>
+        <Panel.Header>{row.name}</Panel.Header>
         <div
           css={`
             width: 300px;
@@ -129,7 +129,7 @@ export function App() {
           <img src={`${row.thumbnail.path}.${row.thumbnail.extension}`} width="100%" alt={row.name} />
         </div>
         <div>{row.description}</div>
-      </SidePanel>
+      </Panel>
     );
   }
 
@@ -142,15 +142,15 @@ export function App() {
       ) : (
         <>
           <p>Note: the Marvel API is mocked and only the first 5 pages can be retrieved.</p>
-          {row && renderSidepanel({ row })}
+          {row && renderPanel({ row })}
           <DataGrid
             ref={refDataGrid}
             data={data}
             keygen="id"
             width={680}
-            onClick={handleOpenSidepanel}
-            onPressEnter={handleOpenSidepanel}
-            onPressSpaceBar={handleOpenSidepanel}
+            onClick={handleOpenPanel}
+            onPressEnter={handleOpenPanel}
+            onPressSpaceBar={handleOpenPanel}
           >
             {renderColumnIndicator({ onCheck: handleOnSelect })}
             {renderColumnExpand()}
