@@ -56,7 +56,7 @@ const horizontalStyles = ({ tabHeight }) => css`
   display: inline-flex;
   height: ${getHeightValue(tabHeight)};
   margin-right: ${tokens.space};
-  padding: ${tokens.space};
+  padding: ${tokens.spaceSm} ${tokens.space} 0 ${tokens.space};
 
   &:last-child {
     margin-right: 0;
