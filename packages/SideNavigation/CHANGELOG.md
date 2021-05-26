@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.0.0-next.0
+
+### Major Changes
+
+- b5c6108: Breaking change. Update to use @paprika/panel, not the deprecated @paprika/sidepanel.
+  If passing in `offsetY={40}`, change to to pass in `offset={{ top: 40 }}`.
+
 ## 2.0.2
 
 ### Patch Changes
