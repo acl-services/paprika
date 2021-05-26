@@ -32,52 +32,55 @@ const columnsSettings = [
 
 export default function App() {
   return (
-    <Filter
-      columns={columnsSettings}
-      data={null}
-      numberApplied={2}
-      onAddFilter={() => {
-        console.log("add a new Filter.Item child");
-      }}
-      onApply={() => {
-        console.log("onApply");
-      }}
-      onCancel={() => {
-        console.log("onCancel");
-      }}
-      onChangeOperator={operator => {
-        console.log("onChangeOperator", operator);
-      }}
-      onClear={() => {}}
-    >
-      <Filter.Item
-        columnId="name" // exists in `columnsSettings`
-        id={12}
-        index={0}
-        type="TEXT"
-        rule="CONTAINS"
-        value="abc"
-        onChangeFilter={(xxx, { id, columnId }) => {
-          console.log("onChangeFilter", xxx, id, columnId);
+    <React.Fragment>
+      <Filter
+        columns={columnsSettings}
+        data={null}
+        numberApplied={2}
+        onAddFilter={() => {
+          console.log("add a new Filter.Item child");
         }}
-        onDeleteFilter={id => {
-          console.log("onDeleteFilter", id);
+        onApply={() => {
+          console.log("onApply");
         }}
-      />
-      <Filter.Item
-        columnId="goals"
-        id={13}
-        index={1}
-        type="NUMBER"
-        rule="EQUALS"
-        value="33"
-        onChangeFilter={(xxx, { id, columnId }) => {
-          console.log("onChangeFilter", xxx, id, columnId);
+        onCancel={() => {
+          console.log("onCancel");
         }}
-        onDeleteFilter={id => {
-          console.log("onDeleteFilter", id);
+        onChangeOperator={operator => {
+          console.log("onChangeOperator", operator);
         }}
-      />
-    </Filter>
+        onClear={() => {}}
+      >
+        <Filter.Item
+          columnId="name" // exists in `columnsSettings`
+          id={12}
+          index={0}
+          type="TEXT"
+          rule="CONTAINS"
+          value="abc"
+          onChangeFilter={(xxx, obj) => {
+            console.log("onChangeFilter", xxx, obj);
+          }}
+          onDeleteFilter={id => {
+            console.log("onDeleteFilter", id);
+          }}
+        />
+        <Filter.Item
+          columnId="goals"
+          id={13}
+          index={1}
+          type="NUMBER"
+          rule="EQUALS"
+          value="33"
+          onChangeFilter={(xxx, obj) => {
+            console.log("onChangeFilter", xxx, obj);
+          }}
+          onDeleteFilter={id => {
+            console.log("onDeleteFilter", id);
+          }}
+        />
+      </Filter>
+      <p>You would render filtered results here...</p>
+    </React.Fragment>
   );
 }
