@@ -1,5 +1,6 @@
 import React from "react";
 import Filter, { useFilter } from "../../src";
+import sampleData from "../Showcase/data";
 
 const columnsSettings = [
   {
@@ -38,9 +39,11 @@ export default function FilterWithServer() {
     getFilterItemProps,
   } = useFilter({
     columns: columnsSettings,
-    // data: [],
+    data: sampleData,
     initialState: {
-      isResultControlled: true,
+      filteredData: sampleData,
+      numberApplied: 0,
+      filters: [],
     },
     // reducer,
     // rulesByType
@@ -75,7 +78,7 @@ export default function FilterWithServer() {
           />
         ))}
       </Filter>
-      <p>You would render filtered results here...</p>
+      <p>You would render filtered results here via `filteredData`</p>
     </React.Fragment>
   );
 }

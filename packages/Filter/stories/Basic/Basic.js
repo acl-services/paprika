@@ -38,7 +38,7 @@ export default function App() {
         data={null}
         numberApplied={2}
         onAddFilter={() => {
-          console.log("add a new Filter.Item child");
+          console.log("manually add a new Filter.Item child");
         }}
         onApply={() => {
           console.log("onApply");
@@ -58,8 +58,8 @@ export default function App() {
           type="TEXT"
           rule="CONTAINS"
           value="abc"
-          onChangeFilter={(xxx, obj) => {
-            console.log("onChangeFilter", xxx, obj);
+          onChangeFilter={(changeType, changedObj) => {
+            console.log("onChangeFilter", changeType, changedObj);
           }}
           onDeleteFilter={id => {
             console.log("onDeleteFilter", id);
@@ -72,8 +72,8 @@ export default function App() {
           type="NUMBER"
           rule="EQUALS"
           value="33"
-          onChangeFilter={(xxx, obj) => {
-            console.log("onChangeFilter", xxx, obj);
+          onChangeFilter={(changeType, changedObj) => {
+            console.log("onChangeFilter", changeType, changedObj);
           }}
           onDeleteFilter={id => {
             console.log("onDeleteFilter", id);
