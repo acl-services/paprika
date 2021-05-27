@@ -40,7 +40,7 @@ const customRulesByType = {
   CUSTOM_SELECT: [Filter.rules.IS, Filter.rules.IS_NOT, Filter.rules.IS_EMPTY, Filter.rules.IS_NOT_EMPTY],
 };
 
-export default function FilterWithServer() {
+export default function MockServer() {
   const [serverSideData, setServerSideData] = React.useState(null);
   const [isPending, setIsPending] = React.useState(true);
   const { filters, getFilterProps, getFilterItemProps } = useFilter({

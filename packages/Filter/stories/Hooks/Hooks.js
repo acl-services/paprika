@@ -31,7 +31,7 @@ const columnsSettings = [
   },
 ];
 
-export default function FilterWithServer() {
+export default function Hooks() {
   const {
     filters,
     // filteredData,
@@ -60,7 +60,6 @@ export default function FilterWithServer() {
       <Filter
         {...filterProps}
         columns={columnsSettings}
-        rulesByType={Filter.defaultRulesByType}
         onCancel={() => {
           console.log("onCancel");
         }}
