@@ -4,14 +4,14 @@ import CustomSingleSelectFilter from "./CustomSingleSelectFilter";
 
 const columnsSettings = [
   {
-    id: "level",
-    type: "CUSTOM_SELECT",
-    label: "Level (custom field)",
-  },
-  {
     id: "name",
     type: Filter.types.columnTypes.TEXT,
     label: "Name",
+  },
+  {
+    id: "level",
+    type: "CUSTOM_SELECT",
+    label: "Level (custom field)",
   },
 ];
 
