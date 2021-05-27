@@ -119,6 +119,10 @@ return (
 );
 ```
 
+### Variations
+
+- You can prevent the user from having to choose between <code>AND</code> and <code>OR</code> by setting the <code>onChangeOperator</code> prop to <code>null</code> and including the <code>operator</code> to use.
+
 <!-- eoContent -->
 
 ## Links
