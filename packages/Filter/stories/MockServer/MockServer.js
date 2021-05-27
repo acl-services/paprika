@@ -1,9 +1,7 @@
 import React from "react";
-import Heading from "@paprika/heading";
 import Spinner from "@paprika/spinner";
 import Filter, { useFilter } from "../../src";
 import * as api from "./api";
-import CustomSingleSelectFilter from "./CustomSingleSelectFilter";
 
 const columnsSettings = [
   {
@@ -32,11 +30,6 @@ const columnsSettings = [
     id: "shareable",
     type: Filter.types.columnTypes.BOOLEAN,
     label: "Shareable",
-  },
-  {
-    id: "level",
-    type: "CUSTOM_SELECT",
-    label: "Level",
   },
 ];
 
@@ -67,8 +60,6 @@ export default function FilterWithServer() {
     })();
   }, []);
 
-  const renderLevelFilter = () => <CustomSingleSelectFilter />;
-
   async function handleApply() {
     filterProps.onApply();
     setIsPending(true);
@@ -79,8 +70,6 @@ export default function FilterWithServer() {
 
   return (
     <React.Fragment>
-      <Heading level={2}>Filter use api</Heading>
-
       <Filter {...filterProps} columns={columnsSettings} rulesByType={customRulesByType} onApply={handleApply}>
         {filters.map((filter, index) => (
           <Filter.Item
@@ -89,7 +78,6 @@ export default function FilterWithServer() {
             id={filter.id}
             index={index}
             key={filter.id}
-            renderValueField={filter.columnId === "level" ? renderLevelFilter : null}
             rule={filter.rule}
             type={filter.type}
             value={filter.value}

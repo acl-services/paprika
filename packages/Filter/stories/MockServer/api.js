@@ -1,4 +1,4 @@
-import data from "../ShowcaseApp/data";
+import data from "../Showcase/data";
 
 export const fetchAll = () => {
   return new Promise(resolve => {
