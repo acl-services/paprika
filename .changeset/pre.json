@@ -73,5 +73,7 @@
     "@paprika/helpers": "2.1.2",
     "@paprika/seducer": "2.0.1"
   },
-  "changesets": []
+  "changesets": [
+    "tasty-tips-obey"
+  ]
 }

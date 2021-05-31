@@ -1,6 +1,6 @@
 {
   "name": "@paprika/textarea",
-  "version": "2.0.1",
+  "version": "3.0.0-next.0",
   "description": "The Textarea component is a standard multiline text input with some enhancements that can be used as a controlled or uncontrolled component.",
   "author": "@paprika",
   "main": "lib/index.js",
