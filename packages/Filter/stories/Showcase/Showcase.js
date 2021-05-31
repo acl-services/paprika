@@ -2,6 +2,11 @@ import React from "react";
 import Filter, { useFilter } from "../../src";
 import data from "./data";
 
+// TODO: this works but there is one problem:
+//       if you choose the filter as a SS then change it to a FS and choose a value it dies (it remains a SS), and conversely
+//       if you choose the filter as a FS then change it to a SS and choose a value it dies (it remains a FS)
+// TODO: tests
+
 const columnsSettings = [
   {
     id: "goals",
@@ -35,9 +40,14 @@ const columnsSettings = [
     type: Filter.types.columnTypes.SINGLE_SELECT,
     label: "Position",
   },
+  {
+    id: "hairColour",
+    type: Filter.types.columnTypes.MULTI_SELECT,
+    label: "Hair Colour",
+  },
 ];
 
-const orderedColumnIds = ["goals", "name", "status", "country", "joined", "shareable", "position"];
+const orderedColumnIds = ["goals", "name", "status", "country", "joined", "shareable", "position", "hairColour"];
 
 export default function App() {
   /**
