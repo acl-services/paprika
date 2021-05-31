@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "../../src";
 
-const OldRefStory = () => {
+export default function OldRef() {
   let $input;
   const setRef = node => {
     $input = node;
@@ -18,6 +18,4 @@ const OldRefStory = () => {
       </p>
     </>
   );
-};
-
-export default OldRefStory;
+}

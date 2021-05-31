@@ -1,22 +1,22 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import { exampleStoryParameters, actionStoryParameters } from "storybook/assets/storyParameters";
-import { SelectStory } from "./Select.stories.styles";
+import { TextareaStory } from "./Textarea.stories.styles";
 import Uncontrolled from "./examples/Uncontrolled";
 import Controlled from "./examples/Controlled";
 import CustomAttributes from "./examples/CustomAttributes";
 import Ref from "./examples/Ref";
 
-const storyName = getStoryName("Select");
+const storyName = getStoryName("Textarea");
 
 export default {
   title: `${storyName}/Examples`,
 };
 
 export const uncontrolled = () => (
-  <SelectStory storyName="Uncontrolled" component="Select" fileName="examples/Uncontrolled.js">
+  <TextareaStory storyName="Uncontrolled" component="Textarea" fileName="examples/Uncontrolled.js">
     <Uncontrolled />
-  </SelectStory>
+  </TextareaStory>
 );
 uncontrolled.story = {
   name: "Uncontrolled",
@@ -24,9 +24,9 @@ uncontrolled.story = {
 };
 
 export const controlled = () => (
-  <SelectStory storyName="Controlled" component="Select" fileName="examples/Controlled.js">
+  <TextareaStory storyName="Controlled" component="Textarea" fileName="examples/Controlled.js">
     <Controlled />
-  </SelectStory>
+  </TextareaStory>
 );
 controlled.story = {
   name: "Controlled",
@@ -34,9 +34,9 @@ controlled.story = {
 };
 
 export const customAttributes = () => (
-  <SelectStory storyName="Custom Attributes" component="Select" fileName="examples/CustomAttributes.js">
+  <TextareaStory storyName="Custom Attributes" component="Textarea" fileName="examples/CustomAttributes.js">
     <CustomAttributes />
-  </SelectStory>
+  </TextareaStory>
 );
 customAttributes.story = {
   name: "Custom Attributes",
@@ -44,9 +44,9 @@ customAttributes.story = {
 };
 
 export const ref = () => (
-  <SelectStory storyName="Ref" component="Select" fileName="examples/Ref.js">
+  <TextareaStory storyName="Ref" component="Textarea" fileName="examples/Ref.js">
     <Ref />
-  </SelectStory>
+  </TextareaStory>
 );
 ref.story = {
   name: "Ref",

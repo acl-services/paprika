@@ -1,6 +1,6 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
-import { exampleStoryParameters } from "storybook/assets/storyParameters";
+import { exampleStoryParameters, actionStoryParameters } from "storybook/assets/storyParameters";
 import { InputStory } from "./Input.stories.styles";
 import Uncontrolled from "./examples/Uncontrolled";
 import Controlled from "./examples/Controlled";
@@ -22,7 +22,7 @@ export const uncontrolled = () => (
 );
 uncontrolled.story = {
   name: "Uncontrolled",
-  parameters: exampleStoryParameters,
+  parameters: actionStoryParameters,
 };
 
 export const controlled = () => (
@@ -32,7 +32,7 @@ export const controlled = () => (
 );
 controlled.story = {
   name: "Controlled",
-  parameters: exampleStoryParameters,
+  parameters: actionStoryParameters,
 };
 
 export const types = () => (

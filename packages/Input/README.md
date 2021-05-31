@@ -55,14 +55,13 @@ To use it as controlled:
 import Input from "@paprika/input";
 ...
 const [value, setValue] = React.useState("default value");
-return (
-  <Input
-    value={value}
-    onChange={event => {
-      setValue(event ? event.target.value : "");
-    }}
-  />;
-);
+...
+<Input
+  value={value}
+  onChange={event => {
+    setValue(event ? event.target.value : "");
+  }}
+/>
 ```
 
 To use it as an uncontrolled component:
@@ -70,14 +69,14 @@ To use it as an uncontrolled component:
 ```js
 import Input from "@paprika/input";
 ...
-return (
-  <Input
-    defaultValue="default value"
-    onChange={event => {
-      console.log(`The new value is ${event.target.value}`);
-    }}
-  />
-);
+const refInput = React.useRef();
+...
+<Input
+  defaultValue="default value"
+  ref={refInput}
+/>
+...
+refInput.current.value // latest value
 ```
 
 ## Dependencies

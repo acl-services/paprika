@@ -4,7 +4,7 @@ import StoryHeading from "storybook/components/StoryHeading";
 import { Gap, CodeHeading } from "storybook/assets/styles/common.styles";
 import Input from "../../src";
 
-const TypesExample = () => {
+export default function Types() {
   return (
     <>
       <CodeHeading>
@@ -35,6 +35,4 @@ const TypesExample = () => {
       </ul>
     </>
   );
-};
-
-export default TypesExample;
+}

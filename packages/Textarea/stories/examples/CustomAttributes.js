@@ -1,14 +1,14 @@
 import React from "react";
-import Input from "../../src";
+import Textarea from "../../src";
 
 export default function Attributes() {
   return (
     <>
-      <Input a11yText="custom input" className="custom-input" data-testid="custom-input">
-        <Input.Container className="custom-container" data-testid="custom-container" />
-      </Input>
+      <Textarea a11yText="custom textarea" className="custom-textarea" data-testid="custom-textarea">
+        <Textarea.Container className="custom-container" data-testid="custom-container" />
+      </Textarea>
       <p>
-        This <code>{`<Input>`}</code> demonstrates:
+        This <code>{`<Textarea>`}</code> demonstrates:
       </p>
       <ul>
         <li>

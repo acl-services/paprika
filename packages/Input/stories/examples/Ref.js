@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "../../src";
 
-const RefStory = () => {
+export default function RefStory() {
   const refInput = React.useRef();
 
   setTimeout(() => {
@@ -16,6 +16,4 @@ const RefStory = () => {
       </p>
     </>
   );
-};
-
-export default RefStory;
+}

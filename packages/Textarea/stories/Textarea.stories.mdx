@@ -1,0 +1,24 @@
+import { Meta, Description } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import { docsStoryParameters } from "storybook/assets/storyParameters";
+import Readme from "../README.md";
+import Textarea from "../src";
+
+<Meta title={`${getStoryName("Textarea")}/Docs`} component={Textarea} parameters={{ ...docsStoryParameters }} />
+
+<Description markdown={Readme} />
+
+## Notes
+
+- Additional props and DOM attributes provided to `<Textarea>` will be spread onto
+  the underlying `<textarea>` DOM element.
+
+- The `<Textarea.Container>` component can be used as a `child` of `<Input>` to
+  spread attributes to the root `<div>` container element.
+
+- The `ref` will be forwarded to the underlying `<textarea>` DOM element.
+
+- It is very important for **accessibility** that every `<textarea>` has a label.
+  Usually this will be provided as a visible label with the Paprika
+  `<FormElement.Label>`, but a label can also be provided directly for assistive
+  technology clients (like screen readers) via the `a11yText` prop.
