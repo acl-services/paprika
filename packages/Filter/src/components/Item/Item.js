@@ -157,11 +157,10 @@ function Item(props) {
             data-pka-anchor="filter.item.valueInput"
           />
         );
-
       case types.columnTypes.SINGLE_SELECT:
         return (
           <sc.ValueInput data-pka-anchor="filter.item.valueInput">
-            <ListBox onChange={handleChangeSingleSelectFilterValue}>
+            <ListBox key={`${selectedColumnId}-${index}`} onChange={handleChangeSingleSelectFilterValue}>
               {selectOptions >= MAX_OPTIONS ? <ListBox.Filter /> : null}
               {selectOptions.map(data => (
                 <ListBox.Option
@@ -178,7 +177,7 @@ function Item(props) {
       case types.columnTypes.MULTI_SELECT:
         return (
           <sc.ValueInput data-pka-anchor="filter.item.valueInput">
-            <ListBox onChange={handleChangeMultiSelectFilterValue} isMulti>
+            <ListBox key={`${selectedColumnId}-${index}`} onChange={handleChangeMultiSelectFilterValue} isMulti>
               {selectOptions >= MAX_OPTIONS ? <ListBox.Filter /> : null}
               {selectOptions.map(option => (
                 <ListBox.Option
