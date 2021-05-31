@@ -21,6 +21,10 @@ const isOneOf = (dataValue, filterValue) => {
   return filterValue.includes(dataValue);
 };
 
+const isNotOneOf = (dataValue, filterValue) => {
+  return !isOneOf(dataValue, filterValue);
+};
+
 const testers = {
   [Filter.rules.IS]: is,
   [Filter.rules.IS_NOT]: isNot,
@@ -43,7 +47,7 @@ const testers = {
   [Filter.rules.IS_AFTER]: (value, testValue, { momentParsingFormat }) =>
     processDate(momentParsingFormat, value, testValue, (a, b) => a.isAfter(b)),
   [Filter.rules.IS_ONE_OF]: isOneOf,
-  [Filter.rules.IS_NOT_ONE_OF]: !isOneOf,
+  [Filter.rules.IS_NOT_ONE_OF]: isNotOneOf,
 };
 
 export default testers;

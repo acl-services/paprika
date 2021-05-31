@@ -2,11 +2,6 @@ import React from "react";
 import Filter, { useFilter } from "../../src";
 import data from "./data";
 
-// TODO: this works but there is one problem:
-//       if you choose the filter as a SS then change it to a FS and choose a value it dies (it remains a SS), and conversely
-//       if you choose the filter as a FS then change it to a SS and choose a value it dies (it remains a FS)
-// TODO: tests
-
 const columnsSettings = [
   {
     id: "goals",
