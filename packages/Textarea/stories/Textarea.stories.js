@@ -1,23 +1,49 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
-import ShowcaseStory from "./examples/Showcase";
-import Uncontrolled from "./examples/Uncontrolled";
-import Sizes from "./examples/Sizes";
-import A11yStory from "./examples/test/A11y";
-import ScreenerStory from "./examples/test/Screener";
+import { showcaseStoryParameters, variationsStoryParameters } from "storybook/assets/storyParameters";
+import { TextareaStory } from "./Textarea.stories.styles";
+import Showcase from "./examples/Showcase";
+import Variations from "./examples/Variations";
+// import Uncontrolled from "./examples/Uncontrolled";
+// import Sizes from "./examples/Sizes";
+// import ScreenerStory from "./examples/test/Screener";
 
 const storyName = getStoryName("Textarea");
 
-storiesOf(storyName, module)
-  .addDecorator(withKnobs)
-  .add("Showcase", ShowcaseStory);
+export default {
+  title: storyName,
+};
 
-storiesOf(`${storyName}/Examples`, module)
-  .add("Uncontrolled", Uncontrolled)
-  .add("Sizes", () => <Sizes />);
+export const showcase = () => (
+  <TextareaStory storyName="Textarea" tagline={TextareaStory.defaultTaglines.showcase}>
+    <Showcase />
+  </TextareaStory>
+);
+showcase.story = {
+  name: "Showcase",
+  decorators: [withKnobs],
+  parameters: showcaseStoryParameters,
+};
 
-storiesOf(`${storyName}/Backyard/Tests`, module)
-  .add("Screener", () => <ScreenerStory />)
-  .add("Accessibility", () => <A11yStory />);
+export const variations = () => (
+  <TextareaStory
+    storyName="Textarea"
+    tagline={TextareaStory.defaultTaglines.variations}
+    component="Textarea"
+    fileName="examples/Variations.js"
+  >
+    <Variations />
+  </TextareaStory>
+);
+variations.story = {
+  name: "Variations",
+  parameters: variationsStoryParameters,
+};
+
+// storiesOf(`${storyName}/Examples`, module)
+//   .add("Uncontrolled", Uncontrolled)
+//   .add("Sizes", () => <Sizes />);
+
+// storiesOf(`${storyName}/Backyard/Tests`, module)
+//   .add("Screener", () => <ScreenerStory />)

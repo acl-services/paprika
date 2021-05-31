@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.3
+
+### Patch Changes
+
+- 3d446fd: Fixed the tab not being vertically centered when the <Tabs> component is set to be horizontally aligned.
+
 ## 2.2.3-next.0
 
 ### Patch Changes

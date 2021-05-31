@@ -45,6 +45,16 @@ export const exampleStoryParameters = {
   viewMode: "story",
 };
 
+// For example stories with Storybook actions
+export const actionStoryParameters = {
+  options: {
+    isToolshown: true,
+    showPanel: true,
+    panelPosition: "bottom",
+  },
+  viewMode: "story",
+};
+
 // Testing stories
 export const testStoryParameters = {
   options: {

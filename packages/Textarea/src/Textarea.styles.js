@@ -1,13 +1,22 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
+import * as types from "./types";
 
-export const Textarea = styled.div`
-  position: relative;
+const sizeStyles = {
+  [types.SMALL]: css`
+    ${stylers.fontSize(-2)}
+  `,
+  [types.MEDIUM]: css`
+    ${stylers.fontSize(-1)}
+  `,
+  [types.LARGE]: css`
+    ${stylers.fontSize()}
+  `,
+};
 
-  .form-textarea__textarea {
-    ${stylers.placeholders};
-
+export const Textarea = styled.textarea(
+  ({ hasError, isDisabled, isReadOnly, maxHeight, minHeight, size }) => css`
     background-color: ${tokens.color.white};
     border: 1px solid ${tokens.border.color};
     border-radius: ${tokens.border.radius};
@@ -16,60 +25,20 @@ export const Textarea = styled.div`
     color: ${tokens.color.black};
     display: block;
     margin: 0;
-    min-height: 80px;
+    max-height: ${Number.isNaN(Number(maxHeight)) ? maxHeight : `${maxHeight}px`};
+    min-height: ${Number.isNaN(Number(minHeight)) ? minHeight : `${minHeight}px`};
+    outline: none;
     padding: ${tokens.space};
     resize: none;
     width: 100%;
-
-    &:hover:not(.is-disabled):not(.is-readonly):not([disabled]) {
-      border-color: ${tokens.color.blackLighten30};
-    }
-
-    &.form-element--has-error {
-      border-color: ${tokens.color.orange};
-    }
+    ${stylers.placeholders};
+    ${sizeStyles[size]}
+    ${hasError && stylers.errorFormStyles}
+    ${isDisabled && stylers.disabledFormStyles}
+    ${isReadOnly && stylers.readOnlyFormStyles}
 
     &:focus {
-      background-color: ${tokens.color.white};
-      border-color: ${tokens.highlight.active.noBorder.borderColor};
-      box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
-      outline: none;
+      ${isReadOnly ? stylers.focusRing.subtle() : stylers.focusRing.bordered()}
     }
-  }
-
-  .form-textarea__aria-label {
-    ${stylers.visuallyHidden}
-  }
-
-  &.form-textarea--small .form-textarea__textarea {
-    ${stylers.fontSize(-2)};
-  }
-
-  &.form-textarea--medium .form-textarea__textarea {
-    ${stylers.fontSize(-1)};
-  }
-
-  &.form-textarea--large .form-textarea__textarea {
-    ${stylers.fontSize()};
-  }
-
-  &.form-textarea--is-readonly .form-textarea__textarea {
-    ${stylers.readOnlyFormStyles};
-    cursor: text;
-  }
-
-  &.form-textarea--is-disabled,
-  &[disabled] {
-    textarea.form-textarea__textarea {
-      ${stylers.disabledFormStyles}
-    }
-
-    .form-textarea__icon {
-      color: ${tokens.color.blackLighten60};
-    }
-  }
-
-  &.form-textarea--has-error textarea.form-textarea__textarea {
-    ${stylers.errorFormStyles}
-  }
-`;
+`
+);

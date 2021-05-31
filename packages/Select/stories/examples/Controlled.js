@@ -1,4 +1,5 @@
 import React from "react";
+import { action } from "@storybook/addon-actions";
 import { Gap } from "storybook/assets/styles/common.styles";
 import Select from "../../src";
 
@@ -8,12 +9,26 @@ export default function Uncontrolled() {
 
   return (
     <>
-      <Select onChange={event => setValue(event.target.value)} value={value} placeholder="Choose the best one...">
+      <Select
+        onChange={event => {
+          setValue(event.target.value);
+          action("value changed")(event.target.value);
+        }}
+        value={value}
+        placeholder="Choose the best one..."
+      >
         <option value="Coke">Coke</option>
         <option value="Pepsi">Pepsi</option>
       </Select>
       <Gap.Small />
-      <Select onChange={event => setValue2(event.target.value)} value={value2} placeholder="Choose the best one...">
+      <Select
+        onChange={event => {
+          setValue2(event.target.value);
+          action("value changed")(event.target.value);
+        }}
+        value={value2}
+        placeholder="Choose the best one..."
+      >
         <option value="Coke">Coke</option>
         <option value="Pepsi">Pepsi</option>
       </Select>
