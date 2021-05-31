@@ -55,10 +55,10 @@ npm install @paprika/filter
 
 ## Filter
 
-### Usage
+### Usage (no hooks)
 
 ```js
-import Filter, { useFilter } from "@paprika/filter";
+import Filter from "@paprika/filter";
 
 <Filter
   columns={columnsSettings}
@@ -72,10 +72,10 @@ import Filter, { useFilter } from "@paprika/filter";
 >
   <Filter.Item
     columnId="name"
-    id={1}
+    id={1234}
     index={0}
     type="TEXT"
-    rule="contains"
+    rule="CONTAINS"
     value="abc"
     onChangeFilter={() => {}}
     onRemoveFilter={() => {}}
@@ -85,7 +85,9 @@ import Filter, { useFilter } from "@paprika/filter";
 
 [More detail about props](https://github.com/acl-services/paprika/blob/aa770ab261d6364c2f14717c8edeb7d1e560a3d5/packages/Filter/src/components/Filter/Filter.js)
 
-You can also use the hook `useFilter`. Please note that the build-in filter functions only works with flat data arrary. Please pass in a flatten array if you want to use the build-in feature. If you want to use your own filter algorithm you can still use the hook, just do not pass in the `data` property and ignore the `filteredData` in the returned value.
+### Usage (with hooks)
+
+Please note that the built-in filter functions only work with flat data arrary. Please pass in a flattened array if you want to use the built-in feature. If you want to use your own filter algorithm you can still use the hook, just do not pass in the `data` property and ignore the `filteredData` in the returned value.
 
 ```js
 const { filteredData, filters, getFilterProps, getFilterItemProps } = useFilter({ columns, rulesByType, data });
@@ -116,6 +118,10 @@ return (
   // display filteredData
 );
 ```
+
+### Variations
+
+- You can prevent the user from having to choose between <code>AND</code> and <code>OR</code> by setting the <code>onChangeOperator</code> prop to <code>null</code> and including the <code>operator</code> to use.
 
 <!-- eoContent -->
 

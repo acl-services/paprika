@@ -17,7 +17,7 @@ export default function Example() {
         Top navigation
       </div>
       <div style={{ display: "flex", flexDirection: "row", flexGrow: 1 }}>
-        <SideNavigation offsetY={40} header="My Header">
+        <SideNavigation offset={{ top: 40 }} header="My Header">
           <SideNavigation.Item href={mockURL}>First item (0)</SideNavigation.Item>
           <SideNavigation.Item isCurrent href={mockURL}>
             Second item (1000)

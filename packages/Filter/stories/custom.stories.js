@@ -1,10 +1,8 @@
 import React from "react";
-import { select } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading/lib/Heading";
-import L10n from "@paprika/l10n";
-import ShowcaseApp from "./Showcase";
+import CustomApp from "./Custom";
 
 const storyName = getStoryName("Filter");
 
@@ -12,16 +10,16 @@ export default {
   title: storyName,
 };
 
-export const Showcase = () => (
+export const Custom = () => (
   <Story>
     <Heading level={1} displayLevel={2} isLight>
-      Filter
+      Filter (with custom filter)
     </Heading>
-    <Tagline>Interactive example of the component.</Tagline>
+    <Tagline>
+      You can render a custom filter &quot;value&quot; and/or use a custom list of &quot;comparators&quot;:
+    </Tagline>
     <Rule />
 
-    <L10n locale={select("locale", ["en", "de", "es", "fr", "ja", "pt", "zh"], "en")}>
-      <ShowcaseApp />
-    </L10n>
+    <CustomApp />
   </Story>
 );

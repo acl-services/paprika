@@ -1,10 +1,8 @@
 import React from "react";
-import { select } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading/lib/Heading";
-import L10n from "@paprika/l10n";
-import ShowcaseApp from "./Showcase";
+import BasicApp from "./Basic";
 
 const storyName = getStoryName("Filter");
 
@@ -12,16 +10,16 @@ export default {
   title: storyName,
 };
 
-export const Showcase = () => (
+export const Basic = () => (
   <Story>
     <Heading level={1} displayLevel={2} isLight>
-      Filter
+      Filter (basic)
     </Heading>
-    <Tagline>Interactive example of the component.</Tagline>
+    <Tagline>
+      Without hooks, you would have to manage filters yourself (when they are created/deleted/modified).
+    </Tagline>
     <Rule />
 
-    <L10n locale={select("locale", ["en", "de", "es", "fr", "ja", "pt", "zh"], "en")}>
-      <ShowcaseApp />
-    </L10n>
+    <BasicApp />
   </Story>
 );

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import SidePanel from "@paprika/sidepanel";
+import Panel from "@paprika/panel";
 import Button from "@paprika/button";
 import Popover from "@paprika/popover";
 import MenuIcon from "@paprika/icon/lib/Menu";
@@ -9,7 +9,7 @@ import Item from "./components/Item";
 
 import * as sc from "./SideNavigation.styles";
 
-const SIDE_PANEL_WIDTH = "350px";
+const PANEL_WIDTH = "350px";
 
 function SideNavigation(props) {
   const { a11yText, children, header, ...moreProps } = props;
@@ -56,22 +56,22 @@ function SideNavigation(props) {
         </Popover.Content>
         <Popover.Tip />
       </Popover>
-      <SidePanel
+      <Panel
         isCompact
         isOpen={isOpen}
-        isSlideFromLeft
+        slideFrom={Panel.types.slideFrom.LEFT}
         onClose={handleClose}
         onAfterClose={handleAfterClose}
-        width={SIDE_PANEL_WIDTH}
+        width={PANEL_WIDTH}
         {...moreProps}
       >
-        <SidePanel.Header>{header}</SidePanel.Header>
-        <sc.SidePanelContent>
+        <Panel.Header>{header}</Panel.Header>
+        <sc.PanelContent>
           <nav aria-label={a11yText || I18n.t("sideNavigation.aria_label")}>
             <ul>{children}</ul>
           </nav>
-        </sc.SidePanelContent>
-      </SidePanel>
+        </sc.PanelContent>
+      </Panel>
     </sc.SideNavigationCollapsedWrapper>
   );
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import Heading from "@paprika/heading";
 import Filter, { useFilter } from "../../src";
 import data from "./data";
 
@@ -68,9 +67,6 @@ export default function App() {
 
   return (
     <React.Fragment>
-      <Heading level={2}>Filter showcase</Heading>
-      <div>Click the trigger below to update filters.</div>
-
       <Filter {...getFilterProps()} columns={columnsSettings} data={data}>
         {filters.map((filter, index) => (
           <Filter.Item
