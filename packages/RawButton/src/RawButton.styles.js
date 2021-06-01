@@ -6,7 +6,7 @@ const focusStyles = isInset => css`
     outline: none;
   }
 
-  [data-whatinput="keyboard"] &:focus,
+  html:not([data-whatinput="mouse"]) &:focus,
   &[data-has-forced-focus]:focus {
     ${stylers.focusRing(isInset)}
   }

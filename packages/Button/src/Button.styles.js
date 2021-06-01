@@ -55,12 +55,12 @@ const focusStyles = css`
     outline: none;
   }
 
-  [data-whatinput="keyboard"] &:focus,
+  html:not([data-whatinput="mouse"]) &:focus,
   &[data-has-forced-focus]:focus {
     ${stylers.focusRing.bordered()}
   }
 
-  [data-whatinput="keyboard"] &[aria-disabled="true"]:focus {
+  html:not([data-whatinput="mouse"]) &[aria-disabled="true"]:focus {
     border-color: transparent;
     box-shadow: none;
     ${stylers.focusRing.subtle()}
