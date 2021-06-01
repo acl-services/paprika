@@ -100,6 +100,7 @@ describe("Filter - testers", () => {
 
     expect(testers[Filter.rules.IS_ONE_OF]("gerbil", dataValue)).toBe(true);
     expect(testers[Filter.rules.IS_ONE_OF]("hippopotamus", dataValue)).toBe(false);
+    expect(testers[Filter.rules.IS_ONE_OF]("", dataValue)).toBe(true);
   });
 
   it("should run filter rules IS NOT ONE OF", () => {
@@ -107,5 +108,6 @@ describe("Filter - testers", () => {
 
     expect(testers[Filter.rules.IS_NOT_ONE_OF]("hippopotamus", dataValue)).toBe(true);
     expect(testers[Filter.rules.IS_NOT_ONE_OF]("gerbil", dataValue)).toBe(false);
+    expect(testers[Filter.rules.IS_NOT_ONE_OF]("", dataValue)).toBe(true);
   });
 });

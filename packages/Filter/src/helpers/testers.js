@@ -17,12 +17,14 @@ const processDate = (momentParsingFormat, value, testValue, testFunction) => {
   return false;
 };
 
-const isOneOf = (dataValue, filterValue) => {
-  return filterValue.includes(dataValue);
+const isOneOf = (testValue, acceptableValues) => {
+  if (testValue === "") return true;
+  return acceptableValues.includes(testValue);
 };
 
-const isNotOneOf = (dataValue, filterValue) => {
-  return !isOneOf(dataValue, filterValue);
+const isNotOneOf = (testValue, acceptableValues) => {
+  if (testValue === "") return true;
+  return !isOneOf(testValue, acceptableValues);
 };
 
 const testers = {
