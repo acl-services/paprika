@@ -74,6 +74,7 @@
     "@paprika/seducer": "2.0.1"
   },
   "changesets": [
-    "tasty-tips-obey"
+    "tasty-tips-obey",
+    "two-ladybugs-eat"
   ]
 }
