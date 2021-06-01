@@ -96,18 +96,18 @@ describe("Filter - testers", () => {
   });
 
   it("should run filter rules IS ONE OF", () => {
-    const dataValue = ["dog", "cat", "gerbil"];
+    const multiSelectSelectedValues = ["dog", "cat", "gerbil"];
 
-    expect(testers[Filter.rules.IS_ONE_OF]("gerbil", dataValue)).toBe(true);
-    expect(testers[Filter.rules.IS_ONE_OF]("hippopotamus", dataValue)).toBe(false);
-    expect(testers[Filter.rules.IS_ONE_OF]("", dataValue)).toBe(true);
+    expect(testers[Filter.rules.IS_ONE_OF]("gerbil", multiSelectSelectedValues)).toBe(true);
+    expect(testers[Filter.rules.IS_ONE_OF]("hippopotamus", multiSelectSelectedValues)).toBe(false);
+    expect(testers[Filter.rules.IS_ONE_OF]("hippopotamus", [])).toBe(true);
   });
 
   it("should run filter rules IS NOT ONE OF", () => {
-    const dataValue = ["dog", "cat", "gerbil"];
+    const multiSelectSelectedValues = ["dog", "cat", "gerbil"];
 
-    expect(testers[Filter.rules.IS_NOT_ONE_OF]("hippopotamus", dataValue)).toBe(true);
-    expect(testers[Filter.rules.IS_NOT_ONE_OF]("gerbil", dataValue)).toBe(false);
-    expect(testers[Filter.rules.IS_NOT_ONE_OF]("", dataValue)).toBe(true);
+    expect(testers[Filter.rules.IS_NOT_ONE_OF]("gerbil", multiSelectSelectedValues)).toBe(false);
+    expect(testers[Filter.rules.IS_NOT_ONE_OF]("hippopotamus", multiSelectSelectedValues)).toBe(true);
+    expect(testers[Filter.rules.IS_NOT_ONE_OF]("hippopotamus", [])).toBe(true);
   });
 });

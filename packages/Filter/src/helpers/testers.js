@@ -17,14 +17,12 @@ const processDate = (momentParsingFormat, value, testValue, testFunction) => {
   return false;
 };
 
-const isOneOf = (testValue, acceptableValues) => {
-  if (testValue === "") return true;
-  return acceptableValues.includes(testValue);
+const isOneOf = (rowValue, multiSelectSelectedValues) => {
+  return multiSelectSelectedValues.length === 0 || multiSelectSelectedValues.includes(rowValue);
 };
 
-const isNotOneOf = (testValue, acceptableValues) => {
-  if (testValue === "") return true;
-  return !isOneOf(testValue, acceptableValues);
+const isNotOneOf = (rowValue, multiSelectSelectedValues) => {
+  return multiSelectSelectedValues.length === 0 || !multiSelectSelectedValues.includes(rowValue);
 };
 
 const testers = {
