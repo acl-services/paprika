@@ -46,8 +46,17 @@ const borderStyles = ({ kind, isDisabled, isActive }) => css`
         border-color: ${borderHoverColors[kind]};
       }
     `}
+`;
 
-  [data-whatinput="keyboard"] &:focus {
+// States
+
+const focusStyles = css`
+  &:focus {
+    outline: none;
+  }
+
+  [data-whatinput="keyboard"] &:focus,
+  &[data-has-forced-focus]:focus {
     ${stylers.focusRing.bordered()}
   }
 
@@ -57,8 +66,6 @@ const borderStyles = ({ kind, isDisabled, isActive }) => css`
     ${stylers.focusRing.subtle()}
   }
 `;
-
-// States
 
 const disabledStyles = ({ kind }) => css`
   border-color: ${disabledBorderColors[kind]};
@@ -108,6 +115,7 @@ export const commonStyles = css`
   ${stylers.alignMiddle}
   ${stylers.lineHeight(-1)}
   ${borderStyles}
+  ${focusStyles}
   appearance: none;
   border-radius: ${tokens.button.borderRadius};
   border-style: solid;
@@ -122,10 +130,6 @@ export const commonStyles = css`
 
   &:active {
     transform: scale(0.98);
-  }
-
-  &:focus {
-    outline:none;
   }
 `;
 
