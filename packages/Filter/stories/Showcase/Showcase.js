@@ -35,9 +35,14 @@ const columnsSettings = [
     type: Filter.types.columnTypes.SINGLE_SELECT,
     label: "Position",
   },
+  {
+    id: "hairColour",
+    type: Filter.types.columnTypes.MULTI_SELECT,
+    label: "Hair Colour",
+  },
 ];
 
-const orderedColumnIds = ["goals", "name", "status", "country", "joined", "shareable", "position"];
+const orderedColumnIds = ["goals", "name", "status", "country", "joined", "shareable", "position", "hairColour"];
 
 export default function App() {
   /**

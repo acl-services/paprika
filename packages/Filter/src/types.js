@@ -10,6 +10,7 @@ export const columnTypes = {
   DATE: "DATE",
   BOOLEAN: "BOOLEAN",
   SINGLE_SELECT: "SINGLE_SELECT",
+  MULTI_SELECT: "MULTI_SELECT",
 };
 
 export const localeTypeKeys = {
@@ -18,4 +19,5 @@ export const localeTypeKeys = {
   [columnTypes.DATE]: "date",
   [columnTypes.BOOLEAN]: "boolean",
   [columnTypes.SINGLE_SELECT]: "single_select",
+  [columnTypes.MULTI_SELECT]: "multi_select",
 };

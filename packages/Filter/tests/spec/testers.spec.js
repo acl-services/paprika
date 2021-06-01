@@ -94,4 +94,20 @@ describe("Filter - testers", () => {
   it("Should have Filter.rules.IS_BEFORE set to true", () => {
     expect(testers[Filter.rules.IS_BEFORE]("1994-06-05", "1994-09-08", "YYYY-MM-DD")).toBe(true);
   });
+
+  it("should run filter rules IS ONE OF", () => {
+    const multiSelectSelectedValues = ["dog", "cat", "gerbil"];
+
+    expect(testers[Filter.rules.IS_ONE_OF]("gerbil", multiSelectSelectedValues)).toBe(true);
+    expect(testers[Filter.rules.IS_ONE_OF]("hippopotamus", multiSelectSelectedValues)).toBe(false);
+    expect(testers[Filter.rules.IS_ONE_OF]("hippopotamus", [])).toBe(true);
+  });
+
+  it("should run filter rules IS NOT ONE OF", () => {
+    const multiSelectSelectedValues = ["dog", "cat", "gerbil"];
+
+    expect(testers[Filter.rules.IS_NOT_ONE_OF]("gerbil", multiSelectSelectedValues)).toBe(false);
+    expect(testers[Filter.rules.IS_NOT_ONE_OF]("hippopotamus", multiSelectSelectedValues)).toBe(true);
+    expect(testers[Filter.rules.IS_NOT_ONE_OF]("hippopotamus", [])).toBe(true);
+  });
 });
