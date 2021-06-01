@@ -1,23 +1,16 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import {
-  commonStyles,
-  sizeStyles,
-  kindStyles,
-  activeStyles,
-  inactiveStyles,
-  fullWidthStyles,
-} from "../../Button.styles";
+import { commonStyles, sizeStyles, kindStyles, activeStyles, fullWidthStyles } from "../../Button.styles";
 import { ButtonIcon } from "../../Button";
 
 export const LinkButton = styled.a(
-  ({ size, kind, isFullWidth, isActive, ...props }) => css`
+  ({ size, kind, isFullWidth, isActive }) => css`
     ${commonStyles}
     ${sizeStyles[size]}
-    ${kindStyles(props)[kind]}
+    ${kindStyles[kind]}
     ${isFullWidth && fullWidthStyles}
-    ${isActive ? activeStyles : inactiveStyles}
+    ${isActive && activeStyles}
   `
 );
 

@@ -2,13 +2,8 @@ import styled, { css } from "styled-components";
 import stylers from "@paprika/stylers";
 
 const focusStyles = isInset => css`
-  &:focus {
+  [data-whatinput="keyboard"] &:focus {
     ${stylers.focusRing(isInset)}
-  }
-
-  [data-whatinput="mouse"] &:not([data-has-forced-focus="true"]):focus {
-    box-shadow: none;
-    outline: none;
   }
 `;
 
