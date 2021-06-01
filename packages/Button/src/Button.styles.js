@@ -320,12 +320,12 @@ export const fullWidthStyles = css`
 //
 
 export const Button = styled.span(
-  ({ kind, size, isFullWidth, isActive }) => css`
+  ({ kind, size, isFullWidth, isActive, isDisabled }) => css`
   ${commonStyles}
   ${sizeStyles[size]}
   ${kindStyles[kind]}
   ${isFullWidth && fullWidthStyles}
-  ${isActive && activeStyles}
+  ${isActive && !isDisabled && activeStyles}
 `
 );
 

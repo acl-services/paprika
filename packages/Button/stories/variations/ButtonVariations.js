@@ -62,19 +62,22 @@ export default function ButtonVariations() {
       </Button>
       <Gap />
       <Button onClick={clickHandler} isActive>
-        active button
+        active
+      </Button>
+      <Button onClick={clickHandler} isActive isDisabled>
+        active disabled
       </Button>
       <Button onClick={clickHandler} isActive kind="primary">
-        active button
+        active primary
       </Button>
       <Button onClick={clickHandler} isActive kind="flat">
-        active button
+        active flat
       </Button>
       <Button onClick={clickHandler} isActive kind="minor">
-        active button
+        active minor
       </Button>
       <Button onClick={clickHandler} isActive kind="link">
-        active button
+        active link
       </Button>
       <Gap />
       <Button isSemantic={false} onClick={clickHandler}>
