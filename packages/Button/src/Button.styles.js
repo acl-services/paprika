@@ -61,9 +61,9 @@ const focusStyles = css`
   }
 
   html:not([data-whatinput="mouse"]) &[aria-disabled="true"]:focus {
+    ${stylers.focusRing.subtle()}
     border-color: transparent;
     box-shadow: none;
-    ${stylers.focusRing.subtle()}
   }
 `;
 
@@ -83,16 +83,12 @@ const disabledStyles = ({ kind }) => css`
 
   &,
   &:hover,
-  &:focus {
+  &:focus,
+  &:active {
     background: ${tokens.color.blackLighten70};
+    box-shadow: none;
     color: ${tokens.color.blackLighten40};
     text-decoration: none;
-  }
-
-  &,
-  &:hover,
-  &:active {
-    box-shadow: none;
     transform: none;
   }
 `;
@@ -141,24 +137,13 @@ const skeuomorphicStyles = css`
 `;
 
 const coloredButtonStyles = css`
+  color: ${tokens.color.white};
+  text-decoration: none;
   text-shadow: 0 1px 1px ${stylers.alpha(tokens.color.blackPure, 0.2)};
-
-  &,
-  &:hover,
-  &:active,
-  &:visited {
-    color: ${tokens.color.white};
-    text-decoration: none;
-  }
 `;
 
 const textButtonStyles = css`
-  &,
-  &:hover,
-  &:active,
-  &:visited {
-    background: none;
-  }
+  background: none;
 `;
 
 // Sizes
@@ -186,19 +171,12 @@ export const sizeStyles = {
 export const kindStyles = {
   [types.DEFAULT]: ({ isDisabled }) => css`
     ${skeuomorphicStyles}
+    background-color: ${tokens.color.white};
+    background-image: linear-gradient(${tokens.color.blackLighten90}, ${tokens.color.blackLighten70});
+    color: ${tokens.color.black};
+    text-decoration: none;
 
-    &, 
-    &:hover, 
-    &:active, 
-    &:visited {
-      background-color: ${tokens.color.white};
-      background-image: linear-gradient(${tokens.color.blackLighten90}, ${tokens.color.blackLighten70});
-      color: ${tokens.color.black};
-      text-decoration: none;
-    }
-
-    &:hover,
-    &:active {
+    &:hover {
       background: ${tokens.color.blackLighten70};
     }
 
@@ -208,14 +186,8 @@ export const kindStyles = {
   [types.PRIMARY]: ({ isDisabled }) => css`
     ${skeuomorphicStyles}
     ${coloredButtonStyles}
-
-    &, 
-    &:hover, 
-    &:active, 
-    &:visited {
-      background-color: ${tokens.color.greenLighten10};
-      background-image: linear-gradient(${tokens.color.greenLighten10}, ${tokens.color.green});
-    }
+    background-color: ${tokens.color.greenLighten10};
+    background-image: linear-gradient(${tokens.color.greenLighten10}, ${tokens.color.green});
 
     &:hover {
       background: ${tokens.color.green};
@@ -227,14 +199,8 @@ export const kindStyles = {
   [types.SECONDARY]: ({ isDisabled }) => css`
     ${skeuomorphicStyles}
     ${coloredButtonStyles}
-
-    &, 
-    &:hover, 
-    &:active, 
-    &:visited {
-      background-color: ${tokens.color.purpleLighten10};
-      background-image: linear-gradient(${tokens.color.purpleLighten10}, ${tokens.color.purple});
-    }
+    background-color: ${tokens.color.purpleLighten10};
+    background-image: linear-gradient(${tokens.color.purpleLighten10}, ${tokens.color.purple});
 
     &:hover {
       background: ${tokens.color.purple};
@@ -246,14 +212,8 @@ export const kindStyles = {
   [types.DESTRUCTIVE]: ({ isDisabled }) => css`
     ${skeuomorphicStyles}
     ${coloredButtonStyles}
-
-    &, 
-    &:hover, 
-    &:active, 
-    &:visited {
-      background-color: ${tokens.color.orangeHighlight};
-      background-image: linear-gradient(${tokens.color.orangeHighlight}, ${tokens.color.orange});
-    }
+    background-color: ${tokens.color.orangeHighlight};
+    background-image: linear-gradient(${tokens.color.orangeHighlight}, ${tokens.color.orange});
 
     &:hover {
       background: ${tokens.color.orange};
@@ -264,20 +224,13 @@ export const kindStyles = {
 
   [types.FLAT]: ({ isDisabled }) => css`
     ${skeuomorphicStyles}
-
-    &, 
-    &:hover, 
-    &:active, 
-    &:visited {
-      background-color: ${tokens.color.white};
-      color: ${tokens.color.black};
-    }
+    background-color: ${tokens.color.white};
+    color: ${tokens.color.black};
+    text-decoration: none;
 
     &:hover,
     &:visited {
       background: ${tokens.color.blackLighten70};
-      color: ${tokens.color.black};
-      text-decoration: none;
     }
 
     ${isDisabled && disabledStyles}
@@ -295,7 +248,6 @@ export const kindStyles = {
 
   [types.LINK]: ({ isDisabled }) => css`
     ${textButtonStyles}
-
     color: ${tokens.textColor.link};
     font-weight: inherit;
     text-decoration: underline;
