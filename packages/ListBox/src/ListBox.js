@@ -39,6 +39,8 @@ export function ListBox(props) {
     onChange,
     placeholder,
     size,
+    contentOffsetX,
+    contentOffsetY,
 
     /* eslint-disable react/prop-types */
     data,
@@ -123,6 +125,8 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     isReadOnly,
     placeholder,
     size,
+    contentOffsetX,
+    contentOffsetY,
 
     /* eslint-disable react/prop-types */
     box,
@@ -242,6 +246,12 @@ export const propTypes = {
     ListBoxContainer.types.size.MEDIUM,
     ListBoxContainer.types.size.LARGE,
   ]),
+
+  /** Lets the user control the X-axis offset for the ListBox content */
+  contentOffsetX: PropTypes.number,
+
+  /** Lets the user control the YX-axis offset for the ListBox content */
+  contentOffsetY: PropTypes.number,
 };
 
 export const defaultProps = {
@@ -257,6 +267,8 @@ export const defaultProps = {
   onChange: () => {},
   placeholder: null,
   size: ListBoxContainer.types.size.MEDIUM,
+  contentOffsetX: 0,
+  contentOffsetY: 0,
 };
 
 ListBox.propTypes = propTypes;
