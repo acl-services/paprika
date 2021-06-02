@@ -17,6 +17,8 @@ const getKnobs = () => ({
   hasImplicitAll: boolean("hasImplicitAll", false),
   showFilter: boolean("Show Filter", false),
   showFooter: boolean("Show Footer", false),
+  contentOffsetX: number("Content Offset X", 0),
+  contentOffsetY: number("Content Offset Y", 0),
 });
 
 export default function Showcase() {

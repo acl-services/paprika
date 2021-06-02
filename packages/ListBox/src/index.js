@@ -18,7 +18,18 @@ import PropsProvider from "./store/PropsProvider";
 import * as types from "./types";
 
 const ListBoxWithProvider = React.forwardRef((props, ref) => {
-  const { children, hasError, isDisabled, isInline, isReadOnly, placeholder, size, ...moreProps } = props;
+  const {
+    children,
+    hasError,
+    isDisabled,
+    isInline,
+    isReadOnly,
+    placeholder,
+    size,
+    contentOffsetX,
+    contentOffsetY,
+    ...moreProps
+  } = props;
 
   const I18n = useI18n();
 
@@ -72,6 +83,8 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
     placeholder: placeholder || I18n.t("listBox.trigger.placeholder"),
     refLabel,
     size,
+    contentOffsetX,
+    contentOffsetY,
   };
 
   return (
