@@ -36,7 +36,7 @@ const propTypes = {
   /** The z-index for the popover / confirmation */
   zIndex: PropTypes.number,
 
-  /** placeholder */
+  /** The maximum height of the OverflowMenu content */
   maxHeight: PropTypes.number,
 };
 
