@@ -4,9 +4,9 @@ import React from "react";
 import { action } from "@storybook/addon-actions";
 import { boolean, select } from "@storybook/addon-knobs";
 import { Story, Rule } from "storybook/assets/styles/common.styles";
-import ButtonGroup from "@paprika/button-group";
 import Heading from "@paprika/heading";
 import Calendar from "@paprika/icon/lib/Calendar";
+import ButtonGroup from "../../src";
 import * as types from "../../src/types";
 
 const changeHandler = selectedItems => {
