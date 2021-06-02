@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [e856d54]
+- Updated dependencies [e856d54]
+  - @paprika/button@1.1.0-next.0
+  - @paprika/raw-button@1.0.4-next.0
+  - @paprika/panel@2.0.11-next.0
+  - @paprika/popover@1.2.3-next.0
+
 ## 3.0.0
 
 ### Major Changes

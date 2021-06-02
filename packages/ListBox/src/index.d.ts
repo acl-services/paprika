@@ -27,6 +27,10 @@ interface ListBoxProps {
   placeholder?: string;
   /** Size of the trigger and options (font size, height, padding, etc). */
   size?: ListBoxContainer.types.size.SMALL | ListBoxContainer.types.size.MEDIUM | ListBoxContainer.types.size.LARGE;
+  /** Lets the user control the X-axis offset for the ListBox content */
+  contentOffsetX?: number;
+  /** Lets the user control the Y-axis offset for the ListBox content */
+  contentOffsetY?: number;
 }
 
 declare namespace ListBox {

@@ -36,8 +36,8 @@ npm install @paprika/list-box
 | onChange       | func                                                                                                        | false    | () => {}                           | Callback returning the current selection on the ListBox            |
 | placeholder    | string                                                                                                      | false    | null                               | Default label for trigger when the ListBox has no option selected  |
 | size           | [ ListBoxContainer.types.size.SMALL, ListBoxContainer.types.size.MEDIUM, ListBoxContainer.types.size.LARGE] | false    | ListBoxContainer.types.size.MEDIUM | Size of the trigger and options (font size, height, padding, etc). |
-| contentOffsetX | number                                                                                                      | false    | 0                                  | Indicates the horizontal offset for the ListBox Popover contents   |
-| contentOffsetY | number                                                                                                      | false    | 0                                  | Indicates the vertical offset for the ListBox Popover contents     |
+| contentOffsetX | number                                                                                                      | false    | 0                                  | Lets the user control the X-axis offset for the ListBox content    |
+| contentOffsetY | number                                                                                                      | false    | 0                                  | Lets the user control the Y-axis offset for the ListBox content    |
 
 ### ListBox.A11y
 
