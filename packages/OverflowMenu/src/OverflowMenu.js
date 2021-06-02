@@ -35,6 +35,9 @@ const propTypes = {
 
   /** The z-index for the popover / confirmation */
   zIndex: PropTypes.number,
+
+  /** placeholder */
+  maxHeight: PropTypes.number,
 };
 
 const defaultProps = {
@@ -43,13 +46,13 @@ const defaultProps = {
   isOpen: null,
   onClose: null,
   zIndex: zValue(1),
+  maxHeight: null,
 };
 
 const popoverOffset = 4;
 
 const OverflowMenu = React.forwardRef((props, ref) => {
-  const { align, children, edge, isOpen: controlledIsOpen, onClose, zIndex, ...moreProps } = props;
-
+  const { align, children, edge, isOpen: controlledIsOpen, onClose, zIndex, maxHeight, ...moreProps } = props;
   const [isOpen, setIsOpen] = React.useState(false);
   const [isConfirming, setIsConfirming] = React.useState(false);
   const [currentFocusIndex, setFocusIndex] = React.useState(0);
@@ -193,9 +196,8 @@ const OverflowMenu = React.forwardRef((props, ref) => {
         zIndex,
       });
     }
-
     return (
-      <Popover.Card>
+      <sc.PopoverCard maxHeight={maxHeight}>
         <sc.Content ref={overflowListRef}>
           {extractedChildren.map((child, index) => {
             const childKey = { key: `OverflowMenuItem${index}` };
@@ -212,7 +214,7 @@ const OverflowMenu = React.forwardRef((props, ref) => {
             return getClonedChild(child, childKey);
           })}
         </sc.Content>
-      </Popover.Card>
+      </sc.PopoverCard>
     );
   };
 
