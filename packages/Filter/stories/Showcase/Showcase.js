@@ -1,5 +1,4 @@
 import React from "react";
-import Heading from "@paprika/heading";
 import Filter, { useFilter } from "../../src";
 import data from "./data";
 
@@ -36,9 +35,14 @@ const columnsSettings = [
     type: Filter.types.columnTypes.SINGLE_SELECT,
     label: "Position",
   },
+  {
+    id: "hairColour",
+    type: Filter.types.columnTypes.MULTI_SELECT,
+    label: "Hair Colour",
+  },
 ];
 
-const orderedColumnIds = ["goals", "name", "status", "country", "joined", "shareable", "position"];
+const orderedColumnIds = ["goals", "name", "status", "country", "joined", "shareable", "position", "hairColour"];
 
 export default function App() {
   /**
@@ -68,9 +72,6 @@ export default function App() {
 
   return (
     <React.Fragment>
-      <Heading level={2}>Filter showcase</Heading>
-      <div>Click the trigger below to update filters.</div>
-
       <Filter {...getFilterProps()} columns={columnsSettings} data={data}>
         {filters.map((filter, index) => (
           <Filter.Item

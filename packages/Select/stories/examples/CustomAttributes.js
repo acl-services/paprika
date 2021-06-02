@@ -1,7 +1,7 @@
 import React from "react";
 import Select from "../../src";
 
-const AttributesExample = () => {
+const Attributes = () => {
   return (
     <>
       <Select a11yText="custom select" className="custom-select" data-testid="custom-select">
@@ -27,4 +27,4 @@ const AttributesExample = () => {
   );
 };
 
-export default AttributesExample;
+export default Attributes;

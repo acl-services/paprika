@@ -1,5 +1,12 @@
 # @paprika/inline-editors
 
+## 0.2.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [87cef6a]
+  - @paprika/textarea@3.0.0-next.0
+
 ## 0.2.2
 
 ### Patch Changes

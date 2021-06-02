@@ -11,6 +11,7 @@ export default [
     shareable: true,
     level: "low",
     position: "striker",
+    hairColour: "grey",
   },
   {
     id: "2",
@@ -24,6 +25,7 @@ export default [
     shareable: false,
     level: "high",
     position: "striker",
+    hairColour: "black",
   },
   {
     id: "3",
@@ -37,5 +39,20 @@ export default [
     shareable: true,
     level: "mid",
     position: "midfielder",
+    hairColour: "black",
+  },
+  {
+    id: "4",
+    country: "Venezuela",
+    name: "Lionel Messi",
+    goals: 772,
+    status: "active",
+    joined: "01/01/2003",
+    description: `Puppy kitty ipsum dolor sit good dog foot stick canary. Teeth Mittens furry treats fish.`,
+    link: "https://wegalvanize.com",
+    shareable: true,
+    level: "high",
+    position: "forward",
+    hairColour: "brown",
   },
 ];

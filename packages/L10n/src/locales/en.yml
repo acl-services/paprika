@@ -198,6 +198,8 @@ en:
         is_not_empty: is not empty
         is_before: is before
         is_after: is after
+        is_one_of: is one of
+        is_not_one_of: is not one of
         true: "true"
         false: "false"
     input:

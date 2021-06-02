@@ -1,7 +1,7 @@
 {
   "name": "@paprika/textarea",
-  "version": "2.0.1",
-  "description": "Textarea component is a multiline text input",
+  "version": "3.0.0-next.0",
+  "description": "The Textarea component is a standard multiline text input with some enhancements that can be used as a controlled or uncontrolled component.",
   "author": "@paprika",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -20,7 +20,6 @@
     "@paprika/helpers": "^2.1.2",
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",
-    "classnames": "^2.2.6",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

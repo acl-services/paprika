@@ -20,6 +20,8 @@ export const rules = {
   IS_NOT_EMPTY: "IS_NOT_EMPTY",
   IS_BEFORE: "IS_BEFORE",
   IS_AFTER: "IS_AFTER",
+  IS_ONE_OF: "IS_ONE_OF",
+  IS_NOT_ONE_OF: "IS_NOT_ONE_OF",
 };
 
 export const defaultRulesByType = {
@@ -37,6 +39,7 @@ export const defaultRulesByType = {
   TEXT: [rules.IS, rules.IS_NOT, rules.CONTAINS, rules.DOES_NOT_CONTAIN, rules.IS_BLANK, rules.IS_NOT_BLANK],
   BOOLEAN: [rules.IS],
   SINGLE_SELECT: [rules.IS, rules.IS_NOT, rules.IS_BLANK, rules.IS_NOT_BLANK],
+  MULTI_SELECT: [rules.IS_ONE_OF, rules.IS_NOT_ONE_OF],
 };
 
 export const localeKeysByRule = {
@@ -56,6 +59,8 @@ export const localeKeysByRule = {
   [rules.IS_NOT_EMPTY]: "is_not_empty",
   [rules.IS_BEFORE]: "is_before",
   [rules.IS_AFTER]: "is_after",
+  [rules.IS_ONE_OF]: "is_one_of",
+  [rules.IS_NOT_ONE_OF]: "is_not_one_of",
 };
 
 export default rules;

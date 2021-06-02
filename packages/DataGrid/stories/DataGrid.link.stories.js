@@ -4,7 +4,7 @@ import * as Sbook from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
 import worker from "workerize-loader!./helpers/data.worker"; // eslint-disable-line import/no-webpack-loader-syntax
 import Spinner from "@paprika/spinner";
-import SidePanel from "@paprika/sidepanel";
+import Panel from "@paprika/panel";
 import DataGrid, { LinkAction } from "../src";
 
 const storyName = getStoryName("DataGrid");
@@ -34,16 +34,16 @@ export function App() {
 
   return (
     <Sbook.Story>
-      <SidePanel
+      <Panel
         isOpen={isOpen}
         onClose={() => {
           setIsOpen(false);
         }}
       >
-        <SidePanel.Overlay />
-        <SidePanel.Header>Test</SidePanel.Header>
-        <SidePanel.Content>Test links content</SidePanel.Content>
-      </SidePanel>
+        <Panel.Overlay />
+        <Panel.Header>Test</Panel.Header>
+        <Panel.Content>Test links content</Panel.Content>
+      </Panel>
       {isLoading ? (
         <Spinner />
       ) : (

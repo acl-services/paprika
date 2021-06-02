@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.0-next.0
+
+### Minor Changes
+
+- 3eb67cf: Add a Multi select filter option to the @paprika/filter component.
+  The comparators are is one of and is not one of.
+
 ## 1.1.12
 
 ### Patch Changes

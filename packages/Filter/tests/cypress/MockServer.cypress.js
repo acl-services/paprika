@@ -4,7 +4,7 @@ import { clickListBoxTrigger } from "./helper";
 describe("Filter with server", () => {
   it("Should display the different filtering options", () => {
     cy.clock();
-    cy.visitStorybook(`${getStoryUrlPrefix("Filter")}--server-side-filter-example`);
+    cy.visitStorybook(`${getStoryUrlPrefix("Filter")}--mock-server`);
     cy.findByText("Filter").click();
     cy.findByText("Add filter").click();
 
@@ -18,19 +18,10 @@ describe("Filter with server", () => {
     cy.findByText("Joined by").click();
     clickListBoxTrigger("filter.item.columnSelector");
     cy.findByText("Shareable").click();
-    clickListBoxTrigger("filter.item.columnSelector");
-    cy.findByText("Level").click();
-
-    clickListBoxTrigger("filter.item.ruleSelector");
-    cy.findByText("is not").click();
-
-    cy.get("select")
-      .select("low")
-      .select("mid");
   });
 
   it("should add filter and delete filter", () => {
-    cy.visitStorybook(`${getStoryUrlPrefix("Filter")}--server-side-filter-example`);
+    cy.visitStorybook(`${getStoryUrlPrefix("Filter")}--mock-server`);
     cy.findByText("Filter").click();
     cy.findByText("Add filter").click();
     cy.findAllByTestId("filter.item").should("have.length", 1);
@@ -40,7 +31,7 @@ describe("Filter with server", () => {
   });
 
   it("Should switch between and or", () => {
-    cy.visitStorybook(`${getStoryUrlPrefix("Filter")}--server-side-filter-example`);
+    cy.visitStorybook(`${getStoryUrlPrefix("Filter")}--mock-server`);
     cy.findByText("Filter").click();
     cy.findByText("Add filter").click();
     cy.findByText("Add filter").click();

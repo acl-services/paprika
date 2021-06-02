@@ -1,93 +1,88 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
+import { callAll, extractChildrenProps } from "@paprika/helpers";
 import * as constants from "@paprika/constants/lib/Constants";
+import TextareaPropsCollector from "./TextareaPropsCollector";
 import * as sc from "./Textarea.styles";
 
 const Textarea = React.forwardRef((props, ref) => {
-  const refTextarea = React.useRef(null);
-
-  const resize = () => {
-    if (refTextarea.current && refTextarea.current.style) {
-      refTextarea.current.style.height = 0;
-      refTextarea.current.style.height = `${refTextarea.current.scrollHeight + 2}px`;
-    }
-  };
-
   const {
     a11yText,
-    className,
     canExpand,
+    children,
+    defaultValue,
     hasError,
     isDisabled,
     onChange,
     isReadOnly,
     maxHeight,
+    minHeight,
     size,
+    value,
     ...moreProps
   } = props;
 
-  React.useImperativeHandle(ref, () => ({
-    focus: () => {
-      refTextarea.current.focus();
-    },
-  }));
+  const isControlled = value !== undefined;
+  const containerProps = extractChildrenProps(children, TextareaPropsCollector);
 
-  React.useEffect(() => {
+  const _refTextarea = React.useRef();
+  const refTextarea = ref || _refTextarea;
+
+  const handleResize = React.useCallback(() => {
+    if (refTextarea.current && refTextarea.current.style) {
+      refTextarea.current.style.height = 0;
+      refTextarea.current.style.height = `${refTextarea.current.scrollHeight + 2}px`;
+    }
+  }, [refTextarea]);
+
+  function handleChange() {
     if (canExpand) {
-      resize();
-      window.addEventListener("resize", resize);
+      handleResize();
+    }
+  }
+
+  React.useLayoutEffect(() => {
+    if (canExpand) {
+      handleResize();
+      window.addEventListener("resize", handleResize);
     }
 
     return function cleanup() {
-      window.removeEventListener("resize", resize);
+      window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [canExpand, handleResize]);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     if (canExpand) {
-      resize();
+      handleResize();
     }
-  }, [canExpand]);
+  }, [canExpand, minHeight, maxHeight, handleResize]);
 
-  if (moreProps.value) {
-    delete moreProps.defaultValue;
-  } else {
-    delete moreProps.value;
-  }
-
-  const handleChange = e => {
-    if (canExpand) {
-      resize();
-    }
-    onChange(e);
+  const styleProps = {
+    hasError,
+    isDisabled,
+    isReadOnly,
+    maxHeight,
+    minHeight,
+    size,
   };
 
-  if (a11yText) moreProps["aria-label"] = a11yText;
-
-  const rootClasses = classNames(
-    "form-textarea",
-    `form-textarea--${size}`,
-    { "form-textarea--is-disabled": isDisabled },
-    { "form-textarea--is-readonly": isReadOnly },
-    { "form-textarea--has-error": hasError },
-    className
-  );
-
   return (
-    <sc.Textarea className={rootClasses}>
-      <textarea
+    <div data-pka-anchor="textarea.container" {...containerProps}>
+      <sc.Textarea
         aria-invalid={hasError}
-        className="form-textarea__textarea"
+        aria-label={a11yText}
         data-pka-anchor="textarea"
+        defaultValue={!isControlled ? defaultValue : undefined}
         disabled={isDisabled}
+        onChange={callAll(handleChange, onChange)}
         readOnly={isReadOnly}
-        onChange={handleChange}
         ref={refTextarea}
-        style={{ maxHeight }}
+        value={isControlled ? value : undefined}
+        {...styleProps}
         {...moreProps}
       />
-    </sc.Textarea>
+    </div>
   );
 });
 
@@ -95,44 +90,61 @@ Textarea.types = {
   size: constants.defaultSize,
 };
 
-const propTypes = {
-  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
+Textarea.propTypes = {
+  /** Provides a non-visible label for this textarea for assistive technologies. */
   a11yText: PropTypes.string,
-  /** Indicate if the textarea is expandable */
+
+  /** If true the height will expand automatically to fit content up to the value of maxHeight. */
   canExpand: PropTypes.bool,
-  /** Sets class name */
-  className: PropTypes.string,
-  /** Do not use in conjunction with value prop */
+
+  /** Optional Textarea.Container to collect props for root DOM element.  */
+  children: PropTypes.node,
+
+  /** Sets the default textarea value for an uncontrolled component. */
   defaultValue: PropTypes.string,
+
+  /** If true displays a red border around textarea to indicate an error. */
   hasError: PropTypes.bool,
-  /** If the textarea is disabled */
+
+  /** If true it makes the textarea disabled. */
   isDisabled: PropTypes.bool,
-  /** If the textarea is read-only */
+
+  /** If true it makes the textarea read only. */
   isReadOnly: PropTypes.bool,
-  /** Indicates the maximum height of the textarea  */
-  maxHeight: PropTypes.string,
+
+  /** The maximum height of the textarea. */
+  maxHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+  /** The minimum / default height of the textarea. */
+  minHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+  /** Callback to be executed when the textarea value is changed. Receives the onChange event as an argument. Required when component is controlled. */
   onChange: PropTypes.func,
+
+  /** The size of the textarea input (font size). */
   size: PropTypes.oneOf([Textarea.types.size.SMALL, Textarea.types.size.MEDIUM, Textarea.types.size.LARGE]),
-  /** Do not use in conjunction with defaultValue prop */
+
+  /** The value inside of the textarea input. Defining this prop will make this a controlled component. Do not use in conjunction with defaultValue. */
   value: PropTypes.string,
 };
 
-const defaultProps = {
+Textarea.defaultProps = {
   a11yText: null,
   canExpand: true,
-  className: null,
-  defaultValue: "",
+  children: null,
+  defaultValue: null,
   hasError: false,
   isDisabled: false,
   isReadOnly: false,
-  maxHeight: "300px",
+  maxHeight: 300,
+  minHeight: 80,
   onChange: () => {},
   size: Textarea.types.size.MEDIUM,
-  value: null,
+  value: undefined,
 };
 
 Textarea.displayName = "Textarea";
-Textarea.propTypes = propTypes;
-Textarea.defaultProps = defaultProps;
+
+Textarea.Container = TextareaPropsCollector;
 
 export default Textarea;

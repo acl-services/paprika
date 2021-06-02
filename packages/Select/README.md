@@ -67,10 +67,17 @@ To use it as an uncontrolled component:
 ```js
 import Select from "@paprika/select";
 ...
-<Select defaultValue="Coke">
+const refSelect = React.useRef();
+...
+<Select
+  defaultValue="Coke"
+  ref={refSelect}
+>
   <option value="Coke">Coke</option>
   <option value="Pepsi">Pepsi</option>
 </Select>
+...
+refSelect.current.value // latest value
 ```
 
 To access the value of an uncontrolled component, you can pass a handler function for the `onChange` prop that will have the `event` as an argument. You can use the `event.target.value` as needed.

@@ -3,12 +3,12 @@ import stylers from "@paprika/stylers";
 
 const focusStyles = isInset => css`
   &:focus {
-    ${stylers.focusRing(isInset)}
+    outline: none;
   }
 
-  [data-whatinput="mouse"] &:not([data-has-forced-focus="true"]):focus {
-    box-shadow: none;
-    outline: none;
+  html:not([data-whatinput="mouse"]) &:focus,
+  &[data-has-forced-focus]:focus {
+    ${stylers.focusRing(isInset)}
   }
 `;
 
