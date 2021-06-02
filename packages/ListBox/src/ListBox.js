@@ -250,7 +250,7 @@ export const propTypes = {
   /** Lets the user control the X-axis offset for the ListBox content */
   contentOffsetX: PropTypes.number,
 
-  /** Lets the user control the YX-axis offset for the ListBox content */
+  /** Lets the user control the Y-axis offset for the ListBox content */
   contentOffsetY: PropTypes.number,
 };
 
