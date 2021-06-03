@@ -1,19 +1,63 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
+import CaretDownIcon from "@paprika/icon/lib/CaretDown";
+import * as types from "./types";
 
-const svgString = color =>
-  `<svg color='${color}' width='18' height='32' xmlns='http://www.w3.org/2000/svg'><path fill='currentColor' d='M18.286 12.571q0 0.464-0.339 0.804l-8 8q-0.339 0.339-0.804 0.339t-0.804-0.339l-8-8q-0.339-0.339-0.339-0.804t0.339-0.804 0.804-0.339h16q0.464 0 0.804 0.339t0.339 0.804z'></path></svg>`;
+const sizeStyles = {
+  [types.SMALL]: css`
+    ${stylers.fontSize(-2)}
+    height: ${stylers.spacer(3)};
+  `,
+  [types.MEDIUM]: css`
+    ${stylers.fontSize(-1)}
+    height: ${stylers.spacer(4)};
+  `,
+  [types.LARGE]: css`
+    ${stylers.fontSize()}
+    height: ${stylers.spacer(5)};
+  `,
+};
 
-const selectArrow = (color = tokens.color.black) => `
-  background-image: url("data:image/svg+xml;base64,${btoa(svgString(color))}");
+const placeholderStyles = ({ isDisabled }) => css`
+  ${stylers.placeholder}
+
+  ${!isDisabled &&
+    css`
+      &[disabled] {
+        color: inherit;
+      }
+    `}
+
+  option {
+    color: ${tokens.color.black};
+    font-style: normal;
+
+    &:first-child {
+      color: inherit;
+      font-style: inherit;
+    }
+  }
 `;
 
-export const Select = styled.div`
-  position: relative;
+export const CaretIcon = styled(CaretDownIcon)(
+  ({ isDisabled }) => css`
+    color: ${isDisabled ? tokens.color.blackLighten60 : tokens.textColor.icon};
+    font-size: 20px;
+    height: 100%;
+    pointer-events: none;
+    position: absolute;
+    right: ${tokens.space};
+    top: 0;
+  `
+);
 
-  .form-select__select {
-    ${selectArrow()}
+export const SelectContainer = styled.div`
+  position: relative;
+`;
+
+export const Select = styled.select(
+  ({ hasError, isPlaceHolderSelected, isDisabled, isReadOnly, size }) => css`
     appearance: none;
     background-color: ${tokens.color.white};
     background-position: right 11px center;
@@ -28,59 +72,18 @@ export const Select = styled.div`
     line-height: 1;
     margin: 0;
     outline: none;
-    padding: 0 ${stylers.spacer(3)} 0 ${stylers.spacer(1)};
+    padding: 0 ${stylers.spacer(4)} 0 ${tokens.space};
     width: 100%;
 
-    &:hover:not(.is-disabled):not(.is-readonly):not([disabled]) {
-      border-color: ${tokens.color.blackLighten30};
-    }
+    ${sizeStyles[size]}
+    ${isPlaceHolderSelected && placeholderStyles}
+    ${hasError && stylers.errorFormStyles}
+    ${isDisabled && stylers.disabledFormStyles}
+    ${isReadOnly && stylers.readOnlyFormStyles}
 
-    &:focus  {
+    &:focus {
+      ${stylers.focusRing.bordered()}
       background-color: ${tokens.color.white};
-      border-color: ${tokens.highlight.active.noBorder.borderColor};
-      box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
     }
-  }
-
-  &.form-select--small .form-select__select {
-    ${stylers.fontSize(-2)}
-    height: ${stylers.spacer(3)};
-  }
-
-  &.form-select--medium .form-select__select {
-    ${stylers.fontSize(-1)}
-    height: ${stylers.spacer(4)};
-  }
-
-  &.form-select--large .form-select__select {
-    ${stylers.fontSize()}
-    height: ${stylers.spacer(5)};
-  }
-
-  &.form-select--placeholder .form-select__select {
-    ${stylers.placeholder}
-
-    option {
-      color: ${tokens.color.black};
-      font-style: normal;
-
-      &:first-child {
-        color: inherit;
-        font-style: inherit;
-      }
-    }
-  }
-
-  &.form-select--is-disabled .form-select__select {
-    ${stylers.disabledFormStyles}
-    ${selectArrow(tokens.color.blackLighten60)}
-  }
-
-  &.form-select--is-readonly .form-select__select {
-    ${stylers.readOnlyFormStyles}
-  }
-
-  &.form-select--has-error .form-select__select {
-    ${stylers.errorFormStyles}
-  }
-`;
+  `
+);

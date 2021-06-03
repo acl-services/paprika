@@ -12,129 +12,194 @@ import Popover from "./components/Popover";
 import Trigger from "./components/Trigger";
 import useListBox from "./useListBox";
 import { OnChangeContext } from "./store/OnChangeProvider";
+import { PropsContext } from "./store/PropsProvider";
 import handleImperative from "./imperative";
-
 import {
   useAdjustWidth,
   useChildrenChange,
   useHasFooter,
-  useIsDisabled,
   useIsPopOverOpen,
   useOnScrolled,
   useOptionSelected,
 } from "./hooks";
 
 export function ListBox(props) {
-  const [state] = useListBox();
   const {
     children,
     hasImplicitAll,
     height,
+    isOpen,
+
+    // exclude from moreProps
+    hasError,
+    isDisabled,
+    isInline: excludedIsInline,
+    isMulti,
+    isReadOnly: excludedIsReadOnly,
+    onChange,
     placeholder,
-    trigger: _trigger,
-    footer,
+    size,
+    contentOffsetX,
+    contentOffsetY,
+
+    /* eslint-disable react/prop-types */
+    data,
+    box,
     filter,
-    box = { props: {} },
+    footer,
+    trigger: _trigger,
+    /* eslint-enable react/prop-types */
+
+    ...moreProps
   } = props;
+
   const I18n = useI18n();
+  const [{ noResultsFound, refFooterContainer }] = useListBox();
+  const { isInline, isReadOnly } = React.useContext(PropsContext);
+
+  /* eslint-disable react/prop-types */
+  const onClickFooterAccept = footer ? footer.props.onClickAccept : null;
+  const onCancelFooter = footer ? footer.props.onClickCancel : null;
+  const noResultsMessage = filter ? filter.props.noResultsMessage || I18n.t("listBox.filter.no_results_message") : null;
+  const boxProps = box ? box.props : null;
+  /* eslint-enable react/prop-types */
+
   const propsForTrigger = {
     hasClearButton: true,
     hasImplicitAll,
     onClickClear: null,
-    placeholder: placeholder || I18n.t("listBox.trigger.placeholder"),
-    onFooterClickAccept: footer ? footer.props.onClickAccept : null,
+    onClickFooterAccept,
   };
 
-  const trigger = _trigger ? (
-    React.cloneElement(_trigger, { ...propsForTrigger, ..._trigger.props })
-  ) : (
-    <Trigger {...propsForTrigger} />
+  const contentProps = {
+    onCancelFooter,
+  };
+
+  const listProps = {
+    height,
+    hasOptions: !noResultsFound,
+  };
+
+  const trigger = _trigger ? React.cloneElement(_trigger, { ..._trigger.props }) : <Trigger {...propsForTrigger} />;
+
+  const listBox = (
+    <>
+      {trigger}
+      {isInline || !isReadOnly ? (
+        <Content {...contentProps}>
+          <Box {...boxProps}>
+            {isReadOnly ? null : filter}
+            <List {...listProps}>
+              <Options isPopoverOpen={isOpen}>{children}</Options>
+            </List>
+            {filter ? <NoResults label={noResultsMessage} /> : null}
+            {footer && !isReadOnly ? React.cloneElement(footer, { ref: refFooterContainer }) : null}
+          </Box>
+        </Content>
+      ) : null}
+    </>
   );
 
-  const hasOptions = Boolean(React.Children.count(children));
-
-  return (
-    <React.Fragment>
-      {trigger}
-      <Content onCancelFooter={footer ? footer.props.onClickCancel : null} hasOptions={hasOptions}>
-        <Box {...box.props}>
-          {filter}
-          <List height={height} hasOptions={hasOptions}>
-            <Options isPopoverOpen={props.isOpen}>{children}</Options>
-          </List>
-          {filter ? (
-            <NoResults label={filter.props.noResultsMessage || I18n.t("listBox.filter.no_results_message")} />
-          ) : null}
-          {footer ? React.cloneElement(footer, { ref: state.refFooterContainer }) : null}
-        </Box>
-      </Content>
-    </React.Fragment>
+  return isInline ? (
+    <div data-pka-anchor="list-box" {...moreProps}>
+      {listBox}
+    </div>
+  ) : (
+    listBox
   );
 }
 
 const ListBoxContainer = React.forwardRef((props, ref) => {
-  const [state, dispatch] = useListBox();
-  const onChangeContext = React.useContext(OnChangeContext);
-  const I18n = useI18n();
-
   const {
-    box, // eslint-disable-line
     children,
-    filter, // eslint-disable-line
-    footer, // eslint-disable-line
     hasImplicitAll,
     height,
-    isInline,
-    placeholder,
-    popover, // eslint-disable-line
+    isMulti,
+    onChange,
     isOpen,
-    trigger, // eslint-disable-line
+
+    // exclude from moreProps
+    hasError,
+    isDisabled,
+    isInline,
+    isReadOnly,
+    placeholder,
+    size,
+    contentOffsetX,
+    contentOffsetY,
+
+    /* eslint-disable react/prop-types */
+    box,
+    filter,
+    footer,
+    popover,
+    trigger,
+    /* eslint-enable react/prop-types */
+
+    ...moreProps
   } = props;
 
+  const [state, dispatch] = useListBox();
+  const onChangeContext = React.useContext(OnChangeContext);
+  const providedProps = React.useContext(PropsContext);
+
+  /* eslint-disable react/prop-types */
+  const shouldTriggerKeepFocus = popover && popover.props.shouldKeepFocus;
+  const popoverProps = popover && popover.props;
+  /* eslint-enable react/prop-types */
+
   // IMPERATIVE API
-  const imperativeHandle = handleImperative({ state, dispatch, onChangeContext });
+  const imperativeHandle = handleImperative({
+    state,
+    dispatch,
+    onChangeContext,
+  });
   React.useImperativeHandle(ref, imperativeHandle);
 
   // HOOKS
-  // eslint-disable-next-line react/prop-types
-  const shouldTriggerKeepFocus = popover && popover.props.shouldKeepFocus;
-
   useAdjustWidth();
   useChildrenChange(children);
-  useIsDisabled(props.isDisabled);
   useIsPopOverOpen(shouldTriggerKeepFocus);
   useOnScrolled();
   useOptionSelected();
   useHasFooter(footer);
 
   const propsForListBox = {
-    children,
-    filter,
-    footer,
     hasImplicitAll,
     height,
-    placeholder: placeholder || I18n.t("listBox.trigger.placeholder"),
-    trigger,
     isOpen,
+
     box,
+    filter,
+    footer,
+    trigger,
+
+    ...(providedProps.isInline ? moreProps : {}),
   };
 
   const listBox = <ListBox {...propsForListBox}>{children}</ListBox>;
 
-  if (isInline) {
+  if (providedProps.isInline) {
     return listBox;
   }
 
   if (popover) {
     const PopoverClone = React.cloneElement(popover, {
-      // eslint-disable-next-line react/prop-types
-      ...popover.props,
+      ...popoverProps,
       children: listBox,
     });
     return PopoverClone;
   }
 
-  return <Popover>{listBox}</Popover>;
+  delete moreProps.selectedKeys;
+  delete moreProps.setSelectedKeys;
+  delete moreProps.snapshotSelectedKeys;
+
+  return (
+    <div data-pka-anchor="list-box" {...moreProps}>
+      <Popover>{listBox}</Popover>
+    </div>
+  );
 });
 
 ListBoxContainer.types = {
@@ -144,6 +209,9 @@ ListBoxContainer.types = {
 export const propTypes = {
   /** Child of type <ListBox.Option />, <ListBox.Divider />, etc */
   children: PropTypes.arrayOf(PropTypes.node),
+
+  /** If ListBox is in an error state  */
+  hasError: PropTypes.bool,
 
   /** Has implicit "All items selected" value when no item is selected */
   hasImplicitAll: PropTypes.bool,
@@ -163,10 +231,13 @@ export const propTypes = {
   /** Indicates if the popover is visible */
   isOpen: PropTypes.bool,
 
+  /** The ListBox will not allow value to be changed */
+  isReadOnly: PropTypes.bool,
+
   /** Callback returning the current selection on the ListBox */
   onChange: PropTypes.func,
 
-  /** Defaults label to display when the ListBox has not option selected */
+  /** Default label for trigger when the ListBox has no option selected */
   placeholder: PropTypes.string,
 
   /** Size of the trigger and options (font size, height, padding, etc). */
@@ -175,30 +246,33 @@ export const propTypes = {
     ListBoxContainer.types.size.MEDIUM,
     ListBoxContainer.types.size.LARGE,
   ]),
-};
 
-ListBox.propTypes = {
-  ...propTypes,
-  children: PropTypes.node.isRequired,
-  height: PropTypes.number.isRequired,
-  placeholder: PropTypes.string.isRequired,
+  /** Lets the user control the X-axis offset for the ListBox content */
+  contentOffsetX: PropTypes.number,
+
+  /** Lets the user control the Y-axis offset for the ListBox content */
+  contentOffsetY: PropTypes.number,
 };
 
 export const defaultProps = {
   children: null,
-  filter: null, // eslint-disable-line
-  footer: null, // eslint-disable-line
+  hasError: false,
   hasImplicitAll: false,
   height: 200,
   isDisabled: false,
   isInline: false,
   isMulti: false,
   isOpen: null,
+  isReadOnly: false,
   onChange: () => {},
   placeholder: null,
   size: ListBoxContainer.types.size.MEDIUM,
-  trigger: null, // eslint-disable-line
+  contentOffsetX: 0,
+  contentOffsetY: 0,
 };
+
+ListBox.propTypes = propTypes;
+ListBox.defaultProps = defaultProps;
 
 ListBoxContainer.propTypes = propTypes;
 ListBoxContainer.defaultProps = defaultProps;

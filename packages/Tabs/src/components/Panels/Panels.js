@@ -1,27 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
 import TabsContext from "../../TabsContext";
+import Panel from "../Panel/Panel";
 
-const propTypes = {
+export default function Panels(props) {
+  const { children, ...moreProps } = props;
+  const { activeIndex, idTabs } = React.useContext(TabsContext);
+
+  const childrenWithProps = React.Children.toArray(children)
+    .filter(child => child !== null && child.type.displayName === Panel.displayName)
+    .map((panel, index) =>
+      React.cloneElement(panel, {
+        "aria-labelledby": `${idTabs}-tab-${index}`,
+        isSelected: activeIndex === index,
+        id: `${idTabs}-panel-${index}`,
+      })
+    );
+
+  return <div {...moreProps}>{childrenWithProps}</div>;
+}
+
+Panels.propTypes = {
+  /** List of Tabs.Panel elements. */
   children: PropTypes.node.isRequired,
 };
 
-const Panels = props => {
-  const context = React.useContext(TabsContext);
-
-  const { children, ...moreProps } = props;
-
-  const childrenWithProps = React.Children.map(children, (panel, index) => {
-    if (!panel) return;
-
-    return React.cloneElement(panel, {
-      isSelected: context.activeIndex === index,
-    });
-  });
-
-  return <div {...moreProps}>{childrenWithProps}</div>;
-};
-
 Panels.displayName = "Tabs.Panels";
-Panels.propTypes = propTypes;
-export default Panels;

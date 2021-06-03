@@ -156,7 +156,7 @@ function TimePicker(props) {
   return (
     <sc.TimePicker onFocus={handleFocus} onBlur={handleBlur}>
       <Popover style={{ width: "100%" }} isOpen={isOpen} edge="left" offset={0} align="bottom" shouldKeepFocus>
-        <Popover.Trigger style={{ width: "100%" }}>
+        <sc.PopoverTrigger isReadOnly={isReadOnly} isDisabled={isDisabled}>
           <Input
             aria-label={a11yText}
             hasClearButton={false}
@@ -170,7 +170,7 @@ function TimePicker(props) {
             data-pka-anchor="timePicker-Input"
             {...moreProps}
           />
-        </Popover.Trigger>
+        </sc.PopoverTrigger>
         <Popover.Content>
           <Picker
             hh={time.hh}

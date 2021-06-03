@@ -323,7 +323,7 @@ export default function useGridEventHandler({
       if (event.key in keyboardDownKeys) {
         document.body.style.pointerEvents = "none";
         event.preventDefault();
-        if (!cell) {
+        if (!cell || !cell.current) {
           return;
         }
 
@@ -375,7 +375,7 @@ export default function useGridEventHandler({
     ({ data, ColumnDefinitions }) => event => {
       if (event.key in keyboardUpKeys) {
         event.preventDefault();
-        if (!cell) {
+        if (!cell || !cell.current) {
           return;
         }
 

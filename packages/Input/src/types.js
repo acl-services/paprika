@@ -6,7 +6,6 @@ export const LARGE = constants.size.LARGE;
 
 export const inputValidTypes = {
   EMAIL: "email",
-  NUMBER: "number",
   PASSWORD: "password",
   SEARCH: "search",
   TELEPHONE: "tel",

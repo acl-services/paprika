@@ -56,28 +56,31 @@ export const labelContainer = css`
 `;
 
 export const label = css`
+  align-items: center;
+  display: flex;
   flex-grow: 1;
 `;
 
 export const labelCheckbox = css`
   display: inline-block;
+  line-height: 0;
   min-width: 22px;
 `;
 
 export const checkbox = css`
-  position: relative;
-  top: -2px;
+  margin: 0;
 `;
 
 export const backButton = css`
   align-items: center;
   cursor: pointer;
   display: inline-flex;
-  ${stylers.fontSize(-1)}
   justify-content: flex-start;
   padding: 0;
   position: relative;
   width: 100%;
+  ${stylers.fontSize(-1)}
+
   &:after {
     border-bottom: 1px solid ${tokens.border.color};
     bottom: -7px;

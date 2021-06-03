@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import Input from "@paprika/input";
+import Select from "@paprika/select";
 import Sortable from "../src";
-import Input from "../../Input/stories/examples/InputExample";
-import Select from "../../Select/stories/examples/SelectExample";
 
 export const storyStyles = `
   max-width: 360px;
@@ -43,9 +43,13 @@ const MultiBox = styled.div`
     min-width: 4em;
   }
 
-  .form-input {
-    width: 100%;
+  [data-pka-anchor="input.container"] {
+    flex-grow: 1;
   }
+`;
+
+const InputBox = styled.div`
+  flex-grow: 1;
 `;
 
 export function basicChildren(numChildren) {
@@ -90,12 +94,9 @@ export function inputChildren(numChildren) {
   for (let index = 1; index <= numChildren; index++) {
     children.push(
       <Sortable.Item key={index} sortId={index}>
-        <Input
-          value={hipsums[index % hipsums.length]}
-          css={`
-            width: 100%;
-          `}
-        />
+        <InputBox>
+          <Input value={hipsums[index % hipsums.length]} />
+        </InputBox>
       </Sortable.Item>
     );
   }

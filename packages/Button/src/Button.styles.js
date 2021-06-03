@@ -5,12 +5,6 @@ import * as types from "./types";
 
 const dropShadow = "0 1px 2px 0 rgba(0, 0, 0, 0.1)";
 
-const enabled = content => css`
-  &:not([disabled]):not([aria-disabled="true"]) {
-    ${content};
-  }
-`;
-
 // Borders
 
 const borderColors = {
@@ -33,19 +27,48 @@ const borderHoverColors = {
   [types.LINK]: "transparent",
 };
 
-const borderStyles = ({ kind }) => css`
-  border-color: ${borderColors[kind]};
+const disabledBorderColors = {
+  [types.DEFAULT]: tokens.border.color,
+  [types.PRIMARY]: tokens.border.color,
+  [types.SECONDARY]: tokens.border.color,
+  [types.DESTRUCTIVE]: tokens.border.color,
+  [types.FLAT]: tokens.border.color,
+  [types.MINOR]: "transparent",
+  [types.LINK]: "transparent",
+};
 
-  &:hover {
-    ${enabled(css`
-      border-color: ${borderHoverColors[kind]};
-    `)}
-  }
+const borderStyles = ({ kind, isDisabled, isActive }) => css`
+  ${!isDisabled &&
+    !isActive &&
+    css`
+      border-color: ${borderColors[kind]};
+      &:hover {
+        border-color: ${borderHoverColors[kind]};
+      }
+    `}
 `;
 
 // States
 
-const disabledStyles = css`
+const focusStyles = css`
+  &:focus {
+    outline: none;
+  }
+
+  html:not([data-whatinput="mouse"]) &:focus,
+  &[data-has-forced-focus]:focus {
+    ${stylers.focusRing.bordered()}
+  }
+
+  html:not([data-whatinput="mouse"]) &[aria-disabled="true"]:focus {
+    ${stylers.focusRing.subtle()}
+    border-color: transparent;
+    box-shadow: none;
+  }
+`;
+
+const disabledStyles = ({ kind }) => css`
+  border-color: ${disabledBorderColors[kind]};
   box-shadow: none;
   color: ${tokens.color.blackDisabled};
   cursor: not-allowed;
@@ -60,17 +83,12 @@ const disabledStyles = css`
 
   &,
   &:hover,
-  &:focus {
+  &:focus,
+  &:active {
     background: ${tokens.color.blackLighten70};
-    border-color: ${tokens.color.blackLighten60};
+    box-shadow: none;
     color: ${tokens.color.blackLighten40};
     text-decoration: none;
-  }
-
-  &,
-  &:hover,
-  &:active {
-    box-shadow: none;
     transform: none;
   }
 `;
@@ -80,7 +98,6 @@ const disabledTextStyles = css`
 
   &, &:hover {
     background: none;
-    border-color: transparent;
   }
 `;
 
@@ -88,29 +105,13 @@ export const activeStyles = css`
   ${stylers.focusRing.bordered()}
 `;
 
-export const inactiveStyles = ({ kind }) => css`
-  ${borderStyles}
-
-  [data-whatinput="mouse"] &:not([data-has-forced-focus="true"]):focus {
-    ${enabled(css`
-      ${borderStyles}
-
-      ${[types.FLAT, types.MINOR, types.LINK].includes(kind)
-        ? css`
-            box-shadow: none;
-          `
-        : css`
-            box-shadow: ${dropShadow};
-          `}
-    `)}
-  }
-`;
-
 // Common
 
 export const commonStyles = css`
   ${stylers.alignMiddle}
   ${stylers.lineHeight(-1)}
+  ${borderStyles}
+  ${focusStyles}
   appearance: none;
   border-radius: ${tokens.button.borderRadius};
   border-style: solid;
@@ -123,13 +124,7 @@ export const commonStyles = css`
   text-decoration: none;
   vertical-align: middle;
 
-  &:focus {
-    ${stylers.focusRing.bordered()}
-  }
-
   &:active {
-    box-shadow: ${tokens.highlight.active.noBorder.boxShadow}, inset 0 1px 1px 0 rgba(0, 0, 0, 0.1),
-      inset 0 1px 4px 0 rgba(0, 0, 0, 0.3);
     transform: scale(0.98);
   }
 `;
@@ -143,18 +138,12 @@ const skeuomorphicStyles = css`
 
 const coloredButtonStyles = css`
   color: ${tokens.color.white};
+  text-decoration: none;
   text-shadow: 0 1px 1px ${stylers.alpha(tokens.color.blackPure, 0.2)};
-
-  &:hover,
-  &:visited {
-    color: ${tokens.color.white};
-    text-decoration: none;
-  }
 `;
 
 const textButtonStyles = css`
   background: none;
-  border-color: transparent;
 `;
 
 // Sizes
@@ -177,30 +166,26 @@ export const sizeStyles = {
   `,
 };
 
-// types
+// Kinds
 
-export const kindStyles = ({ isDisabled }) => ({
-  [types.DEFAULT]: css`
+export const kindStyles = {
+  [types.DEFAULT]: ({ isDisabled }) => css`
     ${skeuomorphicStyles}
+    background-color: ${tokens.color.white};
+    background-image: linear-gradient(${tokens.color.blackLighten90}, ${tokens.color.blackLighten70});
+    color: ${tokens.color.black};
+    text-decoration: none;
 
-    &, &:hover, &:active, &:visited {
-      background-color: ${tokens.color.white};
-      background-image: linear-gradient(${tokens.color.blackLighten90}, ${tokens.color.blackLighten70});
-      color: ${tokens.color.black};
-      text-decoration: none;
-    }
-
-    &:hover,
-    &:active {
+    &:hover {
       background: ${tokens.color.blackLighten70};
     }
 
     ${isDisabled && disabledStyles}
   `,
-  [types.PRIMARY]: css`
+
+  [types.PRIMARY]: ({ isDisabled }) => css`
     ${skeuomorphicStyles}
     ${coloredButtonStyles}
-
     background-color: ${tokens.color.greenLighten10};
     background-image: linear-gradient(${tokens.color.greenLighten10}, ${tokens.color.green});
 
@@ -210,10 +195,10 @@ export const kindStyles = ({ isDisabled }) => ({
 
     ${isDisabled && disabledStyles}
   `,
-  [types.SECONDARY]: css`
+
+  [types.SECONDARY]: ({ isDisabled }) => css`
     ${skeuomorphicStyles}
     ${coloredButtonStyles}
-
     background-color: ${tokens.color.purpleLighten10};
     background-image: linear-gradient(${tokens.color.purpleLighten10}, ${tokens.color.purple});
 
@@ -223,10 +208,10 @@ export const kindStyles = ({ isDisabled }) => ({
 
     ${isDisabled && disabledStyles}
   `,
-  [types.DESTRUCTIVE]: css`
+
+  [types.DESTRUCTIVE]: ({ isDisabled }) => css`
     ${skeuomorphicStyles}
     ${coloredButtonStyles}
-
     background-color: ${tokens.color.orangeHighlight};
     background-image: linear-gradient(${tokens.color.orangeHighlight}, ${tokens.color.orange});
 
@@ -236,21 +221,22 @@ export const kindStyles = ({ isDisabled }) => ({
 
     ${isDisabled && disabledStyles}
   `,
-  [types.FLAT]: css`
-    ${skeuomorphicStyles}
 
+  [types.FLAT]: ({ isDisabled }) => css`
+    ${skeuomorphicStyles}
     background-color: ${tokens.color.white};
     color: ${tokens.color.black};
+    text-decoration: none;
 
-    &:hover, &:visited {
+    &:hover,
+    &:visited {
       background: ${tokens.color.blackLighten70};
-      color: ${tokens.color.black};
-      text-decoration:none;
     }
 
     ${isDisabled && disabledStyles}
   `,
-  [types.MINOR]: css`
+
+  [types.MINOR]: ({ isDisabled }) => css`
     ${textButtonStyles}
 
     &:hover {
@@ -259,9 +245,9 @@ export const kindStyles = ({ isDisabled }) => ({
 
     ${isDisabled && disabledTextStyles}
   `,
-  [types.LINK]: css`
-    ${textButtonStyles}
 
+  [types.LINK]: ({ isDisabled }) => css`
+    ${textButtonStyles}
     color: ${tokens.textColor.link};
     font-weight: inherit;
     text-decoration: underline;
@@ -276,7 +262,7 @@ export const kindStyles = ({ isDisabled }) => ({
 
     ${isDisabled && disabledTextStyles}
   `,
-});
+};
 
 // Modifiers
 
@@ -290,12 +276,12 @@ export const fullWidthStyles = css`
 //
 
 export const Button = styled.span(
-  ({ size, kind, isFullWidth, isActive, ...props }) => css`
+  ({ kind, size, isFullWidth, isActive, isDisabled }) => css`
   ${commonStyles}
   ${sizeStyles[size]}
-  ${kindStyles(props)[kind]}
+  ${kindStyles[kind]}
   ${isFullWidth && fullWidthStyles}
-  ${isActive ? activeStyles : inactiveStyles}
+  ${isActive && !isDisabled && activeStyles}
 `
 );
 

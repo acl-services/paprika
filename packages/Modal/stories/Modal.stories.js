@@ -3,10 +3,11 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs, boolean, select } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline, repeat } from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
+import tokens from "@paprika/tokens";
 import styled from "styled-components";
 import stylers from "@paprika/stylers";
 import Button from "@paprika/button";
-import SidePanel from "@paprika/sidepanel";
+import Panel from "@paprika/panel";
 import Heading from "@paprika/heading";
 import * as types from "../src/types";
 
@@ -38,7 +39,7 @@ const ModalStory = ({ children }) => {
         onClose={toggle}
         size={select("Size", [types.SMALL, types.MEDIUM, types.LARGE], types.MEDIUM, "Modal")}
       >
-        <Modal.Header hasCloseButton={boolean("Has close button", true, "Modal.Header")}>Header</Modal.Header>
+        <Modal.Header hasCloseButton={boolean("Has close button", true, "Header")}>Header</Modal.Header>
         {children}
         <Modal.Footer>
           <Button kind={Button.types.kind.PRIMARY}>Primary</Button>
@@ -152,28 +153,60 @@ storiesOf(`${storyName}/Examples`, module)
         </Modal>
       </Story>
     );
-  });
-
-storiesOf(`${storyName}/Backyard/Sandbox`, module)
-  .add("with form render", () => (
-    <Modal
-      isOpen
-      as="form"
-      onSubmit={event => {
-        alert("submit");
-        event.preventDefault();
-      }}
-    >
+  })
+  .add("with header coloured ", () => (
+    <Modal isOpen>
+      <Modal.FocusLock autoFocus={false} />
+      <Modal.Header style={{ backgroundColor: tokens.color.blueLighten30 }}>
+        This is a really long example This is a really long exampleThis is a really long exampleThis is a really long
+        exampleThis is a really long exampleThis is a really long example
+      </Modal.Header>
       <Modal.Content>
-        <input type="text" defaultValue="your text" />
+        {repeat(8, key => (
+          <p key={key} style={{ marginTop: 0 }}>
+            Mixtape single-origin coffee put a bird on it flexitarian street cred live-edge you probably haven‘t heard
+            of them.
+          </p>
+        ))}
       </Modal.Content>
-      <Modal.Footer>
-        <Button isSubmit isSemantic={false}>
-          Submit
-        </Button>
-      </Modal.Footer>
     </Modal>
   ))
+  .add("with truncated (single line) header text ", () => (
+    <Modal isOpen>
+      <Modal.FocusLock autoFocus={false} />
+      <Modal.Header isSingleLine>
+        This is a really long example This is a really long exampleThis is a really long exampleThis is a really long
+        exampleThis is a really long exampleThis is a really long example
+      </Modal.Header>
+      <Modal.Content>
+        {repeat(8, key => (
+          <p key={key} style={{ marginTop: 0 }}>
+            Mixtape single-origin coffee put a bird on it flexitarian street cred live-edge you probably haven‘t heard
+            of them.
+          </p>
+        ))}
+      </Modal.Content>
+    </Modal>
+  ))
+  .add("with truncated (single line) header text and no close button ", () => (
+    <Modal isOpen>
+      <Modal.FocusLock autoFocus={false} />
+      <Modal.Header isSingleLine hasCloseButton={false}>
+        This is a really long example This is a really long exampleThis is a really long exampleThis is a really long
+        exampleThis is a really long exampleThis is a really long example
+      </Modal.Header>
+      <Modal.Content>
+        {repeat(8, key => (
+          <p key={key} style={{ marginTop: 0 }}>
+            Mixtape single-origin coffee put a bird on it flexitarian street cred live-edge you probably haven‘t heard
+            of them.
+          </p>
+        ))}
+      </Modal.Content>
+    </Modal>
+  ));
+
+storiesOf(`${storyName}/Backyard/Sandbox`, module)
   .add("Z Index", () => {
     const [isOpen, setIsOpen] = React.useState(false);
     const toggle = () => {
@@ -225,7 +258,7 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module)
       </div>
     );
   })
-  .add("with nested SidePanel", () =>
+  .add("with nested Panel", () =>
     React.createElement(() => {
       const [isOpen, setIsOpen] = React.useState(false);
       const toggle = () => {
@@ -235,15 +268,51 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module)
       return (
         <ModalStory>
           <Modal.Content>
-            <SidePanel isOpen={isOpen} onClose={toggle}>
-              <SidePanel.Overlay />
-              <SidePanel.Trigger kind={SidePanel.types.kind.PRIMARY} onClick={toggle}>
+            <Panel isOpen={isOpen} onClose={toggle}>
+              <Panel.Overlay />
+              <Panel.Trigger kind={Panel.types.kind.PRIMARY} onClick={toggle}>
                 {isOpen ? "close" : "open side panel"}
-              </SidePanel.Trigger>
-              <SidePanel.Header>Header</SidePanel.Header>
-            </SidePanel>
+              </Panel.Trigger>
+              <Panel.Header>Header</Panel.Header>
+            </Panel>
           </Modal.Content>
         </ModalStory>
+      );
+    })
+  )
+  .add("With form wrapping modal components ", () =>
+    React.createElement(() => {
+      const [isOpen, setIsOpen] = React.useState(true);
+      const toggle = () => {
+        setIsOpen(state => !state);
+      };
+
+      return (
+        <LongBlock>
+          <Button onClick={toggle}>Open Modal</Button>
+          <Modal
+            isOpen={isOpen}
+            onClose={toggle}
+            size={select("Size", [types.SMALL, types.MEDIUM, types.LARGE], types.MEDIUM, "Modal")}
+          >
+            <form
+              onSubmit={event => {
+                alert("submitted");
+                event.preventDefault();
+              }}
+            >
+              <Modal.Header hasCloseButton={boolean("Has close button", true, "Header")}>Header</Modal.Header>
+              <Modal.Content>
+                <input type="text" defaultValue="press enter while focus" />
+              </Modal.Content>
+              <Modal.Footer>
+                <Button isSubmit isSemantic={false} kind={Button.types.kind.PRIMARY}>
+                  Primary
+                </Button>
+              </Modal.Footer>
+            </form>
+          </Modal>
+        </LongBlock>
       );
     })
   );

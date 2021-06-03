@@ -26,37 +26,35 @@ export default function App({ isOpen = false }) {
    * Extra work will be required it in order to hide the <ListBox.Divider /> once all items has been selected
    */
   return (
-    <div style={{ padding: "32px" }}>
-      <ListBox selectedOptions={getSelectedOptions()} {...moreUseListBoxWithTagsProps} isOpen={isOpen}>
-        <ListBox.Divider>Furry values</ListBox.Divider>
-        {emojiData.map(option => {
-          return !isSelected(option.label) ? (
-            <ListBox.Option value={option.label} key={option.label} label={option.label}>
-              {option.label} {option.emoji}
-            </ListBox.Option>
-          ) : null;
-        })}
+    <ListBox selectedOptions={getSelectedOptions()} {...moreUseListBoxWithTagsProps} isOpen={isOpen}>
+      <ListBox.Divider>Furry values</ListBox.Divider>
+      {emojiData.map(option => {
+        return !isSelected(option.label) ? (
+          <ListBox.Option value={option.label} key={option.label} label={option.label}>
+            {option.label} {option.emoji}
+          </ListBox.Option>
+        ) : null;
+      })}
 
-        <ListBox.Divider>Boring values</ListBox.Divider>
-        {filteredData.map(option => {
-          return !isSelected(option.label) ? (
-            <ListBox.Option value={option.label} key={option.label} label={option.label}>
-              {option.label}
-            </ListBox.Option>
-          ) : null;
-        })}
-        <ListBox.Footer
-          onClickAccept={() => {
-            setSnapshot(snapshotSelectedKeys());
-          }}
-          onClickClear={() => {
-            setSelectedKeys(snapshot);
-          }}
-          onClickCancel={() => {
-            setSelectedKeys(snapshot);
-          }}
-        />
-      </ListBox>
-    </div>
+      <ListBox.Divider>Boring values</ListBox.Divider>
+      {filteredData.map(option => {
+        return !isSelected(option.label) ? (
+          <ListBox.Option value={option.label} key={option.label} label={option.label}>
+            {option.label}
+          </ListBox.Option>
+        ) : null;
+      })}
+      <ListBox.Footer
+        onClickAccept={() => {
+          setSnapshot(snapshotSelectedKeys());
+        }}
+        onClickClear={() => {
+          setSelectedKeys(snapshot);
+        }}
+        onClickCancel={() => {
+          setSelectedKeys(snapshot);
+        }}
+      />
+    </ListBox>
   );
 }

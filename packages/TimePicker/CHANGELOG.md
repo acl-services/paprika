@@ -1,5 +1,114 @@
 # Changelog
 
+## 1.0.16-next.0
+
+### Patch Changes
+
+- Updated dependencies [e856d54]
+  - @paprika/raw-button@1.0.4-next.0
+  - @paprika/input@4.0.2-next.0
+  - @paprika/popover@1.2.3-next.0
+
+## 1.0.15
+
+### Patch Changes
+
+- Updated dependencies [32904f2]
+- Updated dependencies [f54c146]
+  - @paprika/input@4.0.1
+  - @paprika/icon@1.1.1
+
+## 1.0.15-next.0
+
+### Patch Changes
+
+- Updated dependencies [32904f2]
+- Updated dependencies [f54c146]
+  - @paprika/input@4.0.1-next.0
+  - @paprika/icon@1.1.1-next.0
+
+## 1.0.14
+
+### Patch Changes
+
+- bd2bdaa: Fixed cursor changes when hovering over clock icon when the time picker is read only or disabled
+- Updated dependencies [45d341f]
+- Updated dependencies [14bd5f5]
+  - @paprika/input@4.0.0
+  - @paprika/popover@1.2.2
+
+## 1.0.14-next.1
+
+### Patch Changes
+
+- bd2bdaa: Fixed cursor changes when hovering over clock icon when the time picker is read only or disabled
+
+## 1.0.14-next.0
+
+### Patch Changes
+
+- Updated dependencies [45d341f]
+- Updated dependencies [14bd5f5]
+  - @paprika/input@4.0.0-next.0
+  - @paprika/popover@1.2.2-next.0
+
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies [5d0db59]
+- Updated dependencies [9ad9c79]
+  - @paprika/icon@1.1.0
+  - @paprika/helpers@2.1.2
+  - @paprika/input@3.0.1
+  - @paprika/popover@1.2.1
+
+## 1.0.13-next.1
+
+### Patch Changes
+
+- Updated dependencies [9ad9c79]
+  - @paprika/helpers@2.1.2-next.0
+  - @paprika/input@3.0.1-next.1
+  - @paprika/popover@1.2.1-next.0
+
+## 1.0.13-next.0
+
+### Patch Changes
+
+- Updated dependencies [5d0db59]
+  - @paprika/icon@1.1.0-next.0
+  - @paprika/input@3.0.1-next.0
+
+## 1.0.12
+
+### Patch Changes
+
+- Updated dependencies [c265721]
+- Updated dependencies [26a610a]
+  - @paprika/popover@1.2.0
+
+## 1.0.12-next.0
+
+### Patch Changes
+
+- Updated dependencies [c265721]
+  - @paprika/popover@1.2.0-next.0
+
+## 1.0.11
+
+### Patch Changes
+
+- Updated dependencies [12938b6]
+  - @paprika/popover@1.1.0
+
+## 1.0.11-next.0
+
+### Patch Changes
+
+- Updated dependencies [12938b6]
+  - @paprika/popover@1.1.0-next.0
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).

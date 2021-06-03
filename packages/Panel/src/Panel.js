@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import ReactFocusLock from "react-focus-lock";
 import { zValue } from "@paprika/stylers/lib/helpers";
 import { LockBodyScroll, Portal } from "@paprika/helpers";
+import OriginalOverlay from "@paprika/overlay";
 import Content from "./components/Content";
 import Dialog from "./components/Dialog";
 import Footer from "./components/Footer";
@@ -162,15 +164,27 @@ export default function Panel(props) {
 
     if (isInline) {
       sidePanel = dialog;
-    } else {
+    } else if (!overlayExtracted) {
       sidePanel = (
-        <Portal active={!isInline}>
-          <React.Fragment>
-            {overlayExtracted ? React.cloneElement(overlayExtracted, { onClose, zIndex }) : null}
-            <FocusLock as="div" {...focusLockProps}>
-              {dialog}
-            </FocusLock>
-          </React.Fragment>
+        <Portal active>
+          <ReactFocusLock {...focusLockProps}>{dialog}</ReactFocusLock>
+        </Portal>
+      );
+    } else {
+      const { children, focusLockOptions, ...morePropsForOverlay } = overlayExtracted.props;
+      sidePanel = (
+        <Portal active>
+          <OriginalOverlay
+            data-pka-anchor="panel.overlay"
+            focusLockOptions={focusLockProps}
+            hasBackdrop
+            isOpen={isOpen}
+            onClose={onClose}
+            zIndex={zIndex}
+            {...morePropsForOverlay}
+          >
+            {state => React.cloneElement(dialog, { state })}
+          </OriginalOverlay>
         </Portal>
       );
     }
@@ -216,7 +230,7 @@ const propTypes = {
   isInline: PropTypes.bool,
 
   /** Control the visibility of the Panel. This prop makes the Panel appear. */
-  isOpen: PropTypes.bool.isRequired,
+  isOpen: PropTypes.bool,
 
   /** Modify the look of the Panel */
   kind: PropTypes.oneOf([Panel.types.kind.DEFAULT, Panel.types.kind.CHILD, Panel.types.kind.PRIMARY]),
@@ -250,6 +264,7 @@ const defaultProps = {
   height: "33%",
   isCompact: false,
   isInline: false,
+  isOpen: false,
   kind: types.kinds.DEFAULT,
   offset: { top: 0, left: 0, right: 0 },
   onAfterClose: () => {},

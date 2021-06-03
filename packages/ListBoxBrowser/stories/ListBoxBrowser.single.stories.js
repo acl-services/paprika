@@ -67,4 +67,19 @@ storiesOf(`${storyName}/Examples/Single`, module)
         <ListBoxBrowser.OptionsSelected />
       </ListBoxBrowser>
     </Story>
+  ))
+  .add("One column", () => (
+    <Story>
+      <ListBoxBrowser
+        data={dataSingle}
+        isMulti={false}
+        rootTitle="Universes"
+        browserTitle="Heroes"
+        hasLeftColumn={false}
+        isParentSelectable
+        onChange={selectedOptions => {
+          console.log("selected options:", selectedOptions);
+        }}
+      />
+    </Story>
   ));

@@ -5,10 +5,10 @@ import { kinds } from "./types";
 import * as sc from "./StatusTracker.styles";
 
 function StatusTracker(props) {
-  const { children, ...moreProps } = props;
+  const { children, hasExtensionLine, ...moreProps } = props;
 
   return (
-    <sc.StatusTracker data-pka-anchor="status-tracker" {...moreProps}>
+    <sc.StatusTracker data-pka-anchor="status-tracker" hasExtensionLine={hasExtensionLine} {...moreProps}>
       {children}
     </sc.StatusTracker>
   );
@@ -16,10 +16,13 @@ function StatusTracker(props) {
 
 const propTypes = {
   children: PropTypes.node,
+  /** Displays extension line if true. */
+  hasExtensionLine: PropTypes.bool,
 };
 
 const defaultProps = {
   children: null,
+  hasExtensionLine: true,
 };
 
 StatusTracker.displayName = "StatusTracker";

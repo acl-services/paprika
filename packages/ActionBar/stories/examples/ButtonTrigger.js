@@ -48,16 +48,9 @@ const columnsSettings = [
 ];
 
 export default function ButtonTrigger() {
-  const { orderedColumnIds, isColumnHidden, ...handlers } = useColumnsArrangement([
-    "goals",
-    "name",
-    "status",
-    "country",
-    "joined",
-    "shareable",
-    "level",
-    "position",
-  ]);
+  const { orderedColumnIds, isColumnHidden, ...handlers } = useColumnsArrangement({
+    defaultOrderedColumnIds: ["goals", "name", "status", "country", "joined", "shareable", "level", "position"],
+  });
   return (
     <Story>
       <Heading level={2}>Columns Arrangement - Button Trigger</Heading>

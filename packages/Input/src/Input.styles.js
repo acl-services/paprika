@@ -1,9 +1,75 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
+import Button from "@paprika/button";
 import * as types from "./types";
 
-const iconStyles = {
+const sizeStyles = {
+  [types.SMALL]: css`
+    ${stylers.fontSize(-2)}
+    height: ${stylers.spacer(3)};
+  `,
+  [types.MEDIUM]: css`
+    ${stylers.fontSize(-1)}
+    height: ${stylers.spacer(4)};
+  `,
+  [types.LARGE]: css`
+    ${stylers.fontSize()}
+    height: ${stylers.spacer(5)};
+  `,
+};
+
+const hasIconStyles = ({ size }) => css`
+  padding-left: ${size === types.LARGE ? stylers.spacer(4) : stylers.spacer(3)};
+`;
+
+const shouldShowClearButtonStyles = ({ size }) => css`
+  padding-right: ${size === types.LARGE ? stylers.spacer(4) : stylers.spacer(3)};
+`;
+
+export const InputContainer = styled.div`
+  line-height: 1;
+  position: relative;
+
+  input::-webkit-search-cancel-button {
+    display: none;
+  }
+`;
+
+export const Input = styled.input(
+  ({ hasError, hasIcon, isDisabled, isReadOnly, shouldShowClearButton, size }) => css`
+    background-color: ${tokens.color.white};
+    border: 1px solid ${tokens.border.color};
+    border-radius: ${tokens.border.radius};
+    box-shadow: none;
+    box-sizing: border-box;
+    color: ${tokens.color.black};
+    display: block;
+    margin: 0;
+    padding: 0 ${tokens.space};
+    transition: box-shadow 0.2s, color 0.2s;
+    width: 100%;
+    ${stylers.placeholders}
+    ${sizeStyles[size]}
+    ${hasIcon && hasIconStyles}
+    ${shouldShowClearButton && shouldShowClearButtonStyles}
+    ${hasError && stylers.errorFormStyles}
+    ${isDisabled && stylers.disabledFormStyles}
+    ${isReadOnly && stylers.readOnlyFormStyles}
+
+    &:focus {
+      ${isReadOnly ? stylers.focusRing.subtle() : stylers.focusRing.bordered()}
+    }
+
+    &::-ms-clear {
+      display: none;
+    }
+`
+);
+
+/* Icons */
+
+const iconSizeStyles = {
   [types.SMALL]: css`
     ${stylers.fontSize(-2)}
     margin-left: 3px;
@@ -21,122 +87,44 @@ const iconStyles = {
   `,
 };
 
-export const Input = styled.div(
-  ({ hasClearButton, size }) => css`
-  line-height: 1;
-  position: relative;
+const disabledIconStyles = css`
+  color: ${tokens.color.blackLighten60};
+`;
 
-  input.form-input__input {
-    ${stylers.placeholders}
+const iconStyles = ({ isDisabled }) => css`
+  color: ${tokens.textColor.icon};
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  ${stylers.z(1)};
+  ${isDisabled && disabledIconStyles}
+`;
 
-    background-color: ${tokens.color.white};
-    border: 1px solid ${tokens.border.color};
-    border-radius: ${tokens.border.radius};
-    box-shadow: none;
-    box-sizing: border-box;
-    color: ${tokens.color.black};
-    display: block;
-    margin: 0;
-    padding: 0 0 0 ${tokens.space};
-    padding-right: ${hasClearButton ? stylers.spacer(3) : tokens.space};
-    transition: box-shadow 0.2s, color 0.2s;
-    width: 100%;
-
-    &:focus {
-      background-color: ${tokens.color.white};
-      border-color: ${tokens.highlight.active.noBorder.borderColor};
-      box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
-      outline: none;
-    }
-
-    &::-ms-clear {
-      display: none;
-    }
-  }
-
-  /* Sizes */
-
-  &.form-input--small input.form-input__input {
-    ${stylers.fontSize(-2)}
-    height: ${stylers.spacer(3)};
-  }
-
-  &.form-input--medium input.form-input__input {
-    ${stylers.fontSize(-1)}
-    height: ${stylers.spacer(4)};
-  }
-
-  &.form-input--large input.form-input__input {
-    ${stylers.fontSize()}
-    height: ${stylers.spacer(5)};
-  }
-
-  /* Icons */
-
-  .form-input__icon,
-  .form-input__clear {
-    ${stylers.z(1)};
-    color: ${tokens.textColor.icon};
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .form-input__icon {
-    ${iconStyles[size]};
-
+export const Icon = styled.span(
+  ({ size }) => css`
+    ${iconStyles}
+    ${iconSizeStyles[size]}
+    
     svg {
       vertical-align: middle;
     }
-  }
-
-  .form-input__clear {
-    border-radius: ${tokens.border.radius};
-    color: ${tokens.color.blackLighten50};
-    right: ${tokens.spaceSm};
-    transition: color 0.2s ease-out;
-
-    &:hover {
-      color: ${tokens.color.blackLighten30};
-      background-color: transparent;
-    }
-
-    &:active {
-      color: ${tokens.color.black};
-      transition: none;
-    }
-  }
-
-  &.form-input--has-icon input.form-input__input {
-    padding-left: ${size === types.LARGE ? stylers.spacer(4) : stylers.spacer(3)};
-  }
-
-  /* Disabled */
-
-  &.form-input--is-disabled,
-  &[disabled] {
-    input.form-input__input {
-      ${stylers.disabledFormStyles}
-    }
-
-    .form-input__icon {
-      color: ${tokens.color.blackLighten60};
-    }
-  }
-
-  /* Read Only */
-
-  &.form-input--is-readonly,
-  &[readonly] {
-    input.form-input__input {
-      ${stylers.readOnlyFormStyles}
-    }
-  }
-
-  /* Error */
-
-  &.form-input--has-error input.form-input__input {
-    ${stylers.errorFormStyles}
-  }
-`
+  `
 );
+
+export const ClearButton = styled(Button.Icon)`
+  border-radius: ${tokens.border.radius};
+  color: ${tokens.color.blackLighten50};
+  right: ${tokens.spaceSm};
+  transition: color 0.2s ease-out;
+  ${iconStyles}
+
+  &:hover {
+    color: ${tokens.color.blackLighten30};
+    background-color: transparent;
+  }
+
+  &:active {
+    color: ${tokens.color.black};
+    transform: translateY(-50%);
+  }
+`;

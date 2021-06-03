@@ -2,7 +2,8 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { getStoryName } from "storybook/storyTree";
 
-import { WithZebras, Borders, WithArrowNavigation } from "./Table.stories";
+import { WithZebras, Borders, WithCustomCellProps } from "./Table.stories";
+import { WithUsers } from "./Table.users.stories";
 
 const storyName = getStoryName("Table");
 
@@ -12,6 +13,12 @@ storiesOf(`${storyName}`, module).add("Screener", () => (
     <br />
     <WithZebras />
     <br />
-    <WithArrowNavigation />
+    <WithCustomCellProps />
+    <br />
+    <WithUsers />
   </>
 ));
+
+storiesOf(`${storyName}`, module).add("Screener CellProps", () => <WithCustomCellProps />);
+
+storiesOf(`${storyName}`, module).add("Screener With users", () => <WithUsers />);

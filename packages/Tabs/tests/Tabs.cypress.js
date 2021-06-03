@@ -3,55 +3,82 @@ import { getStoryUrlPrefix } from "../../../.storybook/storyTree";
 const baseStory = `${getStoryUrlPrefix("Tabs")}-backyard-tests`;
 const testStory = "cypress";
 
-describe("<Tabs />", () => {
+const keySpace = { keyCode: 32 };
+const keyEnter = { keyCode: 13 };
+const keyRight = { keyCode: 39 };
+const keyLeft = { keyCode: 37 };
+const keyDown = { keyCode: 40 };
+const keyUp = { keyCode: 38 };
+const keyHome = { keyCode: 36 };
+const keyEnd = { keyCode: 35 };
+
+describe("Tabs component", () => {
   beforeEach(() => {
     cy.visitStorybook(`${baseStory}--${testStory}`);
   });
 
-  it("elements inside panel are focused if focussable", () => {
-    cy.findByText(/Hello/i)
+  it("can focus elements inside panel", () => {
+    cy.findByText(/first tab/i)
       .tab()
       .focused()
-      .contains(/Focus test inside Tabs.Panel/i)
+      .contains(/focus test inside panel/i)
       .tab()
       .focused()
-      .contains(/Focus test outside Tabs/i);
+      .contains(/focus test outside tabs/i);
   });
 
-  it("tabs can be focused with left and right arrow keys", () => {
-    cy.findByText(/Hello/i)
-      .trigger("keydown", { keyCode: 39, which: 39 })
+  it("can be navigated with space, enter and arrow keys", () => {
+    cy.findByText(/first tab/i)
+      .trigger("keydown", keyRight)
       .focused()
-      .contains(/World/i)
-      .trigger("keydown", { keyCode: 39, which: 39 })
+      .contains(/disabled tab 2/i)
+      .trigger("keydown", keyDown)
       .focused()
-      .contains(/ABC/i)
-      .trigger("keydown", { keyCode: 37, which: 37 })
+      .contains(/third tab/i)
+      .trigger("keyup", keySpace);
+    cy.findByText(/third panel/i).should("be.visible");
+
+    cy.findByText(/third tab/i)
+      .trigger("keydown", keyLeft)
       .focused()
-      .contains(/World/i);
+      .contains(/disabled tab 2/i)
+      .tab()
+      .focused()
+      .contains(/focus test outside tabs/i)
+      .tab({ shift: true })
+      .focused()
+      .contains(/disabled tab 2/i)
+      .trigger("keydown", keyUp)
+      .focused()
+      .contains(/first tab/i)
+      .trigger("keyup", keyEnter);
+    cy.findByText(/first panel/i).should("be.visible");
   });
 
-  it("tabs can be navigated with left and right arrow keys", () => {
-    cy.findByText(/Hello/i)
-      .trigger("keydown", { keyCode: 39, which: 39 })
-      .focused()
-      .contains(/World/i)
-      .click();
-    cy.findByText(/World Tab/i).should("be.visible");
-  });
-
-  it("clicking home key will go to first available tab", () => {
-    cy.findByText(/World/i)
+  it("can be navigated with home and end keys", () => {
+    cy.findByText(/third tab/i)
       .click()
-      .trigger("keydown", { keyCode: 36, which: 36 })
+      .trigger("keydown", keyHome)
       .focused()
-      .contains(/Hello/i);
+      .contains(/first tab/i)
+      .trigger("keydown", keyEnd)
+      .focused()
+      .contains(/disabled tab 6/i);
   });
 
-  it("clicking end key will go to last available tab", () => {
-    cy.findByText(/Hello/i)
-      .trigger("keydown", { keyCode: 35, which: 35 })
+  it("does not activate disabled tabs", () => {
+    cy.findByText(/third tab/i).click();
+    cy.findByText(/third panel/i).should("be.visible");
+
+    cy.findByText(/disabled tab 2/i).click();
+    cy.findByText(/third panel/i).should("be.visible");
+
+    cy.findByText(/fifth tab/i)
+      .click()
+      .trigger("keydown", keyRight)
       .focused()
-      .contains(/ABC/i);
+      .contains(/disabled tab 6/i)
+      .trigger("keyup", keySpace);
+    cy.findByText(/fifth panel/i).should("be.visible");
   });
 });

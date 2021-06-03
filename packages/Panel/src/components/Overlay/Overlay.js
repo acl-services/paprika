@@ -1,45 +1,31 @@
+/* eslint-disable react/require-default-props */
+/* eslint-disable react/no-unused-prop-types */
 import React from "react";
 import PropTypes from "prop-types";
-import useI18n from "@paprika/l10n/lib/useI18n";
-import * as sc from "./Overlay.styles";
+import { FocusPropTypes } from "@paprika/helpers";
 
 const propTypes = {
-  /** Will call an onClose handler when clicked on (outside of the Panel) */
-  hasOutsideClick: PropTypes.bool,
+  backdropClassName: PropTypes.string,
+  children: PropTypes.func,
 
-  /** Callback for click event */
+  /** container of the Overlay element */
+  container: PropTypes.node,
+
+  focusLockOptions: PropTypes.shape(FocusPropTypes),
+  hasBackdrop: PropTypes.bool,
+  isOpen: PropTypes.bool,
   onClose: PropTypes.func,
+  onAfterOpen: PropTypes.func,
+  onAfterClose: PropTypes.func,
 
   /** The z-index of the Panel Overlay */
   zIndex: PropTypes.number,
 };
+const defaultProps = {};
 
-const defaultProps = {
-  hasOutsideClick: true,
-  onClose: null,
-  zIndex: null,
-};
+const Overlay = () => <></>;
 
-export default function Overlay(props) {
-  const { onClose, hasOutsideClick, ...moreProps } = props;
-  const I18n = useI18n();
-
-  const handleClick = () => {
-    if (hasOutsideClick) {
-      onClose();
-    }
-  };
-
-  const overlayProps = {
-    a11yText: I18n.t("close"),
-    ...moreProps,
-    children: "",
-    "data-pka-anchor": "side-panel.overlay",
-    onClick: handleClick,
-  };
-
-  return <sc.Overlay {...overlayProps} />;
-}
+export default Overlay;
 
 Overlay.propTypes = propTypes;
 Overlay.defaultProps = defaultProps;

@@ -1,25 +1,20 @@
-export function getDOMAttributesForListBoxContainer({ isInline = false } = {}) {
-  const tabIndex = isInline ? "0" : "-1";
-  return { tabIndex };
-}
-
-export function getDOMAttributesForListBox(state) {
+export function getDOMAttributesForListBox({ idListBox, refLabel, activeOption, isInline, isMulti, options }) {
   let activedescendant = "";
-  const { activeOption } = state;
 
-  if (activeOption && activeOption < Object.keys(state.options).length) {
-    const { id } = state.options[activeOption];
+  if (activeOption && activeOption < Object.keys(options).length) {
+    const { id } = options[activeOption];
     if (id) {
       activedescendant = id;
     }
   }
-  const idListBox = state.idListBox;
+  const bestLabel =
+    refLabel && refLabel.current ? `${refLabel.current.getAttribute("id")} ${idListBox}__label` : `${idListBox}__label`;
 
   return {
     "aria-activedescendant": activedescendant,
-    "aria-labelledby": `${idListBox}__button`,
-    id: idListBox,
-    role: "listbox",
+    "aria-labelledby": bestLabel,
+    "aria-multiselectable": isMulti ? "true" : null,
+    id: isInline ? idListBox : `${idListBox}__content`,
   };
 }
 
@@ -28,11 +23,10 @@ export const getA11yAttributesForOption = isSelected => {
   return { role: "option", ...a11yIsSelected };
 };
 
-export function getDOMAttributesForListBoxButton(idListBox) {
-  return function innerFunction() {
-    return {
-      id: `${idListBox}__button`,
-      type: "button",
-    };
-  };
-}
+export const getDOMAttributesForListBoxButton = ({ idListBox, idFormLabel, isOpen }) => ({
+  "aria-controls": `${idListBox}__content`,
+  "aria-haspopup": true,
+  "aria-expanded": isOpen,
+  "aria-labelledby": idFormLabel ? `${idFormLabel} ${idListBox}__label` : null,
+  id: idListBox,
+});

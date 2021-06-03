@@ -8,6 +8,7 @@ import FromBottom from "./examples/FromBottom";
 import GroupPanel from "./examples/GroupPanel";
 import PushContentPanel from "./examples/PushContentPanel";
 import StickyPanel from "./examples/StickyPanel";
+import NestedPopoverPanel from "./examples/NestedPopoverPanel";
 
 import Panel from "../src";
 
@@ -84,3 +85,11 @@ export const stickyPanel = () => (
 );
 
 stickyPanel.story = sidePanelStoryParameters;
+
+export const nestedPopover = () => (
+  <ExampleStory component="Panel" storyName="Panel with nested Popover" fileName="examples/NestedPopover.js">
+    <NestedPopoverPanel />
+  </ExampleStory>
+);
+
+nestedPopover.story = sidePanelStoryParameters;

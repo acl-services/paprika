@@ -7,8 +7,12 @@ interface ProgressBarProps {
   a11yText?: string;
   /** Description for the ProgressBar */
   bodyText?: string;
-  /** Header text for the ProgressBar */
-  header?: string;
   /** Specifies how much progress has been completed from 0-100 */
   completed?: number;
+  /** Text for the heading displayed above ProgressBar */
+  header?: React.ReactNode;
+  /** Semantic heading level of header */
+  headerLevel?: 1 | 2 | 3 | 4 | 5 | 6;
+  /** If ProgressBar is displayed in a compact style */
+  isCompact?: boolean;
 }

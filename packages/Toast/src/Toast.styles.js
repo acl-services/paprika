@@ -74,26 +74,28 @@ export const Content = styled.div`
 `;
 
 export const Toast = styled.div(
-  ({ isFixed, kind, zIndex }) => css`
-  align-items: flex-start;
-  background-color: ${backgroundColors[kind]};
-  border-color: ${borderColors[kind]};
-  border-radius: ${tokens.border.radius};
-  border-style: solid;
-  border-width: 1px;
-  color: ${tokens.color.black};
-  display: flex;
-  font-weight: normal;
-  margin-bottom: ${stylers.spacer(2)};
-  padding: ${tokens.spaceLg};
-  position: relative;
-  text-align: left;
-  transition: opacity 0.3s ease-out;
-  z-index: ${zIndex};
+  ({ isFixed, kind, zIndex, shouldRender }) => css`
+    align-items: flex-start;
+    background-color: ${backgroundColors[kind]};
+    border-color: ${borderColors[kind]};
+    border-radius: ${tokens.border.radius};
+    border-style: solid;
+    border-width: 1px;
+    color: ${tokens.color.black};
+    display: flex;
+    font-weight: normal;
+    margin-bottom: ${stylers.spacer(2)};
+    min-height: ${stylers.spacer(3)};
+    padding: ${tokens.spaceLg};
+    position: relative;
+    text-align: left;
+    transition: opacity 0.3s ease-out;
+    word-break: break-word;
+    z-index: ${zIndex};
 
-  ${stylers.fontSize()}
-  ${stylers.lineHeight()}
-  ${isFixed && fixedStyles}
-  ${kind === types.toastKinds.VISUALLY_HIDDEN && visuallyHidden}
-`
+    ${stylers.fontSize()} 
+    ${stylers.lineHeight()} 
+    ${isFixed ? fixedStyles : null}
+    ${!shouldRender || kind === types.toastKinds.VISUALLY_HIDDEN ? visuallyHidden : null};
+  `
 );

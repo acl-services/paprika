@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Checkbox from "@paprika/checkbox";
 import * as sc from "./RowIndicator.styles";
 
 const propTypes = {
@@ -42,9 +43,12 @@ function RowIndicator(props) {
       {hasNumber && (isActiveCell || isActiveRow) ? (
         indicator
       ) : (
-        <sc.Checkbox>
-          <input type="checkbox" checked={isChecked} onChange={() => {}} onMouseUp={handleCheck} />
-        </sc.Checkbox>
+        <sc.StyledCheckbox
+          checkedState={isChecked ? Checkbox.types.state.CHECKED : Checkbox.types.state.UNCHECKED}
+          onChange={() => {}}
+          onMouseUp={handleCheck}
+          size={Checkbox.types.size.SMALL}
+        />
       )}
     </sc.RowContainer>
   );

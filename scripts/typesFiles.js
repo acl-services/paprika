@@ -5,7 +5,7 @@ const shell = require("shelljs");
 const parseFileToReactDoc = require("./parseFileToReactDoc");
 
 const packagesProcessInTsc = ["Tokens", "Constants"];
-const skipPackages = ["Guard", "Icon", "Stylers", "helpers", "Calendar"];
+const skipPackages = ["Guard", "Icon", "Stylers", "helpers", "Calendar", "BuildTranslations"];
 
 const fileName = "index.d.ts";
 
@@ -47,7 +47,7 @@ const createPropsList = ({ info }) => {
 
   Object.keys(info.props).map(key => {
     const v = info.props[key] || {};
-    let type = "-";
+    let type = "any";
 
     if ("type" in v) {
       switch (v.type.name) {

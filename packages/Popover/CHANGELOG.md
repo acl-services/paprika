@@ -1,5 +1,79 @@
 # Changelog
 
+## 1.2.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [e856d54]
+  - @paprika/raw-button@1.0.4-next.0
+
+## 1.2.2
+
+### Patch Changes
+
+- 14bd5f5: ### Fixed
+
+  - Ensure `<Popover.Content>` receives focus after opening so its `onBlur` event will cause it to close.
+  - Ensure proper `tab` focus order when `<Popover.Content>` has no focussable elements.
+
+  Author: [@mikrotron](https://github.com/mikrotron)
+
+## 1.2.2-next.0
+
+### Patch Changes
+
+- 14bd5f5: ### Fixed
+
+  - Ensure `<Popover.Content>` receives focus after opening so its `onBlur` event will cause it to close.
+  - Ensure proper `tab` focus order when `<Popover.Content>` has no focussable elements.
+
+  Author: [@mikrotron](https://github.com/mikrotron)
+
+## 1.2.1
+
+### Patch Changes
+
+- Updated dependencies [9ad9c79]
+  - @paprika/helpers@2.1.2
+
+## 1.2.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [9ad9c79]
+  - @paprika/helpers@2.1.2-next.0
+
+## 1.2.0
+
+### Minor Changes
+
+- c265721: Fixed aria tags on popover
+- 26a610a: When popover opened pressing ESC key only closes popover content and stops propagation. Benefical if using the popover in a Panel or TakeOver component
+
+## 1.2.0-next.1
+
+### Minor Changes
+
+- 26a610a: When popover opened pressing ESC key only closes popover content and stops propagation. Benefical if using the popover in a Panel or TakeOver component
+
+## 1.2.0-next.0
+
+### Minor Changes
+
+- c265721: Fixed aria tags on popover
+
+## 1.1.0
+
+### Minor Changes
+
+- 12938b6: Added aria-haspopup to trigger
+
+## 1.1.0-next.0
+
+### Minor Changes
+
+- 12938b6: Added aria-haspopup to trigger
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).

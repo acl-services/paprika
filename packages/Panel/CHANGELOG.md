@@ -1,5 +1,70 @@
 # Changelog
 
+## 2.0.11-next.0
+
+### Patch Changes
+
+- Updated dependencies [e856d54]
+  - @paprika/button@1.1.0-next.0
+
+## 2.0.10
+
+### Patch Changes
+
+- Updated dependencies [f54c146]
+  - @paprika/icon@1.1.1
+  - @paprika/button@1.0.10
+
+## 2.0.10-next.0
+
+### Patch Changes
+
+- Updated dependencies [f54c146]
+  - @paprika/icon@1.1.1-next.0
+  - @paprika/button@1.0.10-next.0
+
+## 2.0.9
+
+### Patch Changes
+
+- 9ad9c79: Change PropTypes.instanceOf(Element) to PropTypes.node to fix SSR issue
+- Updated dependencies [5d0db59]
+- Updated dependencies [9ad9c79]
+  - @paprika/icon@1.1.0
+  - @paprika/overlay@1.0.7
+  - @paprika/helpers@2.1.2
+  - @paprika/button@1.0.9
+
+## 2.0.9-next.1
+
+### Patch Changes
+
+- 9ad9c79: Change PropTypes.instanceOf(Element) to PropTypes.node to fix SSR issue
+- Updated dependencies [9ad9c79]
+  - @paprika/overlay@1.0.7-next.0
+  - @paprika/helpers@2.1.2-next.0
+  - @paprika/button@1.0.9-next.1
+
+## 2.0.9-next.0
+
+### Patch Changes
+
+- Updated dependencies [5d0db59]
+  - @paprika/icon@1.1.0-next.0
+  - @paprika/button@1.0.9-next.0
+
+## 2.0.8
+
+### Patch Changes
+
+- 0a31c86: Fixed the issue of when you are scrolled down a bit and then open the Panel, it will open in the wrong y-position.
+
+## 2.0.8-next.0
+
+### Patch Changes
+
+- 0a31c86: Fixed the issue of when you are scrolled down a bit and then open the Panel, it will open in the wrong y-position.
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
@@ -46,3 +111,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Panel can now come up from the bottom: `slideFrom={Panel.slideFromDirections.BOTTOM}`
+
+## [2.0.7-alpha.3] - 2021-02-18
+
+### Changed
+
+- Using `@paprika/overlay` as the internal overlay component

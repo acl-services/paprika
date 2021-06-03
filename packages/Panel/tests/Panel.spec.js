@@ -1,5 +1,6 @@
 import React from "react";
 import { render as renderReactTestingLibrary, configure, fireEvent } from "@testing-library/react";
+import { axe } from "jest-axe";
 import Panel from "../src";
 
 configure({ testIdAttribute: "data-pka-anchor" });
@@ -33,6 +34,13 @@ describe("Panel", () => {
     fireEvent.keyDown(getByRole("dialog"), { key: "Escape", keyCode: 27, which: 27 });
 
     expect(fn).toHaveBeenCalled();
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = render({
+      children: "some content",
+    });
+    expect(await axe(container)).toHaveNoViolations();
   });
 
   describe("Panel.Header", () => {
@@ -76,13 +84,12 @@ describe("Panel", () => {
   describe("Panel.Overlay", () => {
     it("should triggered onClose when clicking on the Overlay", () => {
       const fn = jest.fn();
-      const { getByRole } = render({
+      const { getByTestId } = render({
         onClose: fn,
         children: <Panel.Overlay />,
       });
 
-      // overlay is a RawButton
-      fireEvent.click(getByRole(/button/i));
+      fireEvent.click(getByTestId("overlay.backdrop"));
 
       expect(fn).toHaveBeenCalled();
     });
@@ -90,13 +97,12 @@ describe("Panel", () => {
   describe("Panel.Group", () => {
     it("should triggered onClose when clicking on the Overlay", () => {
       const fn = jest.fn();
-      const { getByRole } = render({
+      const { getByTestId } = render({
         onClose: fn,
         children: <Panel.Overlay />,
       });
 
-      // overlay is a RawButton
-      fireEvent.click(getByRole(/button/i));
+      fireEvent.click(getByTestId("overlay.backdrop"));
 
       expect(fn).toHaveBeenCalled();
     });
@@ -104,13 +110,12 @@ describe("Panel", () => {
   describe("Panel.Trigger", () => {
     it("should triggered onClose when clicking on the Overlay", () => {
       const fn = jest.fn();
-      const { getByRole } = render({
+      const { getByTestId } = render({
         onClose: fn,
         children: <Panel.Overlay />,
       });
 
-      // overlay is a RawButton
-      fireEvent.click(getByRole(/button/i));
+      fireEvent.click(getByTestId("overlay.backdrop"));
 
       expect(fn).toHaveBeenCalled();
     });

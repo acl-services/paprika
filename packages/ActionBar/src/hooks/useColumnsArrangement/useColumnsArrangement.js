@@ -1,9 +1,93 @@
 import React from "react";
 import produce from "immer";
 
-export default function useColumnsArrangement(defaultOrder, disabledColumnIds = []) {
-  const [order, setOrder] = React.useState(defaultOrder);
-  const [hiddenColumnIds, setHiddenColumnIds] = React.useState(new Set());
+const savedItem = {
+  VISIBILITY: "VISIBILITY",
+  ORDER: "ORDER",
+};
+
+function getLocalStorageKey(localStoragePrefix, typeOfSavedItem) {
+  return `${localStoragePrefix}--${typeOfSavedItem}`;
+}
+
+function getColumnIdsfromLocalStorage(localStorageKey, fallbackArray = []) {
+  const prevDataInString = window.localStorage.getItem(localStorageKey);
+
+  if (prevDataInString) return JSON.parse(prevDataInString);
+  window.localStorage.setItem(localStorageKey, JSON.stringify(fallbackArray));
+  return fallbackArray;
+}
+
+function updateHiddenColumnIdFromLocalStorage(localStoragePrefix, columnId, isVisible) {
+  const localStorageKey = getLocalStorageKey(localStoragePrefix, savedItem.VISIBILITY);
+  const prevData = getColumnIdsfromLocalStorage(localStorageKey);
+  const result = prevData.filter(item => item !== columnId);
+
+  if (isVisible) {
+    window.localStorage.setItem(localStorageKey, JSON.stringify(result));
+  } else {
+    result.push(columnId);
+    window.localStorage.setItem(localStorageKey, JSON.stringify(result));
+  }
+}
+
+function hasDifferences(originalArray, newArray) {
+  if (originalArray.length !== newArray.length) return true;
+
+  return originalArray.some(item => !newArray.includes(item)) || newArray.some(item => !originalArray.includes(item));
+}
+
+function getInitialOrder({ defaultOrder, localStoragePrefix }) {
+  const cachedOrder = getColumnIdsfromLocalStorage(
+    getLocalStorageKey(localStoragePrefix, savedItem.ORDER),
+    defaultOrder
+  );
+
+  if (hasDifferences(cachedOrder, defaultOrder)) {
+    window.localStorage.setItem(getLocalStorageKey(localStoragePrefix, savedItem.ORDER), JSON.stringify(defaultOrder));
+    return defaultOrder;
+  }
+
+  return cachedOrder;
+}
+
+function getInitialHiddenColumnIds({ defaultHiddenColumnIds, defaultOrder, localStoragePrefix }) {
+  const cachedHiddenColumns = getColumnIdsfromLocalStorage(
+    getLocalStorageKey(localStoragePrefix, savedItem.VISIBILITY),
+    defaultHiddenColumnIds
+  );
+
+  const updatedHiddenColumns = cachedHiddenColumns.filter(columnId => defaultOrder.includes(columnId));
+
+  if (hasDifferences(updatedHiddenColumns, cachedHiddenColumns)) {
+    window.localStorage.setItem(
+      getLocalStorageKey(localStoragePrefix, savedItem.VISIBILITY),
+      JSON.stringify(updatedHiddenColumns)
+    );
+  }
+
+  return new Set(updatedHiddenColumns);
+}
+
+export default function useColumnsArrangement({
+  defaultOrderedColumnIds: defaultOrder,
+  disabledColumnIds = [],
+  defaultHiddenColumnIds = [],
+  localStoragePrefix = null,
+}) {
+  const isLocalStorageEnabled = localStoragePrefix !== null;
+  const [order, setOrder] = React.useState(() =>
+    isLocalStorageEnabled ? getInitialOrder({ defaultOrder, localStoragePrefix }) : defaultOrder
+  );
+  const [hiddenColumnIds, setHiddenColumnIds] = React.useState(() =>
+    isLocalStorageEnabled
+      ? getInitialHiddenColumnIds({
+          defaultHiddenColumnIds,
+          defaultOrder,
+          localStoragePrefix,
+        })
+      : new Set(defaultHiddenColumnIds)
+  );
 
   function canMove({ source, destination }) {
     if (disabledColumnIds.length === 0) return true;
@@ -17,9 +101,12 @@ export default function useColumnsArrangement(defaultOrder, disabledColumnIds = 
     );
   }
 
-  function isColumnHidden(columnId) {
-    return hiddenColumnIds.has(columnId);
-  }
+  const isColumnHidden = React.useCallback(
+    columnId => {
+      return hiddenColumnIds.has(columnId);
+    },
+    [hiddenColumnIds]
+  );
 
   function handleChangeOrder({ source, destination }) {
     if (!canMove({ source, destination })) return;
@@ -28,16 +115,35 @@ export default function useColumnsArrangement(defaultOrder, disabledColumnIds = 
       produce(draftOrder => {
         const movedChild = draftOrder.splice(source, 1);
         draftOrder.splice(destination, 0, ...movedChild);
+
+        if (isLocalStorageEnabled) {
+          window.localStorage.setItem(
+            getLocalStorageKey(localStoragePrefix, savedItem.ORDER),
+            JSON.stringify(draftOrder)
+          );
+        }
       })
     );
   }
 
   function handleHideAll() {
-    setHiddenColumnIds(new Set(order.filter(id => !disabledColumnIds.includes(id))));
+    const newHiddenColumnIds = order.filter(id => !disabledColumnIds.includes(id));
+    setHiddenColumnIds(new Set(newHiddenColumnIds));
+
+    if (isLocalStorageEnabled) {
+      window.localStorage.setItem(
+        getLocalStorageKey(localStoragePrefix, savedItem.VISIBILITY),
+        JSON.stringify(newHiddenColumnIds)
+      );
+    }
   }
 
   function handleShowAll() {
     setHiddenColumnIds(new Set());
+
+    if (isLocalStorageEnabled) {
+      window.localStorage.setItem(getLocalStorageKey(localStoragePrefix, savedItem.VISIBILITY), "[]");
+    }
   }
 
   function handleChangeVisibility(columnId) {
@@ -47,6 +153,9 @@ export default function useColumnsArrangement(defaultOrder, disabledColumnIds = 
           draft.delete(columnId);
         } else {
           draft.add(columnId);
+        }
+        if (isLocalStorageEnabled) {
+          updateHiddenColumnIdFromLocalStorage(localStoragePrefix, columnId, !draft.has(columnId));
         }
         return new Set(draft);
       })

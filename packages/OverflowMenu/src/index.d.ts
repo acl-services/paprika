@@ -64,6 +64,8 @@ declare namespace OverflowMenu {
 
     menuRefId?: string;
 
+    onClick?: (...args: any[]) => any;
+
     onOpenMenu?: (...args: any[]) => any;
 
     triggerRef?: custom;

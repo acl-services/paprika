@@ -50,10 +50,10 @@ export default function App() {
     data,
     maxSortFields: 3,
   });
-  const { orderedColumnIds, isColumnHidden, ...handlers } = useColumnsArrangement(
-    ["goals", "name", "status", "country", "joined", "shareable", "level", "position"],
-    ["name"]
-  );
+  const { orderedColumnIds, isColumnHidden, ...handlers } = useColumnsArrangement({
+    defaultOrderedColumnIds: ["goals", "name", "status", "country", "joined", "shareable", "level", "position"],
+    disabledColumnIds: ["name"],
+  });
 
   const subset = React.useMemo(() => {
     return sortedData.filter(item =>

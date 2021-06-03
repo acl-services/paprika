@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Maximize from "@paprika/icon/lib/Maximize";
+import tokens from "@paprika/tokens";
 import ColumnDefinition from "../ColumnDefinition";
 
 const propTypes = {
@@ -61,6 +62,11 @@ export default function renderColumnExpand(options = {}) {
     <ColumnDefinition
       header={() => null}
       headerA11yText={() => "Expand Row"}
+      headerProps={() => ({
+        style: {
+          boxShadow: `inset 0px -1px 0 0 ${tokens.border.color}`,
+        },
+      })}
       cellA11yText={({ rowIndex }) => `expand row ${rowIndex}`}
       cell={propsCell => <Expand {...propsCell} />}
       isSticky

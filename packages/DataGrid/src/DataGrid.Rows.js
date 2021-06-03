@@ -2,6 +2,7 @@
 import React from "react";
 import { areEqual } from "react-window";
 import memoize from "memoize-one";
+import tokens from "@paprika/tokens";
 import Cell from "./components/Cell";
 import { CellHeader } from "./DataGrid.styles";
 
@@ -142,7 +143,11 @@ export const StickyHeaderRow = React.memo(({ data: RowData, columnIndex, style }
   return (
     <CellHeader
       role="columnheader"
-      style={{ ...style, ...styleProps }}
+      style={{
+        boxShadow: `inset 0px -1px 0 0 ${tokens.border.color}, 0px 0px 0px 1px ${tokens.border.color}`,
+        ...style,
+        ...styleProps,
+      }}
       {...moreProps}
       borderType={borderType}
       title={headerText}

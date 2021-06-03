@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import { ShirtSizes } from "@paprika/helpers";
+import { axe } from "jest-axe";
 import Input from "../src";
 
 const renderComponent = props => render(<Input {...props} />);
@@ -10,11 +10,6 @@ const initialValue = "initial value";
 const updatedValue = "changed value";
 
 describe("Input", () => {
-  it("should be visible and render large text", () => {
-    const { container } = renderComponent({ size: ShirtSizes.LARGE });
-    expect(container.firstChild.classList.contains("form-input--large")).toBe(true);
-  });
-
   it("should change value controlled when value changes", async () => {
     let changeValue = null;
     const onChangeFunc = e => {
@@ -51,5 +46,18 @@ describe("Input", () => {
     expect(getByTestId("input").value).toBe(initialValue);
     fireEvent.change(getByTestId("input"), { target: { value: updatedValue } });
     expect(node.value).toBe(updatedValue);
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = renderComponent();
+
+    // Input component is isolated and is not associated with label
+    expect(
+      await axe(container, {
+        rules: {
+          label: { enabled: false },
+        },
+      })
+    ).toHaveNoViolations();
   });
 });

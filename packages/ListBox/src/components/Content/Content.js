@@ -1,28 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Popover from "@paprika/popover";
-import { getDOMAttributesForListBoxContainer } from "../../helpers/DOMAttributes";
-import { handleKeyUpKeyboardKeys, handleKeyDownKeyboardKeys } from "../../helpers/handleKeyboardKeys";
+import { getDOMAttributesForListBox } from "../../helpers/DOMAttributes";
+import { handleKeyDownKeyboardKeys } from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../useListBox";
 import { OnChangeContext } from "../../store/OnChangeProvider";
+import { PropsContext } from "../../store/PropsProvider";
 import * as sc from "./Content.styles";
-
-const propTypes = {
-  /** Body content of the content. */
-  children: PropTypes.node.isRequired,
-  onCancelFooter: PropTypes.func,
-  hasOptions: PropTypes.bool.isRequired,
-};
-const defaultProps = {
-  onCancelFooter: null,
-};
 
 const handleBlur = (state, dispatch, onCancelFooter) => () => {
   const { refListBoxContainer } = state;
-
-  if (state.isDisabled) {
-    return;
-  }
 
   // requestAnimationFrame give time to process
   // the element that has received the click event
@@ -50,31 +36,25 @@ const handleBlur = (state, dispatch, onCancelFooter) => () => {
   });
 };
 
-const handleContentFocusChange = (hasFocus, dispatch) =>
-  dispatch({ type: useListBox.types.setListBoxHasFocus, payload: { hasFocus } });
-
 export default function Content(props) {
-  const { children, hasOptions } = props;
+  const { children, onCancelFooter, ...moreProps } = props;
   const onChangeContext = React.useContext(OnChangeContext);
   const [state, dispatch] = useListBox();
   const { refListBoxContainer } = state;
+  const providedProps = React.useContext(PropsContext);
+  const { a11yProps, idListBox, isInline, refLabel, contentOffsetX, contentOffsetY } = providedProps;
 
-  /* NOTE no idea what ROLE should be this div when the ListBox is INLINE */
-  if (state.isInline) {
+  if (isInline) {
     return (
       <sc.Content
-        {...getDOMAttributesForListBoxContainer({ isInline: true })}
-        onFocus={() => {
-          handleContentFocusChange(true, dispatch);
-        }}
-        onBlur={() => {
-          handleContentFocusChange(false, dispatch);
-        }}
-        onKeyDown={handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext })}
-        onKeyUp={handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext })}
+        {...a11yProps}
+        {...moreProps}
+        {...getDOMAttributesForListBox({ idListBox, refLabel, ...state })}
+        data-pka-anchor="list-box-content-inline" // TODO: rename "list-box.content-inline"
+        onKeyDown={handleKeyDownKeyboardKeys({ providedProps, state, dispatch, onChangeContext })}
         ref={refListBoxContainer}
-        data-pka-anchor="list-box-content-inline"
-        hasOptions={hasOptions}
+        role="listbox"
+        tabIndex="0"
       >
         {children}
       </sc.Content>
@@ -82,17 +62,25 @@ export default function Content(props) {
   }
 
   return (
-    <Popover.Content
-      onBlur={handleBlur(state, dispatch, props.onCancelFooter)}
+    <sc.PopoverContent
+      {...getDOMAttributesForListBox({ idListBox, refLabel, ...state })}
+      contentOffsetX={contentOffsetX}
+      contentOffsetY={contentOffsetY}
+      onBlur={handleBlur(state, dispatch, onCancelFooter)}
+      onKeyDown={handleKeyDownKeyboardKeys({ providedProps, state, dispatch, onChangeContext })}
       ref={refListBoxContainer}
-      {...getDOMAttributesForListBoxContainer()}
-      onKeyDown={handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext })}
-      onKeyUp={handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext })}
+      role="listbox"
     >
-      {props.children}
-    </Popover.Content>
+      {children}
+    </sc.PopoverContent>
   );
 }
 
-Content.propTypes = propTypes;
-Content.defaultProps = defaultProps;
+Content.propTypes = {
+  children: PropTypes.node.isRequired,
+  onCancelFooter: PropTypes.func,
+};
+
+Content.defaultProps = {
+  onCancelFooter: null,
+};

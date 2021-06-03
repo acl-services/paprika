@@ -1,5 +1,97 @@
 # Changelog
 
+## 2.2.4-next.0
+
+### Patch Changes
+
+- Updated dependencies [e856d54]
+  - @paprika/raw-button@1.0.4-next.0
+
+## 2.2.3
+
+### Patch Changes
+
+- 3d446fd: Fixed the tab not being vertically centered when the <Tabs> component is set to be horizontally aligned.
+
+## 2.2.3-next.0
+
+### Patch Changes
+
+- 3d446fd: Fixed the tab not being vertically centered when the <Tabs> component is set to be horizontally aligned.
+
+## 2.2.2
+
+### Patch Changes
+
+- Updated dependencies [9ad9c79]
+  - @paprika/helpers@2.1.2
+
+## 2.2.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [9ad9c79]
+  - @paprika/helpers@2.1.2-next.0
+
+## 2.2.1
+
+### Patch Changes
+
+- 7979fb6: Add null to defaultIndex and index proptype
+- fe143b3: ### Fixed
+
+  - Set initial `focusIndex` to selected tab index, or first tab index if no tab is selected.
+
+  [@mikrotron](https://github.com/mikrotron)
+
+## 2.2.1-next.1
+
+### Patch Changes
+
+- fe143b3: ### Fixed
+
+  - Set initial `focusIndex` to selected tab index, or first tab index if no tab is selected.
+
+  [@mikrotron](https://github.com/mikrotron)
+
+## 2.2.1-next.0
+
+### Patch Changes
+
+- 7979fb6: Add null to defaultIndex and index proptype
+
+## 2.2.0
+
+### Minor Changes
+
+- e00afcc: #### Added
+
+  - Capability for tab list to be rendered with no active tab.
+  - Applied expected ARIA attributes throughout.
+
+  #### Changed
+
+  - Refactored keyboard usage patterns – allow focus on disabled tabs and ensure focus movement and user interactions adhere to expected standards.
+  - Default props for `index` and `defaultIndex` have both been changed to `undefined`. This is NOT considered a breaking change as behaviour should remain the same (omitting `defaultIndex` still results in a selected first tab – unless first tab is disabled).
+
+  [@mikrotron](http://github.com/mikrotron)
+
+## 2.2.0-next.0
+
+### Minor Changes
+
+- e00afcc: #### Added
+
+  - Capability for tab list to be rendered with no active tab.
+  - Applied expected ARIA attributes throughout.
+
+  #### Changed
+
+  - Refactored keyboard usage patterns – allow focus on disabled tabs and ensure focus movement and user interactions adhere to expected standards.
+  - Default props for `index` and `defaultIndex` have both been changed to `undefined`. This is NOT considered a breaking change as behaviour should remain the same (omitting `defaultIndex` still results in a selected first tab – unless first tab is disabled).
+
+  [@mikrotron](http://github.com/mikrotron)
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).

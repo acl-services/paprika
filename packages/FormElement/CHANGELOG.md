@@ -1,5 +1,105 @@
 # Changelog
 
+## 4.0.13-next.0
+
+### Patch Changes
+
+- @paprika/popover@1.2.3-next.0
+
+## 4.0.12
+
+### Patch Changes
+
+- Updated dependencies [f54c146]
+  - @paprika/icon@1.1.1
+
+## 4.0.12-next.0
+
+### Patch Changes
+
+- Updated dependencies [f54c146]
+  - @paprika/icon@1.1.1-next.0
+
+## 4.0.11
+
+### Patch Changes
+
+- Updated dependencies [14bd5f5]
+  - @paprika/popover@1.2.2
+
+## 4.0.11-next.0
+
+### Patch Changes
+
+- Updated dependencies [14bd5f5]
+  - @paprika/popover@1.2.2-next.0
+
+## 4.0.10
+
+### Patch Changes
+
+- Updated dependencies [5d0db59]
+- Updated dependencies [9ad9c79]
+  - @paprika/icon@1.1.0
+  - @paprika/helpers@2.1.2
+  - @paprika/popover@1.2.1
+
+## 4.0.10-next.1
+
+### Patch Changes
+
+- Updated dependencies [9ad9c79]
+  - @paprika/helpers@2.1.2-next.0
+  - @paprika/popover@1.2.1-next.0
+
+## 4.0.10-next.0
+
+### Patch Changes
+
+- Updated dependencies [5d0db59]
+  - @paprika/icon@1.1.0-next.0
+
+## 4.0.9
+
+### Patch Changes
+
+- Updated dependencies [c265721]
+- Updated dependencies [26a610a]
+  - @paprika/popover@1.2.0
+
+## 4.0.9-next.0
+
+### Patch Changes
+
+- Updated dependencies [c265721]
+  - @paprika/popover@1.2.0-next.0
+
+## 4.0.8
+
+### Patch Changes
+
+- Updated dependencies [12938b6]
+  - @paprika/popover@1.1.0
+
+## 4.0.8-next.0
+
+### Patch Changes
+
+- Updated dependencies [12938b6]
+  - @paprika/popover@1.1.0-next.0
+
+## 4.0.7
+
+### Patch Changes
+
+- 900b180: Move `refLabel` out from `a11yProps` parameter when rendering content
+
+## 4.0.7-next.0
+
+### Patch Changes
+
+- 900b180: Move `refLabel` out from `a11yProps` parameter when rendering content
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).

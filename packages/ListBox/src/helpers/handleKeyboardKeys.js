@@ -2,28 +2,18 @@ import { handleEnterOrSpace, handleArrowKeys } from "../components/Options/helpe
 import useListBox from "../useListBox";
 
 export const handleKeyDownKeyboardKeys = ({ state, dispatch, onChangeContext }) => event => {
-  if (state.isDisabled) {
-    return;
+  // only prevent space events from scrolling page when in 'options view'
+  if (event.key === " " && event.target.getAttribute("data-pka-anchor") !== "list-filter-input") {
+    event.preventDefault();
   }
 
-  switch (event.key) {
-    case "ArrowUp":
-      handleArrowKeys({ event, state, dispatch, onChangeContext, isArrowDown: false });
-      break;
-
-    case "ArrowDown":
-      handleArrowKeys({ event, state, dispatch, onChangeContext, isArrowDown: true });
-      break;
-
-    default:
-      break;
+  if (["ArrowUp", "ArrowDown"].includes(event.key)) {
+    handleArrowKeys({ event, state, dispatch, onChangeContext });
   }
 };
 
-export const handleKeyUpKeyboardKeys = ({ state, dispatch, onChangeContext }) => event => {
-  if (state.isDisabled) {
-    return;
-  }
+export const handleKeyUpKeyboardKeys = ({ providedProps, state, dispatch, onChangeContext }) => event => {
+  if (providedProps.isDisabled) return;
 
   switch (event.key) {
     case "Escape":
@@ -37,7 +27,8 @@ export const handleKeyUpKeyboardKeys = ({ state, dispatch, onChangeContext }) =>
 
     case "Enter":
     case " ":
-      handleEnterOrSpace({ event, state, dispatch, onChangeContext });
+      if (providedProps.isDisabled) return;
+      handleEnterOrSpace({ event, providedProps, state, dispatch, onChangeContext });
       break;
 
     default:

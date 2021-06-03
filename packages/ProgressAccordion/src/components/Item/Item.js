@@ -13,15 +13,19 @@ const propTypes = {
 
   /** If the item is complete (and should therefore include content that can be revealed). */
   isComplete: PropTypes.bool,
+
+  /** Function to call when click on an item. */
+  onClick: PropTypes.func,
 };
 
 const defaultProps = {
   children: null,
   isComplete: false,
+  onClick: () => {},
 };
 
 const Item = props => {
-  const { children, label, isComplete, ...moreProps } = props;
+  const { children, label, isComplete, onClick, ...moreProps } = props;
 
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -29,21 +33,23 @@ const Item = props => {
     setIsOpen(prevIsOpen => !prevIsOpen);
   };
 
-  return isComplete ? (
-    <sc.Item
-      iconAlign="right"
-      iconCollapse={<DownIcon />}
-      iconExpand={<UpIcon />}
-      isCollapsed={!isOpen}
-      label={<sc.ItemLabel>{label}</sc.ItemLabel>}
-      onClick={handleToggle}
-      {...moreProps}
-    >
-      {children}
-    </sc.Item>
-  ) : (
-    <sc.Incomplete data-pka-anchor="progress-accordion.item.incomplete">{label}</sc.Incomplete>
-  );
+  if (isComplete) {
+    return (
+      <sc.Item
+        iconAlign="right"
+        iconCollapse={<DownIcon />}
+        iconExpand={<UpIcon />}
+        isCollapsed={!isOpen}
+        label={<sc.ItemLabel>{label}</sc.ItemLabel>}
+        onClick={handleToggle}
+        {...moreProps}
+      >
+        {children}
+      </sc.Item>
+    );
+  }
+
+  return <sc.Incomplete data-pka-anchor="progress-accordion.item.incomplete">{label}</sc.Incomplete>;
 };
 
 Item.displayName = "ProgressAccordion.Item";

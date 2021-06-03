@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Item from "./components/Item";
+import NavItem from "./components/NavItem";
 import Indicator from "./components/Indicator";
 import Responses from "./components/Responses";
 import * as sc from "./ProgressAccordion.styles";
@@ -31,7 +32,9 @@ const defaultProps = {
 };
 
 function filterChildren(children) {
-  return React.Children.toArray(children).filter(child => child.type && child.type.displayName === Item.displayName);
+  return React.Children.toArray(children).filter(child =>
+    [Item.displayName, NavItem.displayName].includes(child.type?.displayName)
+  );
 }
 
 const ProgressAccordion = props => {
@@ -70,7 +73,10 @@ const ProgressAccordion = props => {
             // eslint-disable-next-line react/no-array-index-key
             <sc.Item key={index} role="listitem" data-pka-anchor="progress-accordion.item">
               <Indicator {...indicatorProps} />
-              {React.cloneElement(child, { label: getLabel(child.props.label, index), isComplete })}
+              {React.cloneElement(child, {
+                label: getLabel(child.props.label, index),
+                isComplete,
+              })}
             </sc.Item>
           );
         })}
@@ -83,6 +89,7 @@ ProgressAccordion.propTypes = propTypes;
 ProgressAccordion.defaultProps = defaultProps;
 
 ProgressAccordion.Item = Item;
+ProgressAccordion.NavItem = NavItem;
 ProgressAccordion.Indicator = Indicator;
 ProgressAccordion.Responses = Responses;
 

@@ -15,7 +15,15 @@ const noop = () => {};
 const OverflowMenuExample = () => {
   return (
     <OverflowMenu align="bottom">
-      <OverflowMenu.Trigger data-pka-anchor="overflow-menu__trigger">Trigger</OverflowMenu.Trigger>
+      <OverflowMenu.Content data-your-custom-attribute="your-custom-attribute-value" />
+      <OverflowMenu.Trigger
+        data-pka-anchor="overflow-menu__trigger"
+        onClick={() => {
+          console.log("clicked trigger");
+        }}
+      >
+        Trigger
+      </OverflowMenu.Trigger>
       <OverflowMenu.Item onClick={noop}>Item</OverflowMenu.Item>
       <OverflowMenu.Item isDestructive onClick={noop}>
         Item (isDestructive)

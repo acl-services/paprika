@@ -4,8 +4,10 @@ import { v4 as uuidv4 } from "uuid";
 import * as constants from "@paprika/constants/lib/Constants";
 import Button from "@paprika/button";
 import Heading from "@paprika/heading";
+import { extractChildren, extractChildrenProps } from "@paprika/helpers";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Popover from "@paprika/popover";
+import ConfirmationContentPropsCollector from "./ConfirmationContentPropsCollector";
 import TriggerButton from "./components/TriggerButton";
 import * as types from "./types";
 import { confirmStyles, confirmBodyStyles, confirmFooterStyles } from "./Confirmation.styles";
@@ -69,12 +71,15 @@ const Confirmation = props => {
     onConfirm(handleCloseConfirm);
   };
 
+  const { "Confirmation.TriggerButton": TriggerButton } = extractChildren(children, ["Confirmation.TriggerButton"]);
+  const ContentProps = extractChildrenProps(children, ConfirmationContentPropsCollector);
+
   const renderTrigger = () => {
     // wrapping the returned item in a function to avoid wrapping children in
     // a RawButton and needing to tab twice
     // https://github.com/acl-services/paprika/issues/126
     return () =>
-      React.cloneElement(children, {
+      React.cloneElement(TriggerButton, {
         isConfirmOpen,
         onOpenConfirm: handleOpenConfirm,
         triggerRef,
@@ -82,7 +87,7 @@ const Confirmation = props => {
   };
 
   const popoverContent = (
-    <Popover.Content>
+    <Popover.Content {...ContentProps}>
       <Popover.Card
         role="dialog"
         aria-labelledby={heading ? titleId : null}
@@ -138,7 +143,7 @@ const Confirmation = props => {
       onClose={handleCloseConfirm}
       {...moreProps}
     >
-      {children && <Popover.Trigger>{renderTrigger()}</Popover.Trigger>}
+      {TriggerButton && <Popover.Trigger>{renderTrigger()}</Popover.Trigger>}
       {popoverContent}
     </Popover>
   );
@@ -189,6 +194,7 @@ const defaultProps = {
 Confirmation.displayName = "Confirmation";
 Confirmation.propTypes = propTypes;
 Confirmation.defaultProps = defaultProps;
+Confirmation.Content = ConfirmationContentPropsCollector;
 Confirmation.TriggerButton = TriggerButton;
 
 export default Confirmation;

@@ -51,16 +51,9 @@ export default function CustomButton() {
     columns: columnsSettings,
     data,
   });
-  const { orderedColumnIds, isColumnHidden, ...handlers } = useColumnsArrangement([
-    "goals",
-    "name",
-    "status",
-    "country",
-    "joined",
-    "shareable",
-    "level",
-    "position",
-  ]);
+  const { orderedColumnIds, isColumnHidden, ...handlers } = useColumnsArrangement({
+    defaultOrderedColumnIds: ["goals", "name", "status", "country", "joined", "shareable", "level", "position"],
+  });
 
   const [rowColor, setRowColor] = React.useState("");
 

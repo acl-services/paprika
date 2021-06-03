@@ -23,11 +23,11 @@ function includesAllOptions(browser, expectedOptions) {
 }
 
 function getRoot() {
-  return cy.get("[role='listbox']").eq(0);
+  return cy.get("[role='listbox'] ul").eq(0);
 }
 
 function getBrowser() {
-  return cy.get("[role='listbox']").eq(1);
+  return cy.get("[role='listbox'] ul").eq(1);
 }
 
 function navigateBrowser(label) {

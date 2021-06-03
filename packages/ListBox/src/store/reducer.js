@@ -1,5 +1,4 @@
 import useListBox from "../useListBox";
-import { getNextOptionActiveIndexLooping } from "../components/Options/helpers/options";
 
 export default function reducer(state, { type, payload }) {
   switch (type) {
@@ -68,14 +67,6 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
-    case useListBox.types.setListBoxHasFocus: {
-      const { hasFocus } = payload;
-      return {
-        ...state,
-        listBoxHasFocus: hasFocus,
-      };
-    }
-
     case useListBox.types.toggleMultipleOption: {
       const selectedOptionsArray = state.selectedOptions.slice();
       const { activeOptionIndex, onChangeFn } = payload;
@@ -102,20 +93,10 @@ export default function reducer(state, { type, payload }) {
     }
 
     case useListBox.types.applyFilter: {
-      let activeOption = null;
-      if (payload.filteredOptions.length === 1) {
-        activeOption = payload.filteredOptions[0];
-      }
-
-      if (payload.filteredOptions.length > 1) {
-        activeOption = getNextOptionActiveIndexLooping(state);
-      }
-
       return {
         ...state,
         filteredOptions: payload.filteredOptions,
         noResultsFound: payload.noResultsFound,
-        activeOption,
       };
     }
 
@@ -134,13 +115,15 @@ export default function reducer(state, { type, payload }) {
     }
 
     case useListBox.types.updateOptions: {
-      const selectedOptions = Object.keys(payload)
-        .filter(key => payload[key].isSelected)
+      const { options, optionsIndex } = payload;
+      const selectedOptions = Object.keys(options)
+        .filter(key => options[key].isSelected)
         .map(key => Number.parseInt(key, 10));
 
       return {
         ...state,
-        options: payload,
+        options,
+        optionsIndex,
         selectedOptions,
         lastKnownSelectedOptions: [...selectedOptions],
       };
@@ -240,13 +223,6 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state,
         hasFooter: payload,
-      };
-    }
-
-    case useListBox.types.setIsDisabled: {
-      return {
-        ...state,
-        isDisabled: payload,
       };
     }
 

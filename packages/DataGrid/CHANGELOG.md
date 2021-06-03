@@ -1,5 +1,78 @@
 # Changelog
 
+## 1.0.12-next.0
+
+### Patch Changes
+
+- Updated dependencies [e856d54]
+- Updated dependencies [e856d54]
+  - @paprika/button@1.1.0-next.0
+  - @paprika/raw-button@1.0.4-next.0
+  - @paprika/panel@2.0.11-next.0
+
+## 1.0.11
+
+### Patch Changes
+
+- 3aa0804: Use the @paprika/checkbox component instead of a basic input
+- Updated dependencies [f54c146]
+  - @paprika/icon@1.1.1
+  - @paprika/button@1.0.10
+  - @paprika/checkbox@1.0.10
+
+## 1.0.11-next.1
+
+### Patch Changes
+
+- 3aa0804: Use the @paprika/checkbox component instead of a basic input
+
+## 1.0.11-next.0
+
+### Patch Changes
+
+- Updated dependencies [f54c146]
+  - @paprika/icon@1.1.1-next.0
+  - @paprika/button@1.0.10-next.0
+  - @paprika/checkbox@1.0.10-next.0
+
+## 1.0.10
+
+### Patch Changes
+
+- 00693b0: Prevent data grid from throwing error.
+- Updated dependencies [5d0db59]
+- Updated dependencies [9ad9c79]
+  - @paprika/icon@1.1.0
+  - @paprika/helpers@2.1.2
+  - @paprika/button@1.0.9
+  - @paprika/checkbox@1.0.9
+  - @paprika/spinner@1.0.7
+
+## 1.0.10-next.2
+
+### Patch Changes
+
+- Updated dependencies [9ad9c79]
+  - @paprika/helpers@2.1.2-next.0
+  - @paprika/button@1.0.9-next.1
+  - @paprika/checkbox@1.0.9-next.1
+  - @paprika/spinner@1.0.7-next.0
+
+## 1.0.10-next.1
+
+### Patch Changes
+
+- Updated dependencies [5d0db59]
+  - @paprika/icon@1.1.0-next.0
+  - @paprika/button@1.0.9-next.0
+  - @paprika/checkbox@1.0.9-next.0
+
+## 1.0.10-next.0
+
+### Patch Changes
+
+- 00693b0: Prevent data grid from throwing error.
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
@@ -46,3 +119,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 
 - Replace `nanoid` by `uuid`.
+
+## [1.0.9-alpha.2] - 2021-02-11
+
+- Fixed some UI issues related to borders.

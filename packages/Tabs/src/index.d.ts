@@ -3,22 +3,24 @@ export default Tabs;
 declare function Tabs(props: TabsProps): JSX.Element;
 interface TabsProps {
   [x: string]: any;
-  /** The visual theme of the tabs list. */
-  kind?: Tabs.types.kind.PRIMARY | Tabs.types.kind.SECONDARY;
+  /** Description of the purpose of the tabs for assistive technology. */
+  a11yText?: string;
   /** Expects Tabs.List and Tabs.Panels. */
   children: React.ReactNode;
-  /** Sets what tabindex is active by default (uncontrolled component). */
+  /** Sets what tabindex is active by default (uncontrolled component). Use null for no active tab. */
   defaultIndex?: number;
   /** If the visual focus ring for the tabs should be displayed with an inset style. */
   hasInsetFocusStyle?: boolean;
   /** Tab labels will be truncated when they run out of space instead of breaking to multiple lines (ignored when isVertical is false). */
   hasTruncation?: boolean;
-  /** Sets what tabindex is active (controlled component). */
+  /** Sets what tabindex is active (controlled component). Use null for no active tab. */
   index?: number;
   /** If the tabs are all disabled. */
   isDisabled?: boolean;
   /** If the tabs are stacked vertically. */
   isVertical?: boolean;
+  /** The visual theme of the tabs list. */
+  kind?: Tabs.types.kind.PRIMARY | Tabs.types.kind.SECONDARY;
   /** Use this prop when you want to use Tabs as a controlled component (also you must use 'index' prop). When the user clicks on a tab, this gets fired (the tab index is passed to it). */
   onClickTab?: (...args: any[]) => any;
   /** Size of the tab label text. */
@@ -51,7 +53,7 @@ declare namespace Tabs {
   function Panels(props: PanelsProps): JSX.Element;
   interface PanelsProps {
     [x: string]: any;
-
+    /** List of Tabs.Panel elements. */
     children: React.ReactNode;
   }
 }
@@ -63,11 +65,13 @@ declare namespace Tabs {
     a11yText?: string;
     /** Label for the tab */
     children?: React.ReactNode;
+    /** Internal only: if tab has focus */
+    hasFocus?: boolean;
     /** Sets a url the tab goes to */
     href?: string;
     /** If the tab is disabled */
     isDisabled?: boolean;
-    /** Controls if the option is selected or not */
+    /** Internal only: if tab is selected */
     isSelected?: boolean;
     /** Callback onClick */
     onClick?: (...args: any[]) => any;

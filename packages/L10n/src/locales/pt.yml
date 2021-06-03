@@ -9,6 +9,7 @@ pt:
       pm: PM
     back: Voltar
     remove: remover
+    remove_a11y: "Remover {{value}}"
     moreInformation: mais informações
     close: Fechar
     dataGrid:
@@ -81,6 +82,8 @@ pt:
       escape: ESC
     collapsible:
       ariaText: Seção recolhível
+      collapse: Ocultar
+      expand: Expandir
     sortable:
       aria_description: Item arrastável. Pressione espaço para levantar.
       aria_lift: Você levantou um item em posição {{source}}. Use as teclas de seta para mover, espaço para soltar e esc para cancelar.
@@ -100,6 +103,7 @@ pt:
       less_about: mostrar menos sobre {{topic}}
     listBox:
       trigger:
+        clear_selection: Limpar seleção
         placeholder: Selecione...
       filter:
         a11y_text: Pesquisar
@@ -117,6 +121,7 @@ pt:
       placeholder: Selecione...
       no_results_found: Nenhum resultado encontrado
       all_items_have_been_selected: "Todos os itens foram selecionados"
+      a11y_text_trigger: "Opção de seleção múltipla: {{options}}"
     search:
       searchTerm: Pesquisar termo...
     actionBar:
@@ -193,5 +198,10 @@ pt:
         is_not_empty: não está vazio
         is_before: é antes de
         is_after: é depois de
+        is_one_of: é um(a) de
+        is_not_one_of: não é um(a) de
         true: "verdadeiro"
         false: "falso"
+    input:
+      clear_button:
+        aria_label: Limpar entrada

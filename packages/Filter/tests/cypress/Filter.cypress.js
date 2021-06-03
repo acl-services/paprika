@@ -78,7 +78,7 @@ describe("Filter", () => {
 
   it("Should clear", () => {
     cy.findByText("Clear").click();
-    cy.findAllByRole("row").should("have.length", 4);
+    cy.findAllByRole("row").should("have.length", 5);
     cy.findByText("No filters applied to this view");
   });
 });

@@ -3,12 +3,14 @@ import PropTypes from "prop-types";
 import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import useListBox from "../../useListBox";
+import { PropsContext } from "../../store/PropsProvider";
 import invokeOnChange from "../../helpers/invokeOnChange";
 import * as sc from "./Footer.styles";
 
 export function FooterComponent(props, ref) {
-  const [, dispatch] = useListBox();
   const I18n = useI18n();
+  const [, dispatch] = useListBox();
+  const providedProps = React.useContext(PropsContext);
 
   const {
     labelCancel,
@@ -60,7 +62,7 @@ export function FooterComponent(props, ref) {
     });
   };
 
-  const { isDisabled } = props;
+  const isDisabled = props.isDisabled || providedProps.isDisabled;
 
   return (
     <sc.Footer ref={ref}>
@@ -166,8 +168,8 @@ Footer.propTypes = propTypes;
 Footer.defaultProps = defaultProps;
 
 // forwardRef component are struggling with react-docgen
-// https://github.com/pedronauck/docz/issues/334 once we move to Storybook doc we might be able to
-// remove this
+// https://github.com/pedronauck/docz/issues/334
+// once we move to Storybook doc we might be able to remove this
 FooterComponent.propTypes = propTypes;
 FooterComponent.defaultProps = defaultProps;
 
