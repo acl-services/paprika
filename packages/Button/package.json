@@ -1,6 +1,6 @@
 {
   "name": "@paprika/button",
-  "version": "1.0.10",
+  "version": "1.1.0-next.0",
   "description": "Button component, for performing an action on the page you’re viewing.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -19,7 +19,7 @@
     "@paprika/constants": "^1.0.0",
     "@paprika/helpers": "^2.1.2",
     "@paprika/icon": "^1.1.1",
-    "@paprika/raw-button": "^1.0.3",
+    "@paprika/raw-button": "^1.0.4-next.0",
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",
     "prop-types": "^15.7.2",

@@ -5,22 +5,26 @@ import Selected from "@paprika/icon/lib/Check";
 import Unselected from "@paprika/icon/lib/Times";
 import Button from "@paprika/button";
 
-const activeStyles = css`
+const activeStyles = ({ isDisabled }) => css`
   ${stylers.z(1)}
   box-shadow: none;
+
   &,
   &:hover {
     background-color: ${tokens.color.blueLighten40};
   }
-  &:not([disabled]):not([aria-disabled="true"]) {
-    &,
-    &:focus {
-      border-color: ${tokens.color.blue};
-    }
-    &:hover {
-      background-color: ${tokens.color.blueLighten50};
-    }
-  }
+
+  ${!isDisabled &&
+    css`
+      &,
+      &:focus {
+        border-color: ${tokens.color.blue};
+      }
+
+      &:hover {
+        background-color: ${tokens.color.blueLighten50};
+      }
+    `}
 `;
 
 const iconStyles = css`
@@ -33,22 +37,30 @@ export const SelectedIcon = styled(Selected)``;
 
 export const UnselectedIcon = styled(Unselected)``;
 
-export const Item = styled(Button)`
+export const Item = styled(Button)(
+  ({ isActive, isDisabled }) => css`
   ${stylers.truncateText}
   display: block;
+
   &:focus {
     ${stylers.z(3)}
   }
+
   &:hover {
     ${stylers.z(2)}
   }
-  ${({ isActive }) => isActive && activeStyles}
+
+  ${isActive && activeStyles}
+
   ${UnselectedIcon}, ${SelectedIcon} {
     ${iconStyles}
   }
-  &[disabled], &[aria-disabled="true"] {
-    ${UnselectedIcon}, ${SelectedIcon} {
-      opacity: 0.5;
-    }
-  }
-`;
+  
+  ${isDisabled &&
+    css`
+      ${UnselectedIcon}, ${SelectedIcon} {
+        opacity: 0.5;
+      }
+    `}
+`
+);

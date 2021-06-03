@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.2.0-next.1
+
+### Patch Changes
+
+- Updated dependencies [4365834]
+- Updated dependencies [e856d54]
+  - @paprika/list-box@3.2.0-next.0
+  - @paprika/button@1.1.0-next.0
+  - @paprika/input@4.0.2-next.0
+  - @paprika/panel@2.0.11-next.0
+  - @paprika/date-picker@1.0.16-next.0
+
+## 1.2.0-next.0
+
+### Minor Changes
+
+- 3eb67cf: Add a Multi select filter option to the @paprika/filter component.
+  The comparators are is one of and is not one of.
+
 ## 1.1.12
 
 ### Patch Changes

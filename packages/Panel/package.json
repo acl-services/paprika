@@ -1,6 +1,6 @@
 {
   "name": "@paprika/panel",
-  "version": "2.0.10",
+  "version": "2.0.11-next.0",
   "description": "The Panel component provides a view that slides in from one side so the user can maintain context of their main task while they work on a sub task.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^1.0.10",
+    "@paprika/button": "^1.1.0-next.0",
     "@paprika/constants": "^1.0.0",
     "@paprika/heading": "^1.0.6",
     "@paprika/helpers": "^2.1.2",

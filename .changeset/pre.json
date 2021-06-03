@@ -74,6 +74,10 @@
     "@paprika/seducer": "2.0.1"
   },
   "changesets": [
-    "tasty-tips-obey"
+    "clever-donkeys-serve",
+    "gorgeous-candles-heal",
+    "proud-trains-sort",
+    "tasty-tips-obey",
+    "two-ladybugs-eat"
   ]
 }

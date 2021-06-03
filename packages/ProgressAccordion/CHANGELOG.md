@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.3-next.0
+
+### Patch Changes
+
+- @paprika/collapsible@1.1.8-next.0
+
 ## 1.1.2
 
 ### Patch Changes

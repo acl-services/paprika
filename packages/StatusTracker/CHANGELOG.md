@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.1.5-next.0
+
+### Patch Changes
+
+- Updated dependencies [e856d54]
+- Updated dependencies [e856d54]
+  - @paprika/button@1.1.0-next.0
+  - @paprika/raw-button@1.0.4-next.0
+  - @paprika/overflow-menu@1.0.19-next.0
+  - @paprika/popover@1.2.3-next.0
+
 ## 1.1.4
 
 ### Patch Changes

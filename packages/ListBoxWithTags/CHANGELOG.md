@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.2.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [4365834]
+- Updated dependencies [e856d54]
+  - @paprika/list-box@3.2.0-next.0
+  - @paprika/raw-button@1.0.4-next.0
+  - @paprika/tag@0.0.5-next.0
+
 ## 1.2.0
 
 ### Minor Changes

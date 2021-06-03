@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.19-next.0
+
+### Patch Changes
+
+- Updated dependencies [e856d54]
+- Updated dependencies [e856d54]
+  - @paprika/button@1.1.0-next.0
+  - @paprika/raw-button@1.0.4-next.0
+  - @paprika/confirmation@1.1.4-next.0
+  - @paprika/popover@1.2.3-next.0
+
 ## 1.0.18
 
 ### Patch Changes
