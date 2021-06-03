@@ -198,6 +198,8 @@ de:
         is_not_empty: ist nicht leer
         is_before: ist vor
         is_after: ist nach
+        is_one_of: ist ein Element von
+        is_not_one_of: ist kein Element von
         true: "wahr"
         false: "falsch"
     input:

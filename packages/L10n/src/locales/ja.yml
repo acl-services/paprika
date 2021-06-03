@@ -198,6 +198,8 @@ ja:
         is_not_empty: は空でない
         is_before: 'は次より前である:'
         is_after: 'は次より後である:'
+        is_one_of: 'は次の1つである:'
+        is_not_one_of: 'は次の1つでない:'
         true: "真"
         false: "偽"
     input:
