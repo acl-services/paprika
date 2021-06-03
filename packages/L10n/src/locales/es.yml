@@ -198,6 +198,8 @@ es:
         is_not_empty: no está vacío
         is_before: es anterior a
         is_after: es posterior a
+        is_one_of: es uno de
+        is_not_one_of: no es uno de
         true: "verdadero"
         false: "falso"
     input:

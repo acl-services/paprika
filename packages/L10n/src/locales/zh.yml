@@ -198,6 +198,8 @@ zh:
         is_not_empty: 不是空的
         is_before: 早于
         is_after: 晚于
+        is_one_of: 属于
+        is_not_one_of: 不属于
         true: "真"
         false: "假"
     input:

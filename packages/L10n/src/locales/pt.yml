@@ -198,6 +198,8 @@ pt:
         is_not_empty: não está vazio
         is_before: é antes de
         is_after: é depois de
+        is_one_of: é um(a) de
+        is_not_one_of: não é um(a) de
         true: "verdadeiro"
         false: "falso"
     input:
