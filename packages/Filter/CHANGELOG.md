@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0-next.2
+
+### Patch Changes
+
+- 3d52cd8: chore(deps): Bump immer from 6.0.9 to 8.0.1
+
 ## 1.2.0-next.1
 
 ### Patch Changes
