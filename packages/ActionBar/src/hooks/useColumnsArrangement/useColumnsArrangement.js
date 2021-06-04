@@ -66,7 +66,7 @@ function getInitialHiddenColumnIds({ defaultHiddenColumnIds, defaultOrder, local
     );
   }
 
-  return new Set(updatedHiddenColumns);
+  return updatedHiddenColumns;
 }
 
 export default function useColumnsArrangement({
@@ -86,7 +86,7 @@ export default function useColumnsArrangement({
           defaultOrder,
           localStoragePrefix,
         })
-      : new Set(defaultHiddenColumnIds)
+      : defaultHiddenColumnIds
   );
 
   function canMove({ source, destination }) {
@@ -103,7 +103,7 @@ export default function useColumnsArrangement({
 
   const isColumnHidden = React.useCallback(
     columnId => {
-      return hiddenColumnIds.has(columnId);
+      return hiddenColumnIds.includes(columnId);
     },
     [hiddenColumnIds]
   );
@@ -128,7 +128,7 @@ export default function useColumnsArrangement({
 
   function handleHideAll() {
     const newHiddenColumnIds = order.filter(id => !disabledColumnIds.includes(id));
-    setHiddenColumnIds(new Set(newHiddenColumnIds));
+    setHiddenColumnIds(newHiddenColumnIds);
 
     if (isLocalStorageEnabled) {
       window.localStorage.setItem(
@@ -139,7 +139,7 @@ export default function useColumnsArrangement({
   }
 
   function handleShowAll() {
-    setHiddenColumnIds(new Set());
+    setHiddenColumnIds([]);
 
     if (isLocalStorageEnabled) {
       window.localStorage.setItem(getLocalStorageKey(localStoragePrefix, savedItem.VISIBILITY), "[]");
@@ -149,15 +149,16 @@ export default function useColumnsArrangement({
   function handleChangeVisibility(columnId) {
     setHiddenColumnIds(
       produce(draft => {
-        if (draft.has(columnId)) {
-          draft.delete(columnId);
+        const index = draft.indexOf(columnId);
+
+        if (index !== -1) {
+          draft.splice(index, 1);
         } else {
-          draft.add(columnId);
+          draft.push(columnId);
         }
         if (isLocalStorageEnabled) {
-          updateHiddenColumnIdFromLocalStorage(localStoragePrefix, columnId, !draft.has(columnId));
+          updateHiddenColumnIdFromLocalStorage(localStoragePrefix, columnId, !draft.includes(columnId));
         }
-        return new Set(draft);
       })
     );
   }
