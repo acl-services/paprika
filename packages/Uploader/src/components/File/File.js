@@ -45,6 +45,7 @@ function File(props) {
   const I18n = useI18n();
   const sizeWithUnits = getNumberWithUnits(I18n, size);
   const progressWithUnits = getNumberWithUnits(I18n, (size * progress) / 100);
+  const a11yProgress = 25 * Math.floor(Math.abs(progress / 25)); // announce in 25% increments for screen reader
 
   function renderIcon() {
     switch (status) {
@@ -52,9 +53,9 @@ function File(props) {
         return (
           <Popover isDark isEager>
             <Popover.Tip />
-            <Popover.Trigger>
+            <Popover.Trigger tabIndex={-1}>
               <Button.Icon kind={Button.Icon.types.kind.MINOR} onClick={() => {}}>
-                <Caution color={tokens.color.orange} />
+                <Caution title={`${name} ${I18n.t("uploader.restart_upload")}`} color={tokens.color.orange} />
               </Button.Icon>
             </Popover.Trigger>
             <Popover.Content>
@@ -70,8 +71,9 @@ function File(props) {
         return (
           <Popover isDark isEager>
             <Popover.Tip />
-            <Popover.Trigger>
+            <Popover.Trigger tabIndex={-1}>
               <Button.Icon
+                aria-label={`${name} ${I18n.t("uploader.cancel_upload")}`}
                 kind={Button.Icon.types.kind.MINOR}
                 onClick={() => {
                   cancelFile(fileKey, onCancel);
@@ -89,7 +91,7 @@ function File(props) {
     }
   }
 
-  function getProgressText() {
+  function getProgressText(showA11yProgress) {
     switch (status) {
       case types.status.ERROR:
         return typeof onError === "function" ? onError(error) : error;
@@ -100,16 +102,26 @@ function File(props) {
       case types.status.IDLE:
         return I18n.t("uploader.progress.idle");
       default:
-        return I18n.t("uploader.progress.uploading", { progressWithUnits, sizeWithUnits });
+        if (!showA11yProgress) return I18n.t("uploader.progress.uploading", { progressWithUnits, sizeWithUnits });
+        return `${I18n.t("uploader.progress.uploading") + a11yProgress}%`;
     }
   }
 
   return (
-    <sc.File>
+    <sc.File
+      aria-live="polite"
+      aria-relevant="all"
+      aria-label={`${name} ${getProgressText(true)}`}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuenow={progress}
+      role="progressbar"
+      tabIndex={0}
+    >
       <sc.Left>
         <sc.Info>
           <sc.Name>{name}</sc.Name>
-          <sc.ProgressText status={status}>{getProgressText()}</sc.ProgressText>
+          <sc.ProgressText status={status}>{getProgressText(false)}</sc.ProgressText>
         </sc.Info>
         <sc.ProgressBarWrapper>
           <sc.ProgressBar data-pka-anchor="uploader-file-progressBar" progress={progress} status={status} />

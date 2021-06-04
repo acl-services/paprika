@@ -11,6 +11,7 @@ export default function DropZone() {
   const I18n = useI18n();
   const { refInput, FileInput, isDraggingOver } = React.useContext(UploaderContext);
   const uploadIconColor = isDraggingOver ? tokens.color.purpleDarken10 : tokens.color.blackLighten50;
+  const dropZoneInstructions = `${I18n.t("uploader.drop_files_here_or")} ${I18n.t("uploader.choose_from_computer")}`;
 
   const body = isDraggingOver ? (
     I18n.t("uploader.drop_files")
@@ -24,7 +25,7 @@ export default function DropZone() {
           refInput.current.click();
         }}
         isSemantic={false}
-        tabIndex={-1}
+        tabIndex={0}
         aria-hidden
       >
         {I18n.t("uploader.choose_from_computer")}
@@ -34,7 +35,7 @@ export default function DropZone() {
 
   return (
     <FileInput>
-      <sc.DropZone isDraggingOver={isDraggingOver}>
+      <sc.DropZone aria-label={dropZoneInstructions} tabIndex={0} isDraggingOver={isDraggingOver}>
         <UploadIcon data-pka-anchor="uploader-dropZone-uploadIcon" size={stylers.spacer(4)} color={uploadIconColor} />
         <sc.Body>{body}</sc.Body>
       </sc.DropZone>
