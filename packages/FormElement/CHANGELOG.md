@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.0.13
+
+### Patch Changes
+
+- @paprika/popover@1.2.3
+
 ## 4.0.13-next.0
 
 ### Patch Changes

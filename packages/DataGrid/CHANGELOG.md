@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.12
+
+### Patch Changes
+
+- Updated dependencies [e856d54]
+- Updated dependencies [e856d54]
+  - @paprika/button@1.1.0
+  - @paprika/raw-button@1.0.4
+  - @paprika/panel@2.0.11
+
 ## 1.0.12-next.0
 
 ### Patch Changes

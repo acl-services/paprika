@@ -1,5 +1,21 @@
 # @paprika/inline-editors
 
+## 0.2.3
+
+### Patch Changes
+
+- Updated dependencies [4365834]
+- Updated dependencies [e856d54]
+- Updated dependencies [87cef6a]
+  - @paprika/list-box@3.2.0
+  - @paprika/raw-button@1.0.4
+  - @paprika/textarea@3.0.0
+  - @paprika/collapsible-text@1.0.12
+  - @paprika/input@4.0.2
+  - @paprika/popover@1.2.3
+  - @paprika/table@1.2.2
+  - @paprika/tag@0.0.5
+
 ## 0.2.3-next.1
 
 ### Patch Changes

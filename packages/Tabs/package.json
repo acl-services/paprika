@@ -1,6 +1,6 @@
 {
   "name": "@paprika/tabs",
-  "version": "2.2.4-next.0",
+  "version": "2.2.4",
   "description": "Tabs component displays tabs with panels associated with each tab",
   "author": "@paprika",
   "license": "MIT",
@@ -18,7 +18,7 @@
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/constants": "^1.0.0",
     "@paprika/helpers": "^2.1.2",
-    "@paprika/raw-button": "^1.0.4-next.0",
+    "@paprika/raw-button": "^1.0.4",
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",
     "classnames": "^2.2.6",
