@@ -53,10 +53,8 @@ function File(props) {
         return (
           <Popover isDark isEager>
             <Popover.Tip />
-            <Popover.Trigger tabIndex={-1}>
-              <Button.Icon kind={Button.Icon.types.kind.MINOR} onClick={() => {}}>
-                <Caution title={`${name} ${I18n.t("uploader.restart_upload")}`} color={tokens.color.orange} />
-              </Button.Icon>
+            <Popover.Trigger aria-label={`${name} ${I18n.t("uploader.restart_upload")}`}>
+              <Caution color={tokens.color.orange} />
             </Popover.Trigger>
             <Popover.Content>
               <Popover.Card>{I18n.t("uploader.restart_upload")}</Popover.Card>
@@ -78,6 +76,7 @@ function File(props) {
                 onClick={() => {
                   cancelFile(fileKey, onCancel);
                 }}
+                onKeyDown={event => (["Enter", " "].includes(event.key) ? cancelFile(fileKey, onCancel) : {})}
                 size={Button.Icon.types.size.SMALL}
               >
                 <TimesIcon />
@@ -109,8 +108,6 @@ function File(props) {
 
   return (
     <sc.File
-      aria-live="polite"
-      aria-relevant="all"
       aria-label={`${name} ${getProgressText(true)}`}
       aria-valuemin={0}
       aria-valuemax={100}
