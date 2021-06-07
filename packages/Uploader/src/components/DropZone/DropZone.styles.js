@@ -2,6 +2,30 @@ import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 import styled, { css } from "styled-components";
 
+export const Container = styled.div`
+  label {
+    cursor: pointer;
+    display: inline-block;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+  }
+
+  input[type="file"] {
+    ${stylers.visuallyHidden};
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    &:focus + label {
+      box-shadow: ${tokens.highlight.active.withBorder.boxShadow};
+    }
+
+    &:focus + div span[data-pka-anchor="button"] {
+      ${stylers.focusRing.bordered()};
+    }
+  }
+`;
+
 export const DropZone = styled.div(
   ({ isDraggingOver }) => css`
     ${stylers.fontSize()};
@@ -26,10 +50,19 @@ export const DropZone = styled.div(
       min-height: auto;
       padding: 0;
     }
+    span[data-pka-anchor="uploader-dropZone-link"] {
+      margin-bottom: 3px;
+    }
+  `,
+  `text-align: center;
   `
 );
 
 export const Body = styled.div`
   display: inline;
   margin-left: ${tokens.space};
+`;
+
+export const DropZoneIcon = styled.span`
+  flex-shrink: 0;
 `;

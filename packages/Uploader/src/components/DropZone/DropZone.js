@@ -7,11 +7,18 @@ import UploadIcon from "@paprika/icon/lib/Upload";
 import { UploaderContext } from "../../Uploader";
 import * as sc from "./DropZone.styles";
 
-export default function DropZone() {
+const DropZone = React.memo(() => {
   const I18n = useI18n();
-  const { refInput, FileInput, isDraggingOver } = React.useContext(UploaderContext);
+  const {
+    refInput,
+    isDraggingOver,
+    handleChange,
+    canChooseMultiple,
+    supportedMimeTypes,
+    label,
+    refContainer,
+  } = React.useContext(UploaderContext);
   const uploadIconColor = isDraggingOver ? tokens.color.purpleDarken10 : tokens.color.blackLighten50;
-  const dropZoneInstructions = `${I18n.t("uploader.drop_files_here_or")} ${I18n.t("uploader.choose_from_computer")}`;
 
   const body = isDraggingOver ? (
     I18n.t("uploader.drop_files")
@@ -19,6 +26,7 @@ export default function DropZone() {
     <React.Fragment>
       {I18n.t("uploader.drop_files_here_or")}&nbsp;
       <Button
+        aria-label={I18n.t("uploader.choose_from_computer_a11y")}
         data-pka-anchor="uploader-dropZone-link"
         kind={Button.types.kind.LINK}
         onClick={() => {
@@ -34,11 +42,24 @@ export default function DropZone() {
   );
 
   return (
-    <FileInput>
-      <sc.DropZone aria-label={dropZoneInstructions} tabIndex={0} isDraggingOver={isDraggingOver}>
-        <UploadIcon data-pka-anchor="uploader-dropZone-uploadIcon" size={stylers.spacer(4)} color={uploadIconColor} />
+    <sc.Container ref={refContainer} data-pka-anchor="uploader">
+      <input
+        multiple={canChooseMultiple}
+        onChange={handleChange}
+        ref={refInput}
+        type="file"
+        accept={supportedMimeTypes.join(",")}
+        aria-label={label}
+        tabIndex={0}
+      />
+      <sc.DropZone aria-hidden isDraggingOver={isDraggingOver}>
+        <sc.DropZoneIcon>
+          <UploadIcon data-pka-anchor="uploader-dropZone-uploadIcon" size={stylers.spacer(4)} color={uploadIconColor} />
+        </sc.DropZoneIcon>
         <sc.Body>{body}</sc.Body>
       </sc.DropZone>
-    </FileInput>
+    </sc.Container>
   );
-}
+});
+
+export default DropZone;
