@@ -33,7 +33,6 @@ const DropZone = React.memo(() => {
           refInput.current.click();
         }}
         isSemantic={false}
-        tabIndex={0}
         aria-hidden
       >
         {I18n.t("uploader.choose_from_computer")}
@@ -43,14 +42,13 @@ const DropZone = React.memo(() => {
 
   return (
     <sc.Container ref={refContainer} data-pka-anchor="uploader">
-      <input
+      <sc.Input
         multiple={canChooseMultiple}
         onChange={handleChange}
         ref={refInput}
         type="file"
         accept={supportedMimeTypes.join(",")}
         aria-label={label}
-        tabIndex={0}
       />
       <sc.DropZone aria-hidden isDraggingOver={isDraggingOver}>
         <sc.DropZoneIcon>

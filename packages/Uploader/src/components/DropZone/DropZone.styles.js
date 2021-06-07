@@ -66,3 +66,7 @@ export const Body = styled.div`
 export const DropZoneIcon = styled.span`
   flex-shrink: 0;
 `;
+
+export const Input = styled.input`
+  display: none;
+`;

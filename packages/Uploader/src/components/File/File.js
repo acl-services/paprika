@@ -53,11 +53,11 @@ function File(props) {
         return (
           <Popover isDark isEager>
             <Popover.Tip />
-            <Popover.Trigger aria-label={`${name} ${I18n.t("uploader.restart_upload")}`}>
+            <Popover.Trigger aria-label={I18n.t("uploader.restart_upload", { name })}>
               <Caution color={tokens.color.orange} />
             </Popover.Trigger>
             <Popover.Content>
-              <Popover.Card>{I18n.t("uploader.restart_upload")}</Popover.Card>
+              <Popover.Card>{I18n.t("uploader.restart_upload", { name })}</Popover.Card>
             </Popover.Content>
           </Popover>
         );
@@ -69,21 +69,24 @@ function File(props) {
         return (
           <Popover isDark isEager>
             <Popover.Tip />
-            <Popover.Trigger tabIndex={-1}>
-              <Button.Icon
-                aria-label={`${name} ${I18n.t("uploader.cancel_upload")}`}
-                kind={Button.Icon.types.kind.MINOR}
-                onClick={() => {
-                  cancelFile(fileKey, onCancel);
-                }}
-                onKeyDown={event => (["Enter", " "].includes(event.key) ? cancelFile(fileKey, onCancel) : {})}
-                size={Button.Icon.types.size.SMALL}
-              >
-                <TimesIcon />
-              </Button.Icon>
+            <Popover.Trigger>
+              {() => (
+                <>
+                  <Button.Icon
+                    aria-label={I18n.t("uploader.cancel_upload", { name })}
+                    kind={Button.Icon.types.kind.MINOR}
+                    onClick={() => {
+                      cancelFile(fileKey, onCancel);
+                    }}
+                    size={Button.Icon.types.size.SMALL}
+                  >
+                    <TimesIcon />
+                  </Button.Icon>
+                </>
+              )}
             </Popover.Trigger>
             <Popover.Content>
-              <Popover.Card>{I18n.t("uploader.cancel_upload")}</Popover.Card>
+              <Popover.Card>{I18n.t("uploader.cancel_upload", { name })}</Popover.Card>
             </Popover.Content>
           </Popover>
         );
@@ -102,13 +105,13 @@ function File(props) {
         return I18n.t("uploader.progress.idle");
       default:
         if (!showA11yProgress) return I18n.t("uploader.progress.uploading", { progressWithUnits, sizeWithUnits });
-        return `${I18n.t("uploader.progress.uploading") + a11yProgress}%`;
+        return I18n.t("uploader.progress.uploading_percent", { a11yProgress });
     }
   }
 
   return (
     <sc.File
-      aria-label={`${name} ${getProgressText(true)}`}
+      aria-label={I18n.t("uploader.progress.file_progress", { name, progress: getProgressText(true) })}
       aria-valuemin={0}
       aria-valuemax={100}
       aria-valuenow={progress}
