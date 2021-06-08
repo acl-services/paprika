@@ -25,23 +25,22 @@ const DropZone = React.memo(() => {
   ) : (
     <React.Fragment>
       {I18n.t("uploader.drop_files_here_or")}&nbsp;
-      <Button
-        aria-label={I18n.t("uploader.choose_from_computer_a11y")}
+      <sc.DropZoneButton
         data-pka-anchor="uploader-dropZone-link"
         kind={Button.types.kind.LINK}
         onClick={() => {
           refInput.current.click();
         }}
         isSemantic={false}
-        aria-hidden
+        tabIndex={-1}
       >
         {I18n.t("uploader.choose_from_computer")}
-      </Button>
+      </sc.DropZoneButton>
     </React.Fragment>
   );
 
   return (
-    <sc.Container ref={refContainer} data-pka-anchor="uploader">
+    <div ref={refContainer} data-pka-anchor="uploader">
       <sc.Input
         multiple={canChooseMultiple}
         onChange={handleChange}
@@ -56,7 +55,7 @@ const DropZone = React.memo(() => {
         </sc.DropZoneIcon>
         <sc.Body>{body}</sc.Body>
       </sc.DropZone>
-    </sc.Container>
+    </div>
   );
 });
 

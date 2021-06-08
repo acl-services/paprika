@@ -3,9 +3,16 @@ import tokens from "@paprika/tokens";
 import styled, { css } from "styled-components";
 import * as types from "../../types";
 
-export const File = styled.li`
+export const File = styled.div`
+  display: flex;
+  flex-basis: auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+`;
+
+export const FileListItem = styled.li`
   align-items: center;
-  border-bottom: 1px solid ${tokens.color.blackLighten40};
+  border-bottom: 1px solid ${tokens.border.color};
   display: flex;
   padding: ${stylers.spacer(2)};
 

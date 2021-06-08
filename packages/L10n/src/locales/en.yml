@@ -35,6 +35,7 @@ en:
       progress:
         cancelled: Cancelled
         complete: Complete
+        error: "An error occured for {{name}}: {{error}}"
         idle: Idle
         file_progress: "{{name}} is {{progress}}"
         uploading_percent: Uploading of {{a11yProgress}}%

@@ -70,19 +70,22 @@ function File(props) {
           <Popover isDark isEager>
             <Popover.Tip />
             <Popover.Trigger>
-              {() => (
-                <>
-                  <Button.Icon
-                    aria-label={I18n.t("uploader.cancel_upload", { name })}
-                    kind={Button.Icon.types.kind.MINOR}
-                    onClick={() => {
-                      cancelFile(fileKey, onCancel);
-                    }}
-                    size={Button.Icon.types.size.SMALL}
-                  >
-                    <TimesIcon />
-                  </Button.Icon>
-                </>
+              {(handler, a11yAttributes) => (
+                <Button.Icon
+                  onMouseOver={handler}
+                  onMouseOut={handler}
+                  onFocus={handler}
+                  onBlur={handler}
+                  aria-label={I18n.t("uploader.cancel_upload", { name })}
+                  kind={Button.Icon.types.kind.MINOR}
+                  onClick={() => {
+                    cancelFile(fileKey, onCancel);
+                  }}
+                  size={Button.Icon.types.size.SMALL}
+                  {...a11yAttributes}
+                >
+                  <TimesIcon color={tokens.textColor.icon} />
+                </Button.Icon>
               )}
             </Popover.Trigger>
             <Popover.Content>
@@ -94,41 +97,56 @@ function File(props) {
   }
 
   function getProgressText(showA11yProgress) {
+    const errorMessage = typeof onError === "function" ? onError(error) : error;
     switch (status) {
       case types.status.ERROR:
-        return typeof onError === "function" ? onError(error) : error;
+        return showA11yProgress ? I18n.t("uploader.progress.error", { name, error: errorMessage }) : errorMessage;
       case types.status.SUCCESS:
-        return I18n.t("uploader.progress.complete");
+        return showA11yProgress
+          ? I18n.t("uploader.progress.file_progress", { name, progress: I18n.t("uploader.progress.complete") })
+          : I18n.t("uploader.progress.complete");
       case types.status.CANCEL:
-        return I18n.t("uploader.progress.cancelled");
+        return showA11yProgress
+          ? I18n.t("uploader.progress.file_progress", { name, progress: I18n.t("uploader.progress.cancelled") })
+          : I18n.t("uploader.progress.cancelled");
       case types.status.IDLE:
-        return I18n.t("uploader.progress.idle");
+        return showA11yProgress
+          ? I18n.t("uploader.progress.file_progress", { name, progress: I18n.t("uploader.progress.idle") })
+          : I18n.t("uploader.progress.idle");
       default:
-        if (!showA11yProgress) return I18n.t("uploader.progress.uploading", { progressWithUnits, sizeWithUnits });
-        return I18n.t("uploader.progress.uploading_percent", { a11yProgress });
+        return showA11yProgress
+          ? I18n.t("uploader.progress.file_progress", {
+              name,
+              progress: I18n.t("uploader.progress.uploading_percent", { a11yProgress }),
+            })
+          : I18n.t("uploader.progress.uploading", { progressWithUnits, sizeWithUnits });
     }
   }
 
   return (
-    <sc.File
-      aria-label={I18n.t("uploader.progress.file_progress", { name, progress: getProgressText(true) })}
-      aria-valuemin={0}
-      aria-valuemax={100}
-      aria-valuenow={progress}
-      role="progressbar"
-      tabIndex={0}
-    >
-      <sc.Left>
-        <sc.Info>
-          <sc.Name>{name}</sc.Name>
-          <sc.ProgressText status={status}>{getProgressText(false)}</sc.ProgressText>
-        </sc.Info>
-        <sc.ProgressBarWrapper>
-          <sc.ProgressBar data-pka-anchor="uploader-file-progressBar" progress={progress} status={status} />
-        </sc.ProgressBarWrapper>
-      </sc.Left>
-      <sc.Right status={status}>{renderIcon()}</sc.Right>
-    </sc.File>
+    <sc.FileListItem>
+      <div role="status" aria-atomic="true" aria-label={getProgressText(true)} />
+      <sc.File
+        aria-label={name}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={progress}
+        aria-valuetext={status === types.status.ERROR ? I18n.t("uploader.status.error") : ""}
+        role="progressbar"
+        tabIndex={0}
+      >
+        <sc.Left>
+          <sc.Info>
+            <sc.Name>{name}</sc.Name>
+            <sc.ProgressText status={status}>{getProgressText(false)}</sc.ProgressText>
+          </sc.Info>
+          <sc.ProgressBarWrapper>
+            <sc.ProgressBar data-pka-anchor="uploader-file-progressBar" progress={progress} status={status} />
+          </sc.ProgressBarWrapper>
+        </sc.Left>
+        <sc.Right status={status}>{renderIcon()}</sc.Right>
+      </sc.File>
+    </sc.FileListItem>
   );
 }
 
