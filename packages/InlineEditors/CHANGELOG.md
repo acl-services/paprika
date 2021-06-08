@@ -1,5 +1,15 @@
 # @paprika/inline-editors
 
+## 0.2.4-next.0
+
+### Patch Changes
+
+- @paprika/collapsible-text@1.0.13-next.0
+- @paprika/input@4.0.3-next.0
+- @paprika/list-box@3.2.1-next.0
+- @paprika/tag@0.0.6-next.0
+- @paprika/table@1.2.3-next.0
+
 ## 0.2.3
 
 ### Patch Changes
