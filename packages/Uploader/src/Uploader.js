@@ -51,7 +51,7 @@ const propTypes = {
   */
   maxFileSize: PropTypes.number,
   /**
-    This callback fires every time a file has been processed
+    This callback fires every time the input value has been changed.
   */
   onChange: PropTypes.func,
   /**
@@ -62,6 +62,10 @@ const propTypes = {
     you can pass an array of header objects.
   */
   headers: PropTypes.arrayOf(PropTypes.object),
+  /**
+    This callback fires every time a file has been processed.
+  */
+  onProcess: PropTypes.func,
   /**
    * Let you to take over the request method
    */
@@ -88,6 +92,7 @@ const defaultProps = {
   onChange: () => {},
   onCompleted: () => {},
   onError: null,
+  onProcess: () => {},
   onRequest: null,
   supportedMimeTypes: ["*/*"],
 };
@@ -117,6 +122,7 @@ const Uploader = React.forwardRef((props, ref) => {
     onChange,
     onCompleted,
     onError,
+    onProcess,
     onRequest,
     supportedMimeTypes,
   } = props;
@@ -137,13 +143,13 @@ const Uploader = React.forwardRef((props, ref) => {
     endpoint,
     hasAutoUpload,
     headers,
-    onChange,
     onCompleted,
+    onProcess,
     onRequest,
   });
 
   const handleChange = React.useCallback(
-    function handleChange(event) {
+    event => {
       if (isDisabled) return;
 
       const files = getFiles({ event, maxFileSize, supportedMimeTypes, endpoint });
@@ -153,8 +159,9 @@ const Uploader = React.forwardRef((props, ref) => {
         }
         return canChooseMultiple ? files : [files[0]]; // in case only allow one file per upload
       });
+      onChange(files);
     },
-    [canChooseMultiple, endpoint, isDisabled, maxFileSize, supportedMimeTypes, setFiles]
+    [canChooseMultiple, endpoint, isDisabled, maxFileSize, supportedMimeTypes, setFiles, onChange]
   );
 
   const { isDragLeave, isDraggingOver } = useDragAndDropEvents({
