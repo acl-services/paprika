@@ -74,6 +74,7 @@
     "@paprika/seducer": "2.0.1"
   },
   "changesets": [
-    "little-planes-thank"
+    "little-planes-thank",
+    "new-scissors-happen"
   ]
 }
