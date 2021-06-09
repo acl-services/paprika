@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.0-next.1
+
+### Minor Changes
+
+- 5ee5aca: Enhancing a11y compliance by introducing tabbing and screen reader capability for the Uploader components (DropZone and Files)
+
 ## 2.0.13-next.0
 
 ### Patch Changes
