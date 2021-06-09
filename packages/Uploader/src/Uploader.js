@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import * as sc from "./Uploader.styles";
 import { getFiles } from "./helpers";
 import FileList from "./components/FileList";
 import DropZone from "./components/DropZone";
@@ -163,57 +162,24 @@ const Uploader = React.forwardRef((props, ref) => {
     defaultIsDisabled,
   });
 
-  const value = React.useMemo(() => {
-    function FileInput(props) {
-      const { children } = props;
-      return (
-        <sc.Container ref={refContainer} data-pka-anchor="uploader">
-          <input
-            multiple={canChooseMultiple}
-            onChange={handleChange}
-            ref={refInput}
-            type="file"
-            accept={supportedMimeTypes.join(",")}
-            aria-label={label}
-            tabIndex={0}
-          />
-          {/* is this the best approach? */}
-          {/* aria-hidden will prevent from rendering content that can be counter intuitive for the screen reader */}
-          <div aria-hidden>{children}</div>
-        </sc.Container>
-      );
-    }
-
-    return {
-      FileInput,
-      cancelFile,
-      files,
-      isCompleted,
-      isDisabled,
-      isDragLeave,
-      isDraggingOver,
-      onCancel,
-      onError,
-      refInput,
-      removeFile,
-      upload,
-    };
-  }, [
-    canChooseMultiple,
+  const value = {
     cancelFile,
     files,
-    handleChange,
     isCompleted,
     isDisabled,
     isDragLeave,
     isDraggingOver,
-    label,
     onCancel,
     onError,
+    refInput,
     removeFile,
-    supportedMimeTypes,
     upload,
-  ]);
+    handleChange,
+    supportedMimeTypes,
+    canChooseMultiple,
+    refContainer,
+    label,
+  };
 
   const childrenWithProps = React.Children.map(children, child => {
     return child === null

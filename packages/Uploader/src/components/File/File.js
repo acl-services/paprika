@@ -45,6 +45,7 @@ function File(props) {
   const I18n = useI18n();
   const sizeWithUnits = getNumberWithUnits(I18n, size);
   const progressWithUnits = getNumberWithUnits(I18n, (size * progress) / 100);
+  const a11yProgress = 25 * Math.floor(Math.abs(progress / 25)); // announce in 25% increments for screen reader
 
   function renderIcon() {
     switch (status) {
@@ -52,71 +53,98 @@ function File(props) {
         return (
           <Popover isDark isEager>
             <Popover.Tip />
-            <Popover.Trigger>
-              <Button.Icon kind={Button.Icon.types.kind.MINOR} onClick={() => {}}>
-                <Caution color={tokens.color.orange} />
-              </Button.Icon>
+            <Popover.Trigger aria-label={I18n.t("uploader.restart_upload", { name })}>
+              <Caution color={tokens.color.orange} />
             </Popover.Trigger>
             <Popover.Content>
-              <Popover.Card>{I18n.t("uploader.restart_upload")}</Popover.Card>
+              <Popover.Card>{I18n.t("uploader.restart_upload", { name })}</Popover.Card>
             </Popover.Content>
           </Popover>
         );
       case types.status.CANCEL:
         return null;
       case types.status.SUCCESS:
-        return <CheckIcon color={tokens.color.green} />;
+        return <CheckIcon color={tokens.color.green} aria-hidden />;
       default:
         return (
           <Popover isDark isEager>
             <Popover.Tip />
             <Popover.Trigger>
-              <Button.Icon
-                kind={Button.Icon.types.kind.MINOR}
-                onClick={() => {
-                  cancelFile(fileKey, onCancel);
-                }}
-                size={Button.Icon.types.size.SMALL}
-              >
-                <TimesIcon />
-              </Button.Icon>
+              {(handler, a11yAttributes) => (
+                <Button.Icon
+                  onMouseOver={handler}
+                  onMouseOut={handler}
+                  onFocus={handler}
+                  onBlur={handler}
+                  aria-label={I18n.t("uploader.cancel_upload", { name })}
+                  kind={Button.Icon.types.kind.MINOR}
+                  onClick={() => {
+                    cancelFile(fileKey, onCancel);
+                  }}
+                  size={Button.Icon.types.size.SMALL}
+                  {...a11yAttributes}
+                >
+                  <TimesIcon color={tokens.textColor.icon} />
+                </Button.Icon>
+              )}
             </Popover.Trigger>
             <Popover.Content>
-              <Popover.Card>{I18n.t("uploader.cancel_upload")}</Popover.Card>
+              <Popover.Card>{I18n.t("uploader.cancel_upload", { name })}</Popover.Card>
             </Popover.Content>
           </Popover>
         );
     }
   }
 
-  function getProgressText() {
+  function getProgressText(showA11yProgress) {
+    const errorMessage = typeof onError === "function" ? onError(error) : error;
     switch (status) {
       case types.status.ERROR:
-        return typeof onError === "function" ? onError(error) : error;
+        return showA11yProgress ? I18n.t("uploader.progress.error", { name, error: errorMessage }) : errorMessage;
       case types.status.SUCCESS:
-        return I18n.t("uploader.progress.complete");
+        return showA11yProgress
+          ? I18n.t("uploader.progress.file_progress", { name, progress: I18n.t("uploader.progress.complete") })
+          : I18n.t("uploader.progress.complete");
       case types.status.CANCEL:
-        return I18n.t("uploader.progress.cancelled");
+        return showA11yProgress
+          ? I18n.t("uploader.progress.file_progress", { name, progress: I18n.t("uploader.progress.cancelled") })
+          : I18n.t("uploader.progress.cancelled");
       case types.status.IDLE:
-        return I18n.t("uploader.progress.idle");
+        return showA11yProgress
+          ? I18n.t("uploader.progress.file_progress", { name, progress: I18n.t("uploader.progress.idle") })
+          : I18n.t("uploader.progress.idle");
       default:
-        return I18n.t("uploader.progress.uploading", { progressWithUnits, sizeWithUnits });
+        return showA11yProgress
+          ? I18n.t("uploader.progress.file_progress", {
+              name,
+              progress: I18n.t("uploader.progress.uploading_percent", { a11yProgress }),
+            })
+          : I18n.t("uploader.progress.uploading", { progressWithUnits, sizeWithUnits });
     }
   }
 
   return (
-    <sc.File>
-      <sc.Left>
-        <sc.Info>
-          <sc.Name>{name}</sc.Name>
-          <sc.ProgressText status={status}>{getProgressText()}</sc.ProgressText>
-        </sc.Info>
-        <sc.ProgressBarWrapper>
-          <sc.ProgressBar data-pka-anchor="uploader-file-progressBar" progress={progress} status={status} />
-        </sc.ProgressBarWrapper>
-      </sc.Left>
-      <sc.Right status={status}>{renderIcon()}</sc.Right>
-    </sc.File>
+    <sc.FileListItem>
+      <div
+        aria-label={getProgressText(true)}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={progress}
+        role="progressbar"
+      />
+      <sc.File>
+        <sc.Left aria-hidden>
+          <sc.Info>
+            <sc.Name>{name}</sc.Name>
+            <sc.ProgressText status={status}>{getProgressText(false)}</sc.ProgressText>
+          </sc.Info>
+          <sc.ProgressBarWrapper>
+            <sc.ProgressBar data-pka-anchor="uploader-file-progressBar" progress={progress} status={status} />
+          </sc.ProgressBarWrapper>
+        </sc.Left>
+        <sc.Right status={status}>{renderIcon()}</sc.Right>
+      </sc.File>
+    </sc.FileListItem>
   );
 }
 
