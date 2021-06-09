@@ -38,7 +38,7 @@ export default function FileList({ supportedMimeTypes, maxFileSize }) {
   }
 
   return (
-    <sc.unorderedList aria-live="polite" aria-relevant="additions" aria-label={I18n.t("uploader.file_list")}>
+    <sc.FileList aria-live="polite" aria-label={I18n.t("uploader.file_list")}>
       {files.map(file => (
         <File
           error={getFileErrorText(file)}
@@ -52,7 +52,7 @@ export default function FileList({ supportedMimeTypes, maxFileSize }) {
           status={file.status}
         />
       ))}
-    </sc.unorderedList>
+    </sc.FileList>
   );
 }
 

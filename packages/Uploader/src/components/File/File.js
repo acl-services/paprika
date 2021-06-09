@@ -64,7 +64,7 @@ function File(props) {
       case types.status.CANCEL:
         return null;
       case types.status.SUCCESS:
-        return <CheckIcon color={tokens.color.green} />;
+        return <CheckIcon color={tokens.color.green} aria-hidden />;
       default:
         return (
           <Popover isDark isEager>
@@ -125,17 +125,15 @@ function File(props) {
 
   return (
     <sc.FileListItem>
-      <div role="status" aria-atomic="true" aria-label={getProgressText(true)} />
-      <sc.File
-        aria-label={name}
+      <div
+        aria-label={getProgressText(true)}
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={progress}
-        aria-valuetext={status === types.status.ERROR ? I18n.t("uploader.status.error") : ""}
         role="progressbar"
-        tabIndex={0}
-      >
-        <sc.Left>
+      />
+      <sc.File>
+        <sc.Left aria-hidden>
           <sc.Info>
             <sc.Name>{name}</sc.Name>
             <sc.ProgressText status={status}>{getProgressText(false)}</sc.ProgressText>

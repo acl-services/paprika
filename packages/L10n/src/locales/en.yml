@@ -38,7 +38,7 @@ en:
         error: "An error occurred for {{name}}: {{error}}"
         idle: Idle
         file_progress: "{{name}} is {{progress}}"
-        uploading_percent: Uploading of {{a11yProgress}}%
+        uploading_percent: Uploading, {{a11yProgress}}%
         uploading: Uploading {{progressWithUnits}} of {{sizeWithUnits}}
       size_abbreviations:
         byte: B

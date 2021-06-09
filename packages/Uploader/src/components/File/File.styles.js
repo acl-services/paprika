@@ -19,10 +19,6 @@ export const FileListItem = styled.li`
   &:last-of-type {
     border-bottom: 0;
   }
-
-  &:focus {
-    ${stylers.focusRing.subtle(true)};
-  }
 `;
 
 export const Left = styled.div`
