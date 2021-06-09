@@ -10,13 +10,14 @@ import * as sc from "./DropZone.styles";
 const DropZone = React.memo(() => {
   const I18n = useI18n();
   const {
-    refInput,
-    isDraggingOver,
-    handleChange,
     canChooseMultiple,
-    supportedMimeTypes,
+    extendedInputProps,
+    handleChange,
+    isDraggingOver,
     label,
     refContainer,
+    refInput,
+    supportedMimeTypes,
   } = React.useContext(UploaderContext);
   const uploadIconColor = isDraggingOver ? tokens.color.purpleDarken10 : tokens.color.blackLighten50;
 
@@ -42,12 +43,14 @@ const DropZone = React.memo(() => {
   return (
     <div ref={refContainer} data-pka-anchor="uploader">
       <sc.Input
+        data-pka-anchor="uploader.input"
         multiple={canChooseMultiple}
         onChange={handleChange}
         ref={refInput}
         type="file"
         accept={supportedMimeTypes.join(",")}
         aria-label={label}
+        {...extendedInputProps}
       />
       <sc.DropZone aria-hidden isDraggingOver={isDraggingOver}>
         <sc.DropZoneIcon>

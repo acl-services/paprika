@@ -1,20 +1,12 @@
 import React from "react";
-import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import { UploaderContext } from "../../Uploader";
 import { getNumberWithUnits } from "../../helpers";
 import File from "../File";
 import * as sc from "./FileList.styles";
 
-const propTypes = {
-  maxFileSize: PropTypes.number.isRequired,
-  supportedMimeTypes: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
-
-const defaultProps = {};
-
-export default function FileList({ supportedMimeTypes, maxFileSize }) {
-  const { files, onError, onCancel } = React.useContext(UploaderContext);
+export default function FileList() {
+  const { files, maxFileSize, onCancel, onError, supportedMimeTypes } = React.useContext(UploaderContext);
   const I18n = useI18n();
 
   function getFileErrorText(file) {
@@ -55,6 +47,3 @@ export default function FileList({ supportedMimeTypes, maxFileSize }) {
     </sc.FileList>
   );
 }
-
-FileList.propTypes = propTypes;
-FileList.defaultProps = defaultProps;

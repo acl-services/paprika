@@ -21,12 +21,14 @@ interface UploaderProps {
   isBodyDroppable?: boolean;
   /** Size in Mebibytes which is used for comparing each file that will be uploaded. */
   maxFileSize?: number;
-  /** This callback fires every time a file has been processed */
+  /** This callback fires every time the input value has been changed. */
   onChange?: (...args: any[]) => any;
   /** Will fire once all files have been processed with the files as parameter. */
   onCompleted?: (...args: any[]) => any;
   /** you can pass an array of header objects. */
   headers?: object[];
+  /** This callback fires every time a file has been processed. */
+  onProcess?: (...args: any[]) => any;
   /** Let you to take over the request method */
   onRequest?: (...args: any[]) => any;
   /** Callback fired whenever an error occurs while uploading a file.  It receives the raw server error as an argument. Whatever this function returns is what is displayed in the UI.  If nothing is returned, it will display the raw server error. */

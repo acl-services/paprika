@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import { extractChildrenProps } from "@paprika/helpers";
 import { getFiles } from "./helpers";
 import FileList from "./components/FileList";
 import DropZone from "./components/DropZone";
 import * as types from "./types";
 import useDragAndDropEvents from "./useDragAndDropEvents";
 import useProcessFiles from "./useProcessFiles";
+import UploaderInputPropsCollector from "./components/UploaderInputPropsCollector";
 
 const oneMebibyte = 1048576;
 
@@ -130,6 +132,7 @@ const Uploader = React.forwardRef((props, ref) => {
   const refContainer = React.useRef(null);
   const i18n = useI18n();
   const label = a11yText || i18n.t("uploader.choose_from_computer_a11y");
+  const extendedInputProps = extractChildrenProps(children, UploaderInputPropsCollector);
 
   React.useImperativeHandle(ref, () => ({
     focus: () => {
@@ -160,7 +163,7 @@ const Uploader = React.forwardRef((props, ref) => {
       });
       onChange(files);
     },
-    [canChooseMultiple, endpoint, isDisabled, maxFileSize, supportedMimeTypes, setFiles, onChange]
+    [canChooseMultiple, endpoint, isDisabled, maxFileSize, setFiles, supportedMimeTypes, onChange]
   );
 
   const { isDragLeave, isDraggingOver } = useDragAndDropEvents({
@@ -171,33 +174,26 @@ const Uploader = React.forwardRef((props, ref) => {
 
   const value = {
     cancelFile,
+    canChooseMultiple,
+    extendedInputProps,
     files,
+    handleChange,
     isCompleted,
     isDisabled,
-    isDragLeave,
     isDraggingOver,
+    isDragLeave,
+    label,
+    maxFileSize,
     onCancel,
     onError,
+    refContainer,
     refInput,
     removeFile,
-    upload,
-    handleChange,
     supportedMimeTypes,
-    canChooseMultiple,
-    refContainer,
-    label,
+    upload,
   };
 
-  const childrenWithProps = React.Children.map(children, child => {
-    return child === null
-      ? null
-      : React.cloneElement(child, {
-          maxFileSize,
-          supportedMimeTypes,
-        });
-  });
-
-  return <UploaderContext.Provider value={value}>{childrenWithProps}</UploaderContext.Provider>;
+  return <UploaderContext.Provider value={value}>{children}</UploaderContext.Provider>;
 });
 
 Uploader.defaultProps = defaultProps;
@@ -207,6 +203,7 @@ Uploader.types = types;
 
 Uploader.DropZone = DropZone;
 Uploader.FileList = FileList;
+Uploader.Input = UploaderInputPropsCollector;
 
 // utility tool to help creating a maximum desirable size for files
 Uploader.convertUnitsToMebibytes = (MiB = 1) => oneMebibyte * MiB;
