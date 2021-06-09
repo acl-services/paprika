@@ -41,7 +41,7 @@ export const DropZoneIcon = styled.span`
 
 export const Input = styled.input`
   ${stylers.visuallyHidden};
-  &:focus + div [role="button"] {
+  &:focus + div span[role="button"] {
     ${stylers.focusRing.bordered()};
   }
 `;

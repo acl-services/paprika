@@ -38,7 +38,7 @@ export default function FileList({ supportedMimeTypes, maxFileSize }) {
   }
 
   return (
-    <sc.FileList aria-live="polite" aria-label={I18n.t("uploader.file_list")}>
+    <sc.FileList aria-live="polite">
       {files.map(file => (
         <File
           error={getFileErrorText(file)}
