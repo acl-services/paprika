@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.0.22-next.0
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11-next.0
+  - @paprika/list-box@3.2.1-next.0
+
+## 1.0.21
+
+### Patch Changes
+
+- Updated dependencies [4365834]
+- Updated dependencies [e856d54]
+  - @paprika/list-box@3.2.0
+  - @paprika/raw-button@1.0.4
+
 ## 1.0.21-next.0
 
 ### Patch Changes

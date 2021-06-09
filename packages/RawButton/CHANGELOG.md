@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.4
+
+### Patch Changes
+
+- e856d54: Refactored styling to support the styling refactor of `@paprika/button` to fix issues with `styled-components` `v5`.
+
 ## 1.0.4-next.0
 
 ### Patch Changes

@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.1.0
+
+### Minor Changes
+
+- e856d54: Refactored styling to fix issues with `styled-components` `v5`.
+
+  #### Changed
+
+  - Revised focus styling of disabled buttons.
+  - Removed inset `box-shadow` for fleeting `:active` (pressed) state of skeuomorphic buttons.
+
+  Author: [@mikrotron](https://github.com/mikrotron)
+
+### Patch Changes
+
+- Updated dependencies [e856d54]
+  - @paprika/raw-button@1.0.4
+
 ## 1.1.0-next.0
 
 ### Minor Changes
