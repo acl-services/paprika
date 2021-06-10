@@ -105,6 +105,7 @@ export default function Tabs(props) {
     activeIndex,
     focusIndex,
     hasInsetFocusStyle,
+    hasPanels: React.Children.toArray(children).filter(child => child.type.displayName === "Tabs.Panels").length > 0,
     hasTruncation,
     idTabs,
     isDisabled,
@@ -126,7 +127,7 @@ Tabs.propTypes = {
   /** Description of the purpose of the tabs for assistive technology. */
   a11yText: PropTypes.string,
 
-  /** Expects Tabs.List and Tabs.Panels. */
+  /** Expects Tabs.List (mandatory) and Tabs.Panels (optional). */
   children: PropTypes.node.isRequired,
 
   /** Sets what tabindex is active by default (uncontrolled component). Use null for no active tab. */
