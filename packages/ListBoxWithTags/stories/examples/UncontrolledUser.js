@@ -54,13 +54,7 @@ function CustomTag({ option, Tag, onRemove }) {
 }
 
 export default function UncontrolledUsers() {
-  const {
-    isSelected,
-    filteredData,
-    getSelectedOptions,
-    onAddCustomOption,
-    ...moreUseListBoxWithTagsProps
-  } = useListBoxWithTags({
+  const { isSelected, filteredData, getSelectedOptions, listBoxWithTagsProps } = useListBoxWithTags({
     key: "id",
     defaultData,
     defaultFilteredData,
@@ -97,7 +91,7 @@ export default function UncontrolledUsers() {
       <ListBox
         allOptionsAreSelected={defaultFilteredData.length === getSelectedOptions().length}
         allOptionsAreSelectedMessage="All directors have been selected"
-        onAddCustomOption={onAddCustomOption(label => {
+        onAddCustomOption={listBoxWithTagsProps.onAddCustomOption(label => {
           // This allowed you override the default behaviour when creating a custom option
           return {
             id: label,
@@ -111,7 +105,7 @@ export default function UncontrolledUsers() {
         })}
         renderTag={renderTag}
         selectedOptions={getSelectedOptions()}
-        {...moreUseListBoxWithTagsProps}
+        {...listBoxWithTagsProps}
       >
         {filteredData.map(option => {
           const color = getAvatarColors(option.name);
