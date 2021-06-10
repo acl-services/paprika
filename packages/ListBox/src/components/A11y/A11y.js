@@ -17,7 +17,7 @@ export const propTypes = {
   id: PropTypes.string,
 
   /** Ref for a DOM element containing the label for this component */
-  refLabel: RefOf(PropTypes.instanceOf(Element)),
+  refLabel: RefOf(PropTypes.node),
 };
 
 A11y.displayName = "ListBox.A11y";

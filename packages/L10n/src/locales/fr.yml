@@ -198,6 +198,8 @@ fr:
         is_not_empty: n'est pas vide
         is_before: est avant
         is_after: est après
+        is_one_of: appartient à
+        is_not_one_of: n'appartient pas à
         true: "vrai"
         false: "faux"
     input:

@@ -19,7 +19,7 @@ const propTypes = {
   onDeleteFilter: PropTypes.func.isRequired,
   renderValueField: PropTypes.func,
   rule: PropTypes.string.isRequired,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.array]).isRequired,
 };
 
 const defaultProps = {
@@ -46,11 +46,15 @@ function Item(props) {
   const selectedColumnType = columns.find(({ id }) => id === selectedColumnId).type;
 
   const selectOptions = React.useMemo(() => {
-    return selectedColumnType === types.columnTypes.SINGLE_SELECT
-      ? data.filter((obj, index, arr) => {
+    switch (selectedColumnType) {
+      case types.columnTypes.SINGLE_SELECT:
+      case types.columnTypes.MULTI_SELECT:
+        return data.filter((obj, index, arr) => {
           return arr.map(datum => datum[selectedColumnId]).indexOf(obj[selectedColumnId]) === index;
-        })
-      : null;
+        });
+      default:
+        return null;
+    }
   }, [selectedColumnType, data, selectedColumnId]);
 
   function handleRemoveFilter() {
@@ -87,6 +91,15 @@ function Item(props) {
 
   function handleChangeSingleSelectFilterValue(index, options) {
     onChangeFilter(types.changeTypes.FILTER_VALUE, { id, value: options[index].value });
+  }
+
+  function handleChangeMultiSelectFilterValue(indices, options) {
+    const values = [];
+    indices.forEach(index => {
+      values.push(options[index].value);
+    });
+
+    onChangeFilter(types.changeTypes.FILTER_VALUE, { id, value: values });
   }
 
   function renderRuleField() {
@@ -144,11 +157,10 @@ function Item(props) {
             data-pka-anchor="filter.item.valueInput"
           />
         );
-
       case types.columnTypes.SINGLE_SELECT:
         return (
           <sc.ValueInput data-pka-anchor="filter.item.valueInput">
-            <ListBox onChange={handleChangeSingleSelectFilterValue}>
+            <ListBox key={`${selectedColumnId}-${index}`} onChange={handleChangeSingleSelectFilterValue}>
               {selectOptions >= MAX_OPTIONS ? <ListBox.Filter /> : null}
               {selectOptions.map(data => (
                 <ListBox.Option
@@ -157,6 +169,23 @@ function Item(props) {
                   isSelected={data[selectedColumnId] === value}
                 >
                   {data[selectedColumnId]}
+                </ListBox.Option>
+              ))}
+            </ListBox>
+          </sc.ValueInput>
+        );
+      case types.columnTypes.MULTI_SELECT:
+        return (
+          <sc.ValueInput data-pka-anchor="filter.item.valueInput">
+            <ListBox key={`${selectedColumnId}-${index}`} onChange={handleChangeMultiSelectFilterValue} isMulti>
+              {selectOptions >= MAX_OPTIONS ? <ListBox.Filter /> : null}
+              {selectOptions.map(option => (
+                <ListBox.Option
+                  key={option[selectedColumnId]}
+                  value={option[selectedColumnId]}
+                  isSelected={value.includes(option[selectedColumnId])}
+                >
+                  {option[selectedColumnId]}
                 </ListBox.Option>
               ))}
             </ListBox>

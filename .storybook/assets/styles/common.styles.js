@@ -68,3 +68,13 @@ export const repeat = (num, fn) =>
     .map((_, i) => fn(i));
 
 export const breaklines = num => repeat(num, index => <br key={index} />);
+
+export const CodeHeading = styled.code`
+  display: block;
+  margin: ${stylers.spacer(2)} 0;
+
+  span {
+    color: ${tokens.textColor.subtle};
+    font-family: Helvetica, Arial, sans-serif;
+  }
+`;

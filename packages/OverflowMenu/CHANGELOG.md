@@ -1,5 +1,149 @@
 # Changelog
 
+## 1.0.20-next.0
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11-next.0
+  - @paprika/confirmation@1.1.5-next.0
+
+## 1.0.19
+
+### Patch Changes
+
+- Updated dependencies [e856d54]
+- Updated dependencies [e856d54]
+  - @paprika/button@1.1.0
+  - @paprika/raw-button@1.0.4
+  - @paprika/confirmation@1.1.4
+  - @paprika/popover@1.2.3
+
+## 1.0.19-next.0
+
+### Patch Changes
+
+- Updated dependencies [e856d54]
+- Updated dependencies [e856d54]
+  - @paprika/button@1.1.0-next.0
+  - @paprika/raw-button@1.0.4-next.0
+  - @paprika/confirmation@1.1.4-next.0
+  - @paprika/popover@1.2.3-next.0
+
+## 1.0.18
+
+### Patch Changes
+
+- Updated dependencies [f54c146]
+  - @paprika/icon@1.1.1
+  - @paprika/button@1.0.10
+  - @paprika/confirmation@1.1.3
+
+## 1.0.18-next.0
+
+### Patch Changes
+
+- Updated dependencies [f54c146]
+  - @paprika/icon@1.1.1-next.0
+  - @paprika/button@1.0.10-next.0
+  - @paprika/confirmation@1.1.3-next.0
+
+## 1.0.17
+
+### Patch Changes
+
+- Updated dependencies [14bd5f5]
+  - @paprika/popover@1.2.2
+  - @paprika/confirmation@1.1.2
+
+## 1.0.17-next.0
+
+### Patch Changes
+
+- Updated dependencies [14bd5f5]
+  - @paprika/popover@1.2.2-next.0
+  - @paprika/confirmation@1.1.2-next.0
+
+## 1.0.16
+
+### Patch Changes
+
+- 5672dd9: Block default behaviour when press up/down/home/end key so page doesnt scroll when navigating through options.
+- Updated dependencies [5d0db59]
+- Updated dependencies [9ad9c79]
+  - @paprika/icon@1.1.0
+  - @paprika/helpers@2.1.2
+  - @paprika/button@1.0.9
+  - @paprika/confirmation@1.1.1
+  - @paprika/popover@1.2.1
+
+## 1.0.16-next.1
+
+### Patch Changes
+
+- 5672dd9: Block default behaviour when press up/down/home/end key so page doesnt scroll when navigating through options.
+- Updated dependencies [9ad9c79]
+  - @paprika/helpers@2.1.2-next.0
+  - @paprika/button@1.0.9-next.1
+  - @paprika/confirmation@1.1.1-next.1
+  - @paprika/popover@1.2.1-next.0
+
+## 1.0.16-next.0
+
+### Patch Changes
+
+- Updated dependencies [5d0db59]
+  - @paprika/icon@1.1.0-next.0
+  - @paprika/button@1.0.9-next.0
+  - @paprika/confirmation@1.1.1-next.0
+
+## 1.0.15
+
+### Patch Changes
+
+- Updated dependencies [855c717]
+  - @paprika/confirmation@1.1.0
+
+## 1.0.15-next.0
+
+### Patch Changes
+
+- Updated dependencies [855c717]
+  - @paprika/confirmation@1.1.0-next.0
+
+## 1.0.14
+
+### Patch Changes
+
+- Updated dependencies [c265721]
+- Updated dependencies [26a610a]
+  - @paprika/popover@1.2.0
+  - @paprika/confirmation@1.0.12
+
+## 1.0.14-next.0
+
+### Patch Changes
+
+- Updated dependencies [c265721]
+  - @paprika/popover@1.2.0-next.0
+  - @paprika/confirmation@1.0.12-next.0
+
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies [12938b6]
+  - @paprika/popover@1.1.0
+  - @paprika/confirmation@1.0.11
+
+## 1.0.13-next.0
+
+### Patch Changes
+
+- Updated dependencies [12938b6]
+  - @paprika/popover@1.1.0-next.0
+  - @paprika/confirmation@1.0.11-next.0
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).

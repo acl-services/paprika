@@ -2,6 +2,7 @@ import { getStoryName } from "storybook/storyTree";
 import { testStoryParameters } from "storybook/assets/storyParameters";
 import { SingleListBox, CustomFilter, WithContainerScroll } from "./tests/SingleListBox";
 import { MultiWithFilter } from "./tests/MultiListBox";
+import { A11yMultiStory, A11ySingleStory } from "./tests/A11yStory";
 
 import ListBox from "../src";
 
@@ -33,5 +34,17 @@ WithContainerScrollStory.story = {
 export const MultiWithFilterStory = MultiWithFilter;
 MultiWithFilterStory.story = {
   name: "Cypress MultiWithFilter Test",
+  parameters: testStoryParameters,
+};
+
+export const A11yTestsStory = A11yMultiStory;
+A11yTestsStory.story = {
+  name: "Cypress A11y Test",
+  parameters: testStoryParameters,
+};
+
+export const A11ySingleTestsStory = A11ySingleStory;
+A11ySingleTestsStory.story = {
+  name: "Cypress A11y Single Test",
   parameters: testStoryParameters,
 };

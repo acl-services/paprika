@@ -13,11 +13,11 @@ describe("NotificationCard", () => {
       </NotificationCard>
     );
 
-    expect(screen.findByText(/Mock image/i));
-    expect(screen.findByText(/Header content/i));
+    expect(screen.queryByText(/Mock image/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Header content/i)).toBeInTheDocument();
     expect(screen.queryByRole("heading").tagName).toEqual("H1");
-    expect(screen.findByText(/Body content/i));
-    expect(screen.findByText(/Footer content/i));
+    expect(screen.queryByText(/Body content/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Footer content/i)).toBeInTheDocument();
   });
 
   it("Renders component without some sub-components", () => {
@@ -28,8 +28,8 @@ describe("NotificationCard", () => {
       </NotificationCard>
     );
 
-    expect(screen.findByText(/Header content/i));
+    expect(screen.queryByText(/Header content/i)).toBeInTheDocument();
     expect(screen.queryByRole("heading").tagName).toEqual("H2");
-    expect(screen.findByText(/Body content/i));
+    expect(screen.queryByText(/Body content/i)).toBeInTheDocument();
   });
 });

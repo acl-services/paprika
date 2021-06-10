@@ -1,7 +1,21 @@
 import { getStoryUrlPrefix } from "../../../../.storybook/storyTree";
 
+function toggleSwitchFor(columnName) {
+  cy.findByTestId("sortable").within(() => {
+    cy.findByText(columnName)
+      .parent()
+      .within(() => {
+        cy.findByRole("switch").click();
+      });
+  });
+}
+
 beforeEach(() => {
   cy.visitStorybook(`${getStoryUrlPrefix("ActionBar")}--showcase`);
+});
+
+afterEach(() => {
+  window.localStorage.setItem("paprika-storybook-example--VISIBILITY", "[]");
 });
 
 describe("ActionBar", () => {
@@ -193,6 +207,68 @@ describe("ActionBar Arrange Columns", () => {
     cy.findAllByTestId("sortable.item")
       .eq(0)
       .contains("Goals")
+      .should("be.visible");
+  });
+
+  it("Should save user preferences for columns arrangement in localStorage", () => {
+    cy.visitStorybook(`${getStoryUrlPrefix("ActionBar")}-examples--with-localstorage-enabled`);
+
+    // Show/hide
+    cy.findByText("Arrange").click();
+
+    toggleSwitchFor("Status");
+    toggleSwitchFor("Level");
+
+    cy.reload();
+
+    cy.findByRole("table").within(() => {
+      cy.findByText("Status").should("not.exist");
+      cy.findByText("Level").should("not.exist");
+    });
+
+    cy.findByText("2 columns hidden").click();
+    toggleSwitchFor("Status");
+
+    cy.reload();
+
+    cy.findByRole("table").within(() => {
+      cy.findByText("Status").should("be.visible");
+      cy.findByText("Level").should("not.exist");
+    });
+
+    cy.findByText("1 column hidden").click();
+    cy.findByText("Hide all").click();
+
+    cy.reload();
+
+    cy.findAllByRole("columnheader").should("have.length", 2);
+
+    cy.findByText("7 columns hidden").click();
+    cy.findByText("Show all").click();
+
+    cy.reload();
+
+    cy.findAllByRole("columnheader").should("have.length", 9);
+    cy.findByText("Arrange");
+
+    // Order
+
+    cy.findByText("Arrange").click();
+    cy.findAllByTestId("sortable.item")
+      .eq(3)
+      .trigger("mousedown", { button: 0 })
+      .trigger("mousemove", { button: 0, clientX: 24, clientY: 72 })
+      .wait(100)
+      .get('[data-pka-anchor="sortable"]')
+      .trigger("mousemove", { button: 0, clientX: 24, clientY: 100 })
+      .trigger("mouseup")
+      .wait(500);
+
+    cy.reload();
+    cy.findByText("Arrange").click();
+    cy.findAllByTestId("sortable.item")
+      .eq(3)
+      .contains("Joined by")
       .should("be.visible");
   });
 });

@@ -13,8 +13,9 @@ export default function ListBoxExample() {
       <FormElement>
         <Label>Form Label</Label>
         <Content>
-          {a11yProps => (
-            <ListBox {...a11yProps}>
+          {(a11yProps, refLabel) => (
+            <ListBox>
+              <ListBox.A11y {...a11yProps} refLabel={refLabel} />
               {optionsArray.map(item => (
                 <ListBox.Option key={item}>{item}</ListBox.Option>
               ))}

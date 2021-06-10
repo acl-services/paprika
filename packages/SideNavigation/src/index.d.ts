@@ -8,7 +8,7 @@ interface SideNavigationProps {
 
   children?: React.ReactNode;
   /** Header text in the side panel. */
-  header?: React.ReactNode;
+  header: React.ReactNode;
 }
 
 declare namespace SideNavigation {

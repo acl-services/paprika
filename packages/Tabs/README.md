@@ -4,7 +4,7 @@
 
 ## Description
 
-Tabs component displays horizontal tabs with panels associated with each tab
+Tabs component displays tabs with panels associated with each tab
 
 ## Installation
 
@@ -24,14 +24,15 @@ npm install @paprika/tabs
 
 | Prop               | Type                                                  | required | default                 | Description                                                                                                                                                                         |
 | ------------------ | ----------------------------------------------------- | -------- | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| kind               | [ Tabs.types.kind.PRIMARY, Tabs.types.kind.SECONDARY] | false    | Tabs.types.kind.PRIMARY | The visual theme of the tabs list.                                                                                                                                                  |
+| a11yText           | string                                                | false    | null                    | Description of the purpose of the tabs for assistive technology.                                                                                                                    |
 | children           | node                                                  | true     | -                       | Expects Tabs.List and Tabs.Panels.                                                                                                                                                  |
-| defaultIndex       | number                                                | false    | 0                       | Sets what tabindex is active by default (uncontrolled component).                                                                                                                   |
+| defaultIndex       | number                                                | false    | undefined               | Sets what tabindex is active by default (uncontrolled component). Use null for no active tab.                                                                                       |
 | hasInsetFocusStyle | bool                                                  | false    | false                   | If the visual focus ring for the tabs should be displayed with an inset style.                                                                                                      |
 | hasTruncation      | bool                                                  | false    | false                   | Tab labels will be truncated when they run out of space instead of breaking to multiple lines (ignored when isVertical is false).                                                   |
-| index              | number                                                | false    | null                    | Sets what tabindex is active (controlled component).                                                                                                                                |
+| index              | number                                                | false    | undefined               | Sets what tabindex is active (controlled component). Use null for no active tab.                                                                                                    |
 | isDisabled         | bool                                                  | false    | false                   | If the tabs are all disabled.                                                                                                                                                       |
 | isVertical         | bool                                                  | false    | false                   | If the tabs are stacked vertically.                                                                                                                                                 |
+| kind               | [ Tabs.types.kind.PRIMARY, Tabs.types.kind.SECONDARY] | false    | Tabs.types.kind.PRIMARY | The visual theme of the tabs list.                                                                                                                                                  |
 | onClickTab         | func                                                  | false    | null                    | Use this prop when you want to use Tabs as a controlled component (also you must use 'index' prop). When the user clicks on a tab, this gets fired (the tab index is passed to it). |
 | size               | [ Tabs.types.size.MEDIUM, Tabs.types.size.LARGE]      | false    | Tabs.types.size.MEDIUM  | Size of the tab label text.                                                                                                                                                         |
 | tabHeight          | [number,string]                                       | false    | 48                      | Height of the tabs (ignored when isVertical is true). A number value will be interpreted as height in pixels.                                                                       |
@@ -52,9 +53,9 @@ npm install @paprika/tabs
 
 ### Tabs.Panels
 
-| Prop     | Type | required | default | Description |
-| -------- | ---- | -------- | ------- | ----------- |
-| children | node | true     | -       |             |
+| Prop     | Type | required | default | Description                  |
+| -------- | ---- | -------- | ------- | ---------------------------- |
+| children | node | true     | -       | List of Tabs.Panel elements. |
 
 ### Tabs.Tab
 
@@ -62,9 +63,10 @@ npm install @paprika/tabs
 | --------------- | ------ | -------- | -------- | ------------------------------------------------------------------------------------------ |
 | a11yText        | string | false    | null     | Descriptive text for assistive technologies. By default text of the children will be used. |
 | children        | node   | false    | null     | Label for the tab                                                                          |
+| hasFocus        | bool   | false    | false    | Internal only: if tab has focus                                                            |
 | href            | string | false    | null     | Sets a url the tab goes to                                                                 |
 | isDisabled      | bool   | false    | false    | If the tab is disabled                                                                     |
-| isSelected      | bool   | false    | false    | Controls if the option is selected or not                                                  |
+| isSelected      | bool   | false    | false    | Internal only: if tab is selected                                                          |
 | onClick         | func   | false    | () => {} | Callback onClick                                                                           |
 | onKeyDownArrows | func   | false    | () => {} | Callback onKeyDownArrow                                                                    |
 

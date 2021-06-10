@@ -2,7 +2,7 @@ import React from "react";
 import { action } from "@storybook/addon-actions";
 import { Gap } from "storybook/assets/styles/common.styles";
 import PlusIcon from "@paprika/icon/lib/Add";
-import Button from "../../src/Button";
+import Button from "../../src";
 
 function clickHandler() {
   action("Clicked a button")();
@@ -62,26 +62,32 @@ export default function ButtonVariations() {
       </Button>
       <Gap />
       <Button onClick={clickHandler} isActive>
-        active button
+        active
+      </Button>
+      <Button onClick={clickHandler} isActive isDisabled>
+        active disabled
       </Button>
       <Button onClick={clickHandler} isActive kind="primary">
-        active button
+        active primary
       </Button>
       <Button onClick={clickHandler} isActive kind="flat">
-        active button
+        active flat
       </Button>
       <Button onClick={clickHandler} isActive kind="minor">
-        active button
+        active minor
       </Button>
       <Button onClick={clickHandler} isActive kind="link">
-        active button
+        active link
       </Button>
       <Gap />
-      <Button isSemantic={false} size="large" kind="primary" isActive onClick={clickHandler}>
-        raw large active primary
+      <Button isSemantic={false} onClick={clickHandler}>
+        raw
       </Button>
       <Button isSemantic={false} isDisabled onClick={clickHandler}>
-        raw default disabled
+        raw disabled
+      </Button>
+      <Button isSemantic={false} size="large" kind="primary" isActive onClick={clickHandler}>
+        raw large active primary
       </Button>
       <Button isSemantic={false} kind="link" size="small" onClick={clickHandler}>
         raw small link

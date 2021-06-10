@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Checkbox from "@paprika/checkbox";
 import tokens from "@paprika/tokens";
 
 export const RowContainer = styled.div`
@@ -30,7 +31,7 @@ export const RowIndexText = styled.div.attrs(({ hasFourDigitsOrMore }) => {
   display: inline-block;
 `;
 
-export const Checkbox = styled.div`
+export const StyledCheckbox = styled(Checkbox)`
   align-items: center;
   cursor: pointer;
   display: flex;

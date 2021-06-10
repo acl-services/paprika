@@ -110,13 +110,19 @@ export function WithZebras() {
   );
 }
 
-export function WithArrowNavigation() {
+export function WithCustomCellProps() {
   return (
     <bordersStyles.Container>
       <bordersStyles.Gap>
         <h4>Default value</h4>
-        <Table a11yText="" data={data} hasZebraStripes enableArrowKeyNavigation>
-          <Table.ColumnDefinition header="Name" cell="name" />
+        <Table a11yText="" data={data} hasZebraStripes>
+          <Table.ColumnDefinition
+            cellProps={() => ({
+              style: { background: "purple", color: "white" },
+            })}
+            header="Name"
+            cell="name"
+          />
           <Table.ColumnDefinition header="LastName" cell="lastName" />
         </Table>
       </bordersStyles.Gap>
@@ -128,4 +134,4 @@ storiesOf(`${storyName}`, module)
   .add("Basic", () => <Basic />)
   .add("Has Zebra stripes", () => <WithZebras />)
   .add("Border types", () => <Borders />)
-  .add("Arrow navigation", () => <WithArrowNavigation />);
+  .add("Cell props", () => <WithCustomCellProps />);

@@ -16,8 +16,8 @@ const itemStyles = css`
         display: flex;
       }
 
-      input[type="checkbox"] {
-        margin: 4px ${tokens.space} 0 0;
+      [data-pka-anchor="checkbox"] {
+        margin: 2px ${tokens.space} 0 0;
       }
     `;
   }}

@@ -1,42 +1,30 @@
 import React from "react";
-import { array, boolean, select, text } from "@storybook/addon-knobs";
-import { Rule, Story, Tagline } from "storybook/assets/styles/common.styles";
-import Heading from "@paprika/heading";
-import * as types from "../../src/types";
-import SelectExample from "./SelectExample";
+import { boolean, select, text } from "@storybook/addon-knobs";
+import CodeViewer from "storybook/components/CodeViewer";
+import Select from "../../src";
 
-const selectChildren = () => {
-  const label = "children";
-  const defaultValue = ["Pepsi", "Coke", "Diet Coke", "Canada Dry"];
-  const separator = ", ";
-  const options = array(label, defaultValue, separator);
-
+function renderChildren() {
+  const options = ["Pepsi", "Coke", "Canada Dry"];
   return options.map(optionLabel => (
     <option key={optionLabel} value={optionLabel}>
       {optionLabel}
     </option>
   ));
-};
+}
 
-const selectProps = () => ({
-  a11yText: text("a11yText"),
-  children: selectChildren(),
-  hasError: boolean("hasError", false),
+const getKnobs = () => ({
+  size: select("size", Object.values(Select.types.size), Select.types.size.MEDIUM),
+  placeholder: text("placeholder", "This is a custom placeholder..."),
   isDisabled: boolean("isDisabled", false),
   isReadOnly: boolean("isReadOnly", false),
-  placeholder: text("placeholder", "This is a default placeholder..."),
-  size: select("size", [types.SMALL, types.MEDIUM, types.LARGE], "medium"),
+  hasError: boolean("hasError", false),
+  a11yText: text("a11yText"),
 });
 
-const ExampleStory = props => (
-  <Story>
-    <Heading level={1} displayLevel={2} isLight>
-      Showcase
-    </Heading>
-    <Tagline>Use the knobs to tinker with the props.</Tagline>
-    <Rule />
-    <SelectExample {...props} />
-  </Story>
-);
-
-export default () => <ExampleStory {...selectProps()} />;
+export default function Showcase() {
+  return (
+    <CodeViewer>
+      <Select {...getKnobs()}>{renderChildren()}</Select>
+    </CodeViewer>
+  );
+}

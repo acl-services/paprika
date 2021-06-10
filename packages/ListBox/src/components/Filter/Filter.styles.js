@@ -3,14 +3,12 @@ import Input from "@paprika/input";
 import tokens from "@paprika/tokens";
 
 export const Filter = styled.div`
+  padding: ${tokens.space};
   position: relative;
 `;
 
 export const FilterInput = styled(Input)`
   && {
-    background-color: white;
-    display: inline-block;
-    margin: ${tokens.space};
-    width: calc(100% - 16px);
+    background-color: ${tokens.color.white};
   }
 `;

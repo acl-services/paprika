@@ -1,6 +1,6 @@
 {
   "name": "@paprika/search",
-  "version": "1.0.7-next.0",
+  "version": "1.0.14-next.0",
   "description": "The search components helps you to implemented in an easy way an autocomplete interaction.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -16,16 +16,16 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/icon": "^1.0.4",
-    "@paprika/input": "^3.0.0",
-    "@paprika/list-box": "^3.0.0-next.0",
-    "@paprika/raw-button": "^1.0.3",
+    "@paprika/icon": "^1.1.1",
+    "@paprika/input": "^4.0.3-next.0",
+    "@paprika/list-box": "^3.2.1-next.0",
+    "@paprika/raw-button": "^1.0.4",
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "@paprika/l10n": "^1.1.10-alpha.3",
+    "@paprika/l10n": "^1.1.11-next.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"

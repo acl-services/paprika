@@ -6,6 +6,12 @@ import Toast from "../src";
 jest.useFakeTimers();
 
 describe("Toast", () => {
+  function runTimers() {
+    act(() => {
+      jest.runAllTimers();
+    });
+  }
+
   function renderComponent(props) {
     const renderedComponent = renderWithL10n(
       <Toast {...props} data-pka-anchor="Toast">
@@ -29,6 +35,7 @@ describe("Toast", () => {
 
   it("should render default props", () => {
     const { getByText, getByTestId, getByLabelText } = renderComponent();
+    runTimers();
 
     expect(getByText(/content/i)).toBeVisible();
     expect(getByTestId("Toast")).toHaveAttribute("role", "alert");
@@ -38,6 +45,7 @@ describe("Toast", () => {
   it("should close by clicking close button", () => {
     const handleClose = jest.fn();
     const { queryByText, getByLabelText } = renderComponent({ onClose: handleClose });
+    runTimers();
 
     fireEvent.click(getByLabelText(/close/i));
     expect(queryByText(/content/i)).not.toBeInTheDocument();
@@ -47,6 +55,7 @@ describe("Toast", () => {
   it("should be controlled by props", () => {
     const handleClose = jest.fn();
     const { getByText, queryByText, rerenderComponent } = renderComponent({ isOpen: true, onClose: handleClose });
+    runTimers();
 
     expect(getByText(/content/i)).toBeInTheDocument();
     rerenderComponent({ isOpen: false });
@@ -56,22 +65,26 @@ describe("Toast", () => {
 
   it("should auto close", () => {
     const handleClose = jest.fn();
-    const { getByText, queryByText } = renderComponent({ canAutoClose: true, onClose: handleClose });
-
-    expect(getByText(/content/i)).toBeInTheDocument();
-    act(() => {
-      jest.runAllTimers();
+    const { getByText, queryByText } = renderComponent({
+      renderDelay: 100,
+      canAutoClose: true,
+      onClose: handleClose,
     });
+
+    act(() => {
+      jest.advanceTimersByTime(100);
+    });
+    expect(getByText(/content/i)).toBeInTheDocument();
+
+    runTimers();
     expect(queryByText(/content/i)).not.toBeInTheDocument();
     expect(handleClose).toHaveBeenCalledTimes(1);
   });
 
-  it("should render after delay as role status if isPolite", () => {
+  it("should render as role=status if isPolite", () => {
     const { getByText, getByTestId } = renderComponent({ isPolite: true });
+    runTimers();
 
-    act(() => {
-      jest.runAllTimers();
-    });
     expect(getByText(/content/i)).toBeVisible();
     expect(getByTestId("Toast")).toHaveAttribute("role", "status");
   });

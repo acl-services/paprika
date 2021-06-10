@@ -301,8 +301,9 @@ export function handleEnterOrSpace({ event, providedProps, state, dispatch, onCh
 
     // for single select the option is set when the user interact with up and down arrows
     // no need to notify which option is selected just close the popover unless the option is disabled
+    // id is null when in the focus of filter bar for space/ enter event
     const id = state.optionsIndex[document.activeElement.getAttribute("id")];
-    if (!state.options[id].isDisabled) {
+    if (state.options[id] && !state.options[id].isDisabled) {
       dispatch({ type: useListBox.types.closePopover });
 
       if (state.refTrigger.current) {

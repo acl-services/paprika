@@ -115,13 +115,15 @@ export default function reducer(state, { type, payload }) {
     }
 
     case useListBox.types.updateOptions: {
-      const selectedOptions = Object.keys(payload)
-        .filter(key => payload[key].isSelected)
+      const { options, optionsIndex } = payload;
+      const selectedOptions = Object.keys(options)
+        .filter(key => options[key].isSelected)
         .map(key => Number.parseInt(key, 10));
 
       return {
         ...state,
-        options: payload,
+        options,
+        optionsIndex,
         selectedOptions,
         lastKnownSelectedOptions: [...selectedOptions],
       };

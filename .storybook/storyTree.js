@@ -2,25 +2,11 @@
 const storyTree = [
   {
     category: "Display",
-    components: [
-      "Avatar",
-      "Counter",
-      "Heading",
-      "Icon",
-      "Pill",
-      "Tag"
-    ],
+    components: ["Avatar", "Counter", "Heading", "Icon", "Pill", "Tag"],
   },
   {
     category: "Table",
-    components: [
-      "ActionBar",
-      "DataField",
-      "DataGrid",
-      "DataHeader",
-      "Filter",
-      "Table"
-    ],
+    components: ["ActionBar", "DataField", "DataGrid", "DataHeader", "Filter", "Table"],
   },
   {
     category: "Buttons",
@@ -31,7 +17,7 @@ const storyTree = [
       "DialogActions",
       "ExternalLink",
       "RawButton",
-      "StatusTracker"
+      "StatusTracker",
     ],
   },
   {
@@ -56,6 +42,7 @@ const storyTree = [
       "Textarea",
       "TimePicker",
       "Uploader",
+      "InlineEditors",
     ],
   },
 
@@ -100,7 +87,7 @@ const storyTree = [
       "helpers",
       "DynamicHyperlinkTransformer",
       "MockEndpoints",
-      "seducer"
+      "seducer",
     ],
   },
 ];

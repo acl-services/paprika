@@ -1,5 +1,72 @@
 # Changelog
 
+## 2.0.12-next.0
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11-next.0
+
+## 2.0.11
+
+### Patch Changes
+
+- Updated dependencies [e856d54]
+  - @paprika/button@1.1.0
+
+## 2.0.11-next.0
+
+### Patch Changes
+
+- Updated dependencies [e856d54]
+  - @paprika/button@1.1.0-next.0
+
+## 2.0.10
+
+### Patch Changes
+
+- Updated dependencies [f54c146]
+  - @paprika/icon@1.1.1
+  - @paprika/button@1.0.10
+
+## 2.0.10-next.0
+
+### Patch Changes
+
+- Updated dependencies [f54c146]
+  - @paprika/icon@1.1.1-next.0
+  - @paprika/button@1.0.10-next.0
+
+## 2.0.9
+
+### Patch Changes
+
+- 9ad9c79: Change PropTypes.instanceOf(Element) to PropTypes.node to fix SSR issue
+- Updated dependencies [5d0db59]
+- Updated dependencies [9ad9c79]
+  - @paprika/icon@1.1.0
+  - @paprika/overlay@1.0.7
+  - @paprika/helpers@2.1.2
+  - @paprika/button@1.0.9
+
+## 2.0.9-next.1
+
+### Patch Changes
+
+- 9ad9c79: Change PropTypes.instanceOf(Element) to PropTypes.node to fix SSR issue
+- Updated dependencies [9ad9c79]
+  - @paprika/overlay@1.0.7-next.0
+  - @paprika/helpers@2.1.2-next.0
+  - @paprika/button@1.0.9-next.1
+
+## 2.0.9-next.0
+
+### Patch Changes
+
+- Updated dependencies [5d0db59]
+  - @paprika/icon@1.1.0-next.0
+  - @paprika/button@1.0.9-next.0
+
 ## 2.0.8
 
 ### Patch Changes

@@ -46,5 +46,5 @@ interface ItemProps {
 
   rule: string;
 
-  value: string | bool;
+  value: string | bool | array;
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Checkbox from "@paprika/checkbox";
 import itemStyles from "./Item.styles";
 
 const propTypes = {
@@ -21,16 +22,20 @@ const defaultProps = {
 const Item = React.forwardRef((props, ref) => {
   const { children, isChecked, isDisabled, onChange, ...moreProps } = props;
 
-  /* eslint-disable jsx-a11y/label-has-associated-control */
   return (
     <div css={itemStyles} isDisabled={isDisabled}>
-      <label>
-        <input type="checkbox" checked={isChecked} disabled={isDisabled} onChange={onChange} ref={ref} {...moreProps} />
+      <Checkbox
+        checkedState={isChecked ? Checkbox.types.state.CHECKED : Checkbox.types.state.UNCHECKED}
+        isDisabled={isDisabled}
+        onChange={onChange}
+        size={Checkbox.types.size.SMALL}
+        ref={ref}
+        {...moreProps}
+      >
         {children}
-      </label>
+      </Checkbox>
     </div>
   );
-  /* eslint-enable jsx-a11y/label-has-associated-control */
 });
 
 Item.displayName = "Item";

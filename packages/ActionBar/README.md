@@ -136,7 +136,7 @@ const {
   onHideAll,
   onChangeOrder,
   isColumnHidden,
-} = useColumnsArrangement(defaultColumnsForArrangement);
+} = useColumnsArrangement({ defaultOrderedColumnIds });
 
 return (
   <ColumnsArrangement

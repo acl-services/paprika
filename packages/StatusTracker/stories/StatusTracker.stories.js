@@ -1,7 +1,7 @@
 import { withKnobs } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
 import Showcase from "./examples/Showcase";
-import WithoutActions from "./examples/WithoutActions";
+import Variations from "./examples/Variations";
 import Props from "./StatusTracker.mdx";
 import StatusTracker from "../src";
 
@@ -25,4 +25,4 @@ showcase.story = {
   },
 };
 
-export const withoutActions = WithoutActions;
+export const variations = Variations;

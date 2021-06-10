@@ -20,7 +20,6 @@ const icons = {
 };
 
 const minimumCloseTimeout = 1500;
-const renderTimeout = 20;
 
 const Toast = React.forwardRef((props, ref) => {
   const {
@@ -33,6 +32,7 @@ const Toast = React.forwardRef((props, ref) => {
     isPolite,
     kind,
     onClose,
+    renderDelay,
     zIndex,
     ...moreProps
   } = props;
@@ -49,7 +49,7 @@ const Toast = React.forwardRef((props, ref) => {
   }));
 
   const [isToastOpen, setIsToastOpen] = React.useState(isOpen === undefined ? true : isOpen);
-  const [shouldRender, setShouldRender] = React.useState(!isPolite);
+  const [shouldRender, setShouldRender] = React.useState(false);
   const autoCloseTimer = React.useRef(null);
   const renderTimer = React.useRef(null);
   const ariaRole = isPolite ? "status" : "alert";
@@ -72,8 +72,8 @@ const Toast = React.forwardRef((props, ref) => {
       setShouldRender(true);
     }
 
-    renderTimer.current = setTimeout(handleDelayedRender, renderTimeout);
-  }, [isPolite]);
+    renderTimer.current = setTimeout(handleDelayedRender, renderDelay);
+  }, [renderDelay]);
 
   function handleClose() {
     if (autoCloseTimer.current) clearTimeout(autoCloseTimer.current);
@@ -81,7 +81,7 @@ const Toast = React.forwardRef((props, ref) => {
 
     if (isOpen === undefined) {
       setIsToastOpen(false);
-      if (isPolite) setShouldRender(false);
+      setShouldRender(false);
     }
     onClose();
   }
@@ -91,7 +91,7 @@ const Toast = React.forwardRef((props, ref) => {
 
     return (
       <>
-        {!isVisuallyHidden && <sc.IconStyled as={icons[kind]} kind={kind} />}
+        {!isVisuallyHidden && <sc.IconStyled as={icons[kind]} kind={kind} aria-hidden />}
         <sc.Content>{children}</sc.Content>
         {hasCloseButton && !isVisuallyHidden && (
           <sc.CloseButtonStyled isSemantic={false} onClick={handleClose} size={types.SMALL} />
@@ -111,6 +111,7 @@ const Toast = React.forwardRef((props, ref) => {
         zIndex={zIndex || defaultZIndex}
         ref={toastRef}
         {...moreProps}
+        shouldRender={shouldRender}
       >
         {renderContent()}
       </sc.Toast>
@@ -127,19 +128,19 @@ const Toast = React.forwardRef((props, ref) => {
   }, [canAutoClose, isVisuallyHidden, memoizedStartAutoCloseTimer]);
 
   React.useEffect(() => {
-    if (isPolite && isToastOpen) {
+    if (isToastOpen) {
       memoizedStartRenderTimer();
       return () => {
         clearTimeout(renderTimer.current);
       };
     }
-  }, [isPolite, isToastOpen, memoizedStartRenderTimer]);
+  }, [isToastOpen, memoizedStartRenderTimer]);
 
   React.useEffect(() => {
-    if (isPolite && !isOpen) {
+    if (!isOpen) {
       setShouldRender(false);
     }
-  }, [isPolite, isOpen]);
+  }, [isOpen]);
 
   React.useEffect(() => {
     if (isOpen === undefined) return;
@@ -161,28 +162,28 @@ Toast.types = {
 };
 
 const propTypes = {
-  /** Duration (in ms) before Toast will automaticall close (if canAutoClose is true) */
+  /** Duration (in ms) before Toast will automatically close (if canAutoClose is true). */
   autoCloseDelay: PropTypes.number,
 
-  /** Will automatically close after 1500ms (or longer if provided by autoCloseDelay) */
+  /** Will automatically close after 1500ms (or longer if provided by autoCloseDelay). */
   canAutoClose: PropTypes.bool,
 
-  /** Content of the Toast */
+  /** Content of the Toast. */
   children: PropTypes.node,
 
-  /** If the component should have a 'close' button */
+  /** If the component should have a 'close' button. */
   hasCloseButton: PropTypes.bool,
 
-  /** How "controlled" toast is shown / hidden. */
+  /** How "controlled" Toast is shown / hidden. */
   isOpen: PropTypes.bool,
 
   /** If the Toast is fixed to the top of the viewport. This will render the Toast as a Portal. */
   isFixed: PropTypes.bool,
 
-  /** A11y: If the toast is polite or not. If false, then the toast will be assertive. */
+  /** A11y: If the Toast is polite (will wait until screen reader is finished before speaking) or assertive (will interrupt immediately). */
   isPolite: PropTypes.bool,
 
-  /** Determines the styling of the Toast */
+  /** Determines the styling of the Toast. */
   kind: PropTypes.oneOf([
     Toast.types.kind.SUCCESS,
     Toast.types.kind.WARNING,
@@ -192,10 +193,13 @@ const propTypes = {
     Toast.types.kind.VISUALLY_HIDDEN,
   ]),
 
-  /** Callback that is executed after clicking the 'close' button */
+  /** Callback that is executed after clicking the 'close' button. */
   onClose: PropTypes.func,
 
-  /** The z-index of the Toast */
+  /** Delay in ms before content of Toast is rendered (to improve UX with screen readers). */
+  renderDelay: PropTypes.number,
+
+  /** The z-index of the Toast. */
   zIndex: PropTypes.number,
 };
 
@@ -209,6 +213,7 @@ const defaultProps = {
   isPolite: false,
   kind: Toast.types.kind.INFO,
   onClose: () => {},
+  renderDelay: 20,
   zIndex: null,
 };
 

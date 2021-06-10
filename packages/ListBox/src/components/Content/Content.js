@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Popover from "@paprika/popover";
 import { getDOMAttributesForListBox } from "../../helpers/DOMAttributes";
-import { handleKeyUpKeyboardKeys, handleKeyDownKeyboardKeys } from "../../helpers/handleKeyboardKeys";
+import { handleKeyDownKeyboardKeys } from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../useListBox";
 import { OnChangeContext } from "../../store/OnChangeProvider";
 import { PropsContext } from "../../store/PropsProvider";
@@ -43,7 +42,7 @@ export default function Content(props) {
   const [state, dispatch] = useListBox();
   const { refListBoxContainer } = state;
   const providedProps = React.useContext(PropsContext);
-  const { a11yProps, idListBox, isInline, refLabel } = providedProps;
+  const { a11yProps, idListBox, isInline, refLabel, contentOffsetX, contentOffsetY } = providedProps;
 
   if (isInline) {
     return (
@@ -53,7 +52,6 @@ export default function Content(props) {
         {...getDOMAttributesForListBox({ idListBox, refLabel, ...state })}
         data-pka-anchor="list-box-content-inline" // TODO: rename "list-box.content-inline"
         onKeyDown={handleKeyDownKeyboardKeys({ providedProps, state, dispatch, onChangeContext })}
-        onKeyUp={handleKeyUpKeyboardKeys({ providedProps, state, dispatch, onChangeContext })}
         ref={refListBoxContainer}
         role="listbox"
         tabIndex="0"
@@ -64,16 +62,17 @@ export default function Content(props) {
   }
 
   return (
-    <Popover.Content
+    <sc.PopoverContent
       {...getDOMAttributesForListBox({ idListBox, refLabel, ...state })}
+      contentOffsetX={contentOffsetX}
+      contentOffsetY={contentOffsetY}
       onBlur={handleBlur(state, dispatch, onCancelFooter)}
       onKeyDown={handleKeyDownKeyboardKeys({ providedProps, state, dispatch, onChangeContext })}
-      onKeyUp={handleKeyUpKeyboardKeys({ providedProps, state, dispatch, onChangeContext })}
       ref={refListBoxContainer}
       role="listbox"
     >
-      {props.children}
-    </Popover.Content>
+      {children}
+    </sc.PopoverContent>
   );
 }
 

@@ -22,9 +22,10 @@ npm install @paprika/status-tracker
 
 ### StatusTracker
 
-| Prop     | Type | required | default | Description |
-| -------- | ---- | -------- | ------- | ----------- |
-| children | node | false    | null    |             |
+| Prop             | Type | required | default | Description                      |
+| ---------------- | ---- | -------- | ------- | -------------------------------- |
+| children         | node | false    | null    |                                  |
+| hasExtensionLine | bool | false    | true    | Displays extension line if true. |
 
 ### StatusTracker.Point
 

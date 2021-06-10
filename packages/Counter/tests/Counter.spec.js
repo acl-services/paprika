@@ -1,5 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
+import { axe } from "jest-axe";
 import Counter from "../src";
 
 describe("Counter", () => {
@@ -13,5 +14,10 @@ describe("Counter", () => {
     const { getByText } = render(<Counter quantity={100} />);
 
     expect(getByText(/99+/i)).toBeVisible();
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = render(<Counter quantity={100} />);
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

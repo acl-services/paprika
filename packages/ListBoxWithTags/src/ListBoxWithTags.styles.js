@@ -33,7 +33,7 @@ export const Trigger = styled(RawButton)(
     box-sizing: border-box;
     color: ${tokens.color.black};
     display: block;
-    padding: 3px 50px 1px ${tokens.spaceSm};
+    padding: 3px ${stylers.spacer(4)} 1px ${tokens.spaceSm};
     position: relative;
     text-align: left;
     transition: border-color 0.2s;
@@ -92,14 +92,13 @@ export const TriggerLabel = styled.div`
 `;
 
 const iconStyles = ({ isDisabled }) => css`
-  color: ${tokens.color.black};
+  color: ${isDisabled ? tokens.color.blackLighten60 : tokens.textColor.icon};
+  font-size: 20px;
   height: 100%;
   pointer-events: none;
   position: absolute;
   right: ${tokens.space};
   top: 0;
-  ${stylers.fontSize(-1)}
-  ${isDisabled ? `color: ${tokens.color.blackLighten60};` : ""}
 `;
 
 export const UpIcon = styled(CaretUpIcon)`

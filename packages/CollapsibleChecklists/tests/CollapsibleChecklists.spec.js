@@ -1,5 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
+import { axe } from "jest-axe";
 import CollapsibleChecklists from "../src";
 
 const defaultProps = {
@@ -95,15 +96,19 @@ describe("CollapsibleChecklists", () => {
     expect(peoniesHeading.querySelector('input[type="checkbox"]').checked).toBe(false);
   });
 
-  it("sets group to indeterminate [even though children are unknown] when told to", () => {
+  it("sets indeterminate groups", () => {
     const { container } = renderComponent();
-    const daisiesHeading = container.querySelectorAll('[data-pka-anchor="collapsible.heading"]')[4];
-    expect(daisiesHeading.querySelector('input[type="checkbox"]').indeterminate).toBe(true);
+    expect(container.querySelectorAll('[data-checkbox-group-is-indeterminate="true"]').length).toBe(1);
   });
 
   it("sets group to checked [even though children are unknown] when told to", () => {
     const { container } = renderComponent();
     const petuniasHeading = container.querySelectorAll('[data-pka-anchor="collapsible.heading"]')[5];
     expect(petuniasHeading.querySelector('input[type="checkbox"]').checked).toBe(true);
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = renderComponent();
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

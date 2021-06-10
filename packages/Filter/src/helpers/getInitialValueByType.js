@@ -7,6 +7,9 @@ export default function getInitialValueByType(columnType, columnId, data) {
     case types.columnTypes.SINGLE_SELECT: {
       return data.map(data => data[columnId]).find(option => option);
     }
+    case types.columnTypes.MULTI_SELECT: {
+      return [];
+    }
     default:
       return "";
   }

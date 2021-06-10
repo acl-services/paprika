@@ -6,13 +6,23 @@ import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
 import ColumnDefinition from "./components/ColumnDefinition";
 import * as sc from "./Table.styles";
-import { handleBlur, handleFocus, handleKeyDown, handleClick } from "./event";
 
-export default function Table(props) {
-  const { borderType, children, hasZebraStripes, data, a11yText, enableArrowKeyNavigation, ...moreProps } = props;
+const Table = React.forwardRef((props, ref) => {
+  const {
+    a11yText,
+    borderType,
+    children,
+    data,
+    enableArrowKeyNavigation,
+    hasZebraStripes,
+    onBlur,
+    onClick,
+    onFocus,
+    /** for internal use */
+    cellPropsResetCSS = false, // eslint-disable-line
+    ...moreProps
+  } = props;
   const [tableId] = React.useState(() => `table_${uuidv4()}`);
-
-  const refFocus = React.useRef(null);
 
   const { "Table.ColumnDefinition": extractedColumnDefinitions } = extractChildren(children, [
     "Table.ColumnDefinition",
@@ -25,37 +35,22 @@ export default function Table(props) {
     ColumnDefinitions = [extractedColumnDefinitions];
   }
 
-  const qty = {
-    columnsLength: extractedColumnDefinitions.length,
-    rowsLength: data.length,
-  };
-
-  const arrowKeyNavigationProps = enableArrowKeyNavigation
-    ? {
-        onFocus: handleFocus({ refFocus, tableId }),
-        onBlur: handleBlur({ refFocus, tableId }),
-        onKeyDown: handleKeyDown({ refFocus, tableId, ...qty }),
-        onClick: handleClick({ refFocus, tableId }),
-        tabIndex: -1,
-      }
-    : {};
-
   return (
-    <sc.Table {...(enableArrowKeyNavigation ? { role: "grid" } : {})} aria-label={a11yText} id={tableId} {...moreProps}>
+    <sc.Table aria-label={a11yText} id={tableId} {...moreProps} ref={ref}>
       <sc.Thead>
         <tr>
           {ColumnDefinitions.map((columnDefinition, columnIndex) => {
-            const { cell, header, ...moreColumnProps } = columnDefinition.props;
+            const { cell, header, sticky, ...moreColumnProps } = columnDefinition.props;
 
             if (typeof header === "function")
               return (
-                <sc.TH borderType={borderType} key={columnIndex} {...moreColumnProps}>
+                <sc.TH sticky={sticky} borderType={borderType} key={columnIndex} {...moreColumnProps}>
                   {header({ header: columnDefinition.props, columnIndex })}
                 </sc.TH>
               );
             if (typeof header === "string")
               return (
-                <sc.TH borderType={borderType} key={columnIndex} {...moreColumnProps}>
+                <sc.TH sticky={sticky} borderType={borderType} key={columnIndex} {...moreColumnProps}>
                   {header}
                 </sc.TH>
               );
@@ -71,17 +66,31 @@ export default function Table(props) {
               {ColumnDefinitions.map((columnDefinition, columnIndex) => {
                 const position = { "data-row-index": rowIndex, "data-column-index": columnIndex };
 
-                const { cell, header, ...moreColumnProps } = columnDefinition.props;
+                const {
+                  cell,
+                  header,
+                  width,
+                  sticky,
+                  cellProps: _cellProps,
+                  ...moreColumnProps
+                } = columnDefinition.props;
+
+                const cellProps =
+                  typeof _cellProps === "function"
+                    ? _cellProps({ ...columnDefinition.props, row, rowIndex, columnIndex })
+                    : {};
 
                 if (typeof cell === "function")
                   return (
                     <sc.TD
+                      cellPropsResetCSS={cellPropsResetCSS}
                       borderType={borderType}
                       key={columnIndex}
+                      width={width}
+                      sticky={sticky}
+                      {...cellProps}
                       {...moreColumnProps}
                       {...position}
-                      {...arrowKeyNavigationProps}
-                      {...(columnIndex === 0 && rowIndex === 0 ? { tabIndex: 0 } : {})}
                     >
                       {cell({ row, rowIndex, columnIndex })}
                     </sc.TD>
@@ -89,12 +98,12 @@ export default function Table(props) {
                 if (typeof cell === "string")
                   return (
                     <sc.TD
+                      cellPropsResetCSS={cellPropsResetCSS}
                       borderType={borderType}
                       key={columnIndex}
+                      {...cellProps}
                       {...moreColumnProps}
                       {...position}
-                      {...arrowKeyNavigationProps}
-                      {...(columnIndex === 0 && rowIndex === 0 ? { tabIndex: 0 } : {})}
                     >
                       {typeof row[cell] !== "undefined" ? row[cell] : `Error: ${cell} doesn't exist`}
                     </sc.TD>
@@ -108,7 +117,7 @@ export default function Table(props) {
       </sc.TBody>
     </sc.Table>
   );
-}
+});
 
 Table.types = {
   border: constants.gridTypes,
@@ -124,6 +133,7 @@ const propTypes = {
   ]),
   /**  Accessible description of the table */
   a11yText: PropTypes.string.isRequired,
+  /** 👶👶👶👶👶👶😸 */
   children: PropTypes.node.isRequired,
   /** Add an alternating background on the table rows */
   hasZebraStripes: PropTypes.bool,
@@ -131,16 +141,27 @@ const propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})),
   /** For authors use only, use case: inline editing. */
   enableArrowKeyNavigation: PropTypes.bool,
+  /** Will fire each time a new cell receives focus */
+  onFocus: PropTypes.func,
+  /** Will fire each time a selected cell loses focus */
+  onBlur: PropTypes.func,
+  /** Will fire each time user clicks on a cell */
+  onClick: PropTypes.func,
 };
 
 const defaultProps = {
   borderType: Table.types.border.HORIZONTAL,
   data: [],
-  hasZebraStripes: false,
   enableArrowKeyNavigation: false,
+  hasZebraStripes: false,
+  onBlur: () => {},
+  onClick: () => {},
+  onFocus: () => {},
 };
 
 Table.displayName = "Table";
 Table.propTypes = propTypes;
 Table.defaultProps = defaultProps;
 Table.ColumnDefinition = ColumnDefinition;
+
+export default Table;

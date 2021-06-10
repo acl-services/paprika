@@ -11,9 +11,14 @@ import * as sc from "./Breadcrumbs.styles";
 function Breadcrumbs(props) {
   const { children, isDark, isAutoCollapsed, ...moreProps } = props;
   const I18n = useI18n();
+  const childrenCount = React.Children.count(children);
   const shouldShowExpandButton = isAutoCollapsed && React.Children.count(children) > MAXIMUM_NUM_OF_LEVEL;
-  const hasOnlyOneChild = React.Children.count(children) === 1;
+  const hasOnlyOneChild = childrenCount === 1;
   const [isCollapsed, setIsCollapsed] = React.useState(shouldShowExpandButton);
+
+  React.useLayoutEffect(() => {
+    setIsCollapsed(shouldShowExpandButton);
+  }, [childrenCount, shouldShowExpandButton]);
 
   function handleExpand() {
     setIsCollapsed(false);

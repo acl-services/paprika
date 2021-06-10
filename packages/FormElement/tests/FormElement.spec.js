@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { render, configure } from "@testing-library/react";
+import { axe } from "jest-axe";
 import L10n from "@paprika/l10n";
 import Input from "@paprika/input";
 import Fieldset from "../src/components/Fieldset";
@@ -165,5 +166,11 @@ describe("FormElement", () => {
     expect(container.querySelector("fieldset")).not.toBeInTheDocument();
     expect(container.querySelector("legend")).not.toBeInTheDocument();
     expect(container.querySelector("label")).toBeInTheDocument();
+  });
+
+  it("should not fail any accessibility tests", async () => {
+    const { container } = renderComponent();
+
+    expect(await axe(container)).toHaveNoViolations();
   });
 });

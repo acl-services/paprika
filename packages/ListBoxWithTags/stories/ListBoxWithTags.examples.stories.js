@@ -12,6 +12,7 @@ import UncontrolledUser from "./examples/UncontrolledUser";
 import UncontrolledFooter from "./examples/UncontrolledFooter";
 import FormElement from "./examples/FormElement";
 import UIStates from "./examples/UIStates";
+import SpreadingSubComponents from "./examples/SpreadingSubComponents";
 
 const storyName = getStoryName("ListBoxWithTags");
 
@@ -96,4 +97,11 @@ export const UIStatesStory = () => (
     <UIStates />
   </ExampleStory>
 );
+
+export const SpreadingSubComponentsStory = () => (
+  <ExampleStory storyName="UI States" component="ListBoxWithTags" fileName="examples/SpreadingSubComponents.js">
+    <SpreadingSubComponents />
+  </ExampleStory>
+);
+
 UIStatesStory.story = { name: "UI States", parameters: exampleStoryParameters };

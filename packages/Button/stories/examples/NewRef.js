@@ -22,7 +22,7 @@ export default function NewRef() {
   return (
     <>
       <p>
-        <Button onClick={clickHandler} ref={buttonRef}>
+        <Button onClick={clickHandler} ref={buttonRef} isSemantic={false}>
           Button
         </Button>
       </p>

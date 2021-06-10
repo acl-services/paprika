@@ -1,5 +1,122 @@
 # Changelog
 
+## 4.0.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11-next.0
+
+## 4.0.2
+
+### Patch Changes
+
+- Updated dependencies [e856d54]
+  - @paprika/button@1.1.0
+
+## 4.0.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [e856d54]
+  - @paprika/button@1.1.0-next.0
+
+## 4.0.1
+
+### Patch Changes
+
+- 32904f2: Minor clean up
+
+  - Removed unused dependencies from package.json
+  - Don't highlight so obviously on focus when `isReadOnly=true`
+
+- Updated dependencies [f54c146]
+  - @paprika/icon@1.1.1
+  - @paprika/button@1.0.10
+
+## 4.0.1-next.0
+
+### Patch Changes
+
+- 32904f2: Minor clean up
+
+  - Removed unused dependencies from package.json
+  - Don't highlight so obviously on focus when `isReadOnly=true`
+
+- Updated dependencies [f54c146]
+  - @paprika/icon@1.1.1-next.0
+  - @paprika/button@1.0.10-next.0
+
+## 4.0.0
+
+### Major Changes
+
+- 45d341f: Refactoring API for consistency between Input, Select, Textarea
+
+  #### Added
+
+  - Added a props collector component, `<Input.Container>`, to apply attributes to root `<div>` element.
+
+  #### Removed
+
+  - Removed `className` prop.
+  - Removed all classNames from DOM elements.
+
+  #### Migration Guide
+
+  - If a custom class name is required on the root element, it can be added like `<Input><Input.Container className="custom"></Input>`.
+  - If `classNames` were used to target DOM elements or identify states of the `<Input>`, they will need to be updated to use attributes like `data-pka-anchor`, `aria-invalid`, etc.
+
+  Author: [@mikrotron](https://github.com/mikrotron)
+
+## 4.0.0-next.0
+
+### Major Changes
+
+- 45d341f: Refactoring API for consistency between Input, Select, Textarea
+
+  #### Added
+
+  - Added a props collector component, `<Input.Container>`, to apply attributes to root `<div>` element.
+
+  #### Removed
+
+  - Removed `className` prop.
+  - Removed all classNames from DOM elements.
+
+  #### Migration Guide
+
+  - If a custom class name is required on the root element, it can be added like `<Input><Input.Container className="custom"></Input>`.
+  - If `classNames` were used to target DOM elements or identify states of the `<Input>`, they will need to be updated to use attributes like `data-pka-anchor`, `aria-invalid`, etc.
+
+  Author: [@mikrotron](https://github.com/mikrotron)
+
+## 3.0.1
+
+### Patch Changes
+
+- Updated dependencies [5d0db59]
+- Updated dependencies [9ad9c79]
+  - @paprika/icon@1.1.0
+  - @paprika/helpers@2.1.2
+  - @paprika/button@1.0.9
+
+## 3.0.1-next.1
+
+### Patch Changes
+
+- Updated dependencies [9ad9c79]
+  - @paprika/helpers@2.1.2-next.0
+  - @paprika/button@1.0.9-next.1
+
+## 3.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [5d0db59]
+  - @paprika/icon@1.1.0-next.0
+  - @paprika/button@1.0.9-next.0
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).

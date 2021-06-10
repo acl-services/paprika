@@ -39,8 +39,11 @@ export function ListBox(props) {
     onChange,
     placeholder,
     size,
+    contentOffsetX,
+    contentOffsetY,
 
     /* eslint-disable react/prop-types */
+    data,
     box,
     filter,
     footer,
@@ -122,6 +125,8 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     isReadOnly,
     placeholder,
     size,
+    contentOffsetX,
+    contentOffsetY,
 
     /* eslint-disable react/prop-types */
     box,
@@ -186,6 +191,10 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     return PopoverClone;
   }
 
+  delete moreProps.selectedKeys;
+  delete moreProps.setSelectedKeys;
+  delete moreProps.snapshotSelectedKeys;
+
   return (
     <div data-pka-anchor="list-box" {...moreProps}>
       <Popover>{listBox}</Popover>
@@ -237,6 +246,12 @@ export const propTypes = {
     ListBoxContainer.types.size.MEDIUM,
     ListBoxContainer.types.size.LARGE,
   ]),
+
+  /** Lets the user control the X-axis offset for the ListBox content */
+  contentOffsetX: PropTypes.number,
+
+  /** Lets the user control the Y-axis offset for the ListBox content */
+  contentOffsetY: PropTypes.number,
 };
 
 export const defaultProps = {
@@ -252,6 +267,8 @@ export const defaultProps = {
   onChange: () => {},
   placeholder: null,
   size: ListBoxContainer.types.size.MEDIUM,
+  contentOffsetX: 0,
+  contentOffsetY: 0,
 };
 
 ListBox.propTypes = propTypes;

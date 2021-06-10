@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
+import stylers from "@paprika/stylers";
 
 export const Header = styled.div(({ $color, $backgroundColor, refHeader }) => {
   function resetHeaderParentContainer() {
@@ -27,24 +28,35 @@ export const Header = styled.div(({ $color, $backgroundColor, refHeader }) => {
   return css`
     align-items: center;
     display: flex;
+    overflow: hidden;
     width: 100%;
     /**
       * Css lacks of parent selector, we can use javascript to replace that :P
       */
     ${$backgroundColor || $color ? resetHeaderParentContainer() : ""}
+
+    [data-pka-anchor="raw-button"] {
+      border-radius: ${tokens.button.borderRadius};
+      padding: 1px 2px;
+
+      &:focus {
+        box-shadow: ${tokens.highlight.active.withBorder.insetBoxShadow};
+      }
+    }
   `;
 });
 
 export const Label = styled.div(() => {
   return css`
+    ${stylers.truncateText}
     flex-basis: 100%;
     flex-grow: 1;
-    min-height: 24px;
   `;
 });
 
 export const Icon = styled.div(() => {
   return css`
+    color: ${tokens.color.blackLighten20};
     padding-right: ${tokens.spaceSm};
   `;
 });
@@ -53,10 +65,16 @@ export const Info = styled.div(() => {
   return css`
     align-items: center;
     display: flex;
+    flex-grow: 1;
     justify-content: flex-start;
-    width: 100%;
+    min-width: 0;
+
     svg {
       font-size: 1.2rem;
+    }
+
+    & + [data-pka-anchor="popover"] {
+      display: block;
     }
   `;
 });

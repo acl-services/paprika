@@ -45,6 +45,7 @@ export default function ColumnsArrangement(props) {
     onHideAll,
     onShowAll,
     renderTriggerButton,
+    ...moreProps
   } = props;
   const I18n = useI18n();
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -80,33 +81,31 @@ export default function ColumnsArrangement(props) {
   };
 
   function handleSearch(e) {
-    setSearchTerm(e.target.value);
+    setSearchTerm(e === null ? "" : e.target.value);
   }
 
   return (
-    <Popover align="bottom" edge="left" minWidth={230} offset={parseInt(tokens.spaceSm, 10)}>
-      <Popover.Trigger>
-        {typeof renderTriggerButton === "function" ? (
-          <Popover.Trigger>
-            {(handler, attributes, isOpen) => renderTriggerButton(handler, attributes, isOpen, hiddenColumns.length)}
-          </Popover.Trigger>
-        ) : (
-          <Popover.Trigger>
-            {(handler, attributes, isOpen) => (
-              <sc.Trigger
-                kind={Button.types.kind.FLAT}
-                {...attributes}
-                onClick={handler}
-                hasColumnsHidden={hiddenColumns.length > 0}
-                isOpen={isOpen}
-              >
-                <sc.HideIcon />
-                {getLabelText(hiddenColumns.length, I18n)}
-              </sc.Trigger>
-            )}
-          </Popover.Trigger>
-        )}
-      </Popover.Trigger>
+    <Popover align="bottom" edge="left" minWidth={230} offset={parseInt(tokens.spaceSm, 10)} {...moreProps}>
+      {typeof renderTriggerButton === "function" ? (
+        <Popover.Trigger>
+          {(handler, attributes, isOpen) => renderTriggerButton(handler, attributes, isOpen, hiddenColumns.length)}
+        </Popover.Trigger>
+      ) : (
+        <Popover.Trigger>
+          {(handler, attributes, isOpen) => (
+            <sc.Trigger
+              kind={Button.types.kind.FLAT}
+              {...attributes}
+              onClick={handler}
+              hasColumnsHidden={hiddenColumns.length > 0}
+              isOpen={isOpen}
+            >
+              <sc.HideIcon />
+              {getLabelText(hiddenColumns.length, I18n)}
+            </sc.Trigger>
+          )}
+        </Popover.Trigger>
+      )}
       <Popover.Content>
         <Popover.Card>
           <Input
@@ -120,23 +119,32 @@ export default function ColumnsArrangement(props) {
             I18n.t("actionBar.no_results")
           ) : (
             <sc.Sortable onChange={handleChangeOrder} hasNumbers={false}>
-              {filteredColumnIds.map(id => (
-                <Sortable.Item
-                  key={id}
-                  sortId={id}
-                  isDragDisabled={columns[id].isDisabled}
-                  handleElement={columns[id].isDisabled ? <sc.LockIcon /> : undefined}
-                >
-                  <ColumnManagingItem
+              {filteredColumnIds.map(id => {
+                if (!columns[id]) {
+                  console.error(
+                    `Failed from rendering the ${id} column. Have you passed the <ColumnsArrangement.ColumnDefinition /> for that column?`
+                  );
+                  return null;
+                }
+
+                return (
+                  <Sortable.Item
                     key={id}
-                    id={id}
-                    label={columns[id].label}
-                    isDisabled={columns[id].isDisabled}
-                    isHidden={columns[id].isHidden}
-                    onChangeVisibility={onChangeVisibility}
-                  />
-                </Sortable.Item>
-              ))}
+                    sortId={id}
+                    isDragDisabled={columns[id].isDisabled}
+                    handleElement={columns[id].isDisabled ? <sc.LockIcon /> : undefined}
+                  >
+                    <ColumnManagingItem
+                      key={id}
+                      id={id}
+                      label={columns[id].label}
+                      isDisabled={columns[id].isDisabled}
+                      isHidden={columns[id].isHidden}
+                      onChangeVisibility={onChangeVisibility}
+                    />
+                  </Sortable.Item>
+                );
+              })}
             </sc.Sortable>
           )}
           {searchTerm.length ? null : (

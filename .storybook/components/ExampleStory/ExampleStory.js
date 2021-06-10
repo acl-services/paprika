@@ -10,7 +10,7 @@ const propTypes = {
   component: PropTypes.string,
   fileName: PropTypes.string,
   storyName: PropTypes.string,
-  tagline: PropTypes.string,
+  tagline: PropTypes.node,
 };
 
 const defaultProps = {
@@ -34,7 +34,7 @@ const defaultTaglines = {
   ),
 };
 
-export const ExampleStory = props => {
+const ExampleStory = props => {
   const { children, component, fileName, storyName, tagline } = props;
   return (
     <Story>
