@@ -19,8 +19,8 @@ de:
       drop_files_here_or: Legen Sie Dateien zum Hochladen hier ab oder
       choose_from_computer: wählen Sie sie auf Ihrem Computer aus
       choose_from_computer_a11y: Wählen Sie Dateien auf Ihrem Computer aus
-      cancel_upload: Upload abbrechen
-      restart_upload: Wählen Sie die Datei erneut aus, um den Vorgang zu wiederholen
+      cancel_upload: Upload für {{Name}} abbrechen
+      restart_upload: Wählen Sie {{Name}} erneut, um es erneut zu versuchen
       file_list: Liste der Dateien
       errors:
         size: Datei muss kleiner als {{maxFileSize}} sein
@@ -35,7 +35,10 @@ de:
       progress:
         cancelled: Abgebrochen
         complete: Abgeschlossen
+        error: "Für {{name}} ist ein Fehler aufgetreten: {{error}}"
         idle: Inaktiv
+        file_progress: "{{name}} ist {{progress}}"
+        uploading_percent: Daten werden hochgeladen, {{a11yProgress}}%
         uploading: '{{progressWithUnits}} von {{sizeWithUnits}} werden hochgeladen'
       size_abbreviations:
         byte: B
