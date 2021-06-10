@@ -69,6 +69,10 @@ export default function Tabs(props) {
     if (!isControlled && !isLink) {
       setInternalIndex(index);
     }
+
+    if (isLink && Object.prototype.hasOwnProperty.call(event, "key")) {
+      event.target.click();
+    }
   };
 
   const handleKeyDown = event => {

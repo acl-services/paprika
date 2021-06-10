@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import TabsContext from "../../TabsContext";
+import { keyTypes } from "../../helpers";
 import * as sc from "./Tab.styles";
 
 export default function Tab(props) {
@@ -25,7 +26,13 @@ export default function Tab(props) {
         data-pka-anchor="tab-link"
         href={href}
         onClick={e => handleClick(e, activeIndex)}
-        onKeyDown={e => handleKeyDown(e, focusIndex)}
+        onKeyDown={e => {
+          if (e.key === keyTypes.SPACE) {
+            handleClick(e, activeIndex);
+          } else {
+            handleKeyDown(e, focusIndex);
+          }
+        }}
         role="tab"
         tabIndex={tabIndex}
       >
