@@ -5,6 +5,7 @@ export const keyTypes = {
   DOWN: "ArrowDown",
   FIRST: "Home",
   LAST: "End",
+  SPACE: " ",
 };
 
 const itemSelector = "[role='tab']";
