@@ -5,7 +5,7 @@ interface ToastProps {
   [x: string]: any;
   /** Duration (in ms) before Toast will automatically close (if canAutoClose is true). */
   autoCloseDelay?: number;
-  /** Will automatically close after 1500ms (or longer if provided by autoCloseDelay). */
+  /** Will automatically close after 5000ms (or longer if provided by autoCloseDelay). */
   canAutoClose?: boolean;
   /** Content of the Toast. */
   children?: React.ReactNode;
