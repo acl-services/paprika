@@ -64,7 +64,7 @@ const propTypes = {
   */
   headers: PropTypes.arrayOf(PropTypes.object),
   /**
-    This callback fires every time a file has been processed.
+    This callback fires when uploading is about to start (all files have been processed to see if they are valid type/size).
   */
   onProcessed: PropTypes.func,
   /**

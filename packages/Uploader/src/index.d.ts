@@ -27,7 +27,7 @@ interface UploaderProps {
   onCompleted?: (...args: any[]) => any;
   /** you can pass an array of header objects. */
   headers?: object[];
-  /** This callback fires every time a file has been processed. */
+  /** This callback fires when uploading is about to start (all files have been processed to see if they are valid type/size). */
   onProcessed?: (...args: any[]) => any;
   /** Let you to take over the request method */
   onRequest?: (...args: any[]) => any;
