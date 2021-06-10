@@ -105,7 +105,8 @@ export default function Tabs(props) {
     activeIndex,
     focusIndex,
     hasInsetFocusStyle,
-    hasPanels: React.Children.toArray(children).filter(child => child.type.displayName === "Tabs.Panels").length > 0,
+    hasPanels:
+      React.Children.toArray(children).filter(child => child.type.displayName === Panels.displayName).length > 0,
     hasTruncation,
     idTabs,
     isDisabled,
