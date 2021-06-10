@@ -33,9 +33,22 @@ export default function ListBoxWithTags(props) {
   const { t } = useI18n();
   const refDivRoot = React.useRef(null);
   const refFilter = React.useRef(null);
+  const refListBox = React.useRef(null);
   const [idListBoxContent] = React.useState(() => `list-box_${uuidv4()}__content`);
+  const [lastSelectedOption, setLastSelectedOption] = React.useState(null);
 
   const validSize = Object.values(ListBox.types.size).includes(size) ? size : ListBox.types.size.MEDIUM;
+
+  function handleLastSelectedOption(options, selectedOption) {
+    const lastIndex = Object.keys(options).length - 1;
+    if (lastIndex === 0 || refFilter.current.textSearch) {
+      setLastSelectedOption(null);
+    } else if (selectedOption === lastIndex) {
+      setLastSelectedOption(lastIndex - 1);
+    } else {
+      setLastSelectedOption(selectedOption);
+    }
+  }
 
   function handleKeyDown(event) {
     const label = event.target.value;
@@ -47,13 +60,20 @@ export default function ListBoxWithTags(props) {
     ) {
       event.stopPropagation();
       onAddCustomOption(label);
-      refFilter.current.reset();
+      if (refFilter.current) {
+        refFilter.current.reset();
+        refFilter.current.focus();
+      }
     }
   }
 
   function handleChange(...args) {
     if (selectedOptions !== null && "length" in selectedOptions) {
-      refFilter.current.reset();
+      handleLastSelectedOption(args[1], args[2]);
+      if (refFilter.current) {
+        refFilter.current.reset();
+        refFilter.current.focus();
+      }
     }
 
     onChange(...args);
@@ -92,9 +112,17 @@ export default function ListBoxWithTags(props) {
     });
   }, [children, extendedProps]);
 
+  React.useEffect(() => {
+    if (refListBox.current && refFilter.current) {
+      if (lastSelectedOption !== null && !refFilter.current.textSearch) {
+        refListBox.current.setFocusOptionByIndex(lastSelectedOption);
+      }
+    }
+  });
+
   return (
     <div ref={refDivRoot}>
-      <ListBox isMulti size={validSize} onChange={handleChange} {...moreProps}>
+      <ListBox ref={refListBox} isMulti size={validSize} onChange={handleChange} {...moreProps}>
         <ListBox.Trigger {...extendedProps["ListBox.Trigger"]}>
           {(...[, , , attributes]) => <TriggerWithTags {...triggerProps} {...attributes} />}
         </ListBox.Trigger>
