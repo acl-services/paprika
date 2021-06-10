@@ -123,6 +123,11 @@ const [isOpen, setIsOpen] = React.useState(true);
 </Panel>;
 ```
 
+## FocusLock
+
+There are issues when using FocusLock without the `<Panel.Overlay />`. Therefore the Panel will not use the focus lock when there is no overlay present.
+Focus locking will only be used when overlay is used to prevent this issue.
+
 ## Warnings
 
 If the content you are putting into this component will try and control focus (like CKEditor), read this: https://github.com/acl-services/paprika/issues/453
