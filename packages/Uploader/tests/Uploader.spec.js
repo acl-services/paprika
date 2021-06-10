@@ -44,7 +44,7 @@ describe("Uploader", () => {
     const file = new File([new ArrayBuffer(1)], "file.jpg");
 
     render(
-      <Uploader endpoint="" onChange={handleChange} onProcess={handleProcess} onRequest={handleRequest}>
+      <Uploader endpoint="" onChange={handleChange} onProcessed={handleProcess} onRequest={handleRequest}>
         <Uploader.DropZone />
       </Uploader>
     );

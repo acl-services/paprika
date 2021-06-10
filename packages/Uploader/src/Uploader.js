@@ -66,7 +66,7 @@ const propTypes = {
   /**
     This callback fires every time a file has been processed.
   */
-  onProcess: PropTypes.func,
+  onProcessed: PropTypes.func,
   /**
    * Let you to take over the request method
    */
@@ -93,7 +93,7 @@ const defaultProps = {
   onChange: () => {},
   onCompleted: () => {},
   onError: null,
-  onProcess: () => {},
+  onProcessed: () => {},
   onRequest: null,
   supportedMimeTypes: ["*/*"],
 };
@@ -123,9 +123,10 @@ const Uploader = React.forwardRef((props, ref) => {
     onChange,
     onCompleted,
     onError,
-    onProcess,
+    onProcessed,
     onRequest,
     supportedMimeTypes,
+    ...morePropsOnUploaderWrapper
   } = props;
 
   const refInput = React.useRef();
@@ -146,7 +147,7 @@ const Uploader = React.forwardRef((props, ref) => {
     hasAutoUpload,
     headers,
     onCompleted,
-    onProcess,
+    onProcessed,
     onRequest,
   });
 
@@ -184,6 +185,7 @@ const Uploader = React.forwardRef((props, ref) => {
     isDragLeave,
     label,
     maxFileSize,
+    morePropsOnUploaderWrapper,
     onCancel,
     onError,
     refContainer,

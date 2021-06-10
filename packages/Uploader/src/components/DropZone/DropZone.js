@@ -15,6 +15,7 @@ const DropZone = React.memo(() => {
     handleChange,
     isDraggingOver,
     label,
+    morePropsOnUploaderWrapper,
     refContainer,
     refInput,
     supportedMimeTypes,
@@ -41,7 +42,7 @@ const DropZone = React.memo(() => {
   );
 
   return (
-    <div ref={refContainer} data-pka-anchor="uploader">
+    <div ref={refContainer} data-pka-anchor="uploader" {...morePropsOnUploaderWrapper}>
       <sc.Input
         data-pka-anchor="uploader.input"
         multiple={canChooseMultiple}
