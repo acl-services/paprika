@@ -37,7 +37,7 @@ const setFile = (file, callback) => files => {
 
 export default function useProcessFiles({
   hasAutoUpload,
-  onChange,
+  onProcessed,
   onCompleted,
   endpoint,
   defaultIsDisabled,
@@ -167,7 +167,7 @@ export default function useProcessFiles({
       setUploadingFileList(() => JSON.parse(JSON.stringify(files)));
       setIsDisabled(() => true);
       setisCompleted(() => null);
-      onChange(files);
+      onProcessed(files);
 
       files.forEach(file => {
         if (file.isValid && file.status !== types.status.SUCCESS) {
@@ -175,7 +175,7 @@ export default function useProcessFiles({
         }
       });
     }
-  }, [files, uploadingFileList, isDisabled, onCompleted, onChange, endpoint, headers, onRequest]);
+  }, [files, uploadingFileList, isDisabled, onCompleted, endpoint, headers, onRequest, onProcessed]);
 
   React.useEffect(() => {
     if (hasAutoUpload) {
