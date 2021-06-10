@@ -10,7 +10,7 @@ const items = [
 ];
 
 export default function FormElementExample() {
-  const { isSelected, filteredData, getSelectedOptions, ...moreUseListBoxWithTagsProps } = useListBoxWithTags({
+  const { isSelected, getSelectedOptions, listBoxWithTagsProps } = useListBoxWithTags({
     key: "label",
     defaultData: items,
     defaultFilteredData: items,
@@ -24,7 +24,7 @@ export default function FormElementExample() {
         <FormElement.Content>
           {a11yProps => (
             <ListBox
-              {...moreUseListBoxWithTagsProps}
+              {...listBoxWithTagsProps}
               data-qa-anchor="listbox-tags-demo"
               hasError
               selectedOptions={getSelectedOptions()}

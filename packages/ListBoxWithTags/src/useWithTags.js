@@ -102,15 +102,17 @@ export default function useWithTags({
   }
 
   return {
+    listBoxWithTagsProps: {
+      filter: handleFilter,
+      noResultsMessage: t("listBoxWithTags.no_results_found"),
+      onAddCustomOption: handleAddCustomOption,
+      onChange: handleChange,
+      onRemove: handleRemove,
+    },
     data,
-    filter: handleFilter,
     filteredData,
     getSelectedOptions,
     isSelected,
-    noResultsMessage: t("listBoxWithTags.no_results_found"),
-    onAddCustomOption: handleAddCustomOption,
-    onChange: handleChange,
-    onRemove: handleRemove,
     selectedKeys,
     setSelectedKeys,
     snapshotSelectedKeys,
