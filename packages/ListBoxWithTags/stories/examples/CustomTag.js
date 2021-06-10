@@ -7,7 +7,7 @@ const defaultFilteredData = animals.slice(0, 20);
 const defaultData = animals;
 
 export default function CustomTrigger() {
-  const { isSelected, filteredData, getSelectedOptions, ...moreUseListBoxWithTagsProps } = useListBoxWithTags({
+  const { isSelected, filteredData, getSelectedOptions, listBoxWithTagsProps } = useListBoxWithTags({
     key: "label",
     defaultData,
     defaultFilteredData,
@@ -32,7 +32,7 @@ export default function CustomTrigger() {
       noResultsMessage="No results found, but you can add an email and then press enter..."
       renderTag={renderTag}
       selectedOptions={getSelectedOptions()}
-      {...moreUseListBoxWithTagsProps}
+      {...listBoxWithTagsProps}
     >
       {filteredData.map(option => {
         if (typeof option.isCustom !== "undefined") {
