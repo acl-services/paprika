@@ -27,7 +27,8 @@ storiesOf(`${storyName}/Examples`, module)
   .add("Uncontrolled", UncontrolledStory)
   .add("Tab links", () => (
     <Story>
-      <Tabs>
+      <p>Even though it opens a new tab, a Tab that is a Link can be set to be active (via the index prop).</p>
+      <Tabs index={2}>
         <Tabs.List>
           <Tabs.Tab href="https://google.com">Google</Tabs.Tab>
           <Tabs.Tab href="https://facebook.com" isDisabled>
