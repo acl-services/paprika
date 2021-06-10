@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.5-next.0
+
+### Patch Changes
+
+- f2de3be: If there is no Tabs.Panel, dont have an accessibity error
+
 ## 2.2.4
 
 ### Patch Changes
