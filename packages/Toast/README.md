@@ -25,7 +25,7 @@ npm install @paprika/toast
 | Prop           | Type                                                                                                                                                            | required | default               | Description                                                                                                                         |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | autoCloseDelay | number                                                                                                                                                          | false    | 5000                  | Duration (in ms) before Toast will automatically close (if canAutoClose is true).                                                   |
-| canAutoClose   | bool                                                                                                                                                            | false    | false                 | Will automatically close after 1500ms (or longer if provided by autoCloseDelay).                                                    |
+| canAutoClose   | bool                                                                                                                                                            | false    | false                 | Will automatically close after 5000ms (or longer if provided by autoCloseDelay).                                                    |
 | children       | node                                                                                                                                                            | false    | null                  | Content of the Toast.                                                                                                               |
 | hasCloseButton | bool                                                                                                                                                            | false    | true                  | If the component should have a 'close' button.                                                                                      |
 | isOpen         | bool                                                                                                                                                            | false    | null                  | How "controlled" Toast is shown / hidden.                                                                                           |
@@ -47,9 +47,14 @@ Example:
 
 ```js
 import Toast from "@paprika/toast";
+import L10n from "@paprika/l10n";
 
-<Toast>Notification</Toast>;
+<L10n locale="en">
+  <Toast>Notification</Toast>;
+</L10n>;
 ```
+
+Note: An uncontrolled Toast is expected to be displayed and opened once, if the desired behavior is to display the Toast more than once, an alternative method is to reset the Toast by updating its key or use a controlled Toast component instead.
 
 <!-- eoContent -->
 
