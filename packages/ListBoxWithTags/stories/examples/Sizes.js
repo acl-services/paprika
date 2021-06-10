@@ -8,7 +8,7 @@ const defaultFilteredData = animals.slice(0, 20);
 const defaultData = animals;
 
 function App({ size = "medium", isOpen = false }) {
-  const { isSelected, filteredData, getSelectedOptions, ...moreProps } = useListBoxWithTags({
+  const { isSelected, filteredData, getSelectedOptions, listBoxWithTagsProps } = useListBoxWithTags({
     key: "label",
     defaultData,
     defaultFilteredData,
@@ -23,7 +23,7 @@ function App({ size = "medium", isOpen = false }) {
         selectedOptions={getSelectedOptions()}
         size={size}
         isOpen={isOpen}
-        {...moreProps}
+        {...listBoxWithTagsProps}
       >
         {filteredData.map(option => {
           return !isSelected(option.label) ? (

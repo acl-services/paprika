@@ -13,7 +13,7 @@ export default function App({ isOpen = false }) {
     getSelectedOptions,
     snapshotSelectedKeys,
     setSelectedKeys,
-    ...moreUseListBoxWithTagsProps
+    listBoxWithTagsProps,
   } = useListBoxWithTags({
     key: "label",
     defaultData,
@@ -26,7 +26,7 @@ export default function App({ isOpen = false }) {
    * Extra work will be required it in order to hide the <ListBox.Divider /> once all items has been selected
    */
   return (
-    <ListBox selectedOptions={getSelectedOptions()} {...moreUseListBoxWithTagsProps} isOpen={isOpen}>
+    <ListBox selectedOptions={getSelectedOptions()} {...listBoxWithTagsProps} isOpen={isOpen}>
       <ListBox.Divider>Furry values</ListBox.Divider>
       {emojiData.map(option => {
         return !isSelected(option.label) ? (
