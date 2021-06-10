@@ -19,7 +19,7 @@ function renderItems(isSelected) {
   );
 }
 export default function UIStatesExample() {
-  const { isSelected, filteredData, getSelectedOptions, ...moreUseListBoxWithTagsProps } = useListBoxWithTags({
+  const { isSelected, getSelectedOptions, listBoxWithTagsProps } = useListBoxWithTags({
     key: "label",
     defaultData: items,
     defaultFilteredData: items,
@@ -28,40 +28,32 @@ export default function UIStatesExample() {
   return (
     <>
       <StoryHeading level={2}>isDisabled</StoryHeading>
-      <ListBox {...moreUseListBoxWithTagsProps} isDisabled selectedOptions={[]}>
+      <ListBox {...listBoxWithTagsProps} isDisabled selectedOptions={[]}>
         {[]}
       </ListBox>
       <Gap.Small />
-      <ListBox
-        {...moreUseListBoxWithTagsProps}
-        isDisabled
-        selectedOptions={[{ label: "Heirloom scenester chillwave" }]}
-      >
+      <ListBox {...listBoxWithTagsProps} isDisabled selectedOptions={[{ label: "Heirloom scenester chillwave" }]}>
         {[]}
       </ListBox>
       <Gap />
       <StoryHeading level={2}>isReadOnly</StoryHeading>
-      <ListBox {...moreUseListBoxWithTagsProps} isReadOnly selectedOptions={[]}>
+      <ListBox {...listBoxWithTagsProps} isReadOnly selectedOptions={[]}>
         {[]}
       </ListBox>
       <Gap.Small />
-      <ListBox
-        {...moreUseListBoxWithTagsProps}
-        isReadOnly
-        selectedOptions={[{ label: "Heirloom scenester chillwave" }]}
-      >
+      <ListBox {...listBoxWithTagsProps} isReadOnly selectedOptions={[{ label: "Heirloom scenester chillwave" }]}>
         {[]}
       </ListBox>
       <Gap />
       <StoryHeading level={2}>hasError</StoryHeading>
-      <ListBox {...moreUseListBoxWithTagsProps} hasError selectedOptions={getSelectedOptions()}>
+      <ListBox {...listBoxWithTagsProps} hasError selectedOptions={getSelectedOptions()}>
         {renderItems(isSelected)}
       </ListBox>
 
       <Gap />
       <StoryHeading level={2}>placeholder</StoryHeading>
       <ListBox
-        {...moreUseListBoxWithTagsProps}
+        {...listBoxWithTagsProps}
         selectedOptions={getSelectedOptions()}
         placeholder="Choose your favourite lorem hipsums"
       >

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function useDragAndDropZoneEvents({ dropArea = () => document.body, handleChange, defaultIsDisabled }) {
+export default function useDragAndDropZoneEvents({ dropArea = () => document.body, defaultIsDisabled, handleChange }) {
   const [isDraggingOver, setisDraggingOver] = React.useState(defaultIsDisabled);
   const [isDragLeave, setIsDragLeave] = React.useState(defaultIsDisabled);
 
