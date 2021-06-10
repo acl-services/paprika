@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import { extractChildrenProps } from "@paprika/helpers";
 import { getFiles } from "./helpers";
 import FileList from "./components/FileList";
 import DropZone from "./components/DropZone";
 import * as types from "./types";
 import useDragAndDropEvents from "./useDragAndDropEvents";
 import useProcessFiles from "./useProcessFiles";
+import UploaderInputPropsCollector from "./components/UploaderInputPropsCollector";
 
 const oneMebibyte = 1048576;
 
@@ -50,7 +52,7 @@ const propTypes = {
   */
   maxFileSize: PropTypes.number,
   /**
-    This callback fires every time a file has been processed
+    This callback fires every time the input value has been changed.
   */
   onChange: PropTypes.func,
   /**
@@ -61,6 +63,10 @@ const propTypes = {
     you can pass an array of header objects.
   */
   headers: PropTypes.arrayOf(PropTypes.object),
+  /**
+    This callback fires when uploading is about to start (all files have been processed to see if they are valid type/size).
+  */
+  onProcessed: PropTypes.func,
   /**
    * Let you to take over the request method
    */
@@ -87,6 +93,7 @@ const defaultProps = {
   onChange: () => {},
   onCompleted: () => {},
   onError: null,
+  onProcessed: () => {},
   onRequest: null,
   supportedMimeTypes: ["*/*"],
 };
@@ -116,14 +123,17 @@ const Uploader = React.forwardRef((props, ref) => {
     onChange,
     onCompleted,
     onError,
+    onProcessed,
     onRequest,
     supportedMimeTypes,
+    ...morePropsOnUploaderWrapper
   } = props;
 
   const refInput = React.useRef();
   const refContainer = React.useRef(null);
   const i18n = useI18n();
   const label = a11yText || i18n.t("uploader.choose_from_computer_a11y");
+  const extendedInputProps = extractChildrenProps(children, UploaderInputPropsCollector);
 
   React.useImperativeHandle(ref, () => ({
     focus: () => {
@@ -136,13 +146,13 @@ const Uploader = React.forwardRef((props, ref) => {
     endpoint,
     hasAutoUpload,
     headers,
-    onChange,
     onCompleted,
+    onProcessed,
     onRequest,
   });
 
   const handleChange = React.useCallback(
-    function handleChange(event) {
+    event => {
       if (isDisabled) return;
 
       const files = getFiles({ event, maxFileSize, supportedMimeTypes, endpoint });
@@ -152,8 +162,9 @@ const Uploader = React.forwardRef((props, ref) => {
         }
         return canChooseMultiple ? files : [files[0]]; // in case only allow one file per upload
       });
+      onChange(files);
     },
-    [canChooseMultiple, endpoint, isDisabled, maxFileSize, supportedMimeTypes, setFiles]
+    [canChooseMultiple, endpoint, isDisabled, maxFileSize, setFiles, supportedMimeTypes, onChange]
   );
 
   const { isDragLeave, isDraggingOver } = useDragAndDropEvents({
@@ -164,33 +175,27 @@ const Uploader = React.forwardRef((props, ref) => {
 
   const value = {
     cancelFile,
+    canChooseMultiple,
+    extendedInputProps,
     files,
+    handleChange,
     isCompleted,
     isDisabled,
-    isDragLeave,
     isDraggingOver,
+    isDragLeave,
+    label,
+    maxFileSize,
+    morePropsOnUploaderWrapper,
     onCancel,
     onError,
+    refContainer,
     refInput,
     removeFile,
-    upload,
-    handleChange,
     supportedMimeTypes,
-    canChooseMultiple,
-    refContainer,
-    label,
+    upload,
   };
 
-  const childrenWithProps = React.Children.map(children, child => {
-    return child === null
-      ? null
-      : React.cloneElement(child, {
-          maxFileSize,
-          supportedMimeTypes,
-        });
-  });
-
-  return <UploaderContext.Provider value={value}>{childrenWithProps}</UploaderContext.Provider>;
+  return <UploaderContext.Provider value={value}>{children}</UploaderContext.Provider>;
 });
 
 Uploader.defaultProps = defaultProps;
@@ -200,6 +205,7 @@ Uploader.types = types;
 
 Uploader.DropZone = DropZone;
 Uploader.FileList = FileList;
+Uploader.Input = UploaderInputPropsCollector;
 
 // utility tool to help creating a maximum desirable size for files
 Uploader.convertUnitsToMebibytes = (MiB = 1) => oneMebibyte * MiB;
