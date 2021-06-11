@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ReactFocusLock from "react-focus-lock";
 import { zValue } from "@paprika/stylers/lib/helpers";
 import { LockBodyScroll, Portal } from "@paprika/helpers";
 import OriginalOverlay from "@paprika/overlay";
@@ -165,11 +164,7 @@ export default function Panel(props) {
     if (isInline) {
       sidePanel = dialog;
     } else if (!overlayExtracted) {
-      sidePanel = (
-        <Portal active>
-          <ReactFocusLock {...focusLockProps}>{dialog}</ReactFocusLock>
-        </Portal>
-      );
+      sidePanel = <Portal active>{dialog}</Portal>;
     } else {
       const { children, focusLockOptions, ...morePropsForOverlay } = overlayExtracted.props;
       sidePanel = (
