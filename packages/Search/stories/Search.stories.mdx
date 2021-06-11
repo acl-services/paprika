@@ -1,0 +1,10 @@
+
+import { Meta, Description } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import { docsStoryParameters } from "storybook/assets/storyParameters";
+import Readme from "../README.md";
+import Search from "../src";
+
+<Meta title={`${getStoryName("Search")}/ Docs`} component={Search} parameters={{ ...docsStoryParameters }} />
+
+<Description markdown={Readme} />
