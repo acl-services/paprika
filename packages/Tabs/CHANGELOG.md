@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.2.5-next.1
+
+### Patch Changes
+
+- 50fc8d6: Make it so a tab that is a link can be marked as "active"
+- 17bb9de: Make spacebar activate a nav tab if it is a link
+
 ## 2.2.5-next.0
 
 ### Patch Changes
