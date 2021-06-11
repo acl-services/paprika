@@ -74,7 +74,12 @@
     "@paprika/seducer": "2.0.1"
   },
   "changesets": [
+    "cold-paws-repeat",
+    "dirty-cobras-crash",
+    "fuzzy-panthers-juggle",
     "little-planes-thank",
-    "new-scissors-happen"
+    "new-scissors-happen",
+    "red-llamas-rush",
+    "tidy-tomatoes-notice"
   ]
 }

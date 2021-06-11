@@ -5,7 +5,7 @@ interface TabsProps {
   [x: string]: any;
   /** Description of the purpose of the tabs for assistive technology. */
   a11yText?: string;
-  /** Expects Tabs.List and Tabs.Panels. */
+  /** Expects Tabs.List (mandatory) and Tabs.Panels (optional). */
   children: React.ReactNode;
   /** Sets what tabindex is active by default (uncontrolled component). Use null for no active tab. */
   defaultIndex?: number;
