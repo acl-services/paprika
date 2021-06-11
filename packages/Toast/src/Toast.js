@@ -162,7 +162,7 @@ const propTypes = {
   /** Duration (in ms) before Toast will automatically close (if canAutoClose is true). */
   autoCloseDelay: PropTypes.number,
 
-  /** Will automatically close after 5000ms (or longer if provided by autoCloseDelay). */
+  /** Will automatically call onClose() after 5000ms (or longer if provided by autoCloseDelay). If uncontrolled, it will automatically close the Toast as well. */
   canAutoClose: PropTypes.bool,
 
   /** Content of the Toast. */
