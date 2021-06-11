@@ -39,7 +39,7 @@ export default function ListBoxWithTags(props) {
 
   const validSize = Object.values(ListBox.types.size).includes(size) ? size : ListBox.types.size.MEDIUM;
 
-  function handleLastSelectedOption(options, selectedOption) {
+  function handleLastSelectedOption(selectedOption, options) {
     const lastIndex = Object.keys(options).length - 1;
     if (lastIndex === 0 || refFilter.current.textSearch) {
       setLastSelectedOption(null);
@@ -68,8 +68,9 @@ export default function ListBoxWithTags(props) {
   }
 
   function handleChange(...args) {
+    const [newSelectedOptions, options] = args;
     if (selectedOptions !== null && "length" in selectedOptions) {
-      handleLastSelectedOption(args[1], args[2]);
+      handleLastSelectedOption(newSelectedOptions[0], options);
       if (refFilter.current) {
         refFilter.current.reset();
         refFilter.current.focus();
