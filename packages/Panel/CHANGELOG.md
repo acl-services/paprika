@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.0-next.1
+
+### Minor Changes
+
+- 82ef2b7: No longer use focus trap when overlay is not used
+
 ## 2.0.12-next.0
 
 ### Patch Changes
