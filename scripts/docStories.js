@@ -35,9 +35,10 @@ shell.ls("packages").forEach(folder => {
   if (!skipPackages.includes(folder)) {
     const path = `./packages/${folder}`;
     const destinationFileName = `${path}/stories/${folder}.stories.mdx`;
+    const readMeFile = `${path}/README.md`;
 
     try {
-      if (!fs.existsSync(destinationFileName)) {
+      if (!fs.existsSync(destinationFileName) && fs.existsSync(readMeFile)) {
         const template = renderMDXFileTemplate({
           displayName: folder
         });
