@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.3.0-next.1
+
+### Minor Changes
+
+- 25ed9a6: Added additional imperative functions for focusing:
+
+  - Focus by option index in ListBox
+  - Focus on ListBox.Filter input
+
 ## 3.2.1-next.0
 
 ### Patch Changes

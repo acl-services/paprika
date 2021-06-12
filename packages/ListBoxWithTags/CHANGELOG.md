@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.0.0-next.2
+
+### Patch Changes
+
+- 47004f0: - Fixed issue where the Popover is not dismissable by clicking outside after selecting an option
+  - It will now refocus on the next element available, or the Filter input (if no options available) when selecting an option
+- Updated dependencies [25ed9a6]
+  - @paprika/list-box@3.3.0-next.1
+
 ## 2.0.0-next.1
 
 ### Major Changes
