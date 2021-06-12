@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.22
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+- Updated dependencies [25ed9a6]
+  - @paprika/l10n@1.1.11
+  - @paprika/list-box@3.3.0
+
 ## 1.0.22-next.1
 
 ### Patch Changes

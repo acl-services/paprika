@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.11
+
+### Patch Changes
+
+- ae0d6a0: Bump l10n for new translations
+
 ## 1.1.11-next.0
 
 ### Patch Changes

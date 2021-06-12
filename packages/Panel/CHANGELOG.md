@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.1.0
+
+### Minor Changes
+
+- 82ef2b7: No longer use focus trap when overlay is not used
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11
+
 ## 2.1.0-next.1
 
 ### Minor Changes

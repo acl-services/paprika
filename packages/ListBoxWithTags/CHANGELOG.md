@@ -1,5 +1,21 @@
 # Changelog
 
+## 2.0.0
+
+### Major Changes
+
+- 53fe1ed: BREAKING CHANGE: Separated the valid props from the return value of `useListBoxWithTags`. If you don't use `useListBoxWithTags` you're fine, otherwise please get the object called `listBoxWithTagsProps` from the `useListBoxWithTags`'s return value and pass that object to `<ListBoxWithTags />` component if needed. For example: https://github.com/acl-services/paprika/pull/980/files#diff-801a2bfe08256d72d8997c724c8f9d1736e6dc9ce667e3626d4b4de936ab8777R9
+
+### Patch Changes
+
+- 47004f0: - Fixed issue where the Popover is not dismissable by clicking outside after selecting an option
+  - It will now refocus on the next element available, or the Filter input (if no options available) when selecting an option
+- Updated dependencies [ae0d6a0]
+- Updated dependencies [25ed9a6]
+  - @paprika/l10n@1.1.11
+  - @paprika/list-box@3.3.0
+  - @paprika/tag@0.0.6
+
 ## 2.0.0-next.2
 
 ### Patch Changes
