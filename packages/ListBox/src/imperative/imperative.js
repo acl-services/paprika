@@ -22,6 +22,16 @@ const handleImperative = ({ state, dispatch, onChangeContext }) => () => {
     focus: () => {
       state.refTrigger.current.focus();
     },
+    setFocusOptionByIndex: index => {
+      const optionElement = state.refListBox.current.childNodes[index];
+      optionElement.focus();
+      dispatch({
+        type: useListBox.types.setActiveOption,
+        payload: {
+          activeOptionIndex: index,
+        },
+      });
+    },
     toggleSelectedOption: index => {
       toggleOption({
         index,

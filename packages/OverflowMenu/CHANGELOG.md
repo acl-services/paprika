@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.20
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11
+  - @paprika/confirmation@1.1.5
+
 ## 1.0.20-next.0
 
 ### Patch Changes

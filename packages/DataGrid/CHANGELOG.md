@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+- Updated dependencies [82ef2b7]
+  - @paprika/l10n@1.1.11
+  - @paprika/panel@2.1.0
+
+## 1.0.13-next.1
+
+### Patch Changes
+
+- Updated dependencies [82ef2b7]
+  - @paprika/panel@2.1.0-next.1
+
 ## 1.0.13-next.0
 
 ### Patch Changes

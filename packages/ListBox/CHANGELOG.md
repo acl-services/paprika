@@ -1,5 +1,30 @@
 # Changelog
 
+## 3.3.0
+
+### Minor Changes
+
+- 25ed9a6: Added additional imperative functions for focusing:
+
+  - Focus by option index in ListBox
+  - Focus on ListBox.Filter input
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11
+  - @paprika/input@4.0.3
+  - @paprika/toast@1.1.4
+
+## 3.3.0-next.1
+
+### Minor Changes
+
+- 25ed9a6: Added additional imperative functions for focusing:
+
+  - Focus by option index in ListBox
+  - Focus on ListBox.Filter input
+
 ## 3.2.1-next.0
 
 ### Patch Changes

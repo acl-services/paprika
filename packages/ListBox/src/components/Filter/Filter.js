@@ -28,6 +28,10 @@ const Filter = React.forwardRef((props, ref) => {
       applyFilter(dispatch, applyFilterType)([], false);
       setTextSearch("");
     },
+    focus: () => {
+      refFilterInput.current.focus();
+    },
+    textSearch,
   }));
 
   const handleChangeFilter = event => {
