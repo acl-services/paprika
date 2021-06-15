@@ -41,7 +41,7 @@ export default function ListBoxWithTags(props) {
 
   function handleLastSelectedOption(selectedOption, options) {
     const lastIndex = Object.keys(options).length - 1;
-    if (lastIndex === 0 || refFilter.current.textSearch) {
+    if (lastIndex === 0 || refFilter.current.textSearch || options[lastIndex - 1].hasLabel === undefined) {
       setLastSelectedOption(null);
     } else if (selectedOption === lastIndex) {
       setLastSelectedOption(lastIndex - 1);
