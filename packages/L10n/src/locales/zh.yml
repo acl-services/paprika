@@ -19,8 +19,8 @@ zh:
       drop_files_here_or: 在此放下文件以上传或
       choose_from_computer: 从您的电脑中选择
       choose_from_computer_a11y: 从您的电脑中选择文件
-      cancel_upload: 取消上传
-      restart_upload: 再次选择文件重试
+      cancel_upload: 取消上传{{name}}
+      restart_upload: 再次选择 {{name}} 重试
       file_list: 文件列表
       errors:
         size: 文件必须小于 {{maxFileSize}}
@@ -35,7 +35,10 @@ zh:
       progress:
         cancelled: 已取消
         complete: 完成
+        error: "{{name}} 出错了：{{error}}"
         idle: 空闲
+        file_progress: "{{name}} 正在 {{progress}}"
+        uploading_percent: 上传中，{{a11yProgress}}%
         uploading: 正在上传 {{progressWithUnits}} / {{sizeWithUnits}}
       size_abbreviations:
         byte: B
@@ -198,6 +201,8 @@ zh:
         is_not_empty: 不是空的
         is_before: 早于
         is_after: 晚于
+        is_one_of: 属于
+        is_not_one_of: 不属于
         true: "真"
         false: "假"
     input:

@@ -19,8 +19,8 @@ ja:
       drop_files_here_or: アップロードするファイルをここにドロップまたは
       choose_from_computer: コンピューターから選択
       choose_from_computer_a11y: コンピューターからファイルを選択する
-      cancel_upload: アップロードをキャンセル
-      restart_upload: ファイルを選択し直して再び実行してください
+      cancel_upload: '{{name}}のアップロードをキャンセル'
+      restart_upload: '{{name}}をもう一度選択し、再試行します'
       file_list: ファイル一覧
       errors:
         size: ファイルは{{maxFileSize}}未満にする必要があります
@@ -35,7 +35,10 @@ ja:
       progress:
         cancelled: 取り消されました
         complete: 完了
+        error: "{{name}にエラーが発生しました}: {{error}}"
         idle: アイドル状態
+        file_progress: "{{name}}は{{progress}}です"
+        uploading_percent: アップロード、{{a11yProgress}}%
         uploading: '{{sizeWithUnits}}のうち{{progressWithUnits}}をアップロード'
       size_abbreviations:
         byte: B
@@ -198,6 +201,8 @@ ja:
         is_not_empty: は空でない
         is_before: 'は次より前である:'
         is_after: 'は次より後である:'
+        is_one_of: 'は次の1つである:'
+        is_not_one_of: 'は次の1つでない:'
         true: "真"
         false: "偽"
     input:

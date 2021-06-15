@@ -208,4 +208,16 @@ storiesOf(`${storyName}/Examples`, module)
         </Uploader>
       </Story>
     );
+  })
+  .add("extended input props", () => {
+    return (
+      <Story>
+        <p>Check the inspector to see the attributes on the input element</p>
+        <Uploader endpoint="http://localhost:9000/upload.php">
+          <Uploader.DropZone />
+          <Uploader.FileList />
+          <Uploader.Input name="entry-file" className="MyClassName" data-qa-anchor="my-qa-anchor" />
+        </Uploader>
+      </Story>
+    );
   });

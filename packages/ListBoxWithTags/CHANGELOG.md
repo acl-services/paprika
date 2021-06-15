@@ -1,5 +1,65 @@
 # Changelog
 
+## 2.0.0
+
+### Major Changes
+
+- 53fe1ed: BREAKING CHANGE: Separated the valid props from the return value of `useListBoxWithTags`. If you don't use `useListBoxWithTags` you're fine, otherwise please get the object called `listBoxWithTagsProps` from the `useListBoxWithTags`'s return value and pass that object to `<ListBoxWithTags />` component if needed. For example: https://github.com/acl-services/paprika/pull/980/files#diff-801a2bfe08256d72d8997c724c8f9d1736e6dc9ce667e3626d4b4de936ab8777R9
+
+### Patch Changes
+
+- 47004f0: - Fixed issue where the Popover is not dismissable by clicking outside after selecting an option
+  - It will now refocus on the next element available, or the Filter input (if no options available) when selecting an option
+- Updated dependencies [ae0d6a0]
+- Updated dependencies [25ed9a6]
+  - @paprika/l10n@1.1.11
+  - @paprika/list-box@3.3.0
+  - @paprika/tag@0.0.6
+
+## 2.0.0-next.2
+
+### Patch Changes
+
+- 47004f0: - Fixed issue where the Popover is not dismissable by clicking outside after selecting an option
+  - It will now refocus on the next element available, or the Filter input (if no options available) when selecting an option
+- Updated dependencies [25ed9a6]
+  - @paprika/list-box@3.3.0-next.1
+
+## 2.0.0-next.1
+
+### Major Changes
+
+- 53fe1ed: BREAKING CHANGE: Separated the valid props from the return value of `useListBoxWithTags`. If you don't use `useListBoxWithTags` you're fine, otherwise please get the object called `listBoxWithTagsProps` from the `useListBoxWithTags`'s return value and pass that object to `<ListBoxWithTags />` component if needed. For example: https://github.com/acl-services/paprika/pull/980/files#diff-801a2bfe08256d72d8997c724c8f9d1736e6dc9ce667e3626d4b4de936ab8777R9
+
+## 1.2.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11-next.0
+  - @paprika/list-box@3.2.1-next.0
+  - @paprika/tag@0.0.6-next.0
+
+## 1.2.1
+
+### Patch Changes
+
+- Updated dependencies [4365834]
+- Updated dependencies [e856d54]
+  - @paprika/list-box@3.2.0
+  - @paprika/raw-button@1.0.4
+  - @paprika/tag@0.0.5
+
+## 1.2.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [4365834]
+- Updated dependencies [e856d54]
+  - @paprika/list-box@3.2.0-next.0
+  - @paprika/raw-button@1.0.4-next.0
+  - @paprika/tag@0.0.5-next.0
+
 ## 1.2.0
 
 ### Minor Changes

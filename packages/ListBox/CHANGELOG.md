@@ -1,5 +1,71 @@
 # Changelog
 
+## 3.3.0
+
+### Minor Changes
+
+- 25ed9a6: Added additional imperative functions for focusing:
+
+  - Focus by option index in ListBox
+  - Focus on ListBox.Filter input
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11
+  - @paprika/input@4.0.3
+  - @paprika/toast@1.1.4
+
+## 3.3.0-next.1
+
+### Minor Changes
+
+- 25ed9a6: Added additional imperative functions for focusing:
+
+  - Focus by option index in ListBox
+  - Focus on ListBox.Filter input
+
+## 3.2.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11-next.0
+  - @paprika/input@4.0.3-next.0
+  - @paprika/toast@1.1.4-next.0
+
+## 3.2.0
+
+### Minor Changes
+
+- 4365834: Added contentOffsetX and contentOffsetY props to control the horizontal and vertical offset of the <ListBox> contents with <Popover>.
+
+### Patch Changes
+
+- Updated dependencies [e856d54]
+- Updated dependencies [e856d54]
+  - @paprika/button@1.1.0
+  - @paprika/raw-button@1.0.4
+  - @paprika/input@4.0.2
+  - @paprika/popover@1.2.3
+  - @paprika/toast@1.1.3
+
+## 3.2.0-next.0
+
+### Minor Changes
+
+- 4365834: Added contentOffsetX and contentOffsetY props to control the horizontal and vertical offset of the <ListBox> contents with <Popover>.
+
+### Patch Changes
+
+- Updated dependencies [e856d54]
+- Updated dependencies [e856d54]
+  - @paprika/button@1.1.0-next.0
+  - @paprika/raw-button@1.0.4-next.0
+  - @paprika/input@4.0.2-next.0
+  - @paprika/toast@1.1.3-next.0
+  - @paprika/popover@1.2.3-next.0
+
 ## 3.1.0
 
 ### Minor Changes

@@ -19,8 +19,8 @@ fr:
       drop_files_here_or: Déposer les fichiers à charger ici ou
       choose_from_computer: parcourir votre ordinateur
       choose_from_computer_a11y: Choisir des fichiers dans votre ordinateur
-      cancel_upload: Annuler le chargement
-      restart_upload: Sélectionnez à nouveau le fichier pour réessayer
+      cancel_upload: Annuler le chargement pour {{name}}
+      restart_upload: Sélectionner à nouveau {{name}} pour réessayer
       file_list: Liste des fichiers
       errors:
         size: La taille du fichier ne doit pas dépasser {{maxFileSize}}
@@ -35,7 +35,10 @@ fr:
       progress:
         cancelled: Annulé(e)
         complete: Terminé(e)
+        error: "Une erreur est survenue pour {{name}}: {{error}}"
         idle: Inactif
+        file_progress: "{{name}} est {{progress}}"
+        uploading_percent: Chargement en cours, {{a11yProgress}}%
         uploading: Chargement en cours de {{progressWithUnits}} sur {{sizeWithUnits}}
       size_abbreviations:
         byte: O
@@ -198,6 +201,8 @@ fr:
         is_not_empty: n'est pas vide
         is_before: est avant
         is_after: est après
+        is_one_of: appartient à
+        is_not_one_of: n'appartient pas à
         true: "vrai"
         false: "faux"
     input:

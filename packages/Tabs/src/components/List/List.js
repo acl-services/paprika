@@ -11,6 +11,7 @@ export default function List(props) {
     activeIndex,
     focusIndex,
     hasInsetFocusStyle,
+    hasPanels,
     hasTruncation,
     idTabs,
     isVertical,
@@ -26,7 +27,7 @@ export default function List(props) {
     .filter(child => child !== null && child.type.displayName === Tab.displayName)
     .map((tab, index) =>
       React.cloneElement(tab, {
-        "aria-controls": `${idTabs}-panel-${index}`,
+        "aria-controls": hasPanels ? `${idTabs}-panel-${index}` : null,
         focusIndex,
         kind,
         hasFocus: focusIndex === index,

@@ -1,5 +1,79 @@
 # Changelog
 
+## 1.2.1
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+- Updated dependencies [82ef2b7]
+- Updated dependencies [25ed9a6]
+  - @paprika/l10n@1.1.11
+  - @paprika/panel@2.1.0
+  - @paprika/list-box@3.3.0
+  - @paprika/date-picker@1.0.17
+  - @paprika/input@4.0.3
+
+## 1.2.1-next.2
+
+### Patch Changes
+
+- Updated dependencies [25ed9a6]
+  - @paprika/list-box@3.3.0-next.1
+
+## 1.2.1-next.1
+
+### Patch Changes
+
+- Updated dependencies [82ef2b7]
+  - @paprika/panel@2.1.0-next.1
+
+## 1.2.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11-next.0
+  - @paprika/date-picker@1.0.17-next.0
+  - @paprika/input@4.0.3-next.0
+  - @paprika/list-box@3.2.1-next.0
+  - @paprika/panel@2.0.12-next.0
+
+## 1.2.0
+
+### Minor Changes
+
+- 3eb67cf: Add a Multi select filter option to the @paprika/filter component.
+  The comparators are is one of and is not one of.
+
+### Patch Changes
+
+- 3d52cd8: chore(deps): Bump immer from 6.0.9 to 8.0.1
+- Updated dependencies [4365834]
+- Updated dependencies [e856d54]
+  - @paprika/list-box@3.2.0
+  - @paprika/button@1.1.0
+  - @paprika/date-picker@1.0.16
+  - @paprika/input@4.0.2
+  - @paprika/panel@2.0.11
+
+## 1.2.0-next.2
+
+### Patch Changes
+
+- 3d52cd8: chore(deps): Bump immer from 6.0.9 to 8.0.1
+
+## 1.2.0-next.1
+
+### Patch Changes
+
+- Updated dependencies [4365834]
+- Updated dependencies [e856d54]
+  - @paprika/list-box@3.2.0-next.0
+  - @paprika/button@1.1.0-next.0
+  - @paprika/input@4.0.2-next.0
+  - @paprika/panel@2.0.11-next.0
+  - @paprika/date-picker@1.0.16-next.0
+
 ## 1.2.0-next.0
 
 ### Minor Changes

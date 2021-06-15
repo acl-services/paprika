@@ -1,5 +1,51 @@
 # @paprika/search
 
+## 1.0.14
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+- Updated dependencies [25ed9a6]
+  - @paprika/l10n@1.1.11
+  - @paprika/list-box@3.3.0
+  - @paprika/input@4.0.3
+
+## 1.0.14-next.1
+
+### Patch Changes
+
+- Updated dependencies [25ed9a6]
+  - @paprika/list-box@3.3.0-next.1
+
+## 1.0.14-next.0
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11-next.0
+  - @paprika/input@4.0.3-next.0
+  - @paprika/list-box@3.2.1-next.0
+
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies [4365834]
+- Updated dependencies [e856d54]
+  - @paprika/list-box@3.2.0
+  - @paprika/raw-button@1.0.4
+  - @paprika/input@4.0.2
+
+## 1.0.13-next.0
+
+### Patch Changes
+
+- Updated dependencies [4365834]
+- Updated dependencies [e856d54]
+  - @paprika/list-box@3.2.0-next.0
+  - @paprika/raw-button@1.0.4-next.0
+  - @paprika/input@4.0.2-next.0
+
 ## 1.0.12
 
 ### Patch Changes

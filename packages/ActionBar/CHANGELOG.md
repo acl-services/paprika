@@ -1,5 +1,52 @@
 # Changelog
 
+## 3.1.4
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11
+  - @paprika/input@4.0.3
+  - @paprika/sortable@1.1.11
+
+## 3.1.4-next.0
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11-next.0
+  - @paprika/input@4.0.3-next.0
+  - @paprika/sortable@1.1.11-next.0
+
+## 3.1.3
+
+### Patch Changes
+
+- 3d52cd8: chore(deps): Bump immer from 6.0.9 to 8.0.1
+- Updated dependencies [e856d54]
+  - @paprika/button@1.1.0
+  - @paprika/input@4.0.2
+  - @paprika/popover@1.2.3
+  - @paprika/sortable@1.1.10
+  - @paprika/switch@1.0.9
+
+## 3.1.3-next.1
+
+### Patch Changes
+
+- 3d52cd8: chore(deps): Bump immer from 6.0.9 to 8.0.1
+
+## 3.1.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [e856d54]
+  - @paprika/button@1.1.0-next.0
+  - @paprika/input@4.0.2-next.0
+  - @paprika/sortable@1.1.10-next.0
+  - @paprika/popover@1.2.3-next.0
+  - @paprika/switch@1.0.9-next.0
+
 ## 3.1.2
 
 ### Patch Changes

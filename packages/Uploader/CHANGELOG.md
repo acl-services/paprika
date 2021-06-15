@@ -1,5 +1,65 @@
 # Changelog
 
+## 3.0.0
+
+### Major Changes
+
+- 0e1fc97: - BREAKING CHANGE: Repurposing the `onChange` prop to be triggered every time the input value has been changed. If you used it before, you probably want to replace it by `onProcessed` instead.
+  - Added a new prop `onProcessed` this will be triggered when uploading is about to start (all files have been processed to see if they are valid type/size).
+  - Added a sub-component `<Uploader.Input />`, you can pass in some custom props for the input element. See this storybook example: https://paprika.highbond.com/?path=/story/forms-uploader-examples--extended-input-props
+  - Passed moreProps to the container.
+
+### Minor Changes
+
+- 5ee5aca: Enhancing a11y compliance by introducing tabbing and screen reader capability for the Uploader components (DropZone and Files)
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11
+
+## 3.0.0-next.2
+
+### Major Changes
+
+- 0e1fc97: - BREAKING CHANGE: Repurposing the `onChange` prop to be triggered every time the input value has been changed. If you used it before, you probably want to replace it by `onProcessed` instead.
+  - Added a new prop `onProcessed` this will be triggered when uploading is about to start (all files have been processed to see if they are valid type/size).
+  - Added a sub-component `<Uploader.Input />`, you can pass in some custom props for the input element. See this storybook example: https://paprika.highbond.com/?path=/story/forms-uploader-examples--extended-input-props
+  - Passed moreProps to the container.
+
+## 2.1.0-next.1
+
+### Minor Changes
+
+- 5ee5aca: Enhancing a11y compliance by introducing tabbing and screen reader capability for the Uploader components (DropZone and Files)
+
+## 2.0.13-next.0
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11-next.0
+
+## 2.0.12
+
+### Patch Changes
+
+- Updated dependencies [e856d54]
+- Updated dependencies [e856d54]
+  - @paprika/button@1.1.0
+  - @paprika/raw-button@1.0.4
+  - @paprika/popover@1.2.3
+
+## 2.0.12-next.0
+
+### Patch Changes
+
+- Updated dependencies [e856d54]
+- Updated dependencies [e856d54]
+  - @paprika/button@1.1.0-next.0
+  - @paprika/raw-button@1.0.4-next.0
+  - @paprika/popover@1.2.3-next.0
+
 ## 2.0.11
 
 ### Patch Changes
