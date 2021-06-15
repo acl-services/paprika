@@ -14,10 +14,7 @@ export const Content = styled.div`
 
 export const PopoverCard = styled(Popover.Card)(
   ({ maxHeight }) => css`
-    max-height: ${maxHeight}px;
+    max-height: ${Number.isNaN(Number(maxHeight)) ? maxHeight : `${maxHeight}px`};
     overflow: auto;
-    ::-webkit-scrollbar {
-      width: 0;
-    }
   `
 );

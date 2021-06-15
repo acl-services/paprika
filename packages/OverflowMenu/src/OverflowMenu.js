@@ -30,23 +30,23 @@ const propTypes = {
   /** Control if the overflow menu popover open. */
   isOpen: PropTypes.bool,
 
+  /** The maximum height of the OverflowMenu content */
+  maxHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
   /** If provided, will fire when the Popover is closed */
   onClose: PropTypes.func,
 
   /** The z-index for the popover / confirmation */
   zIndex: PropTypes.number,
-
-  /** The maximum height of the OverflowMenu content */
-  maxHeight: PropTypes.number,
 };
 
 const defaultProps = {
   align: Popover.types.align.BOTTOM,
   edge: null,
   isOpen: null,
+  maxHeight: 300,
   onClose: null,
   zIndex: zValue(1),
-  maxHeight: null,
 };
 
 const popoverOffset = 4;

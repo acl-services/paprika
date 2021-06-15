@@ -1,6 +1,6 @@
 import React from "react";
 import { Rule, Tagline } from "storybook/assets/styles/common.styles";
-import { select, text, number } from "@storybook/addon-knobs";
+import { select, text } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import { AlignTypes } from "@paprika/helpers";
 import L10n from "@paprika/l10n";
@@ -19,7 +19,7 @@ const overflowComponentProps = () => ({
   edge: select("edge", [AlignTypes.LEFT, AlignTypes.RIGHT], "left"),
   triggerContent: text("trigger text", "Trigger"),
   itemContent: text("item text", "Extra super long label for a Galvanize LinkItem"),
-  maxHeight: number("maxHeight", undefined),
+  maxHeight: text("maxHeight", 300),
 });
 
 const confirmationComponentProps = () => ({
