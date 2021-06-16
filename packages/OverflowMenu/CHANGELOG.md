@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0-next.0
+
+### Minor Changes
+
+- 11ca2a7: Added maxHeight prop to <OverflowMenu> to allow a scrollable list when the menu overflows.
+
 ## 1.0.20
 
 ### Patch Changes
