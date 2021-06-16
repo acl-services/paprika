@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.1-next.0
+
+### Patch Changes
+
+- be16def: - Fixed option refocus being undefined when selecting the last option with a null second last option.
+
 ## 2.0.0
 
 ### Major Changes
