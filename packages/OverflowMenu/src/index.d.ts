@@ -11,6 +11,8 @@ interface OverflowMenuProps {
   edge?: Popover.types.align.LEFT | Popover.types.align.RIGHT | null;
   /** Control if the overflow menu popover open. */
   isOpen?: boolean;
+  /** The maximum height of the OverflowMenu content */
+  maxHeight?: number | string;
   /** If provided, will fire when the Popover is closed */
   onClose?: (...args: any[]) => any;
   /** The z-index for the popover / confirmation */
