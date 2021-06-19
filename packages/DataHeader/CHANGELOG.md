@@ -1,5 +1,12 @@
 <!-- content -->
 
+## 1.0.21
+
+### Patch Changes
+
+- Updated dependencies [11ca2a7]
+  - @paprika/overflow-menu@1.1.0
+
 ## 1.0.21-next.0
 
 ### Patch Changes
