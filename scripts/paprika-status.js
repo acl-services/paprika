@@ -8,7 +8,7 @@ class PaprikaStatus {
     this.PATH_TO_COMPONENTS = "./packages/";
     this.VALID_TYPES = ["feat", "fix", "style", "test", "docs", "build", "chore", "ci", "perf", "refactor", "revert"];
 
-    this.gitOutput = "output_git.json";
+    this.gitOutput = "output_git.xml";
     this.statuses = {};
   }
 
