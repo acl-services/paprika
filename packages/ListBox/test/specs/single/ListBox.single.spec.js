@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, configure } from "@testing-library/react";
+import { render, fireEvent, configure, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
 import { Controlled } from "../../../stories/examples/Single/Controlled";
 import ListBox from "../../../src";
@@ -45,6 +45,15 @@ describe("ListBox single select", () => {
 
     openSelect();
     popoverIsVisible();
+  });
+
+  it("dropdown should toggle when clicked", () => {
+    const { popoverIsVisible, popoverIsHidden } = renderComponent();
+
+    fireEvent.click(screen.getByText(/select/i));
+    popoverIsVisible();
+    fireEvent.click(screen.getByText(/select/i));
+    popoverIsHidden();
   });
 
   it("dropdown should have correct number of options", () => {
