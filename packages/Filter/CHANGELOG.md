@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.2
+
+### Patch Changes
+
+- 9412ed6: support a 'max filters' prop
+
 ## 1.2.2-next.0
 
 ### Patch Changes
