@@ -11,7 +11,7 @@ import CopyInputInputPropsCollector from "./components/Input/Input";
 import * as sc from "./CopyInput.styles";
 
 function CopyInput(props) {
-  const { children, isReadOnly, value, ...moreProps } = props;
+  const { children, isReadOnly, value, hasError, hideInput, buttonKind, ...moreProps } = props;
   const extendedInputProps = extractChildrenProps(children, CopyInputInputPropsCollector);
   const I18n = useI18n();
   const inputRef = React.createRef();
@@ -46,50 +46,57 @@ function CopyInput(props) {
   }
 
   return (
-    <sc.CopyInput data-pka-anchor="copy-input" {...moreProps}>
-      <Input ref={inputRef} defaultValue={value} isReadOnly={isReadOnly} {...extendedInputProps} />
-      <div ref={buttonRef} data-pka-anchor="copy-input.button">
-        <Button.Icon
-          a11yText={I18n.t("copyInput.hover_tooltip")}
-          kind="primary"
-          onClick={handleButtonClick}
-          onMouseOver={() => setIsHoverTooltipOpen(true)}
-          onMouseOut={() => setIsHoverTooltipOpen(false)}
-          onFocus={() => setIsHoverTooltipOpen(true)}
-          onBlur={() => setIsHoverTooltipOpen(false)}
+    <sc.CopyContainer>
+      <sc.CopyInput data-pka-anchor="copy-input" {...moreProps}>
+        {isReadOnly && !hideInput ? <sc.Value>{value}</sc.Value> : null}
+        {isReadOnly || hideInput ? (
+          <sc.HiddenInput ref={inputRef} defaultValue={value} />
+        ) : (
+          <Input hasError={hasError} ref={inputRef} defaultValue={value} {...extendedInputProps} />
+        )}
+        <div ref={buttonRef} data-pka-anchor="copy-input.button">
+          <Button.Icon
+            a11yText={I18n.t("copyInput.hover_tooltip")}
+            kind={buttonKind}
+            onClick={handleButtonClick}
+            onMouseOver={() => setIsHoverTooltipOpen(true)}
+            onMouseOut={() => setIsHoverTooltipOpen(false)}
+            onFocus={() => setIsHoverTooltipOpen(true)}
+            onBlur={() => setIsHoverTooltipOpen(false)}
+          >
+            <CopyIcon />
+          </Button.Icon>
+        </div>
+        <Popover
+          align="bottom"
+          getPositioningElement={() => buttonRef.current}
+          isDark
+          isEager
+          isOpen={isHoverTooltipOpen && !isClickedTooltipOpen}
         >
-          <CopyIcon />
-        </Button.Icon>
-      </div>
-      <Popover
-        align="bottom"
-        getPositioningElement={() => buttonRef.current}
-        isDark
-        isEager
-        isOpen={isHoverTooltipOpen && !isClickedTooltipOpen}
-      >
-        <Popover.Content>
-          <Popover.Card>{I18n.t("copyInput.hover_tooltip")}</Popover.Card>
-        </Popover.Content>
-        <Popover.Tip />
-      </Popover>
-      <Popover
-        align="bottom"
-        getPositioningElement={() => buttonRef.current}
-        isOpen={isClickedTooltipOpen}
-        shouldKeepFocus
-      >
-        <Popover.Content>
-          <Popover.Card>{I18n.t("copyInput.clicked_tooltip")}</Popover.Card>
-        </Popover.Content>
-        <Popover.Tip />
-      </Popover>
-      {isClickedTooltipOpen && (
-        <Toast kind={Toast.types.kind.VISUALLY_HIDDEN} aria-hidden>
-          {I18n.t("copyInput.clicked_tooltip")}
-        </Toast>
-      )}
-    </sc.CopyInput>
+          <Popover.Content>
+            <Popover.Card>{I18n.t("copyInput.hover_tooltip")}</Popover.Card>
+          </Popover.Content>
+          <Popover.Tip />
+        </Popover>
+        <Popover
+          align="bottom"
+          getPositioningElement={() => buttonRef.current}
+          isOpen={isClickedTooltipOpen}
+          shouldKeepFocus
+        >
+          <Popover.Content>
+            <Popover.Card>{I18n.t("copyInput.clicked_tooltip")}</Popover.Card>
+          </Popover.Content>
+          <Popover.Tip />
+        </Popover>
+        {isClickedTooltipOpen && (
+          <Toast kind={Toast.types.kind.VISUALLY_HIDDEN} aria-hidden>
+            {I18n.t("copyInput.clicked_tooltip")}
+          </Toast>
+        )}
+      </sc.CopyInput>
+    </sc.CopyContainer>
   );
 }
 
@@ -100,12 +107,21 @@ const propTypes = {
   isReadOnly: PropTypes.bool,
   /** Default value for the input */
   value: PropTypes.string,
+  /** Does the input have an error */
+  hasError: PropTypes.bool,
+  /** Should hide the input */
+  hideInput: PropTypes.bool,
+  /** Button kind */
+  buttonKind: PropTypes.string,
 };
 
 const defaultProps = {
   children: null,
   isReadOnly: true,
   value: "",
+  hasError: false,
+  hideInput: false,
+  buttonKind: "primary",
 };
 
 CopyInput.displayName = "CopyInput";

@@ -9,4 +9,10 @@ interface CopyInputProps {
   isReadOnly?: boolean;
   /** Default value for the input */
   value?: string;
+  /** Does the input have an error */
+  hasError?: boolean;
+  /** Should hide the input */
+  hideInput?: boolean;
+  /** Button kind */
+  buttonKind?: string;
 }
