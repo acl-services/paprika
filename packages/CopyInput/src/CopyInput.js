@@ -46,57 +46,55 @@ function CopyInput(props) {
   }
 
   return (
-    <sc.CopyContainer>
-      <sc.CopyInput data-pka-anchor="copy-input" {...moreProps}>
-        {isReadOnly && !hideInput ? <sc.Value>{value}</sc.Value> : null}
-        {isReadOnly || hideInput ? (
-          <sc.HiddenInput ref={inputRef} defaultValue={value} />
-        ) : (
-          <Input hasError={hasError} ref={inputRef} defaultValue={value} {...extendedInputProps} />
-        )}
-        <div ref={buttonRef} data-pka-anchor="copy-input.button">
-          <Button.Icon
-            a11yText={I18n.t("copyInput.hover_tooltip")}
-            kind={buttonKind}
-            onClick={handleButtonClick}
-            onMouseOver={() => setIsHoverTooltipOpen(true)}
-            onMouseOut={() => setIsHoverTooltipOpen(false)}
-            onFocus={() => setIsHoverTooltipOpen(true)}
-            onBlur={() => setIsHoverTooltipOpen(false)}
-          >
-            <CopyIcon />
-          </Button.Icon>
-        </div>
-        <Popover
-          align="bottom"
-          getPositioningElement={() => buttonRef.current}
-          isDark
-          isEager
-          isOpen={isHoverTooltipOpen && !isClickedTooltipOpen}
+    <sc.CopyInput data-pka-anchor="copy-input" {...moreProps}>
+      {isReadOnly && !hideInput ? <sc.Value>{value}</sc.Value> : null}
+      {isReadOnly || hideInput ? (
+        <sc.HiddenInput ref={inputRef} defaultValue={value} />
+      ) : (
+        <Input hasError={hasError} ref={inputRef} defaultValue={value} {...extendedInputProps} />
+      )}
+      <div ref={buttonRef} data-pka-anchor="copy-input.button">
+        <Button.Icon
+          a11yText={I18n.t("copyInput.hover_tooltip")}
+          kind={buttonKind}
+          onClick={handleButtonClick}
+          onMouseOver={() => setIsHoverTooltipOpen(true)}
+          onMouseOut={() => setIsHoverTooltipOpen(false)}
+          onFocus={() => setIsHoverTooltipOpen(true)}
+          onBlur={() => setIsHoverTooltipOpen(false)}
         >
-          <Popover.Content>
-            <Popover.Card>{I18n.t("copyInput.hover_tooltip")}</Popover.Card>
-          </Popover.Content>
-          <Popover.Tip />
-        </Popover>
-        <Popover
-          align="bottom"
-          getPositioningElement={() => buttonRef.current}
-          isOpen={isClickedTooltipOpen}
-          shouldKeepFocus
-        >
-          <Popover.Content>
-            <Popover.Card>{I18n.t("copyInput.clicked_tooltip")}</Popover.Card>
-          </Popover.Content>
-          <Popover.Tip />
-        </Popover>
-        {isClickedTooltipOpen && (
-          <Toast kind={Toast.types.kind.VISUALLY_HIDDEN} isPolite>
-            {I18n.t("copyInput.clicked_tooltip")}
-          </Toast>
-        )}
-      </sc.CopyInput>
-    </sc.CopyContainer>
+          <CopyIcon />
+        </Button.Icon>
+      </div>
+      <Popover
+        align="bottom"
+        getPositioningElement={() => buttonRef.current}
+        isDark
+        isEager
+        isOpen={isHoverTooltipOpen && !isClickedTooltipOpen}
+      >
+        <Popover.Content>
+          <Popover.Card>{I18n.t("copyInput.hover_tooltip")}</Popover.Card>
+        </Popover.Content>
+        <Popover.Tip />
+      </Popover>
+      <Popover
+        align="bottom"
+        getPositioningElement={() => buttonRef.current}
+        isOpen={isClickedTooltipOpen}
+        shouldKeepFocus
+      >
+        <Popover.Content>
+          <Popover.Card>{I18n.t("copyInput.clicked_tooltip")}</Popover.Card>
+        </Popover.Content>
+        <Popover.Tip />
+      </Popover>
+      {isClickedTooltipOpen && (
+        <Toast kind={Toast.types.kind.VISUALLY_HIDDEN} isPolite>
+          {I18n.t("copyInput.clicked_tooltip")}
+        </Toast>
+      )}
+    </sc.CopyInput>
   );
 }
 

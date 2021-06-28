@@ -14,12 +14,6 @@ export const CopyInput = styled.div`
   }
 `;
 
-export const CopyContainer = styled.div`
-  align-items: start;
-  display: flex;
-  flex-direction: column;
-`;
-
 export const Value = styled.div`
   margin: auto ${tokens.spaceSm} auto 0;
 `;
