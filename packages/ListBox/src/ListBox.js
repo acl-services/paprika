@@ -254,7 +254,7 @@ export const defaultProps = {
   isDisabled: false,
   isInline: false,
   isMulti: false,
-  isOpen: null,
+  isOpen: false,
   isReadOnly: false,
   onChange: () => {},
   placeholder: null,
