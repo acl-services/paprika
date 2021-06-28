@@ -11,6 +11,8 @@ export const UncontrolledListBox = () => {
         console.log(selectedOptions);
       }}
     >
+      <ListBox.Filter />
+      <ListBox.Divider key="superheroes_divider">Superheroes</ListBox.Divider>
       {characters.antiHeroesRaw.map((item, index) => {
         return (
           <ListBox.Option key={item.label} defaultIsSelected={Boolean(index % 2)}>
