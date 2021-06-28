@@ -91,7 +91,7 @@ function CopyInput(props) {
           <Popover.Tip />
         </Popover>
         {isClickedTooltipOpen && (
-          <Toast kind={Toast.types.kind.VISUALLY_HIDDEN} aria-hidden>
+          <Toast kind={Toast.types.kind.VISUALLY_HIDDEN} isPolite>
             {I18n.t("copyInput.clicked_tooltip")}
           </Toast>
         )}
