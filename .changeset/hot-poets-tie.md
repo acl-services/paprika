@@ -2,4 +2,4 @@
 "@paprika/copy-input": minor
 ---
 
-Updating CopyInput styles (readOnly, input errors, icons) and allowing to show/hide the input
+Updating ability to show/hide the value text and ability to use the Input component or not; Adding Button shell component.
