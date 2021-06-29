@@ -74,6 +74,7 @@
     "@paprika/seducer": "2.0.1"
   },
   "changesets": [
+    "dry-games-rush",
     "eleven-flies-pretend"
   ]
 }

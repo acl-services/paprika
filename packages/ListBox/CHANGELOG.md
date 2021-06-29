@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.3.1-next.1
+
+### Patch Changes
+
+- 2e20d08: - Fixed dividers not hiding when no filtered results are found
+
 ## 3.3.1-next.0
 
 ### Patch Changes
