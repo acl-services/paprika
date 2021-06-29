@@ -12,15 +12,22 @@ const CopyInputVariations = () => {
       <Gap.Small />
       <CopyInput isReadOnly={false} value="edit input" />
       <Gap.Small />
-      <CopyInput hasError isReadOnly={false} value="an error occured" />
+      <CopyInput isReadOnly={false} value="an error occurred">
+        <CopyInput.Input hasError />
+      </CopyInput>
       <Gap.Small />
-      <CopyInput buttonKind="minor" value="button kind=minor" />
+      <CopyInput hasInputContainer={false} value="button kind=minor and input container not used">
+        <CopyInput.Button kind="minor" />
+      </CopyInput>
       <Gap.Small />
-      <CopyInput buttonKind="default" isReadOnly={false} value="button kind=default" />
+      <CopyInput isReadOnly={false} value="button kind=default">
+        <CopyInput.Input hasClearButton />
+        <CopyInput.Button kind="default" />
+      </CopyInput>
       <Gap.Small />
       <>
         <Input hasClearButton size={Input.types.size.LARGE} value={customInputValue} />
-        <CopyInput hideInput value={customInputValue} />
+        <CopyInput hasValueShown={false} value={customInputValue} />
       </>
     </>
   );

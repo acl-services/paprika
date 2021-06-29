@@ -10,7 +10,8 @@ export const CopyInput = styled.div`
   }
 
   button {
-    border-radius: 0 ${tokens.border.radius} ${tokens.border.radius} 0;
+    ${props =>
+      props.hasDefaultButtonBorder ? "" : `border-radius: 0 ${tokens.border.radius} ${tokens.border.radius} 0`};
   }
 `;
 

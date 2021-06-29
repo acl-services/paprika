@@ -8,11 +8,13 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 import { extractChildrenProps } from "@paprika/helpers";
 import CopyIcon from "@paprika/icon/lib/Clipboard";
 import CopyInputInputPropsCollector from "./components/Input/Input";
+import CopyInputButtonPropsCollector from "./components/Button/Button";
 import * as sc from "./CopyInput.styles";
 
 function CopyInput(props) {
-  const { children, isReadOnly, value, hasError, hideInput, buttonKind, ...moreProps } = props;
+  const { children, isReadOnly, value, hasValueShown, hasInputContainer, ...moreProps } = props;
   const extendedInputProps = extractChildrenProps(children, CopyInputInputPropsCollector);
+  const extendedButtonProps = extractChildrenProps(children, CopyInputButtonPropsCollector);
   const I18n = useI18n();
   const inputRef = React.createRef();
   const buttonRef = React.createRef();
@@ -46,17 +48,22 @@ function CopyInput(props) {
   }
 
   return (
-    <sc.CopyInput data-pka-anchor="copy-input" {...moreProps}>
-      {isReadOnly && !hideInput ? <sc.Value>{value}</sc.Value> : null}
-      {isReadOnly || hideInput ? (
+    <sc.CopyInput
+      data-pka-anchor="copy-input"
+      hasDefaultButtonBorder={!(hasValueShown && hasInputContainer)}
+      {...moreProps}
+    >
+      {!hasInputContainer && hasValueShown ? <sc.Value>{value}</sc.Value> : null}
+      {!(hasInputContainer && hasValueShown) ? (
         <sc.HiddenInput ref={inputRef} defaultValue={value} />
       ) : (
-        <Input hasError={hasError} ref={inputRef} defaultValue={value} {...extendedInputProps} />
+        <Input isReadOnly={isReadOnly} ref={inputRef} defaultValue={value} {...extendedInputProps} />
       )}
       <div ref={buttonRef} data-pka-anchor="copy-input.button">
         <Button.Icon
           a11yText={I18n.t("copyInput.hover_tooltip")}
-          kind={buttonKind}
+          kind="primary"
+          {...extendedButtonProps}
           onClick={handleButtonClick}
           onMouseOver={() => setIsHoverTooltipOpen(true)}
           onMouseOut={() => setIsHoverTooltipOpen(false)}
@@ -90,7 +97,7 @@ function CopyInput(props) {
         <Popover.Tip />
       </Popover>
       {isClickedTooltipOpen && (
-        <Toast kind={Toast.types.kind.VISUALLY_HIDDEN} isPolite>
+        <Toast kind={Toast.types.kind.VISUALLY_HIDDEN} aria-hidden isPolite>
           {I18n.t("copyInput.clicked_tooltip")}
         </Toast>
       )}
@@ -105,21 +112,18 @@ const propTypes = {
   isReadOnly: PropTypes.bool,
   /** Default value for the input */
   value: PropTypes.string,
-  /** Does the input have an error */
-  hasError: PropTypes.bool,
-  /** Should hide the input */
-  hideInput: PropTypes.bool,
-  /** Button kind */
-  buttonKind: PropTypes.string,
+  /** Should hide the value text */
+  hasValueShown: PropTypes.bool,
+  /** Is the input component used */
+  hasInputContainer: PropTypes.bool,
 };
 
 const defaultProps = {
   children: null,
   isReadOnly: true,
   value: "",
-  hasError: false,
-  hideInput: false,
-  buttonKind: "primary",
+  hasValueShown: true,
+  hasInputContainer: true,
 };
 
 CopyInput.displayName = "CopyInput";
@@ -127,5 +131,6 @@ CopyInput.propTypes = propTypes;
 CopyInput.defaultProps = defaultProps;
 
 CopyInput.Input = CopyInputInputPropsCollector;
+CopyInput.Button = CopyInputButtonPropsCollector;
 
 export default CopyInput;
