@@ -14,14 +14,7 @@ import useListBox from "./useListBox";
 import { OnChangeContext } from "./store/OnChangeProvider";
 import { PropsContext } from "./store/PropsProvider";
 import handleImperative from "./imperative";
-import {
-  useAdjustWidth,
-  useChildrenChange,
-  useHasFooter,
-  useIsPopOverOpen,
-  useOnScrolled,
-  useOptionSelected,
-} from "./hooks";
+import { useAdjustWidth, useChildrenChange, useHasFooter, useIsPopOverOpen, useOptionSelected } from "./hooks";
 
 export function ListBox(props) {
   const {
@@ -160,7 +153,6 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
   useAdjustWidth();
   useChildrenChange(children);
   useIsPopOverOpen(shouldTriggerKeepFocus);
-  useOnScrolled();
   useOptionSelected();
   useHasFooter(footer);
 
@@ -262,7 +254,7 @@ export const defaultProps = {
   isDisabled: false,
   isInline: false,
   isMulti: false,
-  isOpen: null,
+  isOpen: false,
   isReadOnly: false,
   onChange: () => {},
   placeholder: null,

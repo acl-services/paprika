@@ -1,5 +1,12 @@
 # @paprika/search
 
+## 1.0.15-next.0
+
+### Patch Changes
+
+- Updated dependencies [b82b9d5]
+  - @paprika/list-box@3.3.1-next.0
+
 ## 1.0.14
 
 ### Patch Changes
