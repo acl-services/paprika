@@ -9,8 +9,8 @@ interface CopyInputProps {
   isReadOnly?: boolean;
   /** Default value for the input */
   value?: string;
-  /** Should hide the value text */
-  hasValueShown?: boolean;
-  /** Is the input component used */
+  /** If a plain text version of the value will be rendered */
+  hasValueContainer?: boolean;
+  /** If the value will be rendered in an Input component or hidden */
   hasInputContainer?: boolean;
 }

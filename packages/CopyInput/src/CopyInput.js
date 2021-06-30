@@ -12,7 +12,7 @@ import CopyInputButtonPropsCollector from "./components/Button/Button";
 import * as sc from "./CopyInput.styles";
 
 function CopyInput(props) {
-  const { children, isReadOnly, value, hasValueShown, hasInputContainer, ...moreProps } = props;
+  const { children, isReadOnly, value, hasValueContainer, hasInputContainer, ...moreProps } = props;
   const extendedInputProps = extractChildrenProps(children, CopyInputInputPropsCollector);
   const extendedButtonProps = extractChildrenProps(children, CopyInputButtonPropsCollector);
   const I18n = useI18n();
@@ -50,11 +50,11 @@ function CopyInput(props) {
   return (
     <sc.CopyInput
       data-pka-anchor="copy-input"
-      hasDefaultButtonBorder={!(hasValueShown && hasInputContainer)}
+      hasDefaultButtonBorder={hasValueContainer || !hasInputContainer}
       {...moreProps}
     >
-      {!hasInputContainer && hasValueShown ? <sc.Value>{value}</sc.Value> : null}
-      {!(hasInputContainer && hasValueShown) ? (
+      {hasValueContainer ? <sc.Value>{value}</sc.Value> : null}
+      {!hasInputContainer || hasValueContainer ? (
         <sc.HiddenInput ref={inputRef} defaultValue={value} />
       ) : (
         <Input isReadOnly={isReadOnly} ref={inputRef} defaultValue={value} {...extendedInputProps} />
@@ -112,9 +112,9 @@ const propTypes = {
   isReadOnly: PropTypes.bool,
   /** Default value for the input */
   value: PropTypes.string,
-  /** Should hide the value text */
-  hasValueShown: PropTypes.bool,
-  /** Is the input component used */
+  /** If a plain text version of the value will be rendered */
+  hasValueContainer: PropTypes.bool,
+  /** If the value will be rendered in an Input component or hidden */
   hasInputContainer: PropTypes.bool,
 };
 
@@ -122,7 +122,7 @@ const defaultProps = {
   children: null,
   isReadOnly: true,
   value: "",
-  hasValueShown: true,
+  hasValueContainer: false,
   hasInputContainer: true,
 };
 
