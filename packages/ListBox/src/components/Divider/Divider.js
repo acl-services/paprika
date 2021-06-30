@@ -2,9 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import * as sc from "./Divider.styles";
 import { PropsContext } from "../../store/PropsProvider";
+import useListBox from "../../useListBox";
 
 export default function Divider(props) {
   const { isDisabled: isDisabledStyle } = React.useContext(PropsContext);
+  const [{ noResultsFound }] = useListBox();
+
+  if (noResultsFound) {
+    return null;
+  }
 
   return (
     <sc.Divider aria-hidden data-pka-anchor="list-box.divider" isDisabled={isDisabledStyle}>

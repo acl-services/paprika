@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.3.1-next.1
+
+### Patch Changes
+
+- 2e20d08: - Fixed dividers not hiding when no filtered results are found
+
+## 3.3.1-next.0
+
+### Patch Changes
+
+- b82b9d5: Now is possible to toggle the listbox again while clicking the trigger element.
+
 ## 3.3.0
 
 ### Minor Changes
