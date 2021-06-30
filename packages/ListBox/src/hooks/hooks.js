@@ -51,13 +51,13 @@ export function useIsPopOverOpen(shouldKeepTriggerFocus) {
     const filterInput = refFilterInput.current;
     const listBoxContainer = refListBoxContainer.current;
     const trigger = refTrigger.current;
+
     if (isOpen) {
+      dispatch({ type: useListBox.types.setTriggerWidth, payload: refTriggerContainer.current.offsetWidth });
+
       if (!shouldKeepTriggerFocus) {
         waitForPopoverAnimation(() => (hasFilter ? filterInput.focus() : listBoxContainer.focus()));
       }
-
-      dispatch({ type: useListBox.types.setTriggerWidth, payload: refTriggerContainer.current.offsetWidth });
-      dispatch({ type: useListBox.types.setHasPopupOpened, payload: true });
 
       return;
     }
