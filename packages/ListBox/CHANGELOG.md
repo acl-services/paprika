@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.3.1-next.2
+
+### Patch Changes
+
+- c5bc5f5: Fix the `useAdjustWidth` hook
+
 ## 3.3.1-next.1
 
 ### Patch Changes
