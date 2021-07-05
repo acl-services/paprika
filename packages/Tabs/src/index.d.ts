@@ -73,9 +73,9 @@ declare namespace Tabs {
     isDisabled?: boolean;
     /** Internal only: if tab is selected */
     isSelected?: boolean;
-    /** Callback onClick */
+    /** Internal only: callback onClick */
     onClick?: (...args: any[]) => any;
-    /** Callback onKeyDownArrow */
+    /** Internal only: callback onKeyDownArrow */
     onKeyDownArrows?: (...args: any[]) => any;
   }
 }
