@@ -48,13 +48,9 @@ function CopyInput(props) {
   }
 
   return (
-    <sc.CopyInput
-      data-pka-anchor="copy-input"
-      hasDefaultButtonBorder={hasValueContainer || !hasInputContainer}
-      {...moreProps}
-    >
+    <sc.CopyInput data-pka-anchor="copy-input" hasDefaultButtonBorder={!hasInputContainer} {...moreProps}>
       {hasValueContainer ? <sc.Value>{value}</sc.Value> : null}
-      {!hasInputContainer || hasValueContainer ? (
+      {!hasInputContainer ? (
         <sc.HiddenInput ref={inputRef} defaultValue={value} />
       ) : (
         <Input isReadOnly={isReadOnly} ref={inputRef} defaultValue={value} {...extendedInputProps} />
@@ -110,20 +106,20 @@ const propTypes = {
   children: PropTypes.node,
   /** Is the input read-only. */
   isReadOnly: PropTypes.bool,
-  /** Default value for the input */
-  value: PropTypes.string,
-  /** If a plain text version of the value will be rendered */
-  hasValueContainer: PropTypes.bool,
   /** If the value will be rendered in an Input component or hidden */
   hasInputContainer: PropTypes.bool,
+  /** If a plain text version of the value will be rendered */
+  hasValueContainer: PropTypes.bool,
+  /** Default value for the input */
+  value: PropTypes.string,
 };
 
 const defaultProps = {
   children: null,
   isReadOnly: true,
-  value: "",
-  hasValueContainer: false,
   hasInputContainer: true,
+  hasValueContainer: false,
+  value: "",
 };
 
 CopyInput.displayName = "CopyInput";

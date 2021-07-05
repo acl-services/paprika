@@ -16,7 +16,7 @@ const CopyInputVariations = () => {
         <CopyInput.Input hasError />
       </CopyInput>
       <Gap.Small />
-      <CopyInput hasValueContainer value="button kind=minor and hasValueContainer prop used">
+      <CopyInput hasValueContainer hasInputContainer={false} value="hasInputContainer and hasValueContainer prop used">
         <CopyInput.Button kind="minor" />
       </CopyInput>
       <Gap.Small />
@@ -29,6 +29,8 @@ const CopyInputVariations = () => {
         <Input hasClearButton size={Input.types.size.LARGE} value={customInputValue} />
         <CopyInput hasInputContainer={false} value={customInputValue} />
       </>
+      <Gap.Small />
+      <CopyInput value="some value" hasInputContainer={false} />
     </>
   );
 };
