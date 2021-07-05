@@ -2,4 +2,4 @@
 "@paprika/data-grid": patch
 ---
 
-Minor alignment tweak of header
+Minor vertical alignment tweak of cells (header and body)
