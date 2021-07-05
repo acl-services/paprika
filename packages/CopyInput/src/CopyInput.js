@@ -12,7 +12,7 @@ import CopyInputButtonPropsCollector from "./components/Button/Button";
 import * as sc from "./CopyInput.styles";
 
 function CopyInput(props) {
-  const { children, isReadOnly, value, hasValueContainer, hasInputContainer, ...moreProps } = props;
+  const { children, isReadOnly, hasInputContainer, hasValueContainer, value, ...moreProps } = props;
   const extendedInputProps = extractChildrenProps(children, CopyInputInputPropsCollector);
   const extendedButtonProps = extractChildrenProps(children, CopyInputButtonPropsCollector);
   const I18n = useI18n();
