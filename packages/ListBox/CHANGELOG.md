@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.3.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [009352d]
+  - @paprika/icon@1.2.0-next.0
+  - @paprika/button@1.1.1-next.0
+  - @paprika/input@4.0.4-next.0
+  - @paprika/toast@1.1.5-next.0
+
 ## 3.3.1
 
 ### Patch Changes
