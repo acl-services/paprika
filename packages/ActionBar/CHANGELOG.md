@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.1.5-next.0
+
+### Patch Changes
+
+- Updated dependencies [009352d]
+  - @paprika/icon@1.2.0-next.0
+  - @paprika/button@1.1.1-next.0
+  - @paprika/input@4.0.4-next.0
+  - @paprika/select@2.0.1-next.0
+  - @paprika/sortable@1.1.12-next.0
+
 ## 3.1.4
 
 ### Patch Changes
