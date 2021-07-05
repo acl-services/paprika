@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.6
+
+### Patch Changes
+
+- d4d8f20: Improve hover styles
+
 ## 2.0.6-next.0
 
 ### Patch Changes
