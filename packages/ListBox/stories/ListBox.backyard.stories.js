@@ -4,6 +4,7 @@ import { exampleStoryParameters } from "storybook/assets/storyParameters";
 import ExampleStory from "storybook/components/ExampleStory";
 import DirectoryExample from "./sandbox/Directory/Directory";
 import FilterSelectExample from "./sandbox/FilterSelect/FilterSelect";
+import CollapsedContainerExample from "./sandbox/CollapsedContainer";
 import Lazy from "./sandbox/LazyListBox/Lazy";
 import ListBox from "../src";
 
@@ -48,6 +49,19 @@ export const LazyStory = () => (
 
 LazyStory.story = {
   name: "Lazy Load API",
+  parameters: {
+    ...exampleStoryParameters,
+  },
+};
+
+export const CollapsedContainerStory = () => (
+  <ExampleStory component="ListBox" storyName="Collapsed Container ListBox" fileName="sandbox/CollapsedContainer.js">
+    <CollapsedContainerExample />
+  </ExampleStory>
+);
+
+CollapsedContainerStory.story = {
+  name: "Collapsed Container",
   parameters: {
     ...exampleStoryParameters,
   },

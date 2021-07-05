@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.3.1
+
+### Patch Changes
+
+- 2e20d08: - Fixed dividers not hiding when no filtered results are found
+- b82b9d5: Now is possible to toggle the listbox again while clicking the trigger element.
+- c5bc5f5: Fix the `useAdjustWidth` hook
+
+## 3.3.1-next.2
+
+### Patch Changes
+
+- c5bc5f5: Fix the `useAdjustWidth` hook
+
 ## 3.3.1-next.1
 
 ### Patch Changes
