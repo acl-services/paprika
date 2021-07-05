@@ -7,7 +7,7 @@ import {
   ListBoxMultipleWithSuccess,
 } from "../examples/ListBox";
 
-export const WithScreener = () => {
+export const ForScreener = () => {
   return (
     <>
       <ListBoxSingleStory />
