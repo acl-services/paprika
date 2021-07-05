@@ -128,7 +128,7 @@ export const Cell = styled.div.attrs(({ hasZebraStripes, rowIndex, borderType })
   display: flex;
   font-size: ${tokens.fontSize.default};
   justify-content: flex-start;
-  line-height: 18px;
+  line-height: 1.1;
   position: relative;
 
   &:focus {
