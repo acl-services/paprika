@@ -74,6 +74,7 @@
     "@paprika/seducer": "2.0.1"
   },
   "changesets": [
+    "eighty-donuts-begin",
     "hot-poets-tie",
     "lucky-paws-swim"
   ]

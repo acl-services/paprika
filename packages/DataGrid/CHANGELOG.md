@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.14-next.1
+
+### Patch Changes
+
+- 659ebe1: Minor vertical alignment tweak of cells (header and body)
+
 ## 1.0.14-next.0
 
 ### Patch Changes
