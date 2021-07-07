@@ -1,5 +1,0 @@
----
-"@paprika/pill": patch
----
-
-Deprecating
