@@ -64,6 +64,7 @@ export default function Content(props) {
   return (
     <sc.PopoverContent
       {...getDOMAttributesForListBox({ idListBox, refLabel, ...state })}
+      {...moreProps}
       contentOffsetX={contentOffsetX}
       contentOffsetY={contentOffsetY}
       onBlur={handleBlur(state, dispatch, onCancelFooter)}
@@ -75,6 +76,8 @@ export default function Content(props) {
     </sc.PopoverContent>
   );
 }
+
+Content.displayName = "ListBox.Content";
 
 Content.propTypes = {
   children: PropTypes.node.isRequired,
