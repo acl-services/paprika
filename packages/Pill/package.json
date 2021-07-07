@@ -1,7 +1,7 @@
 {
   "name": "@paprika/pill",
   "version": "1.0.9",
-  "description": "The Pill component is for showing metadata like status, type, or levels.",
+  "description": "DEPRECATED - The Pill component is for showing metadata like status, type, or levels.",
   "author": "@paprika",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
