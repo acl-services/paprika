@@ -1,5 +1,15 @@
 <!-- content -->
 
+## 1.0.18
+
+### Patch Changes
+
+- Updated dependencies [659ebe184]
+- Updated dependencies [009352de9]
+  - @paprika/data-grid@1.0.14
+  - @paprika/icon@1.2.0
+  - @paprika/button@1.1.1
+
 ## 1.0.18-next.0
 
 ### Patch Changes

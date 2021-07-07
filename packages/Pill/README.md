@@ -4,7 +4,7 @@
 
 ## Description
 
-The Pill component is for showing metadata like status, type, or levels.
+DEPRECATED - The Pill component is for showing metadata like status, type, or levels.
 
 ## Installation
 

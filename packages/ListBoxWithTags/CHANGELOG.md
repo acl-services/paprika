@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.0.3
+
+### Patch Changes
+
+- Updated dependencies [009352de9]
+- Updated dependencies [2fa64be80]
+  - @paprika/icon@1.2.0
+  - @paprika/list-box@3.4.0
+  - @paprika/tag@0.0.7
+
 ## 2.0.3-next.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.10
+
+### Patch Changes
+
+- 21eed7dd7: Deprecating
+
 ## 1.0.9
 
 ### Patch Changes
