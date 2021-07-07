@@ -17,7 +17,7 @@ export default function App() {
       <ListBoxWithTags.Box data-test-anchor="ListBoxWithTags.Box-test" />
       <ListBoxWithTags.Content data-test-anchor="ListBoxWithTags.Content-test" />
       <ListBoxWithTags.Filter data-test-anchor="ListBoxWithTags.Filter-test" />
-      <ListBoxWithTags.Trigger data-test-anchor="ListBoxWithTags.Trigger-test" />
+      <ListBoxWithTags.Trigger data-pka-anchor="list-trigger" data-test-anchor="ListBoxWithTags.Trigger-test" />
       {filteredData.map(option => {
         return !isSelected(option.label) ? (
           <ListBoxWithTags.Option value={option.label} key={option.label} label={option.label}>
