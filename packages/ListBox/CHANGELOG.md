@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.4.0-next.1
+
+### Minor Changes
+
+- 2fa64be: - Exposed and added ListBox.Content allowing to spread props on the content container
+
 ## 3.3.2-next.0
 
 ### Patch Changes
