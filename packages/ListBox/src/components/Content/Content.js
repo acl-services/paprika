@@ -63,8 +63,8 @@ export default function Content(props) {
 
   return (
     <sc.PopoverContent
-      {...getDOMAttributesForListBox({ idListBox, refLabel, ...state })}
       {...moreProps}
+      {...getDOMAttributesForListBox({ idListBox, refLabel, ...state })}
       contentOffsetX={contentOffsetX}
       contentOffsetY={contentOffsetY}
       onBlur={handleBlur(state, dispatch, onCancelFooter)}
