@@ -48,7 +48,7 @@ declare namespace ListBox {
   interface BoxProps {
     [x: string]: any;
     /** Body content of the box. */
-    children: React.ReactNode;
+    children?: React.ReactNode;
   }
 }
 declare namespace ListBox {
