@@ -41,6 +41,7 @@ export function ListBox(props) {
     filter,
     footer,
     trigger: _trigger,
+    content,
     /* eslint-enable react/prop-types */
 
     ...moreProps
@@ -55,6 +56,7 @@ export function ListBox(props) {
   const onCancelFooter = footer ? footer.props.onClickCancel : null;
   const noResultsMessage = filter ? filter.props.noResultsMessage || I18n.t("listBox.filter.no_results_message") : null;
   const boxProps = box ? box.props : null;
+  const contentProps = content ? { ...content.props, onCancelFooter } : { onCancelFooter };
   /* eslint-enable react/prop-types */
 
   const propsForTrigger = {
@@ -62,10 +64,6 @@ export function ListBox(props) {
     hasImplicitAll,
     onClickClear: null,
     onClickFooterAccept,
-  };
-
-  const contentProps = {
-    onCancelFooter,
   };
 
   const listProps = {
@@ -127,6 +125,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     footer,
     popover,
     trigger,
+    content,
     /* eslint-enable react/prop-types */
 
     ...moreProps
@@ -165,6 +164,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     filter,
     footer,
     trigger,
+    content,
 
     ...(providedProps.isInline ? moreProps : {}),
   };

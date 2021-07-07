@@ -63,6 +63,7 @@ export default function Content(props) {
 
   return (
     <sc.PopoverContent
+      {...moreProps}
       {...getDOMAttributesForListBox({ idListBox, refLabel, ...state })}
       contentOffsetX={contentOffsetX}
       contentOffsetY={contentOffsetY}
@@ -75,6 +76,8 @@ export default function Content(props) {
     </sc.PopoverContent>
   );
 }
+
+Content.displayName = "ListBox.Content";
 
 Content.propTypes = {
   children: PropTypes.node.isRequired,
