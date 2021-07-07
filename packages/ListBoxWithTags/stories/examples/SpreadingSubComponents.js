@@ -15,6 +15,7 @@ export default function App() {
   return (
     <ListBoxWithTags selectedOptions={getSelectedOptions()} {...moreUseListBoxWithTagsProps}>
       <ListBoxWithTags.Box data-test-anchor="ListBoxWithTags.Box-test" />
+      <ListBoxWithTags.Content data-test-anchor="ListBoxWithTags.Content-test" />
       <ListBoxWithTags.Filter data-test-anchor="ListBoxWithTags.Filter-test" />
       <ListBoxWithTags.Trigger data-test-anchor="ListBoxWithTags.Trigger-test" />
       {filteredData.map(option => {
