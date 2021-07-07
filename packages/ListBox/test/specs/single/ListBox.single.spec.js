@@ -121,4 +121,18 @@ describe("ListBox single select", () => {
     const { container } = renderComponent();
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it("should spread props to ListBox subcomponents", () => {
+    const { openSelect, getByTestId } = renderComponent({}, [
+      <ListBox.Content key="content" data-testid="test-content" />,
+      <ListBox.Filter key="filter" data-testid="test-filter" />,
+      <ListBox.Box key="box" data-testid="test-box" />,
+      [...childrenContent],
+    ]);
+
+    openSelect();
+    expect(getByTestId("popover.content").getAttribute("data-testid")).toEqual("test-content");
+    expect(getByTestId("list-filter-input").getAttribute("data-testid")).toEqual("test-filter");
+    expect(getByTestId("list-box-box").getAttribute("data-testid")).toEqual("test-box");
+  });
 });
