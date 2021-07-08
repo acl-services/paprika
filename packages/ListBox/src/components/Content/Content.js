@@ -63,6 +63,7 @@ export default function Content(props) {
 
   return (
     <sc.PopoverContent
+      {...moreProps}
       {...getDOMAttributesForListBox({ idListBox, refLabel, ...state })}
       contentOffsetX={contentOffsetX}
       contentOffsetY={contentOffsetY}
@@ -76,11 +77,14 @@ export default function Content(props) {
   );
 }
 
+Content.displayName = "ListBox.Content";
+
 Content.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   onCancelFooter: PropTypes.func,
 };
 
 Content.defaultProps = {
+  children: null,
   onCancelFooter: null,
 };

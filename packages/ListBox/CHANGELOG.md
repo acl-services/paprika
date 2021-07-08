@@ -1,5 +1,32 @@
 # Changelog
 
+## 3.4.1-next.0
+
+### Patch Changes
+
+- be53161: - Fix typescript types for ListBox.Content
+  - Fix children being required for ListBox.Box when using it to spread props
+
+## 3.4.0
+
+### Minor Changes
+
+- 2fa64be80: - Exposed and added ListBox.Content allowing to spread props on the content container
+
+### Patch Changes
+
+- Updated dependencies [009352de9]
+  - @paprika/icon@1.2.0
+  - @paprika/button@1.1.1
+  - @paprika/input@4.0.4
+  - @paprika/toast@1.1.5
+
+## 3.4.0-next.1
+
+### Minor Changes
+
+- 2fa64be: - Exposed and added ListBox.Content allowing to spread props on the content container
+
 ## 3.3.2-next.0
 
 ### Patch Changes

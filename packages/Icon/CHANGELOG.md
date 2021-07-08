@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0
+
+### Minor Changes
+
+- 009352de9: Updating Clipboard icon styling for consistency
+
 ## 1.2.0-next.0
 
 ### Minor Changes

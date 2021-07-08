@@ -1,5 +1,33 @@
 # Changelog
 
+## 2.1.0-next.0
+
+### Minor Changes
+
+- d88bc8d: - Updated to allow to spread ListBox.Content props with ListBoxWithTags.Content
+
+### Patch Changes
+
+- Updated dependencies [be53161]
+  - @paprika/list-box@3.4.1-next.0
+
+## 2.0.3
+
+### Patch Changes
+
+- Updated dependencies [009352de9]
+- Updated dependencies [2fa64be80]
+  - @paprika/icon@1.2.0
+  - @paprika/list-box@3.4.0
+  - @paprika/tag@0.0.7
+
+## 2.0.3-next.1
+
+### Patch Changes
+
+- Updated dependencies [2fa64be]
+  - @paprika/list-box@3.4.0-next.1
+
 ## 2.0.3-next.0
 
 ### Patch Changes
