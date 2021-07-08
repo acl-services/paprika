@@ -48,7 +48,7 @@ const Toast = React.forwardRef((props, ref) => {
     },
   }));
 
-  const isControlled = isOpen !== null;
+  const isControlled = isOpen !== undefined;
   const [isToastOpen, setIsToastOpen] = React.useState(isControlled ? isOpen : true);
   const [shouldRender, setShouldRender] = React.useState(false);
   const autoCloseTimer = React.useRef(null);
