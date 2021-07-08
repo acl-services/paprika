@@ -48,7 +48,8 @@ const Toast = React.forwardRef((props, ref) => {
     },
   }));
 
-  const [isToastOpen, setIsToastOpen] = React.useState(isOpen === undefined ? true : isOpen);
+  const isControlled = typeof isOpen !== "undefined";
+  const [isToastOpen, setIsToastOpen] = React.useState(isControlled ? isOpen : true);
   const [shouldRender, setShouldRender] = React.useState(false);
   const autoCloseTimer = React.useRef(null);
   const renderTimer = React.useRef(null);
@@ -56,15 +57,25 @@ const Toast = React.forwardRef((props, ref) => {
   const defaultZIndex = isFixed ? zValue(7) : null;
   const isVisuallyHidden = kind === Toast.types.kind.VISUALLY_HIDDEN;
 
+  const handleClose = React.useCallback(() => {
+    if (autoCloseTimer.current) clearTimeout(autoCloseTimer.current);
+    if (renderTimer.current) clearTimeout(renderTimer.current);
+
+    if (!isControlled) {
+      setIsToastOpen(false);
+    }
+
+    onClose();
+  }, [isControlled, onClose]);
+
   const memoizedStartAutoCloseTimer = React.useCallback(() => {
     function handleDelayedClose() {
       clearTimeout(autoCloseTimer.current);
-      if (isOpen === undefined) setIsToastOpen(false);
-      onClose();
+      handleClose();
     }
 
     autoCloseTimer.current = setTimeout(handleDelayedClose, Math.max(autoCloseDelay, minimumCloseTimeout));
-  }, [autoCloseDelay, isOpen, onClose]);
+  }, [autoCloseDelay, handleClose]);
 
   const memoizedStartRenderTimer = React.useCallback(() => {
     function handleDelayedRender() {
@@ -74,17 +85,6 @@ const Toast = React.forwardRef((props, ref) => {
 
     renderTimer.current = setTimeout(handleDelayedRender, renderDelay);
   }, [renderDelay]);
-
-  function handleClose() {
-    if (autoCloseTimer.current) clearTimeout(autoCloseTimer.current);
-    if (renderTimer.current) clearTimeout(renderTimer.current);
-
-    if (isOpen === undefined) {
-      setIsToastOpen(false);
-      setShouldRender(false);
-    }
-    onClose();
-  }
 
   function renderContent() {
     if (!shouldRender) return null;
@@ -128,7 +128,9 @@ const Toast = React.forwardRef((props, ref) => {
   }, [canAutoClose, isVisuallyHidden, memoizedStartAutoCloseTimer]);
 
   React.useEffect(() => {
-    if (isToastOpen) {
+    if (!isToastOpen) {
+      setShouldRender(false);
+    } else {
       memoizedStartRenderTimer();
       return () => {
         clearTimeout(renderTimer.current);
@@ -137,15 +139,10 @@ const Toast = React.forwardRef((props, ref) => {
   }, [isToastOpen, memoizedStartRenderTimer]);
 
   React.useEffect(() => {
-    if (!isOpen) {
-      setShouldRender(false);
+    if (isControlled) {
+      setIsToastOpen(isOpen);
     }
-  }, [isOpen]);
-
-  React.useEffect(() => {
-    if (isOpen === undefined) return;
-    if (isOpen !== isToastOpen && !canAutoClose && !isVisuallyHidden) setIsToastOpen(isOpen);
-  }, [isOpen, isToastOpen, canAutoClose, isVisuallyHidden]);
+  }, [isOpen, isControlled]);
 
   if (!isToastOpen) return null;
 
@@ -165,7 +162,7 @@ const propTypes = {
   /** Duration (in ms) before Toast will automatically close (if canAutoClose is true). */
   autoCloseDelay: PropTypes.number,
 
-  /** Will automatically close after 1500ms (or longer if provided by autoCloseDelay). */
+  /** Will automatically call onClose() after 5000ms (or longer if provided by autoCloseDelay). If uncontrolled, it will automatically close the Toast as well. */
   canAutoClose: PropTypes.bool,
 
   /** Content of the Toast. */
