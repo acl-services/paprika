@@ -2,9 +2,8 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { getStoryName } from "storybook/storyTree";
 import styled from "styled-components";
-
 import Button from "@paprika/button";
-import Pill from "@paprika/pill";
+import Tag from "@paprika/tag";
 import OverflowMenu from "@paprika/overflow-menu";
 
 import Table from "../src";
@@ -75,7 +74,7 @@ function Title(props) {
         </titleStyles.Label>
         {tag ? (
           <div>
-            <Pill pillColor="mediumRisk">{tag}</Pill>
+            <Tag theme={Tag.types.severityTheme.MEDIUM_RISK}>{tag}</Tag>
           </div>
         ) : null}
       </titleStyles.Title>
