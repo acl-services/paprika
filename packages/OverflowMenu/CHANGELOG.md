@@ -1,5 +1,43 @@
 # Changelog
 
+## 1.1.1
+
+### Patch Changes
+
+- Updated dependencies [009352de9]
+  - @paprika/icon@1.2.0
+  - @paprika/button@1.1.1
+  - @paprika/confirmation@1.1.6
+
+## 1.1.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [009352d]
+  - @paprika/icon@1.2.0-next.0
+  - @paprika/button@1.1.1-next.0
+  - @paprika/confirmation@1.1.6-next.0
+
+## 1.1.0
+
+### Minor Changes
+
+- 11ca2a7: Added maxHeight prop to <OverflowMenu> to allow a scrollable list when the menu overflows.
+
+## 1.1.0-next.0
+
+### Minor Changes
+
+- 11ca2a7: Added maxHeight prop to <OverflowMenu> to allow a scrollable list when the menu overflows.
+
+## 1.0.20
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11
+  - @paprika/confirmation@1.1.5
+
 ## 1.0.20-next.0
 
 ### Patch Changes

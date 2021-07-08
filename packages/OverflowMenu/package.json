@@ -1,6 +1,6 @@
 {
   "name": "@paprika/overflow-menu",
-  "version": "1.0.20-next.0",
+  "version": "1.1.1",
   "description": "OverflowMenu component displays a trigger button, which when clicked displays a list of items in a dropdown menu format. These items can be raw content, Links or actions such as Delete, which will prompt a confirmation panel to be displayed.",
   "author": "@paprika",
   "license": "MIT",
@@ -16,11 +16,11 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^1.1.0",
-    "@paprika/confirmation": "^1.1.5-next.0",
+    "@paprika/button": "^1.1.1",
+    "@paprika/confirmation": "^1.1.6",
     "@paprika/constants": "^1.0.0",
     "@paprika/helpers": "^2.1.2",
-    "@paprika/icon": "^1.1.1",
+    "@paprika/icon": "^1.2.0",
     "@paprika/popover": "^1.2.3",
     "@paprika/raw-button": "^1.0.4",
     "@paprika/stylers": "^1.0.0",
@@ -30,7 +30,7 @@
     "what-input": "^5.2.10"
   },
   "peerDependencies": {
-    "@paprika/l10n": "^1.1.11-next.0",
+    "@paprika/l10n": "^1.1.11",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"

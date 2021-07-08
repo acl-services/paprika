@@ -80,10 +80,10 @@ Tab.propTypes = {
   /** Internal only: if tab is selected */
   isSelected: PropTypes.bool,
 
-  /** Callback onClick */
+  /** Internal only: callback onClick */
   onClick: PropTypes.func,
 
-  /** Callback onKeyDownArrow */
+  /** Internal only: callback onKeyDownArrow */
   onKeyDownArrows: PropTypes.func,
 };
 

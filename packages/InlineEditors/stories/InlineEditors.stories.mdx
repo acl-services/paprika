@@ -171,8 +171,8 @@ const [isEditing, setIsEditing] = React.useState(false);
 <Textarea
   value="your value"
   onSubmit={handleSubmit}
-  onStartClose={() => setIsEditing(false)}
-  onStartOpen={() => setIsEditing(true)}
+  onClose={() => setIsEditing(false)}
+  onStart={() => setIsEditing(true)}
   isEditing={isEditing}
 />;
 ```

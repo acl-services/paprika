@@ -1,5 +1,40 @@
 # Changelog
 
+## 2.0.7
+
+### Patch Changes
+
+- Updated dependencies [009352de9]
+  - @paprika/icon@1.2.0
+  - @paprika/button@1.1.1
+
+## 2.0.7-next.0
+
+### Patch Changes
+
+- Updated dependencies [009352d]
+  - @paprika/icon@1.2.0-next.0
+  - @paprika/button@1.1.1-next.0
+
+## 2.0.6
+
+### Patch Changes
+
+- d4d8f20: Improve hover styles
+
+## 2.0.6-next.0
+
+### Patch Changes
+
+- d4d8f20: Improve hover styles
+
+## 2.0.5
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11
+
 ## 2.0.5-next.0
 
 ### Patch Changes

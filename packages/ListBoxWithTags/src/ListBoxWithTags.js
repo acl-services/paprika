@@ -41,7 +41,7 @@ export default function ListBoxWithTags(props) {
 
   function handleLastSelectedOption(selectedOption, options) {
     const lastIndex = Object.keys(options).length - 1;
-    if (lastIndex === 0 || refFilter.current.textSearch) {
+    if (lastIndex === 0 || refFilter.current.textSearch || options[lastIndex - 1].hasLabel === undefined) {
       setLastSelectedOption(null);
     } else if (selectedOption === lastIndex) {
       setLastSelectedOption(lastIndex - 1);
@@ -100,11 +100,15 @@ export default function ListBoxWithTags(props) {
     "ListBox.Trigger": {},
     "ListBox.Box": {},
     "ListBox.Filter": {},
+    "ListBox.Content": {},
   };
 
   const filteredChildren = React.useMemo(() => {
     return React.Children.map(children, child => {
-      if (child && ["ListBox.Trigger", "ListBox.Box", "ListBox.Filter"].includes(child.type.displayName)) {
+      if (
+        child &&
+        ["ListBox.Trigger", "ListBox.Box", "ListBox.Filter", "ListBox.Content"].includes(child.type.displayName)
+      ) {
         const { children, ...moreProps } = child.props;
         extendedProps[child.type.displayName] = moreProps;
         return null;
@@ -124,6 +128,7 @@ export default function ListBoxWithTags(props) {
   return (
     <div ref={refDivRoot}>
       <ListBox ref={refListBox} isMulti size={validSize} onChange={handleChange} {...moreProps}>
+        <ListBox.Content {...extendedProps["ListBox.Content"]} />
         <ListBox.Trigger {...extendedProps["ListBox.Trigger"]}>
           {(...[, , , attributes]) => <TriggerWithTags {...triggerProps} {...attributes} />}
         </ListBox.Trigger>

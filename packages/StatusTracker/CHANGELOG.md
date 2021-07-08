@@ -1,5 +1,41 @@
 # Changelog
 
+## 1.1.8
+
+### Patch Changes
+
+- @paprika/button@1.1.1
+- @paprika/overflow-menu@1.1.1
+
+## 1.1.8-next.0
+
+### Patch Changes
+
+- @paprika/button@1.1.1-next.0
+- @paprika/overflow-menu@1.1.1-next.0
+
+## 1.1.7
+
+### Patch Changes
+
+- Updated dependencies [11ca2a7]
+  - @paprika/overflow-menu@1.1.0
+
+## 1.1.7-next.0
+
+### Patch Changes
+
+- Updated dependencies [11ca2a7]
+  - @paprika/overflow-menu@1.1.0-next.0
+
+## 1.1.6
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11
+  - @paprika/overflow-menu@1.0.20
+
 ## 1.1.6-next.0
 
 ### Patch Changes

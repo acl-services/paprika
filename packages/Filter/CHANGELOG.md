@@ -1,5 +1,96 @@
 # Changelog
 
+## 1.2.5-next.0
+
+### Patch Changes
+
+- Updated dependencies [be53161]
+  - @paprika/list-box@3.4.1-next.0
+
+## 1.2.4
+
+### Patch Changes
+
+- Updated dependencies [009352de9]
+- Updated dependencies [2fa64be80]
+  - @paprika/icon@1.2.0
+  - @paprika/list-box@3.4.0
+  - @paprika/button@1.1.1
+  - @paprika/date-picker@1.0.18
+  - @paprika/input@4.0.4
+  - @paprika/panel@2.1.1
+  - @paprika/radio@1.0.11
+  - @paprika/select@2.0.1
+
+## 1.2.4-next.1
+
+### Patch Changes
+
+- Updated dependencies [2fa64be]
+  - @paprika/list-box@3.4.0-next.1
+
+## 1.2.4-next.0
+
+### Patch Changes
+
+- Updated dependencies [009352d]
+  - @paprika/icon@1.2.0-next.0
+  - @paprika/button@1.1.1-next.0
+  - @paprika/input@4.0.4-next.0
+  - @paprika/list-box@3.3.2-next.0
+  - @paprika/panel@2.1.1-next.0
+  - @paprika/radio@1.0.11-next.0
+  - @paprika/select@2.0.1-next.0
+  - @paprika/date-picker@1.0.18-next.0
+
+## 1.2.3
+
+### Patch Changes
+
+- Updated dependencies [2e20d08]
+- Updated dependencies [b82b9d5]
+- Updated dependencies [c5bc5f5]
+  - @paprika/list-box@3.3.1
+
+## 1.2.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [b82b9d5]
+  - @paprika/list-box@3.3.1-next.0
+
+## 1.2.2
+
+### Patch Changes
+
+- 9412ed6: support a 'max filters' prop
+
+## 1.2.2-next.0
+
+### Patch Changes
+
+- 9412ed6: support a 'max filters' prop
+
+## 1.2.1
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+- Updated dependencies [82ef2b7]
+- Updated dependencies [25ed9a6]
+  - @paprika/l10n@1.1.11
+  - @paprika/panel@2.1.0
+  - @paprika/list-box@3.3.0
+  - @paprika/date-picker@1.0.17
+  - @paprika/input@4.0.3
+
+## 1.2.1-next.2
+
+### Patch Changes
+
+- Updated dependencies [25ed9a6]
+  - @paprika/list-box@3.3.0-next.1
+
 ## 1.2.1-next.1
 
 ### Patch Changes

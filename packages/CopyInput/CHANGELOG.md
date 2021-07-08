@@ -1,5 +1,42 @@
 # Changelog
 
+## 1.2.0
+
+### Minor Changes
+
+- 2c57bd573: Updating ability to show/hide the value text and ability to use the Input component or not; Adding Button shell component.
+
+### Patch Changes
+
+- Updated dependencies [009352de9]
+  - @paprika/icon@1.2.0
+  - @paprika/button@1.1.1
+  - @paprika/input@4.0.4
+  - @paprika/toast@1.1.5
+
+## 1.2.0-next.0
+
+### Minor Changes
+
+- 2c57bd5: Updating ability to show/hide the value text and ability to use the Input component or not; Adding Button shell component.
+
+### Patch Changes
+
+- Updated dependencies [009352d]
+  - @paprika/icon@1.2.0-next.0
+  - @paprika/button@1.1.1-next.0
+  - @paprika/input@4.0.4-next.0
+  - @paprika/toast@1.1.5-next.0
+
+## 1.1.14
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11
+  - @paprika/input@4.0.3
+  - @paprika/toast@1.1.4
+
 ## 1.1.14-next.0
 
 ### Patch Changes

@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import { spacer } from "@paprika/stylers/lib/helpers";
 import tokens from "@paprika/tokens";
 import getBorderRadius from "../../helper.styles";
+import { POSITIONS } from "../../CollapsibleCard";
 
 export const Header = styled.div(
   ({ isEditing, isCollapsed, position }) => css`
@@ -11,17 +12,27 @@ export const Header = styled.div(
     display: flex;
     padding: 14px;
 
-    ${isEditing &&
-      css`
-        background-color: ${tokens.color.yellowLighten30};
-      `}
-
     :hover {
       background-color: ${tokens.color.blackLighten70};
-      box-shadow: 0 0 0 1px ${tokens.color.blackLighten30}, 0 1px 3px 0 ${tokens.color.blackLighten50};
+
+      ${position !== POSITIONS.LAST &&
+        isCollapsed &&
+        css`
+          box-shadow: inset 0px -1px 0px ${tokens.color.blackLighten60};
+        `}
+
       margin: 0px;
       position: relative;
     }
+
+    ${isEditing &&
+      css`
+        background-color: ${tokens.color.yellowLighten30};
+
+        :hover {
+          background-color: #ffebc2;
+        }
+      `}
 
     &:focus {
       outline: none;

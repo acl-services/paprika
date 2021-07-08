@@ -1,5 +1,93 @@
 # Changelog
 
+## 3.4.1-next.0
+
+### Patch Changes
+
+- be53161: - Fix typescript types for ListBox.Content
+  - Fix children being required for ListBox.Box when using it to spread props
+
+## 3.4.0
+
+### Minor Changes
+
+- 2fa64be80: - Exposed and added ListBox.Content allowing to spread props on the content container
+
+### Patch Changes
+
+- Updated dependencies [009352de9]
+  - @paprika/icon@1.2.0
+  - @paprika/button@1.1.1
+  - @paprika/input@4.0.4
+  - @paprika/toast@1.1.5
+
+## 3.4.0-next.1
+
+### Minor Changes
+
+- 2fa64be: - Exposed and added ListBox.Content allowing to spread props on the content container
+
+## 3.3.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [009352d]
+  - @paprika/icon@1.2.0-next.0
+  - @paprika/button@1.1.1-next.0
+  - @paprika/input@4.0.4-next.0
+  - @paprika/toast@1.1.5-next.0
+
+## 3.3.1
+
+### Patch Changes
+
+- 2e20d08: - Fixed dividers not hiding when no filtered results are found
+- b82b9d5: Now is possible to toggle the listbox again while clicking the trigger element.
+- c5bc5f5: Fix the `useAdjustWidth` hook
+
+## 3.3.1-next.2
+
+### Patch Changes
+
+- c5bc5f5: Fix the `useAdjustWidth` hook
+
+## 3.3.1-next.1
+
+### Patch Changes
+
+- 2e20d08: - Fixed dividers not hiding when no filtered results are found
+
+## 3.3.1-next.0
+
+### Patch Changes
+
+- b82b9d5: Now is possible to toggle the listbox again while clicking the trigger element.
+
+## 3.3.0
+
+### Minor Changes
+
+- 25ed9a6: Added additional imperative functions for focusing:
+
+  - Focus by option index in ListBox
+  - Focus on ListBox.Filter input
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11
+  - @paprika/input@4.0.3
+  - @paprika/toast@1.1.4
+
+## 3.3.0-next.1
+
+### Minor Changes
+
+- 25ed9a6: Added additional imperative functions for focusing:
+
+  - Focus by option index in ListBox
+  - Focus on ListBox.Filter input
+
 ## 3.2.1-next.0
 
 ### Patch Changes

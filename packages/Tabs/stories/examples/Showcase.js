@@ -40,7 +40,12 @@ export default function ShowcaseStory() {
       </Heading>
       <Tagline>Use the knobs to tinker with the props.</Tagline>
       <Rule />
-      <Tabs {...getTabsProps()}>
+      <Tabs
+        {...getTabsProps()}
+        onClickTab={tabIndex => {
+          console.log("You clicked on tab", tabIndex);
+        }}
+      >
         <Tabs.List>{renderTabs()}</Tabs.List>
         <Tabs.Panels>{renderPanels()}</Tabs.Panels>
       </Tabs>
