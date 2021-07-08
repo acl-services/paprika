@@ -1,5 +1,12 @@
 <!-- content -->
 
+## 1.0.23-next.0
+
+### Patch Changes
+
+- Updated dependencies [bacebc9]
+  - @paprika/toast@1.1.6-next.0
+
 ## 1.0.22
 
 ### Patch Changes

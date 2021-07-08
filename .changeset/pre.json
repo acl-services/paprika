@@ -74,6 +74,7 @@
     "@paprika/seducer": "2.0.1"
   },
   "changesets": [
+    "blue-seals-fly",
     "purple-weeks-hope",
     "tidy-ligers-explain"
   ]

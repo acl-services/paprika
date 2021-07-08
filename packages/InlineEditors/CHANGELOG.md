@@ -1,5 +1,11 @@
 # @paprika/inline-editors
 
+## 0.2.8-next.1
+
+### Patch Changes
+
+- @paprika/list-box@3.4.1-next.1
+
 ## 0.2.8-next.0
 
 ### Patch Changes

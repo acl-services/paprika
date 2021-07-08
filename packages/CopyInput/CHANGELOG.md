@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [bacebc9]
+  - @paprika/toast@1.1.6-next.0
+
 ## 1.2.0
 
 ### Minor Changes

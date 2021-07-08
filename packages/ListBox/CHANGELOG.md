@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.4.1-next.1
+
+### Patch Changes
+
+- Updated dependencies [bacebc9]
+  - @paprika/toast@1.1.6-next.0
+
 ## 3.4.1-next.0
 
 ### Patch Changes
