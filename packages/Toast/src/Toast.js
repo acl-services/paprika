@@ -205,7 +205,7 @@ const defaultProps = {
   autoCloseDelay: 5000,
   children: null,
   hasCloseButton: true,
-  isOpen: null,
+  isOpen: undefined,
   isFixed: false,
   isPolite: false,
   kind: Toast.types.kind.INFO,
