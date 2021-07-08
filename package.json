@@ -137,7 +137,6 @@
     "legally": "^3.5.10",
     "react-json-tree": "^0.11.2",
     "shelljs": "^0.8.3",
-    "storybook-a11y-report": "^0.0.11",
-    "xml2json": "^0.12.0"
+    "storybook-a11y-report": "^0.0.11"
   }
 }
