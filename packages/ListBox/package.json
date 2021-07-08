@@ -1,6 +1,6 @@
 {
   "name": "@paprika/list-box",
-  "version": "3.4.0",
+  "version": "3.4.1-next.0",
   "description": "The ListBox component allows users to select one or more options from a list contained within the component",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
