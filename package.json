@@ -90,7 +90,7 @@
     "pa11y": "^5.0.4",
     "prettier": "1.18.2",
     "react": "^16.8.2",
-    "react-docgen": "^5.3.0",
+    "react-docgen": "^5.4.0",
     "react-dom": "^16.8.2",
     "react-element-to-jsx-string": "^14.3.1",
     "react-is": "^16.11.0",
