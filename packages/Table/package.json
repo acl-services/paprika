@@ -20,11 +20,13 @@
     "@paprika/constants": "^1.0.0",
     "@paprika/helpers": "^2.1.2",
     "@paprika/overflow-menu": "^1.1.1",
-    "@paprika/pill": "^1.0.10",
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",
     "prop-types": "^15.7.2",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@paprika/tag": "^0.0.7"
   },
   "peerDependencies": {
     "react": "^16.8.4",

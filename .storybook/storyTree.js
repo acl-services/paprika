@@ -2,7 +2,7 @@
 const storyTree = [
   {
     category: "Display",
-    components: ["Avatar", "Counter", "Heading", "Icon", "Pill", "Tag"],
+    components: ["Avatar", "Counter", "Heading", "Icon", "Tag"],
   },
   {
     category: "Table",
