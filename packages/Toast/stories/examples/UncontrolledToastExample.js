@@ -1,7 +1,7 @@
 import React from "react";
 
-import CodeViewer from "storybook/components/CodeViewer";
 import L10n from "@paprika/l10n";
+import Button from "@paprika/button";
 import Toast from "../../src";
 
 export default function UncontrolledToast() {
@@ -13,18 +13,12 @@ export default function UncontrolledToast() {
 
   return (
     <L10n locale="en">
-      <Toast hasCloseButton>Uncontrolled toast component</Toast>
-      <Toast canAutoClose autoCloseDelay={5000} hasCloseButton>
-        Uncontrolled toast component with auto close
+      <Toast>Uncontrolled toast component</Toast>
+      <Toast canAutoClose>Uncontrolled toast component with auto close</Toast>
+      <Toast key={accumulator} canAutoClose>
+        Uncontrolled toast with auto close and ability to re-open upon button click
       </Toast>
-      <CodeViewer>
-        <Toast key={accumulator} canAutoClose autoCloseDelay={5000}>
-          Uncontrolled toast with auto close and ability to re-open upon button click
-        </Toast>
-        <button type="button" onClick={handleItem}>
-          Show toast again
-        </button>
-      </CodeViewer>
+      <Button onClick={handleItem}>Show toast again</Button>
     </L10n>
   );
 }
