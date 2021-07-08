@@ -50,7 +50,7 @@ npm install @paprika/list-box
 
 | Prop     | Type | required | default | Description              |
 | -------- | ---- | -------- | ------- | ------------------------ |
-| children | node | true     | -       | Body content of the box. |
+| children | node | false    | null    | Body content of the box. |
 
 ### ListBox.Divider
 
