@@ -1,2 +1,2 @@
-export { TH } from "./Table.styles";
+export { TH } from "./components/Headers/Headers.styles";
 export { default } from "./Table";
