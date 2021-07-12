@@ -4,7 +4,7 @@ import { getStoryName } from "storybook/storyTree";
 
 import { WithZebras, Borders, WithCustomCellProps } from "./Table.stories";
 import { WithUsers } from "./Table.users.stories";
-import { WithColSpan, WithoutHeaderPropAndTableHeader } from "./Table.colspans.stories";
+import { WithColSpan, WithoutHeaderPropAndTableHeader, WithoutHeader } from "./Table.colspans.stories";
 
 const storyName = getStoryName("Table");
 
@@ -29,5 +29,7 @@ storiesOf(`${storyName}`, module).add("Screener With colSpan", () => (
     <WithColSpan />
     <br />
     <WithoutHeaderPropAndTableHeader />
+    <br />
+    <WithoutHeader />
   </>
 ));

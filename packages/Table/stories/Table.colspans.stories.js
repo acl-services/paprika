@@ -53,12 +53,26 @@ export const WithoutHeaderPropAndTableHeader = () => {
           return `${row.lastName}`;
         }}
       />
-      <Table.ColumnDefinition header="ice cream" cell="iceCream" />
+      <Table.ColumnDefinition cell="iceCream" />
     </Table>
   );
 };
 
-storiesOf(`${storyName}`, module).add("Table colSpan", () => <WithColSpan />);
-storiesOf(`${storyName}`, module).add("Table without header prop and only Table.Header", () => (
-  <WithoutHeaderPropAndTableHeader />
-));
+export const WithoutHeader = () => {
+  return (
+    <Table a11yText="" data={data}>
+      <Table.ColumnDefinition cell="name" />
+      <Table.ColumnDefinition
+        cell={({ row }) => {
+          return `${row.lastName}`;
+        }}
+      />
+      <Table.ColumnDefinition cell="iceCream" />
+    </Table>
+  );
+};
+
+storiesOf(`${storyName}`, module)
+  .add("Table colSpan", () => <WithColSpan />)
+  .add("Table without header prop and only Table.Header", () => <WithoutHeaderPropAndTableHeader />)
+  .add("Table without headers", () => <WithoutHeader />);

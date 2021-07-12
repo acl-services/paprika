@@ -83,7 +83,10 @@ export const TH = styled.th(({ borderType, sticky }) => {
     padding: ${tokens.space};
     position: sticky;
     text-align: left;
-    top: 0;
+    /** [Sticky] This will work only when the header is made of one TR more work will be need to do
+    in order to support complex headers with multiple TH
+    */
+    top: -1px;
     z-index: 2;
     ${typeof sticky !== "undefined" ? `z-index: 3; left: ${!Number.isNaN(sticky) ? sticky : 0}px;` : ""};
   `;
