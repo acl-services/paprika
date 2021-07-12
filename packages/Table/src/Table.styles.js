@@ -3,21 +3,23 @@ import tokens from "@paprika/tokens";
 import { fontSize } from "@paprika/stylers/lib/helpers";
 import * as types from "./types";
 
-export const Table = styled.table`
-  border: 1px solid ${tokens.border.color};
-  border-collapse: collapse;
+export const Table = styled.table(() => {
+  return css`
+    border: 1px solid ${tokens.border.color};
+    border-collapse: collapse;
 
-  &:focus {
-    outline: 0;
-  }
+    &:focus {
+      outline: 0;
+    }
 
-  & .is-highlighted-focus {
-    outline: 2px solid blue;
-  }
-  & .is-highlighted-idle {
-    outline: 2px solid transparent;
-  }
-`;
+    & .is-highlighted-focus {
+      outline: 2px solid blue;
+    }
+    & .is-highlighted-idle {
+      outline: 2px solid transparent;
+    }
+  `;
+});
 
 export const TBody = styled.tbody(({ hasZebraStripes }) => {
   let zebras = "";

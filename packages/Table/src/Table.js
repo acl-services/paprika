@@ -5,6 +5,8 @@ import { extractChildren } from "@paprika/helpers";
 import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
 import ColumnDefinition from "./components/ColumnDefinition";
+import Headers from "./components/Headers";
+
 import * as sc from "./Table.styles";
 
 const Table = React.forwardRef((props, ref) => {
@@ -24,11 +26,19 @@ const Table = React.forwardRef((props, ref) => {
   } = props;
   const [tableId] = React.useState(() => `table_${uuidv4()}`);
 
-  const { "Table.ColumnDefinition": extractedColumnDefinitions } = extractChildren(children, [
-    "Table.ColumnDefinition",
-  ]);
+  const { "Table.ColumnDefinition": extractedColumnDefinitions, "Table.Headers": extractedHeaders } = extractChildren(
+    children,
+    ["Table.ColumnDefinition", "Table.Headers"]
+  );
 
   let ColumnDefinitions = extractedColumnDefinitions;
+
+  const hasAtLeastOneHeader = React.useMemo(() => {
+    return ColumnDefinitions.some(columnDefinition => {
+      const { header } = columnDefinition.props;
+      return typeof header !== "undefined" && (typeof header === "function" || typeof header === "string");
+    });
+  }, [ColumnDefinitions]);
 
   if (!Array.isArray(extractedColumnDefinitions)) {
     // when there is only one component extracted function return the element not an array of elements
@@ -37,28 +47,34 @@ const Table = React.forwardRef((props, ref) => {
 
   return (
     <sc.Table aria-label={a11yText} id={tableId} {...moreProps} ref={ref}>
-      <sc.Thead>
-        <tr>
-          {ColumnDefinitions.map((columnDefinition, columnIndex) => {
-            const { cell, header, sticky, ...moreColumnProps } = columnDefinition.props;
+      {hasAtLeastOneHeader ? (
+        <sc.Thead>
+          {extractedHeaders}
+          <tr>
+            {ColumnDefinitions.map((columnDefinition, columnIndex) => {
+              const { cell, header, sticky, ...moreColumnProps } = columnDefinition.props;
 
-            if (typeof header === "function")
-              return (
-                <sc.TH sticky={sticky} borderType={borderType} key={columnIndex} {...moreColumnProps}>
-                  {header({ header: columnDefinition.props, columnIndex })}
-                </sc.TH>
-              );
-            if (typeof header === "string")
-              return (
-                <sc.TH sticky={sticky} borderType={borderType} key={columnIndex} {...moreColumnProps}>
-                  {header}
-                </sc.TH>
-              );
+              if (typeof header === "undefined") return null;
 
-            throw new Error("Header should be either of type string or function");
-          })}
-        </tr>
-      </sc.Thead>
+              if (typeof header === "function")
+                return (
+                  <sc.TH sticky={sticky} scope="col" borderType={borderType} key={columnIndex} {...moreColumnProps}>
+                    {header({ header: columnDefinition.props, columnIndex })}
+                  </sc.TH>
+                );
+
+              if (typeof header === "string")
+                return (
+                  <sc.TH sticky={sticky} scope="col" borderType={borderType} key={columnIndex} {...moreColumnProps}>
+                    {header}
+                  </sc.TH>
+                );
+
+              throw new Error("Header should be either of type string or function");
+            })}
+          </tr>
+        </sc.Thead>
+      ) : null}
       <sc.TBody hasZebraStripes={hasZebraStripes}>
         {data.map((row, rowIndex) => {
           return (
@@ -72,6 +88,7 @@ const Table = React.forwardRef((props, ref) => {
                   width,
                   sticky,
                   cellProps: _cellProps,
+                  colSpan,
                   ...moreColumnProps
                 } = columnDefinition.props;
 
@@ -163,5 +180,6 @@ Table.displayName = "Table";
 Table.propTypes = propTypes;
 Table.defaultProps = defaultProps;
 Table.ColumnDefinition = ColumnDefinition;
+Table.Headers = Headers;
 
 export default Table;
