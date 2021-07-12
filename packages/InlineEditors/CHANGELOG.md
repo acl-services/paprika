@@ -1,5 +1,21 @@
 # @paprika/inline-editors
 
+## 0.2.8
+
+### Patch Changes
+
+- Updated dependencies [be53161]
+- Updated dependencies [445c77d]
+  - @paprika/list-box@3.4.1
+  - @paprika/seducer@2.0.2
+
+## 0.2.8-next.2
+
+### Patch Changes
+
+- Updated dependencies [445c77d]
+  - @paprika/seducer@2.0.2-next.0
+
 ## 0.2.8-next.1
 
 ### Patch Changes

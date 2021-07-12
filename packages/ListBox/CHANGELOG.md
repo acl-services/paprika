@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.4.1
+
+### Patch Changes
+
+- be53161: - Fix typescript types for ListBox.Content
+  - Fix children being required for ListBox.Box when using it to spread props
+- Updated dependencies [bacebc9]
+  - @paprika/toast@1.1.6
+
 ## 3.4.1-next.1
 
 ### Patch Changes
