@@ -39,4 +39,26 @@ export const WithColSpan = () => {
   );
 };
 
+export const WithoutHeaderPropAndTableHeader = () => {
+  return (
+    <Table a11yText="" data={data}>
+      <Table.Headers>
+        <tr>
+          <TH colSpan="3">List of ice creams</TH>
+        </tr>
+      </Table.Headers>
+      <Table.ColumnDefinition cell="name" />
+      <Table.ColumnDefinition
+        cell={({ row }) => {
+          return `${row.lastName}`;
+        }}
+      />
+      <Table.ColumnDefinition header="ice cream" cell="iceCream" />
+    </Table>
+  );
+};
+
 storiesOf(`${storyName}`, module).add("Table colSpan", () => <WithColSpan />);
+storiesOf(`${storyName}`, module).add("Table without header prop and only Table.Header", () => (
+  <WithoutHeaderPropAndTableHeader />
+));

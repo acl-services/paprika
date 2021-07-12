@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-array-index-key */
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -74,6 +75,8 @@ const Table = React.forwardRef((props, ref) => {
             })}
           </tr>
         </sc.Thead>
+      ) : extractedHeaders ? (
+        <sc.Thead>{extractedHeaders}</sc.Thead>
       ) : null}
       <sc.TBody hasZebraStripes={hasZebraStripes}>
         {data.map((row, rowIndex) => {

@@ -4,7 +4,7 @@ import { getStoryName } from "storybook/storyTree";
 
 import { WithZebras, Borders, WithCustomCellProps } from "./Table.stories";
 import { WithUsers } from "./Table.users.stories";
-import { WithColSpan } from "./Table.colspans.stories";
+import { WithColSpan, WithoutHeaderPropAndTableHeader } from "./Table.colspans.stories";
 
 const storyName = getStoryName("Table");
 
@@ -24,4 +24,10 @@ storiesOf(`${storyName}`, module).add("Screener CellProps", () => <WithCustomCel
 
 storiesOf(`${storyName}`, module).add("Screener With users", () => <WithUsers />);
 
-storiesOf(`${storyName}`, module).add("Screener With colSpan", () => <WithColSpan />);
+storiesOf(`${storyName}`, module).add("Screener With colSpan", () => (
+  <>
+    <WithColSpan />
+    <br />
+    <WithoutHeaderPropAndTableHeader />
+  </>
+));
