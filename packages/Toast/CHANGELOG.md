@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.6
+
+### Patch Changes
+
+- bacebc9: Refactoring internal Toast states and fixing canAutoClose issue for controlled components
+
 ## 1.1.6-next.0
 
 ### Patch Changes
