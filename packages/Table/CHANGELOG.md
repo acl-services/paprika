@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.6-next.0
+
+### Patch Changes
+
+- 648ff98: Add the ability to support colspan or complex header structures
+
 ## 1.2.5
 
 ### Patch Changes
