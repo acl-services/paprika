@@ -26,6 +26,8 @@ To add a custom icon to paprika components, you can do the following:
 
 ```jsx
 import ArrowDownIcon from "@paprika/icon/lib/ArrowDown";
+// or
+// import { ArrowDown } from "@paprika/icon";
 
 <ArrowDownIcon />;
 ```

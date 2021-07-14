@@ -22,6 +22,8 @@ export default () => {
   const cards = (
     <React.Fragment>
       {req.keys().map(filename => {
+        if (filename === "./index.js") return null;
+
         const Component = req(filename).default;
         const componentName = filename.replace(/.\/|.js/g, "");
 
