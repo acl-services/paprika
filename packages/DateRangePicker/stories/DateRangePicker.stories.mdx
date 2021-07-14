@@ -1,0 +1,10 @@
+
+import { Meta, Description } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import { docsStoryParameters } from "storybook/assets/storyParameters";
+import Readme from "../README.md";
+import DateRangePicker from "../src";
+
+<Meta title={`${getStoryName("DateRangePicker")}/ Docs`} component={DateRangePicker} parameters={{ ...docsStoryParameters }} />
+
+<Description markdown={Readme} />

@@ -1,0 +1,10 @@
+
+import { Meta, Description } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import { docsStoryParameters } from "storybook/assets/storyParameters";
+import Readme from "../README.md";
+import Spinner from "../src";
+
+<Meta title={`${getStoryName("Spinner")}/ Docs`} component={Spinner} parameters={{ ...docsStoryParameters }} />
+
+<Description markdown={Readme} />

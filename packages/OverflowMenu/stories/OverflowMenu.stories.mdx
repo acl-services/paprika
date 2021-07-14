@@ -1,0 +1,10 @@
+
+import { Meta, Description } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import { docsStoryParameters } from "storybook/assets/storyParameters";
+import Readme from "../README.md";
+import OverflowMenu from "../src";
+
+<Meta title={`${getStoryName("OverflowMenu")}/ Docs`} component={OverflowMenu} parameters={{ ...docsStoryParameters }} />
+
+<Description markdown={Readme} />

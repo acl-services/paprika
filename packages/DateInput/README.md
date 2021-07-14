@@ -24,7 +24,7 @@ npm install @paprika/date-input
 
 | Prop                 | Type       | required | default      | Description                                                                                                  |
 | -------------------- | ---------- | -------- | ------------ | ------------------------------------------------------------------------------------------------------------ |
-| hasError             | bool       | false    | false        | If the value of <input> is valid or not.                                                                     |
+| hasError             | bool       | false    | false        | If the value of `<input>` is valid or not.                                                                   |
 | dateFormat           | string     | false    | "MM/DD/YYYY" | Date format used while entering and parsing user input.                                                      |
 | date                 | instanceOf | false    | null         | Selected date in moment object.                                                                              |
 | humanFormat          | string     | false    | undefined    | Date format used while displaying date. It should be human-friendly and spelled out, default is MMMM DD,YYYY |

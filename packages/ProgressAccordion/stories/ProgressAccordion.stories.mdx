@@ -1,0 +1,10 @@
+
+import { Meta, Description } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import { docsStoryParameters } from "storybook/assets/storyParameters";
+import Readme from "../README.md";
+import ProgressAccordion from "../src";
+
+<Meta title={`${getStoryName("ProgressAccordion")}/ Docs`} component={ProgressAccordion} parameters={{ ...docsStoryParameters }} />
+
+<Description markdown={Readme} />

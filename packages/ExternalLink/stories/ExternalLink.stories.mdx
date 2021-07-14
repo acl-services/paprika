@@ -1,0 +1,10 @@
+
+import { Meta, Description } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import { docsStoryParameters } from "storybook/assets/storyParameters";
+import Readme from "../README.md";
+import ExternalLink from "../src";
+
+<Meta title={`${getStoryName("ExternalLink")}/ Docs`} component={ExternalLink} parameters={{ ...docsStoryParameters }} />
+
+<Description markdown={Readme} />
