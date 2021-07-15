@@ -38,17 +38,17 @@ function CopyInput(props) {
     const textToCopy = inputRef.current.value;
     if (navigator.clipboard) {
       navigator.clipboard.writeText(textToCopy);
+    } else {
+      // Fall back browser support
+      const textbox = document.createElement("textarea");
+      const activator = document.activeElement;
+      document.body.appendChild(textbox);
+      textbox.value = textToCopy;
+      textbox.select();
+      activator.focus();
+      document.execCommand("copy");
+      document.body.removeChild(textbox);
     }
-    // Fall back browser support
-    const textbox = document.createElement("textarea");
-    const activator = document.activeElement;
-    document.body.appendChild(textbox);
-    textbox.value = textToCopy;
-    textbox.select();
-    activator.focus();
-    document.execCommand("copy");
-    document.body.removeChild(textbox);
-
     setIsClickedTooltipOpen(true);
     setIsHoverTooltipOpen(false);
   }
