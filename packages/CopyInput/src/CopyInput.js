@@ -9,12 +9,14 @@ import { extractChildrenProps } from "@paprika/helpers";
 import CopyIcon from "@paprika/icon/lib/Clipboard";
 import CopyInputInputPropsCollector from "./components/Input/Input";
 import CopyInputButtonPropsCollector from "./components/Button/Button";
+import CopyInputPopoverPropsCollector from "./components/Popover/Popover";
 import * as sc from "./CopyInput.styles";
 
 function CopyInput(props) {
   const { children, isReadOnly, hasInputContainer, hasValueContainer, value, ...moreProps } = props;
   const extendedInputProps = extractChildrenProps(children, CopyInputInputPropsCollector);
   const extendedButtonProps = extractChildrenProps(children, CopyInputButtonPropsCollector);
+  const extendedPopoverProps = extractChildrenProps(children, CopyInputPopoverPropsCollector);
   const I18n = useI18n();
   const inputRef = React.createRef();
   const buttonRef = React.createRef();
@@ -34,6 +36,10 @@ function CopyInput(props) {
 
   function handleButtonClick() {
     const textToCopy = inputRef.current.value;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(textToCopy);
+    }
+    // Fall back browser support
     const textbox = document.createElement("textarea");
     const activator = document.activeElement;
     document.body.appendChild(textbox);
@@ -75,6 +81,7 @@ function CopyInput(props) {
         isDark
         isEager
         isOpen={isHoverTooltipOpen && !isClickedTooltipOpen}
+        {...extendedPopoverProps}
       >
         <Popover.Content>
           <Popover.Card>{I18n.t("copyInput.hover_tooltip")}</Popover.Card>
@@ -86,6 +93,7 @@ function CopyInput(props) {
         getPositioningElement={() => buttonRef.current}
         isOpen={isClickedTooltipOpen}
         shouldKeepFocus
+        {...extendedPopoverProps}
       >
         <Popover.Content>
           <Popover.Card>{I18n.t("copyInput.clicked_tooltip")}</Popover.Card>
@@ -128,5 +136,6 @@ CopyInput.defaultProps = defaultProps;
 
 CopyInput.Input = CopyInputInputPropsCollector;
 CopyInput.Button = CopyInputButtonPropsCollector;
+CopyInput.Popover = CopyInputPopoverPropsCollector;
 
 export default CopyInput;
