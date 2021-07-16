@@ -16,6 +16,10 @@ const CopyInputVariations = () => {
         <CopyInput.Input hasError />
       </CopyInput>
       <Gap.Small />
+      <CopyInput value="Popover shell used">
+        <CopyInput.Popover offset={50} minWidth={300} align="right" />
+      </CopyInput>
+      <Gap.Small />
       <CopyInput hasValueContainer hasInputContainer={false} value="hasInputContainer and hasValueContainer prop used">
         <CopyInput.Button kind="minor" />
       </CopyInput>
