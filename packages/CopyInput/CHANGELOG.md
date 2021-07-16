@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.0-next.0
+
+### Minor Changes
+
+- a8878b8: Addding popover shell and use of clipboard API
+
 ## 1.2.1
 
 ### Patch Changes
