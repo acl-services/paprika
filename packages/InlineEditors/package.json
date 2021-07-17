@@ -1,6 +1,6 @@
 {
   "name": "@paprika/inline-editors",
-  "version": "0.2.9-next.0",
+  "version": "0.2.9",
   "description": "Great flexibility to present a pattern where the user has to interact with an output component in order to trigger an input component",
   "author": "@paprika",
   "license": "MIT",
@@ -27,7 +27,7 @@
     "@paprika/seducer": "^2.0.2",
     "@paprika/spinner": "^1.0.7",
     "@paprika/stylers": "^1.0.0",
-    "@paprika/table": "1.2.6-next.0",
+    "@paprika/table": "1.2.6",
     "@paprika/tag": "^0.0.7",
     "@paprika/textarea": "^3.0.0",
     "@paprika/tokens": "^1.0.0",
