@@ -1,5 +1,48 @@
 # Changelog
 
+## 1.0.14
+
+### Patch Changes
+
+- 659ebe184: Minor vertical alignment tweak of cells (header and body)
+- Updated dependencies [009352de9]
+  - @paprika/icon@1.2.0
+  - @paprika/button@1.1.1
+  - @paprika/checkbox@1.0.11
+  - @paprika/panel@2.1.1
+
+## 1.0.14-next.1
+
+### Patch Changes
+
+- 659ebe1: Minor vertical alignment tweak of cells (header and body)
+
+## 1.0.14-next.0
+
+### Patch Changes
+
+- Updated dependencies [009352d]
+  - @paprika/icon@1.2.0-next.0
+  - @paprika/button@1.1.1-next.0
+  - @paprika/checkbox@1.0.11-next.0
+  - @paprika/panel@2.1.1-next.0
+
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+- Updated dependencies [82ef2b7]
+  - @paprika/l10n@1.1.11
+  - @paprika/panel@2.1.0
+
+## 1.0.13-next.1
+
+### Patch Changes
+
+- Updated dependencies [82ef2b7]
+  - @paprika/panel@2.1.0-next.1
+
 ## 1.0.13-next.0
 
 ### Patch Changes

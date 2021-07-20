@@ -1,5 +1,38 @@
 # Changelog
 
+## 2.1.1
+
+### Patch Changes
+
+- Updated dependencies [009352de9]
+  - @paprika/icon@1.2.0
+  - @paprika/button@1.1.1
+
+## 2.1.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [009352d]
+  - @paprika/icon@1.2.0-next.0
+  - @paprika/button@1.1.1-next.0
+
+## 2.1.0
+
+### Minor Changes
+
+- 82ef2b7: No longer use focus trap when overlay is not used
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11
+
+## 2.1.0-next.1
+
+### Minor Changes
+
+- 82ef2b7: No longer use focus trap when overlay is not used
+
 ## 2.0.12-next.0
 
 ### Patch Changes

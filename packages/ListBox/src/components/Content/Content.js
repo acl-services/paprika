@@ -15,9 +15,9 @@ const handleBlur = (state, dispatch, onCancelFooter) => () => {
   // via document.activeElement instead of returning
   // the body element automatically
   window.requestAnimationFrame(() => {
+    // in case the on blur happens on the trigger it should ignore it and let the trigger to control the flow of the
+    // popover
     if (state.refTriggerContainer.current && state.refTriggerContainer.current.contains(document.activeElement)) {
-      // close the popover if the target is the trigger, this make easier to handle tab events
-      dispatch({ type: useListBox.types.closePopover });
       return;
     }
 
@@ -63,6 +63,7 @@ export default function Content(props) {
 
   return (
     <sc.PopoverContent
+      {...moreProps}
       {...getDOMAttributesForListBox({ idListBox, refLabel, ...state })}
       contentOffsetX={contentOffsetX}
       contentOffsetY={contentOffsetY}
@@ -76,11 +77,14 @@ export default function Content(props) {
   );
 }
 
+Content.displayName = "ListBox.Content";
+
 Content.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   onCancelFooter: PropTypes.func,
 };
 
 Content.defaultProps = {
+  children: null,
   onCancelFooter: null,
 };

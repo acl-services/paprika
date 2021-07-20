@@ -19,8 +19,8 @@ pt:
       drop_files_here_or: Solte os arquivos para carregar aqui ou
       choose_from_computer: escolha no seu computador
       choose_from_computer_a11y: Escolher arquivos no seu computador
-      cancel_upload: Cancelar upload
-      restart_upload: Selecione o arquivo novamente para tentar outra vez
+      cancel_upload: Cancelar upload de {{name}}
+      restart_upload: Selecione {{name}} novamente para tentar outra vez
       file_list: Lista de arquivos
       errors:
         size: O arquivo deve ser menor que {{maxFileSize}}
@@ -35,7 +35,10 @@ pt:
       progress:
         cancelled: Cancelado(a)
         complete: Concluído(a)
+        error: "Ocorreu um erro para {{name}}: {{error}}"
         idle: Ocioso
+        file_progress: "{{name}} está {{progress}}"
+        uploading_percent: Carregando, {{a11yProgress}}%
         uploading: Carregando {{progressWithUnits}} de {{sizeWithUnits}}
       size_abbreviations:
         byte: B

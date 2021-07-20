@@ -1,5 +1,28 @@
 # Changelog
 
+## 1.0.18
+
+### Patch Changes
+
+- @paprika/calendar@1.0.14
+- @paprika/date-input@1.0.14
+
+## 1.0.18-next.0
+
+### Patch Changes
+
+- @paprika/calendar@1.0.14-next.0
+- @paprika/date-input@1.0.14-next.0
+
+## 1.0.17
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11
+  - @paprika/calendar@1.0.13
+  - @paprika/date-input@1.0.13
+
 ## 1.0.17-next.0
 
 ### Patch Changes

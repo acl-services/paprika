@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, configure } from "@testing-library/react";
+import { render, fireEvent, configure, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
 import { Controlled } from "../../../stories/examples/Single/Controlled";
 import ListBox from "../../../src";
@@ -45,6 +45,15 @@ describe("ListBox single select", () => {
 
     openSelect();
     popoverIsVisible();
+  });
+
+  it("dropdown should toggle when clicked", () => {
+    const { popoverIsVisible, popoverIsHidden } = renderComponent();
+
+    fireEvent.click(screen.getByText(/select/i));
+    popoverIsVisible();
+    fireEvent.click(screen.getByText(/select/i));
+    popoverIsHidden();
   });
 
   it("dropdown should have correct number of options", () => {
@@ -111,5 +120,19 @@ describe("ListBox single select", () => {
   it("should not fail any accessibility tests", async () => {
     const { container } = renderComponent();
     expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("should spread props to ListBox subcomponents", () => {
+    const { openSelect, getByTestId } = renderComponent({}, [
+      <ListBox.Content key="content" data-testid="test-content" />,
+      <ListBox.Filter key="filter" data-testid="test-filter" />,
+      <ListBox.Box key="box" data-testid="test-box" />,
+      [...childrenContent],
+    ]);
+
+    openSelect();
+    expect(getByTestId("popover.content").getAttribute("data-testid")).toEqual("test-content");
+    expect(getByTestId("list-filter-input").getAttribute("data-testid")).toEqual("test-filter");
+    expect(getByTestId("list-box-box").getAttribute("data-testid")).toEqual("test-box");
   });
 });

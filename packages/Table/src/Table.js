@@ -1,10 +1,12 @@
 /* eslint-disable react/no-array-index-key */
+
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
 import { extractChildren } from "@paprika/helpers";
 import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
 import ColumnDefinition from "./components/ColumnDefinition";
+import HeadersShells, { Headers } from "./components/Headers";
 import * as sc from "./Table.styles";
 
 const Table = React.forwardRef((props, ref) => {
@@ -24,9 +26,10 @@ const Table = React.forwardRef((props, ref) => {
   } = props;
   const [tableId] = React.useState(() => `table_${uuidv4()}`);
 
-  const { "Table.ColumnDefinition": extractedColumnDefinitions } = extractChildren(children, [
-    "Table.ColumnDefinition",
-  ]);
+  const { "Table.ColumnDefinition": extractedColumnDefinitions, "Table.Headers": extractedHeaders } = extractChildren(
+    children,
+    ["Table.ColumnDefinition", "Table.Headers"]
+  );
 
   let ColumnDefinitions = extractedColumnDefinitions;
 
@@ -37,28 +40,7 @@ const Table = React.forwardRef((props, ref) => {
 
   return (
     <sc.Table aria-label={a11yText} id={tableId} {...moreProps} ref={ref}>
-      <sc.Thead>
-        <tr>
-          {ColumnDefinitions.map((columnDefinition, columnIndex) => {
-            const { cell, header, sticky, ...moreColumnProps } = columnDefinition.props;
-
-            if (typeof header === "function")
-              return (
-                <sc.TH sticky={sticky} borderType={borderType} key={columnIndex} {...moreColumnProps}>
-                  {header({ header: columnDefinition.props, columnIndex })}
-                </sc.TH>
-              );
-            if (typeof header === "string")
-              return (
-                <sc.TH sticky={sticky} borderType={borderType} key={columnIndex} {...moreColumnProps}>
-                  {header}
-                </sc.TH>
-              );
-
-            throw new Error("Header should be either of type string or function");
-          })}
-        </tr>
-      </sc.Thead>
+      <Headers extractedHeaders={extractedHeaders} ColumnDefinitions={ColumnDefinitions} borderType={borderType} />
       <sc.TBody hasZebraStripes={hasZebraStripes}>
         {data.map((row, rowIndex) => {
           return (
@@ -72,6 +54,7 @@ const Table = React.forwardRef((props, ref) => {
                   width,
                   sticky,
                   cellProps: _cellProps,
+                  colSpan,
                   ...moreColumnProps
                 } = columnDefinition.props;
 
@@ -163,5 +146,6 @@ Table.displayName = "Table";
 Table.propTypes = propTypes;
 Table.defaultProps = defaultProps;
 Table.ColumnDefinition = ColumnDefinition;
+Table.Headers = HeadersShells;
 
 export default Table;

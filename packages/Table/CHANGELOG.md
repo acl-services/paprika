@@ -1,5 +1,53 @@
 # Changelog
 
+## 1.2.6
+
+### Patch Changes
+
+- 648ff98: Add the ability to support colspan or complex header structures
+
+## 1.2.6-next.0
+
+### Patch Changes
+
+- 648ff98: Add the ability to support colspan or complex header structures
+
+## 1.2.5
+
+### Patch Changes
+
+- Updated dependencies [21eed7dd7]
+  - @paprika/pill@1.0.10
+  - @paprika/button@1.1.1
+  - @paprika/overflow-menu@1.1.1
+
+## 1.2.5-next.0
+
+### Patch Changes
+
+- @paprika/button@1.1.1-next.0
+- @paprika/overflow-menu@1.1.1-next.0
+
+## 1.2.4
+
+### Patch Changes
+
+- Updated dependencies [11ca2a7]
+  - @paprika/overflow-menu@1.1.0
+
+## 1.2.4-next.0
+
+### Patch Changes
+
+- Updated dependencies [11ca2a7]
+  - @paprika/overflow-menu@1.1.0-next.0
+
+## 1.2.3
+
+### Patch Changes
+
+- @paprika/overflow-menu@1.0.20
+
 ## 1.2.3-next.0
 
 ### Patch Changes

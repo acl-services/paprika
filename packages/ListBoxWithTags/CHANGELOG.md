@@ -1,5 +1,106 @@
 # Changelog
 
+## 2.1.0
+
+### Minor Changes
+
+- d88bc8d: - Updated to allow to spread ListBox.Content props with ListBoxWithTags.Content
+
+### Patch Changes
+
+- Updated dependencies [be53161]
+  - @paprika/list-box@3.4.1
+
+## 2.1.0-next.0
+
+### Minor Changes
+
+- d88bc8d: - Updated to allow to spread ListBox.Content props with ListBoxWithTags.Content
+
+### Patch Changes
+
+- Updated dependencies [be53161]
+  - @paprika/list-box@3.4.1-next.0
+
+## 2.0.3
+
+### Patch Changes
+
+- Updated dependencies [009352de9]
+- Updated dependencies [2fa64be80]
+  - @paprika/icon@1.2.0
+  - @paprika/list-box@3.4.0
+  - @paprika/tag@0.0.7
+
+## 2.0.3-next.1
+
+### Patch Changes
+
+- Updated dependencies [2fa64be]
+  - @paprika/list-box@3.4.0-next.1
+
+## 2.0.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [009352d]
+  - @paprika/icon@1.2.0-next.0
+  - @paprika/list-box@3.3.2-next.0
+  - @paprika/tag@0.0.7-next.0
+
+## 2.0.2
+
+### Patch Changes
+
+- Updated dependencies [2e20d08]
+- Updated dependencies [b82b9d5]
+- Updated dependencies [c5bc5f5]
+  - @paprika/list-box@3.3.1
+
+## 2.0.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [b82b9d5]
+  - @paprika/list-box@3.3.1-next.0
+
+## 2.0.1
+
+### Patch Changes
+
+- be16def: - Fixed option refocus being undefined when selecting the last option with a null second last option.
+
+## 2.0.1-next.0
+
+### Patch Changes
+
+- be16def: - Fixed option refocus being undefined when selecting the last option with a null second last option.
+
+## 2.0.0
+
+### Major Changes
+
+- 53fe1ed: BREAKING CHANGE: Separated the valid props from the return value of `useListBoxWithTags`. If you don't use `useListBoxWithTags` you're fine, otherwise please get the object called `listBoxWithTagsProps` from the `useListBoxWithTags`'s return value and pass that object to `<ListBoxWithTags />` component if needed. For example: https://github.com/acl-services/paprika/pull/980/files#diff-801a2bfe08256d72d8997c724c8f9d1736e6dc9ce667e3626d4b4de936ab8777R9
+
+### Patch Changes
+
+- 47004f0: - Fixed issue where the Popover is not dismissable by clicking outside after selecting an option
+  - It will now refocus on the next element available, or the Filter input (if no options available) when selecting an option
+- Updated dependencies [ae0d6a0]
+- Updated dependencies [25ed9a6]
+  - @paprika/l10n@1.1.11
+  - @paprika/list-box@3.3.0
+  - @paprika/tag@0.0.6
+
+## 2.0.0-next.2
+
+### Patch Changes
+
+- 47004f0: - Fixed issue where the Popover is not dismissable by clicking outside after selecting an option
+  - It will now refocus on the next element available, or the Filter input (if no options available) when selecting an option
+- Updated dependencies [25ed9a6]
+  - @paprika/list-box@3.3.0-next.1
+
 ## 2.0.0-next.1
 
 ### Major Changes

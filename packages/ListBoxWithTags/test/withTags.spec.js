@@ -2,6 +2,7 @@ import React from "react";
 import { render, fireEvent, screen, waitFor } from "@testing-library/react"; // fireEvent, waitFor, screen
 import ListBoxTags from "../src";
 import Uncontrolled from "../stories/examples/Uncontrolled";
+import SpreadingSubComponents from "../stories/examples/SpreadingSubComponents";
 
 function getTrigger(container) {
   return container.querySelector("[data-pka-anchor='popover'] [role='button']");
@@ -138,5 +139,20 @@ describe("ListBoxTags", () => {
       expect(options.includes("Woodpecker")).toBeTruthy();
       expect(options.includes("Worm")).toBeTruthy();
     });
+  });
+
+  it("should spread ListBoxWithTag props to ListBox subcomponents", () => {
+    const { container } = render(<SpreadingSubComponents />);
+
+    fireEvent.click(getTrigger(container));
+
+    expect(screen.getByTestId("popover.content").getAttribute("data-test-anchor")).toEqual(
+      "ListBoxWithTags.Content-test"
+    );
+    expect(screen.getByTestId("list-filter-input").getAttribute("data-test-anchor")).toEqual(
+      "ListBoxWithTags.Filter-test"
+    );
+    expect(screen.getByTestId("list-box-box").getAttribute("data-test-anchor")).toEqual("ListBoxWithTags.Box-test");
+    expect(screen.getByTestId("list-trigger").getAttribute("data-test-anchor")).toEqual("ListBoxWithTags.Trigger-test");
   });
 });
