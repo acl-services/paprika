@@ -4,6 +4,7 @@
   "description": "The Takeover component can toggle a full-screen view to help the user focus on complex UI tasks.",
   "author": "@paprika",
   "main": "lib/index.js",
+  "module": "lib/esm/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
   "repository": {
@@ -40,5 +41,6 @@
       "Overlay"
     ]
   },
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
+  "sideEffects": false
 }

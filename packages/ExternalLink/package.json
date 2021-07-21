@@ -3,6 +3,7 @@
   "version": "2.0.9",
   "description": "The ExternalLink component links to an external website.",
   "main": "lib/index.js",
+  "module": "lib/esm/index.js",
   "types": "lib/index.d.ts",
   "author": "@paprika",
   "license": "MIT",
@@ -27,5 +28,6 @@
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"
   },
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
+  "sideEffects": false
 }

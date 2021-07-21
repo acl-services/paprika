@@ -3,6 +3,7 @@
   "version": "2.1.0",
   "description": "Allowed the consumer to display a ListBox that show the selected option in a shape of pills",
   "main": "lib/index.js",
+  "module": "lib/esm/index.js",
   "types": "lib/index.d.ts",
   "author": "@paprika",
   "license": "MIT",
@@ -33,5 +34,6 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"
-  }
+  },
+  "sideEffects": false
 }

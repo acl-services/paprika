@@ -4,6 +4,7 @@
   "description": "ProgressBar is a component that shows the current progress of an action",
   "author": "@paprika",
   "main": "lib/index.js",
+  "module": "lib/esm/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
   "repository": {
@@ -26,5 +27,6 @@
     "prop-types": "^15.7.2",
     "uuid": "^8.3.2"
   },
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
+  "sideEffects": false
 }

@@ -3,6 +3,7 @@
   "version": "1.0.14",
   "description": "Calendar component",
   "main": "lib/index.js",
+  "module": "lib/esm/index.js",
   "author": "@paprika",
   "license": "MIT",
   "repository": {
@@ -31,5 +32,6 @@
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"
   },
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
+  "sideEffects": false
 }

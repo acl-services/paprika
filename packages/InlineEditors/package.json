@@ -5,6 +5,7 @@
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
+  "module": "lib/esm/index.js",
   "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
@@ -41,5 +42,6 @@
   },
   "paprikaDocs": {
     "subComponents": []
-  }
+  },
+  "sideEffects": false
 }

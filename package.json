@@ -25,8 +25,9 @@
     "test": "jest --passWithNoTests",
     "test:a11y": "echo 'Axe will run on this command'",
     "test:debug": "node --inspect node_modules/.bin/jest --runInBand",
-    "transpile": "lerna exec --parallel -- babel --root-mode upward src --out-dir lib --source-maps --copy-files",
-    "build-esm": "lerna exec --parallel -- babel --root-mode upward src --config-file ../../babel.config.esm.js --out-dir lib/esm --source-maps --copy-files"
+    "transpile:common": "lerna exec --parallel -- babel --root-mode upward src --source-maps --copy-files",
+    "transpile": "yarn transpile:common --out-dir lib",
+    "transpile:esm": "yarn transpile:common --config-file ../../babel.config.esm.js --out-dir lib/esm"
   },
   "engines": {
     "node": ">=12.13.0",

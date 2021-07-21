@@ -4,6 +4,7 @@
   "description": "An utility tool to convert translation yml files to js.",
   "author": "@paprika",
   "main": "lib/index.js",
+  "module": "lib/esm/index.js",
   "types": "lib/index.d.ts",
   "bin": "lib/build-translations.js",
   "license": "MIT",
@@ -20,5 +21,6 @@
     "arg": "^5.0.0",
     "esm": "^3.2.25",
     "js-yaml": "^3.13.1"
-  }
+  },
+  "sideEffects": false
 }

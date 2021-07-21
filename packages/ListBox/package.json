@@ -3,6 +3,7 @@
   "version": "3.4.1",
   "description": "The ListBox component allows users to select one or more options from a list contained within the component",
   "main": "lib/index.js",
+  "module": "lib/esm/index.js",
   "types": "lib/index.d.ts",
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
@@ -52,5 +53,6 @@
   },
   "author": "@paprika",
   "license": "MIT",
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
+  "sideEffects": false
 }
