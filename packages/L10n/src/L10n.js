@@ -18,6 +18,7 @@ const defaultProps = {
 
 export default function L10n(props) {
   const value = React.useMemo(() => getI18nObject(props.locale, props.locales), [props.locale, props.locales]);
+  value.i18n.changeLanguage(props.locale);
   return <L10nContext.Provider value={value}>{props.children}</L10nContext.Provider>;
 }
 
