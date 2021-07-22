@@ -3,7 +3,7 @@ import { getStoryName } from "storybook/storyTree";
 import ExampleStory from "storybook/components/ExampleStory";
 import { exampleStoryParameters } from "storybook/assets/storyParameters";
 import FakeAppWithoutContext from "./examples/FakeAppWithoutContext";
-import FakeAppWithLocales from "./examples/withLocales/FakeAppWithLocales";
+import FakeAppWithLocales from "./examples/FakeAppWithLocales";
 
 import L10n from "../src";
 
