@@ -1,5 +1,31 @@
 # Changelog
 
+## 1.3.0
+
+### Minor Changes
+
+- a8878b8: Addding popover shell and use of clipboard API
+
+## 1.3.0-next.0
+
+### Minor Changes
+
+- a8878b8: Addding popover shell and use of clipboard API
+
+## 1.2.1
+
+### Patch Changes
+
+- Updated dependencies [bacebc9]
+  - @paprika/toast@1.1.6
+
+## 1.2.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [bacebc9]
+  - @paprika/toast@1.1.6-next.0
+
 ## 1.2.0
 
 ### Minor Changes
