@@ -1,12 +1,17 @@
 import React from "react";
+import FormElement from "@paprika/form-element";
 import L10n from "../../../src/L10n";
 import Locales from "./Locales";
-import SomeComponent from "./SomeComponent";
+import Greeting from "./Greeting";
 
 export default function FakeAppWithLocales() {
   return (
     <L10n locale="en" locales={Locales}>
-      <SomeComponent />
+      <Greeting />
+      <FormElement isOptional>
+        <FormElement.Label>Translation using paprika locales</FormElement.Label>
+        <input />
+      </FormElement>
     </L10n>
   );
 }

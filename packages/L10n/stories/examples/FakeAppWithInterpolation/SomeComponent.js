@@ -12,7 +12,7 @@ export default function SomeComponent() {
       <Button
         kind="link"
         onClick={() => {
-          console.log("tab 2!!");
+          alert("You clicked on tab 2");
         }}
       />
       <Link href="https://google.ca" hasNoUnderline />
