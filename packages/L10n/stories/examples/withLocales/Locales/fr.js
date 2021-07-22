@@ -1,7 +1,7 @@
 const locales = {
   fr: {
     translation: {
-      customlocalegreeting: "Bonjour",
+      new_message: "Bonjour",
     },
   },
 };
