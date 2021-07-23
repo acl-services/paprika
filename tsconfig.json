@@ -1,6 +1,6 @@
 {
-  "files": ["./packages/Tokens/src/tokens.js", "./packages/Constants/src/Constants.js"],
-  "exclude": ["./packages/Tokens/src", "./packages/Constants/src"],
+  "include": ["./packages/**/*"],
+  "exclude": ["node_modules", "./packages/**/lib"],
   "compilerOptions": {
     "allowJs": true,
     "declaration": true,
@@ -18,6 +18,13 @@
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictBindCallApply": true,
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./packages"
+    // "noEmit": true,
+    // "inlineSourceMap": false,
+    // "sourceMap": false,
+    // "noFallthroughCasesInSwitch": true,
+    // "": ["jest", "cypress", "@testing-library/cypress"]
   }
 }

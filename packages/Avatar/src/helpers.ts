@@ -1,6 +1,8 @@
+import React from "react";
+// @ts-expect-error: need to fix tokens library
 import Tokens from "@paprika/tokens";
 
-export function getAvatarColors(text) {
+export function getAvatarColors(children: React.ReactNode): { fontColor: string; backgroundColor: string } {
   const COLORS = [
     { background: Tokens.color.chartColor01, font: Tokens.color.white },
     { background: Tokens.color.chartColor02, font: Tokens.color.white },
@@ -16,8 +18,8 @@ export function getAvatarColors(text) {
     { background: Tokens.color.chartColor12, font: Tokens.color.black },
   ];
 
-  const reducer = (accumulator, letter) => accumulator + letter.charCodeAt(0);
-  const textAsciiSum = text.split("").reduce(reducer, 0);
+  const reducer = (accumulator: number, letter: string) => accumulator + letter.charCodeAt(0);
+  const textAsciiSum = (children as string).split("").reduce(reducer, 0);
   const index = textAsciiSum % COLORS.length;
 
   return {
@@ -26,7 +28,7 @@ export function getAvatarColors(text) {
   };
 }
 
-export function getInitialsFromText(text, length = 1) {
+export function getInitialsFromText(text: string, length = 1): string {
   const initials = text.split(" ").map(word => word.charAt(0));
   return initials.join("").substr(0, length);
 }
