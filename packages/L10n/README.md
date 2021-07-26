@@ -35,7 +35,7 @@ npm install @paprika/l10n
 
 This component can be used in one of two ways: Translating Paprika components, or Translating your own components.
 
-##### Translating Paprika components
+#### Translating Paprika components
 
 When someone wants to use a Paprika component that has translatable text (like the `<Collapsible>`) in a language other than English, they'd do it like this:
 
@@ -51,7 +51,7 @@ import Collapsible from "@paprika/collapsible";
 </L10n>;
 ```
 
-##### Translating your own components
+#### Translating your own components
 
 When someone wants to add their own translations to their own app/components, they'd do it like this:
 
@@ -103,9 +103,6 @@ const locales = {
     translation: {
       greeting: "Hello",
       farewell: "Goodbye",
-      x: "xxx",
-      y: "yyy",
-      z: "zzz",
     },
   },
 };
@@ -119,9 +116,6 @@ const locales = {
     translation: {
       greeting: "Bonjour",
       farewell: "Au revoir",
-      x: "xxx",
-      y: "yyy",
-      z: "zzz",
     },
   },
 };
@@ -130,7 +124,44 @@ export default locales;
 
 Please do not using the same translation key as paprika's to avoid overriding. You can check them from here: https://github.com/acl-services/paprika/blob/master/packages/L10n/src/locales/en.yml
 
-##### Adding new translations
+## Interpolating components within a translation
+
+Imagine you have the string: `Processing failed with 3 errors. Click here to try again.` and you want to make the "Click here" substring a `<Button onClick={...}>` component. You can accomplish this with `@paprika/l10n` and react-i18next's [Trans component](https://react.i18next.com/latest/trans-component):
+
+```jsx
+// YourApp.js
+const Locales = {
+  en: {
+    translation: {
+      error: "Processing failed with {{count}} errors. <0>Click here</0> to try again.",
+      ...
+
+return (
+  <L10n locale="en" locales={Locales}>
+    <YourComponent />
+  </L10n>
+);
+```
+
+```jsx
+// YourComponent.js
+import { Trans } from "react-i18next";
+import useI18n from "@paprika/l10n/lib/useI18n";
+
+export default function YourComponent() {
+  const x = useI18n();
+  return (
+    <Trans i18nKey="error" i18n={x.i18n} count={3}>
+      <Button
+        kind="link"
+        onClick={...}
+      />
+    </Trans>
+  );
+}
+```
+
+## Adding new translations
 
 After you have added a new translation to en.yml, in order to see it in Storybook you will need to delete the `lib` folder and regenerate it:
 
