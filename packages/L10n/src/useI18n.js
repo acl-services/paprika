@@ -24,7 +24,6 @@ export const getI18nObject = (locale = "en", locales) => {
   return {
     locale,
     t: _i18n.getFixedT(locale),
-    i18n: _i18n,
   };
 };
 
