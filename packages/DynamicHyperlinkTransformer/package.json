@@ -32,6 +32,6 @@
     "ckeditor4-react": "^1.3.0"
   },
   "sideEffects": [
-    "**/*.scss"
+    "*.scss"
   ]
 }
