@@ -5,7 +5,6 @@
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
-  "module": "lib/esm/index.js",
   "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
@@ -35,6 +34,5 @@
       "Group"
     ]
   },
-  "gitHead": "494ce26cb0a6c24a8f6abf2b154d97ddd4d7e343",
-  "sideEffects": false
+  "gitHead": "494ce26cb0a6c24a8f6abf2b154d97ddd4d7e343"
 }

@@ -3,7 +3,6 @@
   "version": "1.1.8",
   "description": "Move items through a customized status workflow and view metadata for the previous and current statuses.",
   "main": "lib/index.js",
-  "module": "lib/esm/index.js",
   "types": "lib/index.d.ts",
   "author": "@paprika",
   "license": "MIT",
@@ -36,6 +35,5 @@
     "subComponents": [
       "Point"
     ]
-  },
-  "sideEffects": false
+  }
 }

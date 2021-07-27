@@ -3,7 +3,6 @@
   "version": "1.0.17",
   "description": "The search components helps you to implemented in an easy way an autocomplete interaction.",
   "main": "lib/index.js",
-  "module": "lib/esm/index.js",
   "types": "lib/index.d.ts",
   "author": "@paprika",
   "license": "MIT",
@@ -30,6 +29,5 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"
-  },
-  "sideEffects": false
+  }
 }

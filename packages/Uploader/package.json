@@ -4,7 +4,6 @@
   "description": "The Uploader component lets you upload files and see progress.",
   "author": "@paprika",
   "main": "lib/index.js",
-  "module": "lib/esm/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
   "repository": {
@@ -34,6 +33,5 @@
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"
   },
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
-  "sideEffects": false
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
 }

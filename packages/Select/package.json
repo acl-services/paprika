@@ -4,7 +4,6 @@
   "description": "The Select component is a styled select drop-down form input that can be used as a controlled or uncontrolled component.",
   "author": "@paprika",
   "main": "lib/index.js",
-  "module": "lib/esm/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
   "repository": {
@@ -28,6 +27,5 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"
-  },
-  "sideEffects": false
+  }
 }

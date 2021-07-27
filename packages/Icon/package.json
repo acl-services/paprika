@@ -5,7 +5,6 @@
   "author": "@paprika",
   "main": "lib/index.js",
   "module": "lib/esm/index.js",
-  "module": "lib/esm/index.js",
   "license": "MIT",
   "repository": {
     "type": "git",
