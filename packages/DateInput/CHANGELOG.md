@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.15-next.0
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12-next.0
+  - @paprika/input@4.0.5-next.0
+
 ## 1.0.14
 
 ### Patch Changes
