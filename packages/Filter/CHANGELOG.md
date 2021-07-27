@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2.6-next.0
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12-next.0
+  - @paprika/date-picker@1.0.19-next.0
+  - @paprika/input@4.0.5-next.0
+  - @paprika/list-box@3.4.2-next.0
+  - @paprika/panel@2.1.2-next.0
+
 ## 1.2.5
 
 ### Patch Changes

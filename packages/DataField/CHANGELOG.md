@@ -1,5 +1,13 @@
 <!-- content -->
 
+## 1.0.19-next.0
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12-next.0
+  - @paprika/data-grid@1.0.15-next.0
+
 ## 1.0.18
 
 ### Patch Changes

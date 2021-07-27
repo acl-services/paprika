@@ -1,5 +1,12 @@
 # @paprika/dynamic-hyperlink-transformer
 
+## 1.1.16-next.0
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12-next.0
+
 ## 1.1.15
 
 ### Patch Changes

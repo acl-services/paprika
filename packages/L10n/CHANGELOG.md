@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.12-next.0
+
+### Patch Changes
+
+- b20c1d4: Add ability to inject components into a translation
+
 ## 1.1.11
 
 ### Patch Changes
