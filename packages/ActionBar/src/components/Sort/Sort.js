@@ -93,6 +93,7 @@ export default function Sort(props) {
         onClose={handleClose}
       >
         <sc.Trigger
+          data-pka-anchor="actionBar.sort.trigger"
           isSemantic={false}
           kind={Button.types.kind.FLAT}
           onClick={handleClickTrigger}
@@ -112,7 +113,12 @@ export default function Sort(props) {
               )}
             </sc.FieldsPanel>
             <sc.Footer>
-              <Button isDisabled={isAddSortDisabled} onClick={handleAddSort} kind="minor">
+              <Button
+                data-pka-anchor="actionBar.sort.addSort"
+                isDisabled={isAddSortDisabled}
+                onClick={handleAddSort}
+                kind="minor"
+              >
                 {I18n.t(`actionBar.sort.add_field`)}
               </Button>
               <Button onClick={handleApply} kind="flat" icon={<CheckIcon />}>
