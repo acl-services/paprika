@@ -73,6 +73,7 @@
     "@paprika/seducer": "2.0.2"
   },
   "changesets": [
+    "rich-tables-live",
     "shy-bananas-shop"
   ]
 }

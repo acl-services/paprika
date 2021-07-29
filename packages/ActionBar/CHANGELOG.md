@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.1.6-next.1
+
+### Patch Changes
+
+- 90dec26: Fix some CSS errors caused by input/select refactoring.
+
 ## 3.1.6-next.0
 
 ### Patch Changes
