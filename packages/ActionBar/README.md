@@ -129,14 +129,8 @@ return (
 You can also use the hook `useColumnsArrangement`
 
 ```js
-const {
-  orderedColumnIds,
-  onChangeVisibility,
-  onShowAll,
-  onHideAll,
-  onChangeOrder,
-  isColumnHidden,
-} = useColumnsArrangement({ defaultOrderedColumnIds });
+const { orderedColumnIds, onChangeVisibility, onShowAll, onHideAll, onChangeOrder, isColumnHidden } =
+  useColumnsArrangement({ defaultOrderedColumnIds });
 
 return (
   <ColumnsArrangement

@@ -14,7 +14,7 @@
     "lint": "eslint packages --report-unused-disable-directives",
     "lint:fix": "yarn lint --fix",
     "lint:jss": "stylelint './packages/**/src/**/*.styles.js'",
-    "prepare": "yarn cleanup && lerna run pretranspile && yarn transpile && yarn generateReadMe && yarn generateTypeDefinitions",
+    "prepare": "yarn cleanup && lerna run pretranspile && yarn transpile",
     "prettier": "prettier \"packages/**/*.+(js|json|yml|css|scss)\"",
     "prettier:format": "yarn prettier --write",
     "storybook": "run-p storybook:start storybook:uploadserver",
@@ -25,7 +25,7 @@
     "test": "jest --passWithNoTests",
     "test:a11y": "echo 'Axe will run on this command'",
     "test:debug": "node --inspect node_modules/.bin/jest --runInBand",
-    "transpile": "lerna exec --parallel -- babel --root-mode upward src --out-dir lib --source-maps --copy-files"
+    "transpile": "lerna exec --parallel -- babel --extensions .js,.jsx,.ts,.tsx --root-mode upward src --out-dir lib --source-maps --copy-files"
   },
   "engines": {
     "node": ">=12.13.0",
@@ -38,13 +38,13 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.4.3",
-    "@babel/core": "^7.0.0",
-    "@babel/plugin-proposal-class-properties": "^7.3.3",
-    "@babel/plugin-transform-modules-commonjs": "^7.2.0",
-    "@babel/plugin-transform-runtime": "^7.2.0",
-    "@babel/preset-env": "^7.3.1",
-    "@babel/preset-react": "^7.0.0",
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.14.8",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.14.5",
+    "@babel/plugin-transform-runtime": "^7.14.5",
+    "@babel/preset-env": "^7.14.8",
+    "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.14.5",
     "@octokit/rest": "^16.28.6",
     "@storybook/addon-a11y": "^6.2.9",
@@ -134,9 +134,9 @@
     ]
   },
   "dependencies": {
-    "@babel/plugin-proposal-private-methods": "^7.13.0",
-    "@babel/plugin-proposal-private-property-in-object": "^7.14.0",
-    "@babel/runtime-corejs2": "^7.4.4",
+    "@babel/plugin-proposal-private-methods": "^7.14.5",
+    "@babel/plugin-proposal-private-property-in-object": "^7.14.5",
+    "@babel/runtime-corejs2": "^7.14.8",
     "@changesets/cli": "^2.14.1",
     "legally": "^3.5.10",
     "react-json-tree": "^0.11.2",

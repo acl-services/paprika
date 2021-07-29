@@ -1,7 +1,7 @@
 module.exports = function BabelConfigJS(api) {
   api.cache(true);
 
-  const presets = ["@babel/preset-env", "@babel/preset-typescript", "@babel/preset-react"];
+  const presets = ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"];
 
   const plugins = [
     "styled-components",
