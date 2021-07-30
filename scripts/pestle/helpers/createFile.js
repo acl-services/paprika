@@ -29,4 +29,4 @@ function createFile(filePath, template = "", overwriteFile = false) {
 
 module.exports = {
   createFile,
-}
+};
