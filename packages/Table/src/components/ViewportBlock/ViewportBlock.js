@@ -5,12 +5,17 @@ import "intersection-observer"; // ie 11 polyfill
 
 const propTypes = {
   children: PropTypes.node.isRequired,
+  elementType: PropTypes.string,
+};
+
+const defaultProps = {
+  elementType: "div",
 };
 
 const FADE_IN_DURATION = "0.05s";
 
 const Block = props => {
-  const { children, ...moreProps } = props;
+  const { children, elementType: ElementType, ...moreProps } = props;
 
   const [inViewRef, inView] = useInView({
     /* Optional options */
@@ -37,12 +42,13 @@ const Block = props => {
       : { style: { opacity: 1, WebkitTransition: `opacity ${FADE_IN_DURATION} ease-in` } };
 
   return (
-    <tr className="viewport-block" ref={setRefs} {...styleProp} {...moreProps}>
+    <ElementType className="viewport-block" ref={setRefs} {...styleProp} {...moreProps}>
       {inView ? children : null}
-    </tr>
+    </ElementType>
   );
 };
 
 Block.propTypes = propTypes;
+Block.defaultProps = defaultProps;
 
 export default Block;

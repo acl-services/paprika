@@ -98,7 +98,7 @@ const Table = React.forwardRef((props, ref) => {
         {props.onlyRenderRowsInView
           ? data.map((row, rowIndex) => {
               return (
-                <ViewportBlock key={rowIndex} id={`table-${rowIndex}-viewport`}>
+                <ViewportBlock elementType="tr" key={rowIndex} id={`table-${rowIndex}-viewport`}>
                   {renderRowContent(row, rowIndex)}
                 </ViewportBlock>
               );
