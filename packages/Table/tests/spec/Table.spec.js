@@ -1,5 +1,6 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { mockAllIsIntersecting } from "react-intersection-observer/test-utils";
+import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
 import Table from "../../src/Table";
 
@@ -27,7 +28,8 @@ function renderComponent() {
 
 describe("Table", () => {
   it("Should render data in the table component", () => {
-    const { getByText } = renderComponent();
+    renderComponent();
+    mockAllIsIntersecting(true);
 
     [
       "Name",
@@ -53,7 +55,7 @@ describe("Table", () => {
       "Hopper",
       "Cerf",
     ].forEach(name => {
-      expect(getByText(name)).toBeVisible();
+      expect(screen.getByText(name)).toBeVisible();
     });
   });
 
