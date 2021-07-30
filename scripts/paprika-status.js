@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-// --max-old-space-size=8192
 const fs = require("fs");
 const child_process = require('child_process');
 const tree = require("../.storybook/storyTree")
@@ -21,24 +20,24 @@ class PaprikaStatus {
 
   getStorybookA11yReport(subDir) {
     try {
-      child_process.spawnSync(`yarn`, [`storybook-a11y-report`, `--storybookUrl ${this.LOCAL_HOST}`, `--include '${tree.getStoryName(subDir)}/**'`, `--outDir ${this.PATH_TO_COMPONENTS + subDir}`], {shell: true, timeout: 60000});
+      child_process.spawnSync(`yarn storybook && wait-on http://localhost:9009/ && yarn`, [`storybook-a11y-report`, `--storybookUrl ${this.LOCAL_HOST}`, `--include '${tree.getStoryName(subDir)}/**'`, `--outDir ${this.PATH_TO_COMPONENTS + subDir}`], {shell: true, timeout: 60000});
     } catch (e) {
       console.log(e);
     }
   }
 
   getCommitPrefixCounts(subDir) {
+    child_process.execSync(`git rev-list --count master -- ${this.PATH_TO_COMPONENTS + subDir} > ${this.PATH_TO_COMPONENTS + subDir}/${this.countCommits}`);
     child_process.execSync(`git rev-list --count master --grep="fix(" --count -- ${this.PATH_TO_COMPONENTS + subDir} > ${this.PATH_TO_COMPONENTS + subDir}/${this.bugCountOutput}`);
     child_process.execSync(`git rev-list --count master --grep="chore(" --count -- ${this.PATH_TO_COMPONENTS + subDir} > ${this.PATH_TO_COMPONENTS + subDir}/${this.choreCount}`);
     child_process.execSync(`git rev-list --count master --grep="feat(" --count -- ${this.PATH_TO_COMPONENTS + subDir} > ${this.PATH_TO_COMPONENTS + subDir}/${this.featCount}`);
   }
 
   getPaprikaStatuses() {
-    const log = `git log --invert-grep --author='Paprika Semaphore 2.0' -n 1 -- . > ${this.gitOutput}`;
+    const log = `git log --no-merges --invert-grep --author='Paprika Semaphore 2.0' -n 1 -- . > ${this.gitOutput}`;
     const lineCount = `git ls-files | xargs cat | wc -l > ${this.lineCount}`;
     fs.readdirSync(this.PATH_TO_COMPONENTS).forEach(subDir => {
       child_process.execSync(`cd ${this.PATH_TO_COMPONENTS + subDir} && ${log} && ${lineCount}`);
-      child_process.execSync(`git rev-list --count master -- ${this.PATH_TO_COMPONENTS + subDir} > ${this.PATH_TO_COMPONENTS + subDir}/${this.countCommits}`);
       this.getCommitPrefixCounts(subDir);
       this.getStorybookA11yReport(subDir);
       const commits = {};
