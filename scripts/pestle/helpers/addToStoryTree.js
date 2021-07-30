@@ -16,7 +16,7 @@ function getStoryCategoriesInquiry(storyBookCategories) {
 }
 
 function addToStoryTree(newComponentName) {
-  const targetFilePath = "../../.storybook/storyTree.js";
+  const targetFilePath = ".storybook/storyTree.js";
   const storyTree = st.storyTree;
   const storyCategoryChoices = storyTree.map(type => {
     return {
