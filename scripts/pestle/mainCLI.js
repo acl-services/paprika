@@ -1,62 +1,24 @@
 #!/usr/bin/env node
-const fs = require("fs");
-const shell = require("shelljs");
-const path = require("path");
+
+// Inquirer
 // eslint-disable-next-line import/no-extraneous-dependencies
 const inquirer = require("inquirer");
 // eslint-disable-next-line import/no-extraneous-dependencies
-const temp = require("inquirer-search-list");
+const search_list = require("inquirer-search-list");
 const questions = require("./questions");
 const choices = require("./choices");
+
+// Templates
 const componentTemplates = require("./templates/component");
 const testTemplates = require("./templates/tests");
 const storyTemplates = require("./templates/stories");
 
-inquirer.registerPrompt("search-list", temp);
-
-// Helper function to create files and directories using fs.
-function createFile(filePath, template = "") {
-  try {
-    // Create the directory if it doesn't already exist
-    const dirPath = path.dirname(filePath);
-    if (!fs.existsSync(dirPath)) {
-      fs.mkdirSync(dirPath, { recursive: true }, err => {
-        if (err) throw err;
-      });
-    }
-
-    // Create the file
-    if (!fs.existsSync(filePath)) {
-      fs.writeFileSync(filePath, template, {
-        encoding: "utf8",
-        flag: "w",
-      });
-      console.log("added:", filePath);
-    } else {
-      console.log("file already exists:", filePath);
-    }
-  } catch (err) {
-    throw err;
-  }
-}
-
-const createNewComponentInquiry = () => {
-  inquirer.prompt(questions.createNewComponent).then(answers => {
-    const { componentName, componentDescription, componentFiles } = answers;
-    const path = `./packages/${componentName}`;
-
-    createFile(`${path}/package.json`, componentTemplates.packageJson({ componentName, componentDescription }));
-    createFile(`${path}/src/index.js`, componentTemplates.index({ componentName }));
-    createFile(`${path}/src/${componentName}.js`, componentTemplates.component({ componentName }));
+// Helpers
+const { createFile } = require("./helpers/createFile");
+const { addToStoryTree } = require("./helpers/addToStoryTree");
 
 
-    // todo iterate through componentFiles
-    createFile(`${path}/src/${componentName}.styles.js`, componentTemplates.styles({ componentName }));
-    // createFile(`${path}/stories/${componentName}.stories.js`, storyTemplates.renderTemplate({ componentName }));
-    // createFile(`${path}/tests/${componentName}.spec.js`, testTemplates.spec({ componentName }));
-    // createFile(`${path}/tests/${componentName}.cypress.js`, testTemplates.cypress({ componentName }));
-  });
-};
+inquirer.registerPrompt("search-list", search_list);
 
 const addTestsInquiry = componentName => {
   console.log("console log: adding tests");
@@ -97,6 +59,32 @@ const addStoriesInquiry = componentName => {
     } catch (err) {
       throw err;
     }
+  });
+};
+
+// TODO
+const createNewComponentInquiry = () => {
+  inquirer.prompt(questions.createNewComponent).then(answers => {
+    const { componentName, componentDescription, componentFiles } = answers;
+    const path = `./packages/${componentName}`;
+    
+
+    createFile(`${path}/package.json`, componentTemplates.packageJson({ componentName, componentDescription }));
+    createFile(`${path}/src/index.js`, componentTemplates.index({ componentName }));
+    createFile(`${path}/src/${componentName}.js`, componentTemplates.component({ componentName }));
+
+    // TODO: iterate through component files to determine which to create
+
+    // styles
+    createFile(`${path}/src/${componentName}.styles.js`, componentTemplates.styles({ componentName }));
+    
+    // tests
+    createFile(`${path}/tests/${componentName}.spec.js`, testTemplates.spec({ componentName }));
+    createFile(`${path}/tests/${componentName}.cypress.js`, testTemplates.cypress({ componentName }));
+
+    // stories
+    createFile(`${path}/stories/${componentName}.stories.js`, storyTemplates.renderTemplate({ componentName }));
+    addToStoryTree(componentName);
   });
 };
 
