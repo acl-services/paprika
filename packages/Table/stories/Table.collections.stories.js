@@ -12,7 +12,7 @@ const storyName = getStoryName("Table");
 
 storiesOf(storyName, module);
 
-const data = [
+const collectionsData = [
   {
     label: "Questionnaire tablet that is very long",
     type: "questionnaire",
@@ -53,6 +53,9 @@ const data = [
     metrics: 15,
   },
 ];
+
+const makeRepeated = (arr, repeats) => Array.from({ length: repeats }, () => arr).flat();
+const data = makeRepeated(collectionsData, 20);
 
 const titleStyles = {
   Title: styled.div`
