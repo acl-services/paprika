@@ -35,9 +35,9 @@ const Block = props => {
       : { style: { opacity: 1 } };
 
   return (
-    <div className="viewport-block" ref={setRefs} {...styleProp} {...moreProps}>
+    <tr className="viewport-block" ref={setRefs} {...styleProp} {...moreProps}>
       {inView ? children : null}
-    </div>
+    </tr>
   );
 };
 
