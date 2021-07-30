@@ -26,7 +26,7 @@
     "test:a11y": "echo 'Axe will run on this command'",
     "test:debug": "node --inspect node_modules/.bin/jest --runInBand",
     "transpile": "lerna exec --parallel -- babel --root-mode upward src --out-dir lib --source-maps --copy-files",
-    "paprika-status": "node scripts/paprika-status.js"
+    "paprika-status": "concurrently 'yarn storybook' 'wait-on http://localhost:9009/ && node scripts/paprika-status'"
   },
   "engines": {
     "node": ">=12.13.0",
@@ -134,6 +134,7 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.14.0",
     "@babel/runtime-corejs2": "^7.4.4",
     "@changesets/cli": "^2.14.1",
+    "concurrently": "^6.2.0",
     "legally": "^3.5.10",
     "react-json-tree": "^0.11.2",
     "shelljs": "^0.8.3",

@@ -5,7 +5,7 @@ const child_process = require('child_process');
 const tree = require("../.storybook/storyTree")
 
 class PaprikaStatus {
-  constructor(statusOutputPath) {
+  constructor() {
     this.PATH_TO_COMPONENTS = "./packages/";
     this.LOCAL_HOST = "http://localhost:9009/";
 
@@ -16,7 +16,7 @@ class PaprikaStatus {
     this.featCount = "feat_count.json";
     this.a11yReport = "a11y_report.md";
     this.countCommits = "count_commits.json";
-    this.statuses = JSON.parse(fs.existsSync(statusOutputPath) && fs.readFileSync(statusOutputPath, "utf8")) || {};
+    this.statuses = JSON.parse(fs.existsSync("./status.json") && fs.readFileSync("./status.json", "utf8")) || {};
   }
 
   getStorybookA11yReport(subDir) {
@@ -86,10 +86,6 @@ class PaprikaStatus {
   }
 
   run() {
-    if (typeof process.argv[2] === 'undefined') {
-      console.log("😱 Please provide a path to an exisiting file used to house the results");
-      process.exit(0);
-    }
     this.getPaprikaStatuses()
     // JSON.stringify what's in the status.json; then JSON.parse
     // console.log(this.statuses);
@@ -97,5 +93,5 @@ class PaprikaStatus {
   }
 }
 
-const PS = new PaprikaStatus(process.argv[2]);
+const PS = new PaprikaStatus();
 PS.run();
