@@ -95,7 +95,7 @@ const Table = React.forwardRef((props, ref) => {
     <sc.Table aria-label={a11yText} id={tableId} {...moreProps} ref={ref}>
       <Headers extractedHeaders={extractedHeaders} ColumnDefinitions={ColumnDefinitions} borderType={borderType} />
       <sc.TBody hasZebraStripes={hasZebraStripes}>
-        {props.isVirtualized
+        {props.onlyRenderRowsInView
           ? data.map((row, rowIndex) => {
               return (
                 <ViewportBlock key={rowIndex} id={`table-${rowIndex}-viewport`}>
@@ -133,8 +133,8 @@ const propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})),
   /** For authors use only, use case: inline editing. */
   enableArrowKeyNavigation: PropTypes.bool,
-  /** Will table rows only be rendered when in view */
-  isVirtualized: PropTypes.bool,
+  /** Will only render table rows currently in the viewport */
+  onlyRenderRowsInView: PropTypes.bool,
   /** Will fire each time a new cell receives focus */
   onFocus: PropTypes.func,
   /** Will fire each time a selected cell loses focus */
@@ -148,7 +148,7 @@ const defaultProps = {
   data: [],
   enableArrowKeyNavigation: false,
   hasZebraStripes: false,
-  isVirtualized: false,
+  onlyRenderRowsInView: false,
   onBlur: () => {},
   onClick: () => {},
   onFocus: () => {},

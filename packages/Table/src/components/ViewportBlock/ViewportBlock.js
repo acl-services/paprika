@@ -7,6 +7,8 @@ const propTypes = {
   children: PropTypes.node.isRequired,
 };
 
+const FADE_IN_DURATION = "0.05s";
+
 const Block = props => {
   const { children, ...moreProps } = props;
 
@@ -31,8 +33,8 @@ const Block = props => {
 
   const styleProp =
     viewportHeightWhenRendered && !inView
-      ? { style: { opacity: "0", height: `${viewportHeightWhenRendered}px` } }
-      : { style: { opacity: 1 } };
+      ? { style: { opacity: "0", WebkitTransition: "none", height: `${viewportHeightWhenRendered}px` } }
+      : { style: { opacity: 1, WebkitTransition: `opacity ${FADE_IN_DURATION} ease-in` } };
 
   return (
     <tr className="viewport-block" ref={setRefs} {...styleProp} {...moreProps}>
