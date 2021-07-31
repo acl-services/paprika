@@ -1,6 +1,6 @@
 {
   "name": "@paprika/collapsible-text",
-  "version": "1.0.15-next.0",
+  "version": "1.0.15",
   "description": "CollapsibleText component, an uncontrolled component that truncates some given content at a given length to be revealed by clicking a 'Show more' link.",
   "author": "@paprika",
   "license": "MIT",
@@ -23,7 +23,7 @@
     "uuid": "^8.3.2"
   },
   "peerDependencies": {
-    "@paprika/l10n": "^1.1.12-next.0",
+    "@paprika/l10n": "^1.1.12",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "styled-components": "^4.2.0"

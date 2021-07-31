@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.1.1
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12
+  - @paprika/list-box@3.4.2
+  - @paprika/tag@0.0.8
+
 ## 2.1.1-next.0
 
 ### Patch Changes
