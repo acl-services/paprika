@@ -1,7 +1,5 @@
 # Changelog
 
-- Added isSemantic false to Sortable.Item delete button
-
 ## 1.1.13
 
 ### Patch Changes
