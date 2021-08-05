@@ -73,12 +73,12 @@ class PaprikaStatus {
     const output = [];
     const cur = {};
     report.split("\n").forEach((line) => {
-        if (line.includes("A11y ID:")) {
+        if (line.includes("A11y ID: ")) {
             if (Object.keys(cur).length > 0) output.push(Object.assign({}, cur));
-            cur.A11yID = line;
+            cur.A11yID = line.split("A11y ID: ")[1];
         }
-        if (line.includes("description:")) {
-            cur.description = line;
+        if (line.includes("description: ")) {
+            cur.description = line.split("description: ")[1];
         }
     });
     return output;
