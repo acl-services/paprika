@@ -20,12 +20,11 @@ function Link(props) {
   const isDark = React.useContext(IsDarkContext);
   const I18n = useI18n();
   const shouldTruncate = isString(children) && children.length > MAXIMUM_NUM_OF_CHARACTER;
-  const isLinkAlike = !!href;
   const isUsingDefaultLinkComponent = !as;
   const commonComponentProps = {
     "data-pka-anchor": "breadcrumbs.link",
     as: isUsingDefaultLinkComponent ? Button.Link : as,
-    href: isLinkAlike ? href : undefined,
+    href: href || undefined,
     isDark,
   };
   const defaultLinkComponentProps = isUsingDefaultLinkComponent
