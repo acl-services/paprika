@@ -11,6 +11,25 @@ export const SideNavigationCollapsedWrapper = styled.div`
   width: ${spacer(5)};
 `;
 
+export const SideNavigationPanel = styled(Panel)`
+  [data-pka-anchor="panel.footer"] {
+    border-top: 1px solid ${tokens.color.blackLighten60};
+    background: transparent;
+  }
+
+  [data-pka-anchor="panel.footer"] ul {
+    list-style: none;
+    margin: -${tokens.space};
+    padding: 0;
+  }
+
+  [data-pka-anchor="panel.footer"] li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+`;
+
 export const PanelContent = styled(Panel.Content)`
   * {
     box-sizing: border-box;
@@ -28,6 +47,8 @@ export const PanelContent = styled(Panel.Content)`
     padding: 0;
   }
 `;
+
+export const PanelFooter = styled(Panel.Footer)``;
 
 export const Trigger = styled(RawButton)`
   ${fontSize(3)}
