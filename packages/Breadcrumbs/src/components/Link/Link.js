@@ -25,12 +25,10 @@ function Link(props) {
     href: href || undefined,
     isDark,
   };
-  const defaultLinkComponentProps = isUsingDefaultLinkComponent
-    ? {
-        ...commonComponentProps,
-        kind: Button.types.kind.MINOR,
-      }
-    : commonComponentProps;
+
+  if (isUsingDefaultLinkComponent) {
+    commonComponentProps.kind = Button.types.kind.MINOR;
+  }
 
   return (
     <sc.ListItem data-pka-anchor="breadcrumbs.list-item">
@@ -39,7 +37,7 @@ function Link(props) {
           <Popover.Trigger>
             {(handler, a11yAttributes) => (
               <sc.Link
-                {...defaultLinkComponentProps}
+                {...commonComponentProps}
                 onMouseOver={handler}
                 onMouseOut={handler}
                 onFocus={handler}
@@ -59,7 +57,7 @@ function Link(props) {
           <Popover.Tip />
         </Popover>
       ) : (
-        <sc.Link {...defaultLinkComponentProps} {...moreProps}>
+        <sc.Link {...commonComponentProps} {...moreProps}>
           {children}
         </sc.Link>
       )}
