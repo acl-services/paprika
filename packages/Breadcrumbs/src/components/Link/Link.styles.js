@@ -1,10 +1,9 @@
 import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import { lineHeight, fontSize } from "@paprika/stylers/lib/helpers";
-import Button from "@paprika/button";
 import ArrowLeftIcon from "@paprika/icon/lib/ArrowLeft";
 
-export const Link = styled(Button.Link)`
+export const Link = styled.a`
   color: ${({ isDark }) => (isDark ? tokens.color.white : tokens.textColor.subtle)};
   display: inline;
   font-weight: normal;
