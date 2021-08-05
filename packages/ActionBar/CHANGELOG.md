@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.1.7-next.0
+
+### Patch Changes
+
+- Updated dependencies [37b74d7]
+  - @paprika/sortable@1.2.0-next.0
+
 ## 3.1.6
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@paprika/sortable",
-  "version": "1.1.13",
+  "version": "1.2.0-next.0",
   "description": "Sortable component creates a vertical list of items, that can be re-ordered with a mouse via dragging and dropping, or with the keyboard",
   "author": "@paprika",
   "license": "MIT",
