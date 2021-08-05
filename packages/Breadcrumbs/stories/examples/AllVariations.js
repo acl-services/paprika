@@ -91,15 +91,7 @@ const AllVariations = () => {
       </Heading>
 
       <Breadcrumbs>
-        <Breadcrumbs.Link
-          as="span"
-          style={{
-            fontWeight: "bold",
-            color: "#3f3d3c",
-          }}
-        >
-          Breadcrumb 1 with long content, Breadcrumb 1 with long content.
-        </Breadcrumbs.Link>
+        <Breadcrumbs.Link as="span">Breadcrumb 1</Breadcrumbs.Link>
         <Breadcrumbs.Link href={URL}>Breadcrumb 2</Breadcrumbs.Link>
         <Breadcrumbs.Link href={URL}>Breadcrumb 3</Breadcrumbs.Link>
         <Breadcrumbs.Link href={URL}>Breadcrumb 4 with long content, Breadcrumb 4 with long content.</Breadcrumbs.Link>
@@ -112,8 +104,8 @@ const AllVariations = () => {
       </Heading>
 
       <Breadcrumbs>
-        <Breadcrumbs.Link as="a" href="www.google.com">
-          Breadcrumb 1 with long content, Breadcrumb 1 with long content.
+        <Breadcrumbs.Link as="a" href={URL}>
+          Breadcrumb 1
         </Breadcrumbs.Link>
         <Breadcrumbs.Link href={URL}>Breadcrumb 2</Breadcrumbs.Link>
         <Breadcrumbs.Link href={URL}>Breadcrumb 3</Breadcrumbs.Link>
