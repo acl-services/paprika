@@ -20,17 +20,18 @@ function Link(props) {
   const isDark = React.useContext(IsDarkContext);
   const I18n = useI18n();
   const shouldTruncate = isString(children) && children.length > MAXIMUM_NUM_OF_CHARACTER;
+  const isLinkAlike = !!href;
   const isUsingDefaultLinkComponent = !as;
   const commonComponentProps = {
     "data-pka-anchor": "breadcrumbs.link",
     as: isUsingDefaultLinkComponent ? Button.Link : as,
+    href: isLinkAlike ? href : undefined,
     isDark,
   };
   const defaultLinkComponentProps = isUsingDefaultLinkComponent
     ? {
         ...commonComponentProps,
         kind: Button.types.kind.MINOR,
-        href,
       }
     : commonComponentProps;
   const arrowIcon = hasOnlyOneChild ? <sc.ArrowIcon aria-label={I18n.t("breadcrumbs.aria_back_to")} /> : null;
@@ -88,7 +89,7 @@ const defaultProps = {
   children: null,
   as: null,
   hasOnlyOneChild: false,
-  href: "",
+  href: null,
 };
 
 Link.displayName = "Breadcrumbs.Link";
