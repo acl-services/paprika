@@ -73,6 +73,7 @@
     "@paprika/seducer": "2.0.2"
   },
   "changesets": [
-    "strange-mails-tie"
+    "strange-mails-tie",
+    "sweet-steaks-do"
   ]
 }
