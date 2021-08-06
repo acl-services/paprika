@@ -20,10 +20,10 @@ afterEach(() => {
 
 describe("ActionBar", () => {
   it("Should render", () => {
-    cy.findAllByTestId("button")
+    cy.findByTestId("actionBar.sort.trigger")
       .contains("Sort")
       .should("be.visible");
-    cy.findAllByTestId("button")
+    cy.findByTestId("actionBar.columnsArrangement.trigger")
       .contains("Arrange")
       .should("be.visible");
   });

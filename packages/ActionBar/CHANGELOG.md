@@ -1,5 +1,28 @@
 # Changelog
 
+## 3.1.7-next.0
+
+### Patch Changes
+
+- Updated dependencies [37b74d7]
+  - @paprika/sortable@1.2.0-next.0
+
+## 3.1.6
+
+### Patch Changes
+
+- 90dec26: Fix some CSS errors caused by input/select refactoring.
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12
+  - @paprika/input@4.0.5
+  - @paprika/sortable@1.1.13
+
+## 3.1.6-next.1
+
+### Patch Changes
+
+- 90dec26: Fix some CSS errors caused by input/select refactoring.
+
 ## 3.1.6-next.0
 
 ### Patch Changes

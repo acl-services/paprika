@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.2.0-next.0
+
+### Minor Changes
+
+- b00b8ce: - Support using any custom component/element as Breadcrumbs.Link
+  - Remove the arrow icon
+
+## 1.1.19
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12
+
 ## 1.1.19-next.0
 
 ### Patch Changes

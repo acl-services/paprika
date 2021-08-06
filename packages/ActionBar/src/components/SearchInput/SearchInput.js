@@ -22,15 +22,17 @@ export default function SearchInput(props) {
   }
 
   return (
-    <sc.Input
-      a11yText={a11yText || I18n.t("actionBar.search_a11y_text")}
-      icon={<SearchIcon />}
-      onChange={handleSearch}
-      placeholder={placeholder || I18n.t("actionBar.search_placeholder")}
-      type={Input.types.type.SEARCH}
-      value={searchTerm}
-      {...moreProps}
-    />
+    <sc.InputWrapper>
+      <Input
+        a11yText={a11yText || I18n.t("actionBar.search_a11y_text")}
+        icon={<SearchIcon />}
+        onChange={handleSearch}
+        placeholder={placeholder || I18n.t("actionBar.search_placeholder")}
+        type={Input.types.type.SEARCH}
+        value={searchTerm}
+        {...moreProps}
+      />
+    </sc.InputWrapper>
   );
 }
 

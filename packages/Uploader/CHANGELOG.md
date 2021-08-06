@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.0.2
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12
+
 ## 3.0.2-next.0
 
 ### Patch Changes

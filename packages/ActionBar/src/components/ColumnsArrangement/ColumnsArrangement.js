@@ -91,7 +91,7 @@ export default function ColumnsArrangement(props) {
           {(handler, attributes, isOpen) => renderTriggerButton(handler, attributes, isOpen, hiddenColumns.length)}
         </Popover.Trigger>
       ) : (
-        <Popover.Trigger>
+        <Popover.Trigger data-pka-anchor="actionBar.columnsArrangement.trigger">
           {(handler, attributes, isOpen) => (
             <sc.Trigger
               kind={Button.types.kind.FLAT}

@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.2.0-next.0
+
+### Minor Changes
+
+- 37b74d7: Added isSemantic false to Sortable.Item delete button
+
+## 1.1.13
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12
+
 ## 1.1.13-next.0
 
 ### Patch Changes

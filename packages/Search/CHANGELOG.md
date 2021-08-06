@@ -1,5 +1,14 @@
 # @paprika/search
 
+## 1.0.18
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12
+  - @paprika/input@4.0.5
+  - @paprika/list-box@3.4.2
+
 ## 1.0.18-next.0
 
 ### Patch Changes
