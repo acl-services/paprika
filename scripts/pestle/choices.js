@@ -10,5 +10,5 @@ module.exports = {
   cypress: 'Cypress',
   showcaseStory: 'Showcase',
   screenerStory: 'Screener',
-  simpleStory: 'Example',
+  exampleStory: 'Example',
 }

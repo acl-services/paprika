@@ -2,7 +2,6 @@ function renderStoryTreeObject(storyTree) {
   let storyTreeObjectTemplate = "";
 
   storyTree.forEach(category => {
-    console.log(JSON.stringify(category.components, null, 6));
     storyTreeObjectTemplate = storyTreeObjectTemplate.concat(`
   {
     category: "${category.category}",

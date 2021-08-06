@@ -9,27 +9,49 @@ const questions = require("./questions");
 const choices = require("./choices");
 
 // Templates
-const componentTemplates = require("./templates/component");
-const testTemplates = require("./templates/tests");
-const storyTemplates = require("./templates/stories");
+const {
+  renderPackageJSONTemplate,
+  renderIndexTemplate,
+  renderComponentTemplate,
+  renderComponentStylesTemplate,
+} = require("./templates/componentTemplates");
+const {
+  renderStoryFolderTemplate,
+  renderExampleStoryFolderTemplate,
+  renderExampleStoryTemplate,
+  renderVariationStoryTemplate,
+  renderShowcaseStoryTemplate,
+  renderScreenerStoryTemplate,
+} = require("./templates/storyTemplates");
+const { renderSpecTemplate, renderCypressTemplate } = require("./templates/testTemplates");
 
 // Helpers
 const { createFile } = require("./helpers/createFile");
 const { addToStoryTree } = require("./helpers/addToStoryTree");
 
-
 inquirer.registerPrompt("search-list", search_list);
 
+// GENERAL TODO: Update templates to use stubs and be compilable at the end.
+// GENERAL TODO: clean up file organization structure, namely module.exports!
+
+// TODO: allow them to name the test/spec file instead of making it by componentName by default
 const addTestsInquiry = componentName => {
   console.log("console log: adding tests");
   inquirer.prompt(questions.addToExistingComponent.selectTestType).then(answers => {
     const path = `./packages/${componentName}/tests`;
-
+    
     try {
-      answers.testType.forEach(fileType => {
-        const extensionName = fileType === choices.jest ? "spec" : fileType.toLowerCase();
-        const targetFilePath = `${path}/${extensionName}/${componentName}.${extensionName}.js`;
-        createFile(targetFilePath, testTemplates[extensionName]({ componentName }));
+      answers.testTypes.forEach(testFileType => {
+        switch (testFileType) {
+          case choices.jest:
+            createFile(`${path}/spec/${componentName}.spec.js`, renderSpecTemplate({ componentName }));
+            break;
+          case choices.cypress:
+            createFile(`${path}/cypress/${componentName}.cypress.js`, renderCypressTemplate({ componentName }));
+            break;
+          default:
+            // do nothing
+        }
       });
     } catch (err) {
       throw err;
@@ -44,16 +66,28 @@ const addStoriesInquiry = componentName => {
 
     try {
       // create component story file if it doesn't already exist
-      createFile(`${path}/${componentName}.stories.js`, storyTemplates.renderTemplate({ componentName }));
+      createFile(`${path}/${componentName}.stories.js`, renderStoryFolderTemplate({ componentName }));
+      createFile(`${path}/${componentName}.example.stories.js`, renderStoryFolderTemplate({ componentName }));
 
-      answers.storyType.forEach(fileType => {
-        if (fileType === choices.simpleStory) {
-          inquirer.prompt(questions.addToExistingComponent.simpleStoryName).then(answers => {
-            const { storyName } = answers;
-            createFile(`${path}/examples/${storyName}.js`, storyTemplates[fileType]({ componentName, storyName }));
-          });
-        } else {
-          createFile(`${path}/examples/${fileType}.js`, storyTemplates[fileType]({ componentName }));
+      answers.storyTypes.forEach(storyFileType => {
+        switch (storyFileType) {
+          case choices.exampleStory:
+            inquirer.prompt(questions.addToExistingComponent.exampleStoryName).then(answers => {
+              const { storyName } = answers;
+              createFile(`${path}/examples/${storyName}.js`, renderExampleStoryTemplate({ componentName, storyName }));
+            });
+            break;
+          case choices.showcaseStory:
+            createFile(`${path}/examples/Showcase.js`, renderShowcaseStoryTemplate({ componentName }));
+            break;
+          case choices.variationStory:
+            createFile(`${path}/examples/Variations.js`, renderVariationStoryTemplate({ componentName }));
+            break;
+          case choices.screenerStory:
+            createFile(`${path}/tests/Screener.js`, renderScreenerStoryTemplate({ componentName }));
+            break;
+          default:
+            // donothing
         }
       });
     } catch (err) {
@@ -62,28 +96,23 @@ const addStoriesInquiry = componentName => {
   });
 };
 
-// TODO
 const createNewComponentInquiry = () => {
   inquirer.prompt(questions.createNewComponent).then(answers => {
-    const { componentName, componentDescription, componentFiles } = answers;
+    const { componentName, componentDescription } = answers;
     const path = `./packages/${componentName}`;
-    
 
-    createFile(`${path}/package.json`, componentTemplates.packageJson({ componentName, componentDescription }));
-    createFile(`${path}/src/index.js`, componentTemplates.index({ componentName }));
-    createFile(`${path}/src/${componentName}.js`, componentTemplates.component({ componentName }));
+    createFile(`${path}/package.json`, renderPackageJSONTemplate({ componentName, componentDescription }));
+    createFile(`${path}/src/index.js`, renderIndexTemplate({ componentName }));
+    createFile(`${path}/src/${componentName}.js`, renderComponentTemplate({ componentName }));
+    createFile(`${path}/src/${componentName}.styles.js`, renderComponentStylesTemplate({ componentName }));
 
-    // TODO: iterate through component files to determine which to create
-
-    // styles
-    createFile(`${path}/src/${componentName}.styles.js`, componentTemplates.styles({ componentName }));
-    
     // tests
-    createFile(`${path}/tests/${componentName}.spec.js`, testTemplates.spec({ componentName }));
-    createFile(`${path}/tests/${componentName}.cypress.js`, testTemplates.cypress({ componentName }));
+    createFile(`${path}/tests/${componentName}.spec.js`, renderSpecTemplate({ componentName }));
+    createFile(`${path}/tests/${componentName}.cypress.js`, renderCypressTemplate({ componentName }));
 
     // stories
-    createFile(`${path}/stories/${componentName}.stories.js`, storyTemplates.renderTemplate({ componentName }));
+    createFile(`${path}/stories/${componentName}.stories.js`, renderShowcaseStoryTemplate({ componentName }));
+    createFile(`${path}/stories/examples/Showcase.js`, renderStoryFolderTemplate({ componentName }));
     addToStoryTree(componentName);
   });
 };

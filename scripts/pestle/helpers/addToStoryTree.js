@@ -2,7 +2,7 @@
 const inquirer = require("inquirer");
 const st = require("../../../.storybook/storyTree");
 const { createFile } = require("./createFile");
-const { renderStoryTreeTemplate } = require("../templates/storyTreeTemplate");
+const { renderStoryTreeTemplate } = require("../templates/storyTreeTemplates");
 
 function getStoryCategoriesInquiry(storyBookCategories) {
   return [

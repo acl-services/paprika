@@ -27,25 +27,25 @@ module.exports = {
         return true;
       },
     },
-    {
-      type: "checkbox",
-      name: "componentFiles",
-      message: "Include which of the following files/folders?",
-      choices: [
-        {
-          name: "/stories",
-          checked: true,
-        },
-        {
-          name: "/tests",
-          checked: true,
-        },
-        {
-          name: "/components",
-          checked: true,
-        },
-      ],
-    },
+    // {
+    //   type: "checkbox",
+    //   name: "componentFiles",
+    //   message: "Include which of the following files/folders?",
+    //   choices: [
+    //     {
+    //       name: "/stories",
+    //       checked: true,
+    //     },
+    //     {
+    //       name: "/tests",
+    //       checked: true,
+    //     },
+    //     {
+    //       name: "/components",
+    //       checked: true,
+    //     },
+    //   ],
+    // },
   ],
   addToExistingComponent: {
     selectExistingComponent: [
@@ -65,7 +65,7 @@ module.exports = {
     selectTestType: [
       {
         type: "checkbox",
-        name: "testType",
+        name: "testTypes",
         message: "Include ...",
         choices: [choices.jest, choices.cypress]
       },
@@ -73,16 +73,16 @@ module.exports = {
     selectStoryType: [
       {
        type: "checkbox",
-       name: "storyType",
+       name: "storyTypes",
        message: "Include ...",
-       choices: [choices.showcaseStory, choices.screenerStory, choices.simpleStory] 
+       choices: [choices.showcaseStory, choices.screenerStory, choices.exampleStory] 
       }
     ],
-    simpleStoryName: [
+    exampleStoryName: [
       {
         type: "input",
         name: "storyName",
-        message: "Enter the simple story name ...",
+        message: "Enter the example story name ...",
       }
     ]
   },
