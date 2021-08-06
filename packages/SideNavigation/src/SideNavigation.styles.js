@@ -13,20 +13,9 @@ export const SideNavigationCollapsedWrapper = styled.div`
 
 export const SideNavigationPanel = styled(Panel)`
   [data-pka-anchor="panel.footer"] {
-    border-top: 1px solid ${tokens.color.blackLighten60};
     background: transparent;
-  }
-
-  [data-pka-anchor="panel.footer"] ul {
-    list-style: none;
-    margin: -${tokens.space};
-    padding: 0;
-  }
-
-  [data-pka-anchor="panel.footer"] li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    border-top: 1px solid ${tokens.color.blackLighten60};
+    height: auto;
   }
 `;
 

@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import * as sc from "./Footer.styles";
 
 function Footer(props) {
   const { children } = props;
 
-  return <ul>{children}</ul>;
+  return <sc.Footer>{children}</sc.Footer>;
 }
 
 const propTypes = {
