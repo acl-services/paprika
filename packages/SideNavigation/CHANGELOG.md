@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.5-next.0
+
+### Patch Changes
+
+- db2dec5: Added SideNavigation.Footer
+
 ## 3.0.4
 
 ### Patch Changes

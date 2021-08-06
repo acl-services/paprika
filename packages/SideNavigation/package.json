@@ -1,6 +1,6 @@
 {
   "name": "@paprika/side-navigation",
-  "version": "3.0.4",
+  "version": "3.0.5-next.0",
   "description": "Side Navigation component",
   "author": "@paprika",
   "main": "lib/index.js",
