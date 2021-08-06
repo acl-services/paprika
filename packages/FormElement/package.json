@@ -3,6 +3,7 @@
   "version": "4.0.16",
   "description": "FormElement component displays a user input field",
   "main": "lib/index.js",
+  "module": "lib/esm/index.js",
   "types": "lib/index.d.ts",
   "author": "@paprika",
   "license": "MIT",
@@ -43,5 +44,6 @@
       "Layout"
     ]
   },
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
+  "sideEffects": false
 }
