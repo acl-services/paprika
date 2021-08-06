@@ -23,6 +23,9 @@ export default function Example() {
             Second item (1000)
           </SideNavigation.Item>
           <SideNavigation.Item href={mockURL}>Long text item with (100000000) items inside</SideNavigation.Item>
+          <SideNavigation.Footer>
+            <SideNavigation.Item href={mockURL}>Footer link</SideNavigation.Item>
+          </SideNavigation.Footer>
         </SideNavigation>
         <div>Page content</div>
       </div>
