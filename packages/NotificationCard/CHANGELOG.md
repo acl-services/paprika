@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.10-next.0
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+  - @paprika/stylers@1.0.1-next.0
+  - @paprika/helpers@2.1.3-next.0
+  - @paprika/heading@1.0.7-next.0
+
 ## 1.0.9
 
 ### Patch Changes

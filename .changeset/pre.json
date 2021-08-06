@@ -73,7 +73,9 @@
     "@paprika/seducer": "2.0.2"
   },
   "changesets": [
+    "popular-glasses-nail",
     "purple-tips-fry",
+    "rotten-pots-occur",
     "strange-mails-tie",
     "sweet-steaks-do"
   ]
