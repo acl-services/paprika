@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.0-next.0
+
+### Minor Changes
+
+- b00b8ce: - Support using any custom component/element as Breadcrumbs.Link
+  - Remove the arrow icon
+
 ## 1.1.19
 
 ### Patch Changes
