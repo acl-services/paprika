@@ -1,5 +1,24 @@
 # Changelog
 
+## 3.1.7
+
+### Patch Changes
+
+- ff8eae9: Enable webpack tree shaking ability.
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+- Updated dependencies [37b74d7]
+  - @paprika/l10n@1.1.13
+  - @paprika/stylers@1.0.1
+  - @paprika/helpers@2.1.3
+  - @paprika/icon@1.3.0
+  - @paprika/sortable@1.2.0
+  - @paprika/button@1.1.2
+  - @paprika/input@4.0.6
+  - @paprika/popover@1.2.4
+  - @paprika/select@2.0.2
+  - @paprika/switch@1.0.10
+
 ## 3.1.7-next.1
 
 ### Patch Changes

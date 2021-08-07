@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+  - @paprika/stylers@1.0.1
+  - @paprika/checkbox@1.0.12
+  - @paprika/collapsible@1.1.12
+
 ## 1.0.13-next.0
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.2.6
+
+### Patch Changes
+
+- ff8eae9: Enable webpack tree shaking ability.
+- Updated dependencies [ff8eae9]
+  - @paprika/stylers@1.0.1
+  - @paprika/helpers@2.1.3
+
 ## 2.2.6-next.0
 
 ### Patch Changes

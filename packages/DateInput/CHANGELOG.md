@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.16
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+  - @paprika/l10n@1.1.13
+  - @paprika/helpers@2.1.3
+  - @paprika/icon@1.3.0
+  - @paprika/input@4.0.6
+
 ## 1.0.16-next.0
 
 ### Patch Changes

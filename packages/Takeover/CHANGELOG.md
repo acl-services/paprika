@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+  - @paprika/stylers@1.0.1
+  - @paprika/helpers@2.1.3
+  - @paprika/button@1.1.2
+  - @paprika/heading@1.0.7
+  - @paprika/overlay@1.0.8
+
 ## 1.0.13-next.0
 
 ### Patch Changes

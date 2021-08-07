@@ -1,5 +1,21 @@
 # Changelog
 
+## 3.4.3
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+  - @paprika/l10n@1.1.13
+  - @paprika/stylers@1.0.1
+  - @paprika/helpers@2.1.3
+  - @paprika/icon@1.3.0
+  - @paprika/button@1.1.2
+  - @paprika/input@4.0.6
+  - @paprika/popover@1.2.4
+  - @paprika/raw-button@1.0.5
+  - @paprika/toast@1.1.8
+
 ## 3.4.3-next.0
 
 ### Patch Changes
