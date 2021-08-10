@@ -1,6 +1,6 @@
 {
   "name": "@paprika/calendar",
-  "version": "1.0.16",
+  "version": "1.0.17-next.0",
   "description": "Calendar component",
   "main": "lib/index.js",
   "module": "lib/esm/index.js",
