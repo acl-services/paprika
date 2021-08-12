@@ -83,6 +83,34 @@ const AllVariations = () => {
       <Breadcrumbs>
         <Breadcrumbs.Link href={URL}>Breadcrumb 1</Breadcrumbs.Link>
       </Breadcrumbs>
+
+      <Gap />
+
+      <Heading level={3} displayLevel={5} isLight>
+        Not clickable breadcrumb item
+      </Heading>
+
+      <Breadcrumbs>
+        <Breadcrumbs.Link as="span">Breadcrumb 1</Breadcrumbs.Link>
+        <Breadcrumbs.Link href={URL}>Breadcrumb 2</Breadcrumbs.Link>
+        <Breadcrumbs.Link href={URL}>Breadcrumb 3</Breadcrumbs.Link>
+        <Breadcrumbs.Link href={URL}>Breadcrumb 4 with long content, Breadcrumb 4 with long content.</Breadcrumbs.Link>
+      </Breadcrumbs>
+
+      <Gap />
+
+      <Heading level={3} displayLevel={5} isLight>
+        Customized breadcrumb link
+      </Heading>
+
+      <Breadcrumbs>
+        <Breadcrumbs.Link as="a" href={URL}>
+          Breadcrumb 1
+        </Breadcrumbs.Link>
+        <Breadcrumbs.Link href={URL}>Breadcrumb 2</Breadcrumbs.Link>
+        <Breadcrumbs.Link href={URL}>Breadcrumb 3</Breadcrumbs.Link>
+        <Breadcrumbs.Link href={URL}>Breadcrumb 4 with long content, Breadcrumb 4 with long content.</Breadcrumbs.Link>
+      </Breadcrumbs>
     </>
   );
 };

@@ -1,2 +1,4 @@
 src/*.js
 src/*.ts
+
+!src/index.js

@@ -1,5 +1,51 @@
 # Changelog
 
+## 1.3.2
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+  - @paprika/l10n@1.1.13
+  - @paprika/helpers@2.1.3
+  - @paprika/icon@1.3.0
+  - @paprika/button@1.1.2
+  - @paprika/input@4.0.6
+  - @paprika/popover@1.2.4
+  - @paprika/toast@1.1.8
+
+## 1.3.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+  - @paprika/l10n@1.1.13-next.0
+  - @paprika/helpers@2.1.3-next.0
+  - @paprika/icon@1.3.0-next.0
+  - @paprika/input@4.0.6-next.0
+  - @paprika/toast@1.1.8-next.0
+  - @paprika/button@1.1.2-next.0
+  - @paprika/popover@1.2.4-next.0
+
+## 1.3.1
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12
+  - @paprika/input@4.0.5
+  - @paprika/toast@1.1.7
+
+## 1.3.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12-next.0
+  - @paprika/input@4.0.5-next.0
+  - @paprika/toast@1.1.7-next.0
+
 ## 1.3.0
 
 ### Minor Changes

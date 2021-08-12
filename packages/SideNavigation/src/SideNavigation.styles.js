@@ -11,6 +11,14 @@ export const SideNavigationCollapsedWrapper = styled.div`
   width: ${spacer(5)};
 `;
 
+export const SideNavigationPanel = styled(Panel)`
+  [data-pka-anchor="panel.footer"] {
+    background: transparent;
+    border-top: 1px solid ${tokens.color.blackLighten60};
+    height: auto;
+  }
+`;
+
 export const PanelContent = styled(Panel.Content)`
   * {
     box-sizing: border-box;
@@ -28,6 +36,8 @@ export const PanelContent = styled(Panel.Content)`
     padding: 0;
   }
 `;
+
+export const PanelFooter = styled(Panel.Footer)``;
 
 export const Trigger = styled(RawButton)`
   ${fontSize(3)}

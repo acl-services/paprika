@@ -1,5 +1,58 @@
 # @paprika/date-range-picker
 
+## 1.0.21-next.0
+
+### Patch Changes
+
+- Updated dependencies [446a642]
+  - @paprika/calendar@1.0.17-next.0
+
+## 1.0.20
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+  - @paprika/calendar@1.0.16
+  - @paprika/l10n@1.1.13
+  - @paprika/stylers@1.0.1
+  - @paprika/helpers@2.1.3
+  - @paprika/icon@1.3.0
+  - @paprika/date-input@1.0.16
+  - @paprika/popover@1.2.4
+
+## 1.0.20-next.0
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+  - @paprika/calendar@1.0.16-next.0
+  - @paprika/l10n@1.1.13-next.0
+  - @paprika/stylers@1.0.1-next.0
+  - @paprika/helpers@2.1.3-next.0
+  - @paprika/icon@1.3.0-next.0
+  - @paprika/date-input@1.0.16-next.0
+  - @paprika/popover@1.2.4-next.0
+
+## 1.0.19
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12
+  - @paprika/calendar@1.0.15
+  - @paprika/date-input@1.0.15
+
+## 1.0.19-next.0
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12-next.0
+  - @paprika/calendar@1.0.15-next.0
+  - @paprika/date-input@1.0.15-next.0
+
 ## 1.0.18
 
 ### Patch Changes

@@ -1,5 +1,23 @@
 # Changelog
 
+## 2.2.6
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+  - @paprika/stylers@1.0.1
+  - @paprika/helpers@2.1.3
+  - @paprika/raw-button@1.0.5
+
+## 2.2.6-next.0
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+  - @paprika/stylers@1.0.1-next.0
+  - @paprika/helpers@2.1.3-next.0
+  - @paprika/raw-button@1.0.5-next.0
+
 ## 2.2.5
 
 ### Patch Changes
