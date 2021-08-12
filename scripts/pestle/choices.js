@@ -11,4 +11,6 @@ module.exports = {
   showcaseStory: 'Showcase',
   screenerStory: 'Screener',
   exampleStory: 'Example',
+  variationStory: 'Variation',
+  mdxStory: 'Doc (MDX)',
 }

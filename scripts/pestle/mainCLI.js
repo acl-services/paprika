@@ -17,11 +17,13 @@ const {
 } = require("./templates/componentTemplates");
 const {
   renderStoryFolderTemplate,
+  renderBackyardStoryFolderTemplate,
   renderExampleStoryFolderTemplate,
   renderExampleStoryTemplate,
   renderVariationStoryTemplate,
   renderShowcaseStoryTemplate,
   renderScreenerStoryTemplate,
+  renderMXDFileTemplate,
 } = require("./templates/storyTemplates");
 const { renderSpecTemplate, renderCypressTemplate } = require("./templates/testTemplates");
 
@@ -31,12 +33,12 @@ const { addToStoryTree } = require("./helpers/addToStoryTree");
 
 inquirer.registerPrompt("search-list", search_list);
 
-// GENERAL TODO: Update templates to use stubs and be compilable at the end.
-// GENERAL TODO: clean up file organization structure, namely module.exports!
 
+// TODO: create readmes cus the mdx might need one by default..
+// TODO: update documentation
+// TODO: create story.backyard for when. they select screeners
 // TODO: allow them to name the test/spec file instead of making it by componentName by default
 const addTestsInquiry = componentName => {
-  console.log("console log: adding tests");
   inquirer.prompt(questions.addToExistingComponent.selectTestType).then(answers => {
     const path = `./packages/${componentName}/tests`;
     
@@ -60,34 +62,37 @@ const addTestsInquiry = componentName => {
 };
 
 const addStoriesInquiry = componentName => {
-  console.log("console log: adding stories");
   inquirer.prompt(questions.addToExistingComponent.selectStoryType).then(answers => {
     const path = `./packages/${componentName}/stories`;
 
     try {
       // create component story file if it doesn't already exist
       createFile(`${path}/${componentName}.stories.js`, renderStoryFolderTemplate({ componentName }));
-      createFile(`${path}/${componentName}.example.stories.js`, renderStoryFolderTemplate({ componentName }));
 
       answers.storyTypes.forEach(storyFileType => {
         switch (storyFileType) {
           case choices.exampleStory:
             inquirer.prompt(questions.addToExistingComponent.exampleStoryName).then(answers => {
               const { storyName } = answers;
+              createFile(`${path}/${componentName}.example.stories.js`, renderExampleStoryFolderTemplate({ componentName, storyName }));
               createFile(`${path}/examples/${storyName}.js`, renderExampleStoryTemplate({ componentName, storyName }));
             });
             break;
           case choices.showcaseStory:
             createFile(`${path}/examples/Showcase.js`, renderShowcaseStoryTemplate({ componentName }));
             break;
-          case choices.variationStory:
-            createFile(`${path}/examples/Variations.js`, renderVariationStoryTemplate({ componentName }));
-            break;
-          case choices.screenerStory:
+            case choices.variationStory:
+              createFile(`${path}/examples/Variations.js`, renderVariationStoryTemplate({ componentName }));
+              break;
+              case choices.screenerStory:
+            createFile(`${path}/${componentName}.backyard.stories.js`, renderBackyardStoryFolderTemplate({ componentName }));
             createFile(`${path}/tests/Screener.js`, renderScreenerStoryTemplate({ componentName }));
             break;
+          case choices.mdxStory:
+            createFile(`${path}/${componentName}.stories.mdx`, renderMXDFileTemplate({ componentName }));
+            break;
           default:
-            // donothing
+            // do nothing
         }
       });
     } catch (err) {
@@ -111,8 +116,9 @@ const createNewComponentInquiry = () => {
     createFile(`${path}/tests/${componentName}.cypress.js`, renderCypressTemplate({ componentName }));
 
     // stories
-    createFile(`${path}/stories/${componentName}.stories.js`, renderShowcaseStoryTemplate({ componentName }));
-    createFile(`${path}/stories/examples/Showcase.js`, renderStoryFolderTemplate({ componentName }));
+    createFile(`${path}/stories/${componentName}.stories.mdx`, renderMXDFileTemplate({ componentName }));
+    createFile(`${path}/stories/${componentName}.stories.js`, renderStoryFolderTemplate({ componentName }));
+    createFile(`${path}/stories/examples/Showcase.js`, renderShowcaseStoryTemplate({ componentName }));
     addToStoryTree(componentName);
   });
 };
@@ -133,7 +139,6 @@ const modifyExistingComponentInquiry = () => {
 inquirer.prompt(questions.newOrExistingComponent).then(answers => {
   const { newOrExistingComponent } = answers;
 
-  // maybe use constants here for comparisons??
   if (newOrExistingComponent === choices.createNewComponent) {
     createNewComponentInquiry();
   } else if (newOrExistingComponent === choices.addToExistingComponent) {

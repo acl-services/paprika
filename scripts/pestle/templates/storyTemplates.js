@@ -26,6 +26,26 @@ function renderStoryFolderTemplate(view) {
 `;
 }
 
+function renderBackyardStoryFolderTemplate(view) {
+  const { componentName } = view;
+  return `import React from "react";
+import { getStoryName } from "storybook/storyTree";
+import { testStoryParameters } from "storybook/assets/storyParameters";
+import ${componentName} from "../src/${componentName}";
+import Screener from "./tests/Screener";
+
+const storyName = getStoryName("${componentName}");
+
+export default {
+  title: \`\${storyName}/Backyard/Tests\`,
+  component: ${componentName},
+};
+
+export const screener = () => <Screener />;
+screener.story = { name: "Screener", parameters: testStoryParameters };
+`;
+}
+
 function renderExampleStoryFolderTemplate(view) {
   const { componentName, storyName } = view;
   return `import React from "react";
@@ -42,13 +62,12 @@ function renderExampleStoryFolderTemplate(view) {
     component: ${componentName},
   };
   
-  export const ${storyName.toLowercase()}Example = () => (
+  export const ${storyName.toLowerCase()}Example = () => (
     <ExampleStory storyName="${storyName}" component="${componentName}" fileName="examples/${storyName}.js">
       <${storyName} />
     </ExampleStory>
   );
-  ${storyName.toLowercase()}Example.story = { name: "${storyName}", parameters: exampleStoryParameters };
-}
+  ${storyName.toLowerCase()}Example.story = { name: "${storyName}", parameters: exampleStoryParameters };
 `;
 }
 
@@ -114,15 +133,29 @@ export default function ScreenerStory() {
   return (
     <${componentName} />
   );
-};  
+};
+`;
+}
+
+function renderMXDFileTemplate(view) {
+  const { componentName } = view;
+  return `import { Meta, Description } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import { docsStoryParameters } from "storybook/assets/storyParameters";
+import Readme from "../README.md";
+import ${componentName} from "../src";
+<Meta title={\`\${getStoryName("${componentName}")}/ Docs\`} component={${componentName}} parameters={{ ...docsStoryParameters }} />
+<Description markdown={Readme} />
 `;
 }
 
 module.exports = {
   renderStoryFolderTemplate,
+  renderBackyardStoryFolderTemplate,
   renderExampleStoryFolderTemplate,
   renderExampleStoryTemplate,
   renderVariationStoryTemplate,
   renderShowcaseStoryTemplate,
   renderScreenerStoryTemplate,
+  renderMXDFileTemplate
 };

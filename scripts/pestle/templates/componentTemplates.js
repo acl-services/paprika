@@ -28,7 +28,7 @@ function renderPackageJSONTemplate(view){
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"
-  },
+  }
 }
 `;
 }

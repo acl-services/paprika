@@ -2,7 +2,7 @@ function renderSpecTemplate(view) {
   const { componentName } = view;
   return `import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import ${componentName} from "../../src/${componentName}";
+import ${componentName} from "../src/${componentName}";
 
 function renderComponent(props = {}) {
   const defaultProps = {};

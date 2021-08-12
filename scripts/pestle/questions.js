@@ -75,7 +75,7 @@ module.exports = {
        type: "checkbox",
        name: "storyTypes",
        message: "Include ...",
-       choices: [choices.showcaseStory, choices.screenerStory, choices.exampleStory] 
+       choices: [choices.showcaseStory, choices.screenerStory, choices.variationStory, choices.mdxStory, choices.exampleStory] 
       }
     ],
     exampleStoryName: [
