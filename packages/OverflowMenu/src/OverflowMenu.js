@@ -30,6 +30,9 @@ const propTypes = {
   /** Control if the overflow menu popover open. */
   isOpen: PropTypes.bool,
 
+  /** The maximum height of the OverflowMenu content */
+  maxHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
   /** If provided, will fire when the Popover is closed */
   onClose: PropTypes.func,
 
@@ -41,6 +44,7 @@ const defaultProps = {
   align: Popover.types.align.BOTTOM,
   edge: null,
   isOpen: null,
+  maxHeight: 300,
   onClose: null,
   zIndex: zValue(1),
 };
@@ -48,7 +52,7 @@ const defaultProps = {
 const popoverOffset = 4;
 
 const OverflowMenu = React.forwardRef((props, ref) => {
-  const { align, children, edge, isOpen: controlledIsOpen, onClose, zIndex, ...moreProps } = props;
+  const { align, children, edge, isOpen: controlledIsOpen, onClose, zIndex, maxHeight, ...moreProps } = props;
 
   const [isOpen, setIsOpen] = React.useState(false);
   const [isConfirming, setIsConfirming] = React.useState(false);
@@ -195,7 +199,7 @@ const OverflowMenu = React.forwardRef((props, ref) => {
     }
 
     return (
-      <Popover.Card>
+      <sc.PopoverCard maxHeight={maxHeight}>
         <sc.Content ref={overflowListRef}>
           {extractedChildren.map((child, index) => {
             const childKey = { key: `OverflowMenuItem${index}` };
@@ -212,7 +216,7 @@ const OverflowMenu = React.forwardRef((props, ref) => {
             return getClonedChild(child, childKey);
           })}
         </sc.Content>
-      </Popover.Card>
+      </sc.PopoverCard>
     );
   };
 

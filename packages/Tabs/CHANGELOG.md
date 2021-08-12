@@ -1,5 +1,31 @@
 # Changelog
 
+## 2.2.6
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+  - @paprika/stylers@1.0.1
+  - @paprika/helpers@2.1.3
+  - @paprika/raw-button@1.0.5
+
+## 2.2.6-next.0
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+  - @paprika/stylers@1.0.1-next.0
+  - @paprika/helpers@2.1.3-next.0
+  - @paprika/raw-button@1.0.5-next.0
+
+## 2.2.5
+
+### Patch Changes
+
+- 50fc8d6: Make it so a tab that is a link can be marked as "active"
+- f2de3be: If there is no Tabs.Panel, dont have an accessibity error
+- 17bb9de: Make spacebar activate a nav tab if it is a link
+
 ## 2.2.5-next.1
 
 ### Patch Changes

@@ -1,5 +1,92 @@
 # Changelog
 
+## 3.0.5
+
+### Patch Changes
+
+- db2dec5: Added SideNavigation.Footer
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+  - @paprika/l10n@1.1.13
+  - @paprika/stylers@1.0.1
+  - @paprika/helpers@2.1.3
+  - @paprika/icon@1.3.0
+  - @paprika/button@1.1.2
+  - @paprika/panel@2.1.3
+  - @paprika/popover@1.2.4
+  - @paprika/raw-button@1.0.5
+
+## 3.0.5-next.1
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+  - @paprika/l10n@1.1.13-next.0
+  - @paprika/stylers@1.0.1-next.0
+  - @paprika/helpers@2.1.3-next.0
+  - @paprika/icon@1.3.0-next.0
+  - @paprika/panel@2.1.3-next.0
+  - @paprika/button@1.1.2-next.0
+  - @paprika/popover@1.2.4-next.0
+  - @paprika/raw-button@1.0.5-next.0
+
+## 3.0.5-next.0
+
+### Patch Changes
+
+- db2dec5: Added SideNavigation.Footer
+
+## 3.0.4
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12
+  - @paprika/panel@2.1.2
+
+## 3.0.4-next.0
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12-next.0
+  - @paprika/panel@2.1.2-next.0
+
+## 3.0.3
+
+### Patch Changes
+
+- Updated dependencies [009352de9]
+  - @paprika/icon@1.2.0
+  - @paprika/button@1.1.1
+  - @paprika/panel@2.1.1
+
+## 3.0.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [009352d]
+  - @paprika/icon@1.2.0-next.0
+  - @paprika/button@1.1.1-next.0
+  - @paprika/panel@2.1.1-next.0
+
+## 3.0.2
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+- Updated dependencies [82ef2b7]
+  - @paprika/l10n@1.1.11
+  - @paprika/panel@2.1.0
+
+## 3.0.2-next.1
+
+### Patch Changes
+
+- Updated dependencies [82ef2b7]
+  - @paprika/panel@2.1.0-next.1
+
 ## 3.0.2-next.0
 
 ### Patch Changes

@@ -22,14 +22,15 @@ npm install @paprika/overflow-menu
 
 ### OverflowMenu
 
-| Prop     | Type                                                                                                        | required | default                    | Description                                                                               |
-| -------- | ----------------------------------------------------------------------------------------------------------- | -------- | -------------------------- | ----------------------------------------------------------------------------------------- |
-| align    | [ Popover.types.align.TOP, Popover.types.align.RIGHT, Popover.types.align.BOTTOM, Popover.types.align.LEFT] | false    | Popover.types.align.BOTTOM | Where the popover content is positioned relative to the trigger or getPositioningElement. |
-| children | node                                                                                                        | true     | -                          | Children should consist of <OverflowMenu.Item />                                          |
-| edge     | [ Popover.types.align.LEFT, Popover.types.align.RIGHT, null]                                                | false    | null                       | If provided, will align Popover to specified edge of Trigger                              |
-| isOpen   | bool                                                                                                        | false    | null                       | Control if the overflow menu popover open.                                                |
-| onClose  | func                                                                                                        | false    | null                       | If provided, will fire when the Popover is closed                                         |
-| zIndex   | number                                                                                                      | false    | zValue(1)                  | The z-index for the popover / confirmation                                                |
+| Prop      | Type                                                                                                        | required | default                    | Description                                                                               |
+| --------- | ----------------------------------------------------------------------------------------------------------- | -------- | -------------------------- | ----------------------------------------------------------------------------------------- |
+| align     | [ Popover.types.align.TOP, Popover.types.align.RIGHT, Popover.types.align.BOTTOM, Popover.types.align.LEFT] | false    | Popover.types.align.BOTTOM | Where the popover content is positioned relative to the trigger or getPositioningElement. |
+| children  | node                                                                                                        | true     | -                          | Children should consist of <OverflowMenu.Item />                                          |
+| edge      | [ Popover.types.align.LEFT, Popover.types.align.RIGHT, null]                                                | false    | null                       | If provided, will align Popover to specified edge of Trigger                              |
+| isOpen    | bool                                                                                                        | false    | null                       | Control if the overflow menu popover open.                                                |
+| maxHeight | [number,string]                                                                                             | false    | 300                        | The maximum height of the OverflowMenu content                                            |
+| onClose   | func                                                                                                        | false    | null                       | If provided, will fire when the Popover is closed                                         |
+| zIndex    | number                                                                                                      | false    | zValue(1)                  | The z-index for the popover / confirmation                                                |
 
 ### OverflowMenu.Item
 

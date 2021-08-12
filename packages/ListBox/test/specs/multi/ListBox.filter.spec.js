@@ -47,4 +47,22 @@ describe("ListBox.Filter", () => {
       expect(getByText("No match")).toBeInTheDocument();
     });
   });
+
+  it("should not display dividers when filter input does not find a match", () => {
+    const { openSelect, getByTestId, getByText, queryByTestId, queryByText } = renderComponent({}, [
+      <ListBox.Filter key="filter" noResultsMessage="No match" />,
+      <ListBox.Divider key="divider">Planets</ListBox.Divider>,
+      [...childrenContent],
+    ]);
+
+    openSelect();
+
+    expect(getByTestId("list-box.divider")).toBeInTheDocument();
+    expect(getByText(/Planets/i)).toBeInTheDocument();
+
+    fireEvent.change(getByTestId("list-filter-input"), { target: { value: "g" } });
+
+    expect(queryByTestId("list-box.divider")).not.toBeInTheDocument();
+    expect(queryByText(/Planets/i)).not.toBeInTheDocument();
+  });
 });

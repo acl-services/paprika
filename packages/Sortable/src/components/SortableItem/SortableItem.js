@@ -62,10 +62,11 @@ const SortableItem = ({ children, index, handleElement, hasNumbers, isDragDisabl
           {onRemove && (
             <div css={itemCloseStyles} data-pka-anchor="sortable.item.remove">
               <Button.Icon
-                onClick={handleRemove}
-                kind={Button.Icon.types.kind.MINOR}
-                size={Button.Icon.types.size.MEDIUM}
                 a11yText={I18n.t("sortable.aria_remove")}
+                isSemantic={false}
+                kind={Button.Icon.types.kind.MINOR}
+                onClick={handleRemove}
+                size={Button.Icon.types.size.MEDIUM}
               >
                 <TrashbinIcon color={tokens.color.blackLighten20} />
               </Button.Icon>

@@ -1,9 +1,10 @@
 {
   "name": "@paprika/l10n",
-  "version": "1.1.11-next.0",
+  "version": "1.1.13",
   "description": "L10n component can be used in one of two ways: Translating Paprika components, or Translating your own components.",
   "author": "@paprika",
   "main": "lib/index.js",
+  "module": "lib/esm/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
   "repository": {
@@ -27,5 +28,6 @@
     "react": "^16.8.2",
     "react-dom": "^16.8.2"
   },
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
+  "sideEffects": false
 }

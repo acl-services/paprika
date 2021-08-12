@@ -1,5 +1,89 @@
 # Changelog
 
+## 1.1.3
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+  - @paprika/l10n@1.1.13
+  - @paprika/stylers@1.0.1
+  - @paprika/helpers@2.1.3
+  - @paprika/icon@1.3.0
+  - @paprika/button@1.1.2
+  - @paprika/confirmation@1.1.8
+  - @paprika/popover@1.2.4
+  - @paprika/raw-button@1.0.5
+
+## 1.1.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+  - @paprika/l10n@1.1.13-next.0
+  - @paprika/stylers@1.0.1-next.0
+  - @paprika/helpers@2.1.3-next.0
+  - @paprika/icon@1.3.0-next.0
+  - @paprika/confirmation@1.1.8-next.0
+  - @paprika/button@1.1.2-next.0
+  - @paprika/popover@1.2.4-next.0
+  - @paprika/raw-button@1.0.5-next.0
+
+## 1.1.2
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12
+  - @paprika/confirmation@1.1.7
+
+## 1.1.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12-next.0
+  - @paprika/confirmation@1.1.7-next.0
+
+## 1.1.1
+
+### Patch Changes
+
+- Updated dependencies [009352de9]
+  - @paprika/icon@1.2.0
+  - @paprika/button@1.1.1
+  - @paprika/confirmation@1.1.6
+
+## 1.1.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [009352d]
+  - @paprika/icon@1.2.0-next.0
+  - @paprika/button@1.1.1-next.0
+  - @paprika/confirmation@1.1.6-next.0
+
+## 1.1.0
+
+### Minor Changes
+
+- 11ca2a7: Added maxHeight prop to <OverflowMenu> to allow a scrollable list when the menu overflows.
+
+## 1.1.0-next.0
+
+### Minor Changes
+
+- 11ca2a7: Added maxHeight prop to <OverflowMenu> to allow a scrollable list when the menu overflows.
+
+## 1.0.20
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11
+  - @paprika/confirmation@1.1.5
+
 ## 1.0.20-next.0
 
 ### Patch Changes

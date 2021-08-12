@@ -27,5 +27,9 @@ Box.displayName = "ListBox.Box";
 
 Box.propTypes = {
   /** Body content of the box. */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
+};
+
+Box.defaultProps = {
+  children: null,
 };

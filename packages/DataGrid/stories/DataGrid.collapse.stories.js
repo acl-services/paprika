@@ -21,7 +21,7 @@ const Arrow = React.memo(({ hasRows, isExpand }) => {
   return <ArrowDown />;
 });
 
-const Pill = React.memo(({ start, end }) => {
+const MyPopover = React.memo(({ start, end }) => {
   if (start === end) {
     return (
       <Popover isEager>
@@ -164,7 +164,7 @@ export function App() {
           headerProps={headerStyle}
           cellA11yText={cellA11yText("review")}
           cell={({ row }) => {
-            return <Pill start={row.review[0]} end={row.review[1]} />;
+            return <MyPopover start={row.review[0]} end={row.review[1]} />;
           }}
           cellProps={cellStyle}
         />
@@ -173,7 +173,7 @@ export function App() {
           header="Detail review"
           headerProps={headerStyle}
           cellA11yText={cellA11yText("detail")}
-          cell={({ row }) => <Pill start={row.detail[0]} end={row.detail[1]} />}
+          cell={({ row }) => <MyPopover start={row.detail[0]} end={row.detail[1]} />}
           cellProps={cellStyle}
         />
         <DataGrid.ColumnDefinition
@@ -181,7 +181,7 @@ export function App() {
           header="General review"
           headerProps={headerStyle}
           cellA11yText={cellA11yText("general")}
-          cell={({ row }) => <Pill start={row.general[0]} end={row.general[1]} />}
+          cell={({ row }) => <MyPopover start={row.general[0]} end={row.general[1]} />}
           cellProps={cellStyle}
         />
       </DataGrid>

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Select from "@paprika/select";
 import * as sc from "./InlineSelect.styles";
 
 const propTypes = {
@@ -14,9 +15,11 @@ export default function InlineSelect(props) {
 
   return (
     <sc.Wrapper data-pka-anchor="filter.inline-select">
-      <sc.Select onChange={onChange} value={value} {...moreProps}>
-        {children}
-      </sc.Select>
+      <sc.SelectWrapper>
+        <Select onChange={onChange} value={value} {...moreProps}>
+          {children}
+        </Select>
+      </sc.SelectWrapper>
       <sc.Trigger>{selectedLabel}</sc.Trigger>
     </sc.Wrapper>
   );

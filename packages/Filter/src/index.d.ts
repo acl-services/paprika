@@ -12,6 +12,8 @@ interface FilterProps {
 
   data?: shape[];
 
+  maxFiltersAllowed?: number;
+
   onAddFilter: (...args: any[]) => any;
 
   onApply: (...args: any[]) => any;

@@ -5,7 +5,7 @@ import SomePaprikaComponent from "./SomePaprikaComponent";
 export default function FakeAppWithContext(props) {
   return (
     <L10n locale={props.locale}>
-      <h1>Hello World</h1>
+      Change knob and watch language switch: &nbsp;
       <SomePaprikaComponent />
     </L10n>
   );

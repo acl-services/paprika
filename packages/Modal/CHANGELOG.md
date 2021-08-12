@@ -1,5 +1,41 @@
 # Changelog
 
+## 1.0.13
+
+### Patch Changes
+
+- ff8eae9: Enable webpack tree shaking ability.
+- Updated dependencies [ff8eae9]
+  - @paprika/stylers@1.0.1
+  - @paprika/helpers@2.1.3
+  - @paprika/button@1.1.2
+  - @paprika/heading@1.0.7
+  - @paprika/overlay@1.0.8
+
+## 1.0.13-next.0
+
+### Patch Changes
+
+- ff8eae9: Enable webpack tree shaking ability.
+- Updated dependencies [ff8eae9]
+  - @paprika/stylers@1.0.1-next.0
+  - @paprika/helpers@2.1.3-next.0
+  - @paprika/button@1.1.2-next.0
+  - @paprika/heading@1.0.7-next.0
+  - @paprika/overlay@1.0.8-next.0
+
+## 1.0.12
+
+### Patch Changes
+
+- @paprika/button@1.1.1
+
+## 1.0.12-next.0
+
+### Patch Changes
+
+- @paprika/button@1.1.1-next.0
+
 ## 1.0.11
 
 ### Patch Changes

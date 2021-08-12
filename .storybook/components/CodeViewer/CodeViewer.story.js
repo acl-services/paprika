@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { Story, Tagline, Gap } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
-import Pill from "@paprika/pill";
+import Tag, { Tags } from "@paprika/tag";
 import CodeViewer from "storybook/components/CodeViewer";
 import SampleIcon from "@paprika/icon/lib/ExclamationCircle";
 
@@ -32,23 +32,27 @@ storiesOf("Storybook/CodeViewer", module)
         <Heading level={2} displayLevel={3}>
           🐐
         </Heading>
-        <Pill>
-          <>
-            <span>
-              <SampleIcon />
-            </span>
-            <span>
-              <SampleIcon />
-            </span>
-          </>
-          🐐
-        </Pill>
+        <Tags>
+          <Tag>
+            <>
+              <span>
+                <SampleIcon />
+              </span>
+              <span>
+                <SampleIcon />
+              </span>
+            </>
+            🐐
+          </Tag>
+        </Tags>
       </CodeViewer>
       <Gap />
       <CodeViewer defaultIsShown>
-        <Pill onClick={handlePillClick} isDisabled size="small" pillColor="grey">
-          🐐
-        </Pill>
+        <Tags>
+          <Tag onClick={handlePillClick} isDisabled>
+            🐐
+          </Tag>
+        </Tags>
       </CodeViewer>
     </Story>
   ));

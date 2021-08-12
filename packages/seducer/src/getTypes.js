@@ -9,7 +9,7 @@
 export default function getTypes(actions) {
   let o = {};
   for (const action in actions) {
-    o = { ...o, [actions[action].name]: actions[action].name };
+    o = { ...o, [action]: action };
   }
   return o;
 }

@@ -1,5 +1,105 @@
 # Changelog
 
+## 3.1.7
+
+### Patch Changes
+
+- ff8eae9: Enable webpack tree shaking ability.
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+- Updated dependencies [37b74d7]
+  - @paprika/l10n@1.1.13
+  - @paprika/stylers@1.0.1
+  - @paprika/helpers@2.1.3
+  - @paprika/icon@1.3.0
+  - @paprika/sortable@1.2.0
+  - @paprika/button@1.1.2
+  - @paprika/input@4.0.6
+  - @paprika/popover@1.2.4
+  - @paprika/select@2.0.2
+  - @paprika/switch@1.0.10
+
+## 3.1.7-next.1
+
+### Patch Changes
+
+- ff8eae9: Enable webpack tree shaking ability.
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+  - @paprika/l10n@1.1.13-next.0
+  - @paprika/stylers@1.0.1-next.0
+  - @paprika/helpers@2.1.3-next.0
+  - @paprika/icon@1.3.0-next.0
+  - @paprika/input@4.0.6-next.0
+  - @paprika/sortable@1.2.0-next.1
+  - @paprika/button@1.1.2-next.0
+  - @paprika/popover@1.2.4-next.0
+  - @paprika/select@2.0.2-next.0
+  - @paprika/switch@1.0.10-next.0
+
+## 3.1.7-next.0
+
+### Patch Changes
+
+- Updated dependencies [37b74d7]
+  - @paprika/sortable@1.2.0-next.0
+
+## 3.1.6
+
+### Patch Changes
+
+- 90dec26: Fix some CSS errors caused by input/select refactoring.
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12
+  - @paprika/input@4.0.5
+  - @paprika/sortable@1.1.13
+
+## 3.1.6-next.1
+
+### Patch Changes
+
+- 90dec26: Fix some CSS errors caused by input/select refactoring.
+
+## 3.1.6-next.0
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12-next.0
+  - @paprika/input@4.0.5-next.0
+  - @paprika/sortable@1.1.13-next.0
+
+## 3.1.5
+
+### Patch Changes
+
+- Updated dependencies [009352de9]
+  - @paprika/icon@1.2.0
+  - @paprika/button@1.1.1
+  - @paprika/input@4.0.4
+  - @paprika/select@2.0.1
+  - @paprika/sortable@1.1.12
+
+## 3.1.5-next.0
+
+### Patch Changes
+
+- Updated dependencies [009352d]
+  - @paprika/icon@1.2.0-next.0
+  - @paprika/button@1.1.1-next.0
+  - @paprika/input@4.0.4-next.0
+  - @paprika/select@2.0.1-next.0
+  - @paprika/sortable@1.1.12-next.0
+
+## 3.1.4
+
+### Patch Changes
+
+- Updated dependencies [ae0d6a0]
+  - @paprika/l10n@1.1.11
+  - @paprika/input@4.0.3
+  - @paprika/sortable@1.1.11
+
 ## 3.1.4-next.0
 
 ### Patch Changes

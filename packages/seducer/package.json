@@ -1,8 +1,9 @@
 {
   "name": "@paprika/seducer",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "description": "Seducer (simple reducer) is a wrapper on top of React.useReducer, making it easier to use",
   "main": "lib/index.js",
+  "module": "lib/esm/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
@@ -30,5 +31,6 @@
   },
   "devDependencies": {
     "react-dom-confetti": "^0.2.0"
-  }
+  },
+  "sideEffects": false
 }

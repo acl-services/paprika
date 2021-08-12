@@ -19,10 +19,11 @@ function getLabelText(numberOfFilters, I18n) {
 
 export default function Filter(props) {
   const {
-    numberApplied,
     children,
     columns,
     data,
+    numberApplied,
+    maxFiltersAllowed,
     onAddFilter,
     onApply,
     onCancel,
@@ -85,9 +86,11 @@ export default function Filter(props) {
           ) : (
             children
           )}
-          <Button data-pka-anchor="filter.addFilterButton" icon={<AddIcon />} onClick={onAddFilter}>
-            {I18n.t("filter.actions.add")}
-          </Button>
+          {React.Children.count(children) < maxFiltersAllowed && (
+            <Button data-pka-anchor="filter.addFilterButton" icon={<AddIcon />} onClick={onAddFilter}>
+              {I18n.t("filter.actions.add")}
+            </Button>
+          )}
         </sc.FilterPanel>
         <Panel.Footer isSticky>
           <sc.Footer>
@@ -120,6 +123,7 @@ const propTypes = {
   children: PropTypes.node,
   columns: PropTypes.arrayOf(PropTypes.shape(columnShape)).isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({})),
+  maxFiltersAllowed: PropTypes.number,
   onAddFilter: PropTypes.func.isRequired,
   onApply: PropTypes.func.isRequired,
   onCancel: PropTypes.func,
@@ -131,9 +135,10 @@ const propTypes = {
 };
 
 const defaultProps = {
-  numberApplied: 0,
   children: null,
   data: null,
+  maxFiltersAllowed: 9999,
+  numberApplied: 0,
   onCancel: () => {},
   onChangeOperator: null,
   onClear: () => {},
