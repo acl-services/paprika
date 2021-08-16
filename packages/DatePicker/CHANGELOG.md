@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.21
+
+### Patch Changes
+
+- Updated dependencies [446a642]
+  - @paprika/calendar@1.0.17
+
 ## 1.0.21-next.0
 
 ### Patch Changes
