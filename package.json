@@ -9,6 +9,7 @@
     "cypress:run": "wait-on http://localhost:9009/iframe.html && cypress run --browser chrome",
     "generateReadMe": "node scripts/readmeFiles.js",
     "generateTypeDefinitions": "node scripts/typesFiles.js && yarn tsc",
+    "generateDocStories": "node scripts/docStories.js",
     "jest:watch": "yarn jest --watch",
     "license": "node packages/helpers/src/license.js",
     "lint": "eslint packages --report-unused-disable-directives",
