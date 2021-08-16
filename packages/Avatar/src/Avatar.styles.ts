@@ -1,8 +1,6 @@
 import React from "react";
-// @ts-expect-error: need to fix stylers library
 import { fontSize, spacer } from "@paprika/stylers/lib/helpers";
 import styled from "styled-components";
-// @ts-expect-error: need to fix tokens library
 import tokens from "@paprika/tokens";
 import { getAvatarColors } from "./helpers";
 

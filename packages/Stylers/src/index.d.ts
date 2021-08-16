@@ -1,0 +1,26 @@
+declare var _default: {
+    disabledFormStyles: string;
+    readOnlyFormStyles: string;
+    errorFormStyles: string;
+    focusRing: typeof includes.focusRing;
+    boxSizingStyles: import("styled-components").FlattenSimpleInterpolation;
+    alignMiddle: import("styled-components").FlattenSimpleInterpolation;
+    truncateText: import("styled-components").FlattenSimpleInterpolation;
+    noTruncateText: import("styled-components").FlattenSimpleInterpolation;
+    visuallyHidden: import("styled-components").FlattenSimpleInterpolation;
+    disabledPlaceholder: import("styled-components").FlattenSimpleInterpolation;
+    placeholder: import("styled-components").FlattenSimpleInterpolation;
+    placeholders: import("styled-components").FlattenSimpleInterpolation;
+    rgb(hex: any): number[] | null;
+    alpha(colorValue: any, alphaValue?: number | undefined): string;
+    toInt(token: any): number;
+    fontSizeValue(scale?: number | undefined): number;
+    fontSize(scale?: number | undefined): string;
+    lineHeightValue(scale?: number | undefined): number;
+    lineHeight(scale?: number | undefined): string;
+    spacer(numSpaces: any): string;
+    z(level: any): string;
+    zValue(level: any): any;
+};
+export default _default;
+import * as includes from "./includes";

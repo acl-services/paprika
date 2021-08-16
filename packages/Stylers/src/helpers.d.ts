@@ -1,0 +1,10 @@
+export function rgb(hex: any): number[] | null;
+export function alpha(colorValue: any, alphaValue?: number): string;
+export function toInt(token: any): number;
+export function fontSizeValue(scale?: number): number;
+export function fontSize(scale?: number): string;
+export function lineHeightValue(scale?: number): number;
+export function lineHeight(scale?: number): string;
+export function spacer(numSpaces: any): string;
+export function z(level: any): string;
+export function zValue(level: any): any;

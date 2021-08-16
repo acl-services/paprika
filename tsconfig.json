@@ -1,6 +1,6 @@
 {
-  "include": ["./packages/**/*"],
-  "exclude": ["node_modules", "./packages/**/lib"],
+  "include": ["./packages/Avatar/src", "./packages/Constants/src", "./packages/Tokens/src", "./packages/Stylers/src"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
     "allowJs": true,
     "declaration": true,
@@ -21,10 +21,5 @@
     "noImplicitAny": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./packages"
-    // "noEmit": true,
-    // "inlineSourceMap": false,
-    // "sourceMap": false,
-    // "noFallthroughCasesInSwitch": true,
-    // "": ["jest", "cypress", "@testing-library/cypress"]
   }
 }

@@ -23,5 +23,10 @@ module.exports = function BabelConfigJS(api) {
     sourceType: "unambiguous",
     presets,
     plugins,
+    overrides: [
+      {
+        ignore: ["**/*.d.ts"],
+      },
+    ],
   };
 };

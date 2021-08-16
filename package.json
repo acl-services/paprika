@@ -8,7 +8,6 @@
     "cypress:open": "cypress open",
     "cypress:run": "wait-on http://localhost:9009/iframe.html && cypress run --browser chrome",
     "generateReadMe": "node scripts/readmeFiles.js",
-    "generateTypeDefinitions": "node scripts/typesFiles.js && yarn tsc",
     "jest:watch": "yarn jest --watch",
     "license": "node packages/helpers/src/license.js",
     "lint": "eslint packages --report-unused-disable-directives",
@@ -26,7 +25,8 @@
     "test:a11y": "echo 'Axe will run on this command'",
     "test:debug": "node --inspect node_modules/.bin/jest --runInBand",
     "transpile": "lerna exec --parallel -- babel --extensions .js,.jsx,.ts,.tsx --root-mode upward src --source-maps --copy-files --out-dir lib",
-    "transpile:esm": "lerna exec --parallel --scope '@paprika/@(action-bar|avatar|calendar|collapsible-card|data-grid|filter|form-element|guard|helpers|icon|l10n|list-box-with-tags|mock-endpoints|modal|seducer|stylers|table)' -- babel --extensions .js,.jsx,.ts,.tsx --root-mode upward src --source-maps --copy-files --config-file ../../babel.config.esm.js --out-dir lib/esm"
+    "transpile:esm": "lerna exec --parallel --scope '@paprika/@(action-bar|avatar|calendar|collapsible-card|data-grid|filter|form-element|guard|helpers|icon|l10n|list-box-with-tags|mock-endpoints|modal|seducer|stylers|table)' -- babel --extensions .js,.jsx,.ts,.tsx --root-mode upward src --source-maps --copy-files --config-file ../../babel.config.esm.js --out-dir lib/esm",
+    "validate:ts": "yarn tsc --noEmit --emitDeclarationOnly false"
   },
   "engines": {
     "node": ">=12.13.0",

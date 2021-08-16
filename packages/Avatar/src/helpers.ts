@@ -1,5 +1,4 @@
 import React from "react";
-// @ts-expect-error: need to fix tokens library
 import Tokens from "@paprika/tokens";
 
 export function getAvatarColors(children: React.ReactNode): { fontColor: string; backgroundColor: string } {

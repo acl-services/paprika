@@ -1,19 +1,33 @@
 import React from "react";
-// @ts-expect-error: need to fix constants library
-import * as constants from "@paprika/constants/lib/Constants";
+// @ts-expect-error: need to fix tokens library
+import * as constants from "@paprika/constants";
 import * as sc from "./Avatar.styles";
 
+type AvatarSize = constants.defaultSize.SMALL | constants.defaultSize.MEDIUM | constants.defaultSize.LARGE;
+
 interface AvatarProps {
+  /** Avatar content. It can be initial as a string or icon */
   children?: React.ReactNode | null;
+  /** Background color of the Avatar */
   backgroundColor?: string | null;
+  /** Color for the initial or icon */
   color?: string | null;
+  /** Shape of the Avatar */
   isRound?: boolean;
-  // size?: Avatar.types.size.SMALL | Avatar.types.size.MEDIUM | Avatar.types.size.LARGE;
+  /** Size of Avatar */
+  size?: AvatarSize;
   [x: string]: any;
 }
 
 function Avatar(props: AvatarProps): JSX.Element {
-  const { backgroundColor = null, size, color = null, children = null, isRound = false, ...moreProps } = props;
+  const {
+    backgroundColor = null,
+    size = Avatar.types.size.LARGE,
+    color = null,
+    children = null,
+    isRound = false,
+    ...moreProps
+  } = props;
 
   if (!isRound && size === Avatar.types.size.SMALL) {
     console.warn(
@@ -42,32 +56,6 @@ Avatar.types = {
   size: constants.defaultSize,
 };
 
-// const propTypes = {
-//   /** Avatar content. It can be initial as a string or icon */
-//   children: PropTypes.node,
-//   /** Background color of the Avatar */
-//   backgroundColor: PropTypes.string,
-//   /** Color for the initial or icon */
-//   color: PropTypes.string,
-//   /** Shape of the Avatar */
-//   isRound: PropTypes.bool,
-//   /** Size of Avatar */
-//   size: PropTypes.oneOf([
-//     Avatar.types.size.SMALL, // for use with isRound only
-//     Avatar.types.size.MEDIUM,
-//     Avatar.types.size.LARGE,
-//   ]),
-// };
-
-// const defaultProps = {
-//   backgroundColor: null,
-//   children: null,
-//   color: null,
-//   isRound: false,
-//   size: Avatar.types.size.LARGE,
-// };
-
 Avatar.displayName = "Avatar";
-// Avatar.propTypes = propTypes;
-// Avatar.defaultProps = defaultProps;
+
 export default Avatar;
