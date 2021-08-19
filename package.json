@@ -27,7 +27,7 @@
     "test:a11y": "echo 'Axe will run on this command'",
     "test:debug": "node --inspect node_modules/.bin/jest --runInBand",
     "transpile": "lerna exec --parallel -- babel --root-mode upward src --source-maps --copy-files --out-dir lib",
-    "transpile:esm": "lerna exec --parallel --scope '@paprika/@(action-bar|avatar|calendar|collapsible-card|data-grid|filter|form-element|guard|helpers|icon|l10n|list-box-with-tags|mock-endpoints|modal|seducer|stylers|table)' -- babel --root-mode upward src --source-maps --copy-files --config-file ../../babel.config.esm.js --out-dir lib/esm"
+    "transpile:esm": "lerna exec --parallel --scope '@paprika/@(action-bar|avatar|calendar|collapsible-card|data-grid|filter|form-element|guard|helpers|icon|list-box-with-tags|mock-endpoints|modal|seducer|stylers|table)' -- babel --root-mode upward src --source-maps --copy-files --config-file ../../babel.config.esm.js --out-dir lib/esm"
   },
   "engines": {
     "node": ">=12.13.0",
