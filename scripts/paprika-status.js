@@ -69,6 +69,7 @@ class PaprikaStatus {
   }
 
   getPaprikaStatuses() {
+    // ignore merges and commits made by Paprika Bot
     const log = `git log --no-merges --invert-grep --author='Paprika Semaphore 2.0' -n 1 -- . > ${this.gitOutput}`;
     const lineCount = `git ls-files | xargs cat | wc -l > ${this.lineCount}`;
     fs.readdirSync(this.PATH_TO_COMPONENTS).forEach(subDir => {
@@ -116,6 +117,7 @@ class PaprikaStatus {
   }
 
   run() {
+    // TODO: add statistics on Screener tests
     this.getPaprikaStatuses()
     process.exit(0);
   }
