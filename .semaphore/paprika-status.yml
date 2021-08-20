@@ -24,3 +24,4 @@ blocks:
           commands:
             - nvm use
             - yarn paprika-status
+            - git add . && git commit -m "[Bot] Paprika Release" --no-verify && git push origin master --follow-tags --no-verify;
