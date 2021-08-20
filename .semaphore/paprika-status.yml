@@ -19,6 +19,7 @@ blocks:
           - cache store client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock) node_modules
 
   - name: "🍳 Paprika status"
+    dependencies: ["Setup"]
     task:
       secrets:
         - name: github-ssh
