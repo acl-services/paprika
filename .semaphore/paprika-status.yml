@@ -18,10 +18,11 @@ blocks:
           - ssh-add ~/keys/github.key
           - git config user.name "Paprika Semaphore 2.0"
           - git config user.email "allison.chen@wegalvanize.com"
+          - echo "//registry.npmjs.org/:_authToken=$NPM_PUBLISH_TOKEN" >> .npmrc
       jobs:
         - name: "Start paprika-status script"
           commands:
             - nvm use
-            - yarn
+            -
             - yarn paprika-status
             - git add . && git commit -m "[Bot] Paprika Release" --no-verify && git push origin master --follow-tags --no-verify;
