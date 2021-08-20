@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "@paprika/button";
 import Popover from "@paprika/popover";
+import { extractChildren, extractChildrenProps } from "@paprika/helpers";
+import LinkTooltipContentPropsCollector from "./LinkTooltipContentPropsCollector";
 import IsDarkContext from "../../context";
 import { MAXIMUM_NUM_OF_CHARACTER } from "../../constants";
 
@@ -17,7 +19,12 @@ function isString(item) {
 function Link(props) {
   const { children, hasOnlyOneChild, href, as, ...moreProps } = props;
   const isDark = React.useContext(IsDarkContext);
-  const shouldTruncate = isString(children) && children.length > MAXIMUM_NUM_OF_CHARACTER;
+  const {
+    children: [extractedChildren],
+  } = extractChildren(children, ["Breadcrumbs.Link.Tooltip"]);
+
+  const TooltipProps = extractChildrenProps(children, LinkTooltipContentPropsCollector);
+  const shouldTruncate = isString(extractedChildren) && extractedChildren.length > MAXIMUM_NUM_OF_CHARACTER;
   const isUsingDefaultLinkComponent = !as;
   const commonComponentProps = {
     "data-pka-anchor": "breadcrumbs.link",
@@ -46,19 +53,19 @@ function Link(props) {
                 {...a11yAttributes}
                 {...moreProps}
               >
-                {truncate(children)}
+                {truncate(extractedChildren)}
               </sc.Link>
             )}
           </Popover.Trigger>
 
-          <Popover.Content>
-            <Popover.Card>{children}</Popover.Card>
+          <Popover.Content {...TooltipProps}>
+            <Popover.Card>{extractedChildren}</Popover.Card>
           </Popover.Content>
           <Popover.Tip />
         </Popover>
       ) : (
         <sc.Link {...commonComponentProps} {...moreProps}>
-          {children}
+          {extractedChildren}
         </sc.Link>
       )}
     </sc.ListItem>
@@ -85,6 +92,7 @@ const defaultProps = {
 };
 
 Link.displayName = "Breadcrumbs.Link";
+Link.Tooltip = LinkTooltipContentPropsCollector;
 Link.propTypes = propTypes;
 Link.defaultProps = defaultProps;
 
