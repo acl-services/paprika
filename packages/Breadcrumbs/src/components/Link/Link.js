@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Button from "@paprika/button";
 import Popover from "@paprika/popover";
-import useI18n from "@paprika/l10n/lib/useI18n";
+import { extractChildren, extractChildrenProps } from "@paprika/helpers";
+import LinkTooltipContentPropsCollector from "./LinkTooltipContentPropsCollector";
 import IsDarkContext from "../../context";
 import { MAXIMUM_NUM_OF_CHARACTER } from "../../constants";
 
@@ -17,28 +19,54 @@ function isString(item) {
 function Link(props) {
   const { children, hasOnlyOneChild, href, as, ...moreProps } = props;
   const isDark = React.useContext(IsDarkContext);
-  const I18n = useI18n();
-  const shouldTruncate = isString(children) && children.length > MAXIMUM_NUM_OF_CHARACTER;
+  const {
+    children: [extractedChildren],
+  } = extractChildren(children, ["Breadcrumbs.Link.Tooltip"]);
 
-  const link = (
-    <sc.Link data-pka-anchor="breadcrumbs.link" as={as} kind="minor" href={href} isDark={isDark} {...moreProps}>
-      {hasOnlyOneChild ? <sc.ArrowIcon aria-label={I18n.t("breadcrumbs.aria_back_to")} /> : null}
-      {shouldTruncate ? truncate(children) : children}
-    </sc.Link>
-  );
+  const TooltipProps = extractChildrenProps(children, LinkTooltipContentPropsCollector);
+  const shouldTruncate = isString(extractedChildren) && extractedChildren.length > MAXIMUM_NUM_OF_CHARACTER;
+  const isUsingDefaultLinkComponent = !as;
+  const commonComponentProps = {
+    "data-pka-anchor": "breadcrumbs.link",
+    as: isUsingDefaultLinkComponent ? Button.Link : as,
+    href: href || undefined,
+    isDark,
+  };
+
+  if (isUsingDefaultLinkComponent) {
+    commonComponentProps.kind = Button.types.kind.MINOR;
+  }
 
   return (
     <sc.ListItem data-pka-anchor="breadcrumbs.list-item">
       {shouldTruncate ? (
         <Popover isDark isEager>
-          <Popover.Trigger>{link}</Popover.Trigger>
-          <Popover.Content>
-            <Popover.Card>{children}</Popover.Card>
+          <Popover.Trigger>
+            {(handler, a11yAttributes) => (
+              <sc.Link
+                {...commonComponentProps}
+                onMouseOver={handler}
+                onMouseOut={handler}
+                onFocus={handler}
+                onBlur={handler}
+                tabIndex={isUsingDefaultLinkComponent ? undefined : 0}
+                {...a11yAttributes}
+                {...moreProps}
+              >
+                {truncate(extractedChildren)}
+              </sc.Link>
+            )}
+          </Popover.Trigger>
+
+          <Popover.Content {...TooltipProps}>
+            <Popover.Card>{extractedChildren}</Popover.Card>
           </Popover.Content>
           <Popover.Tip />
         </Popover>
       ) : (
-        link
+        <sc.Link {...commonComponentProps} {...moreProps}>
+          {extractedChildren}
+        </sc.Link>
       )}
     </sc.ListItem>
   );
@@ -60,10 +88,11 @@ const defaultProps = {
   children: null,
   as: null,
   hasOnlyOneChild: false,
-  href: "",
+  href: null,
 };
 
 Link.displayName = "Breadcrumbs.Link";
+Link.Tooltip = LinkTooltipContentPropsCollector;
 Link.propTypes = propTypes;
 Link.defaultProps = defaultProps;
 

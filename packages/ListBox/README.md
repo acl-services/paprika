@@ -31,7 +31,7 @@ npm install @paprika/list-box
 | isDisabled     | bool                                                                                                        | false    | false                              | Disables the ListBox if true                                       |
 | isInline       | bool                                                                                                        | false    | false                              | This options will display the list-box without the Popover         |
 | isMulti        | bool                                                                                                        | false    | false                              | Let the user to select multiple options at same time               |
-| isOpen         | bool                                                                                                        | false    | null                               | Indicates if the popover is visible                                |
+| isOpen         | bool                                                                                                        | false    | false                              | Indicates if the popover is visible                                |
 | isReadOnly     | bool                                                                                                        | false    | false                              | The ListBox will not allow value to be changed                     |
 | onChange       | func                                                                                                        | false    | () => {}                           | Callback returning the current selection on the ListBox            |
 | placeholder    | string                                                                                                      | false    | null                               | Default label for trigger when the ListBox has no option selected  |
@@ -50,7 +50,7 @@ npm install @paprika/list-box
 
 | Prop     | Type | required | default | Description              |
 | -------- | ---- | -------- | ------- | ------------------------ |
-| children | node | true     | -       | Body content of the box. |
+| children | node | false    | null    | Body content of the box. |
 
 ### ListBox.Divider
 

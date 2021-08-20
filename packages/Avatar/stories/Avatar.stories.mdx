@@ -1,0 +1,10 @@
+
+import { Meta, Description } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import { docsStoryParameters } from "storybook/assets/storyParameters";
+import Readme from "../README.md";
+import Avatar from "../src";
+
+<Meta title={`${getStoryName("Avatar")}/ Docs`} component={Avatar} parameters={{ ...docsStoryParameters }} />
+
+<Description markdown={Readme} />

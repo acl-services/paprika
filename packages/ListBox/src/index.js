@@ -5,6 +5,7 @@ import { extractChildrenProps, extractChildren } from "@paprika/helpers";
 import ListBox, { propTypes, defaultProps } from "./ListBox";
 import Divider from "./components/Divider";
 import Box from "./components/Box/BoxShell";
+import Content from "./components/Content";
 import Filter from "./components/Filter";
 import Footer from "./components/Footer";
 import Option from "./components/Option";
@@ -62,6 +63,7 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
     "ListBox.Footer": footer,
     "ListBox.Popover": popover,
     "ListBox.Trigger": trigger,
+    "ListBox.Content": content,
     children: options,
   } = extractChildren(_children, [
     "ListBox.Box",
@@ -69,6 +71,7 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
     "ListBox.Footer",
     "ListBox.Popover",
     "ListBox.Trigger",
+    "ListBox.Content",
   ]);
 
   const a11yProps = extractChildrenProps(_children, A11y);
@@ -98,6 +101,7 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
             footer={footer}
             popover={popover}
             trigger={trigger}
+            content={content}
             ref={ref}
           >
             {options}
@@ -119,6 +123,7 @@ ListBoxWithProvider.Option = Option;
 ListBoxWithProvider.Popover = Popover;
 ListBoxWithProvider.RawItem = RawItem;
 ListBoxWithProvider.Trigger = Trigger;
+ListBoxWithProvider.Content = Content;
 
 ListBoxWithProvider.displayName = "ListBox";
 ListBoxWithProvider.propTypes = propTypes;

@@ -51,18 +51,14 @@ export function useIsPopOverOpen(shouldKeepTriggerFocus) {
     const filterInput = refFilterInput.current;
     const listBoxContainer = refListBoxContainer.current;
     const trigger = refTrigger.current;
-    if (isOpen) {
-      if (hasFilter && !shouldKeepTriggerFocus) {
-        waitForPopoverAnimation(() => filterInput.focus());
-        return;
-      }
 
+    if (isOpen) {
       dispatch({ type: useListBox.types.setTriggerWidth, payload: refTriggerContainer.current.offsetWidth });
-      dispatch({ type: useListBox.types.setHasPopupOpened, payload: true });
 
       if (!shouldKeepTriggerFocus) {
-        waitForPopoverAnimation(() => listBoxContainer.focus());
+        waitForPopoverAnimation(() => (hasFilter ? filterInput.focus() : listBoxContainer.focus()));
       }
+
       return;
     }
 
@@ -108,56 +104,6 @@ export function useAdjustWidth() {
       window.removeEventListener("resize", handleResize);
     };
   }, [dispatch, state.refTriggerContainer]);
-}
-
-export function useOnScrolled() {
-  const [state] = useListBox();
-  React.useLayoutEffect(() => {
-    if (!state.refListBox.current || state.activeOption === null) return;
-
-    const $box = state.refListBox.current;
-    const $option = state.options[state.activeOption]
-      ? document.getElementById(state.options[state.activeOption].id)
-      : null;
-
-    if ($box && $option) {
-      const rectBox = $box.getBoundingClientRect();
-      const scrollTop = $box.scrollTop;
-      const { marginBottom, marginTop } = window.getComputedStyle($option);
-      const marginBottomNumber = Number.parseInt(marginBottom, 10);
-      const marginTopNumber = Number.parseInt(marginTop, 10);
-      const rectOption = $option.getBoundingClientRect();
-
-      const nextTopPositionForOption =
-        rectOption.height * state.activeOption + state.activeOption * (marginBottomNumber + marginTopNumber);
-
-      // this occurs when the first element is a Divider so we want to scroll to the top
-      // so the user can see the Divider text instead to see only the option
-      if (state.activeOption === 1 && state.options[0].isDisabled) {
-        $box.scrollTo({
-          top: 0,
-        });
-        return;
-      }
-
-      if (nextTopPositionForOption >= scrollTop && nextTopPositionForOption <= scrollTop + rectBox.height) {
-        if (rectBox.bottom >= rectOption.top && rectBox.bottom <= rectOption.bottom) {
-          $box.scrollTo({
-            top: scrollTop + (rectOption.bottom - rectBox.bottom) + (marginBottomNumber + marginTopNumber),
-          });
-          return;
-        }
-        return;
-      }
-
-      // position by the height of the option rect by the position index = rectOption.height * state.activeOption
-      // calculate the amount of margin bottom and top for all elements before the option = state.activeOption * (marginBottomNumber + marginTopNumber)
-      // correct scroll position
-      $box.scrollTo({
-        top: nextTopPositionForOption,
-      });
-    }
-  }, [state.activeOption, state.options, state.refListBox]);
 }
 
 export function useOptionSelected() {

@@ -11,6 +11,11 @@ describe("SideNavigation", () => {
         <SideNavigation.Item href="abcd" isCurrent>
           Second item (1000)
         </SideNavigation.Item>
+        <SideNavigation.Footer>
+          <SideNavigation.Item href="abcd" isCurrent>
+            Footer link
+          </SideNavigation.Item>
+        </SideNavigation.Footer>
       </SideNavigation>
     );
 
@@ -19,6 +24,7 @@ describe("SideNavigation", () => {
     fireEvent.click(screen.getByTestId("sideNavigation.trigger"));
     expect(screen.queryByText("First item (0)"));
     expect(screen.queryByText("Second item (1000)"));
+    expect(screen.queryByText("Footer link"));
   });
 
   it("should not fail any accessibility tests", async () => {

@@ -27,7 +27,7 @@ const propTypes = {
     Input.types.size.LARGE, // eslint-disable-line no-use-before-define
   ]),
 
-  /** If the value of <input> is valid or not. */
+  /** If the value of `<input>` is valid or not. */
   hasError: PropTypes.bool,
 };
 

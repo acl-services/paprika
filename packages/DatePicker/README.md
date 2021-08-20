@@ -36,13 +36,13 @@ npm install @paprika/date-picker
 
 ### DatePicker.Input
 
-| Prop        | Type                                                                       | required | default                 | Description                              |
-| ----------- | -------------------------------------------------------------------------- | -------- | ----------------------- | ---------------------------------------- |
-| a11yText    | string                                                                     | false    | null                    | a11yText on the input.                   |
-| clearIcon   | node                                                                       | false    | null                    | Custom clear icon                        |
-| placeholder | string                                                                     | false    | ""                      | Placeholder of input.                    |
-| size        | [ Input.types.size.SMALL, Input.types.size.MEDIUM, Input.types.size.LARGE] | false    | Input.types.size.MEDIUM | Size of input.                           |
-| hasError    | bool                                                                       | false    | false                   | If the value of <input> is valid or not. |
+| Prop        | Type                                                                       | required | default                 | Description                                |
+| ----------- | -------------------------------------------------------------------------- | -------- | ----------------------- | ------------------------------------------ |
+| a11yText    | string                                                                     | false    | null                    | a11yText on the input.                     |
+| clearIcon   | node                                                                       | false    | null                    | Custom clear icon                          |
+| placeholder | string                                                                     | false    | ""                      | Placeholder of input.                      |
+| size        | [ Input.types.size.SMALL, Input.types.size.MEDIUM, Input.types.size.LARGE] | false    | Input.types.size.MEDIUM | Size of input.                             |
+| hasError    | bool                                                                       | false    | false                   | If the value of `<input>` is valid or not. |
 
 ### DatePicker.Popover
 

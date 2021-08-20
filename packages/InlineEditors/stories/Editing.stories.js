@@ -4,44 +4,50 @@ import Table from "./examples/Table";
 import TableErrorStory from "./examples/Table.error";
 import {
   ListBoxSingleStory,
-  ListBoxMultipleWithError,
-  ListBoxMultipleWithLoading,
-  ListBoxMultipleWithSuccess,
+  ListBoxMultipleWithError as ListBoxMultipleWithErrorExample,
+  ListBoxMultipleWithLoading as ListBoxMultipleWithLoadingExample,
+  ListBoxMultipleWithSuccess as ListBoxMultipleWithSuccessExample,
 } from "./examples/ListBox";
-
-import { WithScreener as WithScreenerStory } from "./screener/Editing.screener.stories";
-
-import Input from "./examples/Input";
+import { ForScreener as ForScreenerExample } from "./screener/Editing.screener.stories";
+import InputExample from "./examples/Input";
+import TextareaExample from "./examples/Textarea";
 
 export default {
   title: getStoryName("InlineEditors"),
 };
 
-export const WithInATable = () => {
+export const ListBoxWithinATable = () => {
   return <Table />;
 };
 
-export const WithInATableError = () => {
+export const ListBoxWithinATableError = () => {
   return <TableErrorStory />;
 };
 
-export const ListBoxSingleWithInlineEditing = () => {
+export const ListBoxSingle = () => {
   return <ListBoxSingleStory />;
 };
-export const ListBoxSingleMultipleWithError = () => {
-  return <ListBoxMultipleWithError />;
-};
-export const ListBoxSingleMultipleWithLoading = () => {
-  return <ListBoxMultipleWithLoading />;
-};
-export const ListBoxSingleMultipleWithSuccess = () => {
-  return <ListBoxMultipleWithSuccess />;
+
+export const ListBoxMultipleWithError = () => {
+  return <ListBoxMultipleWithErrorExample />;
 };
 
-export const WithInput = () => {
-  return <Input />;
+export const ListBoxMultipleWithLoading = () => {
+  return <ListBoxMultipleWithLoadingExample />;
 };
 
-export const WithScreener = () => {
-  return <WithScreenerStory />;
+export const ListBoxMultipleWithSuccess = () => {
+  return <ListBoxMultipleWithSuccessExample />;
+};
+
+export const Input = () => {
+  return <InputExample />;
+};
+
+export const Textarea = () => {
+  return <TextareaExample />;
+};
+
+export const ForScreener = () => {
+  return <ForScreenerExample />;
 };

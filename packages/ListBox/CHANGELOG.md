@@ -1,5 +1,134 @@
 # Changelog
 
+## 3.4.3
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+  - @paprika/l10n@1.1.13
+  - @paprika/stylers@1.0.1
+  - @paprika/helpers@2.1.3
+  - @paprika/icon@1.3.0
+  - @paprika/button@1.1.2
+  - @paprika/input@4.0.6
+  - @paprika/popover@1.2.4
+  - @paprika/raw-button@1.0.5
+  - @paprika/toast@1.1.8
+
+## 3.4.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+  - @paprika/l10n@1.1.13-next.0
+  - @paprika/stylers@1.0.1-next.0
+  - @paprika/helpers@2.1.3-next.0
+  - @paprika/icon@1.3.0-next.0
+  - @paprika/input@4.0.6-next.0
+  - @paprika/toast@1.1.8-next.0
+  - @paprika/button@1.1.2-next.0
+  - @paprika/popover@1.2.4-next.0
+  - @paprika/raw-button@1.0.5-next.0
+
+## 3.4.2
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12
+  - @paprika/input@4.0.5
+  - @paprika/toast@1.1.7
+
+## 3.4.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12-next.0
+  - @paprika/input@4.0.5-next.0
+  - @paprika/toast@1.1.7-next.0
+
+## 3.4.1
+
+### Patch Changes
+
+- be53161: - Fix typescript types for ListBox.Content
+  - Fix children being required for ListBox.Box when using it to spread props
+- Updated dependencies [bacebc9]
+  - @paprika/toast@1.1.6
+
+## 3.4.1-next.1
+
+### Patch Changes
+
+- Updated dependencies [bacebc9]
+  - @paprika/toast@1.1.6-next.0
+
+## 3.4.1-next.0
+
+### Patch Changes
+
+- be53161: - Fix typescript types for ListBox.Content
+  - Fix children being required for ListBox.Box when using it to spread props
+
+## 3.4.0
+
+### Minor Changes
+
+- 2fa64be80: - Exposed and added ListBox.Content allowing to spread props on the content container
+
+### Patch Changes
+
+- Updated dependencies [009352de9]
+  - @paprika/icon@1.2.0
+  - @paprika/button@1.1.1
+  - @paprika/input@4.0.4
+  - @paprika/toast@1.1.5
+
+## 3.4.0-next.1
+
+### Minor Changes
+
+- 2fa64be: - Exposed and added ListBox.Content allowing to spread props on the content container
+
+## 3.3.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [009352d]
+  - @paprika/icon@1.2.0-next.0
+  - @paprika/button@1.1.1-next.0
+  - @paprika/input@4.0.4-next.0
+  - @paprika/toast@1.1.5-next.0
+
+## 3.3.1
+
+### Patch Changes
+
+- 2e20d08: - Fixed dividers not hiding when no filtered results are found
+- b82b9d5: Now is possible to toggle the listbox again while clicking the trigger element.
+- c5bc5f5: Fix the `useAdjustWidth` hook
+
+## 3.3.1-next.2
+
+### Patch Changes
+
+- c5bc5f5: Fix the `useAdjustWidth` hook
+
+## 3.3.1-next.1
+
+### Patch Changes
+
+- 2e20d08: - Fixed dividers not hiding when no filtered results are found
+
+## 3.3.1-next.0
+
+### Patch Changes
+
+- b82b9d5: Now is possible to toggle the listbox again while clicking the trigger element.
+
 ## 3.3.0
 
 ### Minor Changes

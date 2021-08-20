@@ -79,7 +79,7 @@ export const ListBoxTrigger = styled.div`
   ${triggerStylesProps}
 `;
 
-const iconStyles = ({ isDisabled }) => css`
+export const iconStyles = ({ isDisabled }) => css`
   color: ${isDisabled ? tokens.color.blackLighten60 : tokens.textColor.icon};
   font-size: 20px;
   height: 100%;
