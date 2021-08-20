@@ -111,6 +111,21 @@ const AllVariations = () => {
         <Breadcrumbs.Link href={URL}>Breadcrumb 3</Breadcrumbs.Link>
         <Breadcrumbs.Link href={URL}>Breadcrumb 4 with long content, Breadcrumb 4 with long content.</Breadcrumbs.Link>
       </Breadcrumbs>
+
+      <Gap />
+
+      <Heading level={3} displayLevel={5} isLight>
+        Breadcrumb link custom tooltip
+      </Heading>
+
+      <Breadcrumbs>
+        <Breadcrumbs.Link href={URL}>Breadcrumb 2</Breadcrumbs.Link>
+        <Breadcrumbs.Link href={URL}>Breadcrumb 3</Breadcrumbs.Link>
+        <Breadcrumbs.Link href={URL}>
+          Breadcrumb 4 with extra long content, Breadcrumb 4 with extra long content.
+          <Breadcrumbs.Link.Tooltip zIndex={4000} />
+        </Breadcrumbs.Link>
+      </Breadcrumbs>
     </>
   );
 };
