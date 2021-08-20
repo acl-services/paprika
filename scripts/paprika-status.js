@@ -33,10 +33,10 @@ class PaprikaStatus {
   getCommitPrefixCounts(subDir, commits) {
     const path = this.PATH_TO_COMPONENTS + subDir;
     try {
-      child_process.execSync(`git rev-list --count master -- ${path} > ${path}/${this.countCommits}`);
-      child_process.execSync(`git rev-list --count master --grep="fix(" --count -- ${path} > ${path}/${this.bugCountOutput}`);
-      child_process.execSync(`git rev-list --count master --grep="chore(" --count -- ${path} > ${path}/${this.choreCount}`);
-      child_process.execSync(`git rev-list --count master --grep="feat(" --count -- ${path} > ${path}/${this.featCount}`);
+      child_process.execSync(`git rev-list --count -- ${path} > ${path}/${this.countCommits}`);
+      child_process.execSync(`git rev-list --count --grep="fix(" --count -- ${path} > ${path}/${this.bugCountOutput}`);
+      child_process.execSync(`git rev-list --count --grep="chore(" --count -- ${path} > ${path}/${this.choreCount}`);
+      child_process.execSync(`git rev-list --count --grep="feat(" --count -- ${path} > ${path}/${this.featCount}`);
   
       commits.commitCount =  parseInt(fs.readFileSync(`${path}/${this.countCommits}`, 'utf8').toString(), 10);
       commits.bugCount = parseInt(fs.readFileSync(`${path}/${this.bugCountOutput}`, 'utf8').toString(), 10);
