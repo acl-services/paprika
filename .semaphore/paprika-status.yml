@@ -17,6 +17,7 @@ blocks:
           - yarn install --frozen-lockfile
           - npx lerna bootstrap
           - cache store client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock) node_modules
+
   - name: "🍳 Paprika status"
     task:
       secrets:
