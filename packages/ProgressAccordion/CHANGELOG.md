@@ -1,5 +1,59 @@
 # Changelog
 
+## 1.1.7
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+  - @paprika/l10n@1.1.13
+  - @paprika/stylers@1.0.1
+  - @paprika/icon@1.3.0
+  - @paprika/collapsible@1.1.12
+
+## 1.1.7-next.0
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+  - @paprika/l10n@1.1.13-next.0
+  - @paprika/stylers@1.0.1-next.0
+  - @paprika/icon@1.3.0-next.0
+  - @paprika/collapsible@1.1.12-next.0
+
+## 1.1.6
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12
+  - @paprika/collapsible@1.1.11
+
+## 1.1.6-next.0
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12-next.0
+  - @paprika/collapsible@1.1.11-next.0
+
+## 1.1.5
+
+### Patch Changes
+
+- Updated dependencies [009352de9]
+  - @paprika/icon@1.2.0
+  - @paprika/collapsible@1.1.10
+
+## 1.1.5-next.0
+
+### Patch Changes
+
+- Updated dependencies [009352d]
+  - @paprika/icon@1.2.0-next.0
+  - @paprika/collapsible@1.1.10-next.0
+
 ## 1.1.4
 
 ### Patch Changes

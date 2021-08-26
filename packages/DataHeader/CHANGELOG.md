@@ -1,5 +1,107 @@
 <!-- content -->
 
+## 1.0.25
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+  - @paprika/data-grid@1.0.16
+  - @paprika/l10n@1.1.13
+  - @paprika/stylers@1.0.1
+  - @paprika/icon@1.3.0
+  - @paprika/button@1.1.2
+  - @paprika/data-field@1.0.20
+  - @paprika/overflow-menu@1.1.3
+  - @paprika/popover@1.2.4
+  - @paprika/raw-button@1.0.5
+  - @paprika/toast@1.1.8
+
+## 1.0.25-next.0
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+  - @paprika/data-grid@1.0.16-next.0
+  - @paprika/l10n@1.1.13-next.0
+  - @paprika/stylers@1.0.1-next.0
+  - @paprika/icon@1.3.0-next.0
+  - @paprika/data-field@1.0.20-next.0
+  - @paprika/overflow-menu@1.1.3-next.0
+  - @paprika/toast@1.1.8-next.0
+  - @paprika/button@1.1.2-next.0
+  - @paprika/popover@1.2.4-next.0
+  - @paprika/raw-button@1.0.5-next.0
+
+## 1.0.24
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12
+  - @paprika/data-field@1.0.19
+  - @paprika/data-grid@1.0.15
+  - @paprika/overflow-menu@1.1.2
+  - @paprika/toast@1.1.7
+
+## 1.0.24-next.0
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12-next.0
+  - @paprika/data-field@1.0.19-next.0
+  - @paprika/data-grid@1.0.15-next.0
+  - @paprika/overflow-menu@1.1.2-next.0
+  - @paprika/toast@1.1.7-next.0
+
+## 1.0.23
+
+### Patch Changes
+
+- Updated dependencies [bacebc9]
+  - @paprika/toast@1.1.6
+
+## 1.0.23-next.0
+
+### Patch Changes
+
+- Updated dependencies [bacebc9]
+  - @paprika/toast@1.1.6-next.0
+
+## 1.0.22
+
+### Patch Changes
+
+- Updated dependencies [659ebe184]
+- Updated dependencies [009352de9]
+  - @paprika/data-grid@1.0.14
+  - @paprika/icon@1.2.0
+  - @paprika/button@1.1.1
+  - @paprika/data-field@1.0.18
+  - @paprika/overflow-menu@1.1.1
+  - @paprika/toast@1.1.5
+
+## 1.0.22-next.0
+
+### Patch Changes
+
+- Updated dependencies [009352d]
+  - @paprika/icon@1.2.0-next.0
+  - @paprika/button@1.1.1-next.0
+  - @paprika/data-field@1.0.18-next.0
+  - @paprika/data-grid@1.0.14-next.0
+  - @paprika/overflow-menu@1.1.1-next.0
+  - @paprika/toast@1.1.5-next.0
+
+## 1.0.21
+
+### Patch Changes
+
+- Updated dependencies [11ca2a7]
+  - @paprika/overflow-menu@1.1.0
+
 ## 1.0.21-next.0
 
 ### Patch Changes

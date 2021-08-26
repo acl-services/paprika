@@ -5,6 +5,8 @@ import Button from "@paprika/button";
 import Popover from "@paprika/popover";
 import MenuIcon from "@paprika/icon/lib/Menu";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import { extractChildren } from "@paprika/helpers";
+import Footer from "./components/Footer";
 import Item from "./components/Item";
 
 import * as sc from "./SideNavigation.styles";
@@ -28,6 +30,10 @@ function SideNavigation(props) {
   function handleAfterClose() {
     triggerRef.current.focus();
   }
+
+  const { children: extractedContentChildren, "SideNavigation.Footer": extractedFooter } = extractChildren(children, [
+    "SideNavigation.Footer",
+  ]);
 
   return (
     <sc.SideNavigationCollapsedWrapper>
@@ -56,7 +62,7 @@ function SideNavigation(props) {
         </Popover.Content>
         <Popover.Tip />
       </Popover>
-      <Panel
+      <sc.SideNavigationPanel
         isCompact
         isOpen={isOpen}
         slideFrom={Panel.types.slideFrom.LEFT}
@@ -68,10 +74,11 @@ function SideNavigation(props) {
         <Panel.Header>{header}</Panel.Header>
         <sc.PanelContent>
           <nav aria-label={a11yText || I18n.t("sideNavigation.aria_label")}>
-            <ul>{children}</ul>
+            <ul>{extractedContentChildren}</ul>
           </nav>
         </sc.PanelContent>
-      </Panel>
+        {extractedFooter && <Panel.Footer>{extractedFooter}</Panel.Footer>}
+      </sc.SideNavigationPanel>
     </sc.SideNavigationCollapsedWrapper>
   );
 }
@@ -96,5 +103,5 @@ SideNavigation.propTypes = propTypes;
 SideNavigation.defaultProps = defaultProps;
 
 SideNavigation.Item = Item;
-
+SideNavigation.Footer = Footer;
 export default SideNavigation;

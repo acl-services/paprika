@@ -8,7 +8,7 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 const INPUT_PARSE_ERROR = "INPUT_PARSE";
 
 const propTypes = {
-  /** If the value of <input> is valid or not. */
+  /** If the value of `<input>` is valid or not. */
   hasError: PropTypes.bool,
 
   /** Date format used while entering and parsing user input. */

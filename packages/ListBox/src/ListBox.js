@@ -14,14 +14,7 @@ import useListBox from "./useListBox";
 import { OnChangeContext } from "./store/OnChangeProvider";
 import { PropsContext } from "./store/PropsProvider";
 import handleImperative from "./imperative";
-import {
-  useAdjustWidth,
-  useChildrenChange,
-  useHasFooter,
-  useIsPopOverOpen,
-  useOnScrolled,
-  useOptionSelected,
-} from "./hooks";
+import { useAdjustWidth, useChildrenChange, useHasFooter, useIsPopOverOpen, useOptionSelected } from "./hooks";
 
 export function ListBox(props) {
   const {
@@ -48,6 +41,7 @@ export function ListBox(props) {
     filter,
     footer,
     trigger: _trigger,
+    content,
     /* eslint-enable react/prop-types */
 
     ...moreProps
@@ -62,6 +56,7 @@ export function ListBox(props) {
   const onCancelFooter = footer ? footer.props.onClickCancel : null;
   const noResultsMessage = filter ? filter.props.noResultsMessage || I18n.t("listBox.filter.no_results_message") : null;
   const boxProps = box ? box.props : null;
+  const contentProps = content ? { ...content.props, onCancelFooter } : { onCancelFooter };
   /* eslint-enable react/prop-types */
 
   const propsForTrigger = {
@@ -69,10 +64,6 @@ export function ListBox(props) {
     hasImplicitAll,
     onClickClear: null,
     onClickFooterAccept,
-  };
-
-  const contentProps = {
-    onCancelFooter,
   };
 
   const listProps = {
@@ -134,6 +125,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     footer,
     popover,
     trigger,
+    content,
     /* eslint-enable react/prop-types */
 
     ...moreProps
@@ -160,7 +152,6 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
   useAdjustWidth();
   useChildrenChange(children);
   useIsPopOverOpen(shouldTriggerKeepFocus);
-  useOnScrolled();
   useOptionSelected();
   useHasFooter(footer);
 
@@ -173,6 +164,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     filter,
     footer,
     trigger,
+    content,
 
     ...(providedProps.isInline ? moreProps : {}),
   };
@@ -262,7 +254,7 @@ export const defaultProps = {
   isDisabled: false,
   isInline: false,
   isMulti: false,
-  isOpen: null,
+  isOpen: false,
   isReadOnly: false,
   onChange: () => {},
   placeholder: null,

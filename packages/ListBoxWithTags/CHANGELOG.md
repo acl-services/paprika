@@ -1,5 +1,123 @@
 # Changelog
 
+## 2.1.2
+
+### Patch Changes
+
+- ff8eae9: Enable webpack tree shaking ability.
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+  - @paprika/l10n@1.1.13
+  - @paprika/stylers@1.0.1
+  - @paprika/helpers@2.1.3
+  - @paprika/icon@1.3.0
+  - @paprika/list-box@3.4.3
+  - @paprika/raw-button@1.0.5
+  - @paprika/tag@0.0.9
+
+## 2.1.2-next.0
+
+### Patch Changes
+
+- ff8eae9: Enable webpack tree shaking ability.
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+  - @paprika/l10n@1.1.13-next.0
+  - @paprika/stylers@1.0.1-next.0
+  - @paprika/helpers@2.1.3-next.0
+  - @paprika/icon@1.3.0-next.0
+  - @paprika/list-box@3.4.3-next.0
+  - @paprika/tag@0.0.9-next.0
+  - @paprika/raw-button@1.0.5-next.0
+
+## 2.1.1
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12
+  - @paprika/list-box@3.4.2
+  - @paprika/tag@0.0.8
+
+## 2.1.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12-next.0
+  - @paprika/list-box@3.4.2-next.0
+  - @paprika/tag@0.0.8-next.0
+
+## 2.1.0
+
+### Minor Changes
+
+- d88bc8d: - Updated to allow to spread ListBox.Content props with ListBoxWithTags.Content
+
+### Patch Changes
+
+- Updated dependencies [be53161]
+  - @paprika/list-box@3.4.1
+
+## 2.1.0-next.0
+
+### Minor Changes
+
+- d88bc8d: - Updated to allow to spread ListBox.Content props with ListBoxWithTags.Content
+
+### Patch Changes
+
+- Updated dependencies [be53161]
+  - @paprika/list-box@3.4.1-next.0
+
+## 2.0.3
+
+### Patch Changes
+
+- Updated dependencies [009352de9]
+- Updated dependencies [2fa64be80]
+  - @paprika/icon@1.2.0
+  - @paprika/list-box@3.4.0
+  - @paprika/tag@0.0.7
+
+## 2.0.3-next.1
+
+### Patch Changes
+
+- Updated dependencies [2fa64be]
+  - @paprika/list-box@3.4.0-next.1
+
+## 2.0.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [009352d]
+  - @paprika/icon@1.2.0-next.0
+  - @paprika/list-box@3.3.2-next.0
+  - @paprika/tag@0.0.7-next.0
+
+## 2.0.2
+
+### Patch Changes
+
+- Updated dependencies [2e20d08]
+- Updated dependencies [b82b9d5]
+- Updated dependencies [c5bc5f5]
+  - @paprika/list-box@3.3.1
+
+## 2.0.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [b82b9d5]
+  - @paprika/list-box@3.3.1-next.0
+
+## 2.0.1
+
+### Patch Changes
+
+- be16def: - Fixed option refocus being undefined when selecting the last option with a null second last option.
+
 ## 2.0.1-next.0
 
 ### Patch Changes

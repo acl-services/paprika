@@ -1,5 +1,7 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
+import { actionStoryParameters } from "storybook/assets/storyParameters";
+import ExampleStory from "storybook/components/ExampleStory";
 import Toast from "../src";
 import ControlledToastExample from "./examples/ControlledToastExample";
 import FixedToastExample from "./examples/FixedToastExample";
@@ -25,9 +27,13 @@ controlledToast.story = {
   parameters: toastStoryParameters,
 };
 
-export const uncontrolledToast = () => <UncontrolledToastExample />;
+export const uncontrolledToast = () => (
+  <ExampleStory storyName="Uncontrolled Toast" component="Toast" fileName="examples/UncontrolledToastExample.js">
+    <UncontrolledToastExample />
+  </ExampleStory>
+);
 uncontrolledToast.story = {
-  parameters: toastStoryParameters,
+  parameters: actionStoryParameters,
 };
 
 export const fixedToast = () => <FixedToastExample />;

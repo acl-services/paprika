@@ -1,5 +1,77 @@
 # Changelog
 
+## 2.0.9
+
+### Patch Changes
+
+- ff8eae9: Enable webpack tree shaking ability.
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+  - @paprika/l10n@1.1.13
+  - @paprika/stylers@1.0.1
+  - @paprika/helpers@2.1.3
+  - @paprika/icon@1.3.0
+  - @paprika/button@1.1.2
+  - @paprika/counter@1.0.8
+  - @paprika/heading@1.0.7
+
+## 2.0.9-next.0
+
+### Patch Changes
+
+- ff8eae9: Enable webpack tree shaking ability.
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+  - @paprika/l10n@1.1.13-next.0
+  - @paprika/stylers@1.0.1-next.0
+  - @paprika/helpers@2.1.3-next.0
+  - @paprika/icon@1.3.0-next.0
+  - @paprika/button@1.1.2-next.0
+  - @paprika/counter@1.0.8-next.0
+  - @paprika/heading@1.0.7-next.0
+
+## 2.0.8
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12
+
+## 2.0.8-next.0
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12-next.0
+
+## 2.0.7
+
+### Patch Changes
+
+- Updated dependencies [009352de9]
+  - @paprika/icon@1.2.0
+  - @paprika/button@1.1.1
+
+## 2.0.7-next.0
+
+### Patch Changes
+
+- Updated dependencies [009352d]
+  - @paprika/icon@1.2.0-next.0
+  - @paprika/button@1.1.1-next.0
+
+## 2.0.6
+
+### Patch Changes
+
+- d4d8f20: Improve hover styles
+
+## 2.0.6-next.0
+
+### Patch Changes
+
+- d4d8f20: Improve hover styles
+
 ## 2.0.5
 
 ### Patch Changes

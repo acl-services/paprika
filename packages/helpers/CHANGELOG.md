@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.1.3
+
+### Patch Changes
+
+- ff8eae9: Enable webpack tree shaking ability.
+
+## 2.1.3-next.0
+
+### Patch Changes
+
+- ff8eae9: Enable webpack tree shaking ability.
+
 ## 2.1.2
 
 ### Patch Changes

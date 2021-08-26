@@ -1,6 +1,7 @@
 import { Meta, Props, Story } from "@storybook/addon-docs/blocks";
 import Table from "../src/";
 import Toast from "../../Toast/src";
+import { WithColSpan, WithoutHeaderPropAndTableHeader } from "./Table.colspans.stories";
 
 # Table
 
@@ -221,3 +222,43 @@ As an example:
   <Table.ColumnDefinition header="..." cell={() => {}} />
 </Table>
 ```
+
+## Colspan and complex headers
+
+Is possible to use colspan on the ColumnDefinition directly simply passdown the `colspan` option, and avoid passing down the `header` property in the `ColumnDefiniton` that you want to merge.
+
+```jsx
+<Table>
+  <Table.ColumnDefinition colSpan={2} header="..." cell={() => {}} />
+  <Table.ColumnDefinition cell={() => {}} />
+  <Table.ColumnDefinition header="..." cell={() => {}} />
+  <Table.ColumnDefinition header="..." cell={() => {}} />
+</Table>
+```
+
+### Result
+
+<WithColSpan />
+
+### Complex headers
+
+if you need a more complex header strucuture you can make use of the `<Table.Headers />` component which let's you build your own shape for the Headers.
+
+```jsx
+import Table, { TH } from "@paprika/table";
+
+<Table>
+  <Table.Headers>
+    <tr>
+        <TH colSpan={3}>your header</TH>
+    </tr>
+  </Table.Headers>
+  <Table.ColumnDefinition {...} />
+  <Table.ColumnDefinition {...} />
+  <Table.ColumnDefinition {...} />
+</Table>
+```
+
+### Result
+
+<WithoutHeaderPropAndTableHeader />

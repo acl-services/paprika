@@ -1,5 +1,29 @@
 # Changelog
 
+## 2.0.3
+
+### Patch Changes
+
+- ff8eae9: Enable webpack tree shaking ability.
+
+## 2.0.3-next.0
+
+### Patch Changes
+
+- ff8eae9: Enable webpack tree shaking ability.
+
+## 2.0.2
+
+### Patch Changes
+
+- 445c77d: fix minification issues when creating actionTypes
+
+## 2.0.2-next.0
+
+### Patch Changes
+
+- 445c77d: fix minification issues when creating actionTypes
+
 ## 2.0.1
 
 ### Patch Changes
