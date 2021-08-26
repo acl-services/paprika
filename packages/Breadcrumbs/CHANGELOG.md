@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.3.0
+
+### Minor Changes
+
+- ab8039b: Allow additional props to be set on Breadcrumbs.Link tooltip
+
+## 1.3.0-next.0
+
+### Minor Changes
+
+- ab8039b: Allow additional props to be set on Breadcrumbs.Link tooltip
+
 ## 1.2.0
 
 ### Minor Changes
