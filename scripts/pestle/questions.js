@@ -27,25 +27,6 @@ module.exports = {
         return true;
       },
     },
-    // {
-    //   type: "checkbox",
-    //   name: "componentFiles",
-    //   message: "Include which of the following files/folders?",
-    //   choices: [
-    //     {
-    //       name: "/stories",
-    //       checked: true,
-    //     },
-    //     {
-    //       name: "/tests",
-    //       checked: true,
-    //     },
-    //     {
-    //       name: "/components",
-    //       checked: true,
-    //     },
-    //   ],
-    // },
   ],
   addToExistingComponent: {
     selectExistingComponent: [

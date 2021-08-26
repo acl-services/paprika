@@ -33,11 +33,6 @@ const { addToStoryTree } = require("./helpers/addToStoryTree");
 
 inquirer.registerPrompt("search-list", search_list);
 
-
-// TODO: create readmes cus the mdx might need one by default..
-// TODO: update documentation
-// TODO: create story.backyard for when. they select screeners
-// TODO: allow them to name the test/spec file instead of making it by componentName by default
 const addTestsInquiry = componentName => {
   inquirer.prompt(questions.addToExistingComponent.selectTestType).then(answers => {
     const path = `./packages/${componentName}/tests`;
@@ -112,8 +107,8 @@ const createNewComponentInquiry = () => {
     createFile(`${path}/src/${componentName}.styles.js`, renderComponentStylesTemplate({ componentName }));
 
     // tests
-    createFile(`${path}/tests/${componentName}.spec.js`, renderSpecTemplate({ componentName }));
-    createFile(`${path}/tests/${componentName}.cypress.js`, renderCypressTemplate({ componentName }));
+    createFile(`${path}/tests/spec/${componentName}.spec.js`, renderSpecTemplate({ componentName }));
+    createFile(`${path}/tests/cypress/${componentName}.cypress.js`, renderCypressTemplate({ componentName }));
 
     // stories
     createFile(`${path}/stories/${componentName}.stories.mdx`, renderMXDFileTemplate({ componentName }));
