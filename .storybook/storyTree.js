@@ -93,7 +93,7 @@ const storyTree = [
 ];
 
 function getCategory(component) {
-  return storyTree.find(catList => catList.components.includes(component)) ? storyTree.find(catList => catList.components.includes(component)).category : "";
+  return storyTree.find(catList => catList.components.includes(component))?.category || "";
 }
 
 function getStoryName(component) {
