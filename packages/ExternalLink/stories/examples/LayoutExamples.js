@@ -16,7 +16,7 @@ const ExampleStory = () => (
       This is <code>ExternalLink</code> with custom text: <ExternalLink href={mockUrl}>Learn more</ExternalLink>
     </p>
     <h2>
-      The icon size in <code>ExternalLink</code> is always <code>11</code>:{" "}
+      The icon size in <code>ExternalLink</code> is always <code>20</code>:{" "}
       <ExternalLink href={mockUrl}>ExternalLink text</ExternalLink>
     </h2>
     <p>
