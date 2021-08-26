@@ -18,5 +18,5 @@ blocks:
           commands:
             - nvm use
             - yarn
-            - yarn storybook && wait-on http://localhost:9009/ && yarn paprika-status
+            - yarn paprika-status
             - git add . && git commit -m "[Bot] Paprika Release" --no-verify && git push origin UXD-1260-component-health-tracker-metrics --follow-tags --no-verify;
