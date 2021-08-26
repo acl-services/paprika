@@ -13,6 +13,11 @@ blocks:
       prologue:
         commands:
           - checkout
+          - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
+          - chmod 0600 ~/keys/github.key
+          - ssh-add ~/keys/github.key
+          - git config user.name "Paprika Semaphore 2.0"
+          - git config user.email "allison.chen@wegalvanize.com"
       jobs:
         - name: "Start paprika-status script"
           commands:
