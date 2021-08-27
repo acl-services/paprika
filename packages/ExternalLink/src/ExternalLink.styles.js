@@ -47,5 +47,4 @@ export const ExternalLinkContent = styled.span(
 export const ExternalLinkIconStyles = css`
   color: ${tokens.textColor.icon};
   display: inline-block;
-  margin-left: ${tokens.spaceSm};
 `;
