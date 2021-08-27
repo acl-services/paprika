@@ -1,5 +1,17 @@
 <!-- content -->
 
+## 1.0.26-next.0
+
+### Patch Changes
+
+- Updated dependencies [c0ebd9b]
+  - @paprika/icon@2.0.0-next.0
+  - @paprika/button@1.1.3-next.0
+  - @paprika/data-field@1.0.21-next.0
+  - @paprika/data-grid@1.0.17-next.0
+  - @paprika/overflow-menu@1.1.4-next.0
+  - @paprika/toast@1.1.9-next.0
+
 ## 1.0.25
 
 ### Patch Changes
