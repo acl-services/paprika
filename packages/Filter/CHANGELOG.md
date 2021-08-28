@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.2.9
+
+### Patch Changes
+
+- Updated dependencies [c0ebd9b]
+  - @paprika/icon@2.0.0
+  - @paprika/button@1.1.3
+  - @paprika/date-picker@1.0.22
+  - @paprika/input@4.0.7
+  - @paprika/list-box@3.4.4
+  - @paprika/panel@2.1.4
+  - @paprika/radio@1.0.13
+  - @paprika/select@2.0.3
+
 ## 1.2.9-next.0
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.17
+
+### Patch Changes
+
+- Updated dependencies [c0ebd9b]
+  - @paprika/icon@2.0.0
+  - @paprika/button@1.1.3
+  - @paprika/checkbox@1.0.13
+  - @paprika/panel@2.1.4
+
 ## 1.0.17-next.0
 
 ### Patch Changes
