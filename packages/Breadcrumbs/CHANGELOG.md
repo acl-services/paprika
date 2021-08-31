@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.3.1
+
+### Patch Changes
+
+- Updated dependencies [c0ebd9b]
+  - @paprika/icon@2.0.0
+  - @paprika/button@1.1.3
+
+## 1.3.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [c0ebd9b]
+  - @paprika/icon@2.0.0-next.0
+  - @paprika/button@1.1.3-next.0
+
+## 1.3.0
+
+### Minor Changes
+
+- ab8039b: Allow additional props to be set on Breadcrumbs.Link tooltip
+
 ## 1.3.0-next.0
 
 ### Minor Changes

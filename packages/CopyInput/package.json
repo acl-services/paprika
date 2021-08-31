@@ -1,6 +1,6 @@
 {
   "name": "@paprika/copy-input",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "The CopyInput component is an input with a button that copies the input's contents to user's clipboard.",
   "author": "@paprika",
   "license": "MIT",
@@ -16,12 +16,12 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^1.1.2",
+    "@paprika/button": "^1.1.3",
     "@paprika/helpers": "^2.1.3",
-    "@paprika/icon": "^1.3.0",
-    "@paprika/input": "^4.0.6",
+    "@paprika/icon": "^2.0.0",
+    "@paprika/input": "^4.0.7",
     "@paprika/popover": "^1.2.4",
-    "@paprika/toast": "^1.1.8",
+    "@paprika/toast": "^1.1.9",
     "@paprika/tokens": "^1.0.0",
     "prop-types": "^15.7.2"
   },
