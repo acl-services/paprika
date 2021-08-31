@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.12-next.0
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14-next.0
+  - @paprika/overflow-menu@1.1.5-next.0
+
 ## 1.1.11
 
 ### Patch Changes
