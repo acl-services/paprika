@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "@paprika/button";
+import { extractChildrenProps } from "@paprika/helpers";
 import Popover from "@paprika/popover";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import CheckIcon from "@paprika/icon/lib/Check";
@@ -9,6 +10,7 @@ import tokens from "@paprika/tokens";
 import SortField from "./SortField";
 import SortContext from "./context";
 import columnShape from "../../columnShape";
+import PopoverContentPropsCollector from "./PopoverContentPropsCollector";
 
 import * as sc from "./Sort.styles";
 import { GenericNoAppliedPlaceholder } from "../../ActionBar.styles";
@@ -50,6 +52,8 @@ export default function Sort(props) {
   const I18n = useI18n();
   const fieldsRef = React.useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
+
+  const popoverContentProps = extractChildrenProps(children, PopoverContentPropsCollector);
 
   function handleClickTrigger() {
     setIsOpen(prevIsOpen => {
@@ -103,7 +107,7 @@ export default function Sort(props) {
           <sc.Icon />
           {getLabelText(appliedNumber, I18n)}
         </sc.Trigger>
-        <Popover.Content>
+        <Popover.Content {...popoverContentProps}>
           <Popover.Card>
             <sc.FieldsPanel ref={fieldsRef} tabIndex={-1}>
               {React.Children.count(children) === 0 ? (
@@ -139,3 +143,4 @@ Sort.propTypes = propTypes;
 Sort.defaultProps = defaultProps;
 Sort.displayName = "ActionBar.Sort";
 Sort.Field = SortField;
+Sort.PopoverContent = PopoverContentPropsCollector;
