@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.1.9-next.2
+
+### Patch Changes
+
+- 6867a4c: Invoke the function to generate a uuid. Oops.
+
 ## 3.1.9-next.1
 
 ### Patch Changes
