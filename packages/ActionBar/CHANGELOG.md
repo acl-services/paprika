@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.1.9-next.1
+
+### Patch Changes
+
+- 91ce44c: Support adding className to the Popover.Content within the ActionBar's ColumnArrangment and Sort subcomponents.
+
 ## 3.1.9-next.0
 
 ### Patch Changes
