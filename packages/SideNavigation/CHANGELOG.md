@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.0.7
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14
+  - @paprika/panel@2.1.5
+
 ## 3.0.7-next.0
 
 ### Patch Changes

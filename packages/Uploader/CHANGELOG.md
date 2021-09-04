@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.0.5
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14
+
 ## 3.0.5-next.0
 
 ### Patch Changes

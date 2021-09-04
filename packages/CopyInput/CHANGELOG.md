@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.3.4
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14
+  - @paprika/input@4.0.8
+  - @paprika/toast@1.1.10
+
 ## 1.3.4-next.0
 
 ### Patch Changes

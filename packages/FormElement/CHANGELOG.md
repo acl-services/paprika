@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.0.19
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14
+
 ## 4.0.19-next.0
 
 ### Patch Changes

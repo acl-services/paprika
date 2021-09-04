@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.1.9
+
+### Patch Changes
+
+- 6867a4c: Invoke the function to generate a uuid. Oops.
+- 91ce44c: Support adding className to the Popover.Content within the ActionBar's ColumnArrangment and Sort subcomponents.
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14
+  - @paprika/input@4.0.8
+  - @paprika/sortable@1.2.2
+
 ## 3.1.9-next.2
 
 ### Patch Changes

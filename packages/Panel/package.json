@@ -1,6 +1,6 @@
 {
   "name": "@paprika/panel",
-  "version": "2.1.5-next.0",
+  "version": "2.1.5",
   "description": "The Panel component provides a view that slides in from one side so the user can maintain context of their main task while they work on a sub task.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -29,7 +29,7 @@
     "react-focus-lock": "^2.2.1"
   },
   "peerDependencies": {
-    "@paprika/l10n": "^1.1.14-next.0",
+    "@paprika/l10n": "^1.1.14",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "styled-components": "^4.4.1"
