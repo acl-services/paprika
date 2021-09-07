@@ -35,7 +35,7 @@ declare namespace DatePicker {
     placeholder?: string;
     /** Size of input. */
     size?: Input.types.size.SMALL | Input.types.size.MEDIUM | Input.types.size.LARGE;
-    /** If the value of <input> is valid or not. */
+    /** If the value of `<input>` is valid or not. */
     hasError?: boolean;
   }
 }

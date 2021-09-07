@@ -1,5 +1,41 @@
 # Changelog
 
+## 1.1.14
+
+### Patch Changes
+
+- 825c870: Remove esm modules.
+
+## 1.1.14-next.0
+
+### Patch Changes
+
+- 825c870: Remove esm modules.
+
+## 1.1.13
+
+### Patch Changes
+
+- ff8eae9: Enable webpack tree shaking ability.
+
+## 1.1.13-next.0
+
+### Patch Changes
+
+- ff8eae9: Enable webpack tree shaking ability.
+
+## 1.1.12
+
+### Patch Changes
+
+- b20c1d4: Add ability to inject components into a translation
+
+## 1.1.12-next.0
+
+### Patch Changes
+
+- b20c1d4: Add ability to inject components into a translation
+
 ## 1.1.11
 
 ### Patch Changes

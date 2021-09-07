@@ -1,5 +1,125 @@
 # Changelog
 
+## 1.2.10
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14
+  - @paprika/date-picker@1.0.23
+  - @paprika/input@4.0.8
+  - @paprika/list-box@3.4.5
+  - @paprika/panel@2.1.5
+
+## 1.2.10-next.0
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14-next.0
+  - @paprika/date-picker@1.0.23-next.0
+  - @paprika/input@4.0.8-next.0
+  - @paprika/list-box@3.4.5-next.0
+  - @paprika/panel@2.1.5-next.0
+
+## 1.2.9
+
+### Patch Changes
+
+- Updated dependencies [c0ebd9b]
+  - @paprika/icon@2.0.0
+  - @paprika/button@1.1.3
+  - @paprika/date-picker@1.0.22
+  - @paprika/input@4.0.7
+  - @paprika/list-box@3.4.4
+  - @paprika/panel@2.1.4
+  - @paprika/radio@1.0.13
+  - @paprika/select@2.0.3
+
+## 1.2.9-next.0
+
+### Patch Changes
+
+- Updated dependencies [c0ebd9b]
+  - @paprika/icon@2.0.0-next.0
+  - @paprika/button@1.1.3-next.0
+  - @paprika/input@4.0.7-next.0
+  - @paprika/list-box@3.4.4-next.0
+  - @paprika/panel@2.1.4-next.0
+  - @paprika/radio@1.0.13-next.0
+  - @paprika/select@2.0.3-next.0
+  - @paprika/date-picker@1.0.22-next.0
+
+## 1.2.8
+
+### Patch Changes
+
+- @paprika/date-picker@1.0.21
+
+## 1.2.8-next.0
+
+### Patch Changes
+
+- @paprika/date-picker@1.0.21-next.0
+
+## 1.2.7
+
+### Patch Changes
+
+- ff8eae9: Enable webpack tree shaking ability.
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+  - @paprika/l10n@1.1.13
+  - @paprika/stylers@1.0.1
+  - @paprika/icon@1.3.0
+  - @paprika/button@1.1.2
+  - @paprika/date-picker@1.0.20
+  - @paprika/input@4.0.6
+  - @paprika/list-box@3.4.3
+  - @paprika/panel@2.1.3
+  - @paprika/radio@1.0.12
+  - @paprika/select@2.0.2
+
+## 1.2.7-next.0
+
+### Patch Changes
+
+- ff8eae9: Enable webpack tree shaking ability.
+- Updated dependencies [ff8eae9]
+- Updated dependencies [ff8eae9]
+  - @paprika/l10n@1.1.13-next.0
+  - @paprika/stylers@1.0.1-next.0
+  - @paprika/icon@1.3.0-next.0
+  - @paprika/date-picker@1.0.20-next.0
+  - @paprika/input@4.0.6-next.0
+  - @paprika/list-box@3.4.3-next.0
+  - @paprika/panel@2.1.3-next.0
+  - @paprika/button@1.1.2-next.0
+  - @paprika/radio@1.0.12-next.0
+  - @paprika/select@2.0.2-next.0
+
+## 1.2.6
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12
+  - @paprika/date-picker@1.0.19
+  - @paprika/input@4.0.5
+  - @paprika/list-box@3.4.2
+  - @paprika/panel@2.1.2
+
+## 1.2.6-next.0
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12-next.0
+  - @paprika/date-picker@1.0.19-next.0
+  - @paprika/input@4.0.5-next.0
+  - @paprika/list-box@3.4.2-next.0
+  - @paprika/panel@2.1.2-next.0
+
 ## 1.2.5
 
 ### Patch Changes

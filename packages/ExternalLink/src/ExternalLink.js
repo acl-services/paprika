@@ -23,7 +23,7 @@ const defaultProps = {
 };
 
 function ExternalLink(props) {
-  const iconFontSize = 11;
+  const iconFontSize = 20;
   const { a11yText, children, hasNoUnderline, ...moreProps } = props;
 
   const handleSwallowClick = e => {

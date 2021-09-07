@@ -1,9 +1,10 @@
 {
   "name": "@paprika/stylers",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Helpers and includes for styled-components",
   "author": "@paprika",
   "main": "lib/index.js",
+  "module": "lib/esm/index.js",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -18,5 +19,8 @@
   },
   "peerDependencies": {
     "styled-components": "^4.2.0"
-  }
+  },
+  "sideEffects": [
+    "*.scss"
+  ]
 }

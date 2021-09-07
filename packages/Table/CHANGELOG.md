@@ -1,5 +1,65 @@
 # Changelog
 
+## 1.2.10
+
+### Patch Changes
+
+- @paprika/overflow-menu@1.1.5
+
+## 1.2.10-next.0
+
+### Patch Changes
+
+- @paprika/overflow-menu@1.1.5-next.0
+
+## 1.2.9
+
+### Patch Changes
+
+- @paprika/button@1.1.3
+- @paprika/overflow-menu@1.1.4
+
+## 1.2.9-next.0
+
+### Patch Changes
+
+- @paprika/button@1.1.3-next.0
+- @paprika/overflow-menu@1.1.4-next.0
+
+## 1.2.8
+
+### Patch Changes
+
+- ff8eae9: Enable webpack tree shaking ability.
+- Updated dependencies [ff8eae9]
+  - @paprika/stylers@1.0.1
+  - @paprika/helpers@2.1.3
+  - @paprika/button@1.1.2
+  - @paprika/overflow-menu@1.1.3
+
+## 1.2.8-next.0
+
+### Patch Changes
+
+- ff8eae9: Enable webpack tree shaking ability.
+- Updated dependencies [ff8eae9]
+  - @paprika/stylers@1.0.1-next.0
+  - @paprika/helpers@2.1.3-next.0
+  - @paprika/overflow-menu@1.1.3-next.0
+  - @paprika/button@1.1.2-next.0
+
+## 1.2.7
+
+### Patch Changes
+
+- @paprika/overflow-menu@1.1.2
+
+## 1.2.7-next.0
+
+### Patch Changes
+
+- @paprika/overflow-menu@1.1.2-next.0
+
 ## 1.2.6
 
 ### Patch Changes

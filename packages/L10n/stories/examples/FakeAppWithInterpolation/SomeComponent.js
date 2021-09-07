@@ -2,7 +2,7 @@ import React from "react";
 import { Trans } from "react-i18next";
 import Button from "@paprika/button";
 import Link from "@paprika/external-link";
-import useI18n from "../../../src/useI18n";
+import { useI18n } from "../../../src";
 
 export default function SomeComponent() {
   const x = useI18n();

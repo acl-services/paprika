@@ -1,5 +1,71 @@
 # Changelog
 
+## 1.1.10
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14
+
+## 1.1.10-next.0
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14-next.0
+
+## 1.1.9
+
+### Patch Changes
+
+- @paprika/button@1.1.3
+
+## 1.1.9-next.0
+
+### Patch Changes
+
+- @paprika/button@1.1.3-next.0
+
+## 1.1.8
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+  - @paprika/l10n@1.1.13
+  - @paprika/stylers@1.0.1
+  - @paprika/helpers@2.1.3
+  - @paprika/button@1.1.2
+  - @paprika/heading@1.0.7
+  - @paprika/popover@1.2.4
+  - @paprika/raw-button@1.0.5
+
+## 1.1.8-next.0
+
+### Patch Changes
+
+- Updated dependencies [ff8eae9]
+  - @paprika/l10n@1.1.13-next.0
+  - @paprika/stylers@1.0.1-next.0
+  - @paprika/helpers@2.1.3-next.0
+  - @paprika/button@1.1.2-next.0
+  - @paprika/heading@1.0.7-next.0
+  - @paprika/popover@1.2.4-next.0
+  - @paprika/raw-button@1.0.5-next.0
+
+## 1.1.7
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12
+
+## 1.1.7-next.0
+
+### Patch Changes
+
+- Updated dependencies [b20c1d4]
+  - @paprika/l10n@1.1.12-next.0
+
 ## 1.1.6
 
 ### Patch Changes

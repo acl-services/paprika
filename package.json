@@ -9,6 +9,7 @@
     "cypress:run": "wait-on http://localhost:9009/iframe.html && cypress run --browser chrome",
     "generateReadMe": "node scripts/readmeFiles.js",
     "generateTypeDefinitions": "node scripts/typesFiles.js && yarn tsc",
+    "generateDocStories": "node scripts/docStories.js",
     "jest:watch": "yarn jest --watch",
     "license": "node packages/helpers/src/license.js",
     "lint": "eslint packages --report-unused-disable-directives",
@@ -25,7 +26,8 @@
     "test": "jest --passWithNoTests",
     "test:a11y": "echo 'Axe will run on this command'",
     "test:debug": "node --inspect node_modules/.bin/jest --runInBand",
-    "transpile": "lerna exec --parallel -- babel --root-mode upward src --out-dir lib --source-maps --copy-files"
+    "transpile": "lerna exec --parallel -- babel --root-mode upward src --source-maps --copy-files --out-dir lib",
+    "transpile:esm": "lerna exec --parallel --scope '@paprika/@(action-bar|avatar|calendar|collapsible-card|data-grid|filter|form-element|guard|helpers|icon|list-box-with-tags|mock-endpoints|modal|seducer|stylers|table)' -- babel --root-mode upward src --source-maps --copy-files --config-file ../../babel.config.esm.js --out-dir lib/esm"
   },
   "engines": {
     "node": ">=12.13.0",
@@ -93,6 +95,7 @@
     "react-docgen": "^5.4.0",
     "react-dom": "^16.8.2",
     "react-element-to-jsx-string": "^14.3.1",
+    "react-i18next": "^11.11.4",
     "react-is": "^16.11.0",
     "react-resizable": "^1.10.1",
     "react-syntax-highlighter": "^15.2.1",
