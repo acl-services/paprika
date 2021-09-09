@@ -208,8 +208,8 @@ export const propTypes = {
   /** Has implicit "All items selected" value when no item is selected */
   hasImplicitAll: PropTypes.bool,
 
-  /** Indicate which is the height for the options container */
-  height: PropTypes.number,
+  /** The maximum height for the options container. Using a number implies px units. */
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
   /** Disables the ListBox if true */
   isDisabled: PropTypes.bool,
