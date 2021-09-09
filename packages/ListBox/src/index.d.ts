@@ -9,8 +9,8 @@ interface ListBoxProps {
   hasError?: boolean;
   /** Has implicit "All items selected" value when no item is selected */
   hasImplicitAll?: boolean;
-  /** Indicate which is the height for the options container */
-  height?: number;
+  /** The maximum height for the options container. Using a number implies px units. */
+  height?: string | number;
   /** Disables the ListBox if true */
   isDisabled?: boolean;
   /** This options will display the list-box without the Popover */
