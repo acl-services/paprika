@@ -35,9 +35,9 @@ const Filter = React.forwardRef((props, ref) => {
   }));
 
   const handleChangeFilter = event => {
-    const textSearchValue = event.target.value;
     if (isDisabled) return;
 
+    const textSearchValue = event ? event.target.value : "";
     if (props.filter) {
       setTextSearch(textSearchValue);
 

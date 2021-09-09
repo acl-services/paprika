@@ -3,6 +3,6 @@ import { getStoryName } from "storybook/storyTree";
 import { docsStoryParameters } from "storybook/assets/storyParameters";
 import Readme from "../README.md";
 
-<Meta title={`${getStoryName("Tokens")}/Docs`} parameters={docsStoryParameters} />
+<Meta title={`${getStoryName("Tokens")}/Docs`} parameters={{ ...docsStoryParameters }} />
 
 <Description markdown={Readme} />

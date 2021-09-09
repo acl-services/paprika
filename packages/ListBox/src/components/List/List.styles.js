@@ -1,12 +1,13 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
+import stylers from "@paprika/stylers";
 
 export const List = styled.ul(
   ({ noResultsFound, height, hasOptions }) => css`
     box-sizing: border-box;
     list-style: none;
     margin: 0;
-    max-height: ${height}px;
+    max-height: ${stylers.cssValue(height)};
     overflow: auto;
     ${noResultsFound || !hasOptions ? `padding: 0 ${tokens.space};` : `padding: ${tokens.space};`}
 
