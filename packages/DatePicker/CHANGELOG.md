@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.24-next.0
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+  - @paprika/stylers@1.1.0-next.0
+  - @paprika/calendar@1.0.20-next.0
+  - @paprika/popover@1.2.5-next.0
+  - @paprika/date-input@1.0.19-next.0
+
 ## 1.0.23
 
 ### Patch Changes

@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.5.0-next.0
+
+### Minor Changes
+
+- ca237ea: - Support all css values for `height` prop for `<ListBox>`
+  - Support `hasClearButton` prop for `<ListBox.Filter>`
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+  - @paprika/stylers@1.1.0-next.0
+  - @paprika/button@1.1.4-next.0
+  - @paprika/input@4.0.9-next.0
+  - @paprika/popover@1.2.5-next.0
+  - @paprika/raw-button@1.0.6-next.0
+  - @paprika/toast@1.1.11-next.0
+
 ## 3.4.5
 
 ### Patch Changes

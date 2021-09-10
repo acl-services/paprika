@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.0.9-next.0
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+  - @paprika/stylers@1.1.0-next.0
+  - @paprika/button@1.1.4-next.0
+
 ## 4.0.8
 
 ### Patch Changes

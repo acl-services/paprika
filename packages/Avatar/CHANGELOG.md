@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.2.7-next.0
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+  - @paprika/stylers@1.1.0-next.0
+
 ## 2.2.6
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.0.20-next.0
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+  - @paprika/stylers@1.1.0-next.0
+  - @paprika/popover@1.2.5-next.0
+
 ## 4.0.19
 
 ### Patch Changes

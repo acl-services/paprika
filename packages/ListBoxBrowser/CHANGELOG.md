@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.30-next.0
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+- Updated dependencies [ca237ea]
+  - @paprika/list-box@3.5.0-next.0
+  - @paprika/stylers@1.1.0-next.0
+  - @paprika/raw-button@1.0.6-next.0
+  - @paprika/spinner@1.0.9-next.0
+
 ## 1.0.29
 
 ### Patch Changes
