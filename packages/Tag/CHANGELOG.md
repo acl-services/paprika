@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.0.12
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+  - @paprika/stylers@1.1.0
+  - @paprika/button@1.1.4
+  - @paprika/raw-button@1.0.6
+
 ## 0.0.12-next.0
 
 ### Patch Changes

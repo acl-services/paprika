@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.1.13
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+  - @paprika/stylers@1.1.0
+  - @paprika/button@1.1.4
+  - @paprika/overflow-menu@1.1.6
+  - @paprika/popover@1.2.5
+  - @paprika/raw-button@1.0.6
+
 ## 1.1.13-next.0
 
 ### Patch Changes

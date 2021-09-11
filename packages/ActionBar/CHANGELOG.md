@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.1.10
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+  - @paprika/stylers@1.1.0
+  - @paprika/button@1.1.4
+  - @paprika/input@4.0.9
+  - @paprika/popover@1.2.5
+  - @paprika/select@2.0.4
+  - @paprika/sortable@1.2.3
+  - @paprika/switch@1.0.11
+
 ## 3.1.10-next.0
 
 ### Patch Changes

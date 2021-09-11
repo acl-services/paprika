@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.1.6
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+  - @paprika/stylers@1.1.0
+  - @paprika/button@1.1.4
+  - @paprika/heading@1.0.8
+
 ## 2.1.6-next.0
 
 ### Patch Changes

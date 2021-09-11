@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.19
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+  - @paprika/stylers@1.1.0
+  - @paprika/button@1.1.4
+  - @paprika/checkbox@1.0.14
+  - @paprika/panel@2.1.6
+  - @paprika/raw-button@1.0.6
+  - @paprika/spinner@1.0.9
+
 ## 1.0.19-next.0
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.23
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+  - @paprika/stylers@1.1.0
+  - @paprika/input@4.0.9
+  - @paprika/popover@1.2.5
+  - @paprika/raw-button@1.0.6
+
 ## 1.0.23-next.0
 
 ### Patch Changes

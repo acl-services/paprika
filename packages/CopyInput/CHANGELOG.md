@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.3.5
+
+### Patch Changes
+
+- @paprika/button@1.1.4
+- @paprika/input@4.0.9
+- @paprika/popover@1.2.5
+- @paprika/toast@1.1.11
+
 ## 1.3.5-next.0
 
 ### Patch Changes

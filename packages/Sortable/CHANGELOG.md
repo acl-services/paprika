@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.3
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+  - @paprika/stylers@1.1.0
+  - @paprika/button@1.1.4
+
 ## 1.2.3-next.0
 
 ### Patch Changes

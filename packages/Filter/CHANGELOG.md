@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.2.11
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+- Updated dependencies [ca237ea]
+  - @paprika/list-box@3.5.0
+  - @paprika/stylers@1.1.0
+  - @paprika/button@1.1.4
+  - @paprika/date-picker@1.0.24
+  - @paprika/input@4.0.9
+  - @paprika/panel@2.1.6
+  - @paprika/radio@1.0.14
+  - @paprika/select@2.0.4
+
 ## 1.2.11-next.0
 
 ### Patch Changes
