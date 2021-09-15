@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.6-next.0
+
+### Patch Changes
+
+- 57aee9c: Ensure input container is hidden when hasInputContainer is false.
+
 ## 1.3.5
 
 ### Patch Changes
