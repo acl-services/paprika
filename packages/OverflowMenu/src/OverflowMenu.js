@@ -163,7 +163,7 @@ const OverflowMenu = React.forwardRef((props, ref) => {
         isOpen: getIsOpenValue(),
         onOpenMenu: handleOpenMenu,
         triggerRef,
-        menuId,
+        menuRefId: menuId,
         id: triggerId,
       });
   };
