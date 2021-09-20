@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.12
+
+### Patch Changes
+
+- 34d9509: Support adding a className to the Filter component
+
 ## 1.2.12-next.0
 
 ### Patch Changes
