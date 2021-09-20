@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.7-next.0
+
+### Patch Changes
+
+- 5a2a0c0: Fixed the `aria-controls` value on the Trigger component.
+
 ## 1.1.6
 
 ### Patch Changes
