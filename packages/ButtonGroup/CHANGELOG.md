@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.16-next.0
+
+### Patch Changes
+
+- bdedb77: When there is a single button in the group, all its corners should be rounded
+
 ## 1.0.15
 
 ### Patch Changes
