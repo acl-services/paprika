@@ -118,8 +118,10 @@ const ButtonGroup = React.forwardRef((props, ref) => {
     setItemRefs,
   };
 
+  const hasSingleChild = React.Children.count(children) === 1;
+
   return (
-    <sc.ButtonGroup {...props} ref={groupRef} onKeyDown={handleKeyDown}>
+    <sc.ButtonGroup {...props} ref={groupRef} onKeyDown={handleKeyDown} hasSingleChild={hasSingleChild}>
       <ButtonGroupContext.Provider value={contextValue}>{children}</ButtonGroupContext.Provider>
     </sc.ButtonGroup>
   );
