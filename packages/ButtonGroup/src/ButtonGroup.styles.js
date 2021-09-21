@@ -14,7 +14,7 @@ const fullWithStyles = css`
 `;
 
 export const ButtonGroup = styled.div(
-  ({ isFullWidth }) => css`
+  ({ isFullWidth, hasSingleChild }) => css`
     display: inline-flex;
     flex-wrap: wrap;
     ${isFullWidth && fullWithStyles}
@@ -33,6 +33,13 @@ export const ButtonGroup = styled.div(
       &:not(:last-child) {
         margin-right: -1px;
       }
+
+      ${hasSingleChild &&
+        css`
+          &:last-child {
+            border-radius: ${tokens.button.borderRadius};
+          }
+        `}
     }
   `
 );

@@ -56,6 +56,12 @@ const ExampleStory = props => {
       <p>
         <button onClick={handleFocus}>Focus Post</button>
       </p>
+      <Rule />
+      <ButtonGroup {...props} ref={refButtonGroup}>
+        <ButtonGroup.Item value="one" kind={ButtonGroup.Item.types.kind.PRIMARY}>
+          A single button in the group
+        </ButtonGroup.Item>
+      </ButtonGroup>
     </Story>
   );
 };
