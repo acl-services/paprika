@@ -1,5 +1,43 @@
 # Changelog
 
+## 1.0.19
+
+### Patch Changes
+
+- @paprika/button@1.1.4
+
+## 1.0.19-next.0
+
+### Patch Changes
+
+- @paprika/button@1.1.4-next.0
+
+## 1.0.18
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14
+
+## 1.0.18-next.0
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14-next.0
+
+## 1.0.17
+
+### Patch Changes
+
+- @paprika/button@1.1.3
+
+## 1.0.17-next.0
+
+### Patch Changes
+
+- @paprika/button@1.1.3-next.0
+
 ## 1.0.16
 
 ### Patch Changes

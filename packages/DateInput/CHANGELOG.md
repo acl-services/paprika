@@ -1,5 +1,49 @@
 # Changelog
 
+## 1.0.19
+
+### Patch Changes
+
+- @paprika/input@4.0.9
+
+## 1.0.19-next.0
+
+### Patch Changes
+
+- @paprika/input@4.0.9-next.0
+
+## 1.0.18
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14
+  - @paprika/input@4.0.8
+
+## 1.0.18-next.0
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14-next.0
+  - @paprika/input@4.0.8-next.0
+
+## 1.0.17
+
+### Patch Changes
+
+- Updated dependencies [c0ebd9b]
+  - @paprika/icon@2.0.0
+  - @paprika/input@4.0.7
+
+## 1.0.17-next.0
+
+### Patch Changes
+
+- Updated dependencies [c0ebd9b]
+  - @paprika/icon@2.0.0-next.0
+  - @paprika/input@4.0.7-next.0
+
 ## 1.0.16
 
 ### Patch Changes

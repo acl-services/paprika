@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.0.0
+
+### Major Changes
+
+- c0ebd9b: update SVGs to the 20px ones from the UI kit
+
+## 2.0.0-next.0
+
+### Major Changes
+
+- c0ebd9b: update SVGs to the 20px ones from the UI kit
+
 ## 1.3.0
 
 ### Minor Changes

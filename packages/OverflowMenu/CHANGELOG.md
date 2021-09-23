@@ -1,5 +1,67 @@
 # Changelog
 
+## 1.1.7-next.0
+
+### Patch Changes
+
+- 5a2a0c0: Fixed the `aria-controls` value on the Trigger component.
+
+## 1.1.6
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+  - @paprika/stylers@1.1.0
+  - @paprika/button@1.1.4
+  - @paprika/confirmation@1.1.11
+  - @paprika/popover@1.2.5
+  - @paprika/raw-button@1.0.6
+
+## 1.1.6-next.0
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+  - @paprika/stylers@1.1.0-next.0
+  - @paprika/button@1.1.4-next.0
+  - @paprika/confirmation@1.1.11-next.0
+  - @paprika/popover@1.2.5-next.0
+  - @paprika/raw-button@1.0.6-next.0
+
+## 1.1.5
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14
+  - @paprika/confirmation@1.1.10
+
+## 1.1.5-next.0
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14-next.0
+  - @paprika/confirmation@1.1.10-next.0
+
+## 1.1.4
+
+### Patch Changes
+
+- Updated dependencies [c0ebd9b]
+  - @paprika/icon@2.0.0
+  - @paprika/button@1.1.3
+  - @paprika/confirmation@1.1.9
+
+## 1.1.4-next.0
+
+### Patch Changes
+
+- Updated dependencies [c0ebd9b]
+  - @paprika/icon@2.0.0-next.0
+  - @paprika/button@1.1.3-next.0
+  - @paprika/confirmation@1.1.9-next.0
+
 ## 1.1.3
 
 ### Patch Changes

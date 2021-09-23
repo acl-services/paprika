@@ -1,5 +1,85 @@
 # Changelog
 
+## 3.1.10
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+  - @paprika/stylers@1.1.0
+  - @paprika/button@1.1.4
+  - @paprika/input@4.0.9
+  - @paprika/popover@1.2.5
+  - @paprika/select@2.0.4
+  - @paprika/sortable@1.2.3
+  - @paprika/switch@1.0.11
+
+## 3.1.10-next.0
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+  - @paprika/stylers@1.1.0-next.0
+  - @paprika/button@1.1.4-next.0
+  - @paprika/input@4.0.9-next.0
+  - @paprika/popover@1.2.5-next.0
+  - @paprika/select@2.0.4-next.0
+  - @paprika/sortable@1.2.3-next.0
+  - @paprika/switch@1.0.11-next.0
+
+## 3.1.9
+
+### Patch Changes
+
+- 6867a4c: Invoke the function to generate a uuid. Oops.
+- 91ce44c: Support adding className to the Popover.Content within the ActionBar's ColumnArrangment and Sort subcomponents.
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14
+  - @paprika/input@4.0.8
+  - @paprika/sortable@1.2.2
+
+## 3.1.9-next.2
+
+### Patch Changes
+
+- 6867a4c: Invoke the function to generate a uuid. Oops.
+
+## 3.1.9-next.1
+
+### Patch Changes
+
+- 91ce44c: Support adding className to the Popover.Content within the ActionBar's ColumnArrangment and Sort subcomponents.
+
+## 3.1.9-next.0
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14-next.0
+  - @paprika/input@4.0.8-next.0
+  - @paprika/sortable@1.2.2-next.0
+
+## 3.1.8
+
+### Patch Changes
+
+- Updated dependencies [c0ebd9b]
+  - @paprika/icon@2.0.0
+  - @paprika/button@1.1.3
+  - @paprika/input@4.0.7
+  - @paprika/select@2.0.3
+  - @paprika/sortable@1.2.1
+
+## 3.1.8-next.0
+
+### Patch Changes
+
+- Updated dependencies [c0ebd9b]
+  - @paprika/icon@2.0.0-next.0
+  - @paprika/button@1.1.3-next.0
+  - @paprika/input@4.0.7-next.0
+  - @paprika/select@2.0.3-next.0
+  - @paprika/sortable@1.2.1-next.0
+
 ## 3.1.7
 
 ### Patch Changes

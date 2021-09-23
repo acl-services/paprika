@@ -129,7 +129,7 @@ export const Switch = styled(RawButton)(
       ${KnobSizeStyles[size]}
     }
 
-    &:focus {
+    &[data-pka-anchor="switch"]&:focus {
       box-shadow: none;
 
       ${Underlay} {

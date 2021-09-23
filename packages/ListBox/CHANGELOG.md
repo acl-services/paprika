@@ -1,5 +1,77 @@
 # Changelog
 
+## 3.5.0
+
+### Minor Changes
+
+- ca237ea: - Support all css values for `height` prop for `<ListBox>`
+  - Support `hasClearButton` prop for `<ListBox.Filter>`
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+  - @paprika/stylers@1.1.0
+  - @paprika/button@1.1.4
+  - @paprika/input@4.0.9
+  - @paprika/popover@1.2.5
+  - @paprika/raw-button@1.0.6
+  - @paprika/toast@1.1.11
+
+## 3.5.0-next.0
+
+### Minor Changes
+
+- ca237ea: - Support all css values for `height` prop for `<ListBox>`
+  - Support `hasClearButton` prop for `<ListBox.Filter>`
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+  - @paprika/stylers@1.1.0-next.0
+  - @paprika/button@1.1.4-next.0
+  - @paprika/input@4.0.9-next.0
+  - @paprika/popover@1.2.5-next.0
+  - @paprika/raw-button@1.0.6-next.0
+  - @paprika/toast@1.1.11-next.0
+
+## 3.4.5
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14
+  - @paprika/input@4.0.8
+  - @paprika/toast@1.1.10
+
+## 3.4.5-next.0
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14-next.0
+  - @paprika/input@4.0.8-next.0
+  - @paprika/toast@1.1.10-next.0
+
+## 3.4.4
+
+### Patch Changes
+
+- Updated dependencies [c0ebd9b]
+  - @paprika/icon@2.0.0
+  - @paprika/button@1.1.3
+  - @paprika/input@4.0.7
+  - @paprika/toast@1.1.9
+
+## 3.4.4-next.0
+
+### Patch Changes
+
+- Updated dependencies [c0ebd9b]
+  - @paprika/icon@2.0.0-next.0
+  - @paprika/button@1.1.3-next.0
+  - @paprika/input@4.0.7-next.0
+  - @paprika/toast@1.1.9-next.0
+
 ## 3.4.3
 
 ### Patch Changes

@@ -1,5 +1,49 @@
 # Changelog
 
+## 0.0.12
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+  - @paprika/stylers@1.1.0
+  - @paprika/button@1.1.4
+  - @paprika/raw-button@1.0.6
+
+## 0.0.12-next.0
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+  - @paprika/stylers@1.1.0-next.0
+  - @paprika/button@1.1.4-next.0
+  - @paprika/raw-button@1.0.6-next.0
+
+## 0.0.11
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14
+
+## 0.0.11-next.0
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14-next.0
+
+## 0.0.10
+
+### Patch Changes
+
+- @paprika/button@1.1.3
+
+## 0.0.10-next.0
+
+### Patch Changes
+
+- @paprika/button@1.1.3-next.0
+
 ## 0.0.9
 
 ### Patch Changes

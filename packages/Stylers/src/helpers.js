@@ -6,6 +6,8 @@ import tokens from "@paprika/tokens";
 
 export const toInt = token => Number.parseInt(token, 10);
 
+export const cssValue = value => (Number.isNaN(Number(value)) ? value : `${value}px`);
+
 //
 // Typography
 //

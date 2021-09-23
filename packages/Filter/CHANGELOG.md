@@ -1,5 +1,97 @@
 # Changelog
 
+## 1.2.12
+
+### Patch Changes
+
+- 34d9509: Support adding a className to the Filter component
+
+## 1.2.12-next.0
+
+### Patch Changes
+
+- 34d9509: Support adding a className to the Filter component
+
+## 1.2.11
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+- Updated dependencies [ca237ea]
+  - @paprika/list-box@3.5.0
+  - @paprika/stylers@1.1.0
+  - @paprika/button@1.1.4
+  - @paprika/date-picker@1.0.24
+  - @paprika/input@4.0.9
+  - @paprika/panel@2.1.6
+  - @paprika/radio@1.0.14
+  - @paprika/select@2.0.4
+
+## 1.2.11-next.0
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+- Updated dependencies [ca237ea]
+  - @paprika/list-box@3.5.0-next.0
+  - @paprika/stylers@1.1.0-next.0
+  - @paprika/button@1.1.4-next.0
+  - @paprika/date-picker@1.0.24-next.0
+  - @paprika/input@4.0.9-next.0
+  - @paprika/panel@2.1.6-next.0
+  - @paprika/radio@1.0.14-next.0
+  - @paprika/select@2.0.4-next.0
+
+## 1.2.10
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14
+  - @paprika/date-picker@1.0.23
+  - @paprika/input@4.0.8
+  - @paprika/list-box@3.4.5
+  - @paprika/panel@2.1.5
+
+## 1.2.10-next.0
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14-next.0
+  - @paprika/date-picker@1.0.23-next.0
+  - @paprika/input@4.0.8-next.0
+  - @paprika/list-box@3.4.5-next.0
+  - @paprika/panel@2.1.5-next.0
+
+## 1.2.9
+
+### Patch Changes
+
+- Updated dependencies [c0ebd9b]
+  - @paprika/icon@2.0.0
+  - @paprika/button@1.1.3
+  - @paprika/date-picker@1.0.22
+  - @paprika/input@4.0.7
+  - @paprika/list-box@3.4.4
+  - @paprika/panel@2.1.4
+  - @paprika/radio@1.0.13
+  - @paprika/select@2.0.3
+
+## 1.2.9-next.0
+
+### Patch Changes
+
+- Updated dependencies [c0ebd9b]
+  - @paprika/icon@2.0.0-next.0
+  - @paprika/button@1.1.3-next.0
+  - @paprika/input@4.0.7-next.0
+  - @paprika/list-box@3.4.4-next.0
+  - @paprika/panel@2.1.4-next.0
+  - @paprika/radio@1.0.13-next.0
+  - @paprika/select@2.0.3-next.0
+  - @paprika/date-picker@1.0.22-next.0
+
 ## 1.2.8
 
 ### Patch Changes

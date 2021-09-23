@@ -77,6 +77,8 @@ export default function App() {
         />
 
         <Sort {...sortProps} columns={columnsSettings}>
+          <Sort.PopoverContent className="add-a-class-to-the-sort-popover-content-wrapper-like-this" />
+
           {sortedFields.map((field, index) => {
             return (
               <Sort.Field
@@ -93,6 +95,8 @@ export default function App() {
         </Sort>
 
         <ColumnsArrangement orderedColumnIds={orderedColumnIds} {...handlers}>
+          <ColumnsArrangement.PopoverContent className="add-a-class-to-the-columnsarrangement-popover-content-wrapper-like-this" />
+
           {columnsSettings.map(column => (
             <ColumnsArrangement.ColumnDefinition
               key={column.id}

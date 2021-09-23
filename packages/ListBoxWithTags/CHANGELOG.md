@@ -1,5 +1,63 @@
 # Changelog
 
+## 2.1.5
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+- Updated dependencies [ca237ea]
+  - @paprika/list-box@3.5.0
+  - @paprika/stylers@1.1.0
+  - @paprika/raw-button@1.0.6
+  - @paprika/tag@0.0.12
+
+## 2.1.5-next.0
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+- Updated dependencies [ca237ea]
+  - @paprika/list-box@3.5.0-next.0
+  - @paprika/stylers@1.1.0-next.0
+  - @paprika/raw-button@1.0.6-next.0
+  - @paprika/tag@0.0.12-next.0
+
+## 2.1.4
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14
+  - @paprika/list-box@3.4.5
+  - @paprika/tag@0.0.11
+
+## 2.1.4-next.0
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14-next.0
+  - @paprika/list-box@3.4.5-next.0
+  - @paprika/tag@0.0.11-next.0
+
+## 2.1.3
+
+### Patch Changes
+
+- Updated dependencies [c0ebd9b]
+  - @paprika/icon@2.0.0
+  - @paprika/list-box@3.4.4
+  - @paprika/tag@0.0.10
+
+## 2.1.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [c0ebd9b]
+  - @paprika/icon@2.0.0-next.0
+  - @paprika/list-box@3.4.4-next.0
+  - @paprika/tag@0.0.10-next.0
+
 ## 2.1.2
 
 ### Patch Changes
