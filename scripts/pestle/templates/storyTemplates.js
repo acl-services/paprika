@@ -144,7 +144,9 @@ import { getStoryName } from "storybook/storyTree";
 import { docsStoryParameters } from "storybook/assets/storyParameters";
 import Readme from "../README.md";
 import ${componentName} from "../src";
+
 <Meta title={\`\${getStoryName("${componentName}")}/ Docs\`} component={${componentName}} parameters={{ ...docsStoryParameters }} />
+
 <Description markdown={Readme} />
 `;
 }

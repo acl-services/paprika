@@ -72,9 +72,14 @@ function renderComponentStylesTemplate(){
 `;
 }
 
+function renderReadMeTemplate() {
+  return "<!-- content --><!-- eoContent -->";
+}
+
 module.exports = {
   renderPackageJSONTemplate,
   renderIndexTemplate,
   renderComponentTemplate,
   renderComponentStylesTemplate,
+  renderReadMeTemplate,
 };

@@ -14,6 +14,7 @@ const {
   renderIndexTemplate,
   renderComponentTemplate,
   renderComponentStylesTemplate,
+  renderReadMeTemplate,
 } = require("./templates/componentTemplates");
 const {
   renderStoryFolderTemplate,
@@ -105,7 +106,8 @@ const createNewComponentInquiry = () => {
     createFile(`${path}/src/index.js`, renderIndexTemplate({ componentName }));
     createFile(`${path}/src/${componentName}.js`, renderComponentTemplate({ componentName }));
     createFile(`${path}/src/${componentName}.styles.js`, renderComponentStylesTemplate({ componentName }));
-
+    createFile(`${path}/README.md`, renderReadMeTemplate());
+    
     // tests
     createFile(`${path}/tests/spec/${componentName}.spec.js`, renderSpecTemplate({ componentName }));
     createFile(`${path}/tests/cypress/${componentName}.cypress.js`, renderCypressTemplate({ componentName }));
