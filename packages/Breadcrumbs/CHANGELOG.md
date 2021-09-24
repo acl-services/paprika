@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.0-next.0
+
+### Minor Changes
+
+- c1db889: Restore back icon for breadcrumbs with only one crumb
+
 ## 1.3.3
 
 ### Patch Changes
