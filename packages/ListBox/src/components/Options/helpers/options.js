@@ -209,9 +209,9 @@ export const toggleOption = ({ index, isMulti, dispatch, onChangeContext }) => {
   selectSingleOption({ activeOptionIndex: index, isOpen: false, dispatch, onChangeContext });
 };
 
-export const handleClickOption = ({ props, isDisabled, state, dispatch, onChangeContext }) => event => {
+export const handleClickOption = ({ onClick, index, isDisabled, state, dispatch, onChangeContext }) => {
   if (isDisabled) return;
-  const { index } = props;
+  // const { index } = props;
   const { options, hasFilter, isMulti } = state;
   const hasPreventDefaultOnSelect = options[index].preventDefaultOnSelect;
 
@@ -222,17 +222,17 @@ export const handleClickOption = ({ props, isDisabled, state, dispatch, onChange
     state.refListBoxContainer.current.focus();
   }
 
-  if (props.onClick || hasPreventDefaultOnSelect) {
-    const onClick = props.onClick ? props.onClick : () => {};
+  if (onClick || hasPreventDefaultOnSelect) {
+    const onClickFn = onClick ? onClick : () => {};
 
     if (hasPreventDefaultOnSelect) {
       // this will not selected the option, but will report that was clicked it.
       // since this action will not affect the state we can report it right back.
 
-      onClick();
+      onClickFn();
       return;
     }
-    onClick();
+    onClickFn();
   }
 
   if (isMulti) {

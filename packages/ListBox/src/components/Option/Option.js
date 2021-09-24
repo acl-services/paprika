@@ -1,46 +1,50 @@
 import React from "react";
 import PropTypes from "prop-types";
-import useListBox from "../../useListBox";
-import { OnChangeContext } from "../../store/OnChangeProvider";
-import { PropsContext } from "../../store/PropsProvider";
-import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
-import { isOptionVisible, isOptionSelected, handleClickOption } from "../Options/helpers/options";
-import useIsSelectedOption from "./useIsSelectedOption";
+// import useListBox from "../../useListBox";
+// import { OnChangeContext } from "../../store/OnChangeProvider";
+// import { PropsContext } from "../../store/PropsProvider";
+// import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
+// import { isOptionVisible, isOptionSelected, handleClickOption } from "../Options/helpers/options";
+// import useIsSelectedOption from "./useIsSelectedOption";
 import * as sc from "./Option.styles";
 
-export default function Option(props) {
-  const { index, groupId, label, ...moreProps } = props; // eslint-disable-line
-  const [state, dispatch] = useListBox();
-  const providedProps = React.useContext(PropsContext);
-  const { isReadOnly, size } = providedProps;
-  const onChangeContext = React.useContext(OnChangeContext);
+function Option(props) {
+  const { index, groupId, label, id, isSelectedValue, handleOnClick, ...moreProps } = props; // eslint-disable-line
+  // const [state, dispatch] = useListBox();
+  // const providedProps = React.useContext(PropsContext);
+  // const { isReadOnly, size } = providedProps;
+  // const onChangeContext = React.useContext(OnChangeContext);
 
-  useIsSelectedOption({ index, props });
+  // useIsSelectedOption({ index, props });
 
-  if (typeof state.options[index] === "undefined" || !isOptionVisible(state, index)) {
-    return null;
-  }
+  // if (typeof state.options[index] === "undefined" || !isOptionVisible(state, index)) {
+  //   return null;
+  // }
 
-  const isSelected = isOptionSelected(state, index);
-  const isDisabled = providedProps.isDisabled || props.isDisabled || isReadOnly;
-  const id = state.options[index].id;
+  // const isSelected = isOptionSelected(state, index);
+  // const isDisabled = providedProps.isDisabled || props.isDisabled || isReadOnly;
+  // const id = state.options[index].id;
+
+  console.log(props);
 
   return (
     <sc.Option
       {...moreProps}
-      {...getA11yAttributesForOption(isSelected)}
+      // {...getA11yAttributesForOption(isSelected)}
       hasPreventDefaultOnSelect={props.preventDefaultOnSelect}
       id={id}
-      isDisabled={isDisabled}
-      isSelected={isSelected}
-      size={size}
+      // isDisabled={isDisabled}
+      isSelected={isSelectedValue}
+      // size={size}
       key={index}
-      onClick={handleClickOption({ props, isDisabled, state, dispatch, onChangeContext })}
-      data-pka-anchor={isSelected ? "list-option--is-selected" : "list-option"}
+      onClick={() => handleOnClick({ onClick: props.onClick, index })} // also need to pass isDisabled
+      // data-pka-anchor={isSelected ? "list-option--is-selected" : "list-option"}
       data-pka-prevent-default-on-select={props.preventDefaultOnSelect}
       tabIndex={-1}
     >
-      {typeof props.children === "function" ? props.children({ isSelected, isDisabled, id }) : props.children}
+      {typeof props.children === "function"
+        ? props.children({ isSelected: isSelectedValue, isDisabled: props.isDisabled, id })
+        : props.children}
     </sc.Option>
   );
 }
@@ -69,6 +73,12 @@ Option.propTypes = {
   /** Callback for the clicking event */
   onClick: PropTypes.func,
 
+  handleOnClick: PropTypes.func.isRequired,
+
+  id: PropTypes.string,
+
+  isSelectedValue: PropTypes.bool.isRequired,
+
   /** Value of your option this can be any data structure  */
   value: PropTypes.any, // eslint-disable-line
 
@@ -85,4 +95,8 @@ Option.defaultProps = {
   label: null,
   onClick: null,
   value: null,
+  id: null,
 };
+
+Option = React.memo(Option);
+export default Option;
