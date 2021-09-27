@@ -25,7 +25,7 @@ function Option(props) {
   // const isDisabled = providedProps.isDisabled || props.isDisabled || isReadOnly;
   // const id = state.options[index].id;
 
-  console.log(props);
+  // console.log(props);
 
   return (
     <sc.Option
@@ -37,7 +37,7 @@ function Option(props) {
       isSelected={isSelectedValue}
       // size={size}
       key={index}
-      onClick={() => handleOnClick({ onClick: props.onClick, index })} // also need to pass isDisabled
+      onClick={event => handleOnClick({ event, onClick: props.onClick, index })} // also need to pass isDisabled
       // data-pka-anchor={isSelected ? "list-option--is-selected" : "list-option"}
       data-pka-prevent-default-on-select={props.preventDefaultOnSelect}
       tabIndex={-1}

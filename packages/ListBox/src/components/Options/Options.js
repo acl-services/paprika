@@ -7,12 +7,27 @@ function Options(props) {
   const [state, dispatch] = useListBox();
   const onChangeContext = React.useContext(OnChangeContext);
 
-  // const onClickHandler = ({ onClick, index }) =>
-  //   handleClickOption({ onClick, index, state, dispatch, onChangeContext });
-
-  const memoizedOnClickHandler = React.useCallback(({ onClick, index }) => {
-    handleClickOption({ onClick, index, state, dispatch, onChangeContext });
-  }, []); // still needs trimmed deps
+  const memoizedOnClickHandler = React.useCallback(
+    ({ event, onClick, index }) => {
+      const clickOptionState = {
+        options: state.options,
+        hasFilter: state.hasFilter,
+        isMulti: state.isMulti,
+        refListBox: state.refListBox,
+        refListContainer: state.refListBoxContainer,
+      };
+      handleClickOption({ event, onClick, index, state: clickOptionState, dispatch, onChangeContext });
+    },
+    [
+      state.options,
+      state.hasFilter,
+      state.isMulti,
+      state.refListBox,
+      state.refListBoxContainer,
+      dispatch,
+      onChangeContext,
+    ]
+  );
 
   const { children, isPopoverOpen } = props;
   let index = -1;
