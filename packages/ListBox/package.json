@@ -34,7 +34,8 @@
     ]
   },
   "devDependencies": {
-    "react-json-tree": "^0.11.2"
+    "react-json-tree": "^0.11.2",
+    "unique-names-generator": "^4.6.0"
   },
   "peerDependencies": {
     "@paprika/l10n": "^1.1.14",

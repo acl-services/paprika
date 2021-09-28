@@ -61,8 +61,6 @@ Option.propTypes = {
 
   isSelectedValue: PropTypes.bool.isRequired,
 
-  isDisabledValue: PropTypes.bool.isRequired,
-
   /** Value of your option this can be any data structure  */
   value: PropTypes.any, // eslint-disable-line
 
