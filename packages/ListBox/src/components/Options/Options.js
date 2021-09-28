@@ -39,6 +39,10 @@ function Options(props) {
     if (child.type.type && isWhiteListed(displayName)) {
       index += 1;
       const isSelected = isOptionSelected(state, index);
+      if (typeof state.options[index] === "undefined" || !isOptionVisible(state, index)) {
+        return null;
+      }
+
       const id = state.options[index].id;
       return React.cloneElement(child, {
         ...child.props,

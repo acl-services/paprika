@@ -1,49 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import useListBox from "../../useListBox";
-// import { OnChangeContext } from "../../store/OnChangeProvider";
-// import { PropsContext } from "../../store/PropsProvider";
-// import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
-// import { isOptionVisible, isOptionSelected, handleClickOption } from "../Options/helpers/options";
-// import useIsSelectedOption from "./useIsSelectedOption";
+import { PropsContext } from "../../store/PropsProvider";
+import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
 import * as sc from "./Option.styles";
 
 function Option(props) {
   const { index, groupId, label, id, isSelectedValue, handleOnClick, ...moreProps } = props; // eslint-disable-line
-  // const [state, dispatch] = useListBox();
-  // const providedProps = React.useContext(PropsContext);
-  // const { isReadOnly, size } = providedProps;
-  // const onChangeContext = React.useContext(OnChangeContext);
-
-  // useIsSelectedOption({ index, props });
-
-  // if (typeof state.options[index] === "undefined" || !isOptionVisible(state, index)) {
-  //   return null;
-  // }
-
-  // const isSelected = isOptionSelected(state, index);
-  // const isDisabled = providedProps.isDisabled || props.isDisabled || isReadOnly;
-  // const id = state.options[index].id;
-
-  // console.log(props);
-
+  const providedProps = React.useContext(PropsContext);
+  const { isReadOnly, size } = providedProps;
+  const isDisabled = providedProps.isDisabled || props.isDisabled || isReadOnly;
   return (
     <sc.Option
       {...moreProps}
-      // {...getA11yAttributesForOption(isSelected)}
+      {...getA11yAttributesForOption(isSelectedValue)}
       hasPreventDefaultOnSelect={props.preventDefaultOnSelect}
       id={id}
-      // isDisabled={isDisabled}
+      isDisabled={isDisabled}
       isSelected={isSelectedValue}
-      // size={size}
+      size={size}
       key={index}
-      onClick={event => handleOnClick({ event, onClick: props.onClick, index })} // also need to pass isDisabled
-      // data-pka-anchor={isSelected ? "list-option--is-selected" : "list-option"}
+      onClick={event => handleOnClick({ event, isDisabled, onClick: props.onClick, index })}
+      data-pka-anchor={isSelectedValue ? "list-option--is-selected" : "list-option"}
       data-pka-prevent-default-on-select={props.preventDefaultOnSelect}
       tabIndex={-1}
     >
       {typeof props.children === "function"
-        ? props.children({ isSelected: isSelectedValue, isDisabled: props.isDisabled, id })
+        ? props.children({ isSelected: isSelectedValue, isDisabled, id })
         : props.children}
     </sc.Option>
   );
@@ -78,6 +60,8 @@ Option.propTypes = {
   id: PropTypes.string,
 
   isSelectedValue: PropTypes.bool.isRequired,
+
+  isDisabledValue: PropTypes.bool.isRequired,
 
   /** Value of your option this can be any data structure  */
   value: PropTypes.any, // eslint-disable-line
