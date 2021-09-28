@@ -211,7 +211,6 @@ export const toggleOption = ({ index, isMulti, dispatch, onChangeContext }) => {
 
 export const handleClickOption = ({ event, onClick, index, isDisabled, state, dispatch, onChangeContext }) => {
   if (isDisabled) return;
-  // const { index } = props;
   const { options, hasFilter, isMulti, refListBox, refListBoxContainer } = state;
   const hasPreventDefaultOnSelect = options[index].preventDefaultOnSelect;
 

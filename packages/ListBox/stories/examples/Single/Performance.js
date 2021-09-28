@@ -33,6 +33,12 @@ const largeArray = [
   ...villians,
   ...villians,
   ...villians,
+  ...villians,
+  ...villians,
+  ...villians,
+  ...villians,
+  ...villians,
+  ...villians,
 ];
 
 function handleChange(selectedIndexes, items, clickedIndex, { dispatch, actionTypes, eventType }) {
