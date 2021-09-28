@@ -1,0 +1,13 @@
+import { Meta, Description } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import { docsStoryParameters } from "storybook/assets/storyParameters";
+import Readme from "../README.md";
+import ExampleComponentUsingTS from "../src";
+
+<Meta
+  title={`${getStoryName("ExampleComponentUsingTS")}/ Docs`}
+  component={ExampleComponentUsingTS}
+  parameters={{ ...docsStoryParameters }}
+/>
+
+<Description markdown={Readme} />

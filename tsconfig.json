@@ -1,6 +1,11 @@
 {
-  "files": ["./packages/Tokens/src/tokens.js", "./packages/Constants/src/Constants.js"],
-  "exclude": ["./packages/Tokens/src", "./packages/Constants/src"],
+  "include": [
+    "./packages/ExampleComponentUsingTS/src",
+    "./packages/Constants/src",
+    "./packages/Tokens/src",
+    "./packages/Stylers/src"
+  ],
+  "exclude": ["node_modules"],
   "compilerOptions": {
     "allowJs": true,
     "declaration": true,
@@ -18,6 +23,8 @@
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictBindCallApply": true,
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./packages"
   }
 }

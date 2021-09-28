@@ -3,6 +3,7 @@ const storyTree = [
   {
     category: "Display",
     components: [
+      "ExampleComponentUsingTS",
       "Avatar",
       "Counter",
       "Heading",
