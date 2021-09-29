@@ -17,7 +17,7 @@
   "scripts": {
     "svgr": "svgr -d . ./src/svg --out-dir src/",
     "build-declaration": "npx typescript src/*.js --declaration --allowJs --emitDeclarationOnly --outDir src",
-    "pretranspile": "yarn rimraf \"src/!(index).js\" && yarn rimraf src/*.d.ts && yarn svgr && yarn build-declaration",
+    "pretranspile": "yarn rimraf \"src/!(index).js\" && yarn svgr",
     "transpile:types": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
