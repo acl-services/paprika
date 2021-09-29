@@ -1,10 +1,5 @@
 {
-  "include": [
-    "./packages/ExampleComponentUsingTS/src",
-    "./packages/Constants/src",
-    "./packages/Tokens/src",
-    "./packages/Stylers/src"
-  ],
+  "include": ["./packages"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "allowJs": true,
@@ -24,7 +19,6 @@
     "strictNullChecks": true,
     "strictBindCallApply": true,
     "noImplicitAny": true,
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": "./packages"
+    "allowSyntheticDefaultImports": true
   }
 }
