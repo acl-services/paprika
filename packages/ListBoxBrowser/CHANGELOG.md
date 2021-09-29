@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.31-next.0
+
+### Patch Changes
+
+- Updated dependencies [a56eed3]
+  - @paprika/list-box@3.5.1-next.0
+
 ## 1.0.30
 
 ### Patch Changes
