@@ -14,6 +14,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "scripts": {
+    "transpile:types": "tsc -p tsconfig.build.json"
+  },
   "peerDependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0",

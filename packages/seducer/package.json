@@ -21,6 +21,9 @@
     "url": "https://github.com/acl-services/paprika/issues"
   },
   "homepage": "https://github.com/acl-services/paprika/tree/master/packages/seducer",
+  "scripts": {
+    "transpile:types": "tsc -p tsconfig.build.json"
+  },
   "dependencies": {
     "prop-types": "^15.7.2"
   },
