@@ -135,7 +135,7 @@
       "yarn lint",
       "yarn lint:jss"
     ],
-    "packages/**/*.{js,json,yml,css,scss}": [
+    "packages/**/*.{js,jsx,ts,tsx,json,yml,css,scss}": [
       "yarn prettier --check"
     ]
   },
