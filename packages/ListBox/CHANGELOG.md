@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.5.1
+
+### Patch Changes
+
+- a56eed3: Don't focus trigger if there's no ref
+
+## 3.5.1-next.0
+
+### Patch Changes
+
+- a56eed3: Don't focus trigger if there's no ref
+
 ## 3.5.0
 
 ### Minor Changes
