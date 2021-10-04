@@ -117,7 +117,8 @@ export function App() {
 
   const headerStyle = React.useCallback(() => ({ style: { display: "flex", justifyContent: "center" } }), []);
 
-  const cellA11yText = React.useCallback(key => ({ row }) => {
+  const cellA11yText = React.useCallback(
+    key => ({ row }) => {
       if (row[key][0] === row[key][1]) {
         return `All tasks has been checked`;
       }
@@ -126,7 +127,9 @@ export function App() {
       }
 
       return `in progress: ${row[key][0]} of ${row[key][1]} tasks`;
-    }, []);
+    },
+    []
+  );
 
   return (
     <Sbook.Story>
@@ -135,11 +138,11 @@ export function App() {
           canGrow
           header="Objective"
           cell={({ row }) => (
-              <span>
-                <Arrow hasRows={"rows" in row && row.rows.length} isExpand={expandedRows.includes(row.id)} />
-                {row.objective}
-              </span>
-            )}
+            <span>
+              <Arrow hasRows={"rows" in row && row.rows.length} isExpand={expandedRows.includes(row.id)} />
+              {row.objective}
+            </span>
+          )}
           cellA11yText={({ row }) => row.objective}
           cellProps={({ row }) => ({ style: { textIndent: `${(row.indent || 0) * 16}px`, cursor: "pointer" } })}
           onClick={toggleExpand}

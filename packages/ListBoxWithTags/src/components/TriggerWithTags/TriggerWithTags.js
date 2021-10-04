@@ -47,7 +47,7 @@ export default function TriggerWithTags(props) {
 
   const triggerProps = propsForTrigger();
   const bestPlaceholder = placeholder || t("listBoxWithTags.placeholder");
-  const a11yTextOptions = selectedOptions.map(item => tagLabelKey === null ? item.label : item[tagLabelKey]);
+  const a11yTextOptions = selectedOptions.map(item => (tagLabelKey === null ? item.label : item[tagLabelKey]));
   const a11yText = selectedOptions.length === 0 ? bestPlaceholder : a11yTextOptions.join(", ");
 
   return (

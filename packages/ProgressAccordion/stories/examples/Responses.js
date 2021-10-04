@@ -10,15 +10,15 @@ const propKnobs = () => ({
 });
 
 const ExampleStory = () => (
-    <AccordionStory>
-      <ProgressAccordion.Responses>
-        <ProgressAccordion.Responses.Item {...propKnobs()} />
-        <ProgressAccordion.Responses.Item heading="Empty example" />
-        <ProgressAccordion.Responses.Item heading="Long example">
-          {Array(3).fill(mockResponses[2].body)}
-        </ProgressAccordion.Responses.Item>
-      </ProgressAccordion.Responses>
-    </AccordionStory>
-  );
+  <AccordionStory>
+    <ProgressAccordion.Responses>
+      <ProgressAccordion.Responses.Item {...propKnobs()} />
+      <ProgressAccordion.Responses.Item heading="Empty example" />
+      <ProgressAccordion.Responses.Item heading="Long example">
+        {Array(3).fill(mockResponses[2].body)}
+      </ProgressAccordion.Responses.Item>
+    </ProgressAccordion.Responses>
+  </AccordionStory>
+);
 
 export default () => <ExampleStory />;

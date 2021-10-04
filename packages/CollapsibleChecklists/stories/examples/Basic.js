@@ -72,14 +72,14 @@ function Basic2Story() {
         <CollapsibleChecklists.Heading>{title}</CollapsibleChecklists.Heading>
 
         {Object.keys(items).map(key => (
-            <CollapsibleChecklists.Group title={key}>
-              {items[key].map(item => (
-                  <CollapsibleChecklists.Item isChecked={item.isChecked} kind={key} id={item.id}>
-                    {item.title}
-                  </CollapsibleChecklists.Item>
-                ))}
-            </CollapsibleChecklists.Group>
-          ))}
+          <CollapsibleChecklists.Group title={key}>
+            {items[key].map(item => (
+              <CollapsibleChecklists.Item isChecked={item.isChecked} kind={key} id={item.id}>
+                {item.title}
+              </CollapsibleChecklists.Item>
+            ))}
+          </CollapsibleChecklists.Group>
+        ))}
       </>
     );
   }

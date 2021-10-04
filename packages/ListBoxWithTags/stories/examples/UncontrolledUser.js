@@ -91,9 +91,9 @@ export default function UncontrolledUsers() {
       <ListBox
         allOptionsAreSelected={defaultFilteredData.length === getSelectedOptions().length}
         allOptionsAreSelectedMessage="All directors have been selected"
-        onAddCustomOption={listBoxWithTagsProps.onAddCustomOption(label => 
+        onAddCustomOption={listBoxWithTagsProps.onAddCustomOption(label =>
           // This allowed you override the default behaviour when creating a custom option
-           ({
+          ({
             id: label,
             email: label,
             username: `@${label.split("@")[0]}`,

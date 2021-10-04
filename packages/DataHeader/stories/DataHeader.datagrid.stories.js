@@ -35,15 +35,15 @@ function Menu(props) {
 }
 
 export const DataGridWithBackground = () => (
-    <div style={{ padding: "32px" }}>
-      <DataGrid data={data}>
-        <DataGrid.ColumnDefinition
-          header={() => <DataHeader backgroundColor="pink" label="name" renderActions={() => <Menu type="some" />} />}
-          cell="name"
-        />
-        <DataGrid.ColumnDefinition header="Income" cell={({ row }) => row.income} />
-        <DataGrid.ColumnDefinition header="Taxes" cell={({ row }) => row.taxes} />
-        <DataGrid.ColumnDefinition header="Revenue" cell={({ row }) => Number(row.income - row.taxes)} />
-      </DataGrid>
-    </div>
-  );
+  <div style={{ padding: "32px" }}>
+    <DataGrid data={data}>
+      <DataGrid.ColumnDefinition
+        header={() => <DataHeader backgroundColor="pink" label="name" renderActions={() => <Menu type="some" />} />}
+        cell="name"
+      />
+      <DataGrid.ColumnDefinition header="Income" cell={({ row }) => row.income} />
+      <DataGrid.ColumnDefinition header="Taxes" cell={({ row }) => row.taxes} />
+      <DataGrid.ColumnDefinition header="Revenue" cell={({ row }) => Number(row.income - row.taxes)} />
+    </DataGrid>
+  </div>
+);

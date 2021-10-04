@@ -14,28 +14,28 @@ const items = [
 ];
 
 const FilterPrice = React.forwardRef((props, ref) => (
-    <ListBox ref={ref} onChange={props.onChange} placeholder="Price">
-      <ListBox.Option>greater than 500</ListBox.Option>
-      <ListBox.Option>lower than 500</ListBox.Option>
-    </ListBox>
-  ));
+  <ListBox ref={ref} onChange={props.onChange} placeholder="Price">
+    <ListBox.Option>greater than 500</ListBox.Option>
+    <ListBox.Option>lower than 500</ListBox.Option>
+  </ListBox>
+));
 
 const FilterQty = React.forwardRef((props, ref) => (
-    <ListBox ref={ref} onChange={props.onChange} placeholder="Quantity">
-      <ListBox.Option>greater than 100</ListBox.Option>
-      <ListBox.Option>less than 100</ListBox.Option>
-    </ListBox>
-  ));
+  <ListBox ref={ref} onChange={props.onChange} placeholder="Quantity">
+    <ListBox.Option>greater than 100</ListBox.Option>
+    <ListBox.Option>less than 100</ListBox.Option>
+  </ListBox>
+));
 
 const FilterColor = React.forwardRef((props, ref) => (
-    <ListBox isMulti ref={ref} onChange={props.onChange} placeholder="Color">
-      {[...new Set(items.map(item => item.color))].map(item => (
-        <ListBox.Option value={item} label={item} key={item}>
-          {item}
-        </ListBox.Option>
-      ))}
-    </ListBox>
-  ));
+  <ListBox isMulti ref={ref} onChange={props.onChange} placeholder="Color">
+    {[...new Set(items.map(item => item.color))].map(item => (
+      <ListBox.Option value={item} label={item} key={item}>
+        {item}
+      </ListBox.Option>
+    ))}
+  </ListBox>
+));
 
 const filterItems = ({ price, colors, qty }) => item => {
   // eslint-disable-next-line

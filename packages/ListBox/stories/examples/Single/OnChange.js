@@ -16,10 +16,10 @@ export const OnChange = () => {
       <hr />
       <ListBox ref={refListBox} isInline onChange={handleChange}>
         {characters.antiHeroesRaw.map(item => (
-            <ListBox.Option value={item.label} key={item.label}>
-              {item.label}
-            </ListBox.Option>
-          ))}
+          <ListBox.Option value={item.label} key={item.label}>
+            {item.label}
+          </ListBox.Option>
+        ))}
       </ListBox>
     </>
   );

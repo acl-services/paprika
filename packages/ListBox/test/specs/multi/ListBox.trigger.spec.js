@@ -62,10 +62,10 @@ describe("ListBox.Trigger", () => {
     };
 
     const onRenderTrigger = jest.fn((selected, options, current, { dispatch, propsForTrigger, types, refTrigger }) => (
-        <button type="button" {...propsForTrigger()} onClick={togglePopover(dispatch, types)} ref={refTrigger}>
-          Toggle ListBox
-        </button>
-      ));
+      <button type="button" {...propsForTrigger()} onClick={togglePopover(dispatch, types)} ref={refTrigger}>
+        Toggle ListBox
+      </button>
+    ));
 
     const { expectDropdownIsNotHidden, selectVenus, selectJupiter, getByText } = renderComponent({}, [
       <ListBox.Trigger key="trigger">{onRenderTrigger}</ListBox.Trigger>,

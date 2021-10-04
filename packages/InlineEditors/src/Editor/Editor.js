@@ -11,27 +11,29 @@ import { status as statusTypes } from "../types";
 
 // eslint-disable-next-line react/prop-types
 const Tooltip = ({ Icon = null, message }) => (
-    <Popover isEager>
-      <Popover.Trigger>
-        {(handler, a11yAttributes) => Icon ? (
-            <Icon
-              onMouseOver={handler}
-              onMouseOut={handler}
-              onFocus={handler}
-              onBlur={handler}
-              tabIndex={0}
-              aria-label="info"
-              role="img"
-              {...a11yAttributes}
-            />
-          ) : null}
-      </Popover.Trigger>
-      <Popover.Content>
-        <Popover.Card>{message}</Popover.Card>
-      </Popover.Content>
-      <Popover.Tip />
-    </Popover>
-  );
+  <Popover isEager>
+    <Popover.Trigger>
+      {(handler, a11yAttributes) =>
+        Icon ? (
+          <Icon
+            onMouseOver={handler}
+            onMouseOut={handler}
+            onFocus={handler}
+            onBlur={handler}
+            tabIndex={0}
+            aria-label="info"
+            role="img"
+            {...a11yAttributes}
+          />
+        ) : null
+      }
+    </Popover.Trigger>
+    <Popover.Content>
+      <Popover.Card>{message}</Popover.Card>
+    </Popover.Content>
+    <Popover.Tip />
+  </Popover>
+);
 
 const Editor = React.forwardRef((props, ref) => {
   const { isEditing, onClick, status, optimisticValue, onSuccessAnimationEnd, messageError } = props;

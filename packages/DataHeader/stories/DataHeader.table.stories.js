@@ -35,17 +35,17 @@ function Menu(props) {
 }
 
 export const TableExample = () => (
-    <div style={{ padding: "32px" }}>
-      <Table data={data}>
-        <Table.ColumnDefinition
-          header={() => (
-            <DataHeader backgroundColor="#F60" label="name" type="numeric" renderActions={() => <Menu type="some" />} />
-          )}
-          cell="name"
-        />
-        <Table.ColumnDefinition header="Income" cell={({ row }) => row.income} />
-        <Table.ColumnDefinition header="Taxes" cell={({ row }) => row.taxes} />
-        <Table.ColumnDefinition header="Revenue" cell={({ row }) => Number(row.income - row.taxes)} />
-      </Table>
-    </div>
-  );
+  <div style={{ padding: "32px" }}>
+    <Table data={data}>
+      <Table.ColumnDefinition
+        header={() => (
+          <DataHeader backgroundColor="#F60" label="name" type="numeric" renderActions={() => <Menu type="some" />} />
+        )}
+        cell="name"
+      />
+      <Table.ColumnDefinition header="Income" cell={({ row }) => row.income} />
+      <Table.ColumnDefinition header="Taxes" cell={({ row }) => row.taxes} />
+      <Table.ColumnDefinition header="Revenue" cell={({ row }) => Number(row.income - row.taxes)} />
+    </Table>
+  </div>
+);

@@ -35,7 +35,9 @@ export default function sort({ data, columnId, direction, columnType, momentPars
   const indicator = isAscend ? 1 : -1;
 
   function getSortedData(fn) {
-    return [...data].sort((rowA, rowB) => fn(rowA[columnId], rowB[columnId], { momentParsingFormat, locale }) * indicator);
+    return [...data].sort(
+      (rowA, rowB) => fn(rowA[columnId], rowB[columnId], { momentParsingFormat, locale }) * indicator
+    );
   }
 
   if (compareFunctions[columnType]) {

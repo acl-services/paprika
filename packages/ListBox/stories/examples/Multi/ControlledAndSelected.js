@@ -12,7 +12,7 @@ const styles = {
     font-size: 16px;
     margin: 2px;
     padding: 8px;
-    ${({ isSelected }) => isSelected ? `background: ${tokens.color.blue}; color: ${tokens.color.white}` : ""}
+    ${({ isSelected }) => (isSelected ? `background: ${tokens.color.blue}; color: ${tokens.color.white}` : "")}
   `,
 };
 
@@ -64,10 +64,10 @@ export const ControlledAndSelected = () => {
       <hr />
       <ListBox isInline isMulti onChange={handleChange}>
         {options.map(item => (
-            <ListBox.Option key={item.label} isSelected={item.isSelected}>
-              {item.label}
-            </ListBox.Option>
-          ))}
+          <ListBox.Option key={item.label} isSelected={item.isSelected}>
+            {item.label}
+          </ListBox.Option>
+        ))}
       </ListBox>
     </>
   );

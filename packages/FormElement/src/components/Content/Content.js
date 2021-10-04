@@ -31,7 +31,7 @@ function Content(props) {
     id: labelId,
   };
 
-  const renderChildren = () => typeof children === "function" ? children(a11yProps, refLabel) : children;
+  const renderChildren = () => (typeof children === "function" ? children(a11yProps, refLabel) : children);
 
   const contextValue = { fieldsetAriaDescribedBy: ariaDescribedByIdsString };
 

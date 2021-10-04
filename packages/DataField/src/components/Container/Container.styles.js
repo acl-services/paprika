@@ -7,7 +7,8 @@ const alignStr = {
   center: "center",
 };
 
-export const Container = styled.span(({ $align = "left", $color }) => css`
+export const Container = styled.span(
+  ({ $align = "left", $color }) => css`
     ${$color ? `color: ${$color}` : ""};
     align-items: center;
     box-sizing: border-box;
@@ -15,4 +16,5 @@ export const Container = styled.span(({ $align = "left", $color }) => css`
     height: 100%;
     justify-content: ${$align in alignStr ? alignStr[$align] : "flex-start"};
     padding: ${tokens.space};
-  `);
+  `
+);

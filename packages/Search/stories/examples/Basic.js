@@ -45,10 +45,10 @@ export default function Basic() {
       {valueSelected}
       <Search onChangeSearch={handleChangeSearch} onSelected={handleSelected}>
         {filterData.map(option => (
-            <Search.Option value={option.label} key={option.label} label={option.label}>
-              {option.label}
-            </Search.Option>
-          ))}
+          <Search.Option value={option.label} key={option.label} label={option.label}>
+            {option.label}
+          </Search.Option>
+        ))}
       </Search>
     </div>
   );

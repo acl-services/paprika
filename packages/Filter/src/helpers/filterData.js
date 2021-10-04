@@ -5,7 +5,8 @@ export default function filterData({ filters, operator, columns, data }) {
   if (filters.length === 0) return data;
 
   return data.filter(row => {
-    const tester = filter => filter.rule
+    const tester = filter =>
+      filter.rule
         ? testers[filter.rule](
             row[filter.columnId],
             filter.value,

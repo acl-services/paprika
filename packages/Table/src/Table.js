@@ -43,58 +43,58 @@ const Table = React.forwardRef((props, ref) => {
       <Headers extractedHeaders={extractedHeaders} ColumnDefinitions={ColumnDefinitions} borderType={borderType} />
       <sc.TBody hasZebraStripes={hasZebraStripes}>
         {data.map((row, rowIndex) => (
-            <tr key={rowIndex}>
-              {ColumnDefinitions.map((columnDefinition, columnIndex) => {
-                const position = { "data-row-index": rowIndex, "data-column-index": columnIndex };
+          <tr key={rowIndex}>
+            {ColumnDefinitions.map((columnDefinition, columnIndex) => {
+              const position = { "data-row-index": rowIndex, "data-column-index": columnIndex };
 
-                const {
-                  cell,
-                  header,
-                  width,
-                  sticky,
-                  cellProps: _cellProps,
-                  colSpan,
-                  ...moreColumnProps
-                } = columnDefinition.props;
+              const {
+                cell,
+                header,
+                width,
+                sticky,
+                cellProps: _cellProps,
+                colSpan,
+                ...moreColumnProps
+              } = columnDefinition.props;
 
-                const cellProps =
-                  typeof _cellProps === "function"
-                    ? _cellProps({ ...columnDefinition.props, row, rowIndex, columnIndex })
-                    : {};
+              const cellProps =
+                typeof _cellProps === "function"
+                  ? _cellProps({ ...columnDefinition.props, row, rowIndex, columnIndex })
+                  : {};
 
-                if (typeof cell === "function")
-                  return (
-                    <sc.TD
-                      cellPropsResetCSS={cellPropsResetCSS}
-                      borderType={borderType}
-                      key={columnIndex}
-                      width={width}
-                      sticky={sticky}
-                      {...cellProps}
-                      {...moreColumnProps}
-                      {...position}
-                    >
-                      {cell({ row, rowIndex, columnIndex })}
-                    </sc.TD>
-                  );
-                if (typeof cell === "string")
-                  return (
-                    <sc.TD
-                      cellPropsResetCSS={cellPropsResetCSS}
-                      borderType={borderType}
-                      key={columnIndex}
-                      {...cellProps}
-                      {...moreColumnProps}
-                      {...position}
-                    >
-                      {typeof row[cell] !== "undefined" ? row[cell] : `Error: ${cell} doesn't exist`}
-                    </sc.TD>
-                  );
+              if (typeof cell === "function")
+                return (
+                  <sc.TD
+                    cellPropsResetCSS={cellPropsResetCSS}
+                    borderType={borderType}
+                    key={columnIndex}
+                    width={width}
+                    sticky={sticky}
+                    {...cellProps}
+                    {...moreColumnProps}
+                    {...position}
+                  >
+                    {cell({ row, rowIndex, columnIndex })}
+                  </sc.TD>
+                );
+              if (typeof cell === "string")
+                return (
+                  <sc.TD
+                    cellPropsResetCSS={cellPropsResetCSS}
+                    borderType={borderType}
+                    key={columnIndex}
+                    {...cellProps}
+                    {...moreColumnProps}
+                    {...position}
+                  >
+                    {typeof row[cell] !== "undefined" ? row[cell] : `Error: ${cell} doesn't exist`}
+                  </sc.TD>
+                );
 
-                throw new Error("Cell prop should be either of type string or function");
-              })}
-            </tr>
-          ))}
+              throw new Error("Cell prop should be either of type string or function");
+            })}
+          </tr>
+        ))}
       </sc.TBody>
     </sc.Table>
   );

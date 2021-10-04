@@ -4,9 +4,9 @@ import { Story } from "storybook/assets/styles/common.styles";
 import Avatar from "../../src";
 
 export default () => (
-    <Story>
-      <Avatar>
-        <Icon />
-      </Avatar>
-    </Story>
-  );
+  <Story>
+    <Avatar>
+      <Icon />
+    </Avatar>
+  </Story>
+);

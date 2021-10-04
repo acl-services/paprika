@@ -4,8 +4,8 @@ import stylers from "@paprika/stylers";
 import * as types from "./types";
 
 export const Grid = styled.div.attrs(({ $width }) => ({
-    style: { maxWidth: `${$width}px` },
-  }))`
+  style: { maxWidth: `${$width}px` },
+}))`
   * {
     box-sizing: border-box;
   }

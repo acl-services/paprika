@@ -36,7 +36,8 @@ export const arrowRightButton = css`
     width: ${stylers.spacer(3)};
   }
 
-  ${({ isParentSelectable }) => isParentSelectable
+  ${({ isParentSelectable }) =>
+    isParentSelectable
       ? ""
       : css`
           background: transparent;

@@ -16,10 +16,10 @@ export const End = React.forwardRef((props, ref) => {
   const [isVisible, setIsVisible] = React.useState(false);
 
   React.useImperativeHandle(ref, () => ({
-      onScrollBarReachedBottom(value) {
-        setIsVisible(() => value);
-      },
-    }));
+    onScrollBarReachedBottom(value) {
+      setIsVisible(() => value);
+    },
+  }));
   return isVisible ? <div style={{ width: `${width}px`, boxModel: "border-box" }}>{props.children}</div> : null;
 });
 

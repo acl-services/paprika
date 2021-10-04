@@ -12,29 +12,29 @@ const screenerScript = new Steps()
   .end();
 
 const ExampleStory = () => (
-    <Screener steps={screenerScript}>
-      <AccordionStory>
-        <ProgressAccordion
-          activeIndex={2}
-          activeStatus="5 days idle"
-          a11yText="Responses"
-          className="screener-progress-accordion"
-        >
-          <ProgressAccordion.Item label="Zero">
-            <ProgressAccordion.Responses>
-              <ProgressAccordion.Responses.Item heading="Who‘s on first?">
-                <p>Yes.</p>
-              </ProgressAccordion.Responses.Item>
-            </ProgressAccordion.Responses>
-          </ProgressAccordion.Item>
-          <ProgressAccordion.Item label="One 111111111111111111111111111111111111">
-            <ProgressAccordion.Responses>{generatedItems}</ProgressAccordion.Responses>
-          </ProgressAccordion.Item>
-          <ProgressAccordion.Item label="Two 222222222222222222222222222222222222222222222222222222" />
-          <ProgressAccordion.Item label="Three 3333333333333333333333333333333333333333333333333" />
-        </ProgressAccordion>
-      </AccordionStory>
-    </Screener>
-  );
+  <Screener steps={screenerScript}>
+    <AccordionStory>
+      <ProgressAccordion
+        activeIndex={2}
+        activeStatus="5 days idle"
+        a11yText="Responses"
+        className="screener-progress-accordion"
+      >
+        <ProgressAccordion.Item label="Zero">
+          <ProgressAccordion.Responses>
+            <ProgressAccordion.Responses.Item heading="Who‘s on first?">
+              <p>Yes.</p>
+            </ProgressAccordion.Responses.Item>
+          </ProgressAccordion.Responses>
+        </ProgressAccordion.Item>
+        <ProgressAccordion.Item label="One 111111111111111111111111111111111111">
+          <ProgressAccordion.Responses>{generatedItems}</ProgressAccordion.Responses>
+        </ProgressAccordion.Item>
+        <ProgressAccordion.Item label="Two 222222222222222222222222222222222222222222222222222222" />
+        <ProgressAccordion.Item label="Three 3333333333333333333333333333333333333333333333333" />
+      </ProgressAccordion>
+    </AccordionStory>
+  </Screener>
+);
 
 export default ExampleStory;

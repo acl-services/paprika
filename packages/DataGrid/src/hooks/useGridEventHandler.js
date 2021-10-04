@@ -211,17 +211,28 @@ export default function useGridEventHandler({
     return cell;
   }, []);
 
-  const $getGrid = React.useCallback(() => refContainer.current && refContainer.current.querySelector(`.grid-${gridId} [role="row"]`).parentElement, [gridId, refContainer]);
+  const $getGrid = React.useCallback(
+    () => refContainer.current && refContainer.current.querySelector(`.grid-${gridId} [role="row"]`).parentElement,
+    [gridId, refContainer]
+  );
 
-  const $getStickyColumnGrid = React.useCallback(() => (
-      refContainer.current && refContainer.current.querySelector(`.${gridId}-sticky-columns [role="row"]`).parentElement
-    ), [gridId, refContainer]);
+  const $getStickyColumnGrid = React.useCallback(
+    () =>
+      refContainer.current &&
+      refContainer.current.querySelector(`.${gridId}-sticky-columns [role="row"]`).parentElement,
+    [gridId, refContainer]
+  );
 
-  const $getGridBoundingRect = React.useCallback(() => refContainer.current && refContainer.current.querySelector(`.grid-${gridId}`).getBoundingClientRect(), [gridId, refContainer]);
+  const $getGridBoundingRect = React.useCallback(
+    () => refContainer.current && refContainer.current.querySelector(`.grid-${gridId}`).getBoundingClientRect(),
+    [gridId, refContainer]
+  );
 
-  const $getStickyColumnGridBoundingRect = React.useCallback(() => (
-      refContainer.current && refContainer.current.querySelector(`.${gridId}-sticky-columns`).getBoundingClientRect()
-    ), [gridId, refContainer]);
+  const $getStickyColumnGridBoundingRect = React.useCallback(
+    () =>
+      refContainer.current && refContainer.current.querySelector(`.${gridId}-sticky-columns`).getBoundingClientRect(),
+    [gridId, refContainer]
+  );
 
   function $setRefs(columnIndex) {
     if (stickyColumnsIndexes.includes(columnIndex)) {

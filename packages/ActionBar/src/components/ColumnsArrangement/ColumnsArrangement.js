@@ -53,14 +53,17 @@ export default function ColumnsArrangement(props) {
   const { "ColumnsArrangement.ColumnDefinition": extractedColumnDefinitions } = extractChildren(children, [
     "ColumnsArrangement.ColumnDefinition",
   ]);
-  const columns = extractedColumnDefinitions.reduce((columns, columnDefinition) => ({
+  const columns = extractedColumnDefinitions.reduce(
+    (columns, columnDefinition) => ({
       ...columns,
       [columnDefinition.props.id]: {
         label: columnDefinition.props.label,
         isHidden: columnDefinition.props.isHidden,
         isDisabled: columnDefinition.props.isDisabled,
       },
-    }), {});
+    }),
+    {}
+  );
   const popoverContentProps = extractChildrenProps(children, PopoverContentPropsCollector);
 
   const hiddenColumns = Object.keys(columns).filter(columnId => columns[columnId].isHidden);

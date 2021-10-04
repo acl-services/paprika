@@ -38,39 +38,39 @@ function Menu(props) {
 }
 
 export const Numeric = () => (
-    <Story>
-      <Table data={data}>
-        <Table.ColumnDefinition
-          width="150px"
-          header={() => (
-            <DataHeader
-              icons={DataHeader.icons}
-              label="name"
-              type={DataHeader.types.type.TEXT}
-              renderActions={() => <Menu type="name" />}
-            />
-          )}
-          cell="name"
-        />
-        <Table.ColumnDefinition
-          header={() => <DataHeader icons={DataHeader.icons} label="Income" type={DataHeader.types.type.NUMERIC} />}
-          cell={({ row }) => row.income}
-        />
-        <Table.ColumnDefinition
-          header={() => <DataHeader icons={DataHeader.icons} label="Value" type={DataHeader.types.type.DATE} />}
-          cell={({ row }) => row.taxes}
-        />
-        <Table.ColumnDefinition
-          header={() => <DataHeader icons={DataHeader.icons} label="Value" type={DataHeader.types.type.TIME} />}
-          cell={({ row }) => row.taxes}
-        />
-        <Table.ColumnDefinition
-          header={() => <DataHeader icons={DataHeader.icons} label="Value" type={DataHeader.types.type.DATE_TIME} />}
-          cell={({ row }) => row.taxes}
-        />
-      </Table>
-    </Story>
-  );
+  <Story>
+    <Table data={data}>
+      <Table.ColumnDefinition
+        width="150px"
+        header={() => (
+          <DataHeader
+            icons={DataHeader.icons}
+            label="name"
+            type={DataHeader.types.type.TEXT}
+            renderActions={() => <Menu type="name" />}
+          />
+        )}
+        cell="name"
+      />
+      <Table.ColumnDefinition
+        header={() => <DataHeader icons={DataHeader.icons} label="Income" type={DataHeader.types.type.NUMERIC} />}
+        cell={({ row }) => row.income}
+      />
+      <Table.ColumnDefinition
+        header={() => <DataHeader icons={DataHeader.icons} label="Value" type={DataHeader.types.type.DATE} />}
+        cell={({ row }) => row.taxes}
+      />
+      <Table.ColumnDefinition
+        header={() => <DataHeader icons={DataHeader.icons} label="Value" type={DataHeader.types.type.TIME} />}
+        cell={({ row }) => row.taxes}
+      />
+      <Table.ColumnDefinition
+        header={() => <DataHeader icons={DataHeader.icons} label="Value" type={DataHeader.types.type.DATE_TIME} />}
+        cell={({ row }) => row.taxes}
+      />
+    </Table>
+  </Story>
+);
 
 const icons = {
   ...DataHeader.icons,
@@ -78,16 +78,16 @@ const icons = {
 };
 
 export const TypesExample = () => (
-    <Story>
-      <h3>TEXT</h3>
-      <DataHeader icons={DataHeader.icons} label="name" type={DataHeader.types.type.TEXT} />
-      <h3>DATE</h3>
-      <DataHeader icons={DataHeader.icons} label="name" type={DataHeader.types.type.DATE} />
-      <h3>DATE TIME</h3>
-      <DataHeader icons={DataHeader.icons} label="name" type={DataHeader.types.type.DATE_TIME} />
-      <h3>TIME</h3>
-      <DataHeader icons={DataHeader.icons} label="name" type={DataHeader.types.type.TIME} />
-      <h3>CUSTOM</h3>
-      <DataHeader icons={icons} label="name" type={DataHeader.types.type.DATE_TIME} />
-    </Story>
-  );
+  <Story>
+    <h3>TEXT</h3>
+    <DataHeader icons={DataHeader.icons} label="name" type={DataHeader.types.type.TEXT} />
+    <h3>DATE</h3>
+    <DataHeader icons={DataHeader.icons} label="name" type={DataHeader.types.type.DATE} />
+    <h3>DATE TIME</h3>
+    <DataHeader icons={DataHeader.icons} label="name" type={DataHeader.types.type.DATE_TIME} />
+    <h3>TIME</h3>
+    <DataHeader icons={DataHeader.icons} label="name" type={DataHeader.types.type.TIME} />
+    <h3>CUSTOM</h3>
+    <DataHeader icons={icons} label="name" type={DataHeader.types.type.DATE_TIME} />
+  </Story>
+);

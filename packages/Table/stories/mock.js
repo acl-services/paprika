@@ -39,9 +39,9 @@ export default function users(num = 10) {
       signed: "Tue, July 21, 2020, 3:49:08 PM Pacific Daylight Time",
     })
     .map(item => ({
-        ...item,
-        an: Boolean(getRandomInt(0, 2)),
-        name: names[getRandomInt(0, names.length - 1)],
-        subscription: subscriptionTypes[getRandomInt(0, subscriptionTypes.length - 1)],
-      }));
+      ...item,
+      an: Boolean(getRandomInt(0, 2)),
+      name: names[getRandomInt(0, names.length - 1)],
+      subscription: subscriptionTypes[getRandomInt(0, subscriptionTypes.length - 1)],
+    }));
 }

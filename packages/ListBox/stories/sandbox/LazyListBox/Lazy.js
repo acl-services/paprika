@@ -159,11 +159,13 @@ export default function LazyListBox() {
   }
 
   function renderOptions() {
-    const characterOptions = state.characters.map(character => character.data.results.map(result => (
-          <ListBox.Option value={result} key={result.id} isHidden={state.selectedCharacters.includes(result.id)}>
-            <MarvelOption result={result} />
-          </ListBox.Option>
-        )));
+    const characterOptions = state.characters.map(character =>
+      character.data.results.map(result => (
+        <ListBox.Option value={result} key={result.id} isHidden={state.selectedCharacters.includes(result.id)}>
+          <MarvelOption result={result} />
+        </ListBox.Option>
+      ))
+    );
 
     return (
       <>
@@ -188,10 +190,10 @@ export default function LazyListBox() {
       return <ListBox.Option preventDefaultOnSelect>No Results</ListBox.Option>;
 
     const Options = state.searchedCharacters.data.results.map(result => (
-        <ListBox.Option value={result} key={result.id} isHidden={state.selectedCharacters.includes(result.id)}>
-          <MarvelOption result={result} />
-        </ListBox.Option>
-      ));
+      <ListBox.Option value={result} key={result.id} isHidden={state.selectedCharacters.includes(result.id)}>
+        <MarvelOption result={result} />
+      </ListBox.Option>
+    ));
 
     return (
       <>

@@ -55,11 +55,13 @@ export default function App() {
     disabledColumnIds: ["name"],
   });
 
-  const subset = React.useMemo(() => sortedData.filter(item =>
-      searchTerm
-        ? !!Object.values(item).find(value => new RegExp(`${searchTerm}`, "i").test(`${value}`))
-        : true
-    ), [searchTerm, sortedData]);
+  const subset = React.useMemo(
+    () =>
+      sortedData.filter(item =>
+        searchTerm ? !!Object.values(item).find(value => new RegExp(`${searchTerm}`, "i").test(`${value}`)) : true
+      ),
+    [searchTerm, sortedData]
+  );
 
   return (
     <>
@@ -76,16 +78,16 @@ export default function App() {
           <Sort.PopoverContent className="add-a-class-to-the-sort-popover-content-wrapper-like-this" />
 
           {sortedFields.map((field, index) => (
-              <Sort.Field
-                columnId={field.columnId}
-                direction={field.direction}
-                id={field.id}
-                isFirst={index === 0}
-                key={field.id}
-                onChange={onChangeSort}
-                onDelete={onDeleteSort}
-              />
-            ))}
+            <Sort.Field
+              columnId={field.columnId}
+              direction={field.direction}
+              id={field.id}
+              isFirst={index === 0}
+              key={field.id}
+              onChange={onChangeSort}
+              onDelete={onDeleteSort}
+            />
+          ))}
         </Sort>
 
         <ColumnsArrangement orderedColumnIds={orderedColumnIds} {...handlers}>

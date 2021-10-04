@@ -34,9 +34,9 @@ const exampleProps = () => ({
 });
 
 const Showcase = props => (
-    <ExampleStory storyName="CollapsibleText" tagline={ExampleStory.defaultTaglines.showcase}>
-      <CollapsibleText {...props}>{exampleChildren[props.children]}</CollapsibleText>
-    </ExampleStory>
-  );
+  <ExampleStory storyName="CollapsibleText" tagline={ExampleStory.defaultTaglines.showcase}>
+    <CollapsibleText {...props}>{exampleChildren[props.children]}</CollapsibleText>
+  </ExampleStory>
+);
 
 export default () => <Showcase {...exampleProps()} />;

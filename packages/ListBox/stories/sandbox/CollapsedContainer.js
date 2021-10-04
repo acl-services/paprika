@@ -17,10 +17,10 @@ export default function CollapsedContainer() {
           }}
         >
           {characters.antiHeroesRaw.map((item, index) => (
-              <ListBox.Option key={item.label} defaultIsSelected={Boolean(index % 2)}>
-                {item.label}
-              </ListBox.Option>
-            ))}
+            <ListBox.Option key={item.label} defaultIsSelected={Boolean(index % 2)}>
+              {item.label}
+            </ListBox.Option>
+          ))}
         </ListBox>
       </CollapsibleCard.Body>
     </CollapsibleCard>

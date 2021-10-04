@@ -72,14 +72,14 @@ const ExampleStory = () => (
         <OverflowMenu.Item
           isDestructive
           renderConfirmation={onCloseMenu => (
-              <Confirmation
-                buttonSize={confirmationComponentProps().buttonSize}
-                body={confirmationComponentProps().body}
-                confirmLabel={confirmationComponentProps().label}
-                heading={confirmationComponentProps().heading}
-                onConfirm={handleConfirm(onCloseMenu)}
-              />
-            )}
+            <Confirmation
+              buttonSize={confirmationComponentProps().buttonSize}
+              body={confirmationComponentProps().body}
+              confirmLabel={confirmationComponentProps().label}
+              heading={confirmationComponentProps().heading}
+              onConfirm={handleConfirm(onCloseMenu)}
+            />
+          )}
         >
           Delete filter
         </OverflowMenu.Item>

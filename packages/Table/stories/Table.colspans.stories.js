@@ -21,44 +21,38 @@ const data = [
 ];
 
 export const WithColSpan = () => (
-    <Table a11yText="" data={data}>
-      <Table.Headers>
-        <tr>
-          <TH colSpan="3">List of ice creams</TH>
-        </tr>
-      </Table.Headers>
-      <Table.ColumnDefinition header="Name" colSpan="2" cell="name" />
-      <Table.ColumnDefinition
-        cell={({ row }) => `${row.lastName}`}
-      />
-      <Table.ColumnDefinition header="ice cream" cell="iceCream" />
-    </Table>
-  );
+  <Table a11yText="" data={data}>
+    <Table.Headers>
+      <tr>
+        <TH colSpan="3">List of ice creams</TH>
+      </tr>
+    </Table.Headers>
+    <Table.ColumnDefinition header="Name" colSpan="2" cell="name" />
+    <Table.ColumnDefinition cell={({ row }) => `${row.lastName}`} />
+    <Table.ColumnDefinition header="ice cream" cell="iceCream" />
+  </Table>
+);
 
 export const WithoutHeaderPropAndTableHeader = () => (
-    <Table a11yText="" data={data}>
-      <Table.Headers>
-        <tr>
-          <TH colSpan="3">List of ice creams</TH>
-        </tr>
-      </Table.Headers>
-      <Table.ColumnDefinition cell="name" />
-      <Table.ColumnDefinition
-        cell={({ row }) => `${row.lastName}`}
-      />
-      <Table.ColumnDefinition cell="iceCream" />
-    </Table>
-  );
+  <Table a11yText="" data={data}>
+    <Table.Headers>
+      <tr>
+        <TH colSpan="3">List of ice creams</TH>
+      </tr>
+    </Table.Headers>
+    <Table.ColumnDefinition cell="name" />
+    <Table.ColumnDefinition cell={({ row }) => `${row.lastName}`} />
+    <Table.ColumnDefinition cell="iceCream" />
+  </Table>
+);
 
 export const WithoutHeader = () => (
-    <Table a11yText="" data={data}>
-      <Table.ColumnDefinition cell="name" />
-      <Table.ColumnDefinition
-        cell={({ row }) => `${row.lastName}`}
-      />
-      <Table.ColumnDefinition cell="iceCream" />
-    </Table>
-  );
+  <Table a11yText="" data={data}>
+    <Table.ColumnDefinition cell="name" />
+    <Table.ColumnDefinition cell={({ row }) => `${row.lastName}`} />
+    <Table.ColumnDefinition cell="iceCream" />
+  </Table>
+);
 
 storiesOf(`${storyName}`, module)
   .add("Table colSpan", () => <WithColSpan />)

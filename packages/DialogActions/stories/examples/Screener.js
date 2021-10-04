@@ -4,11 +4,11 @@ import { Story } from "storybook/assets/styles/common.styles";
 import DialogActions from "../../src";
 
 const ExampleStory = () => (
-    <Screener>
-      <Story>
-        <DialogActions />
-      </Story>
-    </Screener>
-  );
+  <Screener>
+    <Story>
+      <DialogActions />
+    </Story>
+  </Screener>
+);
 
 export default ExampleStory;

@@ -44,7 +44,8 @@ const ProgressAccordion = props => {
 
   const validChildren = filterChildren(children);
 
-  const getLabel = (label, index) => activeIndex === index ? (
+  const getLabel = (label, index) =>
+    activeIndex === index ? (
       <sc.ActiveItem>
         <sc.ActiveLabel>
           {label}

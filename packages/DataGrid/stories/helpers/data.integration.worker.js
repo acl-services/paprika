@@ -3,9 +3,9 @@ import rawData from "./data.integration";
 
 export function setDataIds() {
   const newData = rawData.map(item => ({
-      key: uuidv4(),
-      ...item,
-    }));
+    key: uuidv4(),
+    ...item,
+  }));
 
   return newData;
 }

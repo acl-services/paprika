@@ -18,7 +18,8 @@ export default function InlineEditingTable(props) {
           // eslint-disable-next-line react/no-array-index-key
           key={index}
           {...child.props}
-          cell={args => typeof width === "undefined" ? (
+          cell={args =>
+            typeof width === "undefined" ? (
               <Editable>
                 <Component {...args} />
               </Editable>
@@ -31,7 +32,8 @@ export default function InlineEditingTable(props) {
                   <Component {...args} />
                 </Editable>
               </div>
-            )}
+            )
+          }
         />
       );
     });

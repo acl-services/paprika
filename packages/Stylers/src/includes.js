@@ -1,9 +1,7 @@
 import { css } from "styled-components";
 import tokens from "@paprika/tokens";
 
-//
-// Layout
-//
+/* Layout */
 
 export const boxSizingStyles = css`
   &,
@@ -20,9 +18,7 @@ export const alignMiddle = css`
   justify-content: center;
 `;
 
-//
-// Typography
-//
+/* Typography */
 
 export const truncateText = css`
   overflow: hidden;
@@ -36,9 +32,7 @@ export const noTruncateText = css`
   white-space: normal;
 `;
 
-//
-// Accessibility
-//
+/* Accessibility */
 
 export const visuallyHidden = css`
   border: 0 !important;
@@ -51,9 +45,10 @@ export const visuallyHidden = css`
   width: 1px !important;
 `;
 
-// Focus Indicators
+/* Focus Indicators */
 
-export const focusRing = (inset = false) => inset === true
+export const focusRing = (inset = false) =>
+  inset === true
     ? css`
         box-shadow: ${tokens.highlight.active.withBorder.insetBoxShadow};
         outline: none;
@@ -63,7 +58,8 @@ export const focusRing = (inset = false) => inset === true
         outline: none;
       `;
 
-focusRing.bordered = (inset = false) => inset === true
+focusRing.bordered = (inset = false) =>
+  inset === true
     ? css`
         border-color: ${tokens.highlight.active.noBorder.borderColor};
         box-shadow: ${tokens.highlight.active.noBorder.insetBoxShadow};
@@ -75,7 +71,8 @@ focusRing.bordered = (inset = false) => inset === true
         outline: none;
       `;
 
-focusRing.subtle = (inset = false) => inset === true
+focusRing.subtle = (inset = false) =>
+  inset === true
     ? css`
         outline: ${tokens.highlight.active.nonInteractive.outline};
         outline-offset: -2px;
@@ -84,9 +81,7 @@ focusRing.subtle = (inset = false) => inset === true
         outline: ${tokens.highlight.active.nonInteractive.outline};
       `;
 
-//
-// Forms
-//
+/* Forms */
 
 export const disabledPlaceholder = css`
   color: ${tokens.color.blackLighten60};
@@ -110,8 +105,8 @@ export const placeholders = css`
     ${placeholder};
   }
 
-  // opacity: 1 is added to fix firefox placeholder text color issue
-  // https://stackoverflow.com/q/19621306/196038
+  /* opacity: 1 is added to fix firefox placeholder text color issue */
+  /* https://stackoverflow.com/q/19621306/196038 */
   &::-moz-placeholder {
     ${placeholder};
     opacity: 1;

@@ -25,17 +25,17 @@ function renderComponent(props = {}) {
           <OverflowMenu.Item onClick={() => {}}>Filter</OverflowMenu.Item>
           <OverflowMenu.Item
             isDestructive
-            renderConfirmation={onCloseMenu => (
-                newConfirmation || (
-                  <Confirmation
-                    body="description"
-                    confirmLabel="Confirm Delete"
-                    onConfirm={handleConfirm}
-                    onClose={handleCloseConfirm(onCloseMenu)}
-                    heading="Delete Button?"
-                  />
-                )
-              )}
+            renderConfirmation={onCloseMenu =>
+              newConfirmation || (
+                <Confirmation
+                  body="description"
+                  confirmLabel="Confirm Delete"
+                  onConfirm={handleConfirm}
+                  onClose={handleCloseConfirm(onCloseMenu)}
+                  heading="Delete Button?"
+                />
+              )
+            }
           >
             Delete
           </OverflowMenu.Item>

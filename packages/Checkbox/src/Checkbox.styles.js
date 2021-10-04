@@ -4,7 +4,8 @@ import { boxSizingStyles, visuallyHidden } from "@paprika/stylers/lib/includes";
 import tokens from "@paprika/tokens";
 import * as types from "./types";
 
-const getLabelLeftPadding = (checkboxSize, hasLabel) => hasLabel ? `${toInt(checkboxSize) + toInt(tokens.space)}px` : checkboxSize;
+const getLabelLeftPadding = (checkboxSize, hasLabel) =>
+  hasLabel ? `${toInt(checkboxSize) + toInt(tokens.space)}px` : checkboxSize;
 
 const smallCheckboxSize = tokens.checkbox.sizeSm;
 const mediumCheckboxSize = tokens.checkbox.sizeMd;
@@ -25,9 +26,9 @@ const styles = {
       left: `${toInt(smallCheckboxSize) / 2}px`,
     },
     labelStyles: hasLabel => ({
-        minHeight: smallCheckboxSize,
-        padding: `0 0 0 ${getLabelLeftPadding(smallCheckboxSize, hasLabel)}`,
-      }),
+      minHeight: smallCheckboxSize,
+      padding: `0 0 0 ${getLabelLeftPadding(smallCheckboxSize, hasLabel)}`,
+    }),
   },
   [types.MEDIUM]: {
     baseFontSize: {
@@ -43,9 +44,9 @@ const styles = {
       left: `${toInt(mediumCheckboxSize) / 2}px`,
     },
     labelStyles: hasLabel => ({
-        minHeight: mediumCheckboxSize,
-        padding: `1px 0 0 ${getLabelLeftPadding(mediumCheckboxSize, hasLabel)}`,
-      }),
+      minHeight: mediumCheckboxSize,
+      padding: `1px 0 0 ${getLabelLeftPadding(mediumCheckboxSize, hasLabel)}`,
+    }),
   },
   [types.LARGE]: {
     baseFontSize: {
@@ -61,9 +62,9 @@ const styles = {
       left: `${toInt(largeCheckboxSize) / 2}px`,
     },
     labelStyles: hasLabel => ({
-        minHeight: largeCheckboxSize,
-        padding: `3px 0 0 ${getLabelLeftPadding(largeCheckboxSize, hasLabel)}`,
-      }),
+      minHeight: largeCheckboxSize,
+      padding: `3px 0 0 ${getLabelLeftPadding(largeCheckboxSize, hasLabel)}`,
+    }),
   },
 };
 

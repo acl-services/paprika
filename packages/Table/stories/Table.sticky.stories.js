@@ -24,10 +24,10 @@ const cellRenders = {
   index: () => ({ rowIndex }) => <div style={{ width: "40px" }}>{rowIndex}</div>,
   name: () => ({ row }) => <div style={{ width: "400px" }}>{row.name}</div>,
   an: () => ({ row }) => (
-      <div style={{ width: "40px" }}>
-        <input type="checkbox" defaultChecked={row.an} />
-      </div>
-    ),
+    <div style={{ width: "40px" }}>
+      <input type="checkbox" defaultChecked={row.an} />
+    </div>
+  ),
 };
 
 const columnDefinitionProps = {

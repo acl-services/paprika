@@ -25,59 +25,59 @@ function Menu() {
 }
 
 export const Basic = () => (
-    <Table data={data}>
-      <Table.ColumnDefinition width="150px" header={() => <DataHeader label="name" />} cell="name" />
-    </Table>
-  );
+  <Table data={data}>
+    <Table.ColumnDefinition width="150px" header={() => <DataHeader label="name" />} cell="name" />
+  </Table>
+);
 
 export const WithRenderActions = () => (
-    <Table data={data}>
-      <Table.ColumnDefinition
-        width="150px"
-        header={() => <DataHeader label="name" renderActions={() => <Menu />} />}
-        cell="name"
-      />
-    </Table>
-  );
+  <Table data={data}>
+    <Table.ColumnDefinition
+      width="150px"
+      header={() => <DataHeader label="name" renderActions={() => <Menu />} />}
+      cell="name"
+    />
+  </Table>
+);
 
 export const WithTypes = () => (
-    <Table data={data}>
-      <Table.ColumnDefinition
-        header={() => <DataHeader label="Value" type={DataHeader.types.type.TEXT} icons={DataHeader.icons} />}
-        cell="name"
-      />
-      <Table.ColumnDefinition
-        header={() => <DataHeader label="Value" type={DataHeader.types.type.NUMERIC} icons={DataHeader.icons} />}
-        cell="name"
-      />
-      <Table.ColumnDefinition
-        header={() => <DataHeader label="Value" type={DataHeader.types.type.DATA} icons={DataHeader.icons} />}
-        cell="income"
-      />
-      <Table.ColumnDefinition
-        header={() => <DataHeader label="Value" type={DataHeader.types.type.TIME} icons={DataHeader.icons} />}
-        cell="taxes"
-      />
-      <Table.ColumnDefinition
-        header={() => <DataHeader label="Value" type={DataHeader.types.type.DATE_TIME} icons={DataHeader.icons} />}
-        cell="income"
-      />
-    </Table>
-  );
+  <Table data={data}>
+    <Table.ColumnDefinition
+      header={() => <DataHeader label="Value" type={DataHeader.types.type.TEXT} icons={DataHeader.icons} />}
+      cell="name"
+    />
+    <Table.ColumnDefinition
+      header={() => <DataHeader label="Value" type={DataHeader.types.type.NUMERIC} icons={DataHeader.icons} />}
+      cell="name"
+    />
+    <Table.ColumnDefinition
+      header={() => <DataHeader label="Value" type={DataHeader.types.type.DATA} icons={DataHeader.icons} />}
+      cell="income"
+    />
+    <Table.ColumnDefinition
+      header={() => <DataHeader label="Value" type={DataHeader.types.type.TIME} icons={DataHeader.icons} />}
+      cell="taxes"
+    />
+    <Table.ColumnDefinition
+      header={() => <DataHeader label="Value" type={DataHeader.types.type.DATE_TIME} icons={DataHeader.icons} />}
+      cell="income"
+    />
+  </Table>
+);
 
 export const WithBackgroundColor = () => (
-    <Table data={data}>
-      <Table.ColumnDefinition
-        header={() => <DataHeader backgroundColor="magenta" color="white" label="name" />}
-        cell="name"
-      />
-      <Table.ColumnDefinition
-        header={() => <DataHeader backgroundColor="cyan" label="Income" />}
-        cell={({ row }) => row.income}
-      />
-      <Table.ColumnDefinition
-        header={() => <DataHeader backgroundColor="black" color="white" label="Value" />}
-        cell={({ row }) => row.taxes}
-      />
-    </Table>
-  );
+  <Table data={data}>
+    <Table.ColumnDefinition
+      header={() => <DataHeader backgroundColor="magenta" color="white" label="name" />}
+      cell="name"
+    />
+    <Table.ColumnDefinition
+      header={() => <DataHeader backgroundColor="cyan" label="Income" />}
+      cell={({ row }) => row.income}
+    />
+    <Table.ColumnDefinition
+      header={() => <DataHeader backgroundColor="black" color="white" label="Value" />}
+      cell={({ row }) => row.taxes}
+    />
+  </Table>
+);

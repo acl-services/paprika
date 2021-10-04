@@ -5,20 +5,20 @@ import { storyStyles } from "../Sortable.stories.helpers";
 import Sortable from "../../src";
 
 const Example = () => (
-    <Story css={storyStyles}>
-      <Sortable onChange={() => {}} className="my-custom-sortable-classname">
-        <Sortable.Item
-          sortId="1"
-          className="my-custom-sortable-item-classname"
-          isDragDisabled
-          handleElement={<LockIcon />}
-        >
-          Disabled Item One
-        </Sortable.Item>
-        <Sortable.Item sortId="2">Item Two</Sortable.Item>
-        <Sortable.Item sortId="3">Item Three</Sortable.Item>
-      </Sortable>
-    </Story>
-  );
+  <Story css={storyStyles}>
+    <Sortable onChange={() => {}} className="my-custom-sortable-classname">
+      <Sortable.Item
+        sortId="1"
+        className="my-custom-sortable-item-classname"
+        isDragDisabled
+        handleElement={<LockIcon />}
+      >
+        Disabled Item One
+      </Sortable.Item>
+      <Sortable.Item sortId="2">Item Two</Sortable.Item>
+      <Sortable.Item sortId="3">Item Three</Sortable.Item>
+    </Sortable>
+  </Story>
+);
 
 export default Example;

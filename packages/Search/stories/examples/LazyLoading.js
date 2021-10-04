@@ -33,10 +33,10 @@ export default function LazyLoading() {
       setFilterData(() => {
         refCounter.current += 1;
         return [...response.data.results].map(item => ({
-            label: item.name,
-            value: item.id,
-            ...item,
-          }));
+          label: item.name,
+          value: item.id,
+          ...item,
+        }));
       });
     }
   }
@@ -68,10 +68,10 @@ export default function LazyLoading() {
     <div style={{ padding: "32px" }}>
       <Search onChangeSearch={handleChangeSearchDebounce} onSelected={handleSelected}>
         {filterData.map(option => (
-            <Search.Option value={option.label} key={option.id} label={option.label}>
-              {option.label}
-            </Search.Option>
-          ))}
+          <Search.Option value={option.label} key={option.id} label={option.label}>
+            {option.label}
+          </Search.Option>
+        ))}
       </Search>
       {selection ? <span>Your selection: {selection}</span> : null}
     </div>

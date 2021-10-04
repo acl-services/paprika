@@ -92,12 +92,19 @@ const DataGrid = React.forwardRef((props, ref) => {
     columnCount = ColumnDefinitions.length;
   }
 
-  const columnHeadersA11yText = React.useMemo(() => ColumnDefinitions.map(ColumnDefinition => {
-      const { header, headerA11yText } = ColumnDefinition.props;
-      return typeof header === "function" ? headerA11yText && headerA11yText() : header;
-    }), [ColumnDefinitions]);
+  const columnHeadersA11yText = React.useMemo(
+    () =>
+      ColumnDefinitions.map(ColumnDefinition => {
+        const { header, headerA11yText } = ColumnDefinition.props;
+        return typeof header === "function" ? headerA11yText && headerA11yText() : header;
+      }),
+    [ColumnDefinitions]
+  );
 
-  const calculatedTableHeight = React.useMemo(() => rowHeight * rowCount > height ? height : rowHeight * rowCount + scrollBarWidth, [height, rowCount, rowHeight, scrollBarWidth]);
+  const calculatedTableHeight = React.useMemo(
+    () => (rowHeight * rowCount > height ? height : rowHeight * rowCount + scrollBarWidth),
+    [height, rowCount, rowHeight, scrollBarWidth]
+  );
 
   const calculatedTableWidth = React.useCallback(() => {
     let width = 0;
@@ -113,7 +120,9 @@ const DataGrid = React.forwardRef((props, ref) => {
   const gridWidth = width === null ? calculatedTableWidth() : width;
   const stickyColumnsIndexes = React.useMemo(
     () =>
-      ColumnDefinitions.map((ColumnDefinition, index) => ColumnDefinition.props.isSticky ? index : null).filter(chunk => chunk !== null),
+      ColumnDefinitions.map((ColumnDefinition, index) => (ColumnDefinition.props.isSticky ? index : null)).filter(
+        chunk => chunk !== null
+      ),
     [ColumnDefinitions]
   );
 
@@ -146,7 +155,8 @@ const DataGrid = React.forwardRef((props, ref) => {
   });
 
   const a11yTextMessage = React.useCallback(
-    (value, column, rowIndex) => i18n.t("dataGrid.a11yTextMessage", {
+    (value, column, rowIndex) =>
+      i18n.t("dataGrid.a11yTextMessage", {
         value,
         rowIndex,
         columnIndex: column,
@@ -251,15 +261,15 @@ const DataGrid = React.forwardRef((props, ref) => {
   React.useImperativeHandle(
     ref,
     () => ({
-        focus: () => {
-          restoreHighlightFocus();
-        },
-        getVisibleIndexes: () => refVisibleIndexes.current,
-        getVisibleRows: () => {
-          const { start, stop } = refVisibleIndexes.current;
-          return data.slice(start, stop);
-        },
-      }),
+      focus: () => {
+        restoreHighlightFocus();
+      },
+      getVisibleIndexes: () => refVisibleIndexes.current,
+      getVisibleRows: () => {
+        const { start, stop } = refVisibleIndexes.current;
+        return data.slice(start, stop);
+      },
+    }),
     [data, restoreHighlightFocus]
   );
 
@@ -362,12 +372,13 @@ const DataGrid = React.forwardRef((props, ref) => {
 
       const nextRowIndex = event.detail.rowIndex | 0; // eslint-disable-line
       const nextColumnIndex = event.detail.columnIndex | 0; // eslint-disable-line
-      const getElementFromDom = (gridId, columnIndex, rowIndex) => () => document.querySelector(`[data-pka-cell-key="${gridId}.${columnIndex}.${rowIndex}"]`);
+      const getElementFromDom = (gridId, columnIndex, rowIndex) => () =>
+        document.querySelector(`[data-pka-cell-key="${gridId}.${columnIndex}.${rowIndex}"]`);
       const attributes = (columnIndex, rowIndex, gridId) => ({
-          columnIndex,
-          rowIndex,
-          gridId,
-        });
+        columnIndex,
+        rowIndex,
+        gridId,
+      });
 
       const nextRef = window.paprika.dataGridRef[key] || null;
       const prevRef = window.paprika.dataGridRef[prevKey] || null;

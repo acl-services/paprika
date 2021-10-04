@@ -40,9 +40,9 @@ function zIsValid(level) {
   return /^-1$|^[0-7]$|^inherit$|^initial$|^auto$/.test(level);
 }
 
-export const z = level => zIsValid(level) ? `z-index: ${level};` : `z-index: 1;`;
+export const z = level => (zIsValid(level) ? `z-index: ${level};` : `z-index: 1;`);
 
-export const zValue = level => zIsValid(level) ? level : 1;
+export const zValue = level => (zIsValid(level) ? level : 1);
 
 //
 // Color

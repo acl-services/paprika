@@ -31,18 +31,18 @@ export default function SubcomponentsExample() {
         <ListBox>
           <ListBox.Trigger>
             {(selected, options, { dispatch, types, refTrigger, propsForTrigger, isOpen }) => (
-                <Button
-                  type="button"
-                  {...propsForTrigger()}
-                  ref={refTrigger}
-                  onClick={() => {
-                    dispatch({ type: types.togglePopover });
-                  }}
-                >
-                  {selected !== null ? options[selected].label : "Pick a superhero "}
-                  {isOpen ? "close" : "open"}
-                </Button>
-              )}
+              <Button
+                type="button"
+                {...propsForTrigger()}
+                ref={refTrigger}
+                onClick={() => {
+                  dispatch({ type: types.togglePopover });
+                }}
+              >
+                {selected !== null ? options[selected].label : "Pick a superhero "}
+                {isOpen ? "close" : "open"}
+              </Button>
+            )}
           </ListBox.Trigger>
           {options.map(option => (
             <ListBox.Option key={option}>{option}</ListBox.Option>
@@ -73,10 +73,10 @@ export default function SubcomponentsExample() {
         <ListBox>
           <ListBox.Box className="my-custom-className" style={{ border: "1px solid red" }} />
           {characters.antiHeroesRaw.map((item, index) => (
-              <ListBox.Option key={item.label} defaultIsSelected={index === 4}>
-                {item.label}
-              </ListBox.Option>
-            ))}
+            <ListBox.Option key={item.label} defaultIsSelected={index === 4}>
+              {item.label}
+            </ListBox.Option>
+          ))}
         </ListBox>
       </CodeViewer>
     </>

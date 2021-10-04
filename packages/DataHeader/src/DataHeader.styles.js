@@ -46,18 +46,23 @@ export const Header = styled.div(({ $color, $backgroundColor, refHeader }) => {
   `;
 });
 
-export const Label = styled.div(() => css`
+export const Label = styled.div(
+  () => css`
     ${stylers.truncateText}
     flex-basis: 100%;
     flex-grow: 1;
-  `);
+  `
+);
 
-export const Icon = styled.div(() => css`
+export const Icon = styled.div(
+  () => css`
     color: ${tokens.color.blackLighten20};
     padding-right: ${tokens.spaceSm};
-  `);
+  `
+);
 
-export const Info = styled.div(() => css`
+export const Info = styled.div(
+  () => css`
     align-items: center;
     display: flex;
     flex-grow: 1;
@@ -71,4 +76,5 @@ export const Info = styled.div(() => css`
     & + [data-pka-anchor="popover"] {
       display: block;
     }
-  `);
+  `
+);

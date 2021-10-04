@@ -34,14 +34,14 @@ function GuardedInput() {
 }
 
 const WithFormStory = () => (
-    <Story>
-      <Guard.Supervisor>
-        <GuardedInput />
-      </Guard.Supervisor>
-      <p>
-        <Small>In this example, a confirmation dialog will be triggered if you try to close a dirty input.</Small>
-      </p>
-    </Story>
-  );
+  <Story>
+    <Guard.Supervisor>
+      <GuardedInput />
+    </Guard.Supervisor>
+    <p>
+      <Small>In this example, a confirmation dialog will be triggered if you try to close a dirty input.</Small>
+    </p>
+  </Story>
+);
 
 export default WithFormStory;

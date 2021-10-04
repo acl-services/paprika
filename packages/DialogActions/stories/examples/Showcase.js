@@ -22,11 +22,11 @@ const DialogActionsProps = () => ({
 });
 
 const Showcase = props => (
-    <ExampleStory storyName="DialogActions" tagline={ExampleStory.defaultTaglines.showcase}>
-      <L10n locale="en">
-        <DialogActions {...props} />
-      </L10n>
-    </ExampleStory>
-  );
+  <ExampleStory storyName="DialogActions" tagline={ExampleStory.defaultTaglines.showcase}>
+    <L10n locale="en">
+      <DialogActions {...props} />
+    </L10n>
+  </ExampleStory>
+);
 
 export default () => <Showcase {...DialogActionsProps()} />;

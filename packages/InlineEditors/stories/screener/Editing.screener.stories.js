@@ -8,10 +8,10 @@ import {
 } from "../examples/ListBox";
 
 export const ForScreener = () => (
-    <>
-      <ListBoxSingleStory />
-      <ListBoxMultipleWithError />
-      <ListBoxMultipleWithLoading />
-      <ListBoxMultipleWithSuccess />
-    </>
-  );
+  <>
+    <ListBoxSingleStory />
+    <ListBoxMultipleWithError />
+    <ListBoxMultipleWithLoading />
+    <ListBoxMultipleWithSuccess />
+  </>
+);

@@ -8,15 +8,15 @@ const cellTypes = ["an", "name", "status", "role", "subscription", "reportsRole"
 
 const cellRenders = {
   name: () => ({ row }) => (
+    <div>
+      <div>{row.name}</div>
       <div>
-        <div>{row.name}</div>
-        <div>
-          <a href="https://wegalvanize.com" rel="noreferrer" target="_blank">
-            Some link
-          </a>
-        </div>
+        <a href="https://wegalvanize.com" rel="noreferrer" target="_blank">
+          Some link
+        </a>
       </div>
-    ),
+    </div>
+  ),
   an: () => ({ row }) => <input type="checkbox" defaultChecked={row.an} />,
   subscription: ({ setData }) => props => {
     const { setStatus, setOptimisticValue, statusType } = useTable({

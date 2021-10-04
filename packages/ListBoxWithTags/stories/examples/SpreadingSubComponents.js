@@ -18,11 +18,13 @@ export default function App() {
       <ListBoxWithTags.Content data-test-anchor="ListBoxWithTags.Content-test" />
       <ListBoxWithTags.Filter data-test-anchor="ListBoxWithTags.Filter-test" />
       <ListBoxWithTags.Trigger data-pka-anchor="list-trigger" data-test-anchor="ListBoxWithTags.Trigger-test" />
-      {filteredData.map(option => !isSelected(option.label) ? (
+      {filteredData.map(option =>
+        !isSelected(option.label) ? (
           <ListBoxWithTags.Option value={option.label} key={option.label} label={option.label}>
             {option.label}
           </ListBoxWithTags.Option>
-        ) : null)}
+        ) : null
+      )}
     </ListBoxWithTags>
   );
 }

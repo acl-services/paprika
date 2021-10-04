@@ -156,60 +156,60 @@ storiesOf(`${storyName}/Examples`, module)
     </Story>
   ))
   .add("onRequest callback", () => (
-      <Story>
-        <p>Override how files are uploaded.</p>
-        <Uploader
-          onCompleted={files => console.log("on finished:", files)}
-          endpoint="http://localhost:9000/upload.php"
-          onChange={files => {
-            console.log("Selected files:", files);
-          }}
-          onRequest={({ file, onProgress, onEnd, formData }) => {
-            file.request
-              .send(formData)
-              .on("progress", onProgress)
-              .end(onEnd);
+    <Story>
+      <p>Override how files are uploaded.</p>
+      <Uploader
+        onCompleted={files => console.log("on finished:", files)}
+        endpoint="http://localhost:9000/upload.php"
+        onChange={files => {
+          console.log("Selected files:", files);
+        }}
+        onRequest={({ file, onProgress, onEnd, formData }) => {
+          file.request
+            .send(formData)
+            .on("progress", onProgress)
+            .end(onEnd);
 
-            /**
-             * With this approach you could use you own process to upload
-             * each file read superagent API for more info
-             */
+          /**
+           * With this approach you could use you own process to upload
+           * each file read superagent API for more info
+           */
 
-            // file.request
-            //   .get("https://api.example.com:4001/")
-            //   .auth('you_token', { type: 'bearer' })
-            //   .withCredentials()
-            //   .on("progress", onProgress)
-            //   .end(onEnd);
-          }}
-        >
-          <Uploader.DropZone />
-          <Uploader.FileList />
-        </Uploader>
-      </Story>
-    ))
+          // file.request
+          //   .get("https://api.example.com:4001/")
+          //   .auth('you_token', { type: 'bearer' })
+          //   .withCredentials()
+          //   .on("progress", onProgress)
+          //   .end(onEnd);
+        }}
+      >
+        <Uploader.DropZone />
+        <Uploader.FileList />
+      </Uploader>
+    </Story>
+  ))
   .add("onCancel prop callback", () => (
-      <Story>
-        <p>Check the console to see what is returned when you cancel an upload.</p>
-        <Uploader
-          onCompleted={files => console.log("on finished:", files)}
-          endpoint="http://localhost:9000/upload.php"
-          onCancel={file => {
-            console.log("onCancel:", file);
-          }}
-        >
-          <Uploader.DropZone />
-          <Uploader.FileList />
-        </Uploader>
-      </Story>
-    ))
+    <Story>
+      <p>Check the console to see what is returned when you cancel an upload.</p>
+      <Uploader
+        onCompleted={files => console.log("on finished:", files)}
+        endpoint="http://localhost:9000/upload.php"
+        onCancel={file => {
+          console.log("onCancel:", file);
+        }}
+      >
+        <Uploader.DropZone />
+        <Uploader.FileList />
+      </Uploader>
+    </Story>
+  ))
   .add("extended input props", () => (
-      <Story>
-        <p>Check the inspector to see the attributes on the input element</p>
-        <Uploader endpoint="http://localhost:9000/upload.php">
-          <Uploader.DropZone />
-          <Uploader.FileList />
-          <Uploader.Input name="entry-file" className="MyClassName" data-qa-anchor="my-qa-anchor" />
-        </Uploader>
-      </Story>
-    ));
+    <Story>
+      <p>Check the inspector to see the attributes on the input element</p>
+      <Uploader endpoint="http://localhost:9000/upload.php">
+        <Uploader.DropZone />
+        <Uploader.FileList />
+        <Uploader.Input name="entry-file" className="MyClassName" data-qa-anchor="my-qa-anchor" />
+      </Uploader>
+    </Story>
+  ));

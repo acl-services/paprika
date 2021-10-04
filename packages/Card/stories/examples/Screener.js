@@ -5,13 +5,13 @@ import DeluxeCard from "./DeluxeCard";
 import MultipleCard from "./MultipleCard";
 
 const ExampleStory = () => (
-    <Story>
-      <BasicCard />
-      <Rule />
-      <DeluxeCard />
-      <Rule />
-      <MultipleCard />
-    </Story>
-  );
+  <Story>
+    <BasicCard />
+    <Rule />
+    <DeluxeCard />
+    <Rule />
+    <MultipleCard />
+  </Story>
+);
 
 export default ExampleStory;
