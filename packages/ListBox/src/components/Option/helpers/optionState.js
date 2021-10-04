@@ -33,7 +33,8 @@ export function getDataOptions(children) {
   let index = 0;
 
   React.Children.toArray(children).forEach(child => {
-    if (child.type.type && isWhiteListed(child.type.type.displayName)) {
+    const type = child.type.type || child.type;
+    if (type && isWhiteListed(type.displayName)) {
       const option = createOption({ index, child, groupId: child.props.groupId });
       options[index] = option;
       optionsIndex[option.id] = index;

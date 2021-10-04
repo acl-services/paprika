@@ -8,7 +8,7 @@ function Options(props) {
   const onChangeContext = React.useContext(OnChangeContext);
 
   const memoizedOnClickHandler = React.useCallback(
-    ({ event, onClick, index }) => {
+    ({ event, isDisabled, onClick, index }) => {
       const clickOptionState = {
         options: state.options,
         hasFilter: state.hasFilter,
@@ -16,7 +16,7 @@ function Options(props) {
         refListBox: state.refListBox,
         refListContainer: state.refListBoxContainer,
       };
-      handleClickOption({ event, onClick, index, state: clickOptionState, dispatch, onChangeContext });
+      handleClickOption({ event, onClick, index, isDisabled, state: clickOptionState, dispatch, onChangeContext });
     },
     [
       state.options,
@@ -34,9 +34,11 @@ function Options(props) {
   return React.Children.map(children, child => {
     if (child === null) return null;
 
-    const { displayName = null } = child.type.type;
+    const type = child.type.type || child.type;
 
-    if (child.type.type && isWhiteListed(displayName)) {
+    const { displayName = null } = type;
+
+    if (type && isWhiteListed(displayName)) {
       index += 1;
       const isSelected = isOptionSelected(state, index);
       if (typeof state.options[index] === "undefined" || !isOptionVisible(state, index)) {

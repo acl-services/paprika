@@ -217,7 +217,7 @@ export const handleClickOption = ({ event, onClick, index, isDisabled, state, di
   const focusListBoxContentIfHasNotFilter =
     refListBox.current.contains(event.target) && document.activeElement === document.body && !hasFilter;
 
-  if (focusListBoxContentIfHasNotFilter) {
+  if (focusListBoxContentIfHasNotFilter && refListBoxContainer?.current) {
     refListBoxContainer.current.focus();
   }
 
