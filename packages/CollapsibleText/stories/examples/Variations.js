@@ -4,8 +4,7 @@ import ExampleStory from "storybook/components/ExampleStory";
 import StoryHeading from "storybook/components/StoryHeading";
 import CollapsibleText from "../../src";
 
-const Variations = () => {
-  return (
+const Variations = () => (
     <ExampleStory storyName="CollapsibleText" tagline={ExampleStory.defaultTaglines.variations}>
       <Gap.Small />
       <StoryHeading level={2}>Short</StoryHeading>
@@ -76,6 +75,5 @@ const Variations = () => {
       </CollapsibleText>
     </ExampleStory>
   );
-};
 
 export default Variations;

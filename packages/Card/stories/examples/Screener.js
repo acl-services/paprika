@@ -4,8 +4,7 @@ import BasicCard from "./BasicCard";
 import DeluxeCard from "./DeluxeCard";
 import MultipleCard from "./MultipleCard";
 
-const ExampleStory = () => {
-  return (
+const ExampleStory = () => (
     <Story>
       <BasicCard />
       <Rule />
@@ -14,6 +13,5 @@ const ExampleStory = () => {
       <MultipleCard />
     </Story>
   );
-};
 
 export default ExampleStory;

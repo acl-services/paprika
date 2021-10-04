@@ -9,8 +9,7 @@ const propKnobs = () => ({
   children: text("children", "Response body."),
 });
 
-const ExampleStory = () => {
-  return (
+const ExampleStory = () => (
     <AccordionStory>
       <ProgressAccordion.Responses>
         <ProgressAccordion.Responses.Item {...propKnobs()} />
@@ -21,6 +20,5 @@ const ExampleStory = () => {
       </ProgressAccordion.Responses>
     </AccordionStory>
   );
-};
 
 export default () => <ExampleStory />;

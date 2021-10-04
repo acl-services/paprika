@@ -16,13 +16,11 @@ export const Trigger = () => {
   return (
     <ListBox>
       <ListBox.Trigger>
-        {(selected, options, { dispatch, types, refTrigger, propsForTrigger }) => {
-          return (
+        {(selected, options, { dispatch, types, refTrigger, propsForTrigger }) => (
             <Button {...propsForTrigger()} onClick={togglePopover(dispatch, types)} ref={refTrigger}>
               Choose your character
             </Button>
-          );
-        }}
+          )}
       </ListBox.Trigger>
       {renderOptions()}
     </ListBox>

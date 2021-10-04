@@ -24,16 +24,13 @@ function Menu() {
   );
 }
 
-export const Basic = () => {
-  return (
+export const Basic = () => (
     <Table data={data}>
       <Table.ColumnDefinition width="150px" header={() => <DataHeader label="name" />} cell="name" />
     </Table>
   );
-};
 
-export const WithRenderActions = () => {
-  return (
+export const WithRenderActions = () => (
     <Table data={data}>
       <Table.ColumnDefinition
         width="150px"
@@ -42,10 +39,8 @@ export const WithRenderActions = () => {
       />
     </Table>
   );
-};
 
-export const WithTypes = () => {
-  return (
+export const WithTypes = () => (
     <Table data={data}>
       <Table.ColumnDefinition
         header={() => <DataHeader label="Value" type={DataHeader.types.type.TEXT} icons={DataHeader.icons} />}
@@ -69,10 +64,8 @@ export const WithTypes = () => {
       />
     </Table>
   );
-};
 
-export const WithBackgroundColor = () => {
-  return (
+export const WithBackgroundColor = () => (
     <Table data={data}>
       <Table.ColumnDefinition
         header={() => <DataHeader backgroundColor="magenta" color="white" label="name" />}
@@ -88,4 +81,3 @@ export const WithBackgroundColor = () => {
       />
     </Table>
   );
-};

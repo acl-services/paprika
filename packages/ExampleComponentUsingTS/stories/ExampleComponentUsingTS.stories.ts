@@ -1,7 +1,7 @@
-import React from "react";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { withKnobs } from "@storybook/addon-knobs";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { storiesOf } from "@storybook/react";
-// @ts-ignore
 import { getStoryName } from "storybook/storyTree";
 import Showcase from "./examples/Showcase";
 

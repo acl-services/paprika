@@ -56,7 +56,7 @@ export default function Hooks() {
   const filterItemProps = getFilterItemProps();
 
   return (
-    <React.Fragment>
+    <>
       <Filter
         {...filterProps}
         columns={columnsSettings}
@@ -78,6 +78,6 @@ export default function Hooks() {
         ))}
       </Filter>
       <p>You would render filtered results here via `filteredData`</p>
-    </React.Fragment>
+    </>
   );
 }

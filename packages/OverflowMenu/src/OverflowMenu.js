@@ -155,18 +155,18 @@ const OverflowMenu = React.forwardRef((props, ref) => {
     };
   };
 
-  const renderTrigger = () => {
+  const renderTrigger = () => 
     // wrapping the returned item in a function to avoid needing to tab twice
     // https://github.com/acl-services/paprika/issues/126
-    return () =>
+     () =>
       React.cloneElement(Trigger, {
         isOpen: getIsOpenValue(),
         onOpenMenu: handleOpenMenu,
         triggerRef,
         menuRefId: menuId,
         id: triggerId,
-      });
-  };
+      })
+  ;
 
   const extractRenderConfirmation = () => {
     extractedChildren.forEach(child => {

@@ -38,12 +38,10 @@ export const GenericTrigger = styled(Button)(
   `
 );
 
-export const getGenericTriggerIcon = Icon => {
-  return styled(Icon)`
+export const getGenericTriggerIcon = Icon => styled(Icon)`
     font-size: 1.25em;
     padding-right: ${tokens.spaceSm};
   `;
-};
 
 export const GenericNoAppliedPlaceholder = styled.div`
   color: ${tokens.placeholder.color};

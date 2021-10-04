@@ -10,8 +10,7 @@ const heading = "COVID-19 Aggregate Regulatory Feeds";
 const metadata =
   "During the COVID-19 pandemic, Health Canada is working closely with domestic and international partners to anticipate and meet Canadian's health product needs.";
 
-const HeaderLayoutStory = () => {
-  return (
+const HeaderLayoutStory = () => (
     <Story>
       <StoryHeading level={1}>HeaderLayout</StoryHeading>
       <Tagline>
@@ -57,6 +56,5 @@ const HeaderLayoutStory = () => {
       </HeaderLayout>
     </Story>
   );
-};
 
 export default () => <HeaderLayoutStory />;

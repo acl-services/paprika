@@ -10,8 +10,7 @@ const screenerScript = new Steps()
   .snapshot("Expanded")
   .end();
 
-const ExampleStory = () => {
-  return (
+const ExampleStory = () => (
     <Screener steps={screenerScript}>
       <Story>
         <CollapsibleText>Lorem hipsum raw denim listicle mixtape.</CollapsibleText>
@@ -47,6 +46,5 @@ const ExampleStory = () => {
       </Story>
     </Screener>
   );
-};
 
 export default ExampleStory;

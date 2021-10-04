@@ -28,8 +28,7 @@ function Lipsum() {
   );
 }
 
-const RealWorldStory = () => {
-  return (
+const RealWorldStory = () => (
     <Story>
       <StoryHeading level={1}>Real-world Examples</StoryHeading>
       <Tagline>These examples demonstrate how the CollapsibleCard will really be used in the real world.</Tagline>
@@ -187,6 +186,5 @@ const RealWorldStory = () => {
       <RealWorldTabsStory />
     </Story>
   );
-};
 
 export default RealWorldStory;

@@ -74,17 +74,17 @@ const Confirmation = props => {
   const { "Confirmation.TriggerButton": TriggerButton } = extractChildren(children, ["Confirmation.TriggerButton"]);
   const ContentProps = extractChildrenProps(children, ConfirmationContentPropsCollector);
 
-  const renderTrigger = () => {
+  const renderTrigger = () => 
     // wrapping the returned item in a function to avoid wrapping children in
     // a RawButton and needing to tab twice
     // https://github.com/acl-services/paprika/issues/126
-    return () =>
+     () =>
       React.cloneElement(TriggerButton, {
         isConfirmOpen,
         onOpenConfirm: handleOpenConfirm,
         triggerRef,
-      });
-  };
+      })
+  ;
 
   const popoverContent = (
     <Popover.Content {...ContentProps}>

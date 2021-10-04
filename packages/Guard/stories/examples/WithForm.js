@@ -10,7 +10,7 @@ function GuardedInput() {
   const isDirty = value !== "";
 
   return (
-    <React.Fragment>
+    <>
       <button
         type="button"
         onClick={() =>
@@ -29,12 +29,11 @@ function GuardedInput() {
           <p>{isDirty ? "Form is dirty. Now, try to hide the input!" : null}</p>
         </div>
       ) : null}
-    </React.Fragment>
+    </>
   );
 }
 
-const WithFormStory = () => {
-  return (
+const WithFormStory = () => (
     <Story>
       <Guard.Supervisor>
         <GuardedInput />
@@ -44,6 +43,5 @@ const WithFormStory = () => {
       </p>
     </Story>
   );
-};
 
 export default WithFormStory;

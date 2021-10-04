@@ -4,8 +4,7 @@ import Icon from "@paprika/icon/lib/Calendar";
 import Card from "../../src";
 import Avatar from "../../src/components/Avatar";
 
-export default () => {
-  return (
+export default () => (
     <Story style={{ width: "312px" }}>
       <Card size={Card.types.size.SMALL}>
         <Card.Header>
@@ -20,4 +19,3 @@ export default () => {
       </Card>
     </Story>
   );
-};

@@ -2,8 +2,7 @@ import React from "react";
 import { Story, Small } from "storybook/assets/styles/common.styles";
 import Guard from "../../src";
 
-const BasicStory = () => {
-  return (
+const BasicStory = () => (
     <Story>
       <Guard.Supervisor>
         <Guard.Connector isDirty />
@@ -19,6 +18,5 @@ const BasicStory = () => {
       </p>
     </Story>
   );
-};
 
 export default BasicStory;

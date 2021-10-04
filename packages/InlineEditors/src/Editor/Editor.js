@@ -10,12 +10,10 @@ import * as sc from "./Editor.styles";
 import { status as statusTypes } from "../types";
 
 // eslint-disable-next-line react/prop-types
-const Tooltip = ({ Icon = null, message }) => {
-  return (
+const Tooltip = ({ Icon = null, message }) => (
     <Popover isEager>
       <Popover.Trigger>
-        {(handler, a11yAttributes) => {
-          return Icon ? (
+        {(handler, a11yAttributes) => Icon ? (
             <Icon
               onMouseOver={handler}
               onMouseOut={handler}
@@ -26,8 +24,7 @@ const Tooltip = ({ Icon = null, message }) => {
               role="img"
               {...a11yAttributes}
             />
-          ) : null;
-        }}
+          ) : null}
       </Popover.Trigger>
       <Popover.Content>
         <Popover.Card>{message}</Popover.Card>
@@ -35,7 +32,6 @@ const Tooltip = ({ Icon = null, message }) => {
       <Popover.Tip />
     </Popover>
   );
-};
 
 const Editor = React.forwardRef((props, ref) => {
   const { isEditing, onClick, status, optimisticValue, onSuccessAnimationEnd, messageError } = props;
@@ -82,14 +78,10 @@ const Editor = React.forwardRef((props, ref) => {
   );
 });
 
-Editor.Value = () => {
-  return <></>;
-};
+Editor.Value = () => <></>;
 Editor.Value.displayName = "Editor.Value";
 
-Editor.Edit = () => {
-  return <></>;
-};
+Editor.Edit = () => <></>;
 
 Editor.Edit.displayName = "Editor.Edit";
 Editor.types = { status: statusTypes };

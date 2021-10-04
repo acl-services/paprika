@@ -4,8 +4,7 @@ import * as helpers from "../Sortable.stories.helpers";
 import Sortable from "../../src";
 import "./Overflowing.scss";
 
-const Example = () => {
-  return (
+const Example = () => (
     <Story css={helpers.storyStyles}>
       <Sortable onChange={() => {}} onRemove={() => {}}>
         {helpers.basicChildren(4)}
@@ -54,6 +53,5 @@ const Example = () => {
       </Sortable>
     </Story>
   );
-};
 
 export default Example;

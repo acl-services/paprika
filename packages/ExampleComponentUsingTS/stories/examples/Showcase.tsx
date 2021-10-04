@@ -1,6 +1,6 @@
 import React from "react";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { text } from "@storybook/addon-knobs";
-// @ts-ignore
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
 
@@ -9,6 +9,7 @@ import ExampleComponentUsingTS from "../../src";
 
 const exampleProps = () => ({
   children: text("content", "some content"),
+  requiredProp: text("test prop", "this is required prop"),
 });
 
 const ExampleStory = (props: ExampleProps) => (

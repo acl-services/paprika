@@ -3,8 +3,7 @@ import { Story } from "storybook/assets/styles/common.styles";
 import Card from "../../src";
 import Avatar from "../../src/components/Avatar";
 
-export default () => {
-  return (
+export default () => (
     <Story>
       <Card size="medium">
         <Card.Header>
@@ -26,4 +25,3 @@ export default () => {
       </Card>
     </Story>
   );
-};

@@ -5,8 +5,7 @@ import Breadcrumbs from "../../src";
 
 const URL = "https://www.wegalvanize.com/";
 
-const AllVariations = () => {
-  return (
+const AllVariations = () => (
     <>
       <StoryHeading level={3}>Short version</StoryHeading>
       <Breadcrumbs>
@@ -85,6 +84,5 @@ const AllVariations = () => {
       </div>
     </>
   );
-};
 
 export default AllVariations;

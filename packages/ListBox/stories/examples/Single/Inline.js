@@ -3,8 +3,7 @@ import { Gap, CodeHeading } from "storybook/assets/styles/common.styles";
 import ListBox from "../../../src";
 import * as characters from "../../fixtures/characters";
 
-export const Inline = () => {
-  return (
+export const Inline = () => (
     <>
       <ListBox isInline>
         <ListBox.Filter hasClearButton />
@@ -28,4 +27,3 @@ export const Inline = () => {
       </ListBox>
     </>
   );
-};

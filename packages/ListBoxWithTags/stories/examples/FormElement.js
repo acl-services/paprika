@@ -30,13 +30,11 @@ export default function FormElementExample() {
               selectedOptions={getSelectedOptions()}
             >
               <ListBox.A11y {...a11yProps} />
-              {items.map(item => {
-                return !isSelected(item.label) ? (
+              {items.map(item => !isSelected(item.label) ? (
                   <ListBox.Option key={item.label} value={item.label} label={item.label}>
                     {item.label}
                   </ListBox.Option>
-                ) : null;
-              })}
+                ) : null)}
             </ListBox>
           )}
         </FormElement.Content>

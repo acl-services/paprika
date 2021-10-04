@@ -66,8 +66,7 @@ export default () => {
   return (
     <Story>
       <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {card.map(card => {
-          return (
+        {card.map(card => (
             <div style={{ margin: "10px", width: "240px" }}>
               <Card size={Card.types.size.SMALL}>
                 <Card.Content>
@@ -82,8 +81,7 @@ export default () => {
                 </Card.Content>
               </Card>
             </div>
-          );
-        })}
+          ))}
       </div>
     </Story>
   );

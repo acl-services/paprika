@@ -2,8 +2,7 @@ import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
 import Heading from "../../src";
 
-const A11yStory = () => {
-  return (
+const A11yStory = () => (
     <Story>
       <Heading level={1} a11yText="A more descriptive text for a11y">
         Heading One
@@ -25,6 +24,5 @@ const A11yStory = () => {
       </Heading>
     </Story>
   );
-};
 
 export default A11yStory;

@@ -3,8 +3,7 @@ import StoryHeading from "storybook/components/StoryHeading";
 import { Story, Tagline } from "storybook/assets/styles/common.styles";
 import CollapsibleCard from "../../src";
 
-const GroupStory = () => {
-  return (
+const GroupStory = () => (
     <Story>
       <StoryHeading level={1}>CollapsibleCard.Group</StoryHeading>
       <Tagline>A group of styled collapsible card components.</Tagline>
@@ -36,6 +35,5 @@ const GroupStory = () => {
       </CollapsibleCard.Group>
     </Story>
   );
-};
 
 export default () => <GroupStory />;

@@ -32,8 +32,7 @@ function Menu() {
   );
 }
 
-export const TableScreener = () => {
-  return (
+export const TableScreener = () => (
     <Story>
       <Table data={data}>
         <Table.ColumnDefinition
@@ -155,15 +154,13 @@ export const TableScreener = () => {
       </Table>
     </Story>
   );
-};
 
 const icons = {
   ...DataHeader.icons,
   [DataHeader.types.type.DATE_TIME]: <CaretUp />,
 };
 
-export const TypesExampleScreener = () => {
-  return (
+export const TypesExampleScreener = () => (
     <Story>
       <h3>TEXT</h3>
       <DataHeader icons={DataHeader.icons} label="name" type={DataHeader.types.type.TEXT} />
@@ -177,4 +174,3 @@ export const TypesExampleScreener = () => {
       <DataHeader icons={icons} label="name" type={DataHeader.types.type.DATE_TIME} />
     </Story>
   );
-};

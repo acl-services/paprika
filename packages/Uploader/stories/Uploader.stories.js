@@ -65,9 +65,7 @@ storiesOf(`${storyName}/Examples`, module)
     <Story>
       <Uploader
         {...props}
-        onError={error => {
-          return `Oh dear... the server returned this error: ${error}`;
-        }}
+        onError={error => `Oh dear... the server returned this error: ${error}`}
         endpoint="http://localhost:9000/upload.php?error=true"
       >
         <Uploader.DropZone />
@@ -157,8 +155,7 @@ storiesOf(`${storyName}/Examples`, module)
       </Uploader>
     </Story>
   ))
-  .add("onRequest callback", () => {
-    return (
+  .add("onRequest callback", () => (
       <Story>
         <p>Override how files are uploaded.</p>
         <Uploader
@@ -190,10 +187,8 @@ storiesOf(`${storyName}/Examples`, module)
           <Uploader.FileList />
         </Uploader>
       </Story>
-    );
-  })
-  .add("onCancel prop callback", () => {
-    return (
+    ))
+  .add("onCancel prop callback", () => (
       <Story>
         <p>Check the console to see what is returned when you cancel an upload.</p>
         <Uploader
@@ -207,10 +202,8 @@ storiesOf(`${storyName}/Examples`, module)
           <Uploader.FileList />
         </Uploader>
       </Story>
-    );
-  })
-  .add("extended input props", () => {
-    return (
+    ))
+  .add("extended input props", () => (
       <Story>
         <p>Check the inspector to see the attributes on the input element</p>
         <Uploader endpoint="http://localhost:9000/upload.php">
@@ -219,5 +212,4 @@ storiesOf(`${storyName}/Examples`, module)
           <Uploader.Input name="entry-file" className="MyClassName" data-qa-anchor="my-qa-anchor" />
         </Uploader>
       </Story>
-    );
-  });
+    ));

@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 /* eslint-disable no-param-reassign */
 import React from "react";
 import PropTypes from "prop-types";
@@ -50,9 +49,7 @@ export function Provider({
   if (typeof initializer !== "undefined" && typeof initializer !== "function")
     throw new Error("the initializer prop must be a function");
 
-  const reducerMemo = React.useMemo(() => {
-    return reducer(actions, hasLogger, interceptors);
-  }, [actions, hasLogger, interceptors]);
+  const reducerMemo = React.useMemo(() => reducer(actions, hasLogger, interceptors), [actions, hasLogger, interceptors]);
 
   const [state, dispatch] = React.useReducer(reducerMemo, initialState, initializer);
 

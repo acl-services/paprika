@@ -3,8 +3,7 @@ import StoryHeading from "storybook/components/StoryHeading";
 import { Story, Tagline } from "storybook/assets/styles/common.styles";
 import CollapsibleCard from "../../src";
 
-const ShowcaseStory = () => {
-  return (
+const ShowcaseStory = () => (
     <Story>
       <StoryHeading level={1}>Sandbox</StoryHeading>
       <Tagline>Hover over them to see.</Tagline>
@@ -66,6 +65,5 @@ const ShowcaseStory = () => {
       </div>
     </Story>
   );
-};
 
 export default ShowcaseStory;

@@ -3,8 +3,7 @@ import tokens from "@paprika/tokens";
 
 import * as types from "./types";
 
-export const Table = styled.table(() => {
-  return css`
+export const Table = styled.table(() => css`
     border: 1px solid ${tokens.border.color};
     border-collapse: collapse;
 
@@ -18,8 +17,7 @@ export const Table = styled.table(() => {
     & .is-highlighted-idle {
       outline: 2px solid transparent;
     }
-  `;
-});
+  `);
 
 export const TBody = styled.tbody(({ hasZebraStripes }) => {
   let zebras = "";

@@ -4,8 +4,7 @@ import LockIcon from "@paprika/icon/lib/Lock";
 import { storyStyles } from "../Sortable.stories.helpers";
 import Sortable from "../../src";
 
-const Example = () => {
-  return (
+const Example = () => (
     <Story css={storyStyles}>
       <Sortable onChange={() => {}} className="my-custom-sortable-classname">
         <Sortable.Item
@@ -21,6 +20,5 @@ const Example = () => {
       </Sortable>
     </Story>
   );
-};
 
 export default Example;

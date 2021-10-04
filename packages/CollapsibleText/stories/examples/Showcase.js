@@ -33,12 +33,10 @@ const exampleProps = () => ({
   children: select("children", Object.keys(exampleChildren), "Long"),
 });
 
-const Showcase = props => {
-  return (
+const Showcase = props => (
     <ExampleStory storyName="CollapsibleText" tagline={ExampleStory.defaultTaglines.showcase}>
       <CollapsibleText {...props}>{exampleChildren[props.children]}</CollapsibleText>
     </ExampleStory>
   );
-};
 
 export default () => <Showcase {...exampleProps()} />;

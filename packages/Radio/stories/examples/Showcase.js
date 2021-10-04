@@ -10,8 +10,7 @@ const getKnobs = () => ({
   canDeselect: boolean("canDeselect", false),
 });
 
-const Showcase = props => {
-  return (
+const Showcase = props => (
     <>
       <Radio.Group
         onChange={activeIndex => {
@@ -26,6 +25,5 @@ const Showcase = props => {
       </Radio.Group>
     </>
   );
-};
 
 export default () => <Showcase {...getKnobs()} />;

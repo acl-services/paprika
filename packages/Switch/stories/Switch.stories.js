@@ -12,8 +12,7 @@ const storyName = getStoryName("Switch");
 
 storiesOf(storyName, module)
   .addDecorator(withKnobs)
-  .add("Showcase", () => {
-    return (
+  .add("Showcase", () => (
       <Story>
         <Heading level={1} displayLevel={2} isLight>
           <code>&lt;Switch /&gt;</code>
@@ -29,12 +28,10 @@ storiesOf(storyName, module)
           size={select("size", [types.SMALL, types.MEDIUM, types.LARGE], "medium")}
         />
       </Story>
-    );
-  });
+    ));
 
 storiesOf(`${storyName}/Examples`, module)
-  .add("Switch sizes", () => {
-    return (
+  .add("Switch sizes", () => (
       <Story>
         <h4>
           <code>size=&quot;small&quot;</code>
@@ -51,10 +48,8 @@ storiesOf(`${storyName}/Examples`, module)
         </h4>
         <Example size={Switch.types.size.LARGE} />
       </Story>
-    );
-  })
-  .add("Disabled switch", () => {
-    return (
+    ))
+  .add("Disabled switch", () => (
       <Story>
         <h4>
           <code>isDisabled</code>
@@ -66,5 +61,4 @@ storiesOf(`${storyName}/Examples`, module)
         </h4>
         <Example isDisabled isChecked />
       </Story>
-    );
-  });
+    ));

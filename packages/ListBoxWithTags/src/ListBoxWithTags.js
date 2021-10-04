@@ -103,8 +103,7 @@ export default function ListBoxWithTags(props) {
     "ListBox.Content": {},
   };
 
-  const filteredChildren = React.useMemo(() => {
-    return React.Children.map(children, child => {
+  const filteredChildren = React.useMemo(() => React.Children.map(children, child => {
       if (
         child &&
         ["ListBox.Trigger", "ListBox.Box", "ListBox.Filter", "ListBox.Content"].includes(child.type.displayName)
@@ -114,8 +113,7 @@ export default function ListBoxWithTags(props) {
         return null;
       }
       return child;
-    });
-  }, [children, extendedProps]);
+    }), [children, extendedProps]);
 
   React.useEffect(() => {
     if (refListBox.current && refFilter.current) {

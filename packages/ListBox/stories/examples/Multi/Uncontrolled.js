@@ -2,8 +2,7 @@ import React from "react";
 import ListBox from "../../../src";
 import * as characters from "../../fixtures/characters";
 
-export const UncontrolledListBox = () => {
-  return (
+export const UncontrolledListBox = () => (
     <ListBox
       isInline
       isMulti
@@ -13,13 +12,10 @@ export const UncontrolledListBox = () => {
     >
       <ListBox.Filter />
       <ListBox.Divider key="superheroes_divider">Superheroes</ListBox.Divider>
-      {characters.antiHeroesRaw.map((item, index) => {
-        return (
+      {characters.antiHeroesRaw.map((item, index) => (
           <ListBox.Option key={item.label} defaultIsSelected={Boolean(index % 2)}>
             {item.label}
           </ListBox.Option>
-        );
-      })}
+        ))}
     </ListBox>
   );
-};

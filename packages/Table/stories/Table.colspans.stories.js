@@ -20,8 +20,7 @@ const data = [
   { name: "Vint", lastName: "Cerf", iceCream: ["Teaberry "] },
 ];
 
-export const WithColSpan = () => {
-  return (
+export const WithColSpan = () => (
     <Table a11yText="" data={data}>
       <Table.Headers>
         <tr>
@@ -30,17 +29,13 @@ export const WithColSpan = () => {
       </Table.Headers>
       <Table.ColumnDefinition header="Name" colSpan="2" cell="name" />
       <Table.ColumnDefinition
-        cell={({ row }) => {
-          return `${row.lastName}`;
-        }}
+        cell={({ row }) => `${row.lastName}`}
       />
       <Table.ColumnDefinition header="ice cream" cell="iceCream" />
     </Table>
   );
-};
 
-export const WithoutHeaderPropAndTableHeader = () => {
-  return (
+export const WithoutHeaderPropAndTableHeader = () => (
     <Table a11yText="" data={data}>
       <Table.Headers>
         <tr>
@@ -49,28 +44,21 @@ export const WithoutHeaderPropAndTableHeader = () => {
       </Table.Headers>
       <Table.ColumnDefinition cell="name" />
       <Table.ColumnDefinition
-        cell={({ row }) => {
-          return `${row.lastName}`;
-        }}
+        cell={({ row }) => `${row.lastName}`}
       />
       <Table.ColumnDefinition cell="iceCream" />
     </Table>
   );
-};
 
-export const WithoutHeader = () => {
-  return (
+export const WithoutHeader = () => (
     <Table a11yText="" data={data}>
       <Table.ColumnDefinition cell="name" />
       <Table.ColumnDefinition
-        cell={({ row }) => {
-          return `${row.lastName}`;
-        }}
+        cell={({ row }) => `${row.lastName}`}
       />
       <Table.ColumnDefinition cell="iceCream" />
     </Table>
   );
-};
 
 storiesOf(`${storyName}`, module)
   .add("Table colSpan", () => <WithColSpan />)

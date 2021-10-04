@@ -102,9 +102,7 @@ export default function useColumnsArrangement({
   }
 
   const isColumnHidden = React.useCallback(
-    columnId => {
-      return hiddenColumnIds.includes(columnId);
-    },
+    columnId => hiddenColumnIds.includes(columnId),
     [hiddenColumnIds]
   );
 

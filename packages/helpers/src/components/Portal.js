@@ -20,7 +20,7 @@ function Portal(props) {
   return active ? (
     ReactDOM.createPortal(children, container || document.body)
   ) : (
-    <React.Fragment>{children}</React.Fragment>
+    <>{children}</>
   );
 }
 

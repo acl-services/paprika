@@ -25,12 +25,10 @@ storiesOf(`${storyName}/Backyard/Tests`, module)
       </DataGrid>
     );
   })
-  .add("Callback Function", () => {
-    return (
+  .add("Callback Function", () => (
       <DataGrid data={fixtures(2)} width={680}>
         {React.useCallback(
-          (() => {
-            return (
+          (() => (
               <DataGrid.ColumnDefinition
                 onClick={({ row }) => {
                   alert(row.name);
@@ -38,8 +36,7 @@ storiesOf(`${storyName}/Backyard/Tests`, module)
                 header="alert"
                 cell={() => "click me"}
               />
-            );
-          })(),
+            ))(),
           []
         )}
         <DataGrid.ColumnDefinition header="Name" cell="name" />
@@ -47,8 +44,5 @@ storiesOf(`${storyName}/Backyard/Tests`, module)
         <DataGrid.ColumnDefinition header="Goals" cell="goals" />
         <DataGrid.ColumnDefinition header="Status" cell="status" />
       </DataGrid>
-    );
-  })
-  .add("Infinity Scroll", () => {
-    return <Stress overrideWidth={680} numberOfColumns={15} rowsOffset={120} />;
-  });
+    ))
+  .add("Infinity Scroll", () => <Stress overrideWidth={680} numberOfColumns={15} rowsOffset={120} />);

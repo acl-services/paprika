@@ -7,9 +7,7 @@ export const OnChange = () => {
   const [change, setChange] = React.useState(null);
   function handleChange(activeOptionIndex, options) {
     console.log(change);
-    setChange(() => {
-      return options[activeOptionIndex].label;
-    });
+    setChange(() => options[activeOptionIndex].label);
   }
 
   return (
@@ -17,13 +15,11 @@ export const OnChange = () => {
       {change}
       <hr />
       <ListBox ref={refListBox} isInline onChange={handleChange}>
-        {characters.antiHeroesRaw.map(item => {
-          return (
+        {characters.antiHeroesRaw.map(item => (
             <ListBox.Option value={item.label} key={item.label}>
               {item.label}
             </ListBox.Option>
-          );
-        })}
+          ))}
       </ListBox>
     </>
   );

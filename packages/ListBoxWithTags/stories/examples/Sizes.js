@@ -25,13 +25,11 @@ function App({ size = "medium", isOpen = false }) {
         isOpen={isOpen}
         {...listBoxWithTagsProps}
       >
-        {filteredData.map(option => {
-          return !isSelected(option.label) ? (
+        {filteredData.map(option => !isSelected(option.label) ? (
             <ListBox.Option value={option.label} key={option.label} label={option.label}>
               {option.label}
             </ListBox.Option>
-          ) : null;
-        })}
+          ) : null)}
       </ListBox>
     </>
   );

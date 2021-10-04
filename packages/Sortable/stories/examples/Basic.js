@@ -3,8 +3,7 @@ import { Story } from "storybook/assets/styles/common.styles";
 import { storyStyles } from "../Sortable.stories.helpers";
 import Sortable from "../../src";
 
-const Example = () => {
-  return (
+const Example = () => (
     <Story css={storyStyles}>
       <Sortable onChange={() => {}} onRemove={() => {}} className="my-custom-sortable-classname">
         <Sortable.Item sortId="1" className="my-custom-sortable-item-classname" data-qa-id="my-custom-data-qa-id">
@@ -15,6 +14,5 @@ const Example = () => {
       </Sortable>
     </Story>
   );
-};
 
 export default Example;

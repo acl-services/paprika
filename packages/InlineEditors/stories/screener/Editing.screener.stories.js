@@ -7,8 +7,7 @@ import {
   ListBoxMultipleWithSuccess,
 } from "../examples/ListBox";
 
-export const ForScreener = () => {
-  return (
+export const ForScreener = () => (
     <>
       <ListBoxSingleStory />
       <ListBoxMultipleWithError />
@@ -16,4 +15,3 @@ export const ForScreener = () => {
       <ListBoxMultipleWithSuccess />
     </>
   );
-};

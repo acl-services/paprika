@@ -2,8 +2,7 @@ import React from "react";
 import Add from "@paprika/icon/lib/Add";
 import OverflowMenu from "../../src";
 
-const OverflowMenuTriggerExample = () => {
-  return (
+const OverflowMenuTriggerExample = () => (
     <div>
       <small>
         <code>Plain text</code>
@@ -46,6 +45,5 @@ const OverflowMenuTriggerExample = () => {
       </div>
     </div>
   );
-};
 
 export default OverflowMenuTriggerExample;

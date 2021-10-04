@@ -19,8 +19,7 @@ const data = [
   { name: "Aniya Johanson", income: 45328.54, taxes: 14302.23 },
 ];
 
-export const Numeric = () => {
-  return (
+export const Numeric = () => (
     <div style={{ padding: "32px" }}>
       <h2>Table</h2>
       <h3>US locale</h3>
@@ -79,4 +78,3 @@ export const Numeric = () => {
       </L10n>
     </div>
   );
-};

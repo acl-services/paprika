@@ -1,5 +1,5 @@
 {
-  "include": ["./packages"],
+  "include": ["./packages", "global.d.ts"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "allowJs": true,

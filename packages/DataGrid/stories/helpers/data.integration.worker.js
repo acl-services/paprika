@@ -2,12 +2,10 @@ import { v4 as uuidv4 } from "uuid";
 import rawData from "./data.integration";
 
 export function setDataIds() {
-  const newData = rawData.map(item => {
-    return {
+  const newData = rawData.map(item => ({
       key: uuidv4(),
       ...item,
-    };
-  });
+    }));
 
   return newData;
 }

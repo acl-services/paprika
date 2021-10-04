@@ -1,9 +1,8 @@
 import React from "react";
 import OverflowMenu from "../../src";
 
-const OverflowMenuWithCustomClassExample = () => {
-  return (
-    <React.Fragment>
+const OverflowMenuWithCustomClassExample = () => (
+    <>
       <p>
         Inspect the content of the Popover that is revealed by expanding the OverflowMenu and you will see our class
         added to it.
@@ -15,8 +14,7 @@ const OverflowMenuWithCustomClassExample = () => {
         <OverflowMenu.Item onClick={null}>Item 2</OverflowMenu.Item>
         <OverflowMenu.Item onClick={null}>Item 3</OverflowMenu.Item>
       </OverflowMenu>
-    </React.Fragment>
+    </>
   );
-};
 
 export default OverflowMenuWithCustomClassExample;

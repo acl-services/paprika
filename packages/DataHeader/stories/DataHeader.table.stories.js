@@ -34,8 +34,7 @@ function Menu(props) {
   );
 }
 
-export const TableExample = () => {
-  return (
+export const TableExample = () => (
     <div style={{ padding: "32px" }}>
       <Table data={data}>
         <Table.ColumnDefinition
@@ -50,4 +49,3 @@ export const TableExample = () => {
       </Table>
     </div>
   );
-};

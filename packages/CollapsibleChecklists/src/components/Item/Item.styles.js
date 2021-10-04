@@ -4,8 +4,7 @@ import { css } from "styled-components";
 import { disabledStyles } from "../helpers.styles";
 
 const itemStyles = css`
-  ${({ isDisabled }) => {
-    return `
+  ${({ isDisabled }) => `
       padding: ${tokens.spaceSm} 6px ${tokens.spaceSm} ${stylers.spacer(7)};
       
       ${isDisabled ? disabledStyles : ""};
@@ -19,8 +18,7 @@ const itemStyles = css`
       [data-pka-anchor="checkbox"] {
         margin: 2px ${tokens.space} 0 0;
       }
-    `;
-  }}
+    `}
 `;
 
 export default itemStyles;

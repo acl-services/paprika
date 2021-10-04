@@ -34,8 +34,7 @@ function Menu(props) {
   );
 }
 
-export const DataGridWithBackground = () => {
-  return (
+export const DataGridWithBackground = () => (
     <div style={{ padding: "32px" }}>
       <DataGrid data={data}>
         <DataGrid.ColumnDefinition
@@ -48,4 +47,3 @@ export const DataGridWithBackground = () => {
       </DataGrid>
     </div>
   );
-};

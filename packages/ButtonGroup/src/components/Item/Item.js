@@ -24,9 +24,7 @@ const Item = props => {
   React.useEffect(() => {
     setItemRefs(prevItemRefs => [...prevItemRefs, itemRef]);
     if (defaultIsActive) {
-      setSelectedItems(prevItems => {
-        return isMulti ? [...prevItems, value] : [value];
-      });
+      setSelectedItems(prevItems => isMulti ? [...prevItems, value] : [value]);
     }
   }, []);
 
@@ -52,7 +50,7 @@ const Item = props => {
 
   return (
     <sc.Item {...buttonProps} ref={itemRef}>
-      {hasIcon && <React.Fragment>{isActive ? <sc.SelectedIcon /> : <sc.UnselectedIcon />}</React.Fragment>}
+      {hasIcon && <>{isActive ? <sc.SelectedIcon /> : <sc.UnselectedIcon />}</>}
       {children}
     </sc.Item>
   );

@@ -37,8 +37,7 @@ function Menu(props) {
   );
 }
 
-export const Numeric = () => {
-  return (
+export const Numeric = () => (
     <Story>
       <Table data={data}>
         <Table.ColumnDefinition
@@ -72,15 +71,13 @@ export const Numeric = () => {
       </Table>
     </Story>
   );
-};
 
 const icons = {
   ...DataHeader.icons,
   [DataHeader.types.type.DATE_TIME]: <CaretUp />,
 };
 
-export const TypesExample = () => {
-  return (
+export const TypesExample = () => (
     <Story>
       <h3>TEXT</h3>
       <DataHeader icons={DataHeader.icons} label="name" type={DataHeader.types.type.TEXT} />
@@ -94,4 +91,3 @@ export const TypesExample = () => {
       <DataHeader icons={icons} label="name" type={DataHeader.types.type.DATE_TIME} />
     </Story>
   );
-};

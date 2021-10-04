@@ -5,13 +5,11 @@ import Editor from "../Editor";
 import * as sc from "./ListBox.styles";
 import { status } from "../types";
 
-const isPopoverVisible = ({ rowIndex, columnIndex }) => {
-  return (
+const isPopoverVisible = ({ rowIndex, columnIndex }) => (
     document
       .querySelector([`[data-paprika-anchor-inline-cell="${rowIndex}-${columnIndex}"]`])
       .parentElement.getAttribute("aria-hidden") === "true"
   );
-};
 
 export default function InlineListBox(props) {
   const {

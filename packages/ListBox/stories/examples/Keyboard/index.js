@@ -8,9 +8,9 @@ import * as characters from "../../fixtures/characters";
 import Toast from "../../../../Toast/src";
 
 const Card = ({ children }) => <CardComponent style={{ padding: "16px", width: "280px" }}>{children}</CardComponent>;
-const CheckListItem = ({ children }) => {
+const CheckListItem = ({ children }) => 
   /* eslint-disable jsx-a11y/label-has-associated-control */
-  return (
+   (
     <div style={{ padding: "8px", display: "flex", position: "relative" }}>
       <label>
         <div style={{ position: "absolute", top: "10px", left: "-20px" }}>
@@ -19,9 +19,9 @@ const CheckListItem = ({ children }) => {
         <div>{children}</div>
       </label>
     </div>
-  );
+  )
   /* eslint-enable jsx-a11y/label-has-associated-control */
-};
+;
 
 const Up = () => (
   <span aria-label="up key" role="img">

@@ -16,13 +16,11 @@ export default function App() {
 
   return (
     <ListBox isOpen allOptionsAreSelected selectedOptions={getSelectedOptions()} {...listBoxWithTagsProps}>
-      {filteredData.map(option => {
-        return !isSelected(option.label) ? (
+      {filteredData.map(option => !isSelected(option.label) ? (
           <ListBox.Option value={option.label} key={option.label} label={option.label}>
             {option.label}
           </ListBox.Option>
-        ) : null;
-      })}
+        ) : null)}
     </ListBox>
   );
 }

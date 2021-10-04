@@ -59,9 +59,7 @@ const insert = (arr, index, newItems) => [
   ...arr.slice(index),
 ];
 
-const remove = ({ data, start, end }) => {
-  return [...data.slice(0, start), ...data.slice(end + 1, data.length)];
-};
+const remove = ({ data, start, end }) => [...data.slice(0, start), ...data.slice(end + 1, data.length)];
 
 function getNumberOfRowsToRemove({ expandedRows, rowIndex, data }) {
   const visitedRoots = [];
@@ -93,9 +91,7 @@ export function App() {
   const toggleExpand = ({ row, rowIndex }) => {
     if (expandedRows.includes(row.id)) {
       const { end, visitedRoots } = getNumberOfRowsToRemove({ expandedRows, data, rowIndex });
-      setData(data => {
-        return remove({ data, start: rowIndex + 1, end: rowIndex + end });
-      });
+      setData(data => remove({ data, start: rowIndex + 1, end: rowIndex + end }));
 
       visitedRoots.push(row.id);
       setExpandedRows(expandedRows => expandedRows.filter(r => !visitedRoots.includes(r)));
@@ -117,16 +113,11 @@ export function App() {
     console.log(expandedRows);
   }, [expandedRows]);
 
-  const cellStyle = React.useCallback(() => {
-    return { style: { display: "flex", justifyContent: "center" } };
-  }, []);
+  const cellStyle = React.useCallback(() => ({ style: { display: "flex", justifyContent: "center" } }), []);
 
-  const headerStyle = React.useCallback(() => {
-    return { style: { display: "flex", justifyContent: "center" } };
-  }, []);
+  const headerStyle = React.useCallback(() => ({ style: { display: "flex", justifyContent: "center" } }), []);
 
-  const cellA11yText = React.useCallback(key => {
-    return ({ row }) => {
+  const cellA11yText = React.useCallback(key => ({ row }) => {
       if (row[key][0] === row[key][1]) {
         return `All tasks has been checked`;
       }
@@ -135,8 +126,7 @@ export function App() {
       }
 
       return `in progress: ${row[key][0]} of ${row[key][1]} tasks`;
-    };
-  }, []);
+    }, []);
 
   return (
     <Sbook.Story>
@@ -144,18 +134,14 @@ export function App() {
         <DataGrid.ColumnDefinition
           canGrow
           header="Objective"
-          cell={({ row }) => {
-            return (
+          cell={({ row }) => (
               <span>
                 <Arrow hasRows={"rows" in row && row.rows.length} isExpand={expandedRows.includes(row.id)} />
                 {row.objective}
               </span>
-            );
-          }}
+            )}
           cellA11yText={({ row }) => row.objective}
-          cellProps={({ row }) => {
-            return { style: { textIndent: `${(row.indent || 0) * 16}px`, cursor: "pointer" } };
-          }}
+          cellProps={({ row }) => ({ style: { textIndent: `${(row.indent || 0) * 16}px`, cursor: "pointer" } })}
           onClick={toggleExpand}
         />
         <DataGrid.ColumnDefinition
@@ -163,9 +149,7 @@ export function App() {
           header="Preparer review"
           headerProps={headerStyle}
           cellA11yText={cellA11yText("review")}
-          cell={({ row }) => {
-            return <MyPopover start={row.review[0]} end={row.review[1]} />;
-          }}
+          cell={({ row }) => <MyPopover start={row.review[0]} end={row.review[1]} />}
           cellProps={cellStyle}
         />
         <DataGrid.ColumnDefinition

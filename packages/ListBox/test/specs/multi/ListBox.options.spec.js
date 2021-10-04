@@ -42,9 +42,7 @@ function renderComponent(props = {}, children = childrenContent) {
 
 describe("ListBox.Options", () => {
   it("should have custom checkboxes", () => {
-    const renderCheckbox = jest.fn(({ isSelected }) => {
-      return isSelected ? "✅" : "🙅‍";
-    });
+    const renderCheckbox = jest.fn(({ isSelected }) => isSelected ? "✅" : "🙅‍");
     const { getByText, queryByText } = renderComponent({}, [
       <ListBox.Option key="option1">{renderCheckbox}</ListBox.Option>,
     ]);
@@ -56,15 +54,11 @@ describe("ListBox.Options", () => {
 
   it("should have correct checkbox beside selected and non-selected options", () => {
     function createOptions() {
-      return ["option1", "option2", "option3"].map(option => {
-        return (
+      return ["option1", "option2", "option3"].map(option => (
           <ListBox.Option key={option}>
-            {({ isSelected }) => {
-              return isSelected ? `✅ ${option}` : `🙅 ${option}‍`;
-            }}
+            {({ isSelected }) => isSelected ? `✅ ${option}` : `🙅 ${option}‍`}
           </ListBox.Option>
-        );
-      });
+        ));
     }
 
     const { getByText, getByTestId } = renderComponent({}, createOptions());

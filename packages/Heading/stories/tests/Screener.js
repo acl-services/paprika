@@ -2,8 +2,7 @@ import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
 import Heading from "../../src";
 
-const ScreenerStory = () => {
-  return (
+const ScreenerStory = () => (
     <Story>
       <Heading level={1} displayLevel={6}>
         Heading One
@@ -34,6 +33,5 @@ const ScreenerStory = () => {
       </Heading>
     </Story>
   );
-};
 
 export default ScreenerStory;

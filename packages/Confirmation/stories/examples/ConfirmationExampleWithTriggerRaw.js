@@ -5,8 +5,7 @@ const handleConfirm = handleCloseConfirm => {
   handleCloseConfirm();
 };
 
-const ConfirmationExample = () => {
-  return (
+const ConfirmationExample = () => (
     <div>
       <Confirmation
         align="right"
@@ -23,6 +22,5 @@ const ConfirmationExample = () => {
       </Confirmation>
     </div>
   );
-};
 
 export default ConfirmationExample;

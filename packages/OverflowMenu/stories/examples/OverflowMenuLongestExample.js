@@ -1,8 +1,7 @@
 import React from "react";
 import OverflowMenu from "../../src";
 
-const OverflowMenuExample = () => {
-  return (
+const OverflowMenuExample = () => (
     <OverflowMenu align="bottom">
       <OverflowMenu.Trigger>Trigger</OverflowMenu.Trigger>
       <OverflowMenu.Item onClick={() => {}}>
@@ -21,6 +20,5 @@ const OverflowMenuExample = () => {
       <OverflowMenu.Item onClick={() => {}}>Antidisestablishmentarianism</OverflowMenu.Item>
     </OverflowMenu>
   );
-};
 
 export default OverflowMenuExample;

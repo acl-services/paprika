@@ -1,8 +1,7 @@
 import React from "react";
 import ProgressAccordion from "../../src";
 
-const NavStory = () => {
-  return (
+const NavStory = () => (
     <ProgressAccordion activeIndex={1} activeStatus="" a11yText="">
       <ProgressAccordion.NavItem
         label="Step 1"
@@ -25,6 +24,5 @@ const NavStory = () => {
       </ProgressAccordion.NavItem>
     </ProgressAccordion>
   );
-};
 
 export default () => <NavStory />;

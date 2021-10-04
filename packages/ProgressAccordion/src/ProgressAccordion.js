@@ -44,8 +44,7 @@ const ProgressAccordion = props => {
 
   const validChildren = filterChildren(children);
 
-  const getLabel = (label, index) => {
-    return activeIndex === index ? (
+  const getLabel = (label, index) => activeIndex === index ? (
       <sc.ActiveItem>
         <sc.ActiveLabel>
           {label}
@@ -56,7 +55,6 @@ const ProgressAccordion = props => {
     ) : (
       label
     );
-  };
 
   return (
     <sc.Accordion {...moreProps} role="list" aria-label={a11yText} data-pka-anchor="progress-accordion">

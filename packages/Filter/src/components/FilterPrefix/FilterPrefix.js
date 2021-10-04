@@ -11,7 +11,9 @@ const propTypes = {
   operator: PropTypes.oneOf([logicalFilterOperators.AND, logicalFilterOperators.OR]),
 };
 
-const defaultProps = {};
+const defaultProps = {
+  operator: logicalFilterOperators.AND,
+};
 
 function Prefix(props) {
   const { index, onChangeOperator, operator } = props;

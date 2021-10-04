@@ -11,14 +11,12 @@ export default {
   component: CollapsibleText,
 };
 
-const showcaseParameters = Object.assign({}, defaultParameters, {
-  options: {
+const showcaseParameters = { ...defaultParameters, options: {
     showPanel: true,
     selectedPanel: "storybook/knobs/panel",
     panelPosition: "right",
   },
-  viewMode: "story",
-});
+  viewMode: "story",};
 
 export const showcase = Showcase;
 showcase.story = {

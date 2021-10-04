@@ -12,9 +12,7 @@ const styles = {
     font-size: 16px;
     margin: 2px;
     padding: 8px;
-    ${({ isSelected }) => {
-      return isSelected ? `background: ${tokens.color.blue}; color: ${tokens.color.white}` : "";
-    }}
+    ${({ isSelected }) => isSelected ? `background: ${tokens.color.blue}; color: ${tokens.color.white}` : ""}
   `,
 };
 
@@ -49,7 +47,7 @@ export const Controlled = () => {
   }
 
   return (
-    <React.Fragment>
+    <>
       Click on any button to controlled the ListBox:
       <div css={styles.container}>
         {options.map((item, index) => (
@@ -67,14 +65,12 @@ export const Controlled = () => {
       </div>
       <hr />
       <ListBox isInline onChange={handleChange}>
-        {options.map(item => {
-          return (
+        {options.map(item => (
             <ListBox.Option key={item.label} isSelected={item.isSelected}>
               {item.label}
             </ListBox.Option>
-          );
-        })}
+          ))}
       </ListBox>
-    </React.Fragment>
+    </>
   );
 };

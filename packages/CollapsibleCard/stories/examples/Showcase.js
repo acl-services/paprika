@@ -5,8 +5,7 @@ import { boolean } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import CollapsibleCard from "../../src";
 
-const ShowcaseStory = () => {
-  return (
+const ShowcaseStory = () => (
     <Story>
       <StoryHeading level={1}>CollapsibleCard</StoryHeading>
       <Tagline>
@@ -28,6 +27,5 @@ const ShowcaseStory = () => {
       </CollapsibleCard>
     </Story>
   );
-};
 
 export default ShowcaseStory;

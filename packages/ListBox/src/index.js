@@ -53,9 +53,7 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
     ]
   */
 
-  const _children = React.Children.map(children, child => {
-    return child !== null && React.Fragment === child.type ? child.props.children : child;
-  });
+  const _children = React.Children.map(children, child => child !== null && React.Fragment === child.type ? child.props.children : child);
 
   const {
     "ListBox.Box": box,

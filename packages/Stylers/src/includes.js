@@ -53,8 +53,7 @@ export const visuallyHidden = css`
 
 // Focus Indicators
 
-export const focusRing = (inset = false) => {
-  return inset === true
+export const focusRing = (inset = false) => inset === true
     ? css`
         box-shadow: ${tokens.highlight.active.withBorder.insetBoxShadow};
         outline: none;
@@ -63,10 +62,8 @@ export const focusRing = (inset = false) => {
         box-shadow: ${tokens.highlight.active.withBorder.boxShadow};
         outline: none;
       `;
-};
 
-focusRing.bordered = (inset = false) => {
-  return inset === true
+focusRing.bordered = (inset = false) => inset === true
     ? css`
         border-color: ${tokens.highlight.active.noBorder.borderColor};
         box-shadow: ${tokens.highlight.active.noBorder.insetBoxShadow};
@@ -77,10 +74,8 @@ focusRing.bordered = (inset = false) => {
         box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
         outline: none;
       `;
-};
 
-focusRing.subtle = (inset = false) => {
-  return inset === true
+focusRing.subtle = (inset = false) => inset === true
     ? css`
         outline: ${tokens.highlight.active.nonInteractive.outline};
         outline-offset: -2px;
@@ -88,7 +83,6 @@ focusRing.subtle = (inset = false) => {
     : css`
         outline: ${tokens.highlight.active.nonInteractive.outline};
       `;
-};
 
 //
 // Forms

@@ -1,8 +1,7 @@
 import React from "react";
 import OverflowMenu from "../../src";
 
-const AutoFocusExample = () => {
-  return (
+const AutoFocusExample = () => (
     <div>
       <p>Use the mouse to open the OverflowMenu; focus should NOT be put on the first element.</p>
       <p>
@@ -40,6 +39,5 @@ const AutoFocusExample = () => {
       <hr />
     </div>
   );
-};
 
 export default AutoFocusExample;

@@ -26,13 +26,11 @@ export default function App() {
       tagLabelKey="name"
       {...listBoxWithTagsProps}
     >
-      {filteredData.map(option => {
-        return !isSelected(option.name) ? (
+      {filteredData.map(option => !isSelected(option.name) ? (
           <ListBox.Option key={option.name} label={option.name}>
             {option.name}
           </ListBox.Option>
-        ) : null;
-      })}
+        ) : null)}
     </ListBox>
   );
 }

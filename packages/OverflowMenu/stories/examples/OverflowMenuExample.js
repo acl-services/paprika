@@ -12,8 +12,7 @@ const handleCloseConfirm = onCloseMenu => () => {
 
 const noop = () => {};
 
-const OverflowMenuExample = () => {
-  return (
+const OverflowMenuExample = () => (
     <OverflowMenu align="bottom">
       <OverflowMenu.Content data-your-custom-attribute="your-custom-attribute-value" />
       <OverflowMenu.Trigger
@@ -36,8 +35,7 @@ const OverflowMenuExample = () => {
       </OverflowMenu.Item>
       <OverflowMenu.Item
         isDestructive
-        renderConfirmation={onCloseMenu => {
-          return (
+        renderConfirmation={onCloseMenu => (
             <Confirmation
               body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
               confirmLabel="confirmLabel"
@@ -45,8 +43,7 @@ const OverflowMenuExample = () => {
               onConfirm={handleConfirm}
               onClose={handleCloseConfirm(onCloseMenu)}
             />
-          );
-        }}
+          )}
       >
         Item (isDestructive, renderConfirmation)
       </OverflowMenu.Item>
@@ -56,6 +53,5 @@ const OverflowMenuExample = () => {
       </OverflowMenu.LinkItem>
     </OverflowMenu>
   );
-};
 
 export default OverflowMenuExample;

@@ -11,8 +11,7 @@ const screenerScript = new Steps()
   .snapshot("Expanded")
   .end();
 
-const ExampleStory = () => {
-  return (
+const ExampleStory = () => (
     <Screener steps={screenerScript}>
       <AccordionStory>
         <ProgressAccordion
@@ -37,6 +36,5 @@ const ExampleStory = () => {
       </AccordionStory>
     </Screener>
   );
-};
 
 export default ExampleStory;

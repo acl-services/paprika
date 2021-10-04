@@ -3,11 +3,9 @@ import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 import * as types from "./types";
 
-export const Grid = styled.div.attrs(({ $width }) => {
-  return {
+export const Grid = styled.div.attrs(({ $width }) => ({
     style: { maxWidth: `${$width}px` },
-  };
-})`
+  }))`
   * {
     box-sizing: border-box;
   }
@@ -255,9 +253,7 @@ export const Footer = styled.div`
   font-size: 12px;
   padding: ${tokens.spaceSm}; /* All the borders by using the spread properties */
 
-  ${({ $width }) => {
-    return `
+  ${({ $width }) => `
       max-width: ${$width}px;
-  `;
-  }}
+  `}
 `;

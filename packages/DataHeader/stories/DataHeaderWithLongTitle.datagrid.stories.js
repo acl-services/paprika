@@ -34,8 +34,7 @@ function Menu(props) {
   );
 }
 
-export const DataGridWithLongTitleExample = () => {
-  return (
+export const DataGridWithLongTitleExample = () => (
     <div style={{ padding: "32px" }}>
       <DataGrid data={data} width={600}>
         <DataGrid.ColumnDefinition
@@ -90,4 +89,3 @@ export const DataGridWithLongTitleExample = () => {
       </DataGrid>
     </div>
   );
-};

@@ -30,8 +30,7 @@ export default function SubcomponentsExample() {
       <CodeViewer>
         <ListBox>
           <ListBox.Trigger>
-            {(selected, options, { dispatch, types, refTrigger, propsForTrigger, isOpen }) => {
-              return (
+            {(selected, options, { dispatch, types, refTrigger, propsForTrigger, isOpen }) => (
                 <Button
                   type="button"
                   {...propsForTrigger()}
@@ -43,8 +42,7 @@ export default function SubcomponentsExample() {
                   {selected !== null ? options[selected].label : "Pick a superhero "}
                   {isOpen ? "close" : "open"}
                 </Button>
-              );
-            }}
+              )}
           </ListBox.Trigger>
           {options.map(option => (
             <ListBox.Option key={option}>{option}</ListBox.Option>
@@ -74,13 +72,11 @@ export default function SubcomponentsExample() {
       <CodeViewer>
         <ListBox>
           <ListBox.Box className="my-custom-className" style={{ border: "1px solid red" }} />
-          {characters.antiHeroesRaw.map((item, index) => {
-            return (
+          {characters.antiHeroesRaw.map((item, index) => (
               <ListBox.Option key={item.label} defaultIsSelected={index === 4}>
                 {item.label}
               </ListBox.Option>
-            );
-          })}
+            ))}
         </ListBox>
       </CodeViewer>
     </>

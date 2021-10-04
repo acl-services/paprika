@@ -9,16 +9,13 @@ export default {
   title: getStoryName("DataField"),
 };
 
-const Container = styled.div(() => {
-  return css`
+const Container = styled.div(() => css`
     [data-pka-anchor="data-field.numeric"] {
       font-size: 32px;
     }
-  `;
-});
+  `);
 
-export const Showcase = () => {
-  return (
+export const Showcase = () => (
     <div style={{ padding: "32px" }}>
       <h2>Table</h2>
       <h3>German locale with US currency</h3>
@@ -29,4 +26,3 @@ export const Showcase = () => {
       </L10n>
     </div>
   );
-};

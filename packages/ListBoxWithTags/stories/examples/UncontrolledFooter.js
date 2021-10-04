@@ -28,22 +28,18 @@ export default function App({ isOpen = false }) {
   return (
     <ListBox selectedOptions={getSelectedOptions()} {...listBoxWithTagsProps} isOpen={isOpen}>
       <ListBox.Divider>Furry values</ListBox.Divider>
-      {emojiData.map(option => {
-        return !isSelected(option.label) ? (
+      {emojiData.map(option => !isSelected(option.label) ? (
           <ListBox.Option value={option.label} key={option.label} label={option.label}>
             {option.label} {option.emoji}
           </ListBox.Option>
-        ) : null;
-      })}
+        ) : null)}
 
       <ListBox.Divider>Boring values</ListBox.Divider>
-      {filteredData.map(option => {
-        return !isSelected(option.label) ? (
+      {filteredData.map(option => !isSelected(option.label) ? (
           <ListBox.Option value={option.label} key={option.label} label={option.label}>
             {option.label}
           </ListBox.Option>
-        ) : null;
-      })}
+        ) : null)}
       <ListBox.Footer
         onClickAccept={() => {
           setSnapshot(snapshotSelectedKeys());

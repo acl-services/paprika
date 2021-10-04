@@ -42,8 +42,7 @@ const Table = React.forwardRef((props, ref) => {
     <sc.Table aria-label={a11yText} id={tableId} {...moreProps} ref={ref}>
       <Headers extractedHeaders={extractedHeaders} ColumnDefinitions={ColumnDefinitions} borderType={borderType} />
       <sc.TBody hasZebraStripes={hasZebraStripes}>
-        {data.map((row, rowIndex) => {
-          return (
+        {data.map((row, rowIndex) => (
             <tr key={rowIndex}>
               {ColumnDefinitions.map((columnDefinition, columnIndex) => {
                 const position = { "data-row-index": rowIndex, "data-column-index": columnIndex };
@@ -95,8 +94,7 @@ const Table = React.forwardRef((props, ref) => {
                 throw new Error("Cell prop should be either of type string or function");
               })}
             </tr>
-          );
-        })}
+          ))}
       </sc.TBody>
     </sc.Table>
   );

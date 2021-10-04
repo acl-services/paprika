@@ -22,8 +22,7 @@ const Example = () => {
         <OverflowMenu.Divider />
         <OverflowMenu.Item
           isDestructive
-          renderConfirmation={onCloseMenu => {
-            return (
+          renderConfirmation={onCloseMenu => (
               <Confirmation
                 body="Tumeric vegan cardigan cold-pressed flannel cred post-ironic chillwave mustache forage shoreditch fixie."
                 confirmLabel="Boom"
@@ -31,8 +30,7 @@ const Example = () => {
                 onConfirm={handleConfirm}
                 onClose={handleCloseConfirm(onCloseMenu)}
               />
-            );
-          }}
+            )}
         >
           Destroy
         </OverflowMenu.Item>

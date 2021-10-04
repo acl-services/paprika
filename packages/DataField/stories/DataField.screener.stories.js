@@ -19,16 +19,13 @@ const data = [
   { name: "Aniya Johanson", income: 45328.54, taxes: 14302.23 },
 ];
 
-const Container = styled.div(() => {
-  return css`
+const Container = styled.div(() => css`
     [data-pka-anchor="data-field.numeric"] {
       font-size: 20px;
     }
-  `;
-});
+  `);
 
-export const Screener = () => {
-  return (
+export const Screener = () => (
     <div style={{ padding: "32px", display: "flex" }}>
       <div>
         <L10n locale="de">
@@ -159,4 +156,3 @@ export const Screener = () => {
       </div>
     </div>
   );
-};

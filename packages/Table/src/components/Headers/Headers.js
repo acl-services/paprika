@@ -8,12 +8,10 @@ import * as sc from "./Headers.styles";
 export function Headers(props) {
   const { extractedHeaders, ColumnDefinitions, borderType } = props;
 
-  const hasAtLeastOneHeader = React.useMemo(() => {
-    return ColumnDefinitions.some(columnDefinition => {
+  const hasAtLeastOneHeader = React.useMemo(() => ColumnDefinitions.some(columnDefinition => {
       const { header } = columnDefinition.props;
       return typeof header !== "undefined" && (typeof header === "function" || typeof header === "string");
-    });
-  }, [ColumnDefinitions]);
+    }), [ColumnDefinitions]);
 
   if (hasAtLeastOneHeader) {
     return (

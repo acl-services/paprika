@@ -38,12 +38,10 @@ export default function users(num = 10) {
       activations: 0,
       signed: "Tue, July 21, 2020, 3:49:08 PM Pacific Daylight Time",
     })
-    .map(item => {
-      return {
+    .map(item => ({
         ...item,
         name: names[getRandomInt(0, names.length - 1)],
         subscription: subscriptionTypes[getRandomInt(0, subscriptionTypes.length - 1)],
         an: Boolean(getRandomInt(0, 2)),
-      };
-    });
+      }));
 }

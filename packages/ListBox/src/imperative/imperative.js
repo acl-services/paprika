@@ -2,8 +2,7 @@ import useListBox from "../useListBox";
 import invokeOnChange from "../helpers/invokeOnChange";
 import { toggleOption } from "../components/Options/helpers/options";
 
-const handleImperative = ({ state, dispatch, onChangeContext }) => () => {
-  return {
+const handleImperative = ({ state, dispatch, onChangeContext }) => () => ({
     clear: (isOpen = false) => {
       dispatch({
         type: useListBox.types.clear,
@@ -45,7 +44,6 @@ const handleImperative = ({ state, dispatch, onChangeContext }) => () => {
     close: () => {
       dispatch({ type: useListBox.types.closePopover });
     },
-  };
-};
+  });
 
 export default handleImperative;

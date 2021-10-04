@@ -16,13 +16,11 @@ export default function CollapsedContainer() {
             console.log(selectedOptions);
           }}
         >
-          {characters.antiHeroesRaw.map((item, index) => {
-            return (
+          {characters.antiHeroesRaw.map((item, index) => (
               <ListBox.Option key={item.label} defaultIsSelected={Boolean(index % 2)}>
                 {item.label}
               </ListBox.Option>
-            );
-          })}
+            ))}
         </ListBox>
       </CollapsibleCard.Body>
     </CollapsibleCard>
