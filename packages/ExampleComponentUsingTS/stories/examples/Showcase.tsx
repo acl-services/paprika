@@ -2,6 +2,7 @@ import React from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { text } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Heading from "@paprika/heading";
 
 import { ExampleProps } from "../../src/ExampleComponentUsingTS";
