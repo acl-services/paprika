@@ -9,14 +9,14 @@ function Options(props) {
 
   const memoizedOnClickHandler = React.useCallback(
     ({ event, isDisabled, onClick, index }) => {
-      const clickOptionState = {
+      const stateForClickHandler = {
         options: state.options,
         hasFilter: state.hasFilter,
         isMulti: state.isMulti,
         refListBox: state.refListBox,
         refListContainer: state.refListBoxContainer,
       };
-      handleClickOption({ event, onClick, index, isDisabled, state: clickOptionState, dispatch, onChangeContext });
+      handleClickOption({ event, onClick, index, isDisabled, state: stateForClickHandler, dispatch, onChangeContext });
     },
     [
       state.options,
