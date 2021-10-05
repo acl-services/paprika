@@ -51,8 +51,8 @@ function Options(props) {
         id,
         index,
         isPopoverOpen,
-        handleOnClick: memoizedOnClickHandler,
-        isSelectedValue: isSelected,
+        internalHandleOnClick: memoizedOnClickHandler,
+        isSelected,
       });
     }
 
@@ -60,5 +60,4 @@ function Options(props) {
   });
 }
 
-// Options = React.memo(Options);
 export default Options;

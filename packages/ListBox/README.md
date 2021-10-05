@@ -108,10 +108,9 @@ see: options/helpers/options.js|
 | isHidden               | bool        | false    | false   | Describe if the option is hidden or not                                                |
 | label                  | string      | false    | null    | When the children are not a String, label should need to be add so the filter can work |
 | onClick                | func        | false    | null    | Callback for the clicking event                                                        |
-| handleOnClick          | func        | true     | -       |                                                                                        |
-| id                     | string      | false    | null    |                                                                                        |
-| isSelectedValue        | bool        | true     | -       |                                                                                        |
 | value                  | any         | false    | null    | Value of your option this can be any data structure                                    |
+| internalHandleOnClick  | func        | true     | -       | Internal prop, which shouldn't be documented                                           |
+| id                     | string      | true     | -       | Internal prop, which shouldn't be documented                                           |
 | preventDefaultOnSelect | bool        | false    | false   | Internal prop, which shouldn't be documented                                           |
 
 ### ListBox.Popover

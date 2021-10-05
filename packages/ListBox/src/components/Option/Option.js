@@ -5,28 +5,26 @@ import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
 import * as sc from "./Option.styles";
 
 const Option = props => {
-  const { index, groupId, label, id, isSelectedValue, handleOnClick, ...moreProps } = props; // eslint-disable-line
+  const { index, groupId, label, id, internalHandleOnClick, isSelected, ...moreProps } = props; // eslint-disable-line
   const providedProps = React.useContext(PropsContext);
   const { isReadOnly, size } = providedProps;
   const isDisabled = providedProps.isDisabled || props.isDisabled || isReadOnly;
   return (
     <sc.Option
       {...moreProps}
-      {...getA11yAttributesForOption(isSelectedValue)}
+      {...getA11yAttributesForOption(isSelected)}
       hasPreventDefaultOnSelect={props.preventDefaultOnSelect}
       id={id}
       isDisabled={isDisabled}
-      isSelected={isSelectedValue}
+      isSelected={isSelected}
       size={size}
       key={index}
-      onClick={event => handleOnClick({ event, isDisabled, onClick: props.onClick, index })}
-      data-pka-anchor={isSelectedValue ? "list-option--is-selected" : "list-option"}
+      onClick={event => internalHandleOnClick({ event, isDisabled, onClick: props.onClick, index })}
+      data-pka-anchor={isSelected ? "list-option--is-selected" : "list-option"}
       data-pka-prevent-default-on-select={props.preventDefaultOnSelect}
       tabIndex={-1}
     >
-      {typeof props.children === "function"
-        ? props.children({ isSelected: isSelectedValue, isDisabled, id })
-        : props.children}
+      {typeof props.children === "function" ? props.children({ isSelected, isDisabled, id }) : props.children}
     </sc.Option>
   );
 };
@@ -55,14 +53,14 @@ Option.propTypes = {
   /** Callback for the clicking event */
   onClick: PropTypes.func,
 
-  handleOnClick: PropTypes.func.isRequired,
-
-  id: PropTypes.string,
-
-  isSelectedValue: PropTypes.bool.isRequired,
-
   /** Value of your option this can be any data structure  */
   value: PropTypes.any, // eslint-disable-line
+
+  /** Internal prop, which shouldn't be documented */
+  internalHandleOnClick: PropTypes.func.isRequired,
+
+  /** Internal prop, which shouldn't be documented */
+  id: PropTypes.string.isRequired,
 
   /** Internal prop, which shouldn't be documented */
   preventDefaultOnSelect: PropTypes.bool,
@@ -77,7 +75,6 @@ Option.defaultProps = {
   label: null,
   onClick: null,
   value: null,
-  id: null,
 };
 
 const OptionMemoized = React.memo(Option);
