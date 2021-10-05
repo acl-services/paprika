@@ -1,37 +1,43 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 import ArrowLeftIcon from "@paprika/icon/lib/ArrowLeft";
 
-export const Link = styled.a`
+export const Link = styled.a(
+  ({ isDark }) => css`
   ${stylers.lineHeight()}
-  color: ${({ isDark }) => (isDark ? tokens.color.white : tokens.textColor.subtle)};
+  ${stylers.fontSize(-2)}
+  color: ${isDark ? tokens.color.white : tokens.textColor.subtle};
   display: inline;
   font-weight: normal;
+  margin: 0 ${tokens.spaceSm};
   min-height: 0;
-  padding: 0 ${tokens.space};
+  padding: 0 3px;
   text-decoration: none;
   vertical-align: top;
-`;
+`
+);
 
-export const ListItem = styled.li`
-  display: inline;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+export const ListItem = styled.li(
+  ({ isUsingDefaultLinkComponent }) => css`
+    display: inline;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 
-  &::before {
-    content: "/";
-  }
+    &::before {
+      content: "/";
+    }
 
-  &:first-child {
-    margin-left: -${tokens.space};
-  }
+    &:first-child {
+      margin-left: ${isUsingDefaultLinkComponent ? `-${tokens.space}` : "-7px"};
+    }
 
-  &:first-child::before {
-    display: none;
-  }
-`;
+    &:first-child::before {
+      display: none;
+    }
+  `
+);
 
 export const BackIcon = styled(ArrowLeftIcon)`
   ${stylers.fontSize(-1)};
