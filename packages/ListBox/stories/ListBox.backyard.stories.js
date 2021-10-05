@@ -1,7 +1,8 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
-import { exampleStoryParameters } from "storybook/assets/storyParameters";
+import { exampleStoryParameters, actionStoryParameters } from "storybook/assets/storyParameters";
 import ExampleStory from "storybook/components/ExampleStory";
+import { withKnobs } from "@storybook/addon-knobs";
 import DirectoryExample from "./sandbox/Directory/Directory";
 import FilterSelectExample from "./sandbox/FilterSelect/FilterSelect";
 import LongListExample from "./sandbox/LongList/LongList";
@@ -24,8 +25,9 @@ export const LongListStory = () => (
 
 LongListStory.story = {
   name: "Long List",
+  decorators: [withKnobs],
   parameters: {
-    ...exampleStoryParameters,
+    ...actionStoryParameters,
   },
 };
 
