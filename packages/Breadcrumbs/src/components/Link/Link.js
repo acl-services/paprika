@@ -44,7 +44,7 @@ function Link(props) {
   }
 
   return (
-    <sc.ListItem data-pka-anchor="breadcrumbs.list-item">
+    <sc.ListItem data-pka-anchor="breadcrumbs.list-item" isUsingDefaultLinkComponent={isUsingDefaultLinkComponent}>
       {shouldTruncate ? (
         <Popover isDark isEager>
           <Popover.Trigger>
