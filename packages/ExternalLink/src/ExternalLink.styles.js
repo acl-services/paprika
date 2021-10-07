@@ -1,35 +1,33 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import { truncateText } from "@paprika/stylers/lib/includes";
-import { toInt } from "@paprika/stylers/lib/helpers";
 
 const contentHoverFocusStyles = css`
-  text-decoration: none;
+  &[data-pka-anchor="externalLink.content"] {
+    text-decoration: none;
 
-  &:hover,
-  &:focus {
-    text-decoration: underline;
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
   }
 `;
 
-export const ExternalLink = styled.a(
-  ({ iconFontSize }) => css`
-    align-items: center;
-    border-radius: ${tokens.border.radius};
-    color: ${tokens.textColor.link};
-    display: inline-flex;
-    max-width: 100%;
-    padding: 1px ${iconFontSize + toInt(tokens.spaceLg)}px 1px ${tokens.spaceSm};
-    position: relative;
-    text-decoration: none;
+export const ExternalLink = styled.a`
+  align-items: center;
+  border-radius: ${tokens.border.radius};
+  color: ${tokens.textColor.link};
+  display: inline-flex;
+  max-width: 100%;
+  padding: 1px ${tokens.spaceSm};
+  position: relative;
+  text-decoration: none;
 
-    &:focus,
-    &:active {
-      box-shadow: ${tokens.highlight.active.boxShadow};
-      outline: none;
-    }
-  `
-);
+  &:focus,
+  &:active {
+    box-shadow: ${tokens.highlight.active.boxShadow};
+  }
+`;
 
 export const ExternalLinkContent = styled.span(
   ({ hasNoUnderline }) => css`
