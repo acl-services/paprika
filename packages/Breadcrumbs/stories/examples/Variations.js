@@ -82,6 +82,10 @@ const AllVariations = () => {
           <Breadcrumbs.Link href={URL}>Breadcrumb 3</Breadcrumbs.Link>
           <Breadcrumbs.Link href={URL}>Breadcrumb 4</Breadcrumbs.Link>
         </Breadcrumbs>
+        <Gap.Small />
+        <Breadcrumbs isDark>
+          <Breadcrumbs.Link href={URL}>Breadcrumb 1</Breadcrumbs.Link>
+        </Breadcrumbs>
       </div>
     </>
   );

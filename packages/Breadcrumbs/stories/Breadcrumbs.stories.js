@@ -20,7 +20,12 @@ showcase.story = {
 };
 
 export const variations = () => (
-  <ExampleStory storyName="Breadcrumbs" tagline={ExampleStory.defaultTaglines.variations}>
+  <ExampleStory
+    storyName="Breadcrumbs"
+    tagline={ExampleStory.defaultTaglines.variations}
+    component="Breadcrumbs"
+    fileName="examples/Variations.js"
+  >
     <Gap.Small />
     <Variations />
   </ExampleStory>
