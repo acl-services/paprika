@@ -73,6 +73,7 @@
     "@paprika/seducer": "2.0.3"
   },
   "changesets": [
+    "dry-lizards-clap",
     "pretty-hats-divide"
   ]
 }
