@@ -1,30 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import useListBox from "../../useListBox";
-import { OnChangeContext } from "../../store/OnChangeProvider";
 import { PropsContext } from "../../store/PropsProvider";
 import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
-import { isOptionVisible, isOptionSelected, handleClickOption } from "../Options/helpers/options";
-import useIsSelectedOption from "./useIsSelectedOption";
 import * as sc from "./Option.styles";
 
-export default function Option(props) {
-  const { index, groupId, label, ...moreProps } = props; // eslint-disable-line
-  const [state, dispatch] = useListBox();
+const Option = props => {
+  const { index, groupId, label, id, internalHandleOnClick, isSelected, ...moreProps } = props; // eslint-disable-line
   const providedProps = React.useContext(PropsContext);
   const { isReadOnly, size } = providedProps;
-  const onChangeContext = React.useContext(OnChangeContext);
-
-  useIsSelectedOption({ index, props });
-
-  if (typeof state.options[index] === "undefined" || !isOptionVisible(state, index)) {
-    return null;
-  }
-
-  const isSelected = isOptionSelected(state, index);
   const isDisabled = providedProps.isDisabled || props.isDisabled || isReadOnly;
-  const id = state.options[index].id;
-
   return (
     <sc.Option
       {...moreProps}
@@ -35,7 +19,7 @@ export default function Option(props) {
       isSelected={isSelected}
       size={size}
       key={index}
-      onClick={handleClickOption({ props, isDisabled, state, dispatch, onChangeContext })}
+      onClick={event => internalHandleOnClick({ event, isDisabled, onClick: props.onClick, index })}
       data-pka-anchor={isSelected ? "list-option--is-selected" : "list-option"}
       data-pka-prevent-default-on-select={props.preventDefaultOnSelect}
       tabIndex={-1}
@@ -43,7 +27,7 @@ export default function Option(props) {
       {typeof props.children === "function" ? props.children({ isSelected, isDisabled, id }) : props.children}
     </sc.Option>
   );
-}
+};
 
 Option.displayName = "ListBox.Option";
 
@@ -73,6 +57,12 @@ Option.propTypes = {
   value: PropTypes.any, // eslint-disable-line
 
   /** Internal prop, which shouldn't be documented */
+  internalHandleOnClick: PropTypes.func.isRequired,
+
+  /** Internal prop, which shouldn't be documented */
+  id: PropTypes.string.isRequired,
+
+  /** Internal prop, which shouldn't be documented */
   preventDefaultOnSelect: PropTypes.bool,
 };
 
@@ -86,3 +76,6 @@ Option.defaultProps = {
   onClick: null,
   value: null,
 };
+
+const OptionMemoized = React.memo(Option);
+export default OptionMemoized;
