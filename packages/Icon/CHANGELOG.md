@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.1
+
+### Minor Changes
+
+- added another default colour for modifications
+
 ## 2.0.0
 
 ### Major Changes
