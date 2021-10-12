@@ -1,9 +1,5 @@
 # Changelog
 
-## 2.0.15
-
-- Fixed minor UI issues
-
 ## 2.0.14
 
 ### Patch Changes
