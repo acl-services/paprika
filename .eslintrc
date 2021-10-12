@@ -58,7 +58,7 @@
     "no-underscore-dangle": "off",
     "prefer-destructuring": "off",
     "react/destructuring-assignment": "off",
-    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
     "react/jsx-one-expression-per-line": "off",
     "react/no-multi-comp": "off",
     "react/prefer-stateless-function": "off",
