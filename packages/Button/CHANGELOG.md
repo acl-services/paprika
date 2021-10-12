@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.5-next.0
+
+### Patch Changes
+
+- Updated dependencies [5e1c563]
+  - @paprika/icon@2.1.0-next.0
+
 ## 1.1.4
 
 ### Patch Changes
