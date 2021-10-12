@@ -8,6 +8,7 @@ module.exports = {
     "#767676": "currentColor",
     "#444": "currentColor",
     "#3F3D3C": "currentColor",
+    "#8A8A8A": "currentColor",
   },
   svgProps: {
     // We need to render string template

@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.1.7
+
+### Patch Changes
+
+- Updated dependencies [3316b43]
+  - @paprika/list-box@3.6.0
+
+## 2.1.7-next.0
+
+### Patch Changes
+
+- Updated dependencies [3316b43]
+  - @paprika/list-box@3.6.0-next.0
+
 ## 2.1.6
 
 ### Patch Changes

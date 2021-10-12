@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.6.0
+
+### Minor Changes
+
+- 3316b43: Listbox interaction performance improvements
+
+## 3.6.0-next.0
+
+### Minor Changes
+
+- 3316b43: Listbox interaction performance improvements
+
 ## 3.5.1
 
 ### Patch Changes

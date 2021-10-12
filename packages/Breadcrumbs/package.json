@@ -1,6 +1,6 @@
 {
   "name": "@paprika/breadcrumbs",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Breadcrumbs are a type of navigation that also allows users to visualize their location.",
   "author": "@paprika",
   "main": "lib/index.js",
