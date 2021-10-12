@@ -81,6 +81,7 @@ const storyTree = [
       "CollapsibleCard",
       "CollapsibleText",
       "CollapsibleChecklists",
+      "Link",
       "Pagination",
       "ProgressAccordion",
       "SideNavigation",
