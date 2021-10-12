@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.0
+
+### Minor Changes
+
+- 5c1ef40: Adjust padding of `<Breadcrumbs.Link>` to align consistently with surrounding content.
+
 ## 1.5.0-next.0
 
 ### Minor Changes
