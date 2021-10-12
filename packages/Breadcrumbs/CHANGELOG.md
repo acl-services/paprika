@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.5.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [5e1c563]
+  - @paprika/icon@2.1.0-next.0
+  - @paprika/button@1.1.5-next.0
+
+## 1.5.0
+
+### Minor Changes
+
+- 5c1ef40: Adjust padding of `<Breadcrumbs.Link>` to align consistently with surrounding content.
+
 ## 1.5.0-next.0
 
 ### Minor Changes
