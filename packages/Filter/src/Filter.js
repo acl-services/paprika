@@ -10,7 +10,7 @@ import FilterContext from "./context";
 import columnShape from "./columnShape";
 import * as types from "./types";
 import rules, { defaultRulesByType, logicalFilterOperators } from "./rules";
-
+import comparatorIsBinary from "./helpers/comparatorIsBinary";
 import * as sc from "./Filter.styles";
 
 function getLabelText(numberOfFilters, I18n) {
@@ -56,8 +56,16 @@ export default function Filter(props) {
     onClear();
   }
 
+  // TODO: when no filters are applied, when you open the panel it flickers
+  // TODO: when add a new filter (and it is set to "AND"), there is no choice made from the drop-down, as the first option is already in use.
+
+  const allFieldsAreAlreadyFilteredBy =
+    operator === logicalFilterOperators.AND &&
+    React.Children.count(children) === columns.length &&
+    React.Children.toArray(children).every(child => comparatorIsBinary(child.props.rule));
+
   return (
-    <FilterContext.Provider value={{ filterRef, columns, data, operator, onChangeOperator, rulesByType }}>
+    <FilterContext.Provider value={{ filterRef, children, columns, data, operator, onChangeOperator, rulesByType }}>
       <Panel
         a11yText={I18n.t("filter.label")}
         data-pka-anchor="filter.panel"
@@ -88,7 +96,7 @@ export default function Filter(props) {
           ) : (
             children
           )}
-          {React.Children.count(children) < maxFiltersAllowed && (
+          {React.Children.count(children) < maxFiltersAllowed && !allFieldsAreAlreadyFilteredBy && (
             <Button data-pka-anchor="filter.addFilterButton" icon={<AddIcon />} onClick={onAddFilter}>
               {I18n.t("filter.actions.add")}
             </Button>

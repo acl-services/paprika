@@ -7,7 +7,8 @@ import ListBox from "@paprika/list-box";
 import DatePicker from "../DatePicker";
 import FilterContext from "../../context";
 import * as types from "../../types";
-import rules, { localeKeysByRule } from "../../rules";
+import rules, { localeKeysByRule, logicalFilterOperators } from "../../rules";
+import comparatorIsBinary from "../../helpers/comparatorIsBinary";
 import FilterPrefix from "../FilterPrefix";
 import * as sc from "./FilterItem.styles";
 
@@ -40,7 +41,9 @@ function Item(props) {
     value,
     renderValueField: renderCustomValueField,
   } = props;
-  const { columns, data, filterRef, onChangeOperator, operator, rulesByType } = React.useContext(FilterContext);
+  const { children, columns, data, filterRef, onChangeOperator, operator, rulesByType } = React.useContext(
+    FilterContext
+  );
   const I18n = useI18n();
 
   const selectedColumnType = columns.find(({ id }) => id === selectedColumnId).type;
@@ -121,6 +124,7 @@ function Item(props) {
         );
     }
   }
+
   function renderValueField() {
     const shouldNotShowValueField =
       selectedRule === rules.IS_BLANK ||
@@ -203,6 +207,31 @@ function Item(props) {
     }
   }
 
+  function isAlreadyFilteringByThisColumn(column) {
+    // if they are doing an "OR", include this column so they could apply another filter to it
+    if (operator === logicalFilterOperators.OR) {
+      return false;
+    }
+
+    // if they aren't filtering by this column, include it so they could apply a filter to it
+    const thisColumnsPositionInChildren = children.findIndex(child => child.props.columnId === column.id);
+    if (thisColumnsPositionInChildren === -1) {
+      return false;
+    }
+
+    // if the current index is this Item, include this column so they can see it in the list
+    if (thisColumnsPositionInChildren === index) {
+      return false;
+    }
+
+    // if not doing a binary comparison, include this column so they could filter on this column again
+    if (!comparatorIsBinary(children[thisColumnsPositionInChildren].props.rule)) {
+      return false;
+    }
+
+    return true;
+  }
+
   return (
     <>
       <FilterPrefix index={index} onChangeOperator={onChangeOperator} operator={operator} />
@@ -212,11 +241,15 @@ function Item(props) {
             <ListBox onChange={handleChangeColumn}>
               <ListBox.Trigger hasClearButton={false} />
               {columns.length >= MAX_OPTIONS ? <ListBox.Filter /> : null}
-              {columns.map(column => (
-                <ListBox.Option key={column.id} value={column.id} isSelected={column.id === selectedColumnId}>
-                  {column.label}
-                </ListBox.Option>
-              ))}
+              {columns
+                .filter(column => {
+                  return !isAlreadyFilteringByThisColumn(column);
+                })
+                .map(column => (
+                  <ListBox.Option key={column.id} value={column.id} isSelected={column.id === selectedColumnId}>
+                    {column.label}
+                  </ListBox.Option>
+                ))}
             </ListBox>
           </sc.ColumnSelect>
 
