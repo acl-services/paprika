@@ -214,7 +214,9 @@ function Item(props) {
     }
 
     // if they aren't filtering by this column, include it so they could apply a filter to it
-    const thisColumnsPositionInChildren = children.findIndex(child => child.props.columnId === column.id);
+    const thisColumnsPositionInChildren = React.Children.toArray(children).findIndex(
+      child => child.props.columnId === column.id
+    );
     if (thisColumnsPositionInChildren === -1) {
       return false;
     }
