@@ -15,6 +15,12 @@ module.exports = {
       type: "input",
       name: "componentName",
       message: "What is the name of the new component?",
+      validate(componentName) {
+        if ( !/[A-Z]/.test( componentName[0]) || /\s/g.test(componentName) ){
+          return "Please enter the component name using Camel case or Pascal case.";
+        }
+        return true;
+      }
     },
     {
       type: "input",
@@ -64,6 +70,12 @@ module.exports = {
         type: "input",
         name: "storyName",
         message: "Enter the example story name ...",
+        validate(storyName) {
+          if ( !/[A-Z]/.test( storyName[0]) || /\s/g.test(storyName) ){
+            return "Please enter the example story name using Camel case or Pascal case.";
+          }
+          return true;
+        }
       }
     ]
   },
