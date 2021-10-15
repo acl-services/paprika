@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.15-next.1
+
+### Patch Changes
+
+- 2190120: Minor UI fixes
+
 ## 2.0.15-next.0
 
 ### Patch Changes
