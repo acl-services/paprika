@@ -36,9 +36,7 @@ function typesHandler(documentation) {
   });
 }
 
-module.exports = file => {
-  return reactDocs.parse(file, reactDocs.resolver.findAllComponentDefinitions, [
-    ...reactDocs.defaultHandlers,
-    typesHandler,
-  ]);
-};
+module.exports = (file, fileName) =>
+  reactDocs.parse(file, reactDocs.resolver.findAllComponentDefinitions, [...reactDocs.defaultHandlers, typesHandler], {
+    filename: fileName,
+  });
