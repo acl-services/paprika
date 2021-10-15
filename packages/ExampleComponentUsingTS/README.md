@@ -1,3 +1,0 @@
-# ExampleComponentUsingTS
-
-N/A
