@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
+import stylers from "@paprika/stylers";
 import { truncateText } from "@paprika/stylers/lib/includes";
 
 const contentHoverFocusStyles = css`
@@ -25,7 +26,7 @@ export const ExternalLink = styled.a`
 
   &:focus,
   &:active {
-    box-shadow: ${tokens.highlight.active.boxShadow};
+    ${stylers.focusRing()}
   }
 `;
 
