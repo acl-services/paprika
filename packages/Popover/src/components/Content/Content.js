@@ -21,6 +21,7 @@ const Content = React.forwardRef((props, ref) => {
   const {
     content,
     isEager,
+    isContentAddedToDom,
     isOpen,
     isPortal,
     onClose,
@@ -30,6 +31,10 @@ const Content = React.forwardRef((props, ref) => {
     refContent,
     handleKeyDown,
   } = React.useContext(PopoverContext);
+
+  if (!isContentAddedToDom) {
+    return null;
+  }
 
   // TODO: extract this to Storybook story somehow so supporting numbers as strings is not required
   function isNumber(n) {
