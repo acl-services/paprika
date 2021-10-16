@@ -1,6 +1,6 @@
 import React from "react";
-import UploadIcon from "@paprika/icon/lib/Upload";
 import { Gap } from "storybook/assets/styles/common.styles";
+import tokens from "@paprika/tokens";
 import Link from "../../src";
 
 export default function variations() {
@@ -16,27 +16,29 @@ export default function variations() {
         External Link
       </Link>
       <Gap.Small />
-      <Link href={url} hasNoUnderline>
-        <UploadIcon />
-        link w/ icon and no underline
-      </Link>
-      <Link href={url} hasNoUnderline size="small">
-        <UploadIcon />
-        link w/ icon and no underline (small)
+      <Link href={url} isSubtle hasNoUnderline>
+        Subtle Link (black with no underline)
       </Link>
       <Gap.Small />
-      <Link href={url} isBlack hasNoUnderline>
-        Link (black with no underline)
-      </Link>
+      <div style={{ maxWidth: "500px" }}>
+        <Link href={url}>
+          Example of super long link which will stay within a line Lorem ipsum dolor sit amet, consectetur adipiscing
+          elit. Etiam vestibulum ipsum non justo faucibus maximus.
+        </Link>
+        <Gap.Small />
+        <Link href={url} isExternalLink>
+          Example of super long external link Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vestibulum
+          ipsum non justo faucibus maximus.
+        </Link>
+      </div>
       <Gap.Small />
-      <Link href={url} isNavigation>
-        <UploadIcon />
-        Link is Navigation
-      </Link>
-      <Link href={url} isNavigation size="small">
-        <UploadIcon />
-        Link is Navigation (small)
-      </Link>
+      <div style={{ maxWidth: "500px", background: `${tokens.color.black}` }}>
+        <Gap.Small />
+        <Link href={url} isDark>
+          Example of link in dark background
+        </Link>
+        <Gap.Small />
+      </div>
     </>
   );
 }

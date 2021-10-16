@@ -29,6 +29,7 @@ const storyTree = [
       "OverflowMenu",
       "DialogActions",
       "ExternalLink",
+      "Link",
       "RawButton",
       "StatusTracker"
     ],
@@ -81,7 +82,6 @@ const storyTree = [
       "CollapsibleCard",
       "CollapsibleText",
       "CollapsibleChecklists",
-      "Link",
       "Pagination",
       "ProgressAccordion",
       "SideNavigation",

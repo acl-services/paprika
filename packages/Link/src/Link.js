@@ -1,33 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
 import NewTabIcon from "@paprika/icon/lib/NewTab";
-import * as constants from "@paprika/constants/lib/Constants";
 import * as sc from "./Link.styles";
 
 function Link(props) {
-  const { a11yText, children, isExternalLink, hasNoUnderline, isBlack, isNavigation, href, size, ...moreProps } = props;
+  const { a11yText, children, isExternalLink, hasNoUnderline, isDark, isSubtle, isNavigation, ...moreProps } = props;
   return (
     <sc.Link
       data-pka-anchor="link"
-      size={size}
       isExternalLink={isExternalLink}
       hasNoUnderline={hasNoUnderline}
-      isBlack={isBlack}
+      isDark={isDark}
+      isSubtle={isSubtle}
       isNavigation={isNavigation}
-      href={href}
       target={isExternalLink ? "_blank" : ""}
       aria-label={a11yText || null}
       {...moreProps}
     >
       <sc.LinkContent>{children}</sc.LinkContent>
-      {isExternalLink && <NewTabIcon css={sc.ExternalLinkIconStyles} size={`${size}px`} />}
+      {isExternalLink && <NewTabIcon css={sc.ExternalLinkIconStyles} style={{ minWidth: "20px" }} />}
     </sc.Link>
   );
 }
-
-Link.types = {
-  size: constants.limitedSize,
-};
 
 const propTypes = {
   /** Text for aria-label. */
@@ -39,29 +33,26 @@ const propTypes = {
   /** Remove the default underline */
   hasNoUnderline: PropTypes.bool,
 
+  /** Change font-color according to background color */
+  isDark: PropTypes.bool,
+
   /** Set font-color to black */
-  isBlack: PropTypes.bool,
+  isSubtle: PropTypes.bool,
 
   /** Icon + text format */
   isNavigation: PropTypes.bool,
 
-  /** Size for Font (and Icon) */
-  size: PropTypes.oneOf([Link.types.size.SMALL, Link.types.size.MEDIUM]),
-
   /** Content to be displayed: texts, icons, etc. */
   children: PropTypes.node,
-
-  /** URL for the Link. */
-  href: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
   a11yText: null,
   isExternalLink: false,
   hasNoUnderline: false,
-  isBlack: false,
+  isDark: false,
+  isSubtle: false,
   isNavigation: false,
-  size: Link.types.size.MEDIUM,
   children: null,
 };
 
