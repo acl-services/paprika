@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.8
+
+### Patch Changes
+
+- Updated dependencies [5e1c563]
+  - @paprika/icon@2.1.0
+  - @paprika/button@1.1.5
+  - @paprika/confirmation@1.1.12
+
 ## 1.1.8-next.0
 
 ### Patch Changes

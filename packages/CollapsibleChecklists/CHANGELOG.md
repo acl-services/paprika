@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.17
+
+### Patch Changes
+
+- @paprika/checkbox@1.0.15
+- @paprika/collapsible@1.1.16
+
 ## 1.0.17-next.0
 
 ### Patch Changes
