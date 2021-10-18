@@ -61,16 +61,16 @@ const themeStyles = {
   `,
 };
 
-export const Tags = styled.ul(() => {
-  return css`
+export const Tags = styled.ul(
+  () => css`
     display: flex;
     flex-wrap: wrap;
     line-height: 1;
     list-style-type: none;
     margin: 0;
     padding: 0;
-  `;
-});
+  `
+);
 
 const widthAndHeight = {
   medium: "24px",

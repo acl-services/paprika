@@ -12,7 +12,7 @@ const data = fixtures(1);
 
 function HorizontalScroll() {
   return (
-    <React.Fragment>
+    <>
       <hr />
       <p>
         If the width of the columns of the DataGrid exceed the DataGrid&apos;s <code>width</code> prop, the DataGrid
@@ -23,13 +23,13 @@ function HorizontalScroll() {
         <DataGrid.ColumnDefinition header="Name" cell="name" />
         <DataGrid.ColumnDefinition header="Goals" cell="goals" />
       </DataGrid>
-    </React.Fragment>
+    </>
   );
 }
 
 function GapAtEnd() {
   return (
-    <React.Fragment>
+    <>
       <hr />
       <p>
         If the width of the columns of the DataGrid are less than the DataGrid&apos;s <code>width</code> prop (and no
@@ -41,13 +41,13 @@ function GapAtEnd() {
         <DataGrid.ColumnDefinition header="Name" cell="name" />
         <DataGrid.ColumnDefinition header="Goals" cell="goals" />
       </DataGrid>
-    </React.Fragment>
+    </>
   );
 }
 
 export function WithCanGrow() {
   return (
-    <React.Fragment>
+    <>
       <hr />
       <p>
         If the width of the columns of the DataGrid are less than the DataGrid&apos;s <code>width</code> prop and some
@@ -59,13 +59,13 @@ export function WithCanGrow() {
         <DataGrid.ColumnDefinition header="Name (canGrow)" cell="name" canGrow />
         <DataGrid.ColumnDefinition header="Goals" cell="goals" />
       </DataGrid>
-    </React.Fragment>
+    </>
   );
 }
 
 export function DoesntGrow() {
   return (
-    <React.Fragment>
+    <>
       <hr />
       <p>
         The DataGrid below does not have a <code>width</code> prop, so its width is auto-calculated and there is no
@@ -76,7 +76,7 @@ export function DoesntGrow() {
         <DataGrid.ColumnDefinition header="Name (canGrow)" cell="name" canGrow />
         <DataGrid.ColumnDefinition header="Goals" cell="goals" />
       </DataGrid>
-    </React.Fragment>
+    </>
   );
 }
 

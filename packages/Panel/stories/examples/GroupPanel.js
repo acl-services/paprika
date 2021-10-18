@@ -28,7 +28,7 @@ export default function GroupPanel() {
   };
 
   return (
-    <React.Fragment>
+    <>
       <Nav>
         <div style={menu}>
           <Button data-pka-anchor="button-panel1" onClick={handleParent1} size="small">
@@ -92,6 +92,6 @@ export default function GroupPanel() {
           </Panel.Footer>
         </Panel>
       </Panel.Group>
-    </React.Fragment>
+    </>
   );
 }

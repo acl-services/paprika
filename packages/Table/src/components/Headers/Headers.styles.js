@@ -10,8 +10,8 @@ export const Thead = styled.thead`
   text-align: left;
 `;
 
-export const TH = styled.th(({ borderType, sticky }) => {
-  return css`
+export const TH = styled.th(
+  ({ borderType, sticky }) => css`
     ${fontSize()}
     ${borderType in borderTypesStyles ? borderTypesStyles[borderType] : ""}
     background: ${tokens.table.header.backgroundColor};
@@ -25,5 +25,5 @@ export const TH = styled.th(({ borderType, sticky }) => {
     top: -1px;
     z-index: 2;
     ${typeof sticky !== "undefined" ? `z-index: 3; left: ${!Number.isNaN(sticky) ? sticky : 0}px;` : ""};
-  `;
-});
+  `
+);

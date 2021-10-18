@@ -40,7 +40,7 @@ export default function Tabs(props) {
     );
   }
 
-  React.useLayoutEffect(function ensureValidInitIndex() {
+  React.useLayoutEffect(() => {
     if (isControlled || defaultIndex === null) return;
 
     const items = getItems(refList);

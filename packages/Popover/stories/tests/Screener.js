@@ -7,7 +7,7 @@ const longContent =
   "Lorem ipsum fixie raw denim scenester plaid sustainable lumbersexual, single-origin coffee. Live-edge yr tote bag vaporware slow-carb farm-to-table ethical af humblebrag.";
 
 const Screener = () => (
-  <React.Fragment>
+  <>
     <Popover isOpen>
       <Popover.Trigger>Open Popover</Popover.Trigger>
       <Popover.Content>
@@ -40,7 +40,7 @@ const Screener = () => (
         <Popover.Tip />
       </Popover>
     </div>
-  </React.Fragment>
+  </>
 );
 
 export default Screener;

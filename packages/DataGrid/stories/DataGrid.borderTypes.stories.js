@@ -18,9 +18,7 @@ export function App({ borderType }) {
       ) : (
         <DataGrid data={data} borderType={borderType}>
           {data.length
-            ? Object.keys(data[0]).map(key => {
-                return <DataGrid.ColumnDefinition key={key} header={key} cell={key} />;
-              })
+            ? Object.keys(data[0]).map(key => <DataGrid.ColumnDefinition key={key} header={key} cell={key} />)
             : null}
         </DataGrid>
       )}

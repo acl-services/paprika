@@ -15,13 +15,13 @@ const DateInputExample = props => {
   const [possibleDate, setPossibleDate] = React.useState(null);
 
   return (
-    <React.Fragment>
+    <>
       <L10n locale="en">
         <DateInput date={date} onChange={setDate} onChangePossibleDate={setPossibleDate} {...props} />
       </L10n>
       <p>Date: {date ? date.format(props.humanFormat) : <i>empty</i>}</p>
       <p>Possible date: {possibleDate ? possibleDate.format(props.humanFormat) : <i>empty</i>}</p>
-    </React.Fragment>
+    </>
   );
 };
 

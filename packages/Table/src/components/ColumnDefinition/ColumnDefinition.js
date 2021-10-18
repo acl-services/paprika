@@ -21,7 +21,7 @@ const defaultProps = {
 };
 
 export default function ColumnDefinition() {
-  return <React.Fragment />;
+  return <></>;
 }
 
 ColumnDefinition.propTypes = propTypes;

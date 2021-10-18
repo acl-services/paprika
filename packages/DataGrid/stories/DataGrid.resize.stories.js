@@ -73,7 +73,7 @@ function AppWithActionBar() {
   }, []);
 
   return (
-    <React.Fragment>
+    <>
       <ActionBar>
         <ColumnsArrangement
           orderedColumnIds={orderedColumnIds}
@@ -110,7 +110,7 @@ function AppWithActionBar() {
           )}
         </DataGrid>
       </div>
-    </React.Fragment>
+    </>
   );
 }
 

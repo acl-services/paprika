@@ -20,7 +20,7 @@ export default () => {
   const req = require.context("../../src", false, /\.js$/);
 
   const cards = (
-    <React.Fragment>
+    <>
       {req.keys().map(filename => {
         if (filename === "./index.js") return null;
 
@@ -34,7 +34,7 @@ export default () => {
           </sc.Card>
         );
       })}
-    </React.Fragment>
+    </>
   );
 
   return (

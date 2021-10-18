@@ -7,9 +7,7 @@ const users = getUsers(20);
 const cellTypes = ["an", "name", "status", "role", "subscription", "reportsRole", "activations", "signed"];
 
 const cellRenders = {
-  an: () => ({ row }) => {
-    return <input type="checkbox" defaultChecked={row.an} />;
-  },
+  an: () => ({ row }) => <input type="checkbox" defaultChecked={row.an} />,
   subscription: ({ setData }) => props => {
     const { setStatus, setOptimisticValue, statusType } = useTable({
       rowIndex: props.rowIndex,
