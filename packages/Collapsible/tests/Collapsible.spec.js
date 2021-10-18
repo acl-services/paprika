@@ -70,10 +70,10 @@ describe("Collapsible", () => {
     expect(onClick).toHaveBeenCalled();
   });
 
-  // it("should show the expand/collapse icon when collapsed", () => {
-  //   const { container } = renderComponent({ isCollapsed: true });
-  //   expect(container.querySelector(".collapsible__icon--left")).toBeVisible();
-  // });
+  it("should show the expand/collapse icon when collapsed", () => {
+    const { container } = renderComponent({ isCollapsed: true });
+    expect(container.querySelector("[data-pka-anchor='collapsible.icon']")).toBeVisible();
+  });
 
   it("should show custom icons", () => {
     const iconExpand = <span className="custom-expand" />;
