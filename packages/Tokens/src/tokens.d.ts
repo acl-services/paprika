@@ -27,6 +27,12 @@ declare namespace tokens {
         const cremeDarken10: string;
         const cremeLighten5: string;
         const cremeLighten10: string;
+        const diligent: string;
+        const diligentLighten10: string;
+        const diligentLighten20: string;
+        const diligentLighten30: string;
+        const diligentLighten70: string;
+        const diligentDarken10: string;
         const green: string;
         const greenDarken10: string;
         const greenDarken20: string;
@@ -235,4 +241,10 @@ declare namespace tokens {
     }
     const shadow_3: string;
     export { shadow_3 as shadow };
+    export namespace diligent_1 {
+        const actionPrimary: string;
+        const backgrondBase: string;
+        const brandPrimary: string;
+    }
+    export { diligent_1 as diligent };
 }
