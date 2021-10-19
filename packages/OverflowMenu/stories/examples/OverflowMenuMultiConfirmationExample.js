@@ -21,17 +21,15 @@ const OverflowMenuExample = () => {
       </OverflowMenu.Item>
       <OverflowMenu.Item
         isDestructive
-        renderConfirmation={onCloseMenu => {
-          return (
-            <Confirmation
-              body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
-              confirmLabel="Delete filter"
-              heading="Delete filter 1?"
-              onConfirm={handleConfirm}
-              onClose={handleCloseConfirm(onCloseMenu)}
-            />
-          );
-        }}
+        renderConfirmation={onCloseMenu => (
+          <Confirmation
+            body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
+            confirmLabel="Delete filter"
+            heading="Delete filter 1?"
+            onConfirm={handleConfirm}
+            onClose={handleCloseConfirm(onCloseMenu)}
+          />
+        )}
       >
         Delete filter 1
       </OverflowMenu.Item>
@@ -42,17 +40,15 @@ const OverflowMenuExample = () => {
       <OverflowMenu.Divider />
       <OverflowMenu.Item
         isDestructive
-        renderConfirmation={onCloseMenu => {
-          return (
-            <Confirmation
-              body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
-              confirmLabel="Delete filter"
-              heading="Delete filter 2?"
-              onConfirm={handleConfirm}
-              onClose={handleCloseConfirm(onCloseMenu)}
-            />
-          );
-        }}
+        renderConfirmation={onCloseMenu => (
+          <Confirmation
+            body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
+            confirmLabel="Delete filter"
+            heading="Delete filter 2?"
+            onConfirm={handleConfirm}
+            onClose={handleCloseConfirm(onCloseMenu)}
+          />
+        )}
       >
         Delete filter 2
       </OverflowMenu.Item>

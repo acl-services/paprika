@@ -27,11 +27,13 @@ const propTypes = {
     shards: PropTypes.arrayOf(PropTypes.any),
 
     as: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+    // eslint-disable-next-line react/forbid-prop-types
     lockProps: PropTypes.object,
 
     onActivation: PropTypes.func,
     onDeactivation: PropTypes.func,
 
+    // eslint-disable-next-line react/forbid-prop-types
     sideCar: PropTypes.any,
   }),
   hasBackdrop: PropTypes.bool,

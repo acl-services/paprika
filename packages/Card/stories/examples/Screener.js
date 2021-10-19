@@ -4,16 +4,14 @@ import BasicCard from "./BasicCard";
 import DeluxeCard from "./DeluxeCard";
 import MultipleCard from "./MultipleCard";
 
-const ExampleStory = () => {
-  return (
-    <Story>
-      <BasicCard />
-      <Rule />
-      <DeluxeCard />
-      <Rule />
-      <MultipleCard />
-    </Story>
-  );
-};
+const ExampleStory = () => (
+  <Story>
+    <BasicCard />
+    <Rule />
+    <DeluxeCard />
+    <Rule />
+    <MultipleCard />
+  </Story>
+);
 
 export default ExampleStory;

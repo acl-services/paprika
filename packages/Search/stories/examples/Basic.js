@@ -44,13 +44,11 @@ export default function Basic() {
     <div style={{ padding: "32px" }}>
       {valueSelected}
       <Search onChangeSearch={handleChangeSearch} onSelected={handleSelected}>
-        {filterData.map(option => {
-          return (
-            <Search.Option value={option.label} key={option.label} label={option.label}>
-              {option.label}
-            </Search.Option>
-          );
-        })}
+        {filterData.map(option => (
+          <Search.Option value={option.label} key={option.label} label={option.label}>
+            {option.label}
+          </Search.Option>
+        ))}
       </Search>
     </div>
   );

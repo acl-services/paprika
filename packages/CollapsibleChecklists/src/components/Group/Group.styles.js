@@ -4,8 +4,7 @@ import stylers from "@paprika/stylers";
 import { disabledStyles } from "../helpers.styles";
 
 const groupStyles = css`
-  ${({ isDisabled }) => {
-    return `
+  ${({ isDisabled }) => `
       [data-pka-anchor="collapsible.heading"] {
         align-items: flex-start;
         background-color: ${tokens.color.cremeLighten5};
@@ -30,8 +29,7 @@ const groupStyles = css`
           margin: ${tokens.spaceSm} ${tokens.space} 0 0;
         }
       }
-    `;
-  }}
+    `}
 `;
 
 export default groupStyles;

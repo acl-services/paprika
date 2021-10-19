@@ -68,23 +68,19 @@ function Basic2Story() {
 
   function renderCollapsibleChecklists(title, items) {
     return (
-      <React.Fragment>
+      <>
         <CollapsibleChecklists.Heading>{title}</CollapsibleChecklists.Heading>
 
-        {Object.keys(items).map(key => {
-          return (
-            <CollapsibleChecklists.Group title={key}>
-              {items[key].map(item => {
-                return (
-                  <CollapsibleChecklists.Item isChecked={item.isChecked} kind={key} id={item.id}>
-                    {item.title}
-                  </CollapsibleChecklists.Item>
-                );
-              })}
-            </CollapsibleChecklists.Group>
-          );
-        })}
-      </React.Fragment>
+        {Object.keys(items).map(key => (
+          <CollapsibleChecklists.Group title={key}>
+            {items[key].map(item => (
+              <CollapsibleChecklists.Item isChecked={item.isChecked} kind={key} id={item.id}>
+                {item.title}
+              </CollapsibleChecklists.Item>
+            ))}
+          </CollapsibleChecklists.Group>
+        ))}
+      </>
     );
   }
 

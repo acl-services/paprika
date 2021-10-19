@@ -68,17 +68,11 @@ describe("ListBoxBrowser", () => {
   });
 
   it("should find the options using getDataOptionByFn function", () => {
-    const option = getDataOptionByFn(data, option => {
-      return option.label === "Angelo Fortunato";
-    });
+    const option = getDataOptionByFn(data, option => option.label === "Angelo Fortunato");
 
-    const test1 = getDataOptionByFn(data, option => {
-      return option.key === "test1";
-    });
+    const test1 = getDataOptionByFn(data, option => option.key === "test1");
 
-    const test2 = getDataOptionByFn(data, option => {
-      return option.key === "test2";
-    });
+    const test2 = getDataOptionByFn(data, option => option.key === "test2");
 
     expect(option).toMatchSnapshot();
     expect(test1).toMatchSnapshot();

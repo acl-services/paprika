@@ -49,9 +49,9 @@ function Item(props) {
     switch (selectedColumnType) {
       case types.columnTypes.SINGLE_SELECT:
       case types.columnTypes.MULTI_SELECT:
-        return data.filter((obj, index, arr) => {
-          return arr.map(datum => datum[selectedColumnId]).indexOf(obj[selectedColumnId]) === index;
-        });
+        return data.filter(
+          (obj, index, arr) => arr.map(datum => datum[selectedColumnId]).indexOf(obj[selectedColumnId]) === index
+        );
       default:
         return null;
     }

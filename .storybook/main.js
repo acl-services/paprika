@@ -7,15 +7,15 @@ storyTree.forEach(catList => {
     const path = `../packages/${component}/stories`;
     stories.push(
       `${path}/${component}.stories.mdx`,
-      `${path}/${component}.stories.js`,
-      `${path}/${component}.examples.stories.js`,
-      `${path}/${component}.backyard.stories.js`,
-      `${path}/${component}.tests.stories.js`
+      `${path}/${component}.stories.(js|ts|tsx)`,
+      `${path}/${component}.examples.stories.(js|ts|tsx)`,
+      `${path}/${component}.backyard.stories.(js|ts|tsx)`,
+      `${path}/${component}.tests.stories.(js|ts|tsx)`
     );
   });
 });
-stories.push("../packages/**/*.stor(y|ies).js");
-stories.push("./components/**/*.stor(y|ies).js");
+stories.push("../packages/**/*.stor(y|ies).(js|ts|tsx)");
+stories.push("./components/**/*.stor(y|ies).(js|ts|tsx)");
 
 module.exports = {
   stories,

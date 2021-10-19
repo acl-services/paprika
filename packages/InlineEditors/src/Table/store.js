@@ -56,9 +56,7 @@ export function useTable({ rowIndex, columnIndex } = {}) {
     statusType,
     messagesError: state.messagesError,
     optimisticValues: state.optimisticValues,
-    getStatus: () => {
-      return state.status.get(`${rowIndex}-${columnIndex}`);
-    },
+    getStatus: () => state.status.get(`${rowIndex}-${columnIndex}`),
     status: state.status,
   };
 }

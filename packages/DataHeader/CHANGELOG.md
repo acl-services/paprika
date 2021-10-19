@@ -1,5 +1,29 @@
 <!-- content -->
 
+## 1.0.30
+
+### Patch Changes
+
+- Updated dependencies [5e1c563]
+  - @paprika/icon@2.1.0
+  - @paprika/button@1.1.5
+  - @paprika/data-field@1.0.24
+  - @paprika/data-grid@1.0.20
+  - @paprika/overflow-menu@1.1.8
+  - @paprika/toast@1.1.12
+
+## 1.0.30-next.0
+
+### Patch Changes
+
+- Updated dependencies [5e1c563]
+  - @paprika/icon@2.1.0-next.0
+  - @paprika/button@1.1.5-next.0
+  - @paprika/data-field@1.0.24-next.0
+  - @paprika/data-grid@1.0.20-next.0
+  - @paprika/overflow-menu@1.1.8-next.0
+  - @paprika/toast@1.1.12-next.0
+
 ## 1.0.29
 
 ### Patch Changes

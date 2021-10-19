@@ -189,11 +189,11 @@ export default function Panel(props) {
   const shouldDisableBodyOverflow = (overlayExtracted || isInline) && isOpen;
 
   return (
-    <React.Fragment>
+    <>
       {shouldDisableBodyOverflow && <LockBodyScroll />}
       {trigger}
       {sidePanel}
-    </React.Fragment>
+    </>
   );
 }
 

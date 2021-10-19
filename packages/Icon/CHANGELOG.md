@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.1.0
+
+### Minor Changes
+
+- 5e1c563: TimesCircle icon's default colour #8A8A8A is now included in the config file
+
+## 2.1.0-next.0
+
+### Minor Changes
+
+- 5e1c563: TimesCircle icon's default colour #8A8A8A is now included in the config file
+
 ## 2.0.0
 
 ### Major Changes

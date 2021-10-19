@@ -4,9 +4,8 @@ import { boxSizingStyles, visuallyHidden } from "@paprika/stylers/lib/includes";
 import tokens from "@paprika/tokens";
 import types from "./types";
 
-const getLabelLeftPadding = (radioSize, hasLabel) => {
-  return hasLabel ? `${toInt(radioSize) + toInt(tokens.space)}px` : radioSize;
-};
+const getLabelLeftPadding = (radioSize, hasLabel) =>
+  hasLabel ? `${toInt(radioSize) + toInt(tokens.space)}px` : radioSize;
 
 const smallRadioSize = tokens.radio.sizeSm;
 const mediumRadioSize = tokens.radio.sizeMd;
@@ -38,12 +37,10 @@ const styles = {
       height: smallRadioSize,
       left: smallRadioHalfSize,
     },
-    labelStyles: hasLabel => {
-      return {
-        minHeight: smallRadioSize,
-        padding: `0 0 0 ${getLabelLeftPadding(smallRadioSize, hasLabel)}`,
-      };
-    },
+    labelStyles: hasLabel => ({
+      minHeight: smallRadioSize,
+      padding: `0 0 0 ${getLabelLeftPadding(smallRadioSize, hasLabel)}`,
+    }),
   },
   [types.size.MEDIUM]: {
     baseFontSize: {
@@ -65,12 +62,10 @@ const styles = {
       height: mediumRadioSize,
       left: mediumRadioHalfSize,
     },
-    labelStyles: hasLabel => {
-      return {
-        minHeight: mediumRadioSize,
-        padding: `1px 0 0 ${getLabelLeftPadding(mediumRadioSize, hasLabel)}`,
-      };
-    },
+    labelStyles: hasLabel => ({
+      minHeight: mediumRadioSize,
+      padding: `1px 0 0 ${getLabelLeftPadding(mediumRadioSize, hasLabel)}`,
+    }),
   },
   [types.size.LARGE]: {
     baseFontSize: {
@@ -92,12 +87,10 @@ const styles = {
       height: largeRadioSize,
       left: largeRadioHalfSize,
     },
-    labelStyles: hasLabel => {
-      return {
-        minHeight: largeRadioSize,
-        padding: `3px 0 0 ${getLabelLeftPadding(largeRadioSize, hasLabel)}`,
-      };
-    },
+    labelStyles: hasLabel => ({
+      minHeight: largeRadioSize,
+      padding: `3px 0 0 ${getLabelLeftPadding(largeRadioSize, hasLabel)}`,
+    }),
   },
 };
 

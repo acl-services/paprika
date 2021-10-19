@@ -34,60 +34,58 @@ function Menu(props) {
   );
 }
 
-export const DataGridWithLongTitleExample = () => {
-  return (
-    <div style={{ padding: "32px" }}>
-      <DataGrid data={data} width={600}>
-        <DataGrid.ColumnDefinition
-          header={() => (
-            <DataHeader
-              title="Name"
-              icons={DataHeader.icons}
-              label="name"
-              type="numeric"
-              renderActions={() => <Menu type="some" />}
-            />
-          )}
-          cell="name"
-        />
-        <DataGrid.ColumnDefinition
-          header={() => (
-            <DataHeader
-              title="Revenue with some background info"
-              icons={DataHeader.icons}
-              label="Revenue with some background info"
-              type="numeric"
-              renderActions={() => <Menu type="some" />}
-            />
-          )}
-          cell={({ row }) => Number(row.income - row.taxes)}
-          width={100}
-        />
-        <DataGrid.ColumnDefinition
-          header={() => (
-            <DataHeader
-              title="Income"
-              icons={DataHeader.icons}
-              label="Income"
-              type="numeric"
-              renderActions={() => <Menu type="some" />}
-            />
-          )}
-          cell={({ row }) => row.income}
-        />
-        <DataGrid.ColumnDefinition
-          header={() => (
-            <DataHeader
-              title="Taxes"
-              icons={DataHeader.icons}
-              label="Taxes"
-              type="numeric"
-              renderActions={() => <Menu type="some" />}
-            />
-          )}
-          cell={({ row }) => row.taxes}
-        />
-      </DataGrid>
-    </div>
-  );
-};
+export const DataGridWithLongTitleExample = () => (
+  <div style={{ padding: "32px" }}>
+    <DataGrid data={data} width={600}>
+      <DataGrid.ColumnDefinition
+        header={() => (
+          <DataHeader
+            title="Name"
+            icons={DataHeader.icons}
+            label="name"
+            type="numeric"
+            renderActions={() => <Menu type="some" />}
+          />
+        )}
+        cell="name"
+      />
+      <DataGrid.ColumnDefinition
+        header={() => (
+          <DataHeader
+            title="Revenue with some background info"
+            icons={DataHeader.icons}
+            label="Revenue with some background info"
+            type="numeric"
+            renderActions={() => <Menu type="some" />}
+          />
+        )}
+        cell={({ row }) => Number(row.income - row.taxes)}
+        width={100}
+      />
+      <DataGrid.ColumnDefinition
+        header={() => (
+          <DataHeader
+            title="Income"
+            icons={DataHeader.icons}
+            label="Income"
+            type="numeric"
+            renderActions={() => <Menu type="some" />}
+          />
+        )}
+        cell={({ row }) => row.income}
+      />
+      <DataGrid.ColumnDefinition
+        header={() => (
+          <DataHeader
+            title="Taxes"
+            icons={DataHeader.icons}
+            label="Taxes"
+            type="numeric"
+            renderActions={() => <Menu type="some" />}
+          />
+        )}
+        cell={({ row }) => row.taxes}
+      />
+    </DataGrid>
+  </div>
+);

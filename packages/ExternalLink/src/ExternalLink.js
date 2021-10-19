@@ -32,6 +32,7 @@ function ExternalLink(props) {
 
   return (
     <sc.ExternalLink
+      data-pka-anchor="externalLink"
       aria-label={a11yText || null}
       onClick={handleSwallowClick}
       rel="noopener noreferrer"
@@ -39,7 +40,9 @@ function ExternalLink(props) {
       iconFontSize={iconFontSize}
       {...moreProps}
     >
-      <sc.ExternalLinkContent hasNoUnderline={hasNoUnderline}>{children}</sc.ExternalLinkContent>
+      <sc.ExternalLinkContent data-pka-anchor="externalLink.content" hasNoUnderline={hasNoUnderline}>
+        {children}
+      </sc.ExternalLinkContent>
       <NewTabIcon css={sc.ExternalLinkIconStyles} size={`${iconFontSize}px`} />
     </sc.ExternalLink>
   );
