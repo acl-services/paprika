@@ -47,7 +47,7 @@ class Popover extends React.Component {
     this.triggerFocusIndex = null;
 
     this.state = {
-      isContentAddedToDom: false,
+      isContentAddedToDom: this.props.defaultIsOpen || false,
       isOpen: this.props.defaultIsOpen || false,
       tip: {
         x: 0,
@@ -124,31 +124,33 @@ class Popover extends React.Component {
 
     if (this.isOpen()) {
       this.addListeners();
-      this.setVisibilityAndPosition();
+      this.open();
     }
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (!prevState.isOpen && nextProps.isOpen) {
-      return { isOpen: true };
-    }
-
-    return null;
-  }
-
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (!prevProps.isOpen && this.props.isOpen) {
       this.open();
     }
 
-    if (this.isOpen() && !this.hasListeners) {
-      this.focusableElements = document.querySelectorAll(focusableElementSelector);
-      this.addListeners();
+    if (prevProps.isOpen && !this.props.isOpen) {
+      this.close();
     }
 
-    if (this.isOpen() && prevProps !== this.props) this.setVisibilityAndPosition();
-
     if (this.state.isContentAddedToDom && !this.hasContentListeners) this.addContentListeners();
+
+    if (this.state.isOpen) {
+      if (!this.hasListeners) {
+        this.focusableElements = document.querySelectorAll(focusableElementSelector);
+        this.addListeners();
+      }
+
+      if (prevProps !== this.props) {
+        this.setVisibilityAndPosition();
+      }
+    } else if (prevState.isContentAddedToDom !== this.state.isContentAddedToDom && this.state.isContentAddedToDom) {
+      this.setVisibilityAndPosition(true);
+    }
   }
 
   componentWillUnmount() {
@@ -236,7 +238,7 @@ class Popover extends React.Component {
   // eslint is forcing to put handleReposition before ComponentDidMount
   // eslint-disable-next-line react/sort-comp
   handleReposition = throttle(() => {
-    if (this.isOpen()) {
+    if (this.state.isOpen) {
       const scrollContainer = this.props.getScrollContainer === null ? document.body : this.props.getScrollContainer();
       if (
         !isInsideBoundaries({
@@ -270,7 +272,9 @@ class Popover extends React.Component {
         this.focusableElements[this.triggerFocusIndex].focus();
       } else if (!event.shiftKey && (isFocusOnLast || isFocusOnOnly)) {
         event.preventDefault();
-        this.focusableElements[this.triggerFocusIndex + 1].focus();
+        if (this.triggerFocusIndex + 1) {
+          this.focusableElements[this.triggerFocusIndex + 1].focus();
+        }
       }
     }
   };
@@ -303,7 +307,7 @@ class Popover extends React.Component {
 
   handleTransitionEnd = event => {
     if (event.propertyName === "opacity") {
-      if (this.isOpen()) {
+      if (this.state.isOpen) {
         if (!this.props.shouldKeepFocus && !this.props.isEager) {
           this.setPopoverTriggerFocusIndex();
           event.target.focus();
@@ -354,11 +358,8 @@ class Popover extends React.Component {
 
   open() {
     this.$trigger = document.activeElement;
-    if (!this.isOpen()) {
+    if (!this.state.isContentAddedToDom) {
       this.setState({ isContentAddedToDom: true });
-      setTimeout(() => {
-        this.setVisibilityAndPosition(true);
-      });
     } else {
       this.setVisibilityAndPosition(true);
     }
@@ -370,10 +371,8 @@ class Popover extends React.Component {
       this.props.onClose();
     }
 
-    if (this.props.isOpen === null) {
-      this.setState({ isOpen: false });
-      this.removeListeners();
-    }
+    this.setState({ isOpen: false });
+    this.removeListeners();
   }
 
   isOpen() {
@@ -395,7 +394,7 @@ class Popover extends React.Component {
   }
 
   addContentListeners() {
-    this.$content.addEventListener("transitionend", this.handleTransitionEnd, false);
+    this.$content.addEventListener("transitionend", e => this.handleTransitionEnd(e), false);
     this.hasContentListeners = true;
   }
 
@@ -457,7 +456,7 @@ class Popover extends React.Component {
       this.state.width,
       isEager,
       this.state.isContentAddedToDom,
-      this.isOpen(),
+      this.state.isOpen,
       isPortal,
       this.$portal,
       this.refContent,

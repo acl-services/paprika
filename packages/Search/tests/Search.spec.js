@@ -19,14 +19,14 @@ describe("Search", () => {
     const { container } = render(<SearchBasic />);
 
     await waitFor(() => {
-      expect(getPopover()).toHaveAttribute("aria-hidden", "true");
+      expect(getPopover()).not.toBeInTheDocument();
     });
 
     fireEvent.click(getTrigger(container));
     fireEvent.change(screen.getByRole("textbox"), { target: { value: "t" } });
 
     await waitFor(() => {
-      expect(getPopover()).toHaveAttribute("aria-hidden", "false");
+      expect(getPopover()).toBeInTheDocument();
     });
 
     expect(screen.queryByPlaceholderText("Search...")).toBeInTheDocument();

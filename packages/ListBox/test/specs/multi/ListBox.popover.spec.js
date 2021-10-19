@@ -27,19 +27,19 @@ function renderComponent(props = {}, children = childrenContent) {
     selectJupiter: () => {
       fireEvent.click(rendered.getByText(/jupiter/i));
     },
-    expectDropdownIsNotHidden: () => {
-      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toMatch(/false/i);
+    expectDropdownIsVisible: () => {
+      expect(rendered.getByTestId("popover.content")).toBeInTheDocument();
     },
   };
 }
 
 describe("ListBox.Popover", () => {
   it("popover should not close when selecting and show chosen options in trigger", () => {
-    const { getByTestId, expectDropdownIsNotHidden, openSelect, selectVenus, selectJupiter } = renderComponent();
+    const { getByTestId, expectDropdownIsVisible, openSelect, selectVenus, selectJupiter } = renderComponent();
 
     openSelect();
     selectVenus();
-    expectDropdownIsNotHidden();
+    expectDropdownIsVisible();
     selectJupiter();
     expect(getByTestId("list-box-trigger")).toHaveTextContent(/venus, jupiter/i);
   });
@@ -57,6 +57,7 @@ describe("ListBox.Popover", () => {
 
     openSelect();
     await waitFor(() => {
+      // not finding this attribute for some reason
       const activeElementPkaAnchor = document.activeElement.dataset.pkaAnchor;
       expect(activeElementPkaAnchor).toBe("popover.content");
     });
@@ -73,10 +74,10 @@ describe("ListBox.Popover", () => {
   });
 
   it("should have popover open already ", () => {
-    const { expectDropdownIsNotHidden } = renderComponent({
+    const { expectDropdownIsVisible } = renderComponent({
       isOpen: true,
     });
 
-    expectDropdownIsNotHidden();
+    expectDropdownIsVisible();
   });
 });

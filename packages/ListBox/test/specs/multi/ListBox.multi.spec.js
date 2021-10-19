@@ -1,5 +1,5 @@
 import React from "react";
-import { configure, render, fireEvent } from "@testing-library/react";
+import { configure, render, fireEvent, waitFor, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
 import ListBox from "../../../src";
 
@@ -22,11 +22,13 @@ function renderComponent(props = {}, children = childrenContent) {
     openSelect: () => {
       fireEvent.click(rendered.getByText(/select/i));
     },
-    expectDropdownIsHidden: () => {
-      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toBeTruthy();
+    expectDropdownIsNotVisible: async () => {
+      await waitFor(() => {
+        expect(screen.queryByTestId("popover.content")).not.toBeInTheDocument();
+      });
     },
-    expectDropdownIsNotHidden: () => {
-      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toMatch(/false/i);
+    expectDropdownIsVisible: () => {
+      expect(rendered.getByTestId("popover.content")).toBeInTheDocument();
     },
   };
 }
@@ -34,15 +36,15 @@ function renderComponent(props = {}, children = childrenContent) {
 describe("ListBox multi select", () => {
   describe("Basic", () => {
     it("dropdown should be hidden when first rendered", () => {
-      const { expectDropdownIsHidden } = renderComponent();
-      expectDropdownIsHidden();
+      const { expectDropdownIsNotVisible } = renderComponent();
+      expectDropdownIsNotVisible();
     });
 
     it("dropdown should be visible when clicked", () => {
-      const { openSelect, expectDropdownIsNotHidden } = renderComponent();
+      const { openSelect, expectDropdownIsVisible } = renderComponent();
 
       openSelect();
-      expectDropdownIsNotHidden();
+      expectDropdownIsVisible();
     });
 
     it("dropdown should have correct number of options", () => {
@@ -54,19 +56,20 @@ describe("ListBox multi select", () => {
     });
 
     it("should be disabled", () => {
-      const { openSelect, expectDropdownIsHidden } = renderComponent({
+      const { openSelect, expectDropdownIsNotVisible } = renderComponent({
         isDisabled: true,
       });
 
       openSelect();
-      expectDropdownIsHidden();
+      expectDropdownIsNotVisible();
     });
 
     it("should have custom height of 500", () => {
-      const { getByTestId } = renderComponent({
+      const { getByTestId, openSelect } = renderComponent({
         height: 600,
       });
 
+      openSelect();
       expect(getByTestId("styled-list").getAttribute("height")).toMatch("600");
     });
 

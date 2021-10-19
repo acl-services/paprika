@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, waitForElementToBeRemoved } from "@testing-library/react";
+import { render, screen, waitForElementToBeRemoved, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ListBoxSingleStory } from "../stories/examples/ListBox";
 
@@ -34,7 +34,10 @@ test("Inline editing / ListBox / close", async () => {
   expect(screen.queryByText(regexOption2)).toBeInTheDocument();
 
   userEvent.click(screen.getByTestId("list-box-trigger")); // click event
-  await waitForElementToBeRemoved(screen.getByTestId("list-box-box"));
+  await waitFor(() => {
+    expect(screen.queryByTestId("popover.content")).not.toBeInTheDocument();
+  });
+  // await waitForElementToBeRemoved(screen.getByTestId("list-box-box"));
 
   expect(screen.queryByText(regexOption1)).not.toBeInTheDocument();
   expect(screen.queryByText(regexOption2)).not.toBeInTheDocument();
@@ -47,7 +50,10 @@ test("Inline editing / ListBox / onSubmit event", async () => {
   userEvent.click(screen.getByTestId("inline-editing.raw-button"));
 
   userEvent.click(screen.queryByText(regexOption2));
-  await waitForElementToBeRemoved(screen.getByTestId("list-box-box"));
+  await waitFor(() => {
+    expect(screen.queryByTestId("popover.content")).not.toBeInTheDocument();
+  });
+  // await waitForElementToBeRemoved(screen.getByTestId("list-box-box"));
   expect(screen.queryByText(regexOption1)).not.toBeInTheDocument();
   expect(screen.getByTestId("inline-editing.raw-button").textContent).toBe("Results Lite Contributor ");
 });
@@ -58,7 +64,10 @@ test("Inline editing / ListBox / onChange event", async () => {
   userEvent.click(screen.getByTestId("inline-editing.raw-button"));
 
   userEvent.click(screen.queryByText(regexOption2));
-  await waitForElementToBeRemoved(screen.getByTestId("list-box-box"));
+  await waitFor(() => {
+    expect(screen.queryByTestId("popover.content")).not.toBeInTheDocument();
+  });
+  // await waitForElementToBeRemoved(screen.getByTestId("list-box-box"));
   expect(screen.queryByText(/onChange:Results Lite Contributor/i)).toBeInTheDocument();
   expect(screen.getByTestId("inline-editing.raw-button").textContent).toBe("Results Lite Contributor ");
 });

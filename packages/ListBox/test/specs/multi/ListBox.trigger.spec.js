@@ -30,11 +30,8 @@ function renderComponent(props = {}, children = childrenContent) {
     selectJupiter: () => {
       fireEvent.click(rendered.getByText(/jupiter/i));
     },
-    expectDropdownIsHidden: () => {
-      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toBeTruthy();
-    },
-    expectDropdownIsNotHidden: () => {
-      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toMatch(/false/i);
+    expectDropdownIsVisible: () => {
+      expect(rendered.getByTestId("popover.content")).toBeInTheDocument();
     },
   };
 }
@@ -69,7 +66,7 @@ describe("ListBox.Trigger", () => {
       );
     });
 
-    const { expectDropdownIsNotHidden, selectVenus, selectJupiter, getByText } = renderComponent({}, [
+    const { expectDropdownIsVisible, selectVenus, selectJupiter, getByText } = renderComponent({}, [
       <ListBox.Trigger key="trigger">{onRenderTrigger}</ListBox.Trigger>,
       [...childrenContent],
     ]);
@@ -77,7 +74,7 @@ describe("ListBox.Trigger", () => {
     expect(onRenderTrigger).toHaveBeenCalled();
     expect(getByText(/toggle listbox/i)).toBeInTheDocument();
     fireEvent.click(getByText(/toggle listbox/i));
-    expectDropdownIsNotHidden();
+    expectDropdownIsVisible();
     expect(getByText(/venus/i)).toBeInTheDocument();
     expect(getByText(/jupiter/i)).toBeInTheDocument();
     selectVenus();

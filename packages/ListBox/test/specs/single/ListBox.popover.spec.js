@@ -18,7 +18,7 @@ function renderComponent(props = {}, children = childrenContent) {
       fireEvent.click(rendered.getByText(/select/i));
     },
     popoverIsVisible: () => {
-      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toMatch(/false/i);
+      expect(rendered.queryByTestId("popover.content")).toBeInTheDocument();
     },
   };
 }

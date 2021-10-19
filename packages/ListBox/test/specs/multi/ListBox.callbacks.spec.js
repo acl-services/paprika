@@ -1,5 +1,5 @@
 import React from "react";
-import { configure, render, fireEvent } from "@testing-library/react";
+import { configure, render, fireEvent, waitFor, screen } from "@testing-library/react";
 import ListBox from "../../../src";
 
 configure({ testIdAttribute: "data-pka-anchor" });
@@ -29,12 +29,6 @@ function renderComponent(props = {}, children = childrenContent) {
     },
     selectJupiter: () => {
       fireEvent.click(rendered.getByText(/jupiter/i));
-    },
-    expectDropdownIsHidden: () => {
-      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toBeTruthy();
-    },
-    expectDropdownIsNotHidden: () => {
-      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toMatch(/false/i);
     },
   };
 }

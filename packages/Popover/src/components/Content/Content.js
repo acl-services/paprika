@@ -64,6 +64,8 @@ const Content = React.forwardRef((props, ref) => {
 
     const currentTarget = event.currentTarget;
     setTimeout(() => {
+      // TODO : This is failing test for below story, evaluating to true instead of false
+      // http://localhost:9009/?path=/story/forms-inlineeditors--list-box-single example
       if (!isElementContainsFocus(currentTarget)) {
         onClose();
       }
@@ -94,7 +96,6 @@ const Content = React.forwardRef((props, ref) => {
   /* eslint-disable jsx-a11y/mouse-events-have-key-events */
   const ContentStyledComponent = (
     <ContentStyled
-      aria-hidden={!isOpen}
       data-component-name="PopoverContent"
       data-pka-anchor="popover.content"
       id={content.ariaId}
