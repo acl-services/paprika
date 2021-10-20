@@ -7,32 +7,30 @@ import ListBox from "../../src";
 const propTypes = {};
 const defaultProps = {};
 
-const ParametersExample = ({ state, signature, isSingle = false }) => {
-  return (
-    <div style={{ padding: "8px", border: "1px solid #CCC", "margin-bottom": "8px", "border-radius": "3px" }}>
-      <span style={{ "font-size": "14px", color: " #333" }}>
-        {isSingle ? "Single select" : "Multi select"} onChange signature:
-      </span>
-      <hr />
-      <code
-        style={{
-          display: "block",
-          "font-size": "13px",
-          color: "#785CBA",
-          padding: "8px",
-          "margin-bottom": "8px",
-          "font-weight": "600",
-          "border-radius": "3px",
-          background: "#EEE",
-          border: "1px solid #CCC",
-        }}
-      >
-        {signature}
-      </code>
-      {state ? <RJT hideRoot data={state} /> : null}
-    </div>
-  );
-};
+const ParametersExample = ({ state, signature, isSingle = false }) => (
+  <div style={{ padding: "8px", border: "1px solid #CCC", "margin-bottom": "8px", "border-radius": "3px" }}>
+    <span style={{ "font-size": "14px", color: " #333" }}>
+      {isSingle ? "Single select" : "Multi select"} onChange signature:
+    </span>
+    <hr />
+    <code
+      style={{
+        display: "block",
+        "font-size": "13px",
+        color: "#785CBA",
+        padding: "8px",
+        "margin-bottom": "8px",
+        "font-weight": "600",
+        "border-radius": "3px",
+        background: "#EEE",
+        border: "1px solid #CCC",
+      }}
+    >
+      {signature}
+    </code>
+    {state ? <RJT hideRoot data={state} /> : null}
+  </div>
+);
 
 const signatureSingleStr = `onChange(index, [options], { dispatch, actionTypes, eventType })`;
 const signatureMultipleStr = `onChange([indexes], [options], indexSelected, { dispatch, actionTypes, eventType })`;
@@ -60,7 +58,7 @@ export default function OnChange() {
   };
 
   return (
-    <React.Fragment>
+    <>
       <div>
         <StoryHeading level={2}>Single selection</StoryHeading>
         <ParametersExample state={singleState} signature={signatureSingleStr} isSingle />
@@ -104,7 +102,7 @@ export default function OnChange() {
           <ListBox.Footer onClickAccept={handleMultiStateWithFooter} />
         </ListBox>
       </div>
-    </React.Fragment>
+    </>
   );
 }
 

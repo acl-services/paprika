@@ -32,7 +32,7 @@ const columnsSettings = [
 
 export default function App() {
   return (
-    <React.Fragment>
+    <>
       <Filter
         columns={columnsSettings}
         data={null}
@@ -81,6 +81,6 @@ export default function App() {
         />
       </Filter>
       <p>You would render filtered results here...</p>
-    </React.Fragment>
+    </>
   );
 }

@@ -28,7 +28,7 @@ const confirmationProps = () => ({
 });
 
 const ExampleStory = props => (
-  <React.Fragment>
+  <>
     <Story>
       <Heading level={1} displayLevel={2} isLight>
         Confirmation Showcase
@@ -41,7 +41,7 @@ const ExampleStory = props => (
         </Confirmation>
       </L10n>
     </Story>
-  </React.Fragment>
+  </>
 );
 
 export default () => <ExampleStory {...confirmationProps()} />;

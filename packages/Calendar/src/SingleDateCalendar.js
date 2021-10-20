@@ -99,7 +99,6 @@ function SingleDateCalendar(props) {
     return day.isBefore(MIN_DATE, "day") || day.isAfter(MAX_DATE, "day");
   }
 
-  /* eslint-disable react/prop-types */
   function renderMonthHeaderElement({ month }) {
     return (
       <Button

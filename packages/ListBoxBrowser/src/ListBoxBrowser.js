@@ -89,9 +89,7 @@ const defaultProps = {
   onChange: () => {},
   onFetch: null,
   rootTitle: "",
-  defaultSelectedOptions: () => {
-    return false;
-  },
+  defaultSelectedOptions: () => false,
   defaultSelectedView: null,
   hasLeftColumn: true,
 };
@@ -132,17 +130,14 @@ export default function ListBoxBrowser(props) {
     [data, defaultSelectedOptions, defaultSelectedView]
   );
 
-  const index = React.useMemo(
-    function getIndex() {
-      if (refDefaultSelectedView.current) {
-        const browser = refDefaultSelectedView.current;
-        return { root: browser.split("/")[0], browser };
-      }
-      const index = getInitialView(localData);
-      return { root: index, browser: index };
-    },
-    [localData]
-  );
+  const index = React.useMemo(() => {
+    if (refDefaultSelectedView.current) {
+      const browser = refDefaultSelectedView.current;
+      return { root: browser.split("/")[0], browser };
+    }
+    const index = getInitialView(localData);
+    return { root: index, browser: index };
+  }, [localData]);
 
   const [rootKey, setRootKey] = React.useState(index.root);
   const [browserKey, setBrowserKey] = React.useState(index.browser);
@@ -150,7 +145,7 @@ export default function ListBoxBrowser(props) {
   const browserOptions = React.useMemo(() => getOptionByKey(localData, browserKey), [browserKey, localData]);
 
   const fetch = React.useCallback(
-    function fetchCallback($$key) {
+    $$key => {
       const option = getOptionByKey(localData, $$key);
       const { attributes } = option;
       if (attributes.options.length === 0) {
@@ -197,7 +192,7 @@ export default function ListBoxBrowser(props) {
   );
 
   const onJumpToOption = React.useCallback(
-    function handleClickJumpToOption(option) {
+    option => {
       if (option.hasOptions) {
         const attributes = { $$key: option.$$key, hasOptions: true, isClickFromButton: true };
         if (isRoot(option.$$key)) {
@@ -217,7 +212,7 @@ export default function ListBoxBrowser(props) {
     [handleClickBrowser, handleClickRoot]
   );
 
-  const onRemove = React.useCallback(function handleRemove(option) {
+  const onRemove = React.useCallback(option => {
     setSelectedOptions(selectedOptions => {
       const cloneSelectedOptions = { ...selectedOptions };
       let index = null;
@@ -256,8 +251,8 @@ export default function ListBoxBrowser(props) {
     if (browserKey !== null) fetch(browserKey);
   }, [fetch, browserKey]);
 
-  const value = React.useMemo(() => {
-    return {
+  const value = React.useMemo(
+    () => ({
       browserKey,
       browserOptions,
       browserTitle,
@@ -273,23 +268,24 @@ export default function ListBoxBrowser(props) {
       rootKey,
       rootTitle,
       selectedOptions,
-    };
-  }, [
-    browserKey,
-    browserOptions,
-    browserTitle,
-    hasBreadcrumb,
-    height,
-    isMulti,
-    isParentSelectable,
-    localData,
-    onChange,
-    onJumpToOption,
-    onRemove,
-    rootKey,
-    rootTitle,
-    selectedOptions,
-  ]);
+    }),
+    [
+      browserKey,
+      browserOptions,
+      browserTitle,
+      hasBreadcrumb,
+      height,
+      isMulti,
+      isParentSelectable,
+      localData,
+      onChange,
+      onJumpToOption,
+      onRemove,
+      rootKey,
+      rootTitle,
+      selectedOptions,
+    ]
+  );
 
   if (!rootKey && !browserKey) {
     throw new Error("At least one option should have options attribute");

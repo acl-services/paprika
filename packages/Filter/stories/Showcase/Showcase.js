@@ -74,7 +74,7 @@ export default function App() {
   });
 
   return (
-    <React.Fragment>
+    <>
       <Filter {...getFilterProps()} columns={columnsSettings} data={data} maxFiltersAllowed={5}>
         {filters.map((filter, index) => (
           <Filter.Item
@@ -116,6 +116,6 @@ export default function App() {
           ))}
         </tbody>
       </table>
-    </React.Fragment>
+    </>
   );
 }

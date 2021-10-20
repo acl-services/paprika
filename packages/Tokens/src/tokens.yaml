@@ -28,6 +28,13 @@ color:
   creme-lighten-5: lighten($color--creme, 5)
   creme-lighten-10: lighten($color--creme, 10)
   #
+  diligent: '#2F3B4D'
+  diligent-lighten-10: '#37465B'
+  diligent-lighten-20: '#455772'
+  diligent-lighten-30: '#5D7599'
+  diligent-lighten-70: '#F4F6F8'
+  diligent-darken-10: '#202935'
+  #
   green: '#42996d'
   green-darken-10: darken($color--green, 10)
   green-darken-20: darken($color--green, 20)
@@ -201,3 +208,9 @@ font-size:
   default: 16px
 #
 shadow: 0px 1px 5px rgba(0, 0, 0, 0.07), 0px 7px 17px rgba(0, 0, 0, 0.1)
+#
+diligent:
+  action-primary: '#5D7599'
+  background-base: '#F4F6F8'
+  brand-primary: '#2F3B4D'
+    

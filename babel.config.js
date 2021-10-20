@@ -1,7 +1,7 @@
 module.exports = function BabelConfigJS(api) {
   api.cache(true);
 
-  const presets = ["@babel/preset-env", "@babel/preset-react"];
+  const presets = ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"];
 
   const plugins = [
     "styled-components",
@@ -23,5 +23,10 @@ module.exports = function BabelConfigJS(api) {
     sourceType: "unambiguous",
     presets,
     plugins,
+    overrides: [
+      {
+        ignore: ["**/*.d.ts"],
+      },
+    ],
   };
 };

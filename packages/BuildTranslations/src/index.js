@@ -2,9 +2,7 @@ import fs from "fs";
 import path from "path";
 import jsYaml from "js-yaml";
 
-const buildPath = output => {
-  return path.resolve(process.cwd(), output);
-};
+const buildPath = output => path.resolve(process.cwd(), output);
 
 const isJsTranslationFile = fileName => fileName.split(".")[1] === "js" && fileName.split(".")[0] !== "index";
 

@@ -4,10 +4,12 @@ const fs = require("fs");
 const shell = require("shelljs");
 const parseFileToReactDoc = require("./parseFileToReactDoc");
 
-const packagesProcessInTsc = ["Tokens", "Constants"];
-const skipPackages = ["Guard", "Icon", "Stylers", "helpers", "Calendar", "BuildTranslations"];
+const skipPackages = ["Guard", "Icon", "Stylers", "helpers", "Calendar", "BuildTranslations", "Tokens", "Constants"];
 
 const fileName = "index.d.ts";
+
+const shouldSkipPackage = folderName =>
+  skipPackages.includes(folderName) || fs.existsSync(`./packages/${folderName}/tsconfig.build.json`);
 
 const renderDeclarationTemplate = ({ displayName = "", props = "", typeConstants = "" }) => {
   return `export default ${displayName};
@@ -119,7 +121,10 @@ const processPropsList = ({ info, folder, path, paprikaDocs = null }) => {
   if (paprikaDocs && "subComponents" in paprikaDocs) {
     paprikaDocs.subComponents.forEach(subComponent => {
       const subComponentContent = fs.readFileSync(`${path}/src/components/${subComponent}/${subComponent}.js`, "utf8");
-      const arrayOfComponentsDefinitions = parseFileToReactDoc(subComponentContent);
+      const arrayOfComponentsDefinitions = parseFileToReactDoc(
+        subComponentContent,
+        `${path}/src/components/${subComponent}/${subComponent}.js`
+      );
       let _info = extractCorrectComponentDefinition({
         desireDefinition: subComponent,
         arrayOfComponentsDefinitions,
@@ -142,49 +147,50 @@ const processPropsList = ({ info, folder, path, paprikaDocs = null }) => {
 };
 
 shell.ls("packages").forEach(folder => {
-  if (!skipPackages.includes(folder) && !packagesProcessInTsc.includes(folder)) {
-    const path = `./packages/${folder}`;
-    try {
-      const { paprikaDocs = null } = JSON.parse(fs.readFileSync(`${path}/package.json`, "utf8"));
-      const componentContent = fs.readFileSync(`${path}/src/${folder}.js`, "utf8");
-      const arrayOfComponentsDefinitions = parseFileToReactDoc(componentContent);
+  if (shouldSkipPackage(folder)) return;
 
-      const info = extractCorrectComponentDefinition({
-        desireDefinition: folder,
-        arrayOfComponentsDefinitions,
+  const path = `./packages/${folder}`;
+  try {
+    const { paprikaDocs = null } = JSON.parse(fs.readFileSync(`${path}/package.json`, "utf8"));
+    const componentContent = fs.readFileSync(`${path}/src/${folder}.js`, "utf8");
+    const arrayOfComponentsDefinitions = parseFileToReactDoc(componentContent, `${path}/src/${folder}.js`);
+
+    const info = extractCorrectComponentDefinition({
+      desireDefinition: folder,
+      arrayOfComponentsDefinitions,
+    });
+
+    if (!info) return;
+
+    const propsList = processPropsList({
+      info,
+      componentContent,
+      path,
+      paprikaDocs,
+      folder,
+    });
+
+    // Constants
+    const regex = /\.types\./;
+    const constants = propsList // return an array, [constants.type]
+      .toString()
+      .split(" ")
+      .filter(e => {
+        return regex.test(e);
       });
 
-      if (!info) return;
-
-      const propsList = processPropsList({
-        info,
-        componentContent,
-        path,
-        paprikaDocs,
-        folder,
-      });
-
-      // Constants
-      const regex = /\.types\./;
-      const constants = propsList // return an array, [constants.type]
+    const typesConst = constants.map(e =>
+      e
         .toString()
-        .split(" ")
-        .filter(e => {
-          return regex.test(e);
-        });
+        .replace(";", "")
+        .replace(/\|/gi, ".")
+        .split(/\./)
+        .filter((value, index, self) => self.indexOf(value) === index)
+    );
 
-      const typesConst = constants.map(e =>
-        e
-          .toString()
-          .replace(";", "")
-          .replace(/\|/gi, ".")
-          .split(/\./)
-          .filter((value, index, self) => self.indexOf(value) === index)
-      );
-
-      const typesTemp = typesConst
-        .map(
-          e => `
+    const typesTemp = typesConst
+      .map(
+        e => `
 declare namespace ${e[0]}{
   namespace ${e[1]}{
     namespace ${e[2]}{
@@ -195,22 +201,21 @@ declare namespace ${e[0]}{
     }
   }
 }`
-        )
-        .join("");
+      )
+      .join("");
 
-      const template = renderDeclarationTemplate({
-        displayName: info.displayName,
-        props: propsList.join(""),
-        typeConstants: typesTemp,
-      });
+    const template = renderDeclarationTemplate({
+      displayName: info.displayName,
+      props: propsList.join(""),
+      typeConstants: typesTemp,
+    });
 
-      fs.writeFileSync(`${path}/src/${fileName}`, template, {
-        encoding: "utf8",
-        flag: "w",
-      });
-    } catch (e) {
-      console.warn(e);
-    }
+    fs.writeFileSync(`${path}/src/${fileName}`, template, {
+      encoding: "utf8",
+      flag: "w",
+    });
+  } catch (e) {
+    console.warn(e);
   }
 });
 

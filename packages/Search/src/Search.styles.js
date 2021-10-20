@@ -16,8 +16,8 @@ const fontSize = {
   `,
 };
 
-export const Trigger = styled(RawButton)(({ size }) => {
-  return css`
+export const Trigger = styled(RawButton)(
+  ({ size }) => css`
     ${fontSize[size]}
     align-items: center;
     background-color: ${tokens.color.white};
@@ -33,5 +33,5 @@ export const Trigger = styled(RawButton)(({ size }) => {
     [data-pka-anchor="raw-input"] {
       border: 0 !important;
     }
-  `;
-});
+  `
+);

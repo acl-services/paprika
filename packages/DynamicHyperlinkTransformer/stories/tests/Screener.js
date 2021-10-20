@@ -2,7 +2,7 @@ import React from "react";
 import "../../src/DynamicHyperlinkTransformer.scss";
 
 const Screener = () => (
-  <React.Fragment>
+  <>
     Hard-coded styles:
     <br />
     <br />
@@ -27,7 +27,7 @@ const Screener = () => (
       <span className="dynamic-hyperlink--label">https://www.wegalvanize.com/ </span>
       <span className="dynamic-hyperlink--invalid">- Access denied</span>
     </a>
-  </React.Fragment>
+  </>
 );
 
 export default Screener;

@@ -33,7 +33,7 @@ function Dialog(props) {
   const isHeaderSticky = header && header.props.isSticky;
 
   const dialogMain = (
-    <React.Fragment>
+    <>
       <sc.DialogContent
         data-pka-anchor="panel.content"
         hasPushedElement={!!getPushContentElement}
@@ -46,7 +46,7 @@ function Dialog(props) {
       >
         {children}
       </sc.DialogContent>
-    </React.Fragment>
+    </>
   );
 
   React.useEffect(() => {

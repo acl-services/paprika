@@ -26,9 +26,7 @@ export default function useWithTags({
   const [selectedKeys, setSelectedKeys] = React.useState(defaultSelectedKeys);
   const [filteredData, setFilteredData] = React.useState(defaultFilteredData);
 
-  const dataDictionary = React.useMemo(() => {
-    return prepareDataDictionary(key, data);
-  }, [data, key]);
+  const dataDictionary = React.useMemo(() => prepareDataDictionary(key, data), [data, key]);
 
   function handleChange(option, options, selectedOption) {
     setSelectedKeys(prev => {
@@ -78,13 +76,9 @@ export default function useWithTags({
 
     const option = func(label);
 
-    setData(prev => {
-      return prev.concat(option);
-    });
+    setData(prev => prev.concat(option));
 
-    setSelectedKeys(prev => {
-      return prev.concat(option[key]);
-    });
+    setSelectedKeys(prev => prev.concat(option[key]));
 
     setFilteredData(defaultData);
   };

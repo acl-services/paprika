@@ -25,7 +25,7 @@ const DropZone = React.memo(() => {
   const body = isDraggingOver ? (
     I18n.t("uploader.drop_files")
   ) : (
-    <React.Fragment>
+    <>
       {I18n.t("uploader.drop_files_here_or")}&nbsp;
       <sc.DropZoneButton
         data-pka-anchor="uploader-dropZone-link"
@@ -38,7 +38,7 @@ const DropZone = React.memo(() => {
       >
         {I18n.t("uploader.choose_from_computer")}
       </sc.DropZoneButton>
-    </React.Fragment>
+    </>
   );
 
   return (
