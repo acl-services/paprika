@@ -53,13 +53,17 @@ describe("ListBox.Popover", () => {
   });
 
   it("should not focus on the first options soon as the Popover opens when is multi", async () => {
-    const { openSelect } = renderComponent();
+    const { openSelect, getByTestId } = renderComponent();
 
     openSelect();
+    const popoverContent = getByTestId("popover.content");
     await waitFor(() => {
-      // not finding this attribute for some reason
-      const activeElementPkaAnchor = document.activeElement.dataset.pkaAnchor;
-      expect(activeElementPkaAnchor).toBe("popover.content");
+      // not finding the correct focus in single or multi
+      // expect(document.activeElement).toBe(getByTestId("popover.content"));
+      expect(document.activeElement === popoverContent).toBeTruthy();
+      // expect(document.activeElement).toEqual(popoverContent);
+      // const activeElementPkaAnchor = document.activeElement.dataset.pkaAnchor;
+      // expect(activeElementPkaAnchor).toBe("popover.content");
     });
   });
 
