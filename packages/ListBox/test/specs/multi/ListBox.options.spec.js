@@ -1,5 +1,5 @@
 import React from "react";
-import { configure, render, fireEvent } from "@testing-library/react";
+import { configure, render, fireEvent, screen } from "@testing-library/react";
 import { ControlledAndSelected } from "../../../stories/examples/Multi/ControlledAndSelected";
 import ListBox from "../../../src";
 
@@ -31,12 +31,6 @@ function renderComponent(props = {}, children = childrenContent) {
     selectJupiter: () => {
       fireEvent.click(rendered.getByText(/jupiter/i));
     },
-    expectDropdownIsHidden: () => {
-      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toBeTruthy();
-    },
-    expectDropdownIsNotHidden: () => {
-      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toMatch(/false/i);
-    },
   };
 }
 
@@ -45,10 +39,11 @@ describe("ListBox.Options", () => {
     const renderCheckbox = jest.fn(({ isSelected }) => {
       return isSelected ? "✅" : "🙅‍";
     });
-    const { getByText, queryByText } = renderComponent({}, [
+    const { getByText, queryByText, openSelect } = renderComponent({}, [
       <ListBox.Option key="option1">{renderCheckbox}</ListBox.Option>,
     ]);
 
+    openSelect();
     expect(renderCheckbox).toHaveBeenCalled();
     expect(getByText(/🙅‍/i)).toBeInTheDocument();
     expect(queryByText(/✅/i)).not.toBeInTheDocument();

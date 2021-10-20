@@ -18,7 +18,7 @@ function renderComponent(props = {}, children = childrenContent) {
       fireEvent.click(rendered.getByText(/select/i));
     },
     popoverIsVisible: () => {
-      expect(rendered.queryByTestId("popover.content")).toBeInTheDocument();
+      expect(rendered.getByTestId("popover.content")).toBeInTheDocument();
     },
   };
 }
@@ -36,6 +36,7 @@ describe("ListBox.Popover", () => {
     const { openSelect } = renderComponent();
 
     openSelect();
+    // not finding the correct focus in single or multi
     await waitFor(() => {
       const activeElementPkaAnchor = document.activeElement.dataset.pkaAnchor;
       expect(activeElementPkaAnchor).toBe("popover.content");
