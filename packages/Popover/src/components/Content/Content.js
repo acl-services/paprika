@@ -64,8 +64,6 @@ const Content = React.forwardRef((props, ref) => {
 
     const currentTarget = event.currentTarget;
     setTimeout(() => {
-      // TODO : This is failing test for below story, evaluating to true instead of false
-      // http://localhost:9009/?path=/story/forms-inlineeditors--list-box-single example
       if (!isElementContainsFocus(currentTarget)) {
         onClose();
       }
