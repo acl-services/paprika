@@ -17,9 +17,9 @@ export default function renderColumnIndicator(options = {}) {
       key="renderColumnIndicator"
       headerA11yText={() => "unchecked"}
       cellA11yText={() => "unchecked"}
-      header={() => {
-        return hasHeaderChecker ? <RowIndicator onCheck={onCheck} isChecked={isAllChecked} isHeaderChecker /> : null;
-      }}
+      header={() =>
+        hasHeaderChecker ? <RowIndicator onCheck={onCheck} isChecked={isAllChecked} isHeaderChecker /> : null
+      }
       cell={propsCell => (
         <RowIndicator
           hasNumber={hasNumber}

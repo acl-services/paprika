@@ -307,7 +307,7 @@ Trigger.propTypes = {
 
 Trigger.defaultProps = {
   clearIcon: null,
-  children: <React.Fragment />,
+  children: <></>,
   hasClearButton: true,
   hasImplicitAll: false,
   label: null,

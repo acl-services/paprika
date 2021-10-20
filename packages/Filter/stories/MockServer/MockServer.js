@@ -69,7 +69,7 @@ export default function MockServer() {
   }
 
   return (
-    <React.Fragment>
+    <>
       <Filter {...filterProps} columns={columnsSettings} rulesByType={customRulesByType} onApply={handleApply}>
         {filters.map((filter, index) => (
           <Filter.Item
@@ -109,6 +109,6 @@ export default function MockServer() {
           </tbody>
         </table>
       )}
-    </React.Fragment>
+    </>
   );
 }

@@ -11,7 +11,7 @@ export default function PushContentPanel() {
   const getMainElement = () => document.querySelector("div[role='main']");
 
   return (
-    <React.Fragment>
+    <>
       <Nav />
       <Panel getPushContentElement={getMainElement} isOpen={isOpen} onClose={toggle} pushContentWidth="50%" width="50%">
         <Panel.Trigger kind="primary" onClick={toggle}>
@@ -44,6 +44,6 @@ export default function PushContentPanel() {
         ennui whatever williamsburg. Chia offal slow-carb, kickstarter gastropub letterpress echo park mustache irony
         90s.
       </div>
-    </React.Fragment>
+    </>
   );
 }

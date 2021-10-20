@@ -30,7 +30,7 @@ export default function FilterWithServer() {
   const renderLevelFilter = () => <CustomSingleSelectFilter />;
 
   return (
-    <React.Fragment>
+    <>
       <Filter {...filterProps} columns={columnsSettings} rulesByType={customRulesByType}>
         {filters.map((filter, index) => (
           <Filter.Item
@@ -47,6 +47,6 @@ export default function FilterWithServer() {
         ))}
       </Filter>
       <p>You would render filtered results here...</p>
-    </React.Fragment>
+    </>
   );
 }

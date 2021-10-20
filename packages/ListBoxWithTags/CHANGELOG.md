@@ -1,5 +1,26 @@
 # Changelog
 
+## 2.1.9-next.0
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+  - @paprika/tokens@1.1.0-next.0
+  - @paprika/icon@2.1.1-next.0
+  - @paprika/list-box@3.6.2-next.0
+  - @paprika/raw-button@1.0.7-next.0
+  - @paprika/stylers@1.1.1-next.0
+  - @paprika/tag@0.0.14-next.0
+
+## 2.1.8
+
+### Patch Changes
+
+- Updated dependencies [5e1c563]
+  - @paprika/icon@2.1.0
+  - @paprika/list-box@3.6.1
+  - @paprika/tag@0.0.13
+
 ## 2.1.8-next.0
 
 ### Patch Changes

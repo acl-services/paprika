@@ -93,7 +93,7 @@ const Content = React.forwardRef((props, ref) => {
   if (content.width && content.width !== "auto") {
     contentStyles.width = content.width;
   }
-  /* eslint-disable jsx-a11y/mouse-events-have-key-events */
+
   const ContentStyledComponent = (
     <ContentStyled
       data-component-name="PopoverContent"

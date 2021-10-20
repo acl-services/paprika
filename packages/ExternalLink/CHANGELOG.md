@@ -1,5 +1,28 @@
 # Changelog
 
+## 2.0.16-next.0
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+  - @paprika/tokens@1.1.0-next.0
+  - @paprika/icon@2.1.1-next.0
+  - @paprika/stylers@1.1.1-next.0
+
+## 2.0.15
+
+### Patch Changes
+
+- 2190120: Minor UI fixes
+- Updated dependencies [5e1c563]
+  - @paprika/icon@2.1.0
+
+## 2.0.15-next.1
+
+### Patch Changes
+
+- 2190120: Minor UI fixes
+
 ## 2.0.15-next.0
 
 ### Patch Changes

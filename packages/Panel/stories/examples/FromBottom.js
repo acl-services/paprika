@@ -19,7 +19,7 @@ export default function FromBottom() {
   }
 
   return (
-    <React.Fragment>
+    <>
       <div style={{ display: "flex", height: "100vh" }}>
         <nav style={{ flex: `0 0 ${getNavWidth()}px`, background: "red" }}>
           <button type="button" onClick={toggleNav}>
@@ -47,6 +47,6 @@ export default function FromBottom() {
           Pretty neat, eh?
         </Panel.Content>
       </Panel>
-    </React.Fragment>
+    </>
   );
 }

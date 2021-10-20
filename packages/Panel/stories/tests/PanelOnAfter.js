@@ -7,7 +7,7 @@ export default function PanelOnAfter() {
   const [isOpen, setIsOpen] = React.useState(true);
 
   return (
-    <React.Fragment>
+    <>
       <Nav />
       <p>
         <Panel
@@ -32,6 +32,6 @@ export default function PanelOnAfter() {
       <div style={{ width: "400px", margin: "25px" }}>
         <TextLine repeat={100} />
       </div>
-    </React.Fragment>
+    </>
   );
 }

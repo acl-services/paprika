@@ -4,7 +4,7 @@ import { TextLine, Nav } from "../helpers";
 
 export default function PanelFooterSticky() {
   return (
-    <React.Fragment>
+    <>
       <Nav />
       <p>
         <Panel isOpen>
@@ -14,6 +14,6 @@ export default function PanelFooterSticky() {
           </Panel.Footer>
         </Panel>
       </p>
-    </React.Fragment>
+    </>
   );
 }
