@@ -12,11 +12,7 @@ export default function filterData({ filters, operator, columns, data }) {
         switch (columnType) {
           case Filter.types.columnTypes.SINGLE_SELECT:
           case Filter.types.columnTypes.MULTI_SELECT:
-            return testers[filter.rule](
-              row[filter.columnId].id,
-              filter.value.id,
-              columns.find(column => filter.columnId === column.id)
-            );
+            return testers[filter.rule](row[filter.columnId].id, filter.value);
           default:
             return testers[filter.rule](
               row[filter.columnId],

@@ -19,12 +19,7 @@ const propTypes = {
   onDeleteFilter: PropTypes.func.isRequired,
   renderValueField: PropTypes.func,
   rule: PropTypes.string.isRequired,
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.bool,
-    PropTypes.array,
-    PropTypes.shape({ id: PropTypes.number, label: PropTypes.string }),
-  ]).isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.array, PropTypes.number]).isRequired,
 };
 
 const defaultProps = {
@@ -104,7 +99,7 @@ function Item(props) {
   function handleChangeSingleSelectFilterValue(index, options) {
     onChangeFilter(types.changeTypes.FILTER_VALUE, {
       id,
-      value: { id: options[index].value, label: options[index].label },
+      value: options[index].value,
     });
   }
 
@@ -186,7 +181,7 @@ function Item(props) {
                 <ListBox.Option
                   key={selectOption[selectedColumnId].id}
                   value={selectOption[selectedColumnId].id}
-                  isSelected={selectOption[selectedColumnId].id === value.id}
+                  isSelected={selectOption[selectedColumnId].id === value}
                 >
                   {selectOption[selectedColumnId].label}
                 </ListBox.Option>
@@ -198,14 +193,19 @@ function Item(props) {
         return (
           <sc.ValueInput data-pka-anchor="filter.item.valueInput">
             <ListBox key={`${selectedColumnId}-${index}`} onChange={handleChangeMultiSelectFilterValue} isMulti>
+              <ListBox.Trigger
+                onClickClear={() => {
+                  handleChangeMultiSelectFilterValue([], {});
+                }}
+              />
               {uniqueSelectOptions >= MAX_OPTIONS ? <ListBox.Filter /> : null}
-              {uniqueSelectOptions.map(option => (
+              {uniqueSelectOptions.map(selectOption => (
                 <ListBox.Option
-                  key={option[selectedColumnId]}
-                  value={option[selectedColumnId]}
-                  isSelected={value.includes(option[selectedColumnId])}
+                  key={selectOption[selectedColumnId].id}
+                  value={selectOption[selectedColumnId].id}
+                  isSelected={value.includes(selectOption[selectedColumnId].id)}
                 >
-                  {option[selectedColumnId]}
+                  {selectOption[selectedColumnId].label}
                 </ListBox.Option>
               ))}
             </ListBox>

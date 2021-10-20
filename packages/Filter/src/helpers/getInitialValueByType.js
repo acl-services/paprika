@@ -5,7 +5,7 @@ export default function getInitialValueByType(columnType, columnId, data) {
     case types.columnTypes.BOOLEAN:
       return true;
     case types.columnTypes.SINGLE_SELECT: {
-      return data.map(data => data[columnId]).find(option => option);
+      return data.map(data => data[columnId]).find(option => option).id;
     }
     case types.columnTypes.MULTI_SELECT: {
       return [];
