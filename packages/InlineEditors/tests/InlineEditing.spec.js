@@ -37,7 +37,6 @@ test("Inline editing / ListBox / close", async () => {
   await waitFor(() => {
     expect(screen.queryByTestId("popover.content")).not.toBeInTheDocument();
   });
-  // await waitForElementToBeRemoved(screen.getByTestId("list-box-box"));
 
   expect(screen.queryByText(regexOption1)).not.toBeInTheDocument();
   expect(screen.queryByText(regexOption2)).not.toBeInTheDocument();
@@ -53,7 +52,6 @@ test("Inline editing / ListBox / onSubmit event", async () => {
   await waitFor(() => {
     expect(screen.queryByTestId("popover.content")).not.toBeInTheDocument();
   });
-  // await waitForElementToBeRemoved(screen.getByTestId("list-box-box"));
   expect(screen.queryByText(regexOption1)).not.toBeInTheDocument();
   expect(screen.getByTestId("inline-editing.raw-button").textContent).toBe("Results Lite Contributor ");
 });
@@ -67,7 +65,6 @@ test("Inline editing / ListBox / onChange event", async () => {
   await waitFor(() => {
     expect(screen.queryByTestId("popover.content")).not.toBeInTheDocument();
   });
-  // await waitForElementToBeRemoved(screen.getByTestId("list-box-box"));
   expect(screen.queryByText(/onChange:Results Lite Contributor/i)).toBeInTheDocument();
   expect(screen.getByTestId("inline-editing.raw-button").textContent).toBe("Results Lite Contributor ");
 });
