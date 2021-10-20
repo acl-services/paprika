@@ -307,7 +307,7 @@ class Popover extends React.Component {
 
   handleTransitionEnd = event => {
     if (event.propertyName === "opacity") {
-      if (this.state.isOpen) {
+      if (this.isOpen()) {
         if (!this.props.shouldKeepFocus && !this.props.isEager) {
           this.setPopoverTriggerFocusIndex();
           event.target.focus();
