@@ -1,10 +1,7 @@
 import React from "react";
-import NewTabIcon from "@paprika/icon/lib/NewTab";
 import * as sc from "./Link.styles";
 
-
-
-function Link(props: LinkProps) {
+function Link(props: LinkProps): JSX.Element {
   const {
     a11yText = null,
     children = null,
@@ -29,7 +26,7 @@ function Link(props: LinkProps) {
       {...moreProps}
     >
       <sc.LinkContent>{children}</sc.LinkContent>
-      {isExternalLink && <NewTabIcon css={sc.ExternalLinkIconStyles} style={{ minWidth: "20px" }} />}
+      {isExternalLink && <sc.ExternalLinkIconStyles style={{ minWidth: "20px" }} />}
     </sc.Link>
   );
 }
@@ -60,9 +57,7 @@ export interface LinkProps {
 
   /** max-width to be truncated */
   maxWidth?: string;
-};
-
-
+}
 
 Link.displayName = "Link";
 

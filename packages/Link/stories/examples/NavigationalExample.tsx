@@ -1,8 +1,5 @@
 import React from "react";
-import UploadIcon from "@paprika/icon/lib/Upload";
-import CalendarIcon from "@paprika/icon/lib/Calendar";
-import LockIcon from "@paprika/icon/lib/Lock";
-import PencilIcon from "@paprika/icon/lib/Pencil";
+import { Upload as UploadIcon, Calendar as CalendarIcon, Lock as LockIcon, Pencil as PencilIcon } from "@paprika/icon";
 import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
@@ -20,20 +17,14 @@ export default function NavigationalExampleExample() {
     }
 
     svg {
-      ${() => {
-        // @ts-ignore
-        return stylers.fontSize(2)
-      }}
+      ${stylers.fontSize(2)}
       margin-right: calc(3 * ${tokens.spaceSm});
     }
   `;
 
   const SmallContainer = styled.div`
     max-width: 200px;
-    ${() => {
-      // @ts-ignore
-      return stylers.fontSize(-1)
-    }}
+    ${stylers.fontSize(-1)}
 
     a {
       height: calc(8 * ${tokens.spaceSm});
@@ -41,11 +32,7 @@ export default function NavigationalExampleExample() {
 
     svg {
 
-      ${() => {
-        // @ts-ignore
-        return stylers.fontSize(0)
-
-      }}
+      ${stylers.fontSize(0)}
       margin-right: ${tokens.spaceSm};
     }
   `;
