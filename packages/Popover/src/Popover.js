@@ -394,7 +394,7 @@ class Popover extends React.Component {
   }
 
   addContentListeners() {
-    this.$content.addEventListener("transitionend", e => this.handleTransitionEnd(e), false);
+    this.$content.addEventListener("transitionend", this.handleTransitionEnd, false);
     this.hasContentListeners = true;
   }
 
