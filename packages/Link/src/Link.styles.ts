@@ -1,6 +1,7 @@
 import stylers from "@paprika/stylers";
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
+import { NewTab as NewTabIcon } from "@paprika/icon";
 
 const noUnderlineStyles = css`
   text-decoration: none;
@@ -54,7 +55,7 @@ export const LinkContent = styled.span`
   white-space: nowrap;
 `;
 
-export const ExternalLinkIconStyles = css`
+export const ExternalLinkIconStyles = styled(NewTabIcon)`
   color: ${tokens.textColor.icon};
   display: inline-block;
   font-size: 20px;
@@ -63,14 +64,22 @@ export const ExternalLinkIconStyles = css`
   }
 `;
 
-export const Link = styled.a<{isSubtle: boolean; hasNoUnderline:boolean; isDark: boolean; isMenu: boolean; maxWidth: string}>`
-   ${({hasNoUnderline, isSubtle,isDark,isMenu}) => (` &[data-pka-anchor="link"] {
+export const Link = styled.a<{
+  isSubtle: boolean;
+  hasNoUnderline: boolean;
+  isDark: boolean;
+  isMenu: boolean;
+  maxWidth: string;
+  [x: string]: any;
+}>(
+  ({ hasNoUnderline, isSubtle, isDark, isMenu, maxWidth }) => css`
+    &[data-pka-anchor="link"] {
       align-items: center;
       border-radius: ${tokens.border.radius};
       color: ${tokens.textColor.link};
       display: inline-flex;
       left: -${tokens.spaceSm};
-      ${({ maxWidth }) => (maxWidth ? `max-width: ${maxWidth}` : "")};
+      ${maxWidth ? `max-width: ${maxWidth}` : ""}
       padding: 1px ${tokens.spaceSm};
       position: relative;
 
@@ -80,9 +89,7 @@ export const Link = styled.a<{isSubtle: boolean; hasNoUnderline:boolean; isDark:
 
       html:not([data-whatinput="mouse"]) &:focus,
       &[data-has-forced-focus]:focus {
-        ${() => {
-          // @ts-ignore
-          return stylers.focusRing()}}
+        ${stylers.focusRing()}
       }
 
       ${linkHoverStyles};
@@ -90,4 +97,6 @@ export const Link = styled.a<{isSubtle: boolean; hasNoUnderline:boolean; isDark:
       ${isSubtle && blackFont};
       ${isDark && whiteFont};
       ${isMenu && navigationStyles};
-    }`)}`;
+    }
+  `
+);

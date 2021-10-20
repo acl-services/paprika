@@ -99,7 +99,7 @@
       }
     },
     {
-      "files": ["packages/**/stories/**/*.js"],
+      "files": ["packages/**/stories/**/*.+(js|tsx|ts|tsx)"],
       "rules": {
         "react/prop-types": "off",
         "import/no-extraneous-dependencies": "off",
@@ -107,7 +107,7 @@
       }
     },
     {
-      "files": ["packages/**/*.spec.js"],
+      "files": ["packages/**/*.spec.+(js|tsx|ts|tsx)"],
       "rules": { "import/no-extraneous-dependencies": "off" },
       "globals": {
         "given": true

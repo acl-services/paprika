@@ -13,7 +13,7 @@ describe("Link", () => {
 
   it("should render href on a tag", () => {
     render(<Link href={mockUrl}>example text</Link>);
-    expect(document.querySelector("a").getAttribute("href")).toBe(mockUrl);
+    expect(document.querySelector("a")!.getAttribute("href")).toBe(mockUrl);
   });
 
   it("should not fail any accessibility tests", async () => {
