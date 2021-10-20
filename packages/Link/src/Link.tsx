@@ -1,24 +1,24 @@
 import React from "react";
-import PropTypes from "prop-types";
 import NewTabIcon from "@paprika/icon/lib/NewTab";
 import * as sc from "./Link.styles";
 
-function Link(props) {
+
+
+function Link(props: LinkProps) {
   const {
-    a11yText,
-    children,
-    isExternalLink,
-    hasNoUnderline,
-    isSubtle,
-    isDark,
-    isMenu,
-    maxWidth,
+    a11yText = null,
+    children = null,
+    isExternalLink = false,
+    hasNoUnderline = false,
+    isSubtle = false,
+    isDark = false,
+    isMenu = false,
+    maxWidth = "100%",
     ...moreProps
   } = props;
   return (
     <sc.Link
       data-pka-anchor="link"
-      isExternalLink={isExternalLink}
       hasNoUnderline={hasNoUnderline}
       isDark={isDark}
       isSubtle={isSubtle}
@@ -34,45 +34,36 @@ function Link(props) {
   );
 }
 
-const propTypes = {
+export interface LinkProps {
+  [x: string]: any;
+
   /** Text for aria-label. */
-  a11yText: PropTypes.string,
+  a11yText?: string;
 
   /** Open url in a new Tab, is indicated by a Tab icon after the link. */
-  isExternalLink: PropTypes.bool,
+  isExternalLink?: boolean;
 
   /** Remove the default underline */
-  hasNoUnderline: PropTypes.bool,
+  hasNoUnderline?: boolean;
 
   /** Change font-color according to background color */
-  isDark: PropTypes.bool,
+  isDark?: boolean;
 
   /** Set font-color to black */
-  isSubtle: PropTypes.bool,
+  isSubtle?: boolean;
 
   /** Icon + text format for Navigation/Menu */
-  isMenu: PropTypes.bool,
+  isMenu?: boolean;
 
   /** Content to be displayed: texts, icons, etc. */
-  children: PropTypes.node,
+  children?: React.ReactNode;
 
   /** max-width to be truncated */
-  maxWidth: PropTypes.string,
+  maxWidth?: string;
 };
 
-const defaultProps = {
-  a11yText: null,
-  isExternalLink: false,
-  hasNoUnderline: false,
-  isDark: false,
-  isSubtle: false,
-  isMenu: false,
-  children: null,
-  maxWidth: "100%",
-};
+
 
 Link.displayName = "Link";
-Link.propTypes = propTypes;
-Link.defaultProps = defaultProps;
 
 export default Link;

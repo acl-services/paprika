@@ -63,9 +63,8 @@ export const ExternalLinkIconStyles = css`
   }
 `;
 
-export const Link = styled.a(
-  ({ isSubtle, hasNoUnderline, isDark, isMenu }) => css`
-    &[data-pka-anchor="link"] {
+export const Link = styled.a<{isSubtle: boolean; hasNoUnderline:boolean; isDark: boolean; isMenu: boolean; maxWidth: string}>`
+   ${({hasNoUnderline, isSubtle,isDark,isMenu}) => (` &[data-pka-anchor="link"] {
       align-items: center;
       border-radius: ${tokens.border.radius};
       color: ${tokens.textColor.link};
@@ -81,7 +80,9 @@ export const Link = styled.a(
 
       html:not([data-whatinput="mouse"]) &:focus,
       &[data-has-forced-focus]:focus {
-        ${stylers.focusRing()}
+        ${() => {
+          // @ts-ignore
+          return stylers.focusRing()}}
       }
 
       ${linkHoverStyles};
@@ -89,6 +90,4 @@ export const Link = styled.a(
       ${isSubtle && blackFont};
       ${isDark && whiteFont};
       ${isMenu && navigationStyles};
-    }
-  `
-);
+    }`)}`;

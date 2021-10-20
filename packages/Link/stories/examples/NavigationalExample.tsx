@@ -20,21 +20,32 @@ export default function NavigationalExampleExample() {
     }
 
     svg {
-      ${stylers.fontSize(2)}
+      ${() => {
+        // @ts-ignore
+        return stylers.fontSize(2)
+      }}
       margin-right: calc(3 * ${tokens.spaceSm});
     }
   `;
 
   const SmallContainer = styled.div`
     max-width: 200px;
-    ${stylers.fontSize(-1)}
+    ${() => {
+      // @ts-ignore
+      return stylers.fontSize(-1)
+    }}
 
     a {
       height: calc(8 * ${tokens.spaceSm});
     }
 
     svg {
-      ${stylers.fontSize(0)}
+
+      ${() => {
+        // @ts-ignore
+        return stylers.fontSize(0)
+
+      }}
       margin-right: ${tokens.spaceSm};
     }
   `;

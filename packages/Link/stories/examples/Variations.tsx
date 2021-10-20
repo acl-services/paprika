@@ -1,4 +1,5 @@
 import React from "react";
+// @ts-ignore
 import { Gap } from "storybook/assets/styles/common.styles";
 import tokens from "@paprika/tokens";
 import Link from "../../src";
