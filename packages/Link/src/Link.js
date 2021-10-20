@@ -4,7 +4,17 @@ import NewTabIcon from "@paprika/icon/lib/NewTab";
 import * as sc from "./Link.styles";
 
 function Link(props) {
-  const { a11yText, children, isExternalLink, hasNoUnderline, isDark, isSubtle, isNavigation, ...moreProps } = props;
+  const {
+    a11yText,
+    children,
+    isExternalLink,
+    hasNoUnderline,
+    isSubtle,
+    isDark,
+    isMenu,
+    maxWidth,
+    ...moreProps
+  } = props;
   return (
     <sc.Link
       data-pka-anchor="link"
@@ -12,9 +22,10 @@ function Link(props) {
       hasNoUnderline={hasNoUnderline}
       isDark={isDark}
       isSubtle={isSubtle}
-      isNavigation={isNavigation}
+      isMenu={isMenu}
       target={isExternalLink ? "_blank" : ""}
       aria-label={a11yText || null}
+      maxWidth={maxWidth}
       {...moreProps}
     >
       <sc.LinkContent>{children}</sc.LinkContent>
@@ -39,11 +50,14 @@ const propTypes = {
   /** Set font-color to black */
   isSubtle: PropTypes.bool,
 
-  /** Icon + text format */
-  isNavigation: PropTypes.bool,
+  /** Icon + text format for Navigation/Menu */
+  isMenu: PropTypes.bool,
 
   /** Content to be displayed: texts, icons, etc. */
   children: PropTypes.node,
+
+  /** max-width to be truncated */
+  maxWidth: PropTypes.string,
 };
 
 const defaultProps = {
@@ -52,8 +66,9 @@ const defaultProps = {
   hasNoUnderline: false,
   isDark: false,
   isSubtle: false,
-  isNavigation: false,
+  isMenu: false,
   children: null,
+  maxWidth: "100%",
 };
 
 Link.displayName = "Link";

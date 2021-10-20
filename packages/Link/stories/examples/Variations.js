@@ -20,6 +20,10 @@ export default function variations() {
         Subtle Link (black with no underline)
       </Link>
       <Gap.Small />
+      <Link href={url} maxWidth="200px">
+        Truncated link with a fixed width
+      </Link>
+      <Gap.Small />
       <div style={{ maxWidth: "500px" }}>
         <Link href={url}>
           Example of super long link which will stay within a line Lorem ipsum dolor sit amet, consectetur adipiscing

@@ -64,14 +64,14 @@ export const ExternalLinkIconStyles = css`
 `;
 
 export const Link = styled.a(
-  ({ isSubtle, hasNoUnderline, isDark, isNavigation }) => css`
+  ({ isSubtle, hasNoUnderline, isDark, isMenu }) => css`
     &[data-pka-anchor="link"] {
       align-items: center;
       border-radius: ${tokens.border.radius};
       color: ${tokens.textColor.link};
       display: inline-flex;
       left: -${tokens.spaceSm};
-      max-width: 100%;
+      ${({ maxWidth }) => (maxWidth ? `max-width: ${maxWidth}` : "")};
       padding: 1px ${tokens.spaceSm};
       position: relative;
 
@@ -88,7 +88,7 @@ export const Link = styled.a(
       ${hasNoUnderline && noUnderlineStyles};
       ${isSubtle && blackFont};
       ${isDark && whiteFont};
-      ${isNavigation && navigationStyles};
+      ${isMenu && navigationStyles};
     }
   `
 );

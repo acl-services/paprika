@@ -41,41 +41,41 @@ export default function NavigationalExampleExample() {
 
   return (
     <>
-      <h3>Medium Navigation</h3>
+      <h3>Medium Navigation (Menu)</h3>
       <MediumContainer>
-        <Link href={url} isNavigation>
+        <Link href={url} isMenu>
           <UploadIcon />
           Item One
         </Link>
-        <Link href={url} isNavigation>
+        <Link href={url} isMenu>
           <CalendarIcon />
           Item Two
         </Link>
-        <Link href={url} isNavigation>
+        <Link href={url} isMenu>
           <LockIcon />
           Item Three
         </Link>
-        <Link href={url} isNavigation>
+        <Link href={url} isMenu>
           <PencilIcon />
           Item Four
         </Link>
       </MediumContainer>
       <br />
-      <h3>Small Navigation</h3>
+      <h3>Small Navigation (Menu)</h3>
       <SmallContainer>
-        <Link href={url} isNavigation>
+        <Link href={url} isMenu>
           <UploadIcon />
           Item One
         </Link>
-        <Link href={url} isNavigation>
+        <Link href={url} isMenu>
           <CalendarIcon />
           Item Two
         </Link>
-        <Link href={url} isNavigation>
+        <Link href={url} isMenu>
           <LockIcon />
           Item Three
         </Link>
-        <Link href={url} isNavigation>
+        <Link href={url} isMenu>
           <PencilIcon />
           Item Four
         </Link>

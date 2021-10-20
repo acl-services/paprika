@@ -13,8 +13,10 @@ interface LinkProps {
   isDark?: boolean;
   /** Set font-color to black */
   isSubtle?: boolean;
-  /** Icon + text format */
-  isNavigation?: boolean;
+  /** Icon + text format for Navigation/Menu */
+  isMenu?: boolean;
   /** Content to be displayed: texts, icons, etc. */
   children?: React.ReactNode;
+  /** max-width to be truncated */
+  maxWidth?: string;
 }
