@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.3.0-next.1
+
+### Minor Changes
+
+- 5c43029: Remove background colour on tabs
+
 ## 2.2.8-next.0
 
 ### Patch Changes
