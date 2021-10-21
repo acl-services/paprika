@@ -18,11 +18,9 @@ function Tip(props) {
   const { zIndex, ...moreProps } = props;
 
   const isDark = React.useContext(ThemeContext);
-  const { content, tip, refTip, isContentAddedToDom, isOpen, isPortal, portalElement } = React.useContext(
-    PopoverContext
-  );
+  const { content, tip, refTip, isOpen, isPortal, portalElement } = React.useContext(PopoverContext);
 
-  if (!isContentAddedToDom) {
+  if (!isOpen) {
     return null;
   }
 

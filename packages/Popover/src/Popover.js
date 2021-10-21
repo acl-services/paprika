@@ -33,7 +33,6 @@ class Popover extends React.Component {
     super(props);
 
     this.hasListeners = false;
-    this.hasContentListeners = false;
     this.$popover = React.createRef();
     this.$trigger = null;
     this.$tip = null; // this ref comes from a callback of the <Tip /> component
@@ -47,7 +46,6 @@ class Popover extends React.Component {
     this.triggerFocusIndex = null;
 
     this.state = {
-      isContentAddedToDom: this.props.defaultIsOpen || false,
       isOpen: this.props.defaultIsOpen || false,
       tip: {
         x: 0,
@@ -80,7 +78,6 @@ class Popover extends React.Component {
       minWidth,
       width,
       isEager,
-      isContentAddedToDom,
       isOpen,
       isPortal,
       portalElement,
@@ -101,13 +98,13 @@ class Popover extends React.Component {
         ariaId: ariaIdForContent,
       },
       isEager,
-      isContentAddedToDom,
       isOpen,
       onClick: this.handleClick,
       onClose: this.handleClose,
       onDelayedClose: this.handleDelayedClose,
       onDelayedOpen: this.handleDelayedOpen,
       onOpen: this.handleOpen,
+      onAfterOpen: this.handleOnAfterOpen,
       isPortal,
       portalElement,
       refContent,
@@ -124,33 +121,29 @@ class Popover extends React.Component {
 
     if (this.isOpen()) {
       this.addListeners();
-      this.open();
+      this.setVisibilityAndPosition();
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (!prevState.isOpen && nextProps.isOpen) {
+      return { isOpen: true };
+    }
+
+    return null;
+  }
+
+  componentDidUpdate(prevProps) {
     if (!prevProps.isOpen && this.props.isOpen) {
       this.open();
     }
 
-    if (prevProps.isOpen && !this.props.isOpen) {
-      this.close();
+    if (this.isOpen() && !this.hasListeners) {
+      this.focusableElements = document.querySelectorAll(focusableElementSelector);
+      this.addListeners();
     }
 
-    if (this.state.isContentAddedToDom && !this.hasContentListeners) this.addContentListeners();
-
-    if (this.state.isOpen) {
-      if (!this.hasListeners) {
-        this.focusableElements = document.querySelectorAll(focusableElementSelector);
-        this.addListeners();
-      }
-
-      if (prevProps !== this.props) {
-        this.setVisibilityAndPosition();
-      }
-    } else if (prevState.isContentAddedToDom !== this.state.isContentAddedToDom && this.state.isContentAddedToDom) {
-      this.setVisibilityAndPosition(true);
-    }
+    if (this.isOpen() && prevProps !== this.props) this.setVisibilityAndPosition();
   }
 
   componentWillUnmount() {
@@ -238,7 +231,7 @@ class Popover extends React.Component {
   // eslint is forcing to put handleReposition before ComponentDidMount
   // eslint-disable-next-line react/sort-comp
   handleReposition = throttle(() => {
-    if (this.state.isOpen) {
+    if (this.isOpen()) {
       const scrollContainer = this.props.getScrollContainer === null ? document.body : this.props.getScrollContainer();
       if (
         !isInsideBoundaries({
@@ -305,17 +298,10 @@ class Popover extends React.Component {
     });
   };
 
-  handleTransitionEnd = event => {
-    if (event.propertyName === "opacity") {
-      if (this.isOpen()) {
-        if (!this.props.shouldKeepFocus && !this.props.isEager) {
-          this.setPopoverTriggerFocusIndex();
-          event.target.focus();
-        }
-      } else {
-        this.removeContentListeners();
-        this.setState({ isContentAddedToDom: false });
-      }
+  handleOnAfterOpen = event => {
+    if (!this.props.shouldKeepFocus && !this.props.isEager && this.isOpen() && event.propertyName === "opacity") {
+      this.setPopoverTriggerFocusIndex();
+      event.focus();
     }
   };
 
@@ -358,11 +344,9 @@ class Popover extends React.Component {
 
   open() {
     this.$trigger = document.activeElement;
-    if (!this.state.isContentAddedToDom) {
-      this.setState({ isContentAddedToDom: true });
-    } else {
+    this.setState({ isOpen: true }, () => {
       this.setVisibilityAndPosition(true);
-    }
+    });
   }
 
   close() {
@@ -371,8 +355,10 @@ class Popover extends React.Component {
       this.props.onClose();
     }
 
-    this.setState({ isOpen: false });
-    this.removeListeners();
+    if (this.props.isOpen === null) {
+      this.setState({ isOpen: false });
+      this.removeListeners();
+    }
   }
 
   isOpen() {
@@ -393,11 +379,6 @@ class Popover extends React.Component {
     this.setState(newState);
   }
 
-  addContentListeners() {
-    this.$content.addEventListener("transitionend", this.handleTransitionEnd, false);
-    this.hasContentListeners = true;
-  }
-
   addListeners() {
     if (this.$content) {
       document.addEventListener("resize", this.handleReposition, false);
@@ -409,11 +390,6 @@ class Popover extends React.Component {
 
       this.hasListeners = true;
     }
-  }
-
-  removeContentListeners() {
-    this.$content.removeEventListener("transitionend", this.handleTransitionEnd);
-    this.hasContentListeners = false;
   }
 
   removeListeners() {
@@ -455,8 +431,7 @@ class Popover extends React.Component {
       minWidth,
       this.state.width,
       isEager,
-      this.state.isContentAddedToDom,
-      this.state.isOpen,
+      this.isOpen(),
       isPortal,
       this.$portal,
       this.refContent,

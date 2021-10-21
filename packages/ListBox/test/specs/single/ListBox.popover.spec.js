@@ -32,17 +32,15 @@ describe("ListBox.Popover", () => {
     expect(queryByTestId("popover.content")).toBeNull();
   });
 
-  // TODO: FIX TEST not finding the correct focus in single or multi
-  // it("should focus on option container as soon as the Popover is open", async () => {
-  //   const { openSelect } = renderComponent();
+  it("should focus on option container as soon as the Popover is open", async () => {
+    const { openSelect } = renderComponent();
 
-  //   openSelect();
-  //   // not finding the correct focus in single or multi
-  //   await waitFor(() => {
-  //     const activeElementPkaAnchor = document.activeElement.dataset.pkaAnchor;
-  //     expect(activeElementPkaAnchor).toBe("popover.content");
-  //   });
-  // });
+    openSelect();
+    await waitFor(() => {
+      const activeElementPkaAnchor = document.activeElement.dataset.pkaAnchor;
+      expect(activeElementPkaAnchor).toBe("popover.content");
+    });
+  });
 
   it("should have popover open already ", () => {
     const { popoverIsVisible } = renderComponent({

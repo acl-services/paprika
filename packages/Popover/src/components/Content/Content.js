@@ -1,4 +1,6 @@
 import React from "react";
+import { Transition } from "react-transition-group";
+import tokens from "@paprika/tokens";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { callAll } from "@paprika/helpers";
@@ -21,20 +23,16 @@ const Content = React.forwardRef((props, ref) => {
   const {
     content,
     isEager,
-    isContentAddedToDom,
     isOpen,
     isPortal,
     onClose,
     onDelayedClose,
     onDelayedOpen,
+    onAfterOpen,
     portalElement,
     refContent,
     handleKeyDown,
   } = React.useContext(PopoverContext);
-
-  if (!isContentAddedToDom) {
-    return null;
-  }
 
   // TODO: extract this to Storybook story somehow so supporting numbers as strings is not required
   function isNumber(n) {
@@ -93,23 +91,33 @@ const Content = React.forwardRef((props, ref) => {
   }
 
   const ContentStyledComponent = (
-    <ContentStyled
-      data-component-name="PopoverContent"
-      data-pka-anchor="popover.content"
-      id={content.ariaId}
-      isOpen={isOpen}
-      ref={handleRef}
-      style={contentStyles}
-      tabIndex="-1"
-      zIndex={content.zIndex}
-      {...moreProps}
-      onBlur={callAll(handleBlur, moreProps.onBlur)}
-      onMouseOut={callAll(handleMouseEvent, moreProps.onMouseOut)}
-      onMouseOver={callAll(handleMouseEvent, moreProps.onMouseOver)}
-      onKeyDown={callAll(handleKeyDown, moreProps.onKeyDown)}
+    <Transition
+      mountOnEnter
+      unmountOnExit
+      in={isOpen}
+      timeout={+tokens.popover.animationDuration}
+      onEntered={onAfterOpen}
     >
-      {props.children}
-    </ContentStyled>
+      {state => (
+        <ContentStyled
+          state={state}
+          data-component-name="PopoverContent"
+          data-pka-anchor="popover.content"
+          id={content.ariaId}
+          ref={handleRef}
+          style={contentStyles}
+          tabIndex="-1"
+          zIndex={content.zIndex}
+          {...moreProps}
+          onBlur={callAll(handleBlur, moreProps.onBlur)}
+          onMouseOut={callAll(handleMouseEvent, moreProps.onMouseOut)}
+          onMouseOver={callAll(handleMouseEvent, moreProps.onMouseOver)}
+          onKeyDown={callAll(handleKeyDown, moreProps.onKeyDown)}
+        >
+          {props.children}
+        </ContentStyled>
+      )}
+    </Transition>
   );
 
   if (isPortal) {
