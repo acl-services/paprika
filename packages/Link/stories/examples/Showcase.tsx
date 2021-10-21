@@ -13,6 +13,6 @@ const getKnobs = () => ({
   maxWidth: text("maxWidth", "120px"),
 });
 
-export default function Showcase() {
+export default function Showcase(): JSX.Element {
   return <Link {...getKnobs()} href="http://www.wegalvanize.com" />;
 }

@@ -4,9 +4,8 @@ import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 import Link from "../../src";
-// import { Story, CenteredStory, Rule, Big, Small, Tagline, Gap, repeat, breaklines, CodeHeading } from "storybook/assets/styles/common.styles";
 
-export default function NavigationalExampleExample() {
+export default function NavigationalExampleExample(): JSX.Element {
   const url = "http://www.wegalvanize.com";
 
   const MediumContainer = styled.div`

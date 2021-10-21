@@ -55,7 +55,7 @@ export interface LinkProps {
   /** Content to be displayed: texts, icons, etc. */
   children?: React.ReactNode;
 
-  /** max-width to be truncated */
+  /** mMax-width for Link to be truncated */
   maxWidth?: string;
 }
 

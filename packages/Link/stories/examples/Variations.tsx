@@ -3,7 +3,7 @@ import { Gap } from "storybook/assets/styles/common.styles";
 import tokens from "@paprika/tokens";
 import Link from "../../src";
 
-export default function variations() {
+export default function variations(): JSX.Element {
   const url = "http://www.wegalvanize.com";
   return (
     <>

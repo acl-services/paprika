@@ -12,7 +12,7 @@ export default {
   component: Link,
 };
 
-export const navigationalexampleExample = () => (
+export const navigationalexampleExample = (): JSX.Element => (
   <ExampleStory storyName="NavigationalExample" component="Link" fileName="examples/NavigationalExample.js">
     <NavigationalExample />
   </ExampleStory>

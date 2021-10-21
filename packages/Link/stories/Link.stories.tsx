@@ -12,7 +12,7 @@ export default {
   title: storyName,
 };
 
-export const showcase = () => (
+export const showcase = (): JSX.Element => (
   <ExampleStory storyName="Link" tagline={ExampleStory.defaultTaglines.showcase}>
     <Showcase />
   </ExampleStory>
