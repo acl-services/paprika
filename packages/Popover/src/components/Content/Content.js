@@ -11,14 +11,16 @@ import { ContentStyled } from "./Content.styles";
 
 const propTypes = {
   children: PropTypes.node,
+  isAlwaysOnDom: PropTypes.bool,
 };
 
 const defaultProps = {
   children: null,
+  isAlwaysOnDom: false,
 };
 
 const Content = React.forwardRef((props, ref) => {
-  const { children, ...moreProps } = props;
+  const { children, isAlwaysOnDom, ...moreProps } = props;
 
   const {
     content,
@@ -90,14 +92,10 @@ const Content = React.forwardRef((props, ref) => {
     contentStyles.width = content.width;
   }
 
+  const transitionProps = isAlwaysOnDom ? {} : { mountOnEnter: true, unmountOnExit: true };
+
   const ContentStyledComponent = (
-    <Transition
-      mountOnEnter
-      unmountOnExit
-      in={isOpen}
-      timeout={+tokens.popover.animationDuration}
-      onEntered={onAfterOpen}
-    >
+    <Transition {...transitionProps} in={isOpen} timeout={+tokens.popover.animationDuration} onEntered={onAfterOpen}>
       {state => (
         <ContentStyled
           state={state}

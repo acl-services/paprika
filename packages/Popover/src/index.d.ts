@@ -53,6 +53,8 @@ declare namespace Popover {
     [x: string]: any;
 
     children?: React.ReactNode;
+
+    isAlwaysOnDom?: boolean;
   }
 }
 declare namespace Popover {
