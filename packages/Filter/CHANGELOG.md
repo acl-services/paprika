@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0-next.1
+
+### Major Changes
+
+- 14e882e: When a filter is a SINGLE_SELECT or a MULTI_SELECT, the data must now be an object with the keys "id" and "label". That way the filter can use the "id" and show the "label".
+
 ## 1.2.16-next.0
 
 ### Patch Changes
