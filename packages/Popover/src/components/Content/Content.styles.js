@@ -19,7 +19,7 @@ const states = {
 export const ContentStyled = styled.div(
   ({ state, zIndex }) => css`
     position: fixed;
-    transition: opacity ${consts.transition} ease;
+    transition: opacity ${consts.animationDuration}ms ease;
     ${states[state]};
     z-index: ${zIndex};
 

@@ -94,7 +94,7 @@ const Content = React.forwardRef((props, ref) => {
   const transitionProps = isAlwaysOnDom ? {} : { mountOnEnter: true, unmountOnExit: true };
 
   const ContentStyledComponent = (
-    <Transition {...transitionProps} in={isOpen} timeout={PopoverConstants.transitionAsInt} onEntered={onAfterOpen}>
+    <Transition {...transitionProps} in={isOpen} timeout={PopoverConstants.animationDuration} onEntered={onAfterOpen}>
       {state => (
         <ContentStyled
           state={state}
