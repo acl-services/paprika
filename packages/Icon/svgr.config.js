@@ -13,7 +13,8 @@ module.exports = {
   svgProps: {
     // We need to render string template
     // eslint-disable-next-line no-template-curly-in-string
-    css: "{`color: ${props.color};width: ${props.size};height: ${props.size};vertical-align: text-top;`}",
+    css:
+      "{`color: ${props.color};width: ${props.size||Tokens.icon.sizeSm};height: ${props.size||Tokens.icon.sizeSm};vertical-align: text-top;`}",
     "data-pka-anchor": "icon",
     focusable: false,
   },
