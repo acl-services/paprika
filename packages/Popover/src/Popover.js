@@ -104,7 +104,7 @@ class Popover extends React.Component {
       onDelayedClose: this.handleDelayedClose,
       onDelayedOpen: this.handleDelayedOpen,
       onOpen: this.handleOpen,
-      onAfterOpen: this.handleOnAfterOpen,
+      onAfterOpen: e => this.handleOnAfterOpen(e),
       isPortal,
       portalElement,
       refContent,
@@ -265,9 +265,7 @@ class Popover extends React.Component {
         this.focusableElements[this.triggerFocusIndex].focus();
       } else if (!event.shiftKey && (isFocusOnLast || isFocusOnOnly)) {
         event.preventDefault();
-        if (this.triggerFocusIndex + 1) {
-          this.focusableElements[this.triggerFocusIndex + 1].focus();
-        }
+        this.focusableElements[this.triggerFocusIndex + 1]?.focus();
       }
     }
   };
@@ -299,7 +297,7 @@ class Popover extends React.Component {
   };
 
   handleOnAfterOpen = event => {
-    if (!this.props.shouldKeepFocus && !this.props.isEager && this.isOpen() && event.propertyName === "opacity") {
+    if (!this.props.shouldKeepFocus && !this.props.isEager && this.isOpen()) {
       this.setPopoverTriggerFocusIndex();
       event.focus();
     }
@@ -440,7 +438,7 @@ class Popover extends React.Component {
       this.state.tip,
       zIndex,
       this.ariaIdForContent,
-      this.handleKeyDown
+      e => this.handleKeyDown(e)
     );
 
     return (
