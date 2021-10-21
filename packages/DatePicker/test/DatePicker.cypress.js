@@ -33,7 +33,7 @@ describe("<DatePicker />", () => {
     cy.findByTestId("datepicker.input").should("not.have.value");
     selectADateByClick();
     cy.findByTestId("datepicker.input").should("have.value", targetDate.format("MMMM DD, YYYY"));
-    cy.findByTestId("datepicker.calendar").should("not.be.visible");
+    cy.findByTestId("datepicker.calendar").should("not.exist");
   });
 
   it("should reset format after focus again", () => {
