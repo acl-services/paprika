@@ -4,6 +4,7 @@ import RawButton from "@paprika/raw-button";
 
 export const consts = {
   transition: "150ms",
+  transitionAsInt: 150,
 };
 
 export const Popover = styled.div`

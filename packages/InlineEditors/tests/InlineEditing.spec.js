@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, getAllByText, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ListBoxSingleStory } from "../stories/examples/ListBox";
 
@@ -35,11 +35,10 @@ test("Inline editing / ListBox / close", async () => {
 
   userEvent.click(screen.getByTestId("list-box-trigger")); // click event
   await waitFor(() => {
-    expect(screen.queryByTestId("popover.content")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("list-box-box")).not.toBeInTheDocument();
+    expect(screen.queryByText(regexOption1)).not.toBeInTheDocument();
+    expect(screen.queryByText(regexOption2)).not.toBeInTheDocument();
   });
-
-  expect(screen.queryByText(regexOption1)).not.toBeInTheDocument();
-  expect(screen.queryByText(regexOption2)).not.toBeInTheDocument();
 });
 
 test("Inline editing / ListBox / onSubmit event", async () => {
@@ -50,7 +49,7 @@ test("Inline editing / ListBox / onSubmit event", async () => {
 
   userEvent.click(screen.queryByText(regexOption2));
   await waitFor(() => {
-    expect(screen.queryByTestId("popover.content")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("list-box-box")).not.toBeInTheDocument();
     expect(screen.queryByText(regexOption1)).not.toBeInTheDocument();
     expect(screen.getAllByText(regexOption2).length).toBe(2);
   });
@@ -63,7 +62,7 @@ test("Inline editing / ListBox / onChange event", async () => {
 
   userEvent.click(screen.queryByText(regexOption2));
   await waitFor(() => {
-    expect(screen.queryByTestId("popover.content")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("list-box-box")).not.toBeInTheDocument();
     expect(screen.queryByText(/onChange:Results Lite Contributor/i)).toBeInTheDocument();
     expect(screen.getAllByText(regexOption2).length).toBe(2);
   });

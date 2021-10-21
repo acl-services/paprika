@@ -22,5 +22,9 @@ export const ContentStyled = styled.div(
     transition: opacity ${consts.transition} ease;
     ${states[state]};
     z-index: ${zIndex};
+
+    &:focus {
+      outline: none;
+    }
   `
 );

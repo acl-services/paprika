@@ -1,5 +1,5 @@
 import React from "react";
-import { configure, render, fireEvent, waitFor, screen } from "@testing-library/react";
+import { configure, render, fireEvent } from "@testing-library/react";
 import ListBox from "../../../src";
 
 configure({ testIdAttribute: "data-pka-anchor" });

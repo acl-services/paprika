@@ -1,5 +1,5 @@
 import React from "react";
-import { configure, render, fireEvent, screen } from "@testing-library/react";
+import { configure, render, fireEvent } from "@testing-library/react";
 import { ControlledAndSelected } from "../../../stories/examples/Multi/ControlledAndSelected";
 import ListBox from "../../../src";
 

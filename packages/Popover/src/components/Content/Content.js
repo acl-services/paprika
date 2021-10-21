@@ -1,6 +1,5 @@
 import React from "react";
 import { Transition } from "react-transition-group";
-import tokens from "@paprika/tokens";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { callAll } from "@paprika/helpers";
@@ -95,7 +94,7 @@ const Content = React.forwardRef((props, ref) => {
   const transitionProps = isAlwaysOnDom ? {} : { mountOnEnter: true, unmountOnExit: true };
 
   const ContentStyledComponent = (
-    <Transition {...transitionProps} in={isOpen} timeout={+tokens.popover.animationDuration} onEntered={onAfterOpen}>
+    <Transition {...transitionProps} in={isOpen} timeout={PopoverConstants.transitionAsInt} onEntered={onAfterOpen}>
       {state => (
         <ContentStyled
           state={state}
