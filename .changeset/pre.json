@@ -73,6 +73,7 @@
     "@paprika/seducer": "2.0.3"
   },
   "changesets": [
-    "ninety-mice-matter"
+    "ninety-mice-matter",
+    "sixty-olives-happen"
   ]
 }
