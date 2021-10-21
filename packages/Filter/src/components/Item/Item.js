@@ -19,7 +19,7 @@ const propTypes = {
   onDeleteFilter: PropTypes.func.isRequired,
   renderValueField: PropTypes.func,
   rule: PropTypes.string.isRequired,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.array]).isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.array, PropTypes.number]).isRequired,
 };
 
 const defaultProps = {
@@ -40,18 +40,25 @@ function Item(props) {
     value,
     renderValueField: renderCustomValueField,
   } = props;
+
   const { columns, data, filterRef, onChangeOperator, operator, rulesByType } = React.useContext(FilterContext);
   const I18n = useI18n();
 
   const selectedColumnType = columns.find(({ id }) => id === selectedColumnId).type;
 
-  const selectOptions = React.useMemo(() => {
+  const uniqueSelectOptions = React.useMemo(() => {
     switch (selectedColumnType) {
       case types.columnTypes.SINGLE_SELECT:
       case types.columnTypes.MULTI_SELECT:
-        return data.filter(
-          (obj, index, arr) => arr.map(datum => datum[selectedColumnId]).indexOf(obj[selectedColumnId]) === index
-        );
+        return data.filter((row, index, dataOriginal) => {
+          const selectedColumnValues = dataOriginal.map(datum => datum[selectedColumnId]); // [{id, label}, {id, label}, ...]
+          const position = selectedColumnValues.findIndex(
+            selectedColumnValue =>
+              selectedColumnValue.id === row[selectedColumnId].id &&
+              selectedColumnValue.label === row[selectedColumnId].label
+          );
+          return position === index;
+        });
       default:
         return null;
     }
@@ -90,7 +97,10 @@ function Item(props) {
   }
 
   function handleChangeSingleSelectFilterValue(index, options) {
-    onChangeFilter(types.changeTypes.FILTER_VALUE, { id, value: options[index].value });
+    onChangeFilter(types.changeTypes.FILTER_VALUE, {
+      id,
+      value: options[index].value,
+    });
   }
 
   function handleChangeMultiSelectFilterValue(indices, options) {
@@ -161,14 +171,19 @@ function Item(props) {
         return (
           <sc.ValueInput data-pka-anchor="filter.item.valueInput">
             <ListBox key={`${selectedColumnId}-${index}`} onChange={handleChangeSingleSelectFilterValue}>
-              {selectOptions >= MAX_OPTIONS ? <ListBox.Filter /> : null}
-              {selectOptions.map(data => (
+              <ListBox.Trigger
+                onClickClear={() => {
+                  handleChangeSingleSelectFilterValue(0, [{ value: "", label: "" }]);
+                }}
+              />
+              {uniqueSelectOptions >= MAX_OPTIONS ? <ListBox.Filter /> : null}
+              {uniqueSelectOptions.map(selectOption => (
                 <ListBox.Option
-                  key={data[selectedColumnId]}
-                  value={data[selectedColumnId]}
-                  isSelected={data[selectedColumnId] === value}
+                  key={selectOption[selectedColumnId].id}
+                  value={selectOption[selectedColumnId].id}
+                  isSelected={selectOption[selectedColumnId].id === value}
                 >
-                  {data[selectedColumnId]}
+                  {selectOption[selectedColumnId].label}
                 </ListBox.Option>
               ))}
             </ListBox>
@@ -178,14 +193,19 @@ function Item(props) {
         return (
           <sc.ValueInput data-pka-anchor="filter.item.valueInput">
             <ListBox key={`${selectedColumnId}-${index}`} onChange={handleChangeMultiSelectFilterValue} isMulti>
-              {selectOptions >= MAX_OPTIONS ? <ListBox.Filter /> : null}
-              {selectOptions.map(option => (
+              <ListBox.Trigger
+                onClickClear={() => {
+                  handleChangeMultiSelectFilterValue([], {});
+                }}
+              />
+              {uniqueSelectOptions >= MAX_OPTIONS ? <ListBox.Filter /> : null}
+              {uniqueSelectOptions.map(selectOption => (
                 <ListBox.Option
-                  key={option[selectedColumnId]}
-                  value={option[selectedColumnId]}
-                  isSelected={value.includes(option[selectedColumnId])}
+                  key={selectOption[selectedColumnId].id}
+                  value={selectOption[selectedColumnId].id}
+                  isSelected={value.includes(selectOption[selectedColumnId].id)}
                 >
-                  {option[selectedColumnId]}
+                  {selectOption[selectedColumnId].label}
                 </ListBox.Option>
               ))}
             </ListBox>
