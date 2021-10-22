@@ -44,8 +44,10 @@ function SingleDateCalendar(props) {
   }
 
   React.useEffect(() => {
-    keepFocus();
-  }, [currentMonth, date]);
+    if (currentMonth) {
+      keepFocus();
+    }
+  }, [currentMonth]);
 
   function getInitialVisibleMonth() {
     let initialVisibleMonth;
@@ -148,10 +150,10 @@ function SingleDateCalendar(props) {
           key={CalendarKey}
           date={date}
           onDateChange={onSelect}
-          focused
           isOutsideRange={isOutsideSupportedRange}
           renderMonthElement={renderMonthHeaderElement}
           enableOutsideDays
+          focused
           numberOfMonths={1}
           initialVisibleMonth={getInitialVisibleMonth}
           hideKeyboardShortcutsPanel

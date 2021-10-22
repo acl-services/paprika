@@ -104,7 +104,7 @@ class Popover extends React.Component {
       onDelayedClose: this.handleDelayedClose,
       onDelayedOpen: this.handleDelayedOpen,
       onOpen: this.handleOpen,
-      onAfterOpen: this.handleOnAfterOpen,
+      onAfterOpen: e => this.handleOnAfterOpen(e),
       isPortal,
       portalElement,
       refContent,

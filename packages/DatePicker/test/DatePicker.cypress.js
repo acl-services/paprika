@@ -23,6 +23,7 @@ describe("<DatePicker />", () => {
 
   const openShortcut = () => {
     cy.findByTestId("datepicker.input").click();
+    cy.wait(200);
     cy.findAllByTestId("calendar.header")
       .contains(today.format("MMMM YYYY"))
       .click();
@@ -46,6 +47,7 @@ describe("<DatePicker />", () => {
   it("should open shortcut panel and be able to jump to target month", () => {
     cy.visitStorybook(`${getStoryUrlPrefix("DatePicker")}-backyard-tests--cypress`);
     openShortcut();
+    cy.wait(200);
     cy.findByTestId("calendar.shortcut").should("be.visible");
 
     cy.get('label[for$="-0"]').click();
