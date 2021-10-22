@@ -28,7 +28,7 @@ function renderComponent(props = {}, children = childrenContent) {
       });
     },
     expectDropdownIsVisible: () => {
-      expect(rendered.getByTestId("popover.content")).toBeInTheDocument();
+      expect(rendered.getByTestId("popover.content")).toBeVisible();
     },
   };
 }

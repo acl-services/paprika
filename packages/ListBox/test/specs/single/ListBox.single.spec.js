@@ -26,7 +26,7 @@ function renderComponent(props = {}, children = childrenContent) {
       fireEvent.click(rendered.getByText(/jupiter/i));
     },
     popoverIsVisible: () => {
-      expect(rendered.getByTestId("popover.content")).toBeInTheDocument();
+      expect(rendered.getByTestId("popover.content")).toBeVisible();
     },
     popoverIsNotVisible: async () => {
       await waitFor(() => {

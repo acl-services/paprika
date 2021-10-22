@@ -298,10 +298,10 @@ class Popover extends React.Component {
     });
   };
 
-  handleOnAfterOpen = event => {
+  handleOnAfterOpen = element => {
     if (!this.props.shouldKeepFocus && !this.props.isEager && this.isOpen()) {
       this.setPopoverTriggerFocusIndex();
-      event.focus();
+      element.focus();
     }
   };
 

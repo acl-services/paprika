@@ -31,7 +31,7 @@ function renderComponent(props = {}, children = childrenContent) {
       fireEvent.click(rendered.getByText(/jupiter/i));
     },
     expectDropdownIsVisible: () => {
-      expect(rendered.getByTestId("popover.content")).toBeInTheDocument();
+      expect(rendered.getByTestId("popover.content")).toBeVisible();
     },
   };
 }
