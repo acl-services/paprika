@@ -10,16 +10,14 @@ import { ContentStyled } from "./Content.styles";
 
 const propTypes = {
   children: PropTypes.node,
-  isAlwaysOnDom: PropTypes.bool,
 };
 
 const defaultProps = {
   children: null,
-  isAlwaysOnDom: false,
 };
 
 const Content = React.forwardRef((props, ref) => {
-  const { children, isAlwaysOnDom, ...moreProps } = props;
+  const { children, ...moreProps } = props;
 
   const {
     content,
@@ -33,6 +31,7 @@ const Content = React.forwardRef((props, ref) => {
     portalElement,
     refContent,
     handleKeyDown,
+    shouldUnmount,
   } = React.useContext(PopoverContext);
 
   // TODO: extract this to Storybook story somehow so supporting numbers as strings is not required
@@ -91,7 +90,7 @@ const Content = React.forwardRef((props, ref) => {
     contentStyles.width = content.width;
   }
 
-  const transitionProps = isAlwaysOnDom ? {} : { mountOnEnter: true, unmountOnExit: true };
+  const transitionProps = shouldUnmount ? { mountOnEnter: true, unmountOnExit: true } : {};
 
   const ContentStyledComponent = (
     <Transition {...transitionProps} in={isOpen} timeout={PopoverConstants.animationDuration} onEntered={onAfterOpen}>

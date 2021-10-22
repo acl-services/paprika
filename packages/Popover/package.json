@@ -25,8 +25,8 @@
     "lodash.throttle": "^4.1.1",
     "memoize-one": "^5.0.0",
     "prop-types": "^15.7.2",
-    "uuid": "^8.3.2",
-    "react-transition-group": "^4.3.0"
+    "react-transition-group": "^4.3.0",
+    "uuid": "^8.3.2"
   },
   "peerDependencies": {
     "react": "^16.8.0",

@@ -42,11 +42,11 @@ export const getKnobs = () => ({
   shouldKeepFocus: boolean("shouldKeepFocus", false),
   isPortal: boolean("isPortal", true),
   sampleText: sampleTexts[select("content", ["short", "long", "rich"], "long")],
-  isAlwaysOnDom: boolean("isAlwaysOnDom (Content)", false),
+  shouldUnmount: boolean("shouldUnmount", true),
 });
 
 export default function Showcase() {
-  const { sampleText, isAlwaysOnDom, ...popoverProps } = getKnobs();
+  const { sampleText, ...popoverProps } = getKnobs();
 
   return (
     <CenteredStory>
@@ -65,7 +65,7 @@ export default function Showcase() {
             </Button>
           )}
         </Popover.Trigger>
-        <Popover.Content isAlwaysOnDom={isAlwaysOnDom}>
+        <Popover.Content>
           <Popover.Card>{sampleText}</Popover.Card>
         </Popover.Content>
         <Popover.Tip />

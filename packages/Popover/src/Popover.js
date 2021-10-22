@@ -87,7 +87,8 @@ class Popover extends React.Component {
       tip,
       zIndex,
       ariaIdForContent,
-      handleKeyDown
+      handleKeyDown,
+      shouldUnmount
     ) => ({
       content: {
         ...content,
@@ -112,6 +113,7 @@ class Popover extends React.Component {
       shouldKeepFocus,
       tip,
       handleKeyDown,
+      shouldUnmount,
     })
   );
 
@@ -419,6 +421,7 @@ class Popover extends React.Component {
       offset,
       getPositioningElement,
       getScrollContainer,
+      shouldUnmount,
       zIndex,
       ...moreProps
     } = this.props;
@@ -438,7 +441,8 @@ class Popover extends React.Component {
       this.state.tip,
       zIndex,
       this.ariaIdForContent,
-      e => this.handleKeyDown(e)
+      e => this.handleKeyDown(e),
+      shouldUnmount
     );
 
     return (
@@ -524,6 +528,9 @@ const propTypes = {
   /** If focus will stay at the trigger when showing popover. Popover can still be closed when clicking outside or pressing escape key. */
   shouldKeepFocus: PropTypes.bool,
 
+  /** Should unmount Popover Content Subcomponent from DOM when popover is closed */
+  shouldUnmount: PropTypes.bool,
+
   /** Number setting the z-index for the popover content / tip. */
   zIndex: PropTypes.number,
 };
@@ -543,6 +550,7 @@ const defaultProps = {
   getPositioningElement: null,
   getScrollContainer: null,
   shouldKeepFocus: false,
+  shouldUnmount: true,
   zIndex: zValue(1),
 };
 
