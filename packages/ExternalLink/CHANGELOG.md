@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.0.16
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+- Updated dependencies [fd94ddb]
+  - @paprika/tokens@1.1.0
+  - @paprika/icon@2.1.1
+  - @paprika/stylers@1.1.1
+
 ## 2.0.16-next.0
 
 ### Patch Changes

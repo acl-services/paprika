@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.3.0
+
+### Minor Changes
+
+- 5c43029: Remove background colour on tabs
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+- Updated dependencies [fd94ddb]
+  - @paprika/tokens@1.1.0
+  - @paprika/raw-button@1.0.7
+  - @paprika/stylers@1.1.1
+
 ## 2.3.0-next.1
 
 ### Minor Changes

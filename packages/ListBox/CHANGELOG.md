@@ -1,5 +1,20 @@
 # Changelog
 
+## 3.6.2
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+- Updated dependencies [fd94ddb]
+  - @paprika/tokens@1.1.0
+  - @paprika/button@1.1.6
+  - @paprika/icon@2.1.1
+  - @paprika/input@4.0.11
+  - @paprika/popover@1.2.6
+  - @paprika/raw-button@1.0.7
+  - @paprika/stylers@1.1.1
+  - @paprika/toast@1.1.13
+
 ## 3.6.2-next.0
 
 ### Patch Changes

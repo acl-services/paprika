@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.3.8
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+- Updated dependencies [fd94ddb]
+  - @paprika/tokens@1.1.0
+  - @paprika/button@1.1.6
+  - @paprika/icon@2.1.1
+  - @paprika/input@4.0.11
+  - @paprika/popover@1.2.6
+  - @paprika/toast@1.1.13
+
 ## 1.3.8-next.0
 
 ### Patch Changes
