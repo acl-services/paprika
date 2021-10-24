@@ -1,6 +1,12 @@
 // prettier-ignore
 const storyTree = [
   {
+    category: "Hacks",
+    components: [
+      "HackCard",
+    ],
+  },
+  {
     category: "Display",
     components: [
       "Avatar",
@@ -103,6 +109,12 @@ const storyTree = [
   },
 ];
 
+function getCategories() {
+  return storyTree.map(catList => {
+    return catList.category;
+  });
+}
+
 function getCategory(component) {
   return storyTree.find(catList => catList.components.includes(component)).category;
 }
@@ -117,6 +129,7 @@ function getStoryUrlPrefix(component) {
 
 module.exports = {
   getCategory,
+  getCategories,
   getStoryName,
   getStoryUrlPrefix,
   storyTree,

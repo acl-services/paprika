@@ -1,6 +1,7 @@
 import { addParameters, addDecorator } from "@storybook/react";
 import { withCssResources } from "@storybook/addon-cssresources";
 import { withA11y } from "@storybook/addon-a11y";
+import { getCategories } from "./storyTree";
 import "./reset.scss";
 
 addDecorator(withA11y);
@@ -9,6 +10,11 @@ addDecorator(withCssResources);
 addParameters({
   previewTabs: {
     canvas: { hidden: true },
+  },
+  options: {
+    storySort: {
+      order: getCategories(),
+    },
   },
   cssresources: [
     {
