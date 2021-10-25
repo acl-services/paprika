@@ -91,7 +91,6 @@ const Content = React.forwardRef((props, ref) => {
   }
 
   const transitionProps = shouldUnmount ? { mountOnEnter: true, unmountOnExit: true } : {};
-  console.log("content zIndex", content.zIndex);
 
   const ContentStyledComponent = (
     <Transition {...transitionProps} in={isOpen} timeout={PopoverConstants.animationDuration} onEntered={onAfterOpen}>
