@@ -4,6 +4,7 @@ const storyTree = [
     category: "Hacks",
     components: [
       "HackCard",
+      "HackButton",
     ],
   },
   {
