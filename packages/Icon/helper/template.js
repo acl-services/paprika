@@ -4,7 +4,6 @@ module.exports = ({ template }, opts, { imports, interfaces, componentName, jsx,
 
   return typeScriptTpl.ast`
     ${imports}
-    import Tokens from '@paprika/tokens';
     ${interfaces}
     function ${componentName}({title=null, ...props}) {
       return ${jsx};

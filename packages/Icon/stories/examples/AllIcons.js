@@ -5,7 +5,7 @@ import Heading from "@paprika/heading";
 import * as sc from "./AllIcons.styled";
 
 const iconSizes = {
-  default: undefined,
+  small: tokens.icon.sizeSm,
   medium: tokens.icon.sizeMd,
   large: tokens.icon.sizeLg,
   ExtraLarge: tokens.icon.sizeXlg,
@@ -13,7 +13,7 @@ const iconSizes = {
 
 export default () => {
   const iconProps = {
-    size: select("size", iconSizes),
+    size: select("size", iconSizes, tokens.icon.sizeSm),
     color: color("color", tokens.textColor.icon),
   };
 

@@ -14,7 +14,7 @@ module.exports = {
     css:
       // We need to render string template
       // eslint-disable-next-line no-template-curly-in-string
-      "{`color: ${props.color};font-size: ${props.size||Tokens.icon.sizeSm};height: ${props.size||Tokens.icon.sizeSm};vertical-align: text-top;`}",
+      "{`color: ${props.color};font-size: ${props.size};vertical-align: text-top;`}",
     "data-pka-anchor": "icon",
     focusable: false,
   },
