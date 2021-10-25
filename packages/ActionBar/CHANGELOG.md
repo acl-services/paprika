@@ -1,5 +1,21 @@
 # Changelog
 
+## 3.1.12
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+- Updated dependencies [fd94ddb]
+  - @paprika/tokens@1.1.0
+  - @paprika/button@1.1.6
+  - @paprika/icon@2.1.1
+  - @paprika/input@4.0.11
+  - @paprika/popover@1.2.6
+  - @paprika/select@2.0.6
+  - @paprika/sortable@1.2.5
+  - @paprika/stylers@1.1.1
+  - @paprika/switch@1.0.12
+
 ## 3.1.12-next.0
 
 ### Patch Changes
