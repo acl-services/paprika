@@ -8,6 +8,7 @@ function Card(props) {
 
   const styleProps = {
     size,
+    isActive,
   };
 
   return (
