@@ -528,7 +528,7 @@ const propTypes = {
   /** If focus will stay at the trigger when showing popover. Popover can still be closed when clicking outside or pressing escape key. */
   shouldKeepFocus: PropTypes.bool,
 
-  /** Should unmount Popover Content Subcomponent from DOM when popover is closed */
+  /** Should unmount Popover Content or Tip Subcomponents from DOM when popover is closed */
   shouldUnmount: PropTypes.bool,
 
   /** Number setting the z-index for the popover content / tip. */

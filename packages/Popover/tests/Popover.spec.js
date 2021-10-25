@@ -4,7 +4,7 @@ import { axe } from "jest-axe";
 import Popover from "../src";
 
 describe("Popover", () => {
-  it("should open when clicked", () => {
+  it("should open when clicked and display subcomponents correctly", () => {
     const { container } = render(
       <Popover>
         <Popover.Trigger>Open</Popover.Trigger>
@@ -20,6 +20,7 @@ describe("Popover", () => {
 
     fireEvent.click(screen.getByText(/open/i));
     expect(screen.getByText(/content/i)).toBeVisible();
+    expect(screen.queryByTestId("popover.tip")).toBeVisible();
   });
 
   it("should not fail any accessibility tests", async () => {
@@ -32,7 +33,7 @@ describe("Popover", () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 
-  it("should not render content or tip to the dom when shouldUnmount prop false", async () => {
+  it("should render content and tip to the dom when shouldUnmount prop false", async () => {
     render(
       <Popover shouldUnmount={false}>
         <Popover.Trigger>Open</Popover.Trigger>
@@ -41,6 +42,7 @@ describe("Popover", () => {
       </Popover>
     );
     expect(screen.queryByText(/content/i)).not.toBeVisible();
+    expect(screen.queryByTestId("popover.tip")).not.toBeVisible();
     expect(document.querySelector('[data-pka-anchor="popover.content"]')).toBeInTheDocument();
     expect(document.querySelector('[data-pka-anchor="popover.tip"]')).toBeInTheDocument();
   });
