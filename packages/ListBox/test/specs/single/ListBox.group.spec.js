@@ -28,8 +28,9 @@ function renderComponent() {
 
 describe("ListBox.Group single select", () => {
   it("should display group names in dropdown", () => {
-    const { getByText } = renderComponent();
+    const { getByText, openSelect } = renderComponent();
 
+    openSelect();
     expect(getByText(/big-planets/i)).toBeTruthy();
     expect(getByText(/small-planets/i)).toBeTruthy();
   });

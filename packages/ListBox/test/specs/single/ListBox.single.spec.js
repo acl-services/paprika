@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, configure, screen } from "@testing-library/react";
+import { render, fireEvent, configure, screen, waitFor } from "@testing-library/react";
 import { axe } from "jest-axe";
 import { Controlled } from "../../../stories/examples/Single/Controlled";
 import ListBox from "../../../src";
@@ -25,21 +25,22 @@ function renderComponent(props = {}, children = childrenContent) {
     selectJupiter: () => {
       fireEvent.click(rendered.getByText(/jupiter/i));
     },
-    popoverIsHidden: () => {
-      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toBeTruthy();
-    },
     popoverIsVisible: () => {
-      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toMatch(/false/i);
+      expect(rendered.getByTestId("popover.content")).toBeVisible();
+    },
+    popoverIsNotVisible: async () => {
+      await waitFor(() => {
+        expect(screen.queryByTestId("popover.content")).not.toBeInTheDocument();
+      });
     },
   };
 }
 
 describe("ListBox single select", () => {
-  it("dropdown should be hidden when first rendered", () => {
-    const { popoverIsHidden } = renderComponent();
-    popoverIsHidden();
+  it("dropdown should not be visible when first rendered", () => {
+    const { popoverIsNotVisible } = renderComponent();
+    popoverIsNotVisible();
   });
-
   it("dropdown should be visible when clicked", () => {
     const { openSelect, popoverIsVisible } = renderComponent();
 
@@ -47,13 +48,13 @@ describe("ListBox single select", () => {
     popoverIsVisible();
   });
 
-  it("dropdown should toggle when clicked", () => {
-    const { popoverIsVisible, popoverIsHidden } = renderComponent();
+  it("dropdown should toggle when clicked", async () => {
+    const { popoverIsVisible, popoverIsNotVisible } = renderComponent();
 
     fireEvent.click(screen.getByText(/select/i));
     popoverIsVisible();
     fireEvent.click(screen.getByText(/select/i));
-    popoverIsHidden();
+    popoverIsNotVisible();
   });
 
   it("dropdown should have correct number of options", () => {
@@ -74,20 +75,21 @@ describe("ListBox single select", () => {
   });
 
   it("should have custom height of 500", () => {
-    const { getByTestId } = renderComponent({
+    const { getByTestId, openSelect } = renderComponent({
       height: 500,
     });
 
+    openSelect();
     expect(getByTestId("styled-list").getAttribute("height")).toMatch("500");
   });
 
   it("should be disabled", () => {
-    const { openSelect, popoverIsHidden } = renderComponent({
+    const { openSelect, popoverIsNotVisible } = renderComponent({
       isDisabled: true,
     });
 
     openSelect();
-    popoverIsHidden();
+    popoverIsNotVisible();
   });
 
   it("should select an option via a controlled button", () => {
