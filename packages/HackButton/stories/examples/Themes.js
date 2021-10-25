@@ -2,43 +2,46 @@ import React from "react";
 import { ThemeProvider, css } from "styled-components";
 import { Gap, CodeHeading } from "storybook/assets/styles/common.styles";
 import StoryHeading from "storybook/components/StoryHeading";
-import tokens from "@paprika/tokens";
-import stylers from "@paprika/stylers";
 import Button from "../../src";
 import * as types from "../../src/types";
 
 const coloredButtonStyles = css`
-  color: ${tokens.color.white};
+  color: #ffffff;
   text-decoration: none;
-  text-shadow: 0 1px 1px ${stylers.alpha(tokens.color.blackPure, 0.2)};
+  text-shadow: 0 1px 1px 0 rgb(0 0 0 / 10%);
+`;
+
+const focusBorderStyles = css`
+  border-color: #276cf5;
+  box-shadow: 0 0 0 2px #99cbfc;
 `;
 
 const starlingKindStyles = {
   [types.DEFAULT]: css`
-    background-color: ${tokens.color.white};
-    background-image: linear-gradient(${tokens.color.blackLighten90}, ${tokens.color.blackLighten70});
-    color: ${tokens.color.black};
+    background-color: #ffffff;
+    background-image: linear-gradient(#fcfcfc, #f0f0f0);
+    color: #3f3d3c;
     text-decoration: none;
     &:hover {
-      background: ${tokens.color.blackLighten70};
+      background: #f0f0f0;
     }
   `,
 
   [types.PRIMARY]: css`
     ${coloredButtonStyles}
-    background-color: ${tokens.color.greenLighten10};
-    background-image: linear-gradient(${tokens.color.greenLighten10}, ${tokens.color.green});
+    background-color: #5db187;
+    background-image: linear-gradient(#5db187, #42996d);
     &:hover {
-      background: ${tokens.color.green};
+      background: #42996d;
     }
   `,
   [types.SECONDARY]: css`
     ${coloredButtonStyles}
-    background-color: ${tokens.color.purpleLighten10};
-    background-image: linear-gradient(${tokens.color.purpleLighten10}, ${tokens.color.purple});
+    background-color: #9884c5;
+    background-image: linear-gradient(#9884c5, #785cba);
 
     &:hover {
-      background: ${tokens.color.purple};
+      background: #785cba;
     }
   `,
 };
@@ -47,7 +50,7 @@ const atlasKindStyles = {
   [types.DEFAULT]: css`
     background-color: transparent;
     border-color: transparent;
-    color: ${tokens.color.diligentLighten30};
+    color: #5d7599;
     &:hover {
       background-color: #ebeef2;
     }
@@ -57,18 +60,18 @@ const atlasKindStyles = {
   `,
 
   [types.PRIMARY]: css`
-    background-color: ${tokens.color.diligentLighten30};
+    background-color: #5d7599;
     border-color: transparent;
-    color: ${tokens.color.white};
+    color: #ffffff;
     &:hover {
-      background-color: ${tokens.color.diligentLighten20};
+      background-color: #455772;
     }
     &:active {
-      background-color: ${tokens.color.diligentLighten10};
+      background-color: #37465b;
     }
   `,
   [types.SECONDARY]: css`
-    background-color: ${tokens.color.white};
+    background-color: #ffffff;
     border-color: #385f99;
     color: #385f99;
     &:hover {
@@ -82,19 +85,19 @@ const atlasKindStyles = {
 
 export const starlingSizeStyles = {
   [types.SMALL]: css`
-    ${stylers.fontSize(-2)};
-    min-height: ${stylers.spacer(3)};
-    padding: 3px ${tokens.space};
+    font-size: 13px;
+    min-height: 23px;
+    padding: 3px 8px;
   `,
   [types.MEDIUM]: css`
-    ${stylers.fontSize(-1)};
-    min-height: ${stylers.spacer(4)};
-    padding: 6.5px ${tokens.spaceLg};
+    font-size: 14px;
+    min-height: 26px;
+    padding: 6.5px 12px;
   `,
   [types.LARGE]: css`
-    ${stylers.fontSize()};
-    min-height: ${stylers.spacer(5)};
-    padding: 9px ${stylers.spacer(2)};
+    font-size: 16px;
+    min-height: 29px;
+    padding: 9px 20px;
   `,
 };
 
@@ -112,32 +115,33 @@ export const atlasSizeStyles = {
 
 const starlingButton = {
   Button: ({ size, kind }) => css`
-  ${stylers.alignMiddle}
-  ${starlingKindStyles[kind]}
-  ${stylers.lineHeight(-1)}
-  ${starlingSizeStyles[size]}
-  appearance: none;
-  border-radius: ${tokens.button.borderRadius};
-  border-style: solid;
-  border-width: 1px;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-flex;
-  font-weight: bold;
-  text-align: center;
+    ${starlingKindStyles[kind]}
+    ${starlingSizeStyles[size]}
+  align-items: center;
+    appearance: none;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-flex;
+    font-weight: bold;
+    justify-content: center;
+    line-height: 1.24;
+    text-align: center;
 
-  &:active {
-    transform: scale(0.98);
-  }
+    &:active {
+      transform: scale(0.98);
+    }
 
-  &:focus {
-    outline: none;
-  }
+    &:focus {
+      outline: none;
+    }
 
-  html:not([data-whatinput="mouse"]) &:focus,
-  &[data-has-forced-focus]:focus {
-    ${stylers.focusRing.bordered()}
-  }
+    html:not([data-whatinput="mouse"]) &:focus,
+    &[data-has-forced-focus]:focus {
+      ${focusBorderStyles}
+    }
   `,
 };
 
@@ -159,7 +163,7 @@ const atlasButton = {
 
     html:not([data-whatinput="mouse"]) &:focus,
     &[data-has-forced-focus]:focus {
-      ${stylers.focusRing.bordered()}
+      ${focusBorderStyles}
     }
   `,
 };

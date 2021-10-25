@@ -4,7 +4,7 @@ import * as constants from "@paprika/constants/lib/Constants";
 import * as sc from "./Button.styles";
 
 function Button(props) {
-  const { children, size, kind, isActive, ...moreProps } = props;
+  const { children, size, kind, ...moreProps } = props;
 
   const styleProps = {
     size,
@@ -24,13 +24,10 @@ Button.types = {
 };
 
 const propTypes = {
-  /** Body content of the card. */
+  /** Body content of the button. */
   children: PropTypes.node,
 
-  /** If the card is in an "active" or "selected" state. */
-  isActive: PropTypes.bool,
-
-  /** Size of the card (font size, min-height, padding, etc). */
+  /** Size of the Button (font size, min-height, padding, etc). */
   size: PropTypes.oneOf([Button.types.size.MEDIUM, Button.types.size.LARGE]),
 
   /** The visual style of the button. */
@@ -48,11 +45,10 @@ const propTypes = {
 const defaultProps = {
   children: null,
   size: Button.types.size.MEDIUM,
-  isActive: false,
   kind: Button.types.kind.DEFAULT,
 };
 
-Button.displayName = "Card";
+Button.displayName = "Button";
 Button.propTypes = propTypes;
 Button.defaultProps = defaultProps;
 
