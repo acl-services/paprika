@@ -1,5 +1,16 @@
 # @paprika/search
 
+## 2.0.0-next.0
+
+### Major Changes
+
+- 371d3d3: Refactored Popover to not add content to the dom when closed by default
+
+### Patch Changes
+
+- Updated dependencies [371d3d3]
+  - @paprika/list-box@4.0.0-next.0
+
 ## 1.0.26
 
 ### Patch Changes
