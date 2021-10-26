@@ -5,7 +5,7 @@ import MenuIcon from "@paprika/icon/lib/Menu";
 import * as types from "../../types";
 
 const Trigger = React.forwardRef((props, ref) => (
-  <Button.Icon ref={ref} {...props} isSemantic={false} data-pka-anchor="panel.trigger" kind="minor" >
+  <Button.Icon ref={ref} {...props} isSemantic={false} data-pka-anchor="panel.trigger" kind="minor">
     <MenuIcon />
   </Button.Icon>
 ));

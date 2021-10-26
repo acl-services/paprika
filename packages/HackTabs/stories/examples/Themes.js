@@ -7,8 +7,7 @@ import Icon2 from "@paprika/icon/lib/TimeAndDate";
 import Icon3 from "@paprika/icon/lib/Lock";
 import Icon4 from "@paprika/icon/lib/NewTab";
 import Heading from "@paprika/heading";
-import Tabs from "../../src";
-import { atlasTabs } from "../../src/themes/atlas";
+import Tabs, { atlasTabs } from "../../src";
 
 export default () => (
   <>
