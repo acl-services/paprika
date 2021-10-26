@@ -1,12 +1,26 @@
+import Button from "@paprika/button";
+import Card from "../../src";
 import React from "react";
+import StoryHeading from "storybook/components/StoryHeading";
 import { ThemeProvider, css } from "styled-components";
 import { Gap, CodeHeading } from "storybook/assets/styles/common.styles";
-import StoryHeading from "storybook/components/StoryHeading";
-import Card from "../../src";
+
+
+
+// const atlasCard = {
+//   Card: ({ size }) => css`
+//     background: #eee;
+//     font-size: ${size === "large" ? "18px" : "14px"};
+//     padding: 16px;
+//   `,
+// };
 
 const atlasCard = {
   Card: ({ size }) => css`
-    background: #eee;
+    border-radius: 6px;
+    -webkit-border-start: 6px solid #5d7599;
+    box-shadow: 0px 1px 5px rgb(0 0 0 / 7%), 0px 7px 17px rgb(0 0 0 / 10%);
+    background: #fff;
     font-size: ${size === "large" ? "18px" : "14px"};
     padding: 16px;
   `,
@@ -44,6 +58,13 @@ const stylez = `
 export default () => (
   <>
     <style>{stylez}</style>
+
+    <Card size="large" theme={atlasCard}>
+      Board Meeting
+      <p>October 6, 2021</p>
+      <Button>Agenda</Button>
+    </Card>
+    
     <Gap.Small />
 
     <StoryHeading level={1}>No theme</StoryHeading>
