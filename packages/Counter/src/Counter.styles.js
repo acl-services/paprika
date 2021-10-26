@@ -5,8 +5,8 @@ const counterSizeStyles = {
   small: `
     font-size: 12px;
     line-height: 15px;
-    padding: 2px;
     min-width: ${tokens.counter.small};
+    padding: 2px;
   `,
 
   medium: `
@@ -60,8 +60,8 @@ export const Counter = styled.span(
   ({ hasIndicator, color, size }) => css`
     display: inline-flex;
     font-weight: bold;
-    justify-content: center;
     height: 20px;
+    justify-content: center;
     position: relative;
     top: -0.1em;
 
