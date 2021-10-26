@@ -21,7 +21,7 @@ themes.story = {
 };
 
 export const extraThemes = () => (
-  <ExampleStory storyName="Extra HackCard Themes">
+  <ExampleStory storyName="HackCard Themes Proof of Concept">
     <ExtraThemes />
   </ExampleStory>
 );
