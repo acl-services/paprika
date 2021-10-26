@@ -7,7 +7,7 @@ const testStory = "cypress";
 describe("Popover", () => {
   beforeEach(() => {
     cy.visitStorybook(`${baseStory}--${testStory}`);
-    cy.get(selectors.popover).should("be.not.visible");
+    cy.get(selectors.popover).should("not.exist");
   });
 
   it("should be visible when trigger is clicked", () => {
@@ -19,7 +19,7 @@ describe("Popover", () => {
     cy.get(selectors.popoverTrigger).click();
     cy.get(selectors.popover).should("be.visible");
     cy.get(selectors.popoverTrigger).click();
-    cy.get(selectors.popover).should("be.not.visible");
+    cy.get(selectors.popover).should("not.exist");
   });
 
   it("should be visible when clicked inside popover", () => {

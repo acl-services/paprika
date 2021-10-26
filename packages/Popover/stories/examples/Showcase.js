@@ -42,6 +42,7 @@ export const getKnobs = () => ({
   shouldKeepFocus: boolean("shouldKeepFocus", false),
   isPortal: boolean("isPortal", true),
   sampleText: sampleTexts[select("content", ["short", "long", "rich"], "long")],
+  shouldUnmount: boolean("shouldUnmount", true),
 });
 
 export default function Showcase() {

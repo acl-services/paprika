@@ -24,9 +24,9 @@ describe("StatusTracker", () => {
     const points = await screen.findAllByTestId("status-tracker.point");
     expect(points.length).toBe(3);
 
-    expect(screen.queryByText("Draft")).not.toBeVisible();
+    expect(screen.queryByText("Draft")).not.toBeInTheDocument();
     expect(await screen.findByTestId("status-tracker.point.overflow-menu.trigger")).toBeVisible();
-    expect(screen.queryByText("Done")).not.toBeVisible();
+    expect(screen.queryByText("Done")).not.toBeInTheDocument();
 
     fireEvent.focus(points[0]);
     expect(await screen.findByText("Draft")).toBeVisible();

@@ -25,7 +25,7 @@ describe("Lazy ListBox", () => {
     cy.contains("Namora").click();
     cy.contains("Nebula").click();
     cy.contains("Cancel").click();
-    cy.get(selectors.popover).should("not.be.visible");
+    cy.get(selectors.popover).should("not.exist");
     cy.get("#root")
       .children()
       .should("have.length", 1);
@@ -44,6 +44,6 @@ describe("Lazy ListBox", () => {
     cy.contains("Namorita").click();
     cy.contains("Natasha Romanoff").click();
     cy.contains("Marvel API").click({ force: true });
-    cy.get(selectors.popover).should("not.be.visible");
+    cy.get(selectors.popover).should("not.exist");
   });
 });

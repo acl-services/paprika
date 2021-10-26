@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.9-next.0
+
+### Patch Changes
+
+- Updated dependencies [371d3d3]
+  - @paprika/popover@2.0.0-next.0
+
 ## 1.3.8
 
 ### Patch Changes

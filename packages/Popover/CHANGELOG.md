@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0-next.0
+
+### Major Changes
+
+- 371d3d3: Refactored Popover to not add content to the dom when closed by default
+
 ## 1.2.6
 
 ### Patch Changes
