@@ -3,28 +3,33 @@ const storyTree = [
   {
     category: "Hacks",
     components: [
-      "HackCard",
+      "HackCard", 
+      "HackHeading",
+      "HackButton", 
+      "HackCollapsible", 
+      "HackIcon", 
+      "HackTabs",
     ],
   },
   {
     category: "Display",
     components: [
-      "Avatar",
-      "Counter",
-      "Heading",
-      "Icon",
-      "Tag"
+      "Avatar", 
+      "Counter", 
+      "Heading", 
+      "Icon", 
+      "Tag",
     ],
   },
   {
     category: "Table",
     components: [
-      "ActionBar",
-      "DataField",
-      "DataGrid",
-      "DataHeader",
-      "Filter",
-      "Table"
+      "ActionBar", 
+      "DataField", 
+      "DataGrid", 
+      "DataHeader", 
+      "Filter", 
+      "Table",
     ],
   },
   {
@@ -36,7 +41,7 @@ const storyTree = [
       "DialogActions",
       "ExternalLink",
       "RawButton",
-      "StatusTracker"
+      "StatusTracker",
     ],
   },
   {
@@ -61,7 +66,7 @@ const storyTree = [
       "Textarea",
       "TimePicker",
       "Uploader",
-      "InlineEditors"
+      "InlineEditors",
     ],
   },
   {
@@ -75,7 +80,7 @@ const storyTree = [
       "Panel",
       "Spinner",
       "Takeover",
-      "Toast"
+      "Toast",
     ],
   },
   {
@@ -90,7 +95,7 @@ const storyTree = [
       "Pagination",
       "ProgressAccordion",
       "SideNavigation",
-      "Tabs"
+      "Tabs",
     ],
   },
   {
@@ -104,7 +109,7 @@ const storyTree = [
       "helpers",
       "DynamicHyperlinkTransformer",
       "MockEndpoints",
-      "seducer"
+      "seducer",
     ],
   },
 ];

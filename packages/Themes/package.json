@@ -1,15 +1,14 @@
 {
   "name": "@paprika/themes",
-  "version": "0.1.0",
+  "version": "0.1.0-hack",
   "description": "The theme package allows the injection of customized component styles.",
   "author": "@paprika",
   "main": "lib/index.js",
-  "types": "lib/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
-    "directory": "packages/themes"
+    "directory": "packages/Themes"
   },
   "publishConfig": {
     "access": "public"

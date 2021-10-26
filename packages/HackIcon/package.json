@@ -1,0 +1,35 @@
+{
+  "name": "@paprika/hf-icon",
+  "version": "0.1.1-hack",
+  "description": "Icon component is a graphic to represent something else",
+  "author": "@paprika",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/HackIcon"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "svgr": "svgr -d . ./src/svg --out-dir src/",
+    "build-declaration": "npx typescript src/*.js --declaration --allowJs --emitDeclarationOnly --outDir src",
+    "pretranspile": "yarn rimraf \"src/!(index).js\" && yarn rimraf src/*.d.ts && yarn svgr && yarn build-declaration"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/tokens": "^1.1.0",
+    "prop-types": "^15.7.2"
+  },
+  "devDependencies": {
+    "@svgr/cli": "^4.1.0",
+    "rimraf": "3.0.2"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "styled-components": "^4.2.0"
+  }
+}

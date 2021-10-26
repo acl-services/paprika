@@ -1,9 +1,7 @@
 import React from "react";
-import { withKnobs } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
-import { showcaseStoryParameters, variationsStoryParameters } from "storybook/assets/storyParameters";
+import { variationsStoryParameters } from "storybook/assets/storyParameters";
 import ExampleStory from "storybook/components/ExampleStory";
-import Showcase from "./examples/Showcase";
 import Variations from "./examples/Variations";
 
 const storyName = getStoryName("HackHeading");
@@ -13,7 +11,7 @@ export default {
 };
 
 export const variations = () => (
-  <ExampleStory storyName="HackHeading" tagline={ExampleStory.defaultTaglines.variations}>
+  <ExampleStory storyName="HackHeading">
     <Variations />
   </ExampleStory>
 );
