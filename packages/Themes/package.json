@@ -1,6 +1,6 @@
 {
   "name": "@paprika/themes",
-  "version": "0.1.0",
+  "version": "0.1.0-hack",
   "description": "The theme package allows the injection of customized component styles.",
   "author": "@paprika",
   "main": "lib/index.js",
