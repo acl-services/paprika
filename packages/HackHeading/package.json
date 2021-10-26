@@ -1,11 +1,10 @@
 {
-  "name": "@paprika/hack-heading",
+  "name": "@paprika/hf-heading",
   "version": "0.1.0-hack",
   "description": "Heading component provides different level of headings with various stylings such as divides, underline, light or hidden.",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
-  "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
@@ -27,6 +26,5 @@
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "styled-components": "^4.2.0"
-  },
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
+  }
 }
