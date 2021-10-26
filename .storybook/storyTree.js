@@ -9,6 +9,7 @@ const storyTree = [
       "HackCollapsible", 
       "HackIcon", 
       "HackTabs",
+      "HackPanel",
     ],
   },
   {
