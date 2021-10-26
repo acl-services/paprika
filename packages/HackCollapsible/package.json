@@ -1,6 +1,6 @@
 {
   "name": "@paprika/hf-collapsible",
-  "version": "0.1.0-hack",
+  "version": "0.1.1-hack",
   "description": "Collapsible component, allows the user to expand and collapse some enclosed content.",
   "author": "@paprika",
   "license": "MIT",

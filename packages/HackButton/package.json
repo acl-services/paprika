@@ -1,6 +1,6 @@
 {
   "name": "@paprika/hf-button",
-  "version": "0.1.0-hack",
+  "version": "0.1.1-hack",
   "description": "The Button component is a customizable content container.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -27,15 +27,5 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"
-  },
-  "paprikaDocs": {
-    "subComponents": [
-      "Content",
-      "Footer",
-      "Header",
-      "Metadata",
-      "Text",
-      "Title"
-    ]
   }
 }
