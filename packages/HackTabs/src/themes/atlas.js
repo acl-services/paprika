@@ -6,7 +6,7 @@ const activeStyles = css`
   color: #1e1e1e;
 `;
 
-export const atlasTabs = {
+export const Tabs = {
   Tabs: ({ value }) => css`
     [data-pka-anchor="tab"]:nth-of-type(${value.activeIndex + 1}) {
       ${activeStyles};
