@@ -1,10 +1,12 @@
 {
   "name": "@paprika/hf-collapsible",
-  "version": "0.1.1-hack",
+  "version": "0.1.3-hack",
   "description": "Collapsible component, allows the user to expand and collapse some enclosed content.",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
+  "module": "lib/esm/index.js",
+  "sideEffects": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
@@ -28,6 +30,5 @@
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "styled-components": "^4.2.0"
-  },
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
+  }
 }
