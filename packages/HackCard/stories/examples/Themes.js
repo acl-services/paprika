@@ -1,6 +1,8 @@
-import React from "react";
-import { ThemeProvider, css } from "styled-components";
+import Button from "@paprika/button";
 import Card from "../../src";
+import React from "react";
+import StoryHeading from "storybook/components/StoryHeading";
+import { ThemeProvider, css } from "styled-components";
 
 const sizes = {
   small: "10px",
@@ -9,20 +11,22 @@ const sizes = {
 };
 
 const atlasCard = {
-  Card: ({ size, isActive }) => css`
-    background: #eee;
-    color: ${isActive === true ? "#36b" : "#333"};
-    font-size: ${sizes[size]};
+  Card: ({ size }) => css`
+    border-radius: 6px;
+    -webkit-border-start: 6px solid #5d7599;
+    box-shadow: 0px 1px 5px rgb(0 0 0 / 7%), 0px 7px 17px rgb(0 0 0 / 10%);
+    background: #fff;
+    font-size: ${size === "large" ? "18px" : "14px"};
     padding: 16px;
   `,
 };
 
 export default () => (
-  <ThemeProvider theme={atlasCard}>
-    <Card>YOLO flexitarian succulents</Card>
-    <br />
-    <Card isActive>YOLO flexitarian succulents</Card>
-    <br />
-    <Card size="large">Mumblecore hammock polaroid</Card>
-  </ThemeProvider>
+  <>
+    <Card size="large" theme={atlasCard}>
+      Board Meeting
+      <p>October 6, 2021</p>
+      <Button>Agenda</Button>
+    </Card>
+  </>
 );
