@@ -3,6 +3,7 @@ import { getStoryName } from "storybook/storyTree";
 import ExampleStory from "storybook/components/ExampleStory";
 import { exampleStoryParameters } from "storybook/assets/storyParameters";
 import Themes from "./examples/Themes";
+import ExtraThemes from "./examples/ExtraThemes";
 
 const storyName = getStoryName("HackCard");
 
@@ -16,5 +17,14 @@ export const themes = () => (
   </ExampleStory>
 );
 themes.story = {
+  parameters: exampleStoryParameters,
+};
+
+export const extraThemes = () => (
+  <ExampleStory storyName="Extra HackCard Themes">
+    <ExtraThemes />
+  </ExampleStory>
+);
+extraThemes.story = {
   parameters: exampleStoryParameters,
 };

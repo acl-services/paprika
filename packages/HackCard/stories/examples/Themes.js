@@ -20,7 +20,9 @@ const atlasCard = {
 export default () => (
   <ThemeProvider theme={atlasCard}>
     <Card>YOLO flexitarian succulents</Card>
+    <br />
     <Card isActive>YOLO flexitarian succulents</Card>
+    <br />
     <Card size="large">Mumblecore hammock polaroid</Card>
   </ThemeProvider>
 );

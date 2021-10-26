@@ -1,2 +1,2 @@
 export { default } from "./Heading";
-export { atlasHeading } from "./themes/atlas";
+export { Heading as atlasHeading } from "./themes/atlas";

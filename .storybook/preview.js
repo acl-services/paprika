@@ -18,9 +18,15 @@ addParameters({
   },
   cssresources: [
     {
+      id: "Source Sans Pro",
+      code: `<style>body { font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif; }</style>`,
+      picked: true,
+      hideCode: true,
+    },
+    {
       id: "Lato",
       code: `<style>body { font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif; }</style>`,
-      picked: true,
+      picked: false,
       hideCode: true,
     },
     {

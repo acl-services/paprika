@@ -1,10 +1,9 @@
 {
-  "name": "@paprika/hack-card",
-  "version": "0.1.0",
+  "name": "@paprika/hf-card",
+  "version": "0.1.0-hack",
   "description": "The Card component is a customizable content container.",
   "author": "@paprika",
   "main": "lib/index.js",
-  "types": "lib/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -19,7 +18,7 @@
     "@paprika/constants": "^1.0.0",
     "@paprika/helpers": "^2.1.2",
     "@paprika/stylers": "^1.0.0",
-    "@paprika/themes": "^0.1.0",
+    "@paprika/themes": "^0.1.0-hack",
     "@paprika/tokens": "^1.0.0",
     "lodash.truncate": "^4.4.2",
     "prop-types": "^15.7.2"
@@ -28,15 +27,5 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"
-  },
-  "paprikaDocs": {
-    "subComponents": [
-      "Content",
-      "Footer",
-      "Header",
-      "Metadata",
-      "Text",
-      "Title"
-    ]
   }
 }

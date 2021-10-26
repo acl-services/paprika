@@ -8,7 +8,7 @@ export default function Variations() {
     <>
       <ThemeProvider theme={atlasHeading}>
         <Heading level={1} isLight>
-          Title - Display!
+          Title - Display
         </Heading>
         <Heading level={2} isLight>
           Title - Large

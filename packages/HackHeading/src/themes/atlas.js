@@ -36,7 +36,7 @@ const underline = level => {
   return result;
 };
 
-export const atlasHeading = {
+export const Heading = {
   Heading: ({ safeDisplayLevel, safeLevel, isHidden, hasUnderline, hasDivider, isLight }) => css`
     align-items: center;
     color: inherit;
