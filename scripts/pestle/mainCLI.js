@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable no-useless-catch */
 
 // Inquirer
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -31,13 +32,14 @@ const { renderSpecTemplate, renderCypressTemplate } = require("./templates/testT
 // Helpers
 const { createFile } = require("./helpers/createFile");
 const { addToStoryTree } = require("./helpers/addToStoryTree");
+const { camelCase } = require("./helpers/camelCase");
 
 inquirer.registerPrompt("search-list", search_list);
 
 const addTestsInquiry = componentName => {
   inquirer.prompt(questions.addToExistingComponent.selectTestType).then(answers => {
     const path = `./packages/${componentName}/tests`;
-    
+
     try {
       answers.testTypes.forEach(testFileType => {
         switch (testFileType) {
@@ -48,7 +50,7 @@ const addTestsInquiry = componentName => {
             createFile(`${path}/cypress/${componentName}.cypress.js`, renderCypressTemplate({ componentName }));
             break;
           default:
-            // do nothing
+          // do nothing
         }
       });
     } catch (err) {
@@ -70,25 +72,34 @@ const addStoriesInquiry = componentName => {
           case choices.exampleStory:
             inquirer.prompt(questions.addToExistingComponent.exampleStoryName).then(answers => {
               const { storyName } = answers;
-              createFile(`${path}/${componentName}.example.stories.js`, renderExampleStoryFolderTemplate({ componentName, storyName }));
-              createFile(`${path}/examples/${storyName}.js`, renderExampleStoryTemplate({ componentName, storyName }));
+              createFile(
+                `${path}/${componentName}.example.stories.js`,
+                renderExampleStoryFolderTemplate({ componentName, storyName })
+              );
+              createFile(
+                `${path}/examples/${camelCase(storyName)}.js`,
+                renderExampleStoryTemplate({ componentName, storyName })
+              );
             });
             break;
           case choices.showcaseStory:
             createFile(`${path}/examples/Showcase.js`, renderShowcaseStoryTemplate({ componentName }));
             break;
-            case choices.variationStory:
-              createFile(`${path}/examples/Variations.js`, renderVariationStoryTemplate({ componentName }));
-              break;
-              case choices.screenerStory:
-            createFile(`${path}/${componentName}.backyard.stories.js`, renderBackyardStoryFolderTemplate({ componentName }));
+          case choices.variationStory:
+            createFile(`${path}/examples/Variations.js`, renderVariationStoryTemplate({ componentName }));
+            break;
+          case choices.screenerStory:
+            createFile(
+              `${path}/${componentName}.backyard.stories.js`,
+              renderBackyardStoryFolderTemplate({ componentName })
+            );
             createFile(`${path}/tests/Screener.js`, renderScreenerStoryTemplate({ componentName }));
             break;
           case choices.mdxStory:
             createFile(`${path}/${componentName}.stories.mdx`, renderMXDFileTemplate({ componentName }));
             break;
           default:
-            // do nothing
+          // do nothing
         }
       });
     } catch (err) {
@@ -107,7 +118,7 @@ const createNewComponentInquiry = () => {
     createFile(`${path}/src/${componentName}.js`, renderComponentTemplate({ componentName }));
     createFile(`${path}/src/${componentName}.styles.js`, renderComponentStylesTemplate({ componentName }));
     createFile(`${path}/README.md`, renderReadMeTemplate());
-    
+
     // tests
     createFile(`${path}/tests/spec/${componentName}.spec.js`, renderSpecTemplate({ componentName }));
     createFile(`${path}/tests/cypress/${componentName}.cypress.js`, renderCypressTemplate({ componentName }));

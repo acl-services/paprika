@@ -1,3 +1,5 @@
+const { camelCase } = require("../helpers/camelCase");
+
 function renderStoryFolderTemplate(view) {
   const { componentName } = view;
   return `import React from "react";
@@ -53,7 +55,7 @@ function renderExampleStoryFolderTemplate(view) {
   import { exampleStoryParameters } from "storybook/assets/storyParameters";
   import ExampleStory from "storybook/components/ExampleStory";
   import ${componentName} from "../src/${componentName}";
-  import ${storyName} from "./examples/${storyName}";
+  import ${camelCase(storyName)} from "./examples/${camelCase(storyName)}";
   
   const storyName = getStoryName("${componentName}");
   
@@ -61,13 +63,13 @@ function renderExampleStoryFolderTemplate(view) {
     title: \`\${storyName}/Examples\`,
     component: ${componentName},
   };
-  
-  export const ${storyName.toLowerCase()}Example = () => (
-    <ExampleStory storyName="${storyName}" component="${componentName}" fileName="examples/${storyName}.js">
-      <${storyName} />
+
+  export const ${camelCase(storyName)}Example = () => (
+    <ExampleStory storyName="${storyName}" component="${componentName}" fileName="examples/${camelCase(storyName)}.js">
+      <${camelCase(storyName)} />
     </ExampleStory>
   );
-  ${storyName.toLowerCase()}Example.story = { name: "${storyName}", parameters: exampleStoryParameters };
+  ${camelCase(storyName)}Example.story = { name: "${storyName}", parameters: exampleStoryParameters };
 `;
 }
 
@@ -77,7 +79,7 @@ function renderExampleStoryTemplate(view) {
 import ${componentName} from "../../src";
 // import { Story, CenteredStory, Rule, Big, Small, Tagline, Gap, repeat, breaklines, CodeHeading } from "storybook/assets/styles/common.styles";
 
-export default function ${storyName}Example() {
+export default function ${camelCase(storyName)}Example() {
   return (
     <${componentName} />
   );
@@ -159,5 +161,5 @@ module.exports = {
   renderVariationStoryTemplate,
   renderShowcaseStoryTemplate,
   renderScreenerStoryTemplate,
-  renderMXDFileTemplate
+  renderMXDFileTemplate,
 };

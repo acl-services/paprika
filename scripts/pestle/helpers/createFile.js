@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 const fs = require("fs");
 const path = require("path");
 

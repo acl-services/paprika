@@ -70,12 +70,6 @@ module.exports = {
         type: "input",
         name: "storyName",
         message: "Enter the example story name ...",
-        validate(storyName) {
-          if ( !/[A-Z]/.test( storyName[0]) || /\s/g.test(storyName) ){
-            return "Please enter the example story name using Camel case or Pascal case.";
-          }
-          return true;
-        }
       }
     ]
   },
