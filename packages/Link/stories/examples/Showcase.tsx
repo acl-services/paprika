@@ -5,6 +5,7 @@ import Link from "../../src";
 const getKnobs = () => ({
   isExternalLink: boolean("isExternalLink", false),
   hasNoUnderline: boolean("hasNoUnderline", false),
+  hasTruncation: boolean("hasTruncation", false),
   isSubtle: boolean("isSubtle", false),
   isDark: boolean("isDark", false),
   isMenu: boolean("isMenu", false),

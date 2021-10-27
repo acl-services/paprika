@@ -27,6 +27,7 @@ npm install @paprika/link
 | a11yText       | string | false    | null    | Text for aria-label.                                              |
 | isExternalLink | bool   | false    | false   | Open url in a new Tab, is indicated by a Tab icon after the link. |
 | hasNoUnderline | bool   | false    | false   | Remove the default underline                                      |
+| hasTruncation  | bool   | false    | false   | Set if the link will stay within a single line                    |
 | isDark         | bool   | false    | false   | Change font-color according to background color                   |
 | isSubtle       | bool   | false    | false   | Set font-color to black                                           |
 | isMenu         | bool   | false    | false   | Icon + text format for Navigation/Menu                            |

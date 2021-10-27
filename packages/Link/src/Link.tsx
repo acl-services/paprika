@@ -7,6 +7,7 @@ function Link(props: LinkProps): JSX.Element {
     children = null,
     isExternalLink = false,
     hasNoUnderline = false,
+    hasTruncation = false,
     isSubtle = false,
     isDark = false,
     isMenu = false,
@@ -25,9 +26,13 @@ function Link(props: LinkProps): JSX.Element {
       maxWidth={maxWidth}
       {...moreProps}
     >
-      <sc.LinkContent>{children}</sc.LinkContent>
-      {isExternalLink && <sc.ExternalLinkIconStyles style={{ minWidth: "20px" }} />}
+      <sc.LinkContent hasTruncation={hasTruncation}>
+        {children}
+        {isExternalLink && !hasTruncation && <sc.ExternalLinkIconStyles style={{ minWidth: "20px" }} />}
+      </sc.LinkContent>
+      {isExternalLink && hasTruncation && <sc.ExternalLinkIconStyles style={{ minWidth: "20px" }} />}
     </sc.Link>
+    // TO-DO: replace 20px to token.icon.size-sm
   );
 }
 
@@ -42,6 +47,9 @@ export interface LinkProps {
 
   /** Remove the default underline */
   hasNoUnderline?: boolean;
+
+  /** If hasTruncation is set to true, the link will stay in one line */
+  hasTruncation?: boolean;
 
   /** Change font-color according to background color */
   isDark?: boolean;

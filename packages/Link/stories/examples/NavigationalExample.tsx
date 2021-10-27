@@ -12,12 +12,12 @@ export default function NavigationalExampleExample(): JSX.Element {
     max-width: 300px;
 
     a {
-      height: calc(10 * ${tokens.spaceSm});
+      height: calc(5 * ${tokens.space});
     }
 
     svg {
       ${stylers.fontSize(2)}
-      margin-right: calc(3 * ${tokens.spaceSm});
+      margin-right: ${tokens.spaceLg};
     }
   `;
 

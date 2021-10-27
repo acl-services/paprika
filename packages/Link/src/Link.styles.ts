@@ -17,10 +17,10 @@ const blackFont = css`
 
 const whiteFont = css`
   color: ${tokens.color.offWhite};
-  ${noUnderlineStyles};
+
   &:hover,
   &:focus {
-    color: ${tokens.color.offWhite};
+    color: ${(props: any) => (props.isSubtle ? tokens.color.offWhite : tokens.color.blueLighten40)};
   }
 `;
 
@@ -34,9 +34,9 @@ const linkHoverStyles = css`
 
 /** Navigation */
 const navigationStyles = css`
-  display: flex;
   ${blackFont};
-  padding: 0 calc(3 * ${tokens.spaceSm});
+  display: flex;
+  padding: 0 ${tokens.spaceLg};
 
   &,
   &:hover,
@@ -49,11 +49,15 @@ const navigationStyles = css`
   }
 `;
 
-export const LinkContent = styled.span`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
+export const LinkContent = styled.span<{ hasTruncation: boolean }>(
+  ({ hasTruncation }) => css`
+    ${hasTruncation &&
+      `overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    `};
+  `
+);
 
 export const ExternalLinkIconStyles = styled(NewTabIcon)`
   color: ${tokens.textColor.icon};
@@ -75,7 +79,6 @@ export const Link = styled.a<{
   ({ hasNoUnderline, isSubtle, isDark, isMenu, maxWidth }) => css`
     &[data-pka-anchor="link"] {
       align-items: center;
-      border-radius: ${tokens.border.radius};
       color: ${tokens.textColor.link};
       display: inline-flex;
       left: -${tokens.spaceSm};
@@ -89,7 +92,8 @@ export const Link = styled.a<{
 
       html:not([data-whatinput="mouse"]) &:focus,
       &[data-has-forced-focus]:focus {
-        ${stylers.focusRing()}
+        border-radius: ${tokens.border.radius};
+        ${isMenu ? stylers.focusRing(true) : stylers.focusRing()}
       }
 
       ${linkHoverStyles};
