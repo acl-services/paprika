@@ -151,7 +151,6 @@ const textButtonStyles = css`
 // Sizes
 
 export const sizeStyles = {
-  // types.small is only here to maintain legacy code. Please only use Medium and Large
   [types.SMALL]: css`
     ${stylers.fontSize(-2)};
     min-height: ${stylers.spacer(3)};

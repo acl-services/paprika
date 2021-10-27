@@ -5,7 +5,6 @@ import Button from "../../Button";
 import * as types from "../../types";
 
 const iconButtonSizes = {
-  // types.small is only here to maintain legacy code. Please  only use Medium and Large
   [types.SMALL]: css`
     font-size: 14px;
     height: ${stylers.spacer(3)};
@@ -14,14 +13,14 @@ const iconButtonSizes = {
     width: ${stylers.spacer(3)};
   `,
   [types.MEDIUM]: css`
-    font-size: ${tokens.icon.sizeSm};
+    font-size: 18px;
     height: ${stylers.spacer(4)};
     line-height: ${Number.parseInt(tokens.space, 10) * 4 - 2}px;
     padding: 0;
     width: ${stylers.spacer(4)};
   `,
   [types.LARGE]: css`
-    font-size: ${tokens.icon.sizeSm};
+    font-size: 22px;
     height: ${stylers.spacer(5)};
     line-height: ${Number.parseInt(tokens.space, 10) * 5 - 2}px;
     padding: 0;

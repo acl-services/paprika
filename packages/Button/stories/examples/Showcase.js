@@ -20,7 +20,7 @@ const iconSelections = {
 
 const getKnobs = () => ({
   children: text("label", "Give now"),
-  size: select("size", types.DEFAULT, "medium"),
+  size: select("size", [types.SMALL, types.MEDIUM, types.LARGE], types.MEDIUM),
   kind: select(
     "type",
     [types.DEFAULT, types.PRIMARY, types.SECONDARY, types.DESTRUCTIVE, types.FLAT, types.MINOR, types.LINK],
