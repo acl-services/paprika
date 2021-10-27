@@ -28,6 +28,23 @@ function renderStoryFolderTemplate(view) {
 `;
 }
 
+function addVariationTemplate(view) {
+  const { componentName } = view;
+  return `
+  import Variations from "./examples/Variations";
+  
+  export const variations = () => (
+    <ExampleStory storyName="${componentName}" tagline={ExampleStory.defaultTaglines.variations}>
+      <Variations />
+    </ExampleStory>
+  );
+  variations.story = {
+    name: "Variations",
+    parameters: variationsStoryParameters,
+  };
+`;
+}
+
 function renderBackyardStoryFolderTemplate(view) {
   const { componentName } = view;
   return `import React from "react";
@@ -162,4 +179,5 @@ module.exports = {
   renderShowcaseStoryTemplate,
   renderScreenerStoryTemplate,
   renderMXDFileTemplate,
+  addVariationTemplate,
 };

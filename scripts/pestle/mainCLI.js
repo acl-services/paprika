@@ -23,6 +23,7 @@ const {
   renderExampleStoryFolderTemplate,
   renderExampleStoryTemplate,
   renderVariationStoryTemplate,
+  addVariationTemplate,
   renderShowcaseStoryTemplate,
   renderScreenerStoryTemplate,
   renderMXDFileTemplate,
@@ -30,7 +31,7 @@ const {
 const { renderSpecTemplate, renderCypressTemplate } = require("./templates/testTemplates");
 
 // Helpers
-const { createFile } = require("./helpers/createFile");
+const { createFile, appendToFile } = require("./helpers/createFile");
 const { addToStoryTree } = require("./helpers/addToStoryTree");
 const { camelCase } = require("./helpers/camelCase");
 
@@ -87,6 +88,7 @@ const addStoriesInquiry = componentName => {
             break;
           case choices.variationStory:
             createFile(`${path}/examples/Variations.js`, renderVariationStoryTemplate({ componentName }));
+            appendToFile(`${path}/${componentName}.stories.js`, addVariationTemplate({ componentName }));
             break;
           case choices.screenerStory:
             createFile(

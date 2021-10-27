@@ -28,6 +28,20 @@ function createFile(filePath, template = "", overwriteFile = false) {
   }
 }
 
+// Helper function to append lines.
+function appendToFile(filePath, template = "") {
+  try {
+    fs.writeFileSync(filePath, template, {
+      encoding: "utf8",
+      flag: "a",
+    });
+    console.log("modified:", filePath);
+  } catch (err) {
+    throw err;
+  }
+}
+
 module.exports = {
   createFile,
+  appendToFile,
 };
