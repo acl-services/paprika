@@ -22,9 +22,6 @@ export default function LinkButtonVariations() {
       <Button.Link onClick={clickHandler} kind="secondary" href="https://youtu.be/IdkCEioCp24?t=92" shouldOpenNewTab>
         Link in new tab
       </Button.Link>
-      <Button.Link href="https://youtu.be/IdkCEioCp24?t=92" size="small">
-        Link small
-      </Button.Link>
       <Button.Link href="https://youtu.be/IdkCEioCp24?t=92">Link medium</Button.Link>
       <Button.Link href="https://youtu.be/IdkCEioCp24?t=92" size="large">
         Link large

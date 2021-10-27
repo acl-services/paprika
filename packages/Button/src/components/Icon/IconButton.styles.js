@@ -5,6 +5,7 @@ import Button from "../../Button";
 import * as types from "../../types";
 
 const iconButtonSizes = {
+  // types.small is only here to maintain legacy code. Please  only use Medium and Large
   [types.SMALL]: css`
     font-size: 14px;
     height: ${stylers.spacer(3)};
@@ -13,14 +14,14 @@ const iconButtonSizes = {
     width: ${stylers.spacer(3)};
   `,
   [types.MEDIUM]: css`
-    font-size: 18px;
+    font-size: ${tokens.icon.sizeSm};
     height: ${stylers.spacer(4)};
     line-height: ${Number.parseInt(tokens.space, 10) * 4 - 2}px;
     padding: 0;
     width: ${stylers.spacer(4)};
   `,
   [types.LARGE]: css`
-    font-size: 22px;
+    font-size: ${tokens.icon.sizeSm};
     height: ${stylers.spacer(5)};
     line-height: ${Number.parseInt(tokens.space, 10) * 5 - 2}px;
     padding: 0;
@@ -28,9 +29,8 @@ const iconButtonSizes = {
   `,
 };
 
-const minorStyles = ({ isDisabled }) => css`
+const minorStyles = ({ isDisabled, isActive }) => css`
   transition: background-color 0.2s ease-out;
-
   ${isDisabled
     ? css`
         &,
@@ -42,12 +42,16 @@ const minorStyles = ({ isDisabled }) => css`
         }
       `
     : css`
+        ${isActive &&
+          css`
+            background-color: ${tokens.color.blackLighten60};
+          `}
         &:hover {
           background-color: ${stylers.alpha(tokens.color.black, 0.1)};
         }
 
         &:active {
-          background-color: ${stylers.alpha(tokens.color.black, 0.2)};
+          background-color: ${tokens.color.blackLighten60};
         }
       `}
 `;
