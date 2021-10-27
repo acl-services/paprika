@@ -94,7 +94,7 @@ const Toast = React.forwardRef((props, ref) => {
         {!isVisuallyHidden && <sc.IconStyled as={icons[kind]} kind={kind} aria-hidden />}
         <sc.Content>{children}</sc.Content>
         {hasCloseButton && !isVisuallyHidden && (
-          <sc.CloseButtonStyled isSemantic={false} onClick={handleClose} size={types.SMALL} />
+          <sc.CloseButtonStyled isSemantic={false} onClick={handleClose} size={types.MEDIUM} />
         )}
       </>
     );

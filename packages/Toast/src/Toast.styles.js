@@ -74,8 +74,8 @@ export const Content = styled.div`
 `;
 
 export const Toast = styled.div(
-  ({ isFixed, kind, zIndex, shouldRender }) => css`
-    align-items: flex-start;
+  ({ isFixed, kind, zIndex, shouldRender, hasCloseButton }) => css`
+    align-items: center;
     background-color: ${backgroundColors[kind]};
     border-color: ${borderColors[kind]};
     border-radius: ${tokens.border.radius};
@@ -86,7 +86,7 @@ export const Toast = styled.div(
     font-weight: normal;
     margin-bottom: ${stylers.spacer(2)};
     min-height: ${stylers.spacer(3)};
-    padding: ${tokens.spaceLg};
+    padding: ${hasCloseButton ? "7px" : "11px"};
     position: relative;
     text-align: left;
     transition: opacity 0.3s ease-out;
