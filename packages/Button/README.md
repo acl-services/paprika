@@ -50,11 +50,11 @@ npm install @paprika/button
 
 ### Button.Icon
 
-| Prop     | Type                                                                                                                                                                           | required | default                 | Description                                               |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- | ----------------------- | --------------------------------------------------------- |
-| children | node                                                                                                                                                                           | true     | -                       | Body content of the button (an icon).                     |
-| kind     | [ Icon.types.kind.DEFAULT, Icon.types.kind.PRIMARY, Icon.types.kind.SECONDARY, Icon.types.kind.DESTRUCTIVE, Icon.types.kind.FLAT, Icon.types.kind.MINOR, Icon.types.kind.LINK] | false    | Icon.types.kind.DEFAULT | The visual style of the button.                           |
-| size     | [ Icon.types.size.SMALL, Icon.types.size.MEDIUM, Icon.types.size.LARGE]                                                                                                        | false    | Icon.types.size.MEDIUM  | Size of the button (font size, min-height, padding, etc). |
+| Prop     | Type                                                                                                                                                                           | required | default                 | Description                                    |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- | ----------------------- | ---------------------------------------------- |
+| children | node                                                                                                                                                                           | true     | -                       | Body content of the button (an icon).          |
+| kind     | [ Icon.types.kind.DEFAULT, Icon.types.kind.PRIMARY, Icon.types.kind.SECONDARY, Icon.types.kind.DESTRUCTIVE, Icon.types.kind.FLAT, Icon.types.kind.MINOR, Icon.types.kind.LINK] | false    | Icon.types.kind.DEFAULT | The visual style of the button.                |
+| size     | [ Icon.types.size.SMALL, Icon.types.size.MEDIUM, Icon.types.size.LARGE]                                                                                                        | false    | Icon.types.size.MEDIUM  | Size of the button (min-height, padding, etc). |
 
 ### Button.Link
 
