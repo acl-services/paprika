@@ -26,7 +26,7 @@ export default function NavigationalExampleExample(): JSX.Element {
     ${stylers.fontSize(-1)}
 
     a {
-      height: calc(8 * ${tokens.spaceSm});
+      height: calc(4 * ${tokens.space});
     }
 
     svg {
