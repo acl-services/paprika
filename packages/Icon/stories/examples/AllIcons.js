@@ -8,7 +8,7 @@ const iconSizes = {
   small: tokens.icon.sizeSm,
   medium: tokens.icon.sizeMd,
   large: tokens.icon.sizeLg,
-  ExtraLarge: tokens.icon.sizeXlg,
+  "extra large": tokens.icon.sizeXlg,
 };
 
 export default () => {
