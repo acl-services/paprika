@@ -1,16 +1,17 @@
 import styled, { css } from "styled-components";
+import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 
 const counterSizeStyles = {
   small: `
-    font-size: 12px;
+    font-size: 12px; // This is an exception that is missing from the font-scale
     line-height: 15px;
     min-width: ${tokens.counter.small};
     padding: 2px;
   `,
 
   medium: `
-    font-size: 14px; // This is an exception that is missing from the font-scale
+    ${stylers.fontSize(-1)}; 
     line-height: ${tokens.counter.small};
     min-width: ${tokens.counter.medium};
     padding: 1 2px;
