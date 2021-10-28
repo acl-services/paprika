@@ -1,40 +1,6 @@
 import React from "react";
 import * as sc from "./Link.styles";
 
-function Link(props: LinkProps): JSX.Element {
-  const {
-    a11yText = null,
-    children = null,
-    isExternalLink = false,
-    hasNoUnderline = false,
-    hasTruncation = false,
-    isSubtle = false,
-    isDark = false,
-    isMenu = false,
-    maxWidth = "100%",
-    ...moreProps
-  } = props;
-  return (
-    <sc.Link
-      data-pka-anchor="link"
-      hasNoUnderline={hasNoUnderline}
-      isDark={isDark}
-      isSubtle={isSubtle}
-      isMenu={isMenu}
-      target={isExternalLink ? "_blank" : ""}
-      aria-label={a11yText || null}
-      maxWidth={maxWidth}
-      {...moreProps}
-    >
-      <sc.LinkContent hasTruncation={hasTruncation}>
-        {children}
-        {isExternalLink && !hasTruncation && <sc.ExternalLinkIcon />}
-      </sc.LinkContent>
-      {isExternalLink && hasTruncation && <sc.ExternalLinkIcon />}
-    </sc.Link>
-  );
-}
-
 export interface LinkProps {
   [x: string]: any;
 
@@ -64,6 +30,40 @@ export interface LinkProps {
 
   /** mMax-width for Link to be truncated */
   maxWidth?: string;
+}
+function Link(props: LinkProps): JSX.Element {
+  const {
+    a11yText = null,
+    children = null,
+    isExternalLink = false,
+    hasNoUnderline = false,
+    hasTruncation = false,
+    isSubtle = false,
+    isDark = false,
+    isMenu = false,
+    maxWidth = "100%",
+    ...moreProps
+  } = props;
+  return (
+    <sc.Link
+      data-pka-anchor="link"
+      hasNoUnderline={hasNoUnderline}
+      isDark={isDark}
+      isSubtle={isSubtle}
+      isMenu={isMenu}
+      target={isExternalLink ? "_blank" : ""}
+      rel={isExternalLink ? "noreferrer" : ""}
+      aria-label={a11yText}
+      maxWidth={maxWidth}
+      {...moreProps}
+    >
+      <sc.LinkContent hasTruncation={hasTruncation}>
+        {children}
+        {isExternalLink && !hasTruncation && <sc.ExternalLinkIcon />}
+      </sc.LinkContent>
+      {isExternalLink && hasTruncation && <sc.ExternalLinkIcon />}
+    </sc.Link>
+  );
 }
 
 Link.displayName = "Link";

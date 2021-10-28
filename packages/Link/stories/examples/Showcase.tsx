@@ -1,5 +1,6 @@
 import React from "react";
 import { boolean, text } from "@storybook/addon-knobs";
+import CodeViewer from "storybook/components/CodeViewer";
 import Link from "../../src";
 
 const getKnobs = () => ({
@@ -14,6 +15,10 @@ const getKnobs = () => ({
   maxWidth: text("maxWidth", "120px"),
 });
 
-export default function Showcase(): JSX.Element {
-  return <Link {...getKnobs()} href="http://www.wegalvanize.com" />;
+export default function Showcase() {
+  return (
+    <CodeViewer>
+      <Link {...getKnobs()} href="http://www.wegalvanize.com" />
+    </CodeViewer>
+  );
 }

@@ -3,7 +3,7 @@ import { getStoryName } from "storybook/storyTree";
 import { exampleStoryParameters } from "storybook/assets/storyParameters";
 import ExampleStory from "storybook/components/ExampleStory";
 import Link from "../src/Link";
-import NavigationalExample from "./examples/NavigationalExample";
+import NavigationalExample from "./examples/MenuExample";
 
 const storyName = getStoryName("Link");
 
@@ -12,9 +12,9 @@ export default {
   component: Link,
 };
 
-export const navigationalexampleExample = (): JSX.Element => (
-  <ExampleStory storyName="NavigationalExample" component="Link" fileName="examples/NavigationalExample.js">
+export const menuExample = (): JSX.Element => (
+  <ExampleStory storyName="MenuExample" component="Link" fileName="examples/MenuExample.js">
     <NavigationalExample />
   </ExampleStory>
 );
-navigationalexampleExample.story = { name: "NavigationalExample", parameters: exampleStoryParameters };
+menuExample.story = { name: "MenuExample", parameters: exampleStoryParameters };

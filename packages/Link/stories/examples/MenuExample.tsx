@@ -5,7 +5,7 @@ import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 import Link from "../../src";
 
-export default function NavigationalExampleExample(): JSX.Element {
+export default function MenuExample(): JSX.Element {
   const url = "http://www.wegalvanize.com";
 
   const MediumContainer = styled.div`
@@ -38,7 +38,7 @@ export default function NavigationalExampleExample(): JSX.Element {
 
   return (
     <>
-      <h3>Medium Navigation (Menu)</h3>
+      <h3>Medium Menu</h3>
       <MediumContainer>
         <Link href={url} isMenu>
           <UploadIcon />
@@ -58,7 +58,7 @@ export default function NavigationalExampleExample(): JSX.Element {
         </Link>
       </MediumContainer>
       <br />
-      <h3>Small Navigation (Menu)</h3>
+      <h3>Small Menu</h3>
       <SmallContainer>
         <Link href={url} isMenu>
           <UploadIcon />
