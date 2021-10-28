@@ -31,22 +31,17 @@ function renderComponent(props = {}, children = childrenContent) {
     selectJupiter: () => {
       fireEvent.click(rendered.getByText(/jupiter/i));
     },
-    expectDropdownIsHidden: () => {
-      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toBeTruthy();
-    },
-    expectDropdownIsNotHidden: () => {
-      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toMatch(/false/i);
-    },
   };
 }
 
 describe("ListBox.Options", () => {
   it("should have custom checkboxes", () => {
     const renderCheckbox = jest.fn(({ isSelected }) => (isSelected ? "✅" : "🙅‍"));
-    const { getByText, queryByText } = renderComponent({}, [
+    const { getByText, queryByText, openSelect } = renderComponent({}, [
       <ListBox.Option key="option1">{renderCheckbox}</ListBox.Option>,
     ]);
 
+    openSelect();
     expect(renderCheckbox).toHaveBeenCalled();
     expect(getByText(/🙅‍/i)).toBeInTheDocument();
     expect(queryByText(/✅/i)).not.toBeInTheDocument();

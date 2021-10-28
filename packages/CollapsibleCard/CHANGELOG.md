@@ -1,5 +1,30 @@
 # Changelog
 
+## 2.0.14
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+- Updated dependencies [fd94ddb]
+  - @paprika/tokens@1.1.0
+  - @paprika/button@1.1.6
+  - @paprika/counter@1.0.10
+  - @paprika/heading@1.0.9
+  - @paprika/icon@2.1.1
+  - @paprika/stylers@1.1.1
+
+## 2.0.14-next.0
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+  - @paprika/tokens@1.1.0-next.0
+  - @paprika/button@1.1.6-next.0
+  - @paprika/counter@1.0.10-next.0
+  - @paprika/heading@1.0.9-next.0
+  - @paprika/icon@2.1.1-next.0
+  - @paprika/stylers@1.1.1-next.0
+
 ## 2.0.13
 
 ### Patch Changes

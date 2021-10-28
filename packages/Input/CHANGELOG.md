@@ -1,5 +1,26 @@
 # Changelog
 
+## 4.0.11
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+- Updated dependencies [fd94ddb]
+  - @paprika/tokens@1.1.0
+  - @paprika/button@1.1.6
+  - @paprika/icon@2.1.1
+  - @paprika/stylers@1.1.1
+
+## 4.0.11-next.0
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+  - @paprika/tokens@1.1.0-next.0
+  - @paprika/button@1.1.6-next.0
+  - @paprika/icon@2.1.1-next.0
+  - @paprika/stylers@1.1.1-next.0
+
 ## 4.0.10
 
 ### Patch Changes

@@ -52,6 +52,9 @@ export default function App() {
     reducer, optional
     initialState, optional
    */
+  // Note: if any of the `columnSettings` types are SINGLE_SELECT or MULTI_SELECT all of the options to populate those dropdowns
+  // must be passed into Filter component's "data" prop (typically you'd fetch all the options from the server, use them to
+  // generate a `structuredData` array, and pass that in)
   const { filters, filteredData, getFilterProps, getFilterItemProps } = useFilter({
     columns: columnsSettings,
     data,
@@ -100,9 +103,15 @@ export default function App() {
           {filteredData.map(item => (
             <tr key={item.id}>
               <td>{item.id}</td>
-              {orderedColumnIds.map(id => (
-                <td key={id}>{`${item[id]}`}</td>
-              ))}
+              {orderedColumnIds.map(columnId => {
+                switch (columnId) {
+                  case "position": // SINGLE_SELECT
+                  case "hairColour": // MULTI_SELECT
+                    return <td key={columnId}>{item[columnId].label}</td>;
+                  default:
+                    return <td key={columnId}>{`${item[columnId]}`}</td>;
+                }
+              })}
             </tr>
           ))}
         </tbody>

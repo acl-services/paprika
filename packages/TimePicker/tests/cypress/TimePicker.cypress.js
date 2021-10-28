@@ -119,6 +119,6 @@ describe("TimePicker", () => {
   it("Should not open popover with isReadOnly", () => {
     cy.visitStorybook(`${getStoryUrlPrefix("TimePicker")}--read-only`);
     cy.findByTestId("timePicker-Input").focus();
-    cy.findByTestId("popover.content").should("not.be.visible");
+    cy.findByTestId("popover.content").should("not.exist");
   });
 });

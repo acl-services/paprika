@@ -1,5 +1,56 @@
 # Changelog
 
+## 2.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [371d3d3]
+  - @paprika/date-picker@2.0.0-next.0
+  - @paprika/list-box@4.0.0-next.0
+
+## 2.0.0
+
+### Major Changes
+
+- 14e882e: When a filter is a SINGLE_SELECT or a MULTI_SELECT, the data must now be an object with the keys "id" and "label". That way the filter can use the "id" and show the "label".
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+- Updated dependencies [fd94ddb]
+  - @paprika/tokens@1.1.0
+  - @paprika/button@1.1.6
+  - @paprika/date-picker@1.0.26
+  - @paprika/icon@2.1.1
+  - @paprika/input@4.0.11
+  - @paprika/list-box@3.6.2
+  - @paprika/panel@2.1.8
+  - @paprika/radio@1.0.16
+  - @paprika/select@2.0.6
+  - @paprika/stylers@1.1.1
+
+## 2.0.0-next.1
+
+### Major Changes
+
+- 14e882e: When a filter is a SINGLE_SELECT or a MULTI_SELECT, the data must now be an object with the keys "id" and "label". That way the filter can use the "id" and show the "label".
+
+## 1.2.16-next.0
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+  - @paprika/tokens@1.1.0-next.0
+  - @paprika/button@1.1.6-next.0
+  - @paprika/date-picker@1.0.26-next.0
+  - @paprika/icon@2.1.1-next.0
+  - @paprika/input@4.0.11-next.0
+  - @paprika/list-box@3.6.2-next.0
+  - @paprika/panel@2.1.8-next.0
+  - @paprika/radio@1.0.16-next.0
+  - @paprika/select@2.0.6-next.0
+  - @paprika/stylers@1.1.1-next.0
+
 ## 1.2.15
 
 ### Patch Changes

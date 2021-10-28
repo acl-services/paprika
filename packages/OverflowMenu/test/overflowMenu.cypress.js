@@ -10,7 +10,7 @@ describe("<OverflowMenu />", () => {
     cy.findByTestId("popover.content").should("be.visible");
     cy.wait(250).then(() => {
       cy.findByTestId("overflow-menu__trigger").click();
-      cy.findByTestId("popover.content").should("not.be.visible");
+      cy.findByTestId("popover.content").should("not.exist");
     });
   });
 

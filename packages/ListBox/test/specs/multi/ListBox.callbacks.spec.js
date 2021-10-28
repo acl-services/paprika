@@ -30,12 +30,6 @@ function renderComponent(props = {}, children = childrenContent) {
     selectJupiter: () => {
       fireEvent.click(rendered.getByText(/jupiter/i));
     },
-    expectDropdownIsHidden: () => {
-      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toBeTruthy();
-    },
-    expectDropdownIsNotHidden: () => {
-      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toMatch(/false/i);
-    },
   };
 }
 

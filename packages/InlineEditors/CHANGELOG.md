@@ -1,5 +1,55 @@
 # @paprika/inline-editors
 
+## 1.0.0-next.0
+
+### Major Changes
+
+- 371d3d3: Refactored Popover to not add content to the dom when closed by default
+
+### Patch Changes
+
+- Updated dependencies [371d3d3]
+  - @paprika/list-box@4.0.0-next.0
+  - @paprika/popover@2.0.0-next.0
+  - @paprika/table@1.2.15-next.0
+
+## 0.2.19
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+- Updated dependencies [fd94ddb]
+  - @paprika/tokens@1.1.0
+  - @paprika/collapsible-text@1.0.21
+  - @paprika/icon@2.1.1
+  - @paprika/input@4.0.11
+  - @paprika/list-box@3.6.2
+  - @paprika/popover@1.2.6
+  - @paprika/raw-button@1.0.7
+  - @paprika/spinner@1.0.10
+  - @paprika/stylers@1.1.1
+  - @paprika/table@1.2.14
+  - @paprika/tag@0.0.14
+  - @paprika/textarea@3.0.3
+
+## 0.2.19-next.0
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+  - @paprika/tokens@1.1.0-next.0
+  - @paprika/collapsible-text@1.0.21-next.0
+  - @paprika/icon@2.1.1-next.0
+  - @paprika/input@4.0.11-next.0
+  - @paprika/list-box@3.6.2-next.0
+  - @paprika/popover@1.2.6-next.0
+  - @paprika/raw-button@1.0.7-next.0
+  - @paprika/spinner@1.0.10-next.0
+  - @paprika/stylers@1.1.1-next.0
+  - @paprika/table@1.2.14-next.0
+  - @paprika/tag@0.0.14-next.0
+  - @paprika/textarea@3.0.3-next.0
+
 ## 0.2.18
 
 ### Patch Changes

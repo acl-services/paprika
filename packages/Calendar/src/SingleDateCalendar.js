@@ -44,8 +44,10 @@ function SingleDateCalendar(props) {
   }
 
   React.useEffect(() => {
-    keepFocus();
-  }, [currentMonth, date]);
+    if (currentMonth) {
+      keepFocus();
+    }
+  }, [currentMonth]);
 
   function getInitialVisibleMonth() {
     let initialVisibleMonth;
