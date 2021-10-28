@@ -16,11 +16,11 @@ const blackFont = css`
 `;
 
 const whiteFont = css`
-  color: ${tokens.color.offWhite};
+  color: ${tokens.color.white};
 
   &:hover,
   &:focus {
-    color: ${(props: any) => (props.isSubtle ? tokens.color.offWhite : tokens.color.blueLighten40)};
+    color: ${(props: any) => (props.isSubtle ? tokens.color.white : tokens.color.blueLighten40)};
   }
 `;
 
@@ -49,20 +49,23 @@ const navigationStyles = css`
   }
 `;
 
+const truncationStyle = css`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
 export const LinkContent = styled.span<{ hasTruncation: boolean }>(
   ({ hasTruncation }) => css`
-    ${hasTruncation &&
-      `overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    `};
+    ${hasTruncation && truncationStyle};
   `
 );
 
-export const ExternalLinkIconStyles = styled(NewTabIcon)`
+export const ExternalLinkIcon = styled(NewTabIcon)`
   color: ${tokens.textColor.icon};
   display: inline-block;
-  font-size: 20px;
+  font-size: 20px; // TO-DO: replace with tokens
+  min-width: 20px;
   &[data-pka-anchor="icon"] {
     margin-right: 0;
   }
@@ -92,7 +95,7 @@ export const Link = styled.a<{
 
       html:not([data-whatinput="mouse"]) &:focus,
       &[data-has-forced-focus]:focus {
-        border-radius: ${tokens.border.radius};
+        ${isMenu ? "" : `border-radius: ${tokens.border.radius};`}
         ${isMenu ? stylers.focusRing(true) : stylers.focusRing()}
       }
 

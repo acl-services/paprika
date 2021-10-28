@@ -28,11 +28,10 @@ function Link(props: LinkProps): JSX.Element {
     >
       <sc.LinkContent hasTruncation={hasTruncation}>
         {children}
-        {isExternalLink && !hasTruncation && <sc.ExternalLinkIconStyles style={{ minWidth: "20px" }} />}
+        {isExternalLink && !hasTruncation && <sc.ExternalLinkIcon />}
       </sc.LinkContent>
-      {isExternalLink && hasTruncation && <sc.ExternalLinkIconStyles style={{ minWidth: "20px" }} />}
+      {isExternalLink && hasTruncation && <sc.ExternalLinkIcon />}
     </sc.Link>
-    // TO-DO: replace 20px to token.icon.size-sm
   );
 }
 

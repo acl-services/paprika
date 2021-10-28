@@ -4,7 +4,7 @@
 
 ## Description
 
-Links are a standard component on the world wide web. Clicking a link with a mouse or other selection tool will navigate the user to another location, usually another webpage.
+The Link component produces a standard anchor tag that navigates to another URL.
 
 ## Installation
 

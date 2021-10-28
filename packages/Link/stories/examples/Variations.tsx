@@ -39,13 +39,13 @@ export default function variations(): JSX.Element {
       <Gap.Small />
       <div style={{ maxWidth: "500px" }}>
         <Link href={url}>
-          Example of super long link without max-width that will extends to its containers wdith Lorem ipsum dolor sit
-          amet, consectetur adipiscing elit.
+          Example of super long link without max-width that will extends to its container&apos;s wdith Lorem ipsum dolor
+          sit amet, consectetur adipiscing elit.
         </Link>
         <Gap.Small />
         <Link href={url} isExternalLink>
-          Example of super long external link without max-width that will extends to its containers wdith Lorem ipsum
-          dolor sit amet, consectetur adipiscing elit.
+          Example of super long external link without max-width that will extends to its container&apos;s wdith Lorem
+          ipsum dolor sit amet, consectetur adipiscing elit.
         </Link>
       </div>
       <Gap.Small />
@@ -58,8 +58,8 @@ export default function variations(): JSX.Element {
           Without underline
         </Link>
         <Gap.Small />
-        <Link href={url} isDark isSubtle>
-          Subtle Link in dark background
+        <Link href={url} isDark isSubtle hasNoUnderline>
+          Subtle Link in dark background without underline
         </Link>
         <Gap.Small />
       </div>
