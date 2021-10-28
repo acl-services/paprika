@@ -16,20 +16,20 @@ export interface LinkProps {
   /** If hasTruncation is set to true, the link will stay in one line */
   hasTruncation?: boolean;
 
-  /** Change font-color according to background color */
+  /** Change font-color according to background color, set font-color to white */
   isDark?: boolean;
 
   /** Set font-color to black */
   isSubtle?: boolean;
 
-  /** Icon + text format for Navigation/Menu */
+  /** Icon + text format for Menu */
   isMenu?: boolean;
 
   /** Content to be displayed: texts, icons, etc. */
   children?: React.ReactNode;
 
-  /** mMax-width for Link to be truncated */
-  maxWidth?: string;
+  /** Max-width for Link to be truncate, using a number implies px units. */
+  maxWidth?: string | number;
 }
 function Link(props: LinkProps): JSX.Element {
   const {
@@ -52,7 +52,7 @@ function Link(props: LinkProps): JSX.Element {
       isSubtle={isSubtle}
       isMenu={isMenu}
       target={isExternalLink ? "_blank" : ""}
-      rel={isExternalLink ? "noreferrer" : ""}
+      rel={isExternalLink ? "noreferrer" : null}
       aria-label={a11yText}
       maxWidth={maxWidth}
       {...moreProps}

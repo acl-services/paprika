@@ -79,7 +79,7 @@ export const Link = styled.a<{
       color: ${tokens.textColor.link};
       display: inline-flex;
       left: -${tokens.spaceSm};
-      ${maxWidth ? `max-width: ${maxWidth};` : ""}
+      max-width: ${stylers.cssValue(maxWidth)};
       padding: 1px ${tokens.spaceSm};
       position: relative;
 

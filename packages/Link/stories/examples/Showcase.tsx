@@ -12,7 +12,7 @@ const getKnobs = () => ({
   isMenu: boolean("isMenu", false),
   children: text("label", "Paprika Link Example"),
   a11yText: text("a11yText", ""),
-  maxWidth: text("maxWidth", "120px"),
+  maxWidth: text("maxWidth", "120"),
 });
 
 export default function Showcase() {
