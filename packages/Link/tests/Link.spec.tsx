@@ -20,4 +20,13 @@ describe("Link", () => {
     const { container } = render(<Link href={mockUrl}>Link text</Link>);
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it("expects to open in a new tab for external links", async () => {
+    render(
+      <Link href={mockUrl} isExternalLink>
+        External Link
+      </Link>
+    );
+    expect(document.querySelector("a")!.getAttribute("target")).toBe("_blank");
+  });
 });

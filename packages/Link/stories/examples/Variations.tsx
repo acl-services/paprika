@@ -1,6 +1,7 @@
 import React from "react";
 import { Gap } from "storybook/assets/styles/common.styles";
 import tokens from "@paprika/tokens";
+import Heading from "@paprika/heading";
 import Link from "../../src";
 
 export default function variations(): JSX.Element {
@@ -15,7 +16,11 @@ export default function variations(): JSX.Element {
       <Link href={url} isExternalLink>
         External Link
       </Link>
-      <Gap.Small />
+      <Heading level={1}>
+        <Link href={url} isExternalLink>
+          Heading Example
+        </Link>
+      </Heading>
       <Link href={url} isSubtle>
         Subtle Link
       </Link>
@@ -39,13 +44,13 @@ export default function variations(): JSX.Element {
       <Gap.Small />
       <div style={{ maxWidth: "500px" }}>
         <Link href={url}>
-          Example of super long link without max-width that extends to its container&apos;s wdith Lorem ipsum dolor
-          sit amet, consectetur adipiscing elit.
+          Example of super long link without max-width that extends to its container&apos;s wdith Lorem ipsum dolor sit
+          amet, consectetur adipiscing elit.
         </Link>
         <Gap.Small />
         <Link href={url} isExternalLink>
-          Example of super long external link without max-width that extendss to its container&apos;s wdith Lorem
-          ipsum dolor sit amet, consectetur adipiscing elit.
+          Example of super long external link without max-width that extends to its container&apos;s wdith Lorem ipsum
+          dolor sit amet, consectetur adipiscing elit.
         </Link>
       </div>
       <Gap.Small />

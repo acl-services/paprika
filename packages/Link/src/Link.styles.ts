@@ -49,15 +49,9 @@ const navigationStyles = css`
   }
 `;
 
-const truncationStyle = css`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
-
 export const LinkContent = styled.span<{ hasTruncation: boolean }>(
   ({ hasTruncation }) => css`
-    ${hasTruncation && truncationStyle};
+    ${hasTruncation && stylers.truncateText};
   `
 );
 
