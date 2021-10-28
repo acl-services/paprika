@@ -189,6 +189,11 @@ radio:
   size-sm: 16px
   size-md: 20px
   size-lg: 24px
+icon:
+  size-sm: 20px
+  size-md: 24px
+  size-lg: 40px
+  size-Xlg: 48px
 popover:
   border-radius: $card--border-radius
   shadow: 0 2px 4px rgba(0, 0, 0, 0.1)

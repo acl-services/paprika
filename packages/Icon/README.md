@@ -25,11 +25,11 @@ For each SVG icon, we export the respective `<Icon>` component from the `@paprik
 To add a custom icon to paprika components, you can do the following:
 
 ```jsx
-import ArrowDownIcon from "@paprika/icon/lib/ArrowDown";
-// or
-// import { ArrowDown } from "@paprika/icon";
+import { ArrowDown } from "@paprika/icon";
+import tokens from "@paprika/tokens";
 
-<ArrowDownIcon />;
+// Usually tokens.icon.sizeSm should be used for size
+<ArrowDownIcon size={tokens.icon.sizeSm} />;
 ```
 
 ### Note
