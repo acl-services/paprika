@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0-next.0
+
+### Minor Changes
+
+- 35a00b7: Counter - Align with UI Kit
+
 ## 1.0.10
 
 ### Patch Changes
