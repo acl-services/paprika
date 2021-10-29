@@ -29,6 +29,7 @@ const storyTree = [
       "OverflowMenu",
       "DialogActions",
       "ExternalLink",
+      "Link",
       "RawButton",
       "StatusTracker"
     ],

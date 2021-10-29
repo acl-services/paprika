@@ -15,8 +15,7 @@
     "access": "public"
   },
   "scripts": {
-    "pretranspile": "node processTokens.js",
-    "transpile:types": "tsc -p tsconfig.build.json"
+    "pretranspile": "node processTokens.js"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
