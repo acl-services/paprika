@@ -50,7 +50,9 @@ export const CloseButtonStyled = styled(Button.Close)(
   ({ kind }) => css`
     flex-grow: 0;
     flex-shrink: 0;
+    margin-bottom: -${tokens.spaceSm};
     margin-left: ${tokens.space};
+    margin-top: -${tokens.spaceSm};
     min-height: 0;
 
     ${closeButtonColors[kind] && `color: ${closeButtonColors[kind]};`}
@@ -74,8 +76,8 @@ export const Content = styled.div`
 `;
 
 export const Toast = styled.div(
-  ({ isFixed, kind, zIndex, shouldRender, hasCloseButton }) => css`
-    align-items: center;
+  ({ isFixed, kind, zIndex, shouldRender }) => css`
+    align-items: flex-start;
     background-color: ${backgroundColors[kind]};
     border-color: ${borderColors[kind]};
     border-radius: ${tokens.border.radius};
@@ -86,7 +88,7 @@ export const Toast = styled.div(
     font-weight: normal;
     margin-bottom: ${stylers.spacer(2)};
     min-height: ${stylers.spacer(3)};
-    padding: ${hasCloseButton ? "7px" : "11px"};
+    padding: 11px ${tokens.spaceLg};
     position: relative;
     text-align: left;
     transition: opacity 0.3s ease-out;
