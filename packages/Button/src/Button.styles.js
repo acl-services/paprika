@@ -159,8 +159,8 @@ export const sizeStyles = {
   [types.MEDIUM]: css`
     ${stylers.fontSize(-1)};
     min-height: ${stylers.spacer(4)};
-    padding: 6.5px ${tokens.spaceLg};
-    svg {
+    padding: 5px ${tokens.spaceLg};
+    [data-pka-anchor="button.icon"] svg {
       font-size: ${tokens.icon.sizeSm};
     }
   `,
@@ -168,7 +168,7 @@ export const sizeStyles = {
     ${stylers.fontSize()};
     min-height: ${stylers.spacer(5)};
     padding: 9px ${stylers.spacer(2)};
-    svg {
+    [data-pka-anchor="button.icon"] svg {
       font-size: ${tokens.icon.sizeSm};
     }
   `,

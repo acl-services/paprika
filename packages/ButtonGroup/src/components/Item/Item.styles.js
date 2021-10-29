@@ -31,7 +31,7 @@ const iconStyles = css`
   color: ${tokens.textColor.icon};
   margin-left: -${tokens.spaceSm};
   margin-right: ${tokens.spaceSm};
-  vertical-align: -${(stylers.lineHeightValue(-1) - 1) / 2}em;
+  margin-top: -1px;
 `;
 
 export const SelectedIcon = styled(Selected)``;
@@ -41,6 +41,7 @@ export const UnselectedIcon = styled(Unselected)``;
 export const Item = styled(Button)(
   ({ isActive, isDisabled }) => css`
   ${stylers.truncateText}
+  display: block;
   
   &:focus {
     ${stylers.z(3)}

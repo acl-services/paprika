@@ -56,6 +56,7 @@ export const IconButton = styled(Button)(
   ({ size, kind }) => css`
     ${iconButtonSizes[size]}
     ${kind === types.MINOR ? minorStyles : ""}
+    
     [data-pka-anchor="button.icon"] {
       color: inherit;
       margin: 0;
