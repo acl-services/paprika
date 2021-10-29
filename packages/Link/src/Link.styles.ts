@@ -70,7 +70,7 @@ export const Link = styled.a<{
   hasNoUnderline: boolean;
   isDark: boolean;
   isMenu: boolean;
-  maxWidth: string;
+  maxWidth: string | number;
   [x: string]: any;
 }>(
   ({ hasNoUnderline, isSubtle, isDark, isMenu, maxWidth }) => css`
