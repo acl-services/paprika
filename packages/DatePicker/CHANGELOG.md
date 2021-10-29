@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies [27e1439]
+  - @paprika/tokens@1.1.1-next.0
+  - @paprika/calendar@2.0.0-next.1
+  - @paprika/date-input@1.0.22-next.0
+  - @paprika/popover@2.0.0-next.1
+  - @paprika/stylers@1.1.2-next.0
+
 ## 2.0.0-next.0
 
 ### Major Changes

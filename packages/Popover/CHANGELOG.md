@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies [27e1439]
+  - @paprika/tokens@1.1.1-next.0
+  - @paprika/raw-button@1.0.8-next.0
+  - @paprika/stylers@1.1.2-next.0
+
 ## 2.0.0-next.0
 
 ### Major Changes

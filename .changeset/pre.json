@@ -70,10 +70,12 @@
     "@paprika/tokens": "1.1.0",
     "@paprika/uploader": "3.0.8",
     "@paprika/helpers": "2.1.3",
-    "@paprika/seducer": "2.0.3"
+    "@paprika/seducer": "2.0.3",
+    "@paprika/link": "1.0.0"
   },
   "changesets": [
     "brave-geese-perform",
+    "loud-cherries-arrive",
     "ninety-dodos-punch"
   ]
 }
