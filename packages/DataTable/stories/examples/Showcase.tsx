@@ -86,11 +86,8 @@ const ShowcaseStory: () => JSX.Element = () => {
 
   return (
     <Story>
-      <StoryHeading level={1}>CollapsibleCard</StoryHeading>
-      <Tagline>
-        Styled collapsible card component. Check the &quot;Knobs&quot; and &quot;Actions&quot; tabs in the Storybook
-        sidepanel.
-      </Tagline>
+      <StoryHeading level={1}>DataTable</StoryHeading>
+      <Tagline>DataTable component.</Tagline>
       <br />
       <DataTable columns={columns} data={makeData(40)} loadMoreItems={() => makeData(40)} />
     </Story>
