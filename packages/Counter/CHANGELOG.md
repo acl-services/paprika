@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.1.0
+
+### Minor Changes
+
+- 35a00b7: Counter - Align with UI Kit
+
+### Patch Changes
+
+- Updated dependencies [27e1439]
+  - @paprika/tokens@1.1.1
+  - @paprika/stylers@1.1.2
+
 ## 1.1.0-next.1
 
 ### Patch Changes
