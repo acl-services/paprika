@@ -1,5 +1,21 @@
 # Changelog
 
+## 2.0.0
+
+### Major Changes
+
+- 371d3d3: Refactored Popover to not add content to the dom when closed by default
+
+### Patch Changes
+
+- Updated dependencies [371d3d3]
+- Updated dependencies [27e1439]
+  - @paprika/calendar@2.0.0
+  - @paprika/popover@2.0.0
+  - @paprika/tokens@1.1.1
+  - @paprika/date-input@1.0.22
+  - @paprika/stylers@1.1.2
+
 ## 2.0.0-next.1
 
 ### Patch Changes

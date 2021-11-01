@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.18
+
+### Patch Changes
+
+- Updated dependencies [27e1439]
+  - @paprika/tokens@1.1.1
+  - @paprika/button@1.1.7
+  - @paprika/heading@1.0.10
+  - @paprika/overlay@1.0.10
+  - @paprika/stylers@1.1.2
+
 ## 1.0.18-next.0
 
 ### Patch Changes
