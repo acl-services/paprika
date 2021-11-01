@@ -5,164 +5,8 @@ import { fontSize, spacer } from "@paprika/stylers/lib/helpers";
 import { truncateText } from "@paprika/stylers/lib/includes";
 import * as types from "./types";
 
-const themeStyles = {
-    [types.themes.BLACK]: css`
-    background: ${tokens.color.black};
-  `,
-
-    [types.themes.BLUE]: css`
-    background: ${tokens.color.blue};
-  `,
-
-    [types.themes.GREY]: css`
-    background: ${tokens.color.blackLighten70};
-    color: ${tokens.color.black};
-  `,
-
-    [types.themes.GREEN]: css`
-    background: ${tokens.color.greenDarken10};
-  `,
-
-    [types.themes.ORANGE]: css`
-    background: ${tokens.color.orangeDarken10};
-  `,
-
-    [types.themes.LIGHT_BLUE]: css`
-    background: ${tokens.color.blueLighten50};
-    color: ${tokens.color.blueDarken20};
-  `,
-
-    [types.themes.LIGHT_ORANGE]: css`
-    background: ${tokens.color.orangeLighten40};
-    color: ${tokens.color.orangeDarken20};
-  `,
-
-    [types.severityThemes.NO_RISK]: css`
-    background: ${tokens.color.blackLighten70};
-    color: ${tokens.color.black};
-  `,
-
-    [types.severityThemes.LOW_RISK]: css`
-    background: #299a7a;
-  `,
-
-    [types.severityThemes.MEDIUM_RISK]: css`
-    background: #c9af28;
-  `,
-
-    [types.severityThemes.HIGH_RISK]: css`
-    background: #cd3c44;
-  `,
-
-    [types.severityThemes.ALERT]: css`
-    background: none;
-    border: 1px solid ${tokens.color.orangeDarken10};
-    color: ${tokens.color.orangeDarken10};
-  `,
-};
-
-const themeStylesForDelete = {
-  [types.themes.BLACK]: css`
-  background: ${tokens.color.blackLighten70};
-`,
-
-  [types.themes.BLUE]: css`
-  background: ${tokens.color.blackLighten70};
-`,
-
-  [types.themes.GREY]: css`
-  background: ${tokens.color.blackLighten30};
-`,
-
-  [types.themes.GREEN]: css`
-  background: ${tokens.color.blackLighten70};
-`,
-
-  [types.themes.ORANGE]: css`
-  background: ${tokens.color.blackLighten70};
-`,
-
-  [types.themes.LIGHT_BLUE]: css`
-  background: ${tokens.color.blackLighten30};
-`,
-
-  [types.themes.LIGHT_ORANGE]: css`
-  background: ${tokens.color.blackLighten30};
-`,
-
-  [types.severityThemes.NO_RISK]: css`
-  background: ${tokens.color.blackLighten30};
-`,
-
-  [types.severityThemes.LOW_RISK]: css`
-  background: ${tokens.color.blackLighten70};
-`,
-
-  [types.severityThemes.MEDIUM_RISK]: css`
-  background: ${tokens.color.blackLighten70};
-`,
-
-  [types.severityThemes.HIGH_RISK]: css`
-  background: ${tokens.color.blackLighten70};
-`,
-
-  [types.severityThemes.ALERT]: css`
-  background: ${tokens.color.blackLighten30};
-`,
-};
-
-const themeStylesForDeleteIcon = {
-  [types.themes.BLACK]: css`
-  color: ${tokens.color.black};
-`,
-
-  [types.themes.BLUE]: css`
-  color: ${tokens.color.blue};
-`,
-
-  [types.themes.GREY]: css`
-  color: ${tokens.color.blackLighten70};
-`,
-
-  [types.themes.GREEN]: css`
-  color: ${tokens.color.greenDarken10};
-`,
-
-  [types.themes.ORANGE]: css`
-  color: ${tokens.color.orangeDarken10};
-`,
-
-  [types.themes.LIGHT_BLUE]: css`
-  color: ${tokens.color.blueLighten50};
-`,
-
-  [types.themes.LIGHT_ORANGE]: css`
-  color: ${tokens.color.orangeLighten40};
-`,
-
-  [types.severityThemes.NO_RISK]: css`
-  color: ${tokens.color.blackLighten70};
-`,
-
-  [types.severityThemes.LOW_RISK]: css`
-  color: #299a7a;
-`,
-
-  [types.severityThemes.MEDIUM_RISK]: css`
-  color: #c9af28;
-`,
-
-  [types.severityThemes.HIGH_RISK]: css`
-  color: #cd3c44;
-`,
-
-  [types.severityThemes.ALERT]: css`
-  color: white;
-`,
-};
-
 export const Tags = styled.ul(
-    () => css`
+  () => css`
     display: flex;
     flex-wrap: wrap;
     line-height: 1;
@@ -173,13 +17,13 @@ export const Tags = styled.ul(
 );
 
 const widthAndHeight = {
-    medium: "24px",
-    large: "28px",
+  medium: "24px",
+  large: "28px",
 };
 
 const avatarWidthAndHeight = {
-    medium: "20px",
-    large: "24px",
+  medium: "20px",
+  large: "24px",
 };
 
 const tagStyles = ({ theme, size }) => css`
@@ -206,12 +50,12 @@ const tagStyles = ({ theme, size }) => css`
 export const Tag = styled.div(tagStyles);
 
 export const Ellipsis = styled.div(({ size }) => {
-    const getFontSize = {
-        medium: fontSize(-1),
-        large: fontSize(0),
-    };
+  const getFontSize = {
+    medium: fontSize(-1),
+    large: fontSize(0),
+  };
 
-    return css`
+  return css`
     align-items: center;
     display: block;
     ${getFontSize[size]};
@@ -220,23 +64,23 @@ export const Ellipsis = styled.div(({ size }) => {
   `;
 });
 
-export const Delete = styled(Button.Icon)(({ theme, size }) => {
-    const fontSize = {
-        medium: "10px",
-        large: "12px",
-    };
-    
-    const padding = {
-        medium: "4px",
-        large: "5px",
-    };
+export const Delete = styled(Button.Icon)(({ size }) => {
+  const fontSize = {
+    medium: "10px",
+    large: "12px",
+  };
 
-    const width = {
-        medium: "20px",
-        large: "24px",
-    };
+  const padding = {
+    medium: "4px",
+    large: "5px",
+  };
 
-    return css`
+  const width = {
+    medium: "20px",
+    large: "24px",
+  };
+
+  return css`
     align-items: center;
     border-radius: 50%;
     box-sizing: border-box;
@@ -248,11 +92,161 @@ export const Delete = styled(Button.Icon)(({ theme, size }) => {
     min-height: auto;
     padding: ${padding[size]};
     width: ${width[size]};
-    ${themeStylesForDelete[theme]}
-    ${themeStylesForDeleteIcon[theme]}
 
     &:focus {
       background: ${tokens.color.blackLighten60};
     }
   `;
 });
+
+const themeStyles = {
+  [types.themes.BLACK]: css`
+  background: ${tokens.color.black};
+
+  ${Delete} {
+    background: ${tokens.color.blackLighten70};
+    color: ${tokens.color.black};
+    &:hover {
+      background: ${tokens.color.blackLighten60};
+    }
+   }
+`,
+
+  [types.themes.BLUE]: css`
+  background: ${tokens.color.blue};
+
+  ${Delete} {
+    background: ${tokens.color.blackLighten70};
+    color: ${tokens.color.blue};
+    &:hover {
+      background: ${tokens.color.blackLighten60};
+    }
+   }
+`,
+
+  [types.themes.GREY]: css`
+  background: ${tokens.color.blackLighten70};
+  color: ${tokens.color.black};
+
+  ${Delete} {
+    background: ${tokens.color.blackLighten30};
+    color: ${tokens.color.blackLighten70};
+    &:hover {
+      background: ${tokens.color.blackLighten20};
+    }
+   }
+`,
+
+  [types.themes.GREEN]: css`
+  background: ${tokens.color.greenDarken10};
+
+  ${Delete} {
+    background: ${tokens.color.blackLighten70};
+    color: ${tokens.color.greenDarken10};
+    &:hover {
+      background: ${tokens.color.blackLighten60};
+    }
+   }
+`,
+
+  [types.themes.ORANGE]: css`
+  background: ${tokens.color.orangeDarken10};
+
+  ${Delete} {
+    background: ${tokens.color.blackLighten70};
+    color: ${tokens.color.orangeDarken10};
+    &:hover {
+      background: ${tokens.color.blackLighten60};
+    }
+   }
+`,
+
+  [types.themes.LIGHT_BLUE]: css`
+  background: ${tokens.color.blueLighten50};
+  color: ${tokens.color.blueDarken20};
+
+  ${Delete} {
+    background: ${tokens.color.blackLighten30};
+    color: ${tokens.color.blueLighten50};
+    &:hover {
+      background: ${tokens.color.blackLighten20};
+    }
+   }
+`,
+
+  [types.themes.LIGHT_ORANGE]: css`
+  background: ${tokens.color.orangeLighten40};
+  color: ${tokens.color.orangeDarken20};
+
+  ${Delete} {
+    background: ${tokens.color.blackLighten30};
+    color: ${tokens.color.orangeDarken20};
+    &:hover {
+      background: ${tokens.color.blackLighten20};
+    }
+   }
+`,
+
+  [types.severityThemes.NO_RISK]: css`
+  background: ${tokens.color.blackLighten70};
+  color: ${tokens.color.black};
+
+  ${Delete} {
+    background: ${tokens.color.blackLighten30};
+    color: ${tokens.color.blackLighten70};
+    &:hover {
+      background: ${tokens.color.blackLighten20};
+    }
+   }
+`,
+
+  [types.severityThemes.LOW_RISK]: css`
+  background: #299a7a;
+
+  ${Delete} {
+    background: ${tokens.color.blackLighten70};
+    color: #299a7a;
+    &:hover {
+      background: ${tokens.color.blackLighten60};
+    }
+   }
+`,
+
+  [types.severityThemes.MEDIUM_RISK]: css`
+  background: #c9af28;
+
+  ${Delete} {
+    background: ${tokens.color.blackLighten70};
+    color: #c9af28;
+    &:hover {
+      background: ${tokens.color.blackLighten60};
+    }
+   }
+`,
+
+  [types.severityThemes.HIGH_RISK]: css`
+  background: #cd3c44;
+
+  ${Delete} {
+    background: ${tokens.color.blackLighten70};
+    color: #cd3c44;
+    &:hover {
+      background: ${tokens.color.blackLighten60};
+    }
+   }
+`,
+
+  [types.severityThemes.ALERT]: css`
+  background: none;
+  border: 1px solid ${tokens.color.orangeDarken10};
+  color: ${tokens.color.orangeDarken10};
+
+  ${Delete} {
+    background: ${tokens.color.blackLighten30};
+    color: ${tokens.color.white};
+    &:hover {
+      background: ${tokens.color.blackLighten20};
+    }
+   }
+`,
+};
