@@ -43,14 +43,14 @@ const ButtonGroup = React.forwardRef((props, ref) => {
     if (enabledIndexes.length > 0) {
       setFocusIndex(enabledIndexes[0]);
     }
-  }, [getEnabledIndexes]);
+  }, []);
 
   React.useEffect(() => {
     if (currentFocusIndex !== null) {
       const buttonRefs = getButtonRefs();
       setFocusValue(buttonRefs[currentFocusIndex].getAttribute("value"));
     }
-  }, []);
+  }, [currentFocusIndex]);
 
   function focusButton(index) {
     getButtonRefs()[index].focus();

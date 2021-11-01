@@ -117,7 +117,7 @@ export const commonStyles = css`
   border-style: solid;
   border-width: 1px;
   box-sizing: border-box;
-  color : ${tokens.textColor.default};
+  color: ${tokens.textColor.default};
   cursor: pointer;
   display: inline-flex;
   font-weight: bold;
