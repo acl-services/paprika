@@ -24,7 +24,6 @@ const Close = React.forwardRef((props, ref) => {
     isDark: props.isDark,
     kind: types.MINOR,
   };
-
   return (
     <sc.CloseButton {...props} {...buttonProps} ref={ref}>
       <CloseIcon />

@@ -8,34 +8,20 @@ const darkStyles = css`
 
   &:hover {
     background-color: ${stylers.alpha(tokens.color.white, 0.2)};
-
-    [data-pka-anchor="button.icon"] {
-      color: ${tokens.color.white};
-    }
   }
 
   &:active {
     background-color: ${stylers.alpha(tokens.color.white, 0.3)};
     transition: none;
-
-    [data-pka-anchor="button.icon"] {
-      color: ${tokens.color.white};
-      transition: none;
-    }
   }
 
   [data-pka-anchor="button.icon"] {
-    color: ${tokens.color.blackLighten50};
-    transition: color 0.2s ease-out;
+    color: ${tokens.color.white};
   }
 `;
 
 export const CloseButton = styled(IconButton)(
   ({ isDark }) => css`
-    [data-pka-anchor="button.icon"] {
-      color: ${tokens.textColor.icon};
-    }
-
     ${isDark ? darkStyles : ""}
   `
 );
