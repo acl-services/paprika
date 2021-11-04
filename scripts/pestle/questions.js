@@ -16,11 +16,11 @@ module.exports = {
       name: "componentName",
       message: "What is the name of the new component?",
       validate(componentName) {
-        if ( !/[A-Z]/.test( componentName[0]) || /\s/g.test(componentName) ){
-          return "Please enter the component name using Camel case or Pascal case.";
+        if (/\s/g.test(componentName)) {
+          return "Please enter the component name using Camel case.";
         }
         return true;
-      }
+      },
     },
     {
       type: "input",
@@ -54,23 +54,29 @@ module.exports = {
         type: "checkbox",
         name: "testTypes",
         message: "Include ...",
-        choices: [choices.jest, choices.cypress]
+        choices: [choices.jest, choices.cypress],
       },
     ],
     selectStoryType: [
       {
-       type: "checkbox",
-       name: "storyTypes",
-       message: "Include ...",
-       choices: [choices.showcaseStory, choices.screenerStory, choices.variationStory, choices.mdxStory, choices.exampleStory] 
-      }
+        type: "checkbox",
+        name: "storyTypes",
+        message: "Include ...",
+        choices: [
+          choices.showcaseStory,
+          choices.screenerStory,
+          choices.variationStory,
+          choices.mdxStory,
+          choices.exampleStory,
+        ],
+      },
     ],
     exampleStoryName: [
       {
         type: "input",
         name: "storyName",
         message: "Enter the example story name ...",
-      }
-    ]
+      },
+    ],
   },
 };

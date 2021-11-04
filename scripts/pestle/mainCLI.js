@@ -112,8 +112,10 @@ const addStoriesInquiry = componentName => {
 
 const createNewComponentInquiry = () => {
   inquirer.prompt(questions.createNewComponent).then(answers => {
-    const { componentName, componentDescription } = answers;
+    let { componentName } = answers;
+    const { componentDescription } = answers;
     const path = `./packages/${componentName}`;
+    componentName = componentName.replace(/[a-z&]/, (letter) => (letter.toUpperCase()));
 
     createFile(`${path}/package.json`, renderPackageJSONTemplate({ componentName, componentDescription }));
     createFile(`${path}/src/index.js`, renderIndexTemplate({ componentName }));
