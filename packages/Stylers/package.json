@@ -15,7 +15,8 @@
     "access": "public"
   },
   "scripts": {
-    "transpile:types": "tsc -p tsconfig.build.json"
+    "transpile:types": "tsc -p tsconfig.build.json",
+    "transpile:esm:types": "tsc -p tsconfig.build.esm.json"
   },
   "dependencies": {
     "@paprika/tokens": "^1.1.1"
