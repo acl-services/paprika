@@ -114,9 +114,8 @@ const createNewComponentInquiry = () => {
   inquirer.prompt(questions.createNewComponent).then(answers => {
     let { componentName } = answers;
     const { componentDescription } = answers;
+    componentName = camelCase(componentName);
     const path = `./packages/${componentName}`;
-    componentName = componentName.replace(/[a-z&]/, (letter) => (letter.toUpperCase()));
-
     createFile(`${path}/package.json`, renderPackageJSONTemplate({ componentName, componentDescription }));
     createFile(`${path}/src/index.js`, renderIndexTemplate({ componentName }));
     createFile(`${path}/src/${componentName}.js`, renderComponentTemplate({ componentName }));

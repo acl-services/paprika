@@ -15,12 +15,6 @@ module.exports = {
       type: "input",
       name: "componentName",
       message: "What is the name of the new component?",
-      validate(componentName) {
-        if (/\s/g.test(componentName)) {
-          return "Please enter the component name using Camel case.";
-        }
-        return true;
-      },
     },
     {
       type: "input",
