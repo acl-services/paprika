@@ -1,7 +1,7 @@
 import React from "react";
 import StoryHeading from "storybook/components/StoryHeading";
 import { Story, Tagline } from "storybook/assets/styles/common.styles";
-import DataTable from "../../src";
+import * as DataTable from "../../src";
 import makeData from "../helpers/makeData";
 
 const ShowcaseStory: () => JSX.Element = () => {
@@ -84,12 +84,30 @@ const ShowcaseStory: () => JSX.Element = () => {
     []
   );
 
+  const [items, setItems] = React.useState(() => makeData(40));
+
   return (
     <Story>
       <StoryHeading level={1}>DataTable</StoryHeading>
       <Tagline>DataTable component.</Tagline>
       <br />
-      <DataTable columns={columns} data={makeData(40)} loadMoreItems={() => makeData(40)} />
+
+      <DataTable.Table columns={columns} data={items}>
+        <DataTable.InfiniteLoader
+          loadMoreItems={async () => {
+            const newItems = await new Promise<Record<string, unknown>[]>(res =>
+              setTimeout(() => res(makeData(40)), 5000)
+            );
+
+            setItems(items.concat(newItems));
+          }}
+        />
+
+        {/* <Table.ColumnDefinition isSticky columnId="controlId" width={50}>
+          <Table.HeaderDefinition headerId="efefwef">{() => {}}</Table.HeaderDefinition>
+          <Table.CellDefinition>{() => {}}</Table.CellDefinition>
+        </Table.ColumnDefinition> */}
+      </DataTable.Table>
     </Story>
   );
 };

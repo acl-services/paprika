@@ -1,4 +1,8 @@
 export default function calculateRowHeight(targetData: Record<string, string | number>): number {
+  if (targetData === undefined) {
+    return 20; // TODO: how to recalculate height for N+1 row?
+  }
+
   const containerId = "test-area";
   let container = document.querySelector(`#${containerId}`) as HTMLElement;
 

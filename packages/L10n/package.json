@@ -15,7 +15,8 @@
     "access": "public"
   },
   "scripts": {
-    "pretranspile": "node ../BuildTranslations/src/build-translations.js ./src/locales --out-dir ./src/locales-js"
+    "build:translations": "node ../BuildTranslations/src/build-translations.js ./src/locales --out-dir ./src/locales-js",
+    "pretranspile": "yarn"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",

@@ -24,8 +24,8 @@ const newPerson = () => {
   };
 };
 
-export default function makeData(...lens: number[]): Record<string, any>[] {
-  const makeDataLevel: (depth?: number) => Record<string, any>[] = (depth = 0) => {
+export default function makeData(...lens: number[]): Record<string, unknown>[] {
+  const makeDataLevel: (depth?: number) => Record<string, unknown>[] = (depth = 0) => {
     const len = lens[depth];
     return range(len).map(d => {
       return {
