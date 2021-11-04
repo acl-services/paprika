@@ -45,10 +45,6 @@ export const Header = styled.div(
       margin: 0;
     }
 
-    [data-pka-anchor="button.icon"] {
-      ${kind === [Button.types.kind.PRIMARY] ? `color: ${tokens.color.white}` : "color: inherit"}
-    }
-
     ${isCompact ? compactStyles : ""};
     ${kind ? typeKinds[kind] : ""};
   `
