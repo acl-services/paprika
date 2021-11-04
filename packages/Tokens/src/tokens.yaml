@@ -183,7 +183,7 @@ modal:
 #
 checkbox:
   size-sm: 16px
-  size-md: 20px
+  size-md: 18px
   size-lg: 24px
 radio:
   size-sm: 16px

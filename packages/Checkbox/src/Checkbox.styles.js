@@ -9,8 +9,6 @@ const getLabelLeftPadding = (checkboxSize, hasLabel) =>
 
 const smallCheckboxSize = tokens.checkbox.sizeSm;
 const mediumCheckboxSize = tokens.checkbox.sizeMd;
-const largeCheckboxSize = tokens.checkbox.sizeLg;
-
 const styles = {
   [types.SMALL]: {
     baseFontSize: {
@@ -32,7 +30,7 @@ const styles = {
   },
   [types.MEDIUM]: {
     baseFontSize: {
-      fontSize: `${fontSizeValue()}px`,
+      fontSize: `${fontSizeValue(-1)}px`,
     },
     checkBoxStyles: {
       height: mediumCheckboxSize,
@@ -53,17 +51,17 @@ const styles = {
       fontSize: `${fontSizeValue()}px`,
     },
     checkBoxStyles: {
-      height: largeCheckboxSize,
-      width: largeCheckboxSize,
+      height: mediumCheckboxSize,
+      width: mediumCheckboxSize,
     },
     checkBoxIconStyles: {
       fontSize: `${fontSizeValue()}px`,
-      height: largeCheckboxSize,
-      left: `${toInt(largeCheckboxSize) / 2}px`,
+      height: mediumCheckboxSize,
+      left: `${toInt(mediumCheckboxSize) / 2}px`,
     },
     labelStyles: hasLabel => ({
-      minHeight: largeCheckboxSize,
-      padding: `3px 0 0 ${getLabelLeftPadding(largeCheckboxSize, hasLabel)}`,
+      minHeight: mediumCheckboxSize,
+      padding: `0 0 0 ${getLabelLeftPadding(mediumCheckboxSize, hasLabel)}`,
     }),
   },
 };
@@ -103,7 +101,7 @@ export const Checkbox = styled.div(
 
       & + label::before {
         background: ${tokens.color.white};
-        border: 2px solid ${tokens.border.color};
+        border: 2px solid ${tokens.border.hoverColor};
         border-radius: ${tokens.border.radius};
         content: "";
         left: 0;
