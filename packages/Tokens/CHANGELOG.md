@@ -1,5 +1,11 @@
 # @paprika/tokens
 
+## 1.1.1
+
+### Patch Changes
+
+- 27e1439: updated icon template for icon size change
+
 ## 1.1.1-next.0
 
 ### Patch Changes

@@ -1,5 +1,25 @@
 # Changelog
 
+## 4.0.0
+
+### Major Changes
+
+- 371d3d3: Refactored Popover to not add content to the dom when closed by default
+
+### Patch Changes
+
+- Updated dependencies [371d3d3]
+- Updated dependencies [27e1439]
+  - @paprika/popover@2.0.0
+  - @paprika/icon@2.1.2
+  - @paprika/tokens@1.1.1
+  - @paprika/button@1.1.7
+  - @paprika/input@4.0.12
+  - @paprika/select@2.0.7
+  - @paprika/sortable@1.2.6
+  - @paprika/stylers@1.1.2
+  - @paprika/switch@1.0.13
+
 ## 4.0.0-next.1
 
 ### Patch Changes
