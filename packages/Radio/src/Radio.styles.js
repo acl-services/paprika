@@ -9,12 +9,29 @@ const getLabelLeftPadding = (radioSize, hasLabel) =>
 
 const smallRadioSize = tokens.radio.sizeSm;
 const mediumRadioSize = tokens.radio.sizeMd;
-const largeRadioSize = tokens.radio.sizeLg;
 
 const getHalfSizeCss = sizeCss => `${toInt(sizeCss) / 2}px`;
 const smallRadioHalfSize = getHalfSizeCss(smallRadioSize);
 const mediumRadioHalfSize = getHalfSizeCss(mediumRadioSize);
-const largeRadioHalfSize = getHalfSizeCss(largeRadioSize);
+
+const generalRadioStyle = {
+  radioStyles: {
+    height: mediumRadioSize,
+    width: mediumRadioSize,
+    borderRadius: mediumRadioHalfSize,
+  },
+  radioIconBackgroundStyles: {
+    borderRadius: "6px",
+    height: "10px",
+    top: "5px",
+    width: "10px",
+  },
+  radioIconStyles: {
+    fontSize: `${fontSizeValue(-2)}px`,
+    height: mediumRadioSize,
+    left: mediumRadioHalfSize,
+  },
+};
 
 const styles = {
   [types.size.SMALL]: {
@@ -43,53 +60,27 @@ const styles = {
     }),
   },
   [types.size.MEDIUM]: {
+    ...generalRadioStyle,
+
     baseFontSize: {
-      fontSize: `${fontSizeValue()}px`,
+      fontSize: `${fontSizeValue(-1)}px`,
     },
-    radioStyles: {
-      height: mediumRadioSize,
-      width: mediumRadioSize,
-      borderRadius: mediumRadioHalfSize,
-    },
-    radioIconBackgroundStyles: {
-      borderRadius: "6px",
-      height: "10px",
-      top: "5px",
-      width: "10px",
-    },
-    radioIconStyles: {
-      fontSize: `${fontSizeValue(-2)}px`,
-      height: mediumRadioSize,
-      left: mediumRadioHalfSize,
-    },
+
     labelStyles: hasLabel => ({
       minHeight: mediumRadioSize,
       padding: `1px 0 0 ${getLabelLeftPadding(mediumRadioSize, hasLabel)}`,
     }),
   },
   [types.size.LARGE]: {
+    ...generalRadioStyle,
+
     baseFontSize: {
       fontSize: `${fontSizeValue()}px`,
     },
-    radioStyles: {
-      height: largeRadioSize,
-      width: largeRadioSize,
-      borderRadius: largeRadioHalfSize,
-    },
-    radioIconBackgroundStyles: {
-      borderRadius: "6px",
-      height: "12px",
-      top: "6px",
-      width: "12px",
-    },
-    radioIconStyles: {
-      fontSize: `${fontSizeValue()}px`,
-      height: largeRadioSize,
-      left: largeRadioHalfSize,
-    },
+
     labelStyles: hasLabel => ({
-      minHeight: largeRadioSize,
-      padding: `3px 0 0 ${getLabelLeftPadding(largeRadioSize, hasLabel)}`,
+      minHeight: mediumRadioSize,
+      padding: `0 0 0 ${getLabelLeftPadding(mediumRadioSize, hasLabel)}`,
     }),
   },
 };
@@ -127,7 +118,7 @@ export const Radio = styled.div(
         ${styles[size].radioStyles};
         ${z(1)};
         background: ${tokens.color.white};
-        border: 2px solid ${tokens.border.color};
+        border: 2px solid ${tokens.border.hoverColor};
         content: "";
         left: 0;
       }
