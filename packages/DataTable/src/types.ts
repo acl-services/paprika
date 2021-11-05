@@ -1,1 +1,1 @@
-export type TableDataItemType = Record<string, any>;
+export type TableDataItemType = Record<string, unknown>;

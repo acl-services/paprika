@@ -17,7 +17,7 @@ export default function TableRow({ index, style }: ListChildComponentProps): JSX
 
   return (
     <div {...restRow} style={{ ...rowStyle, width: totalColumnsWidth }} className="tr">
-      {row.cells.map((cell: any) => {
+      {row.cells.map(cell => {
         return (
           <div {...cell.getCellProps()} className="td">
             {cell.render("Cell")}

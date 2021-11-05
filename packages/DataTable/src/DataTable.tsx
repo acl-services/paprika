@@ -1,8 +1,8 @@
 import React from "react";
-import { useTable, useBlockLayout } from "react-table";
+import { useTable, useBlockLayout, Column } from "react-table";
 import { extractChildrenProps } from "@paprika/helpers";
 
-import { InfiniteLoader, InfiniteLoaderImpl } from "./components/InfiniteLoader";
+import { InfiniteLoader, InfiniteLoaderImpl, InfiniteLoaderPublicProps } from "./components/InfiniteLoader";
 import { ReactTableContext } from "./components/ReactTableContext";
 import { TableHeader } from "./components/TableHeader";
 import { TableBody } from "./components/TableBody";
@@ -26,7 +26,7 @@ export default function Table({
   data,
   children,
 }: {
-  columns: any[];
+  columns: Column<TableDataItemType>[];
   data: TableDataItemType[];
   children: React.ReactNode;
 }): JSX.Element {
@@ -57,28 +57,18 @@ export default function Table({
     useBlockLayout
   );
 
-  // const [state, setState] = React.useState(0);
-
-  const { loadMoreItems } = extractChildrenProps(children, InfiniteLoader) as any;
+  const infiniteLoaderPublicProps = extractChildrenProps(children, InfiniteLoader) as InfiniteLoaderPublicProps;
 
   return (
     <sc.Wrapper>
       <div {...tableInstance.getTableProps()} className="table sticky">
         <div style={{ position: "relative", flex: 1, zIndex: 0 }}>
-          {/* <button
-            type="button"
-            onClick={() => {
-              setState(x => x + 1);
-            }}
-          >
-            Click me
-          </button> */}
           <ReactTableContext.Provider value={{ ...tableInstance }}>
             <InfiniteLoaderImpl
               data={data}
-              loadMoreItems={loadMoreItems}
               Row={TableRow}
               innerElementType={InnerElement}
+              {...infiniteLoaderPublicProps}
             />
           </ReactTableContext.Provider>
         </div>

@@ -84,16 +84,28 @@ const ShowcaseStory: () => JSX.Element = () => {
     []
   );
 
+  const [, setState] = React.useState(0);
   const [items, setItems] = React.useState(() => makeData(40));
 
   return (
     <Story>
       <StoryHeading level={1}>DataTable</StoryHeading>
       <Tagline>DataTable component.</Tagline>
+      <button
+        type="button"
+        onClick={() => {
+          setState(x => x + 1);
+        }}
+      >
+        Click me
+      </button>
+
       <br />
 
       <DataTable.Table columns={columns} data={items}>
         <DataTable.InfiniteLoader
+          itemCount={items.length + 1}
+          isItemLoaded={index => items[index] !== undefined}
           loadMoreItems={async () => {
             const newItems = await new Promise<Record<string, unknown>[]>(res =>
               setTimeout(() => res(makeData(40)), 5000)

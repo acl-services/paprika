@@ -1,4 +1,6 @@
-export default function calculateRowHeight(targetData: Record<string, string | number>): number {
+import { TableDataItemType } from "../types";
+
+export default function calculateRowHeight(targetData: TableDataItemType): number {
   if (targetData === undefined) {
     return 20; // TODO: how to recalculate height for N+1 row?
   }
