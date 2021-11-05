@@ -25,6 +25,7 @@ const {
   renderExampleStoryTemplate,
   renderVariationStoryTemplate,
   addVariationTemplate,
+  addExampleTemplate,
   renderShowcaseStoryTemplate,
   renderScreenerStoryTemplate,
   renderMXDFileTemplate,
@@ -81,6 +82,7 @@ const addStoriesInquiry = componentName => {
                 `${path}/examples/${pascalCase(storyName)}.js`,
                 renderExampleStoryTemplate({ componentName, storyName })
               );
+              appendToFile(`${path}/${componentName}.example.stories.js`, addExampleTemplate({ storyName }));
             });
             break;
           case choices.showcaseStory:
