@@ -57,13 +57,23 @@ export default function Table({
     useBlockLayout
   );
 
+  // const [state, setState] = React.useState(0);
+
   const { loadMoreItems } = extractChildrenProps(children, InfiniteLoader) as any;
 
   return (
     <sc.Wrapper>
       <div {...tableInstance.getTableProps()} className="table sticky">
         <div style={{ position: "relative", flex: 1, zIndex: 0 }}>
-          <ReactTableContext.Provider value={tableInstance}>
+          {/* <button
+            type="button"
+            onClick={() => {
+              setState(x => x + 1);
+            }}
+          >
+            Click me
+          </button> */}
+          <ReactTableContext.Provider value={{ ...tableInstance }}>
             <InfiniteLoaderImpl
               data={data}
               loadMoreItems={loadMoreItems}
