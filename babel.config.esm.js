@@ -9,6 +9,7 @@ module.exports = function BabelConfigJS(api) {
       },
     ],
     "@babel/preset-react",
+    "@babel/preset-typescript",
   ];
 
   const plugins = [
@@ -31,5 +32,10 @@ module.exports = function BabelConfigJS(api) {
     sourceType: "unambiguous",
     presets,
     plugins,
+    overrides: [
+      {
+        ignore: ["**/*.d.ts"],
+      },
+    ],
   };
 };

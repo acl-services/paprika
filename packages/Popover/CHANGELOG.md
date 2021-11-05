@@ -1,5 +1,27 @@
 # Changelog
 
+## 2.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [ab8d494]
+  - @paprika/tokens@1.1.2-next.0
+  - @paprika/raw-button@1.0.9-next.0
+  - @paprika/stylers@1.1.3-next.0
+
+## 2.0.0
+
+### Major Changes
+
+- 371d3d3: Refactored Popover to not add content to the dom when closed by default
+
+### Patch Changes
+
+- Updated dependencies [27e1439]
+  - @paprika/tokens@1.1.1
+  - @paprika/raw-button@1.0.8
+  - @paprika/stylers@1.1.2
+
 ## 2.0.0-next.1
 
 ### Patch Changes

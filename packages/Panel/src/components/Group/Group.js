@@ -30,10 +30,6 @@ export default function Group(props) {
 
   const offsetScroll = useOffsetScroll(offsetY);
 
-  if (sidePanels.filter(sidePanel => !sidePanel.props.isOpen).length === sidePanels.length) {
-    return null;
-  }
-
   return ReactDOM.createPortal(
     <>
       {OverlayExtracted}
