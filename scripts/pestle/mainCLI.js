@@ -116,6 +116,7 @@ const createNewComponentInquiry = () => {
     const { componentDescription } = answers;
     componentName = pascalCase(componentName);
     const path = `./packages/${componentName}`;
+
     createFile(`${path}/package.json`, renderPackageJSONTemplate({ componentName, componentDescription }));
     createFile(`${path}/src/index.js`, renderIndexTemplate({ componentName }));
     createFile(`${path}/src/${componentName}.js`, renderComponentTemplate({ componentName }));

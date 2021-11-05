@@ -1,4 +1,4 @@
-function renderPackageJSONTemplate(view){
+function renderPackageJSONTemplate(view) {
   const { componentName, componentDescription } = view;
   return `{
   "name": "@paprika/${componentName.toLowerCase()}",
@@ -33,13 +33,13 @@ function renderPackageJSONTemplate(view){
 `;
 }
 
-function renderIndexTemplate(view){
+function renderIndexTemplate(view) {
   const { componentName } = view;
   return `export { default } from "./${componentName}";
 `;
 }
 
-function renderComponentTemplate(view){
+function renderComponentTemplate(view) {
   const { componentName } = view;
   return `import React from "react";
 import PropTypes from "prop-types";
@@ -65,7 +65,7 @@ export default ${componentName};
 `;
 }
 
-function renderComponentStylesTemplate(){
+function renderComponentStylesTemplate() {
   return `// import styled from "styled-components";
 // import tokens from "@paprika/tokens";
 // import stylers from "@paprika/stylers";
