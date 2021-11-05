@@ -6,6 +6,7 @@
 const inquirer = require("inquirer");
 // eslint-disable-next-line import/no-extraneous-dependencies
 const search_list = require("inquirer-search-list");
+const { pascalCase } = require("pascal-case");
 const questions = require("./questions");
 const choices = require("./choices");
 
@@ -33,7 +34,6 @@ const { renderSpecTemplate, renderCypressTemplate } = require("./templates/testT
 // Helpers
 const { createFile, appendToFile } = require("./helpers/createFile");
 const { addToStoryTree } = require("./helpers/addToStoryTree");
-const { camelCase } = require("./helpers/camelCase");
 
 inquirer.registerPrompt("search-list", search_list);
 
@@ -78,7 +78,7 @@ const addStoriesInquiry = componentName => {
                 renderExampleStoryFolderTemplate({ componentName, storyName })
               );
               createFile(
-                `${path}/examples/${camelCase(storyName)}.js`,
+                `${path}/examples/${pascalCase(storyName)}.js`,
                 renderExampleStoryTemplate({ componentName, storyName })
               );
             });
@@ -114,7 +114,7 @@ const createNewComponentInquiry = () => {
   inquirer.prompt(questions.createNewComponent).then(answers => {
     let { componentName } = answers;
     const { componentDescription } = answers;
-    componentName = camelCase(componentName);
+    componentName = pascalCase(componentName);
     const path = `./packages/${componentName}`;
     createFile(`${path}/package.json`, renderPackageJSONTemplate({ componentName, componentDescription }));
     createFile(`${path}/src/index.js`, renderIndexTemplate({ componentName }));

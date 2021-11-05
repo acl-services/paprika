@@ -1,4 +1,4 @@
-const { camelCase } = require("../helpers/camelCase");
+const { pascalCase } = require("pascal-case");
 
 function renderStoryFolderTemplate(view) {
   const { componentName } = view;
@@ -72,7 +72,7 @@ function renderExampleStoryFolderTemplate(view) {
   import { exampleStoryParameters } from "storybook/assets/storyParameters";
   import ExampleStory from "storybook/components/ExampleStory";
   import ${componentName} from "../src/${componentName}";
-  import ${camelCase(storyName)} from "./examples/${camelCase(storyName)}";
+  import ${pascalCase(storyName)} from "./examples/${pascalCase(storyName)}";
   
   const storyName = getStoryName("${componentName}");
   
@@ -81,12 +81,12 @@ function renderExampleStoryFolderTemplate(view) {
     component: ${componentName},
   };
 
-  export const ${camelCase(storyName)}Example = () => (
-    <ExampleStory storyName="${storyName}" component="${componentName}" fileName="examples/${camelCase(storyName)}.js">
-      <${camelCase(storyName)} />
+  export const ${pascalCase(storyName)}Example = () => (
+    <ExampleStory storyName="${storyName}" component="${componentName}" fileName="examples/${pascalCase(storyName)}.js">
+      <${pascalCase(storyName)} />
     </ExampleStory>
   );
-  ${camelCase(storyName)}Example.story = { name: "${storyName}", parameters: exampleStoryParameters };
+  ${pascalCase(storyName)}Example.story = { name: "${storyName}", parameters: exampleStoryParameters };
 `;
 }
 
@@ -96,7 +96,7 @@ function renderExampleStoryTemplate(view) {
 import ${componentName} from "../../src";
 // import { Story, CenteredStory, Rule, Big, Small, Tagline, Gap, repeat, breaklines, CodeHeading } from "storybook/assets/styles/common.styles";
 
-export default function ${camelCase(storyName)}Example() {
+export default function ${pascalCase(storyName)}Example() {
   return (
     <${componentName} />
   );
