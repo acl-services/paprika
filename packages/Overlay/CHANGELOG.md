@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.11-next.0
+
+### Patch Changes
+
+- Updated dependencies [ab8d494]
+  - @paprika/tokens@1.1.2-next.0
+
 ## 1.0.10
 
 ### Patch Changes
