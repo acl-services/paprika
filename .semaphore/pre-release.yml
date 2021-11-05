@@ -24,7 +24,7 @@ blocks:
           commands:
             - nvm use
             - yarn
-            - yarn transpile:esm
+            - yarn prepare:esm
             - test -f .changeset/pre.json || yarn changeset pre enter next
             - yarn changeset version
             - if [ -z "`git status --porcelain`" ]; then echo "No changes."; else { git add . && git commit -m"[Bot] Paprika Pre-Release" --no-verify && yarn changeset publish && git push origin master --follow-tags --no-verify; }; fi
