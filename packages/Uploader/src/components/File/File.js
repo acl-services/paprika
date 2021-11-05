@@ -13,9 +13,9 @@ import { getNumberWithUnits } from "../../helpers";
 import * as types from "../../types";
 import * as sc from "./File.styles";
 
-File.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
-File.propTypes = propTypes; // eslint-disable-line no-use-before-define
-// eslint-disable-next-line no-use-before-define
+File.defaultProps = defaultProps;
+File.propTypes = propTypes;
+
 File.types = {
   status: types.status,
 };
@@ -28,7 +28,7 @@ const propTypes = {
   onCancel: PropTypes.func,
   progress: PropTypes.number,
   size: PropTypes.number.isRequired,
-  status: PropTypes.oneOf(Object.keys(File.types.status).map(key => File.types.status[key])).isRequired, // eslint-disable-line no-use-before-define
+  status: PropTypes.oneOf(Object.keys(File.types.status).map(key => File.types.status[key])).isRequired,
 };
 
 const defaultProps = {

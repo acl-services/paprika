@@ -145,6 +145,10 @@ declare namespace ListBox {
     /** Value of your option this can be any data structure */
     value?: any;
     /** Internal prop, which shouldn't be documented */
+    internalHandleOnClick: (...args: any[]) => any;
+    /** Internal prop, which shouldn't be documented */
+    id: string;
+    /** Internal prop, which shouldn't be documented */
     preventDefaultOnSelect?: boolean;
   }
 }

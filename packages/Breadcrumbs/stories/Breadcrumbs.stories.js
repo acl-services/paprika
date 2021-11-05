@@ -1,9 +1,12 @@
+import React from "react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
+import { showcaseStoryParameters, variationsStoryParameters } from "storybook/assets/storyParameters";
+import { Gap } from "storybook/assets/styles/common.styles";
+import ExampleStory from "storybook/components/ExampleStory";
 import Showcase from "./examples/Showcase";
 import Variations from "./examples/Variations";
 import Breadcrumbs from "../src";
-import Props from "./Breadcrumbs.mdx";
 
 export default {
   title: getStoryName("Breadcrumbs"),
@@ -11,16 +14,23 @@ export default {
 };
 
 export const showcase = Showcase;
-
-export const variations = Variations;
-
 showcase.story = {
   decorators: [withKnobs],
-  parameters: {
-    docs: { page: Props },
-    options: {
-      isToolshown: true,
-      showPanel: true,
-    },
-  },
+  parameters: showcaseStoryParameters,
+};
+
+export const variations = () => (
+  <ExampleStory
+    storyName="Breadcrumbs"
+    tagline={ExampleStory.defaultTaglines.variations}
+    component="Breadcrumbs"
+    fileName="examples/Variations.js"
+  >
+    <Gap.Small />
+    <Variations />
+  </ExampleStory>
+);
+variations.story = {
+  name: "Variations",
+  parameters: variationsStoryParameters,
 };

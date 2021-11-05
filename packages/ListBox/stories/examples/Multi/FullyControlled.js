@@ -36,6 +36,4 @@ const AppFullOptionControlled = () => {
     </div>
   );
 };
-export const FullyControlledListBox = () => {
-  return <AppFullOptionControlled />;
-};
+export const FullyControlledListBox = () => <AppFullOptionControlled />;

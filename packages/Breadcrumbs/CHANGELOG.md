@@ -1,5 +1,111 @@
 # Changelog
 
+## 1.5.4-next.0
+
+### Patch Changes
+
+- 1236ea1: Update button font and icon sizes
+- Updated dependencies [1236ea1]
+- Updated dependencies [ab8d494]
+  - @paprika/button@1.1.8-next.0
+  - @paprika/tokens@1.1.2-next.0
+  - @paprika/icon@2.1.3-next.0
+  - @paprika/popover@2.0.1-next.0
+  - @paprika/stylers@1.1.3-next.0
+
+## 1.5.3
+
+### Patch Changes
+
+- Updated dependencies [371d3d3]
+- Updated dependencies [27e1439]
+  - @paprika/popover@2.0.0
+  - @paprika/icon@2.1.2
+  - @paprika/tokens@1.1.1
+  - @paprika/button@1.1.7
+  - @paprika/stylers@1.1.2
+
+## 1.5.3-next.1
+
+### Patch Changes
+
+- Updated dependencies [27e1439]
+  - @paprika/icon@2.1.2-next.0
+  - @paprika/tokens@1.1.1-next.0
+  - @paprika/button@1.1.7-next.0
+  - @paprika/popover@2.0.0-next.1
+  - @paprika/stylers@1.1.2-next.0
+
+## 1.5.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [371d3d3]
+  - @paprika/popover@2.0.0-next.0
+
+## 1.5.2
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+- Updated dependencies [fd94ddb]
+  - @paprika/tokens@1.1.0
+  - @paprika/button@1.1.6
+  - @paprika/icon@2.1.1
+  - @paprika/popover@1.2.6
+  - @paprika/stylers@1.1.1
+
+## 1.5.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+  - @paprika/tokens@1.1.0-next.0
+  - @paprika/button@1.1.6-next.0
+  - @paprika/icon@2.1.1-next.0
+  - @paprika/popover@1.2.6-next.0
+  - @paprika/stylers@1.1.1-next.0
+
+## 1.5.1
+
+### Patch Changes
+
+- Updated dependencies [5e1c563]
+  - @paprika/icon@2.1.0
+  - @paprika/button@1.1.5
+
+## 1.5.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [5e1c563]
+  - @paprika/icon@2.1.0-next.0
+  - @paprika/button@1.1.5-next.0
+
+## 1.5.0
+
+### Minor Changes
+
+- 5c1ef40: Adjust padding of `<Breadcrumbs.Link>` to align consistently with surrounding content.
+
+## 1.5.0-next.0
+
+### Minor Changes
+
+- 5c1ef40: Adjust padding of `<Breadcrumbs.Link>` to align consistently with surrounding content.
+
+## 1.4.0
+
+### Minor Changes
+
+- c1db889: Restore back icon for breadcrumbs with only one crumb
+
+## 1.4.0-next.0
+
+### Minor Changes
+
+- c1db889: Restore back icon for breadcrumbs with only one crumb
+
 ## 1.3.3
 
 ### Patch Changes

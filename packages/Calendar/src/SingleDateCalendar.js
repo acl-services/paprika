@@ -44,8 +44,10 @@ function SingleDateCalendar(props) {
   }
 
   React.useEffect(() => {
-    keepFocus();
-  }, [currentMonth, date]);
+    if (currentMonth) {
+      keepFocus();
+    }
+  }, [currentMonth]);
 
   function getInitialVisibleMonth() {
     let initialVisibleMonth;
@@ -99,7 +101,6 @@ function SingleDateCalendar(props) {
     return day.isBefore(MIN_DATE, "day") || day.isAfter(MAX_DATE, "day");
   }
 
-  /* eslint-disable react/prop-types */
   function renderMonthHeaderElement({ month }) {
     return (
       <Button

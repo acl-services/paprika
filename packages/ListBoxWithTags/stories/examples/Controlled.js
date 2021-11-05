@@ -60,9 +60,7 @@ export default function Controlled() {
 
     setDataFiltered(() => data);
 
-    setSelectedKeys(prev => {
-      return prev.concat(option.label);
-    });
+    setSelectedKeys(prev => prev.concat(option.label));
   }
 
   const handleFilterDebounce = React.useMemo(

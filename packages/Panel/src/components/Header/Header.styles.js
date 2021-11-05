@@ -6,7 +6,7 @@ import Button from "@paprika/button";
 
 const typeKinds = {
   [Button.types.kind.DEFAULT]: `background: ${tokens.color.white}; color: ${tokens.color.black};`,
-  [Button.types.kind.PRIMARY]: `background: ${tokens.color.purple}; color: ${tokens.color.white};`,
+  [Button.types.kind.PRIMARY]: `background: ${tokens.diligent.actionPrimary}; color: ${tokens.color.white};`,
 };
 
 const compactStyles = `
@@ -43,10 +43,6 @@ export const Header = styled.div(
       ${stylers.truncateText}
       display: block;
       margin: 0;
-    }
-
-    [data-pka-anchor="button.icon"] {
-      ${kind === [Button.types.kind.PRIMARY] ? `color: ${tokens.color.white}` : "color: inherit"}
     }
 
     ${isCompact ? compactStyles : ""};

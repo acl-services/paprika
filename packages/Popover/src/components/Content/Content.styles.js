@@ -1,14 +1,30 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { consts } from "../../Popover.styles";
 
-export const ContentStyled = styled.div`
-  opacity: ${props => (props.isOpen ? 1 : 0)};
-  position: fixed;
-  transition: opacity ${consts.transition} ease, visibility ${consts.transition} ease;
-  visibility: ${props => (props.isOpen ? "visible" : "hidden")};
-  z-index: ${props => props.zIndex};
-
-  &:focus {
-    outline: none;
-  }
+const openedCss = css`
+  opacity: 1;
 `;
+
+const closedCss = css`
+  opacity: 0;
+`;
+
+const states = {
+  entering: openedCss,
+  entered: openedCss,
+  exiting: closedCss,
+  exited: closedCss,
+};
+
+export const ContentStyled = styled.div(
+  ({ state, zIndex }) => css`
+    position: fixed;
+    transition: opacity ${consts.animationDuration}ms ease;
+    ${states[state]};
+    z-index: ${zIndex};
+
+    &:focus {
+      outline: none;
+    }
+  `
+);

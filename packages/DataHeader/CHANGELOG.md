@@ -1,5 +1,128 @@
 <!-- content -->
 
+## 1.0.33-next.0
+
+### Patch Changes
+
+- Updated dependencies [1236ea1]
+- Updated dependencies [ab8d494]
+  - @paprika/button@1.1.8-next.0
+  - @paprika/tokens@1.1.2-next.0
+  - @paprika/data-field@1.0.27-next.0
+  - @paprika/data-grid@1.0.23-next.0
+  - @paprika/overflow-menu@2.0.1-next.0
+  - @paprika/toast@1.1.15-next.0
+  - @paprika/icon@2.1.3-next.0
+  - @paprika/popover@2.0.1-next.0
+  - @paprika/raw-button@1.0.9-next.0
+  - @paprika/stylers@1.1.3-next.0
+
+## 1.0.32
+
+### Patch Changes
+
+- Updated dependencies [371d3d3]
+- Updated dependencies [27e1439]
+  - @paprika/overflow-menu@2.0.0
+  - @paprika/popover@2.0.0
+  - @paprika/icon@2.1.2
+  - @paprika/tokens@1.1.1
+  - @paprika/button@1.1.7
+  - @paprika/data-field@1.0.26
+  - @paprika/data-grid@1.0.22
+  - @paprika/raw-button@1.0.8
+  - @paprika/stylers@1.1.2
+  - @paprika/toast@1.1.14
+
+## 1.0.32-next.1
+
+### Patch Changes
+
+- Updated dependencies [27e1439]
+  - @paprika/icon@2.1.2-next.0
+  - @paprika/tokens@1.1.1-next.0
+  - @paprika/button@1.1.7-next.0
+  - @paprika/data-field@1.0.26-next.1
+  - @paprika/data-grid@1.0.22-next.0
+  - @paprika/overflow-menu@2.0.0-next.1
+  - @paprika/toast@1.1.14-next.0
+  - @paprika/popover@2.0.0-next.1
+  - @paprika/raw-button@1.0.8-next.0
+  - @paprika/stylers@1.1.2-next.0
+
+## 1.0.32-next.0
+
+### Patch Changes
+
+- Updated dependencies [371d3d3]
+  - @paprika/overflow-menu@2.0.0-next.0
+  - @paprika/popover@2.0.0-next.0
+  - @paprika/data-field@1.0.26-next.0
+
+## 1.0.31
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+- Updated dependencies [fd94ddb]
+  - @paprika/tokens@1.1.0
+  - @paprika/button@1.1.6
+  - @paprika/data-field@1.0.25
+  - @paprika/data-grid@1.0.21
+  - @paprika/icon@2.1.1
+  - @paprika/overflow-menu@1.1.9
+  - @paprika/popover@1.2.6
+  - @paprika/raw-button@1.0.7
+  - @paprika/stylers@1.1.1
+  - @paprika/toast@1.1.13
+
+## 1.0.31-next.0
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+  - @paprika/tokens@1.1.0-next.0
+  - @paprika/button@1.1.6-next.0
+  - @paprika/data-field@1.0.25-next.0
+  - @paprika/data-grid@1.0.21-next.0
+  - @paprika/icon@2.1.1-next.0
+  - @paprika/overflow-menu@1.1.9-next.0
+  - @paprika/popover@1.2.6-next.0
+  - @paprika/raw-button@1.0.7-next.0
+  - @paprika/stylers@1.1.1-next.0
+  - @paprika/toast@1.1.13-next.0
+
+## 1.0.30
+
+### Patch Changes
+
+- Updated dependencies [5e1c563]
+  - @paprika/icon@2.1.0
+  - @paprika/button@1.1.5
+  - @paprika/data-field@1.0.24
+  - @paprika/data-grid@1.0.20
+  - @paprika/overflow-menu@1.1.8
+  - @paprika/toast@1.1.12
+
+## 1.0.30-next.0
+
+### Patch Changes
+
+- Updated dependencies [5e1c563]
+  - @paprika/icon@2.1.0-next.0
+  - @paprika/button@1.1.5-next.0
+  - @paprika/data-field@1.0.24-next.0
+  - @paprika/data-grid@1.0.20-next.0
+  - @paprika/overflow-menu@1.1.8-next.0
+  - @paprika/toast@1.1.12-next.0
+
+## 1.0.29
+
+### Patch Changes
+
+- Updated dependencies [5a2a0c0]
+  - @paprika/overflow-menu@1.1.7
+
 ## 1.0.29-next.0
 
 ### Patch Changes

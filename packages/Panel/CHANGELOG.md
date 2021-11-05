@@ -1,5 +1,85 @@
 # Changelog
 
+## 2.1.10-next.0
+
+### Patch Changes
+
+- 1236ea1: Update button font and icon sizes
+- ab8d494: update panel header colour to diligent brand colour
+- Updated dependencies [1236ea1]
+- Updated dependencies [ab8d494]
+  - @paprika/button@1.1.8-next.0
+  - @paprika/tokens@1.1.2-next.0
+  - @paprika/heading@1.0.11-next.0
+  - @paprika/icon@2.1.3-next.0
+  - @paprika/overlay@1.0.11-next.0
+  - @paprika/stylers@1.1.3-next.0
+
+## 2.1.9
+
+### Patch Changes
+
+- Updated dependencies [27e1439]
+  - @paprika/icon@2.1.2
+  - @paprika/tokens@1.1.1
+  - @paprika/button@1.1.7
+  - @paprika/heading@1.0.10
+  - @paprika/overlay@1.0.10
+  - @paprika/stylers@1.1.2
+
+## 2.1.9-next.0
+
+### Patch Changes
+
+- Updated dependencies [27e1439]
+  - @paprika/icon@2.1.2-next.0
+  - @paprika/tokens@1.1.1-next.0
+  - @paprika/button@1.1.7-next.0
+  - @paprika/heading@1.0.10-next.0
+  - @paprika/overlay@1.0.10-next.0
+  - @paprika/stylers@1.1.2-next.0
+
+## 2.1.8
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+- Updated dependencies [fd94ddb]
+  - @paprika/tokens@1.1.0
+  - @paprika/button@1.1.6
+  - @paprika/heading@1.0.9
+  - @paprika/icon@2.1.1
+  - @paprika/overlay@1.0.9
+  - @paprika/stylers@1.1.1
+
+## 2.1.8-next.0
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+  - @paprika/tokens@1.1.0-next.0
+  - @paprika/button@1.1.6-next.0
+  - @paprika/heading@1.0.9-next.0
+  - @paprika/icon@2.1.1-next.0
+  - @paprika/overlay@1.0.9-next.0
+  - @paprika/stylers@1.1.1-next.0
+
+## 2.1.7
+
+### Patch Changes
+
+- Updated dependencies [5e1c563]
+  - @paprika/icon@2.1.0
+  - @paprika/button@1.1.5
+
+## 2.1.7-next.0
+
+### Patch Changes
+
+- Updated dependencies [5e1c563]
+  - @paprika/icon@2.1.0-next.0
+  - @paprika/button@1.1.5-next.0
+
 ## 2.1.6
 
 ### Patch Changes

@@ -64,7 +64,7 @@ export function useIsPopOverOpen(shouldKeepTriggerFocus) {
 
     if (hasPopupOpened) {
       listBoxContainer.focus();
-      if (isInline === false && isOpen === false) {
+      if (isInline === false && isOpen === false && trigger) {
         trigger.focus();
       }
     }

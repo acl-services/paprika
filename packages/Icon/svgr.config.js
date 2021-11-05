@@ -8,11 +8,13 @@ module.exports = {
     "#767676": "currentColor",
     "#444": "currentColor",
     "#3F3D3C": "currentColor",
+    "#8A8A8A": "currentColor",
   },
   svgProps: {
-    // We need to render string template
-    // eslint-disable-next-line no-template-curly-in-string
-    css: "{`color: ${props.color};width: ${props.size};height: ${props.size};vertical-align: text-top;`}",
+    css:
+      // We need to render string template
+      // eslint-disable-next-line no-template-curly-in-string
+      "{`color: ${props.color};font-size: ${props.size};vertical-align: text-top;`}",
     "data-pka-anchor": "icon",
     focusable: false,
   },

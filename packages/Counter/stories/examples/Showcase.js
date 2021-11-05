@@ -9,7 +9,7 @@ const counterKnobs = () => ({
   color: select("color", ["grey", "blue", "red"], "grey"),
   hasIndicator: boolean("hasIndicator", false),
   quantity: number("quantity", 32),
-  size: select("size", [constants.limitedSize], "medium"),
+  size: select("size", constants.limitedSize, "medium"),
   threshold: number("threshold", 99),
 });
 

@@ -65,15 +65,13 @@ export default function CustomButton() {
     setRowColor(color);
   };
 
-  const subset = React.useMemo(() => {
-    return sortedData.filter(item =>
-      searchTerm
-        ? !!Object.values(item).find(value => {
-            return new RegExp(`${searchTerm}`, "i").test(`${value}`);
-          })
-        : true
-    );
-  }, [searchTerm, sortedData]);
+  const subset = React.useMemo(
+    () =>
+      sortedData.filter(item =>
+        searchTerm ? !!Object.values(item).find(value => new RegExp(`${searchTerm}`, "i").test(`${value}`)) : true
+      ),
+    [searchTerm, sortedData]
+  );
 
   return (
     <Story>
@@ -91,19 +89,17 @@ export default function CustomButton() {
         />
 
         <Sort {...sortProps} columns={columnsSettings}>
-          {sortedFields.map((field, index) => {
-            return (
-              <Sort.Field
-                columnId={field.columnId}
-                direction={field.direction}
-                id={field.id}
-                isFirst={index === 0}
-                key={field.id}
-                onChange={onChangeSort}
-                onDelete={onDeleteSort}
-              />
-            );
-          })}
+          {sortedFields.map((field, index) => (
+            <Sort.Field
+              columnId={field.columnId}
+              direction={field.direction}
+              id={field.id}
+              isFirst={index === 0}
+              key={field.id}
+              onChange={onChangeSort}
+              onDelete={onDeleteSort}
+            />
+          ))}
         </Sort>
 
         <ColumnsArrangement orderedColumnIds={orderedColumnIds} {...handlers}>

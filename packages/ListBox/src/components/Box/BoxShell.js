@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function BoxShell() {
-  return <React.Fragment />;
+  return <></>;
 }
 
 BoxShell.displayName = "ListBox.Box";

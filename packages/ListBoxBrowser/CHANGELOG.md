@@ -1,5 +1,118 @@
 # Changelog
 
+## 1.0.36-next.0
+
+### Patch Changes
+
+- Updated dependencies [ab8d494]
+  - @paprika/tokens@1.1.2-next.0
+  - @paprika/list-box@4.0.1-next.0
+  - @paprika/icon@2.1.3-next.0
+  - @paprika/raw-button@1.0.9-next.0
+  - @paprika/spinner@1.0.12-next.0
+  - @paprika/stylers@1.1.3-next.0
+
+## 1.0.35
+
+### Patch Changes
+
+- Updated dependencies [371d3d3]
+- Updated dependencies [27e1439]
+  - @paprika/list-box@4.0.0
+  - @paprika/icon@2.1.2
+  - @paprika/tokens@1.1.1
+  - @paprika/raw-button@1.0.8
+  - @paprika/spinner@1.0.11
+  - @paprika/stylers@1.1.2
+
+## 1.0.35-next.1
+
+### Patch Changes
+
+- Updated dependencies [27e1439]
+  - @paprika/icon@2.1.2-next.0
+  - @paprika/tokens@1.1.1-next.0
+  - @paprika/list-box@4.0.0-next.1
+  - @paprika/raw-button@1.0.8-next.0
+  - @paprika/spinner@1.0.11-next.0
+  - @paprika/stylers@1.1.2-next.0
+
+## 1.0.35-next.0
+
+### Patch Changes
+
+- Updated dependencies [371d3d3]
+  - @paprika/list-box@4.0.0-next.0
+
+## 1.0.34
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+- Updated dependencies [fd94ddb]
+  - @paprika/tokens@1.1.0
+  - @paprika/icon@2.1.1
+  - @paprika/list-box@3.6.2
+  - @paprika/raw-button@1.0.7
+  - @paprika/spinner@1.0.10
+  - @paprika/stylers@1.1.1
+
+## 1.0.34-next.0
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+  - @paprika/tokens@1.1.0-next.0
+  - @paprika/icon@2.1.1-next.0
+  - @paprika/list-box@3.6.2-next.0
+  - @paprika/raw-button@1.0.7-next.0
+  - @paprika/spinner@1.0.10-next.0
+  - @paprika/stylers@1.1.1-next.0
+
+## 1.0.33
+
+### Patch Changes
+
+- Updated dependencies [5e1c563]
+  - @paprika/icon@2.1.0
+  - @paprika/list-box@3.6.1
+
+## 1.0.33-next.0
+
+### Patch Changes
+
+- Updated dependencies [5e1c563]
+  - @paprika/icon@2.1.0-next.0
+  - @paprika/list-box@3.6.1-next.0
+
+## 1.0.32
+
+### Patch Changes
+
+- Updated dependencies [3316b43]
+  - @paprika/list-box@3.6.0
+
+## 1.0.32-next.0
+
+### Patch Changes
+
+- Updated dependencies [3316b43]
+  - @paprika/list-box@3.6.0-next.0
+
+## 1.0.31
+
+### Patch Changes
+
+- Updated dependencies [a56eed3]
+  - @paprika/list-box@3.5.1
+
+## 1.0.31-next.0
+
+### Patch Changes
+
+- Updated dependencies [a56eed3]
+  - @paprika/list-box@3.5.1-next.0
+
 ## 1.0.30
 
 ### Patch Changes

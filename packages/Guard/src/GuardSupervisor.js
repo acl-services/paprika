@@ -88,7 +88,7 @@ export default function GuardSupervisor({ alertMessageDefault, children }) {
   return (
     <GuardRegistrationContext.Provider value={registerGuardCallback}>
       <GuardGatekeeperContext.Provider value={canLeaveCallback}>
-        {React.Children.count(children) > 1 ? <React.Fragment>{children}</React.Fragment> : children}
+        {React.Children.count(children) > 1 ? <>{children}</> : children}
       </GuardGatekeeperContext.Provider>
     </GuardRegistrationContext.Provider>
   );

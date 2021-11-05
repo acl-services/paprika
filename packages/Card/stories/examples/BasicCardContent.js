@@ -66,24 +66,22 @@ export default () => {
   return (
     <Story>
       <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {card.map(card => {
-          return (
-            <div style={{ margin: "10px", width: "240px" }}>
-              <Card size={Card.types.size.SMALL}>
-                <Card.Content>
-                  <Card.Title>{card.title}</Card.Title>
-                  <Card.Metadata>
-                    {card.attrTypes ? card.attrTypes.concat(" attribute types") : ""}{" "}
-                    {card.questions ? card.questions.concat(" questions") : ""}
-                  </Card.Metadata>
-                  <div style={{ width: "100%", height: "16px" }} />
-                  <Card.Metadata>Created by {card.creator}</Card.Metadata>
-                  <Card.Metadata>Last updated by {card.updatedBy}</Card.Metadata>
-                </Card.Content>
-              </Card>
-            </div>
-          );
-        })}
+        {card.map(card => (
+          <div style={{ margin: "10px", width: "240px" }}>
+            <Card size={Card.types.size.SMALL}>
+              <Card.Content>
+                <Card.Title>{card.title}</Card.Title>
+                <Card.Metadata>
+                  {card.attrTypes ? card.attrTypes.concat(" attribute types") : ""}{" "}
+                  {card.questions ? card.questions.concat(" questions") : ""}
+                </Card.Metadata>
+                <div style={{ width: "100%", height: "16px" }} />
+                <Card.Metadata>Created by {card.creator}</Card.Metadata>
+                <Card.Metadata>Last updated by {card.updatedBy}</Card.Metadata>
+              </Card.Content>
+            </Card>
+          </div>
+        ))}
       </div>
     </Story>
   );

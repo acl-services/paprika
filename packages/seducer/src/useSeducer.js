@@ -15,9 +15,11 @@ export const useSeducer = (
 
   const types = React.useMemo(() => getTypes({ ...interceptors, ...actions }), [actions, interceptors]);
 
-  const reducerMemo = React.useMemo(() => {
-    return reducer(actions, hasLogger, interceptors);
-  }, [actions, hasLogger, interceptors]);
+  const reducerMemo = React.useMemo(() => reducer(actions, hasLogger, interceptors), [
+    actions,
+    hasLogger,
+    interceptors,
+  ]);
 
   const [state, dispatch] = React.useReducer(
     reducerMemo,

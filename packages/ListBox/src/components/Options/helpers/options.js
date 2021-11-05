@@ -209,30 +209,29 @@ export const toggleOption = ({ index, isMulti, dispatch, onChangeContext }) => {
   selectSingleOption({ activeOptionIndex: index, isOpen: false, dispatch, onChangeContext });
 };
 
-export const handleClickOption = ({ props, isDisabled, state, dispatch, onChangeContext }) => event => {
+export const handleClickOption = ({ event, onClick, index, isDisabled, state, dispatch, onChangeContext }) => {
   if (isDisabled) return;
-  const { index } = props;
-  const { options, hasFilter, isMulti } = state;
+  const { options, hasFilter, isMulti, refListBox, refListBoxContainer } = state;
   const hasPreventDefaultOnSelect = options[index].preventDefaultOnSelect;
 
   const focusListBoxContentIfHasNotFilter =
-    state.refListBox.current.contains(event.target) && document.activeElement === document.body && !hasFilter;
+    refListBox.current.contains(event.target) && document.activeElement === document.body && !hasFilter;
 
-  if (focusListBoxContentIfHasNotFilter) {
-    state.refListBoxContainer.current.focus();
+  if (focusListBoxContentIfHasNotFilter && refListBoxContainer?.current) {
+    refListBoxContainer.current.focus();
   }
 
-  if (props.onClick || hasPreventDefaultOnSelect) {
-    const onClick = props.onClick ? props.onClick : () => {};
+  if (onClick || hasPreventDefaultOnSelect) {
+    const onClickFn = onClick || (() => {});
 
     if (hasPreventDefaultOnSelect) {
       // this will not selected the option, but will report that was clicked it.
       // since this action will not affect the state we can report it right back.
 
-      onClick();
+      onClickFn();
       return;
     }
-    onClick();
+    onClickFn();
   }
 
   if (isMulti) {

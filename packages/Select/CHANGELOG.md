@@ -1,5 +1,65 @@
 # Changelog
 
+## 2.0.8-next.0
+
+### Patch Changes
+
+- Updated dependencies [ab8d494]
+  - @paprika/tokens@1.1.2-next.0
+  - @paprika/icon@2.1.3-next.0
+  - @paprika/stylers@1.1.3-next.0
+
+## 2.0.7
+
+### Patch Changes
+
+- Updated dependencies [27e1439]
+  - @paprika/icon@2.1.2
+  - @paprika/tokens@1.1.1
+  - @paprika/stylers@1.1.2
+
+## 2.0.7-next.0
+
+### Patch Changes
+
+- Updated dependencies [27e1439]
+  - @paprika/icon@2.1.2-next.0
+  - @paprika/tokens@1.1.1-next.0
+  - @paprika/stylers@1.1.2-next.0
+
+## 2.0.6
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+- Updated dependencies [fd94ddb]
+  - @paprika/tokens@1.1.0
+  - @paprika/icon@2.1.1
+  - @paprika/stylers@1.1.1
+
+## 2.0.6-next.0
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+  - @paprika/tokens@1.1.0-next.0
+  - @paprika/icon@2.1.1-next.0
+  - @paprika/stylers@1.1.1-next.0
+
+## 2.0.5
+
+### Patch Changes
+
+- Updated dependencies [5e1c563]
+  - @paprika/icon@2.1.0
+
+## 2.0.5-next.0
+
+### Patch Changes
+
+- Updated dependencies [5e1c563]
+  - @paprika/icon@2.1.0-next.0
+
 ## 2.0.4
 
 ### Patch Changes

@@ -74,8 +74,8 @@ export const Placeholder = styled.div(
   `
 );
 
-export const AllOptionsAreSelected = styled.div(({ size }) => {
-  return css`
+export const AllOptionsAreSelected = styled.div(
+  ({ size }) => css`
     border: 1px solid ${tokens.border.color};
     border-top: 0;
     box-sizing: border-box;
@@ -84,8 +84,8 @@ export const AllOptionsAreSelected = styled.div(({ size }) => {
     padding: ${tokens.spaceSm};
     position: relative;
     ${fontSize[size]};
-  `;
-});
+  `
+);
 
 export const TriggerLabel = styled.div`
   ${stylers.visuallyHidden}

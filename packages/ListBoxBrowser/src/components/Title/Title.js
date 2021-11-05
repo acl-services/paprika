@@ -22,9 +22,7 @@ export default function Title(props) {
   };
 
   const option = React.useMemo(() => getOptionByKey(data, browserKey), [data, browserKey]);
-  const breadcrumb = React.useMemo(() => {
-    return getBreadcrumb({ data, option });
-  }, [data, option]);
+  const breadcrumb = React.useMemo(() => getBreadcrumb({ data, option }), [data, option]);
 
   const { hasBreadcrumb } = React.useContext(ListBoxBrowserContext);
   const hasBrowserTitle = browserTitle !== "";
