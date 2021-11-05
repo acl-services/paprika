@@ -1,5 +1,11 @@
 # @paprika/tokens
 
+## 1.1.2-next.1
+
+### Patch Changes
+
+- fd24fbe: Fix declaration files.
+
 ## 1.1.2-next.0
 
 ### Patch Changes

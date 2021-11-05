@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.23-next.1
+
+### Patch Changes
+
+- Updated dependencies [fd24fbe]
+- Updated dependencies [2463c4d]
+  - @paprika/stylers@1.1.3-next.1
+  - @paprika/tokens@1.1.2-next.1
+  - @paprika/panel@2.2.0-next.1
+
 ## 1.0.23-next.0
 
 ### Patch Changes

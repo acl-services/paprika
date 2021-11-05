@@ -1,5 +1,13 @@
 # @paprika/stylers
 
+## 1.1.3-next.1
+
+### Patch Changes
+
+- fd24fbe: Fix declaration files.
+- Updated dependencies [fd24fbe]
+  - @paprika/tokens@1.1.2-next.1
+
 ## 1.1.3-next.0
 
 ### Patch Changes
