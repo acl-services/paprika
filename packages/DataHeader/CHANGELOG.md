@@ -1,5 +1,14 @@
 <!-- content -->
 
+## 1.0.33-next.1
+
+### Patch Changes
+
+- Updated dependencies [fd24fbe]
+  - @paprika/stylers@1.1.3-next.1
+  - @paprika/tokens@1.1.2-next.1
+  - @paprika/data-grid@1.0.23-next.1
+
 ## 1.0.33-next.0
 
 ### Patch Changes
