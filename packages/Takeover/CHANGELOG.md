@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.19-next.0
+
+### Patch Changes
+
+- Updated dependencies [1236ea1]
+- Updated dependencies [ab8d494]
+  - @paprika/button@1.1.8-next.0
+  - @paprika/tokens@1.1.2-next.0
+  - @paprika/heading@1.0.11-next.0
+  - @paprika/overlay@1.0.11-next.0
+  - @paprika/stylers@1.1.3-next.0
+
 ## 1.0.18
 
 ### Patch Changes
