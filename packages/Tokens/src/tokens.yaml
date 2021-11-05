@@ -215,7 +215,7 @@ font-size:
 shadow: 0px 1px 5px rgba(0, 0, 0, 0.07), 0px 7px 17px rgba(0, 0, 0, 0.1)
 #
 diligent:
-  action-primary: '#5D7599'
-  background-base: '#F4F6F8'
-  brand-primary: '#2F3B4D'
+  action-primary: $color--diligent-lighten-30
+  background-base: $color--diligent-lighten-70
+  brand-primary: $color--diligent
     

@@ -1,5 +1,17 @@
 <!-- content -->
 
+## 1.0.27-next.0
+
+### Patch Changes
+
+- Updated dependencies [1236ea1]
+- Updated dependencies [ab8d494]
+  - @paprika/button@1.1.8-next.0
+  - @paprika/tokens@1.1.2-next.0
+  - @paprika/data-grid@1.0.23-next.0
+  - @paprika/icon@2.1.3-next.0
+  - @paprika/popover@2.0.1-next.0
+
 ## 1.0.26
 
 ### Patch Changes

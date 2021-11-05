@@ -1,5 +1,21 @@
 # Changelog
 
+## 4.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [1236ea1]
+- Updated dependencies [ab8d494]
+  - @paprika/button@1.1.8-next.0
+  - @paprika/tokens@1.1.2-next.0
+  - @paprika/input@4.0.13-next.0
+  - @paprika/sortable@1.2.7-next.0
+  - @paprika/icon@2.1.3-next.0
+  - @paprika/popover@2.0.1-next.0
+  - @paprika/select@2.0.8-next.0
+  - @paprika/stylers@1.1.3-next.0
+  - @paprika/switch@1.0.14-next.0
+
 ## 4.0.0
 
 ### Major Changes

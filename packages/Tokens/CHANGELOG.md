@@ -1,5 +1,11 @@
 # @paprika/tokens
 
+## 1.1.2-next.0
+
+### Patch Changes
+
+- ab8d494: update panel header colour to diligent brand colour
+
 ## 1.1.1
 
 ### Patch Changes

@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.1.10-next.0
+
+### Patch Changes
+
+- 1236ea1: Update button font and icon sizes
+- ab8d494: update panel header colour to diligent brand colour
+- Updated dependencies [1236ea1]
+- Updated dependencies [ab8d494]
+  - @paprika/button@1.1.8-next.0
+  - @paprika/tokens@1.1.2-next.0
+  - @paprika/heading@1.0.11-next.0
+  - @paprika/icon@2.1.3-next.0
+  - @paprika/overlay@1.0.11-next.0
+  - @paprika/stylers@1.1.3-next.0
+
 ## 2.1.9
 
 ### Patch Changes

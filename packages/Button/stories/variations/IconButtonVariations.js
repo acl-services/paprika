@@ -17,9 +17,6 @@ export default function IconButtonVariations() {
         <code>&lt;Button.Icon&gt;</code>
       </StoryHeading>
       <Gap.Small />
-      <Button.Icon onClick={clickHandler} size="small">
-        <InfoIcon />
-      </Button.Icon>
       <Button.Icon onClick={clickHandler}>
         <InfoIcon />
       </Button.Icon>
@@ -32,7 +29,7 @@ export default function IconButtonVariations() {
       <Button.Icon onClick={clickHandler} kind="minor">
         <InfoIcon />
       </Button.Icon>
-      <Button.Icon onClick={clickHandler} icon="🐐" kind="secondary" size="small">
+      <Button.Icon onClick={clickHandler} icon="🐐" kind="secondary">
         <span role="img" aria-label="Llama">
           🦙
         </span>
@@ -69,6 +66,9 @@ export default function IconButtonVariations() {
       <Button.Icon onClick={clickHandler} kind="minor" isDisabled>
         <InfoIcon />
       </Button.Icon>
+      <Button.Icon onClick={clickHandler} kind="minor" isActive>
+        <InfoIcon />
+      </Button.Icon>
       <Gap.Inline />
       <Gap.Inline />
       <Gap.Inline />
@@ -99,6 +99,13 @@ export default function IconButtonVariations() {
         />
       </Button.Icon>
       <Button.Icon onClick={clickHandler} kind="minor" isDisabled>
+        <InfoIcon
+          css={`
+            color: ${tokens.color.gold};
+          `}
+        />
+      </Button.Icon>
+      <Button.Icon onClick={clickHandler} kind="minor" isActive>
         <InfoIcon
           css={`
             color: ${tokens.color.gold};

@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.5.4-next.0
+
+### Patch Changes
+
+- 1236ea1: Update button font and icon sizes
+- Updated dependencies [1236ea1]
+- Updated dependencies [ab8d494]
+  - @paprika/button@1.1.8-next.0
+  - @paprika/tokens@1.1.2-next.0
+  - @paprika/icon@2.1.3-next.0
+  - @paprika/popover@2.0.1-next.0
+  - @paprika/stylers@1.1.3-next.0
+
 ## 1.5.3
 
 ### Patch Changes
