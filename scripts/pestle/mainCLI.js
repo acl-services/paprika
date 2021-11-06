@@ -7,6 +7,7 @@ const inquirer = require("inquirer");
 // eslint-disable-next-line import/no-extraneous-dependencies
 const search_list = require("inquirer-search-list");
 const { pascalCase } = require("pascal-case");
+const file = require("fs");
 const questions = require("./questions");
 const choices = require("./choices");
 
@@ -74,15 +75,13 @@ const addStoriesInquiry = componentName => {
           case choices.exampleStory:
             inquirer.prompt(questions.addToExistingComponent.exampleStoryName).then(answers => {
               const { storyName } = answers;
-              createFile(
-                `${path}/${componentName}.example.stories.js`,
-                renderExampleStoryFolderTemplate({ componentName, storyName })
-              );
+              const exampleStoryPath = `${path}/${componentName}.example.stories.js`;
+              if (file.existsSync(exampleStoryPath)) appendToFile(exampleStoryPath, addExampleTemplate({ storyName }));
+              createFile(exampleStoryPath, renderExampleStoryFolderTemplate({ componentName, storyName }));
               createFile(
                 `${path}/examples/${pascalCase(storyName)}.js`,
                 renderExampleStoryTemplate({ componentName, storyName })
               );
-              appendToFile(`${path}/${componentName}.example.stories.js`, addExampleTemplate({ storyName }));
             });
             break;
           case choices.showcaseStory:
