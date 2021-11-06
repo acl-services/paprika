@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.0.10
+
+### Patch Changes
+
+- Updated dependencies [1236ea1]
+- Updated dependencies [fd24fbe]
+- Updated dependencies [ab8d494]
+  - @paprika/button@1.1.8
+  - @paprika/stylers@1.1.3
+  - @paprika/tokens@1.1.2
+  - @paprika/icon@2.1.3
+  - @paprika/popover@2.0.1
+  - @paprika/raw-button@1.0.9
+
 ## 3.0.10-next.0
 
 ### Patch Changes

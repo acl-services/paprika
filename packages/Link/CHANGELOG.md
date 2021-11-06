@@ -1,5 +1,16 @@
 # @paprika/link
 
+## 1.0.2
+
+### Patch Changes
+
+- fd24fbe: Fix declaration files.
+- Updated dependencies [fd24fbe]
+- Updated dependencies [ab8d494]
+  - @paprika/stylers@1.1.3
+  - @paprika/tokens@1.1.2
+  - @paprika/icon@2.1.3
+
 ## 1.0.2-next.1
 
 ### Patch Changes
