@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build:translations": "node ../BuildTranslations/src/build-translations.js ./src/locales --out-dir ./src/locales-js",
-    "pretranspile": "yarn"
+    "pretranspile": "yarn build:translations"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
