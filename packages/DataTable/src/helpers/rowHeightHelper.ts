@@ -25,9 +25,7 @@ export default class RowHeightHelper {
     this.calculate = this.calculate.bind(this);
   }
 
-  calculate({ rowData, columnsWidth }: { rowData: TableDataItemType; columnsWidth: TableColumnsWidth }): number {
-    if (!rowData) return this.defaultHeight;
-
+  private getRowsContainer(): HTMLElement {
     let container = document.querySelector(`#${containerId}`) as HTMLElement;
 
     if (!container) {
@@ -39,29 +37,41 @@ export default class RowHeightHelper {
       document.body.appendChild(container);
     }
 
+    return container;
+  }
+
+  private getRowContainer(): HTMLElement {
     const rowContainer = document.createElement("div");
     rowContainer.style.width = "auto";
     rowContainer.style.display = "flex";
     rowContainer.style.flexWrap = "nowrap";
     rowContainer.style.boxSizing = "border-box";
 
-    const innerElements = [];
+    return rowContainer;
+  }
 
-    // how can we make sure their column id match the key in data object
+  calculate({ rowData, columnsWidth }: { rowData: TableDataItemType; columnsWidth: TableColumnsWidth }): number {
+    if (!rowData) return this.defaultHeight;
+
+    const rowsContainer = this.getRowsContainer();
+    const row = this.getRowContainer();
+    const innerElementsForTheRow = [];
+
+    // TODO: how can we make sure their column id match the key in data object
     for (let [key, value] of Object.entries(rowData)) {
       if (columnsWidth[key]) {
-        innerElements.push(
+        innerElementsForTheRow.push(
           `<div style="box-sizing:border-box;width:${columnsWidth[key]}px;${this.styles}">${value}</div>`
         );
       }
     }
-    rowContainer.innerHTML = innerElements.join("");
 
-    container.appendChild(rowContainer);
+    row.innerHTML = innerElementsForTheRow.join("");
+    rowsContainer.appendChild(row);
 
-    const result = rowContainer.getBoundingClientRect().height;
+    const result = row.getBoundingClientRect().height;
 
-    container.removeChild(rowContainer);
+    rowsContainer.removeChild(row);
 
     return result;
   }
