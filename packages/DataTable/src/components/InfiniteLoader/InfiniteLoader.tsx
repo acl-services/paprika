@@ -3,8 +3,11 @@
 import React from "react";
 import { ListChildComponentProps, VariableSizeList } from "react-window";
 import ReactInfiniteLoader from "react-window-infinite-loader";
-import calculateRowHeight from "../../helpers/calculateRowHeight";
-import { TableDataItemType } from "../../types";
+import RowHeightHelper from "../../helpers/rowHeightHelper";
+import { useReactTableContext } from "../ReactTableContext";
+import { TableColumnsWidth, TableDataItemType } from "../../types";
+
+const calculateRowHeight = new RowHeightHelper().calculate;
 
 export interface InfiniteLoaderPublicProps {
   /**
@@ -47,23 +50,49 @@ export function InfiniteLoaderImpl({
   threshold = 15,
 }: InfiniteLoaderPrivateProps & InfiniteLoaderPublicProps): JSX.Element {
   const infiniteLoaderRef = React.useRef(null);
-  const listRef = React.useRef(null);
+  const listRef = React.useRef<VariableSizeList>(null);
   const rowHeights = React.useRef<Record<number, number>>({});
+  const { allColumns } = useReactTableContext();
+  const columnsWidth = React.useMemo(
+    () =>
+      allColumns.reduce(
+        (res, column) => {
+          res[column.id] = column.totalWidth;
+          return res;
+        },
+        {} as TableColumnsWidth
+      ),
+    [allColumns]
+  );
 
   function getItemSize(index: number): number {
     if (!rowHeights.current[index]) {
-      const newRowHeight = calculateRowHeight(data[index]);
+      const newRowHeight = calculateRowHeight({
+        rowData: data[index],
+        columnsWidth,
+      });
+
+      if (!data[index]) return newRowHeight;
+
       rowHeights.current[index] = newRowHeight;
     }
 
     return rowHeights.current[index];
   }
 
+  async function handleLoadMoreItems() {
+    await loadMoreItems();
+
+    if (listRef.current) {
+      listRef.current.resetAfterIndex(itemCount - 1);
+    }
+  }
+
   return (
     <ReactInfiniteLoader
       ref={infiniteLoaderRef}
       isItemLoaded={isItemLoaded}
-      loadMoreItems={loadMoreItems}
+      loadMoreItems={handleLoadMoreItems}
       itemCount={itemCount}
       minimumBatchSize={minimumBatchSize}
       threshold={threshold}
