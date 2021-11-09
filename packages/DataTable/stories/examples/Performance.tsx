@@ -46,8 +46,7 @@ const PerformanceStory: (settings: Settings) => JSX.Element = ({ rows, columns }
 
   return (
     <Story>
-      <StoryHeading level={1}>DataTable</StoryHeading>
-      <Tagline>DataTable component performance test.</Tagline>
+      <StoryHeading level={1}>DataTable performance test</StoryHeading>
       <button
         type="button"
         onClick={() => {
