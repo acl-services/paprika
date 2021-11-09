@@ -7,7 +7,7 @@ import RowHeightHelper from "../../helpers/rowHeightHelper";
 import { useReactTableContext } from "../ReactTableContext";
 import { TableColumnsWidth, TableDataItemType } from "../../types";
 
-const calculateRowHeight = new RowHeightHelper().calculate;
+const rowHeightHelper = new RowHeightHelper();
 
 export interface InfiniteLoaderPublicProps {
   /**
@@ -67,12 +67,14 @@ export function InfiniteLoaderImpl({
 
   function getItemSize(index: number): number {
     if (!rowHeights.current[index]) {
-      const newRowHeight = calculateRowHeight({
+      const newRowHeight = rowHeightHelper.calculate({
         rowData: data[index],
         columnsWidth,
       });
 
-      if (!data[index]) return newRowHeight;
+      if (!data[index]) {
+        return newRowHeight;
+      }
 
       rowHeights.current[index] = newRowHeight;
     }
