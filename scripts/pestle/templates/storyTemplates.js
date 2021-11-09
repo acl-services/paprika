@@ -45,6 +45,24 @@ function addVariationTemplate(view) {
 `;
 }
 
+function addExampleTemplate(view) {
+  const { storyName } = view;
+  return `
+  import ${pascalCase(storyName)} from "./examples/${pascalCase(storyName)}";
+  
+  export const ${pascalCase(storyName)}Example = () => (
+    <ExampleStory storyName="${storyName}">
+      <${pascalCase(storyName)} />
+    </ExampleStory>
+  );
+
+  ${pascalCase(storyName)}Example.story = {
+    name: "${storyName}",
+    parameters: exampleStoryParameters,
+  };
+`;
+}
+
 function renderBackyardStoryFolderTemplate(view) {
   const { componentName } = view;
   return `import React from "react";
@@ -180,4 +198,5 @@ module.exports = {
   renderScreenerStoryTemplate,
   renderMXDFileTemplate,
   addVariationTemplate,
+  addExampleTemplate,
 };
