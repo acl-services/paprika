@@ -23,9 +23,7 @@ function createRowsContainer(): HTMLElement {
   return container;
 }
 
-function createRowContainer(): HTMLElement {
-  const parentContainer = (document.querySelector(`#${containerId}`) as HTMLElement) || createRowsContainer();
-
+function createRowContainer(parentContainer: HTMLElement): HTMLElement {
   const rowContainer = document.createElement("div");
   rowContainer.style.width = "auto";
   rowContainer.style.display = "flex";
@@ -44,18 +42,23 @@ export default class RowHeightHelper {
 
   rowContainer: HTMLElement;
 
+  parentContainer: HTMLElement;
+
   constructor(options?: ConstructorOptions) {
     const { defaultHeight = DEFAULT_HEIGHT, styles = DEFAULT_STYLES } = options || {};
 
     this.defaultHeight = defaultHeight;
     this.styles = styles;
-    this.rowContainer = createRowContainer();
+    this.parentContainer = (document.querySelector(`#${containerId}`) as HTMLElement) || createRowsContainer();
+    this.rowContainer = createRowContainer(this.parentContainer);
   }
 
   calculate({ rowData, columnsWidth }: { rowData: TableDataItemType; columnsWidth: TableColumnsWidth }): number {
     if (!rowData) {
       return this.defaultHeight;
     }
+
+    this.parentContainer.style.display = "block";
 
     const innerElementsForTheRow = [];
 
@@ -70,6 +73,10 @@ export default class RowHeightHelper {
 
     this.rowContainer.innerHTML = innerElementsForTheRow.join("");
 
-    return this.rowContainer.getBoundingClientRect().height;
+    const result = this.rowContainer.getBoundingClientRect().height;
+
+    this.parentContainer.style.display = "none";
+
+    return result;
   }
 }
