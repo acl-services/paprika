@@ -69,7 +69,7 @@ const addStoriesInquiry = componentName => {
     try {
       // create component story file if it doesn't already exist
       const mainStoryPath = `${path}/${componentName}.stories.js`;
-      if (!file.existsSync(mainStoryPath)) createFile(`${path}/${componentName}.stories.js`, renderStoryFolderTemplate({ componentName }));
+      if (!file.existsSync(mainStoryPath)) createFile(mainStoryPath, renderStoryFolderTemplate({ componentName }));
 
       answers.storyTypes.forEach(storyFileType => {
         switch (storyFileType) {
