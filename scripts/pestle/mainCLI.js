@@ -68,7 +68,8 @@ const addStoriesInquiry = componentName => {
 
     try {
       // create component story file if it doesn't already exist
-      createFile(`${path}/${componentName}.stories.js`, renderStoryFolderTemplate({ componentName }));
+      const mainStoryPath = `${path}/${componentName}.stories.js`;
+      if (!file.existsSync(mainStoryPath)) createFile(mainStoryPath, renderStoryFolderTemplate({ componentName }));
 
       answers.storyTypes.forEach(storyFileType => {
         switch (storyFileType) {
@@ -77,7 +78,7 @@ const addStoriesInquiry = componentName => {
               const { storyName } = answers;
               const exampleStoryPath = `${path}/${componentName}.example.stories.js`;
               if (file.existsSync(exampleStoryPath)) appendToFile(exampleStoryPath, addExampleTemplate({ storyName }));
-              createFile(exampleStoryPath, renderExampleStoryFolderTemplate({ componentName, storyName }));
+              else createFile(exampleStoryPath, renderExampleStoryFolderTemplate({ componentName, storyName }));
               createFile(
                 `${path}/examples/${pascalCase(storyName)}.js`,
                 renderExampleStoryTemplate({ componentName, storyName })
