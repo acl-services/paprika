@@ -1,22 +1,25 @@
 import React from "react";
 import { useReactTableContext } from "../ReactTableContext";
+import { useThemeContext } from "../ThemeContext";
+import * as sc from "./TableHeader.styles";
 
 export default function TableHeader(): JSX.Element {
   const { headerGroups, totalColumnsWidth } = useReactTableContext();
+  const { borderType, isHeaderSticky } = useThemeContext();
 
   return (
-    <div className="header">
+    <sc.Header isHeaderSticky={isHeaderSticky}>
       <div style={{ width: totalColumnsWidth }}>
         {headerGroups.map(headerGroup => (
-          <div {...headerGroup.getHeaderGroupProps()} className="tr">
+          <sc.TR {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map(column => (
-              <div {...column.getHeaderProps()} className="th">
+              <sc.TH borderType={borderType} {...column.getHeaderProps()}>
                 {column.render("Header")}
-              </div>
+              </sc.TH>
             ))}
-          </div>
+          </sc.TR>
         ))}
       </div>
-    </div>
+    </sc.Header>
   );
 }

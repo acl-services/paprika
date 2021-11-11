@@ -1,14 +1,16 @@
+/* eslint-disable react/require-default-props */
 import React from "react";
 import { useTable, useBlockLayout, Column } from "react-table";
 import { extractChildrenProps } from "@paprika/helpers";
 
 import { InfiniteLoader, InfiniteLoaderImpl, InfiniteLoaderPublicProps } from "./components/InfiniteLoader";
 import { ReactTableContext } from "./components/ReactTableContext";
+import { ThemeContext } from "./components/ThemeContext";
 import { TableHeader } from "./components/TableHeader";
 import { TableBody } from "./components/TableBody";
 import { TableRow } from "./components/TableRow";
 
-import { TableDataItemType } from "./types";
+import { TableDataItemType, gridTypes } from "./types";
 
 import * as sc from "./DataTable.styles";
 
@@ -21,15 +23,22 @@ function InnerElement({ children, ...rest }: { children: React.ReactNode }): JSX
   );
 }
 
-export default function Table({
-  columns,
-  data,
-  children,
-}: {
+interface TableProps {
+  a11yText: string;
+  children: React.ReactNode;
   columns: Column<TableDataItemType>[];
   data: TableDataItemType[];
-  children: React.ReactNode;
-}): JSX.Element {
+  height: number;
+  borderType?: string;
+  getRowHeight?: ((index: number) => number) | null;
+  hasZebraStripes?: boolean;
+  isHeaderSticky?: boolean;
+  renderRow?: (({ index, row }: { index: number; row: Record<string, unknown> }) => JSX.Element) | null;
+  width?: string | number;
+  [x: string]: any;
+}
+
+function Table(props: TableProps): JSX.Element {
   // If there are more items to be loaded then add an extra row to hold a loading indicator.
   // const hasNextPage = true;
   // const itemCount = hasNextPage ? data.length + 1 : data.length;
@@ -40,6 +49,21 @@ export default function Table({
 
   // // Every row is loaded except for our loading indicator row.
   // const isItemLoaded = index => !hasNextPage || index < items.length;
+
+  const {
+    a11yText,
+    children,
+    columns,
+    data,
+    height,
+    borderType = gridTypes.HORIZONTAL,
+    getRowHeight = null,
+    hasZebraStripes = false,
+    isHeaderSticky = true,
+    renderRow = null,
+    width = "100%",
+    ...moreProps
+  } = props;
 
   const defaultColumn = React.useMemo(
     () => ({
@@ -60,19 +84,31 @@ export default function Table({
   const infiniteLoaderPublicProps = extractChildrenProps(children, InfiniteLoader) as InfiniteLoaderPublicProps;
 
   return (
-    <sc.Wrapper>
-      <div {...tableInstance.getTableProps()} className="table sticky">
-        <div style={{ position: "relative", flex: 1, zIndex: 0 }}>
+    <ThemeContext.Provider value={{ borderType, isHeaderSticky, hasZebraStripes }}>
+      <sc.Table
+        aria-label={a11yText}
+        data-pka-anchor="table"
+        width={width}
+        {...tableInstance.getTableProps()}
+        {...moreProps}
+      >
+        <div style={{ position: "relative", flex: 1 }}>
           <ReactTableContext.Provider value={{ ...tableInstance }}>
             <InfiniteLoaderImpl
               data={data}
               Row={TableRow}
+              height={height}
               innerElementType={InnerElement}
+              getRowHeight={getRowHeight}
               {...infiniteLoaderPublicProps}
             />
           </ReactTableContext.Provider>
         </div>
-      </div>
-    </sc.Wrapper>
+      </sc.Table>
+    </ThemeContext.Provider>
   );
 }
+
+Table.displayName = "Table";
+
+export default Table;

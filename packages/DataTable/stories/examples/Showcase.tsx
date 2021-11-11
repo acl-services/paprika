@@ -102,7 +102,7 @@ const ShowcaseStory: () => JSX.Element = () => {
 
       <br />
 
-      <DataTable.Table columns={columns} data={items}>
+      <DataTable.Table a11yText="Table a11y text." height={500} columns={columns} data={items}>
         <DataTable.InfiniteLoader
           itemCount={items.length + 1}
           isItemLoaded={index => items[index] !== undefined}

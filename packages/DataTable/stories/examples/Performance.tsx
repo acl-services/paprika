@@ -58,7 +58,7 @@ const PerformanceStory: (settings: Settings) => JSX.Element = ({ rows, columns }
 
       <br />
 
-      <DataTable.Table columns={columnsProp} data={items}>
+      <DataTable.Table a11yText="Testing table." height={600} columns={columnsProp} data={items}>
         <DataTable.InfiniteLoader
           itemCount={parseInt(rows, 10)}
           isItemLoaded={() => true}
