@@ -528,7 +528,7 @@ const DataGrid = React.forwardRef((props, ref) => {
       </sc.Grid>
       <sc.Footer $width={gridWidth}>
         <sc.RowCount>
-          Rows:{rowCount} Columns:{columnCount}
+          {i18n.t("dataGrid.rows")}:{rowCount} {i18n.t("dataGrid.columns")}:{columnCount}
         </sc.RowCount>
       </sc.Footer>
       {extractedBasement ? (
