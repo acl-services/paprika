@@ -20,13 +20,14 @@ export default function TableRow({ index, style }: ListChildComponentProps): JSX
 
   return (
     <sc.TR
+      data-pka-anchor="table.tr"
       hasBackgroundColor={hasZebraStripes && !!(index % 2)}
       {...restRow}
       style={{ ...rowStyle, width: totalColumnsWidth }}
     >
       {row.cells.map(cell => {
         return (
-          <sc.TD borderType={borderType} {...cell.getCellProps()}>
+          <sc.TD borderType={borderType} data-pka-anchor="table.td" {...cell.getCellProps()}>
             {cell.render("Cell")}
           </sc.TD>
         );

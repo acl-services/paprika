@@ -6,8 +6,8 @@ export default function TableBody({ children, ...otherProps }: { children: React
   const { getTableBodyProps } = useReactTableContext();
 
   return (
-    <sc.Body {...getTableBodyProps()} {...otherProps}>
+    <sc.TBODY data-pka-anchor="table.tbody" {...getTableBodyProps()} {...otherProps}>
       {children}
-    </sc.Body>
+    </sc.TBODY>
   );
 }

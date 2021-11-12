@@ -7,6 +7,12 @@ const headerStyles = css`
   font-weight: bold;
 `;
 
+const stickyHeaderStyles = css`
+  position: sticky;
+  top: 0;
+  z-index: 1;
+`;
+
 export const TH = styled.div<{
   borderType: string;
 }>(
@@ -25,12 +31,10 @@ export const TR = styled.div`
   }
 `;
 
-export const Header = styled.div<{ isHeaderSticky: boolean }>(
-  ({ isHeaderSticky }) => css`
-    top: 0;
-    width: fit-content;
-    z-index: 1;
+export const THEAD = styled.div<{ isHeaderSticky: boolean; totalColumnsWidth: number }>(
+  ({ isHeaderSticky, totalColumnsWidth }) => css`
+    width: ${totalColumnsWidth}px;
 
-    ${isHeaderSticky ? "position: sticky;" : ""}
+    ${isHeaderSticky ? stickyHeaderStyles : ""}
   `
 );

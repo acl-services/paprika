@@ -1,5 +1,5 @@
 import styled from "styled-components";
 
-export const Body = styled.div`
+export const TBODY = styled.div`
   position: relative;
 `;

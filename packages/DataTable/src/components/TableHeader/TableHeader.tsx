@@ -8,18 +8,21 @@ export default function TableHeader(): JSX.Element {
   const { borderType, isHeaderSticky } = useThemeContext();
 
   return (
-    <sc.Header isHeaderSticky={isHeaderSticky}>
-      <div style={{ width: totalColumnsWidth }}>
-        {headerGroups.map(headerGroup => (
-          <sc.TR {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map(column => (
-              <sc.TH borderType={borderType} {...column.getHeaderProps()}>
-                {column.render("Header")}
-              </sc.TH>
-            ))}
-          </sc.TR>
-        ))}
-      </div>
-    </sc.Header>
+    <sc.THEAD
+      data-pka-anchor="table.thead"
+      isHeaderSticky={isHeaderSticky}
+      role="rowgroup"
+      totalColumnsWidth={totalColumnsWidth}
+    >
+      {headerGroups.map(headerGroup => (
+        <sc.TR data-pka-anchor="table.tr" {...headerGroup.getHeaderGroupProps()}>
+          {headerGroup.headers.map(column => (
+            <sc.TH borderType={borderType} data-pka-anchor="table.th" {...column.getHeaderProps()}>
+              {column.render("Header")}
+            </sc.TH>
+          ))}
+        </sc.TR>
+      ))}
+    </sc.THEAD>
   );
 }
