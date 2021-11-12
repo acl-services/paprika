@@ -2,6 +2,7 @@
 import React from "react";
 import { useTable, useBlockLayout, Column } from "react-table";
 import { extractChildrenProps } from "@paprika/helpers";
+import { gridTypes } from "@paprika/constants";
 
 import { InfiniteLoader, InfiniteLoaderImpl, InfiniteLoaderPublicProps } from "./components/InfiniteLoader";
 import { ReactTableContext } from "./components/ReactTableContext";
@@ -10,7 +11,7 @@ import { TableHeader } from "./components/TableHeader";
 import { TableBody } from "./components/TableBody";
 import { TableRow } from "./components/TableRow";
 
-import { TableDataItemType, gridTypes } from "./types";
+import { TableDataItemType } from "./types";
 
 import * as sc from "./DataTable.styles";
 

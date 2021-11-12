@@ -1,5 +1,6 @@
 import React from "react";
-import { Theme, gridTypes } from "../../types";
+import { gridTypes } from "@paprika/constants";
+import { Theme } from "../../types";
 
 const ThemeContext = React.createContext<Theme>({
   borderType: gridTypes.HORIZONTAL,

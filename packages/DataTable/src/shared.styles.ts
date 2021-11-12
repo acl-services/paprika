@@ -1,6 +1,6 @@
 import { css, FlattenSimpleInterpolation } from "styled-components";
 import tokens from "@paprika/tokens";
-import { gridTypes } from "./types";
+import { gridTypes } from "@paprika/constants";
 
 export function cellStyles({ borderType }: { borderType: string }): FlattenSimpleInterpolation {
   return css`
