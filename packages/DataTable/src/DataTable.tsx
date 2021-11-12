@@ -23,7 +23,7 @@ function InnerElement({ children, ...rest }: { children: React.ReactNode }): JSX
   );
 }
 
-interface TableProps {
+export interface TableProps {
   a11yText: string;
   children: React.ReactNode;
   columns: Column<TableDataItemType>[];

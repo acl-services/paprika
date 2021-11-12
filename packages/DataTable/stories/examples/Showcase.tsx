@@ -1,10 +1,18 @@
 import React from "react";
 import StoryHeading from "storybook/components/StoryHeading";
+import { select, boolean } from "@storybook/addon-knobs";
 import { Story, Tagline } from "storybook/assets/styles/common.styles";
 import * as DataTable from "../../src";
+import { TableProps } from "../../src/DataTable";
 import makeData from "../helpers/makeData";
 
-const ShowcaseStory: () => JSX.Element = () => {
+const props = () => ({
+  borderType: select("borderType", ["grid", "none", "horizontal", "vertical"], "horizontal"),
+  hasZebraStripes: boolean("hasZebraStripes", false),
+  isHeaderSticky: boolean("isHeaderSticky", true),
+});
+
+const ShowcaseStory: (props: Partial<TableProps>) => JSX.Element = props => {
   const columns = React.useMemo(
     () => [
       {
@@ -102,7 +110,7 @@ const ShowcaseStory: () => JSX.Element = () => {
 
       <br />
 
-      <DataTable.Table a11yText="Table a11y text." height={500} columns={columns} data={items}>
+      <DataTable.Table a11yText="Table a11y text." height={500} columns={columns} data={items} {...props}>
         <DataTable.InfiniteLoader
           itemCount={items.length + 1}
           isItemLoaded={index => items[index] !== undefined}
@@ -124,4 +132,4 @@ const ShowcaseStory: () => JSX.Element = () => {
   );
 };
 
-export default ShowcaseStory;
+export default () => <ShowcaseStory {...props()} />;
