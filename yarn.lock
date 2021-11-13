@@ -4380,21 +4380,6 @@
   resolved "https://registry.yarnpkg.com/@open-draft/until/-/until-1.0.3.tgz#db9cc719191a62e7d9200f6e7bab21c5b848adca"
   integrity sha512-Aq58f5HiWdyDlFffbbSjAlv596h/cOnt2DO1w3DOC7OJ5EHs0hd/nycJfiu9RJbT6Yk6F1knnRRXNSpxoIVZ9Q==
 
-"@paprika/stylers@^1.0.0":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@paprika/stylers/-/stylers-1.1.1.tgz#8139690cbbcc978c4621b11aa2bd995ed819cdce"
-  integrity sha512-0h4rLak67lLnzIq3UUO3RcfHXc2nE6YAmVaKIpHUkO61LJCD/MKG9H2TMZyFfg8WyXRYYAgPgao+yIrU/zvWdg==
-  dependencies:
-    "@paprika/tokens" "^1.1.0"
-
-"@paprika/tokens@^1.0.0", "@paprika/tokens@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@paprika/tokens/-/tokens-1.1.0.tgz#a38f8c655b0aae9d5ccbf6c872adfeeab6b3dbae"
-  integrity sha512-RqFoJ3TVngvTLI0hDLPCCQ3uj5zp+aANyqLYajsG3fUr5gIqkwNVpn0LT4TunzRdXqkSJcVmZSYu4uPjEm7trg==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-    prop-types "^15.7.2"
-
 "@pmmmwh/react-refresh-webpack-plugin@^0.4.3":
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.4.3.tgz#1eec460596d200c0236bf195b078a5d1df89b766"

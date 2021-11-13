@@ -37,6 +37,8 @@ interface InfiniteLoaderPrivateProps {
   data: TableDataItemType[];
   Row: React.ComponentType<ListChildComponentProps>;
   innerElementType: (props: { children: React.ReactNode }) => JSX.Element;
+  height: number;
+  getRowHeight: ((index: number) => number) | null;
 }
 
 export function InfiniteLoaderImpl({
@@ -44,6 +46,8 @@ export function InfiniteLoaderImpl({
   loadMoreItems,
   data,
   Row,
+  height,
+  getRowHeight,
   innerElementType,
   itemCount,
   minimumBatchSize = 10,
@@ -67,10 +71,13 @@ export function InfiniteLoaderImpl({
 
   function getItemSize(index: number): number {
     if (!rowHeights.current[index]) {
-      const newRowHeight = rowHeightHelper.calculate({
-        rowData: data[index],
-        columnsWidth,
-      });
+      const newRowHeight =
+        getRowHeight && typeof getRowHeight === "function"
+          ? getRowHeight(index)
+          : rowHeightHelper.calculate({
+              rowData: data[index],
+              columnsWidth,
+            });
 
       if (!data[index]) {
         return newRowHeight;
@@ -101,7 +108,7 @@ export function InfiniteLoaderImpl({
     >
       {({ onItemsRendered }) => (
         <VariableSizeList
-          height={500}
+          height={height}
           itemCount={itemCount}
           itemSize={getItemSize}
           width="100%"

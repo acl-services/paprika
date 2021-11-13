@@ -1,10 +1,13 @@
 import React from "react";
 import { ListChildComponentProps } from "react-window";
 import { useReactTableContext } from "../ReactTableContext";
+import { useThemeContext } from "../ThemeContext";
+import * as sc from "./TableRow.styles";
 
 // TODO: decouple TableRow from ListChildComponentProps
 export default function TableRow({ index, style }: ListChildComponentProps): JSX.Element {
   const { rows, prepareRow, totalColumnsWidth } = useReactTableContext();
+  const { borderType, hasZebraStripes } = useThemeContext();
   const row = rows[index];
 
   if (!row) {
@@ -16,14 +19,19 @@ export default function TableRow({ index, style }: ListChildComponentProps): JSX
   const { style: rowStyle, ...restRow } = row.getRowProps({ style });
 
   return (
-    <div {...restRow} style={{ ...rowStyle, width: totalColumnsWidth }} className="tr">
+    <sc.TR
+      data-pka-anchor="table.tr"
+      hasBackgroundColor={hasZebraStripes && !!(index % 2)}
+      {...restRow}
+      style={{ ...rowStyle, width: totalColumnsWidth }}
+    >
       {row.cells.map(cell => {
         return (
-          <div {...cell.getCellProps()} className="td">
+          <sc.TD borderType={borderType} data-pka-anchor="table.td" {...cell.getCellProps()}>
             {cell.render("Cell")}
-          </div>
+          </sc.TD>
         );
       })}
-    </div>
+    </sc.TR>
   );
 }
