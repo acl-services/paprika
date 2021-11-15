@@ -84,21 +84,33 @@ const ShowcaseStory: () => JSX.Element = () => {
     []
   );
 
-  const [, setState] = React.useState(0);
+  const [, setParentState] = React.useState(0);
   const [items, setItems] = React.useState(() => makeData(40));
 
   return (
     <Story>
       <StoryHeading level={1}>DataTable</StoryHeading>
       <Tagline>DataTable component.</Tagline>
-      <button
-        type="button"
-        onClick={() => {
-          setState(x => x + 1);
-        }}
-      >
-        Click me
-      </button>
+      <div>
+        <button
+          type="button"
+          onClick={() => {
+            setItems(makeData(40));
+          }}
+        >
+          Reset state
+        </button>
+      </div>
+      <div>
+        <button
+          type="button"
+          onClick={() => {
+            setParentState(x => x + 1);
+          }}
+        >
+          Update parent state
+        </button>
+      </div>
 
       <br />
 
@@ -106,6 +118,7 @@ const ShowcaseStory: () => JSX.Element = () => {
         <DataTable.InfiniteLoader
           itemCount={items.length + 1}
           isItemLoaded={index => items[index] !== undefined}
+          isNextPageLoading={false}
           loadMoreItems={async () => {
             const newItems = await new Promise<Record<string, unknown>[]>(res =>
               setTimeout(() => res(makeData(40)), 5000)
@@ -114,11 +127,6 @@ const ShowcaseStory: () => JSX.Element = () => {
             setItems(items.concat(newItems));
           }}
         />
-
-        {/* <Table.ColumnDefinition isSticky columnId="controlId" width={50}>
-          <Table.HeaderDefinition headerId="efefwef">{() => {}}</Table.HeaderDefinition>
-          <Table.CellDefinition>{() => {}}</Table.CellDefinition>
-        </Table.ColumnDefinition> */}
       </DataTable.Table>
     </Story>
   );

@@ -24,6 +24,10 @@ export interface InfiniteLoaderPublicProps {
    */
   loadMoreItems: () => Promise<void>;
   /**
+   * If true, will prevent the InfiniteLoader from asking to load more than once at a time
+   */
+  isNextPageLoading?: boolean;
+  /**
    * Minimum number of rows to be loaded at a time; defaults to 10. This property can be used to batch requests to reduce HTTP requests.
    */
   minimumBatchSize?: number;
@@ -39,6 +43,12 @@ interface InfiniteLoaderPrivateProps {
   innerElementType: (props: { children: React.ReactNode }) => JSX.Element;
 }
 
+/**
+ * Only load 1 page of items at a time.
+ * Pass an empty callback to InfiniteLoader in case it asks us to load more than once.
+ */
+const emptyLoadMore = (_startIndex: number, _stopIndex: number) => undefined;
+
 export function InfiniteLoaderImpl({
   isItemLoaded,
   loadMoreItems,
@@ -46,6 +56,7 @@ export function InfiniteLoaderImpl({
   Row,
   innerElementType,
   itemCount,
+  isNextPageLoading = false,
   minimumBatchSize = 10,
   threshold = 15,
 }: InfiniteLoaderPrivateProps & InfiniteLoaderPublicProps): JSX.Element {
@@ -94,7 +105,7 @@ export function InfiniteLoaderImpl({
     <ReactInfiniteLoader
       ref={infiniteLoaderRef}
       isItemLoaded={isItemLoaded}
-      loadMoreItems={handleLoadMoreItems}
+      loadMoreItems={isNextPageLoading ? emptyLoadMore : handleLoadMoreItems}
       itemCount={itemCount}
       minimumBatchSize={minimumBatchSize}
       threshold={threshold}
