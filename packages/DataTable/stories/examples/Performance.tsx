@@ -1,35 +1,35 @@
 import React from "react";
 import StoryHeading from "storybook/components/StoryHeading";
 import { select } from "@storybook/addon-knobs";
-import { Story, Tagline } from "storybook/assets/styles/common.styles";
+import { Story } from "storybook/assets/styles/common.styles";
 import * as DataTable from "../../src";
 
-function makeData(rows: number, columns: number) {
-  return [...Array(rows)].map((value, rowIndex) => {
-    return [...Array(columns)].reduce(
+function makeData(rows: string, columns: string) {
+  return [...Array(parseInt(rows, 10))].map((value, rowIndex) => {
+    return [...Array(parseInt(columns, 10))].reduce(
       (res, value, columnIndex) => {
         res[`col${columnIndex}`] = `Cell ${rowIndex} ${columnIndex}`;
         return res;
       },
-      {} as Record<number, string>
+      {} as Record<string, string>
     );
   });
 }
 
 interface Settings {
-  rows: number;
-  columns: number;
+  rows: string;
+  columns: string;
 }
 
 const settings = () => ({
-  rows: select("Number of rows", [100, 1000, 10000, 100000], 1000),
-  columns: select("Number of columns", [10, 100, 1000, 10000, 100000], 10),
+  rows: select("Number of rows", ["100", "1000", "10000", "100000"], "1000"),
+  columns: select("Number of columns", ["10", "100", "1000", "10000", "100000"], "10"),
 });
 
 const PerformanceStory: (settings: Settings) => JSX.Element = ({ rows, columns }) => {
   const columnsProp = React.useMemo(
     () =>
-      [...Array(columns)].map((value, index) => ({
+      [...Array(parseInt(columns, 10))].map((value, index) => ({
         Header: `Column ${index}`,
         accessor: `col${index}`,
         width: 80,
@@ -58,9 +58,9 @@ const PerformanceStory: (settings: Settings) => JSX.Element = ({ rows, columns }
 
       <br />
 
-      <DataTable.Table columns={columnsProp} data={items}>
+      <DataTable.Table a11yText="Testing table." height={600} columns={columnsProp} data={items}>
         <DataTable.InfiniteLoader
-          itemCount={rows}
+          itemCount={parseInt(rows, 10)}
           isItemLoaded={() => true}
           loadMoreItems={async () => {
             console.log();

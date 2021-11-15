@@ -1,8 +1,9 @@
+import tokens from "@paprika/tokens";
 import { TableDataItemType, TableColumnsWidth } from "../types";
 
 const DEFAULT_HEIGHT = 40;
 // TODO: match desgin
-const DEFAULT_STYLES = "padding: 5px;border-right:1px solid;border-bottom:1px solid;";
+const DEFAULT_STYLES = `padding: ${tokens.space};border-right:1px solid;border-bottom:1px solid;`;
 
 const containerId = `paprika-data-table__test-area--${Date.now()}`;
 
