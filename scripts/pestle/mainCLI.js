@@ -1,10 +1,13 @@
 #!/usr/bin/env node
+/* eslint-disable no-useless-catch */
 
 // Inquirer
 // eslint-disable-next-line import/no-extraneous-dependencies
 const inquirer = require("inquirer");
 // eslint-disable-next-line import/no-extraneous-dependencies
 const search_list = require("inquirer-search-list");
+const { pascalCase } = require("pascal-case");
+const file = require("fs");
 const questions = require("./questions");
 const choices = require("./choices");
 
@@ -14,6 +17,7 @@ const {
   renderIndexTemplate,
   renderComponentTemplate,
   renderComponentStylesTemplate,
+  renderReadMeTemplate,
 } = require("./templates/componentTemplates");
 const {
   renderStoryFolderTemplate,
@@ -21,6 +25,8 @@ const {
   renderExampleStoryFolderTemplate,
   renderExampleStoryTemplate,
   renderVariationStoryTemplate,
+  addVariationTemplate,
+  addExampleTemplate,
   renderShowcaseStoryTemplate,
   renderScreenerStoryTemplate,
   renderMXDFileTemplate,
@@ -28,7 +34,7 @@ const {
 const { renderSpecTemplate, renderCypressTemplate } = require("./templates/testTemplates");
 
 // Helpers
-const { createFile } = require("./helpers/createFile");
+const { createFile, appendToFile } = require("./helpers/createFile");
 const { addToStoryTree } = require("./helpers/addToStoryTree");
 
 inquirer.registerPrompt("search-list", search_list);
@@ -36,7 +42,7 @@ inquirer.registerPrompt("search-list", search_list);
 const addTestsInquiry = componentName => {
   inquirer.prompt(questions.addToExistingComponent.selectTestType).then(answers => {
     const path = `./packages/${componentName}/tests`;
-    
+
     try {
       answers.testTypes.forEach(testFileType => {
         switch (testFileType) {
@@ -47,7 +53,7 @@ const addTestsInquiry = componentName => {
             createFile(`${path}/cypress/${componentName}.cypress.js`, renderCypressTemplate({ componentName }));
             break;
           default:
-            // do nothing
+          // do nothing
         }
       });
     } catch (err) {
@@ -62,32 +68,42 @@ const addStoriesInquiry = componentName => {
 
     try {
       // create component story file if it doesn't already exist
-      createFile(`${path}/${componentName}.stories.js`, renderStoryFolderTemplate({ componentName }));
+      const mainStoryPath = `${path}/${componentName}.stories.js`;
+      if (!file.existsSync(mainStoryPath)) createFile(mainStoryPath, renderStoryFolderTemplate({ componentName }));
 
       answers.storyTypes.forEach(storyFileType => {
         switch (storyFileType) {
           case choices.exampleStory:
             inquirer.prompt(questions.addToExistingComponent.exampleStoryName).then(answers => {
               const { storyName } = answers;
-              createFile(`${path}/${componentName}.example.stories.js`, renderExampleStoryFolderTemplate({ componentName, storyName }));
-              createFile(`${path}/examples/${storyName}.js`, renderExampleStoryTemplate({ componentName, storyName }));
+              const exampleStoryPath = `${path}/${componentName}.example.stories.js`;
+              if (file.existsSync(exampleStoryPath)) appendToFile(exampleStoryPath, addExampleTemplate({ storyName }));
+              else createFile(exampleStoryPath, renderExampleStoryFolderTemplate({ componentName, storyName }));
+              createFile(
+                `${path}/examples/${pascalCase(storyName)}.js`,
+                renderExampleStoryTemplate({ componentName, storyName })
+              );
             });
             break;
           case choices.showcaseStory:
             createFile(`${path}/examples/Showcase.js`, renderShowcaseStoryTemplate({ componentName }));
             break;
-            case choices.variationStory:
-              createFile(`${path}/examples/Variations.js`, renderVariationStoryTemplate({ componentName }));
-              break;
-              case choices.screenerStory:
-            createFile(`${path}/${componentName}.backyard.stories.js`, renderBackyardStoryFolderTemplate({ componentName }));
+          case choices.variationStory:
+            createFile(`${path}/examples/Variations.js`, renderVariationStoryTemplate({ componentName }));
+            appendToFile(`${path}/${componentName}.stories.js`, addVariationTemplate({ componentName }));
+            break;
+          case choices.screenerStory:
+            createFile(
+              `${path}/${componentName}.backyard.stories.js`,
+              renderBackyardStoryFolderTemplate({ componentName })
+            );
             createFile(`${path}/tests/Screener.js`, renderScreenerStoryTemplate({ componentName }));
             break;
           case choices.mdxStory:
             createFile(`${path}/${componentName}.stories.mdx`, renderMXDFileTemplate({ componentName }));
             break;
           default:
-            // do nothing
+          // do nothing
         }
       });
     } catch (err) {
@@ -98,13 +114,16 @@ const addStoriesInquiry = componentName => {
 
 const createNewComponentInquiry = () => {
   inquirer.prompt(questions.createNewComponent).then(answers => {
-    const { componentName, componentDescription } = answers;
+    let { componentName } = answers;
+    const { componentDescription } = answers;
+    componentName = pascalCase(componentName);
     const path = `./packages/${componentName}`;
 
     createFile(`${path}/package.json`, renderPackageJSONTemplate({ componentName, componentDescription }));
     createFile(`${path}/src/index.js`, renderIndexTemplate({ componentName }));
     createFile(`${path}/src/${componentName}.js`, renderComponentTemplate({ componentName }));
     createFile(`${path}/src/${componentName}.styles.js`, renderComponentStylesTemplate({ componentName }));
+    createFile(`${path}/README.md`, renderReadMeTemplate());
 
     // tests
     createFile(`${path}/tests/spec/${componentName}.spec.js`, renderSpecTemplate({ componentName }));

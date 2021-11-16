@@ -17,6 +17,7 @@
     "lint:jss": "stylelint './packages/**/src/**/*.styles.js'",
     "pestle": "node scripts/pestle/mainCLI.js",
     "prepare": "yarn cleanup && lerna run pretranspile && yarn transpile && lerna run transpile:types && yarn generateTypeDefinitionsForJS && yarn generateReadMe",
+    "prepare:esm": "yarn transpile:esm && lerna run transpile:esm:types",
     "prettier": "prettier \"packages/**/*.+(js|json|yml|css|scss)\"",
     "prettier:format": "yarn prettier --write",
     "storybook": "run-p storybook:start storybook:uploadserver",
@@ -28,7 +29,7 @@
     "test:a11y": "echo 'Axe will run on this command'",
     "test:debug": "node --inspect node_modules/.bin/jest --runInBand",
     "transpile": "lerna exec --concurrency 2 -- babel --extensions .js,.jsx,.ts,.tsx --root-mode upward src --source-maps --copy-files --out-dir lib",
-    "transpile:esm": "lerna exec --concurrency 2 --scope '@paprika/@(action-bar|avatar|calendar|collapsible-card|data-grid|filter|form-element|guard|helpers|icon|list-box-with-tags|mock-endpoints|modal|seducer|stylers|table)' -- babel --extensions .js,.jsx --root-mode upward src --source-maps --copy-files --config-file ../../babel.config.esm.js --out-dir lib/esm",
+    "transpile:esm": "lerna exec --concurrency 2 --scope '@paprika/@(action-bar|avatar|calendar|collapsible-card|data-grid|filter|form-element|guard|helpers|icon|list-box-with-tags|mock-endpoints|modal|seducer|stylers|table)' -- babel --extensions .js,.jsx,.ts,.tsx --root-mode upward src --source-maps --copy-files --config-file ../../babel.config.esm.js --out-dir lib/esm",
     "validate:ts": "yarn tsc --noEmit --emitDeclarationOnly false"
   },
   "engines": {
@@ -147,6 +148,7 @@
     "@babel/runtime-corejs2": "^7.14.8",
     "@changesets/cli": "^2.14.1",
     "legally": "^3.5.10",
+    "pascal-case": "^3.1.2",
     "react-json-tree": "^0.11.2",
     "shelljs": "^0.8.3"
   }

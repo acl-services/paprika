@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.0.5
+
+### Patch Changes
+
+- Updated dependencies [fd24fbe]
+- Updated dependencies [ab8d494]
+  - @paprika/stylers@1.1.3
+  - @paprika/tokens@1.1.2
+
+## 3.0.5-next.0
+
+### Patch Changes
+
+- Updated dependencies [ab8d494]
+  - @paprika/tokens@1.1.2-next.0
+  - @paprika/stylers@1.1.3-next.0
+
 ## 3.0.4
 
 ### Patch Changes
