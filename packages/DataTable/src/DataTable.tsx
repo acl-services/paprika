@@ -10,6 +10,7 @@ import { ThemeContext } from "./components/ThemeContext";
 import { TableHeader } from "./components/TableHeader";
 import { TableBody } from "./components/TableBody";
 import { TableRow } from "./components/TableRow";
+import useSticky from "./hooks/useSticky";
 
 import { TableDataItemType } from "./types";
 
@@ -79,7 +80,8 @@ function Table(props: TableProps): JSX.Element {
       data,
       defaultColumn,
     },
-    useBlockLayout
+    useBlockLayout,
+    useSticky
   );
 
   const infiniteLoaderPublicProps = extractChildrenProps(children, InfiniteLoader) as InfiniteLoaderPublicProps;

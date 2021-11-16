@@ -17,7 +17,7 @@ const ShowcaseStory: (props: Partial<TableProps>) => JSX.Element = props => {
     () => [
       {
         Header: "Name",
-        // sticky: "left",
+        isSticky: true,
         columns: [
           {
             Header: "First Name",
@@ -80,7 +80,6 @@ const ShowcaseStory: (props: Partial<TableProps>) => JSX.Element = props => {
       },
       {
         Header: " ",
-        // sticky: "right",
         columns: [
           {
             Header: "Profile Progress",
@@ -110,7 +109,7 @@ const ShowcaseStory: (props: Partial<TableProps>) => JSX.Element = props => {
 
       <br />
 
-      <DataTable.Table a11yText="Table a11y text." height={500} columns={columns} data={items} {...props}>
+      <DataTable.Table a11yText="Table a11y text." height={500} width={800} columns={columns} data={items} {...props}>
         <DataTable.InfiniteLoader
           itemCount={items.length + 1}
           isItemLoaded={index => items[index] !== undefined}
