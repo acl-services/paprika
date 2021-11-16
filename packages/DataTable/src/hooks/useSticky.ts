@@ -11,8 +11,8 @@ interface Column extends ColumnInstance {
 }
 
 function isColumnSticky(column: Column): boolean {
-  if (column.isSticky === true) {
-    return column.isSticky;
+  if (column.isSticky) {
+    return true;
   }
 
   if (column.parent) {
