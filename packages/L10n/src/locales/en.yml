@@ -14,8 +14,8 @@ en:
     close: Close
     dataGrid:
       a11yTextMessage: "{{value}}. You are on row {{rowIndex}}, column {{columnIndex}}. Disregard the following information:"
-      columns: Columns
-      rows: Rows
+      rows: "Rows: {{rowCount}}"
+      columns: "Columns: {{columnCount}}"
     uploader:
       drop_files: Drop files to upload
       drop_files_here_or: Drop files to upload here or
