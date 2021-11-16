@@ -50,9 +50,10 @@ export const CloseButtonStyled = styled(Button.Close)(
   ({ kind }) => css`
     flex-grow: 0;
     flex-shrink: 0;
-    margin-bottom: -${tokens.spaceSm};
+    margin-bottom: -6px;
     margin-left: ${tokens.space};
-    margin-top: -${tokens.spaceSm};
+    margin-right: -7px;
+    margin-top: -6px;
     min-height: 0;
 
     ${closeButtonColors[kind] && `color: ${closeButtonColors[kind]};`}
