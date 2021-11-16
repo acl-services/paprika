@@ -89,7 +89,7 @@ export const Toast = styled.div(
     font-weight: normal;
     margin-bottom: ${stylers.spacer(2)};
     min-height: ${stylers.spacer(3)};
-    padding: 11px ${tokens.spaceLg};
+    padding: ${tokens.spaceLg} ${tokens.spaceLg} 10px ${tokens.spaceLg};
     position: relative;
     text-align: left;
     transition: opacity 0.3s ease-out;
