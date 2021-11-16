@@ -1,5 +1,28 @@
 # Changelog
 
+## 2.1.3
+
+### Patch Changes
+
+- Updated dependencies [fd24fbe]
+- Updated dependencies [ab8d494]
+  - @paprika/tokens@1.1.2
+
+## 2.1.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [ab8d494]
+  - @paprika/tokens@1.1.2-next.0
+
+## 2.1.2
+
+### Patch Changes
+
+- 27e1439: updated icon template for icon size change
+- Updated dependencies [27e1439]
+  - @paprika/tokens@1.1.1
+
 ## 2.1.2-next.0
 
 ### Patch Changes

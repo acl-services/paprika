@@ -52,13 +52,29 @@ const minorStyles = ({ isDisabled, isActive }) => css`
       `}
 `;
 
+const darkStyles = css`
+  transition: background-color 0.2s ease-out;
+
+  &:hover {
+    background-color: ${stylers.alpha(tokens.color.white, 0.2)};
+  }
+
+  &:active {
+    background-color: ${stylers.alpha(tokens.color.white, 0.3)};
+    transition: none;
+  }
+
+  [data-pka-anchor="button.icon"] {
+    color: ${tokens.color.white};
+  }
+`;
+
 export const IconButton = styled(Button)(
-  ({ size, kind }) => css`
+  ({ size, kind, isDark }) => css`
     ${iconButtonSizes[size]}
     ${kind === types.MINOR ? minorStyles : ""}
-    
+    ${isDark && darkStyles}
     [data-pka-anchor="button.icon"] {
-      color: inherit;
       margin: 0;
     }
   `
