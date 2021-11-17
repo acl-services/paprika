@@ -12,7 +12,7 @@ const props = () => ({
   isHeaderSticky: boolean("isHeaderSticky", true),
 });
 
-const ShowcaseStory: (props: Partial<TableProps>) => JSX.Element = props => {
+export const ShowcaseStory: (props: Partial<TableProps>) => JSX.Element = props => {
   const columns = React.useMemo(
     () => [
       {
@@ -95,9 +95,7 @@ const ShowcaseStory: (props: Partial<TableProps>) => JSX.Element = props => {
   const [items, setItems] = React.useState(() => makeData(40));
 
   return (
-    <Story>
-      <StoryHeading level={1}>DataTable</StoryHeading>
-      <Tagline>DataTable component.</Tagline>
+    <>
       <div>
         <button
           type="button"
@@ -135,8 +133,14 @@ const ShowcaseStory: (props: Partial<TableProps>) => JSX.Element = props => {
           }}
         />
       </DataTable.Table>
-    </Story>
+    </>
   );
 };
 
-export default () => <ShowcaseStory {...props()} />;
+export default () => (
+  <Story>
+    <StoryHeading level={1}>DataTable</StoryHeading>
+    <Tagline>DataTable component.</Tagline>
+    <ShowcaseStory {...props()} />
+  </Story>
+);
