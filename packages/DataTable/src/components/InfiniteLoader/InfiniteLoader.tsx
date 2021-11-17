@@ -3,11 +3,9 @@
 import React from "react";
 import { ListChildComponentProps, VariableSizeList } from "react-window";
 import ReactInfiniteLoader from "react-window-infinite-loader";
-import RowHeightHelper from "../../helpers/rowHeightHelper";
-import { useReactTableContext } from "../ReactTableContext";
-import { TableColumnsWidth, TableDataItemType } from "../../types";
-
-const rowHeightHelper = new RowHeightHelper();
+import TableRow from "../TableRow/TableRow";
+import { TableDataItemType } from "../../types";
+import useItemSizeCalculator from "./useItemSizeCalculator";
 
 export interface InfiniteLoaderPublicProps {
   /**
@@ -39,10 +37,13 @@ export interface InfiniteLoaderPublicProps {
 
 interface InfiniteLoaderPrivateProps {
   data: TableDataItemType[];
-  Row: React.ComponentType<ListChildComponentProps>;
   innerElementType: (props: { children: React.ReactNode }) => JSX.Element;
   height: number;
   getRowHeight: ((index: number) => number) | null;
+}
+
+function Row(props: ListChildComponentProps): JSX.Element {
+  return <TableRow index={props.index} style={props.style} />;
 }
 
 /**
@@ -55,7 +56,6 @@ export function InfiniteLoaderImpl({
   isItemLoaded,
   loadMoreItems,
   data,
-  Row,
   height,
   getRowHeight,
   innerElementType,
@@ -66,39 +66,7 @@ export function InfiniteLoaderImpl({
 }: InfiniteLoaderPrivateProps & InfiniteLoaderPublicProps): JSX.Element {
   const infiniteLoaderRef = React.useRef(null);
   const listRef = React.useRef<VariableSizeList>(null);
-  const rowHeights = React.useRef<Record<number, number>>({});
-  const { allColumns } = useReactTableContext();
-  const columnsWidth = React.useMemo(
-    () =>
-      allColumns.reduce(
-        (res, column) => {
-          res[column.id] = column.totalWidth;
-          return res;
-        },
-        {} as TableColumnsWidth
-      ),
-    [allColumns]
-  );
-
-  function getItemSize(index: number): number {
-    if (!rowHeights.current[index]) {
-      const newRowHeight =
-        getRowHeight && typeof getRowHeight === "function"
-          ? getRowHeight(index)
-          : rowHeightHelper.calculate({
-              rowData: data[index],
-              columnsWidth,
-            });
-
-      if (!data[index]) {
-        return newRowHeight;
-      }
-
-      rowHeights.current[index] = newRowHeight;
-    }
-
-    return rowHeights.current[index];
-  }
+  const { getItemSize } = useItemSizeCalculator(data, getRowHeight);
 
   async function handleLoadMoreItems() {
     await loadMoreItems();
