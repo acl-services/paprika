@@ -1,6 +1,6 @@
 {
   "name": "@paprika/form-element",
-  "version": "4.0.24",
+  "version": "4.0.25-next.0",
   "description": "FormElement component displays a user input field",
   "main": "lib/index.js",
   "module": "lib/esm/index.js",
@@ -27,7 +27,7 @@
     "uuid": "^8.3.2"
   },
   "peerDependencies": {
-    "@paprika/l10n": "^1.1.14",
+    "@paprika/l10n": "^1.1.15-next.0",
     "lodash": "^4.17.14",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",

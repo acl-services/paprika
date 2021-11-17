@@ -1,6 +1,6 @@
 {
   "name": "@paprika/confirmation",
-  "version": "1.1.15",
+  "version": "1.1.16-next.0",
   "description": "Confirmation component allows user to confirm or cancel action",
   "author": "@paprika",
   "license": "MIT",
@@ -28,7 +28,7 @@
     "uuid": "^8.3.2"
   },
   "peerDependencies": {
-    "@paprika/l10n": "^1.1.14",
+    "@paprika/l10n": "^1.1.15-next.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"

@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.24-next.0
+
+### Patch Changes
+
+- 4358ed8: localized columns and rows label
+- Updated dependencies [4358ed8]
+  - @paprika/l10n@1.1.15-next.0
+  - @paprika/panel@2.2.1-next.0
+
 ## 1.0.23
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.15-next.0
+
+### Patch Changes
+
+- Updated dependencies [4358ed8]
+  - @paprika/l10n@1.1.15-next.0
+  - @paprika/collapsible@1.1.20-next.0
+
 ## 1.1.14
 
 ### Patch Changes

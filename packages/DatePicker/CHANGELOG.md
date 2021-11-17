@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.0.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [4358ed8]
+  - @paprika/l10n@1.1.15-next.0
+  - @paprika/calendar@2.0.2-next.0
+  - @paprika/date-input@1.0.24-next.0
+
 ## 2.0.1
 
 ### Patch Changes
