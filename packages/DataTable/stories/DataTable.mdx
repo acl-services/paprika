@@ -1,0 +1,217 @@
+import { Meta, Props, Story } from "@storybook/addon-docs/blocks";
+import tokens from "@paprika/tokens";
+import Toast from "@paprika/toast";
+import * as DataTable from "../src";
+import SimpleExample from "./examples/Simple";
+import { ShowcaseStory as ShowcaseExample } from "./examples/Showcase";
+
+# DataTable
+
+A virtualized table component.
+
+<SimpleExample />
+
+<br />
+
+## Props
+
+### `<DataTable.Table/>`
+
+<Props of={DataTable.Table} />
+
+### `<DataTable.InfiniteLoader/>`
+
+<Props of={DataTable.InfiniteLoader} />
+
+## Installation
+
+There are two ways to install DataTable:
+
+`yarn add @paprika/data-table` or `npm install @paprika/data-table`
+
+## Usage
+
+### Basic example
+
+There are two requirements for rendering a simple DataTable:
+
+1. Provide an array with objects by using `data` prop
+
+2. Provide another array with objects to describe how you want to render `data` on the DataTable by using `columns` prop
+
+Here is an example for a `data` array:
+
+```jsx
+const data = [
+  /* column */ /* colum */
+  { myColumn1: 1, myColumn2: "hi" }, // row 1
+  { myColumn1: 2, myColumn2: "hello" }, // row 2
+  { myColumn1: 3, myColumn2: "hola" }, // row 3
+];
+```
+
+In the above example, each object inside of the `data` array represents a row in the table. The properties of the object correspond to the columns that will be rendered.
+
+Here is an example for a `columns` array:
+
+```jsx
+const columns = [
+  {
+    accessor: "myColumn1",
+    Header: "Column1 header",
+    width: 100,
+    isSticky: true,
+  },
+  {
+    accessor: "myColumn2",
+    Header: "Column2 header",
+  },
+];
+```
+
+In the above example, each object inside of the `columns` array represents a column in the table. We currently support (modified from [react-table](https://react-table.tanstack.com/docs/api/useTable#column-options)) these properties on each column:
+
+- `accessor: String | Function(originalRow, rowIndex) => any`
+  - **Required**
+  - This string/function is used to build the data model for your column.
+  - If a string is passed, the column's value will be looked up on the original row via that key, eg. If your column's accessor is `firstName` then its value would be read from `row['firstName']`.
+  - If a function is passed, the column's value will be looked up on the original row using this accessor function, eg. If your column's accessor is `row => row.firstName`, then its value would be determined by passing the row to this function and using the resulting value.
+- `id: String`
+  - **Required if accessor is a function**
+  - This is the unique ID for the column.
+  - If a **string** `accessor` is used, it defaults as the column ID, but can be overridden if necessary.
+- `columns: Array<Column>`
+  - Optional
+  - A nested array of columns.
+  - If defined, the column will act as a header group.
+- `Header: String | React.Component => JSX`
+  - Optional **but usually required if there's only one row for table header**
+  - Defaults to `() => null`
+  - Receives the table instance and column model as props
+- `Cell: React.Component => JSX`
+  - Optional
+  - Defaults to `({ value }) => String(value)`
+  - Receives the table instance and cell model as props
+- `width: Int`
+  - Optional
+  - Defaults to `150`
+  - Specifies the width for the column
+- `isSticky: Boolean`
+  - Optional
+  - Defaults to `false`
+  - Specifies whether the column is sticky to the left or not
+
+<Toast>
+  It's important that developers need to use React.useMemo to memorize the <code>columns</code> array to ensure
+  react-table doesn't recalcualte on every render.
+</Toast>
+
+To bring them together:
+
+```jsx
+const data = [
+  /* column */ /* colum */
+  { myColumn1: 1, myColumn2: "hi" }, // row 1
+  { myColumn1: 2, myColumn2: "hello" }, // row 2
+  { myColumn1: 3, myColumn2: "hola" }, // row 3
+];
+const columns = React.useMemo(
+  () => [
+    {
+      accessor: "myColumn1",
+      Header: "Column1 header",
+      width: 100,
+      isSticky: true,
+    },
+    {
+      accessor: "myColumn2",
+      Header: "Column2 header",
+    },
+  ],
+  []
+);
+
+return (
+  <DataTable.Table a11yText="Table a11y text." height={200} columns={columns} data={data}>
+    <DataTable.InfiniteLoader
+      itemCount={data.length}
+      isItemLoaded={index => data[index] !== undefined}
+      loadMoreItems={async () => console.log("")}
+    />
+  </DataTable.Table>
+);
+```
+
+Result:
+
+<DataTable.Table
+  a11yText="Table a11y text."
+  height={200}
+  columns={[
+    {
+      accessor: "myColumn1",
+      Header: "Column1 header",
+      width: 100,
+      isSticky: true,
+    },
+    {
+      accessor: "myColumn2",
+      Header: "Column2 header",
+    },
+  ]}
+  data={[
+    { myColumn1: 1, myColumn2: "hi" }, // row 1
+    { myColumn1: 2, myColumn2: "hello" }, // row 2
+    { myColumn1: 3, myColumn2: "hola" }, // row 3
+  ]}
+>
+  <DataTable.InfiniteLoader itemCount={3} isItemLoaded={() => true} loadMoreItems={async () => console.log("")} />
+</DataTable.Table>
+
+### Multi-level headers
+
+To render multi-level headers, you can define a nested `columns` structure, for example:
+
+```jsx
+const columns = [
+  {
+    Header: "Name",
+    isSticky: true,
+    columns: [
+      {
+        Header: "First Name",
+        accessor: "firstName",
+        width: 100,
+      },
+      {
+        Header: "Last Name",
+        accessor: "lastName",
+        width: 100,
+      },
+    ],
+  },
+  {
+    Header: "Info",
+    columns: [
+      {
+        Header: "Age",
+        accessor: "age",
+        width: 50,
+      },
+      {
+        Header: "Visits",
+        accessor: "visits",
+        width: 60,
+      },
+      {
+        Header: "Status",
+        accessor: "status",
+      },
+    ],
+  },
+];
+```
+
+result:
+
+<ShowcaseExample />

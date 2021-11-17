@@ -10,6 +10,7 @@ import { ThemeContext } from "./components/ThemeContext";
 import { TableHeader } from "./components/TableHeader";
 import { TableBody } from "./components/TableBody";
 import { TableRow } from "./components/TableRow";
+import useSticky from "./hooks/useSticky";
 
 import { TableDataItemType } from "./types";
 
@@ -69,7 +70,8 @@ function Table({
       defaultColumn,
       extraCellProps,
     },
-    useBlockLayout
+    useBlockLayout,
+    useSticky
   );
 
   function renderTableContent() {

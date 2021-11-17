@@ -30,12 +30,12 @@ function CustomCell(props: any) {
   );
 }
 
-const ShowcaseStory: (props: Partial<TableProps>) => JSX.Element = props => {
+export const ShowcaseStory: (props: Partial<TableProps>) => JSX.Element = props => {
   const columns = React.useMemo(
     () => [
       {
         Header: "Name",
-        // sticky: "left",
+        isSticky: true,
         columns: [
           {
             Header: "First Name",
@@ -99,7 +99,6 @@ const ShowcaseStory: (props: Partial<TableProps>) => JSX.Element = props => {
       },
       {
         Header: " ",
-        // sticky: "right",
         columns: [
           {
             Header: "Profile Progress",
@@ -120,9 +119,7 @@ const ShowcaseStory: (props: Partial<TableProps>) => JSX.Element = props => {
   };
 
   return (
-    <Story>
-      <StoryHeading level={1}>DataTable</StoryHeading>
-      <Tagline>DataTable component.</Tagline>
+    <>
       <div>
         <Button
           onClick={() => {
@@ -167,6 +164,7 @@ const ShowcaseStory: (props: Partial<TableProps>) => JSX.Element = props => {
       <DataTable.Table
         a11yText="Table a11y text."
         height={500}
+        width={800}
         columns={columns}
         data={items}
         extraCellProps={{ onClick: updateName }}
@@ -187,8 +185,14 @@ const ShowcaseStory: (props: Partial<TableProps>) => JSX.Element = props => {
           />
         ) : null}
       </DataTable.Table>
-    </Story>
+    </>
   );
 };
 
-export default () => <ShowcaseStory {...props()} />;
+export default () => (
+  <Story>
+    <StoryHeading level={1}>DataTable</StoryHeading>
+    <Tagline>DataTable component.</Tagline>
+    <ShowcaseStory {...props()} />
+  </Story>
+);
