@@ -25,7 +25,7 @@ showcase.story = {
 };
 
 export const variations = () => (
-  <ExampleStory storyName="Heading" tagline={ExampleStory.defaultTaglines.variations}>
+  <ExampleStory storyName="Variations" tagline={ExampleStory.defaultTaglines.variations}>
     <Variations />
   </ExampleStory>
 );
