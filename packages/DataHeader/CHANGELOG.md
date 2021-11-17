@@ -1,5 +1,94 @@
 <!-- content -->
 
+## 1.0.34-next.0
+
+### Patch Changes
+
+- Updated dependencies [59f5875]
+- Updated dependencies [4358ed8]
+  - @paprika/toast@1.1.16-next.0
+  - @paprika/data-grid@1.0.24-next.0
+  - @paprika/l10n@1.1.15-next.0
+  - @paprika/data-field@1.0.28-next.0
+  - @paprika/overflow-menu@2.0.2-next.0
+
+## 1.0.33
+
+### Patch Changes
+
+- Updated dependencies [1236ea1]
+- Updated dependencies [fd24fbe]
+- Updated dependencies [ab8d494]
+  - @paprika/button@1.1.8
+  - @paprika/stylers@1.1.3
+  - @paprika/tokens@1.1.2
+  - @paprika/data-field@1.0.27
+  - @paprika/data-grid@1.0.23
+  - @paprika/icon@2.1.3
+  - @paprika/overflow-menu@2.0.1
+  - @paprika/popover@2.0.1
+  - @paprika/raw-button@1.0.9
+  - @paprika/toast@1.1.15
+
+## 1.0.33-next.1
+
+### Patch Changes
+
+- Updated dependencies [fd24fbe]
+  - @paprika/stylers@1.1.3-next.1
+  - @paprika/tokens@1.1.2-next.1
+  - @paprika/data-grid@1.0.23-next.1
+
+## 1.0.33-next.0
+
+### Patch Changes
+
+- Updated dependencies [1236ea1]
+- Updated dependencies [ab8d494]
+  - @paprika/button@1.1.8-next.0
+  - @paprika/tokens@1.1.2-next.0
+  - @paprika/data-field@1.0.27-next.0
+  - @paprika/data-grid@1.0.23-next.0
+  - @paprika/overflow-menu@2.0.1-next.0
+  - @paprika/toast@1.1.15-next.0
+  - @paprika/icon@2.1.3-next.0
+  - @paprika/popover@2.0.1-next.0
+  - @paprika/raw-button@1.0.9-next.0
+  - @paprika/stylers@1.1.3-next.0
+
+## 1.0.32
+
+### Patch Changes
+
+- Updated dependencies [371d3d3]
+- Updated dependencies [27e1439]
+  - @paprika/overflow-menu@2.0.0
+  - @paprika/popover@2.0.0
+  - @paprika/icon@2.1.2
+  - @paprika/tokens@1.1.1
+  - @paprika/button@1.1.7
+  - @paprika/data-field@1.0.26
+  - @paprika/data-grid@1.0.22
+  - @paprika/raw-button@1.0.8
+  - @paprika/stylers@1.1.2
+  - @paprika/toast@1.1.14
+
+## 1.0.32-next.1
+
+### Patch Changes
+
+- Updated dependencies [27e1439]
+  - @paprika/icon@2.1.2-next.0
+  - @paprika/tokens@1.1.1-next.0
+  - @paprika/button@1.1.7-next.0
+  - @paprika/data-field@1.0.26-next.1
+  - @paprika/data-grid@1.0.22-next.0
+  - @paprika/overflow-menu@2.0.0-next.1
+  - @paprika/toast@1.1.14-next.0
+  - @paprika/popover@2.0.0-next.1
+  - @paprika/raw-button@1.0.8-next.0
+  - @paprika/stylers@1.1.2-next.0
+
 ## 1.0.32-next.0
 
 ### Patch Changes

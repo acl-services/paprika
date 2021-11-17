@@ -4,7 +4,7 @@ import * as types from "../../types";
 import * as sc from "./Dialog.styles";
 
 function Dialog(props) {
-  const [isAnimating, setIsAnimating] = React.useState(false);
+  const [isAnimating, setIsAnimating] = React.useState(true);
   const refPanel = React.useRef(null);
 
   const {
@@ -48,7 +48,6 @@ function Dialog(props) {
       </sc.DialogContent>
     </>
   );
-
   React.useEffect(() => {
     setIsAnimating(true);
   }, [isOpen]);

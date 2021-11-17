@@ -50,7 +50,10 @@ export const CloseButtonStyled = styled(Button.Close)(
   ({ kind }) => css`
     flex-grow: 0;
     flex-shrink: 0;
+    margin-bottom: -6px;
     margin-left: ${tokens.space};
+    margin-right: -7px;
+    margin-top: -6px;
     min-height: 0;
 
     ${closeButtonColors[kind] && `color: ${closeButtonColors[kind]};`}
@@ -86,7 +89,7 @@ export const Toast = styled.div(
     font-weight: normal;
     margin-bottom: ${stylers.spacer(2)};
     min-height: ${stylers.spacer(3)};
-    padding: ${tokens.spaceLg};
+    padding: ${tokens.spaceLg} ${tokens.spaceLg} 10px ${tokens.spaceLg};
     position: relative;
     text-align: left;
     transition: opacity 0.3s ease-out;

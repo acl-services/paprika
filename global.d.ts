@@ -1,2 +1,4 @@
-declare module "storybook/storyTree";
-declare module "storybook/assets/styles/common.styles";
+declare module "storybook/*";
+declare module "@storybook/*";
+declare module "@paprika/stylers";
+declare module "@paprika/tokens";

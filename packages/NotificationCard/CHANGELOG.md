@@ -1,5 +1,42 @@
 # Changelog
 
+## 1.0.14
+
+### Patch Changes
+
+- Updated dependencies [fd24fbe]
+- Updated dependencies [ab8d494]
+  - @paprika/stylers@1.1.3
+  - @paprika/tokens@1.1.2
+  - @paprika/heading@1.0.11
+
+## 1.0.14-next.0
+
+### Patch Changes
+
+- Updated dependencies [ab8d494]
+  - @paprika/tokens@1.1.2-next.0
+  - @paprika/heading@1.0.11-next.0
+  - @paprika/stylers@1.1.3-next.0
+
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies [27e1439]
+  - @paprika/tokens@1.1.1
+  - @paprika/heading@1.0.10
+  - @paprika/stylers@1.1.2
+
+## 1.0.13-next.0
+
+### Patch Changes
+
+- Updated dependencies [27e1439]
+  - @paprika/tokens@1.1.1-next.0
+  - @paprika/heading@1.0.10-next.0
+  - @paprika/stylers@1.1.2-next.0
+
 ## 1.0.12
 
 ### Patch Changes
