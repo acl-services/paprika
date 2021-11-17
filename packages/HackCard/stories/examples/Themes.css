@@ -1,0 +1,18 @@
+.css-theme [data-pka-anchor="card"] {
+  border: 1px solid #ccc;
+  color: #09c;
+  display: inline-block;
+  padding: 0 2px;
+}
+.css-theme [data-pka-size="large"] {
+  font-weight: bold;
+}
+
+.css-tweak {
+  font-size: 12px;
+  text-transform: lowercase;
+}
+.css-twunk {
+  font-size: 24px;
+  text-transform: uppercase;
+}

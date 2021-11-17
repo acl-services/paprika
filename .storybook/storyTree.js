@@ -1,24 +1,36 @@
 // prettier-ignore
 const storyTree = [
   {
+    category: "Hacks",
+    components: [
+      "HackCard", 
+      "HackHeading",
+      "HackButton", 
+      "HackCollapsible", 
+      "HackIcon", 
+      "HackTabs",
+      "HackPanel",
+    ],
+  },
+  {
     category: "Display",
     components: [
-      "Avatar",
-      "Counter",
-      "Heading",
-      "Icon",
-      "Tag"
+      "Avatar", 
+      "Counter", 
+      "Heading", 
+      "Icon", 
+      "Tag",
     ],
   },
   {
     category: "Table",
     components: [
-      "ActionBar",
-      "DataField",
-      "DataGrid",
-      "DataHeader",
-      "Filter",
-      "Table"
+      "ActionBar", 
+      "DataField", 
+      "DataGrid", 
+      "DataHeader", 
+      "Filter", 
+      "Table",
     ],
   },
   {
@@ -31,7 +43,7 @@ const storyTree = [
       "ExternalLink",
       "Link",
       "RawButton",
-      "StatusTracker"
+      "StatusTracker",
     ],
   },
   {
@@ -56,7 +68,7 @@ const storyTree = [
       "Textarea",
       "TimePicker",
       "Uploader",
-      "InlineEditors"
+      "InlineEditors",
     ],
   },
   {
@@ -70,7 +82,7 @@ const storyTree = [
       "Panel",
       "Spinner",
       "Takeover",
-      "Toast"
+      "Toast",
     ],
   },
   {
@@ -85,7 +97,7 @@ const storyTree = [
       "Pagination",
       "ProgressAccordion",
       "SideNavigation",
-      "Tabs"
+      "Tabs",
     ],
   },
   {
@@ -99,10 +111,16 @@ const storyTree = [
       "helpers",
       "DynamicHyperlinkTransformer",
       "MockEndpoints",
-      "seducer"
+      "seducer",
     ],
   },
 ];
+
+function getCategories() {
+  return storyTree.map(catList => {
+    return catList.category;
+  });
+}
 
 function getCategory(component) {
   return storyTree.find(catList => catList.components.includes(component)).category;
@@ -118,6 +136,7 @@ function getStoryUrlPrefix(component) {
 
 module.exports = {
   getCategory,
+  getCategories,
   getStoryName,
   getStoryUrlPrefix,
   storyTree,
