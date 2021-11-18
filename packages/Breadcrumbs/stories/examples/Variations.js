@@ -23,10 +23,27 @@ const AllVariations = () => (
       <Breadcrumbs.Link href={URL}>Breadcrumb 5</Breadcrumbs.Link>
       <Breadcrumbs.Link href={URL}>Breadcrumb 6</Breadcrumbs.Link>
     </Breadcrumbs>
-    <Gap.Small />
+    <Gap />
     <StoryHeading level={3}>Single breadcrumb</StoryHeading>
     <Breadcrumbs>
       <Breadcrumbs.Link href={URL}>Breadcrumb 1</Breadcrumbs.Link>
+    </Breadcrumbs>
+    <Gap.Small />
+    <CodeHeading>
+      <span>With</span> null
+    </CodeHeading>
+    <Breadcrumbs>
+      <Breadcrumbs.Link href={URL}>Breadcrumb 1</Breadcrumbs.Link>
+      {true === false ? <Breadcrumbs.Link href={URL}>Breadcrumb 2</Breadcrumbs.Link> : null}
+    </Breadcrumbs>
+    <Gap.Small />
+    <CodeHeading>
+      <span>With</span> {`<React.Fragment>`}
+    </CodeHeading>
+    <Breadcrumbs>
+      <>
+        <Breadcrumbs.Link href={URL}>Breadcrumb 1</Breadcrumbs.Link>
+      </>
     </Breadcrumbs>
     <Gap />
 
