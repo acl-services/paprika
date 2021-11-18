@@ -20,7 +20,7 @@ const data = fixtures(10);
 
 export function App() {
   return (
-    <React.Fragment>
+    <>
       <Sbook.Story>
         <DataGrid data={data}>
           <DataGrid.ColumnDefinition header="Countries" cell="country" />
@@ -31,7 +31,7 @@ export function App() {
           <DataGrid.ColumnDefinition header="Status 3" cell="status" />
         </DataGrid>
       </Sbook.Story>
-    </React.Fragment>
+    </>
   );
 }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react"; // fireEvent, waitFor, screen
+import { render, fireEvent, screen, waitFor } from "@testing-library/react"; // fireEvent, waitFor, screen
 import SearchBasic from "../stories/examples/Basic";
 
 function getTrigger(container) {
@@ -19,14 +19,14 @@ describe("Search", () => {
     const { container } = render(<SearchBasic />);
 
     await waitFor(() => {
-      expect(getPopover()).toHaveAttribute("aria-hidden", "true");
+      expect(getPopover()).not.toBeInTheDocument();
     });
 
     fireEvent.click(getTrigger(container));
     fireEvent.change(screen.getByRole("textbox"), { target: { value: "t" } });
 
     await waitFor(() => {
-      expect(getPopover()).toHaveAttribute("aria-hidden", "false");
+      expect(getPopover()).toBeInTheDocument();
     });
 
     expect(screen.queryByPlaceholderText("Search...")).toBeInTheDocument();
@@ -41,9 +41,9 @@ describe("Search", () => {
     fireEvent.change(screen.getByRole("textbox"), { target: { value: "Fin" } });
     fireEvent.click(getTrigger(container));
 
-    await waitForElementToBeRemoved(screen.queryByText("Assets for third party vendor"));
     await waitFor(() => {
-      expect(screen.queryByText("Search term...")).toBeInTheDocument();
+      expect(screen.queryByText("Assets for third party vendor")).not.toBeInTheDocument();
+      expect(screen.getByText("Search term...")).toBeInTheDocument();
     });
   });
   test("should filter the list", async () => {
@@ -51,13 +51,12 @@ describe("Search", () => {
     fireEvent.change(screen.getByRole("textbox"), { target: { value: "Fin" } });
     fireEvent.click(getTrigger(container));
 
-    await waitForElementToBeRemoved(screen.queryByText("Assets for third party vendor"));
-
     await waitFor(() => {
-      expect(screen.queryByText("Finding automatic vendor requirements")).toBeInTheDocument();
+      expect(screen.queryByText("Assets for third party vendor")).not.toBeInTheDocument();
+      expect(screen.getByText("Finding automatic vendor requirements")).toBeInTheDocument();
       expect(screen.queryByText("Assets for third party vendor")).not.toBeInTheDocument();
       expect(screen.getByRole("textbox")).toHaveAttribute("value", "Fin");
-      expect(screen.queryByText("Search term...")).toBeInTheDocument();
+      expect(screen.getByText("Search term...")).toBeInTheDocument();
     });
   });
 
@@ -67,11 +66,11 @@ describe("Search", () => {
       target: { value: "Asset" },
     });
     fireEvent.click(getTrigger(container));
-    await waitForElementToBeRemoved(screen.queryByText("Finding automatic vendor requirements"));
-    fireEvent.click(screen.queryAllByRole("option")[1]);
     await waitFor(() => {
       expect(screen.queryByText("Finding automatic vendor requirements")).not.toBeInTheDocument();
-      expect(screen.queryByText("→vendor (assets type)")).toBeInTheDocument();
+      fireEvent.click(screen.queryAllByRole("option")[1]);
+      expect(screen.queryByText("Finding automatic vendor requirements")).not.toBeInTheDocument();
+      expect(screen.getByText("→vendor (assets type)")).toBeInTheDocument();
     });
   });
 });

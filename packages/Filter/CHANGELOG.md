@@ -1,5 +1,174 @@
 # Changelog
 
+## 2.0.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [4358ed8]
+  - @paprika/l10n@1.1.15-next.0
+  - @paprika/list-box@4.0.2-next.0
+  - @paprika/date-picker@2.0.2-next.0
+  - @paprika/input@4.0.14-next.0
+  - @paprika/panel@2.2.1-next.0
+
+## 2.0.2
+
+### Patch Changes
+
+- Updated dependencies [1236ea1]
+- Updated dependencies [fd24fbe]
+- Updated dependencies [ab8d494]
+- Updated dependencies [2463c4d]
+  - @paprika/button@1.1.8
+  - @paprika/panel@2.2.0
+  - @paprika/stylers@1.1.3
+  - @paprika/tokens@1.1.2
+  - @paprika/date-picker@2.0.1
+  - @paprika/icon@2.1.3
+  - @paprika/input@4.0.13
+  - @paprika/list-box@4.0.1
+  - @paprika/radio@1.0.18
+  - @paprika/select@2.0.8
+
+## 2.0.2-next.1
+
+### Patch Changes
+
+- Updated dependencies [fd24fbe]
+- Updated dependencies [2463c4d]
+  - @paprika/stylers@1.1.3-next.1
+  - @paprika/tokens@1.1.2-next.1
+  - @paprika/panel@2.2.0-next.1
+
+## 2.0.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [1236ea1]
+- Updated dependencies [ab8d494]
+  - @paprika/button@1.1.8-next.0
+  - @paprika/panel@2.1.10-next.0
+  - @paprika/tokens@1.1.2-next.0
+  - @paprika/input@4.0.13-next.0
+  - @paprika/list-box@4.0.1-next.0
+  - @paprika/date-picker@2.0.1-next.0
+  - @paprika/icon@2.1.3-next.0
+  - @paprika/radio@1.0.18-next.0
+  - @paprika/select@2.0.8-next.0
+  - @paprika/stylers@1.1.3-next.0
+
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies [371d3d3]
+- Updated dependencies [27e1439]
+  - @paprika/date-picker@2.0.0
+  - @paprika/list-box@4.0.0
+  - @paprika/icon@2.1.2
+  - @paprika/tokens@1.1.1
+  - @paprika/button@1.1.7
+  - @paprika/input@4.0.12
+  - @paprika/panel@2.1.9
+  - @paprika/radio@1.0.17
+  - @paprika/select@2.0.7
+  - @paprika/stylers@1.1.2
+
+## 2.0.1-next.1
+
+### Patch Changes
+
+- Updated dependencies [27e1439]
+  - @paprika/icon@2.1.2-next.0
+  - @paprika/tokens@1.1.1-next.0
+  - @paprika/button@1.1.7-next.0
+  - @paprika/input@4.0.12-next.0
+  - @paprika/list-box@4.0.0-next.1
+  - @paprika/panel@2.1.9-next.0
+  - @paprika/radio@1.0.17-next.0
+  - @paprika/select@2.0.7-next.0
+  - @paprika/date-picker@2.0.0-next.1
+  - @paprika/stylers@1.1.2-next.0
+
+## 2.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [371d3d3]
+  - @paprika/date-picker@2.0.0-next.0
+  - @paprika/list-box@4.0.0-next.0
+
+## 2.0.0
+
+### Major Changes
+
+- 14e882e: When a filter is a SINGLE_SELECT or a MULTI_SELECT, the data must now be an object with the keys "id" and "label". That way the filter can use the "id" and show the "label".
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+- Updated dependencies [fd94ddb]
+  - @paprika/tokens@1.1.0
+  - @paprika/button@1.1.6
+  - @paprika/date-picker@1.0.26
+  - @paprika/icon@2.1.1
+  - @paprika/input@4.0.11
+  - @paprika/list-box@3.6.2
+  - @paprika/panel@2.1.8
+  - @paprika/radio@1.0.16
+  - @paprika/select@2.0.6
+  - @paprika/stylers@1.1.1
+
+## 2.0.0-next.1
+
+### Major Changes
+
+- 14e882e: When a filter is a SINGLE_SELECT or a MULTI_SELECT, the data must now be an object with the keys "id" and "label". That way the filter can use the "id" and show the "label".
+
+## 1.2.16-next.0
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+  - @paprika/tokens@1.1.0-next.0
+  - @paprika/button@1.1.6-next.0
+  - @paprika/date-picker@1.0.26-next.0
+  - @paprika/icon@2.1.1-next.0
+  - @paprika/input@4.0.11-next.0
+  - @paprika/list-box@3.6.2-next.0
+  - @paprika/panel@2.1.8-next.0
+  - @paprika/radio@1.0.16-next.0
+  - @paprika/select@2.0.6-next.0
+  - @paprika/stylers@1.1.1-next.0
+
+## 1.2.15
+
+### Patch Changes
+
+- Updated dependencies [5e1c563]
+  - @paprika/icon@2.1.0
+  - @paprika/button@1.1.5
+  - @paprika/date-picker@1.0.25
+  - @paprika/input@4.0.10
+  - @paprika/list-box@3.6.1
+  - @paprika/panel@2.1.7
+  - @paprika/radio@1.0.15
+  - @paprika/select@2.0.5
+
+## 1.2.15-next.0
+
+### Patch Changes
+
+- Updated dependencies [5e1c563]
+  - @paprika/icon@2.1.0-next.0
+  - @paprika/button@1.1.5-next.0
+  - @paprika/input@4.0.10-next.0
+  - @paprika/list-box@3.6.1-next.0
+  - @paprika/panel@2.1.7-next.0
+  - @paprika/radio@1.0.15-next.0
+  - @paprika/select@2.0.5-next.0
+  - @paprika/date-picker@1.0.25-next.0
+
 ## 1.2.14
 
 ### Patch Changes

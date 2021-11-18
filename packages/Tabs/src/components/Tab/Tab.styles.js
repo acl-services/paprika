@@ -82,7 +82,6 @@ const verticalStyles = ({ hasTruncation }) => css`
 `;
 
 const baseStyles = ({ isDisabled, isSelected, isVertical, size }) => css`
-  background-color: ${tokens.color.white};
   border: 0;
   box-sizing: border-box;
   color: ${tokens.color.black};

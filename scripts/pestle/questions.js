@@ -48,23 +48,29 @@ module.exports = {
         type: "checkbox",
         name: "testTypes",
         message: "Include ...",
-        choices: [choices.jest, choices.cypress]
+        choices: [choices.jest, choices.cypress],
       },
     ],
     selectStoryType: [
       {
-       type: "checkbox",
-       name: "storyTypes",
-       message: "Include ...",
-       choices: [choices.showcaseStory, choices.screenerStory, choices.variationStory, choices.mdxStory, choices.exampleStory] 
-      }
+        type: "checkbox",
+        name: "storyTypes",
+        message: "Include ...",
+        choices: [
+          choices.showcaseStory,
+          choices.screenerStory,
+          choices.variationStory,
+          choices.mdxStory,
+          choices.exampleStory,
+        ],
+      },
     ],
     exampleStoryName: [
       {
         type: "input",
         name: "storyName",
         message: "Enter the example story name ...",
-      }
-    ]
+      },
+    ],
   },
 };

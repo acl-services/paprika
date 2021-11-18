@@ -4,7 +4,7 @@ import * as types from "../../types";
 import * as sc from "./Dialog.styles";
 
 function Dialog(props) {
-  const [isAnimating, setIsAnimating] = React.useState(false);
+  const [isAnimating, setIsAnimating] = React.useState(true);
   const refPanel = React.useRef(null);
 
   const {
@@ -33,7 +33,7 @@ function Dialog(props) {
   const isHeaderSticky = header && header.props.isSticky;
 
   const dialogMain = (
-    <React.Fragment>
+    <>
       <sc.DialogContent
         data-pka-anchor="panel.content"
         hasPushedElement={!!getPushContentElement}
@@ -46,9 +46,8 @@ function Dialog(props) {
       >
         {children}
       </sc.DialogContent>
-    </React.Fragment>
+    </>
   );
-
   React.useEffect(() => {
     setIsAnimating(true);
   }, [isOpen]);

@@ -10,7 +10,7 @@ export default function BasicPanel() {
   };
 
   return (
-    <React.Fragment>
+    <>
       <Nav />
       <Panel a11yText="Panel View" isOpen={isOpen} onClose={toggle}>
         <Panel.Overlay />
@@ -27,6 +27,6 @@ export default function BasicPanel() {
         </Panel.Footer>
       </Panel>
       <TextLine repeat={100} />
-    </React.Fragment>
+    </>
   );
 }

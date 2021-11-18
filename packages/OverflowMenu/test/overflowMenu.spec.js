@@ -25,19 +25,17 @@ function renderComponent(props = {}) {
           <OverflowMenu.Item onClick={() => {}}>Filter</OverflowMenu.Item>
           <OverflowMenu.Item
             isDestructive
-            renderConfirmation={onCloseMenu => {
-              return (
-                newConfirmation || (
-                  <Confirmation
-                    body="description"
-                    confirmLabel="Confirm Delete"
-                    onConfirm={handleConfirm}
-                    onClose={handleCloseConfirm(onCloseMenu)}
-                    heading="Delete Button?"
-                  />
-                )
-              );
-            }}
+            renderConfirmation={onCloseMenu =>
+              newConfirmation || (
+                <Confirmation
+                  body="description"
+                  confirmLabel="Confirm Delete"
+                  onConfirm={handleConfirm}
+                  onClose={handleCloseConfirm(onCloseMenu)}
+                  heading="Delete Button?"
+                />
+              )
+            }
           >
             Delete
           </OverflowMenu.Item>
@@ -50,9 +48,7 @@ function renderComponent(props = {}) {
 
   return {
     ...renderedComponent,
-    rerender: (newProps, newConfirmation) => {
-      return renderedComponent.rerender(getComponent(newProps, newConfirmation));
-    },
+    rerender: (newProps, newConfirmation) => renderedComponent.rerender(getComponent(newProps, newConfirmation)),
   };
 }
 

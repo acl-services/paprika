@@ -9,18 +9,16 @@ const propKnobs = () => ({
   children: text("children", "Response body."),
 });
 
-const ExampleStory = () => {
-  return (
-    <AccordionStory>
-      <ProgressAccordion.Responses>
-        <ProgressAccordion.Responses.Item {...propKnobs()} />
-        <ProgressAccordion.Responses.Item heading="Empty example" />
-        <ProgressAccordion.Responses.Item heading="Long example">
-          {Array(3).fill(mockResponses[2].body)}
-        </ProgressAccordion.Responses.Item>
-      </ProgressAccordion.Responses>
-    </AccordionStory>
-  );
-};
+const ExampleStory = () => (
+  <AccordionStory>
+    <ProgressAccordion.Responses>
+      <ProgressAccordion.Responses.Item {...propKnobs()} />
+      <ProgressAccordion.Responses.Item heading="Empty example" />
+      <ProgressAccordion.Responses.Item heading="Long example">
+        {Array(3).fill(mockResponses[2].body)}
+      </ProgressAccordion.Responses.Item>
+    </ProgressAccordion.Responses>
+  </AccordionStory>
+);
 
 export default () => <ExampleStory />;

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
+import tokens from "@paprika/tokens";
 import ButtonGroupContext from "../../ButtonGroupContext";
 import * as sc from "./Item.styles";
 
@@ -24,9 +25,7 @@ const Item = props => {
   React.useEffect(() => {
     setItemRefs(prevItemRefs => [...prevItemRefs, itemRef]);
     if (defaultIsActive) {
-      setSelectedItems(prevItems => {
-        return isMulti ? [...prevItems, value] : [value];
-      });
+      setSelectedItems(prevItems => (isMulti ? [...prevItems, value] : [value]));
     }
   }, []);
 
@@ -52,7 +51,11 @@ const Item = props => {
 
   return (
     <sc.Item {...buttonProps} ref={itemRef}>
-      {hasIcon && <React.Fragment>{isActive ? <sc.SelectedIcon /> : <sc.UnselectedIcon />}</React.Fragment>}
+      {hasIcon && (
+        <>
+          {isActive ? <sc.SelectedIcon size={tokens.icon.sizeSm} /> : <sc.UnselectedIcon size={tokens.icon.sizeSm} />}
+        </>
+      )}
       {children}
     </sc.Item>
   );

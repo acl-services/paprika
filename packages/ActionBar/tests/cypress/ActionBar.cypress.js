@@ -32,31 +32,24 @@ describe("ActionBar", () => {
 describe("ActionBar Sort", () => {
   it("should render options within the Sort button", () => {
     cy.findByText("Sort").should("be.visible");
-    cy.findAllByTestId("popover.content")
-      .eq(0)
-      .should("not.be.visible")
+    cy.findByTestId("popover.content")
+      .should("not.exist")
       .findByText("Add a field to sort by")
-      .should("not.be.visible");
-    cy.findAllByTestId("popover.content")
-      .eq(0)
+      .should("not.exist")
       .findByText("Apply")
-      .should("not.be.visible");
-    cy.findAllByTestId("popover.content")
-      .eq(0)
+      .should("not.exist")
       .findByText("Cancel")
-      .should("not.be.visible");
+      .should("not.exist");
 
     cy.findByText("Sort").click();
-    cy.findAllByTestId("popover.content")
-      .eq(0)
-      .should("be.visible");
+    cy.findByTestId("popover.content").should("be.visible");
     cy.findByText("Add a field to sort by").should("be.visible");
     cy.findByText("Apply").should("be.visible");
     cy.findByText("Cancel")
       .should("be.visible")
       .click();
 
-    cy.findAllByTestId("popover.content").should("not.be.visible");
+    cy.findByTestId("popover.content").should("not.exist");
   });
 
   it("should add new sort field by clicking 'Add a field to sort by'", () => {
@@ -82,7 +75,9 @@ describe("ActionBar Sort", () => {
       .eq(1)
       .should("contain", "805")
       .should("not.contain", "772");
-    cy.findByText("Sort").click();
+    cy.findByText("Sort")
+      .click()
+      .wait(200);
     cy.findByText("Add a field to sort by").click();
     cy.get("select")
       .eq(0)
@@ -92,8 +87,8 @@ describe("ActionBar Sort", () => {
       .eq(1)
       .select("Sort descending (Z → A)")
       .should("have.value", "DESCEND");
-    cy.findByText("Apply").click();
     cy.findByTestId("sort.sort-field").should("have.length", 1);
+    cy.findByText("Apply").click();
     cy.get("tr")
       .eq(1)
       .should("contain", "772")
@@ -104,17 +99,15 @@ describe("ActionBar Sort", () => {
 describe("ActionBar Arrange Columns", () => {
   it("should render options within the Arrange columns button", () => {
     cy.findByText("Arrange").should("be.visible");
-    cy.findAllByTestId("popover.content").should("not.be.visible");
+    cy.findByTestId("popover.content").should("not.exist");
     cy.findAllByPlaceholderText("Search...")
       .eq(1)
-      .should("not.be.visible");
-    cy.findByText("Hide all").should("not.be.visible");
-    cy.findByText("Show all").should("not.be.visible");
+      .should("not.exist");
+    cy.findByText("Hide all").should("not.exist");
+    cy.findByText("Show all").should("not.exist");
 
     cy.findByText("Arrange").click();
-    cy.findAllByTestId("popover.content")
-      .eq(1)
-      .should("be.visible");
+    cy.findByTestId("popover.content").should("be.visible");
     cy.findAllByPlaceholderText("Search...")
       .eq(1)
       .should("be.visible");

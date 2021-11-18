@@ -4,17 +4,17 @@ import tokens from "@paprika/tokens";
 
 const counterSizeStyles = {
   small: `
-    ${stylers.fontSize(-3)}
-    height: ${tokens.counter.small};
+    font-size: 12px; // This is an exception that is missing from the font-scale
     line-height: 15px;
     min-width: ${tokens.counter.small};
+    padding: 2px;
   `,
 
   medium: `
-    font-size: 12px; // This is an exception that is missing from the font-scale
-    height: ${tokens.counter.medium};
+    ${stylers.fontSize(-1)}; 
     line-height: ${tokens.counter.small};
     min-width: ${tokens.counter.medium};
+    padding: 1 2px;
   `,
 };
 
@@ -61,8 +61,8 @@ export const Counter = styled.span(
   ({ hasIndicator, color, size }) => css`
     display: inline-flex;
     font-weight: bold;
+    height: 20px;
     justify-content: center;
-    padding: 0 2px;
     position: relative;
     top: -0.1em;
 

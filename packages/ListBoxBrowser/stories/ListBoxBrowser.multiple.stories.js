@@ -85,9 +85,7 @@ storiesOf(`${storyName}/Examples/Multi`, module)
         data={dataMultiple}
         rootTitle="Universes"
         browserTitle="Heroes"
-        defaultSelectedView={option => {
-          return ["Black Cat"].includes(option.label);
-        }}
+        defaultSelectedView={option => ["Black Cat"].includes(option.label)}
         defaultSelectedOptions={option => ["Aria", "Arcade", "Akhenaten"].includes(option.label)}
       >
         <ListBoxBrowser.OptionsSelected />

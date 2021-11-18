@@ -7,13 +7,11 @@ import {
   ListBoxMultipleWithSuccess,
 } from "../examples/ListBox";
 
-export const ForScreener = () => {
-  return (
-    <>
-      <ListBoxSingleStory />
-      <ListBoxMultipleWithError />
-      <ListBoxMultipleWithLoading />
-      <ListBoxMultipleWithSuccess />
-    </>
-  );
-};
+export const ForScreener = () => (
+  <>
+    <ListBoxSingleStory />
+    <ListBoxMultipleWithError />
+    <ListBoxMultipleWithLoading />
+    <ListBoxMultipleWithSuccess />
+  </>
+);

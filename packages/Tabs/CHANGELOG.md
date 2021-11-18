@@ -1,5 +1,71 @@
 # Changelog
 
+## 2.3.2
+
+### Patch Changes
+
+- Updated dependencies [fd24fbe]
+- Updated dependencies [ab8d494]
+  - @paprika/stylers@1.1.3
+  - @paprika/tokens@1.1.2
+  - @paprika/raw-button@1.0.9
+
+## 2.3.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [ab8d494]
+  - @paprika/tokens@1.1.2-next.0
+  - @paprika/raw-button@1.0.9-next.0
+  - @paprika/stylers@1.1.3-next.0
+
+## 2.3.1
+
+### Patch Changes
+
+- Updated dependencies [27e1439]
+  - @paprika/tokens@1.1.1
+  - @paprika/raw-button@1.0.8
+  - @paprika/stylers@1.1.2
+
+## 2.3.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [27e1439]
+  - @paprika/tokens@1.1.1-next.0
+  - @paprika/raw-button@1.0.8-next.0
+  - @paprika/stylers@1.1.2-next.0
+
+## 2.3.0
+
+### Minor Changes
+
+- 5c43029: Remove background colour on tabs
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+- Updated dependencies [fd94ddb]
+  - @paprika/tokens@1.1.0
+  - @paprika/raw-button@1.0.7
+  - @paprika/stylers@1.1.1
+
+## 2.3.0-next.1
+
+### Minor Changes
+
+- 5c43029: Remove background colour on tabs
+
+## 2.2.8-next.0
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+  - @paprika/tokens@1.1.0-next.0
+  - @paprika/raw-button@1.0.7-next.0
+  - @paprika/stylers@1.1.1-next.0
+
 ## 2.2.7
 
 ### Patch Changes

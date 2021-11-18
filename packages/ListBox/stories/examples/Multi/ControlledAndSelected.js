@@ -12,9 +12,7 @@ const styles = {
     font-size: 16px;
     margin: 2px;
     padding: 8px;
-    ${({ isSelected }) => {
-      return isSelected ? `background: ${tokens.color.blue}; color: ${tokens.color.white}` : "";
-    }}
+    ${({ isSelected }) => (isSelected ? `background: ${tokens.color.blue}; color: ${tokens.color.white}` : "")}
   `,
 };
 
@@ -47,7 +45,7 @@ export const ControlledAndSelected = () => {
   }
 
   return (
-    <React.Fragment>
+    <>
       <div css={styles.container}>
         <p>Click on any button to controlled the ListBox:</p>
         {options.map((item, index) => (
@@ -65,14 +63,12 @@ export const ControlledAndSelected = () => {
       </div>
       <hr />
       <ListBox isInline isMulti onChange={handleChange}>
-        {options.map(item => {
-          return (
-            <ListBox.Option key={item.label} isSelected={item.isSelected}>
-              {item.label}
-            </ListBox.Option>
-          );
-        })}
+        {options.map(item => (
+          <ListBox.Option key={item.label} isSelected={item.isSelected}>
+            {item.label}
+          </ListBox.Option>
+        ))}
       </ListBox>
-    </React.Fragment>
+    </>
   );
 };
