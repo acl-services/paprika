@@ -150,6 +150,9 @@ export const Checkbox = styled.div(
           opacity: 0.5;
           transition: none;
         }
+        & + label:before {
+          border: 2px solid ${tokens.border.color};
+        }
         &:checked,
         &:indeterminate {
           & + label::before {
