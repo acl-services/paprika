@@ -74,6 +74,7 @@
     "@paprika/seducer": "2.0.3"
   },
   "changesets": [
+    "chilly-moons-buy",
     "tidy-ants-tie",
     "unlucky-ladybugs-laugh"
   ]

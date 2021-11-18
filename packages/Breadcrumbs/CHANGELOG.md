@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.5-next.1
+
+### Patch Changes
+
+- 92a8984: Support null children and children wrapped in fragments
+
 ## 1.5.5-next.0
 
 ### Patch Changes
