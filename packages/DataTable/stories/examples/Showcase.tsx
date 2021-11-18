@@ -1,6 +1,6 @@
 import React from "react";
-import StoryHeading from "storybook/components/StoryHeading";
 import { select, boolean } from "@storybook/addon-knobs";
+import StoryHeading from "storybook/components/StoryHeading";
 import { Story, Tagline } from "storybook/assets/styles/common.styles";
 import * as DataTable from "../../src";
 import { TableProps } from "../../src/DataTable";
@@ -91,49 +91,23 @@ export const ShowcaseStory: (props: Partial<TableProps>) => JSX.Element = props 
     []
   );
 
-  const [, setParentState] = React.useState(0);
-  const [items, setItems] = React.useState(() => makeData(40));
+  const [items, setItems] = React.useState(() => makeData(5));
 
   return (
-    <>
-      <div>
-        <button
-          type="button"
-          onClick={() => {
-            setItems(makeData(40));
-          }}
-        >
-          Reset state
-        </button>
-      </div>
-      <div>
-        <button
-          type="button"
-          onClick={() => {
-            setParentState(x => x + 1);
-          }}
-        >
-          Update parent state
-        </button>
-      </div>
+    <DataTable.Table a11yText="Table a11y text." height={500} width={800} columns={columns} data={items} {...props}>
+      <DataTable.InfiniteLoader
+        itemCount={items.length + 1}
+        isItemLoaded={index => items[index] !== undefined}
+        isNextPageLoading={false}
+        loadMoreItems={async () => {
+          const newItems = await new Promise<Record<string, unknown>[]>(res =>
+            setTimeout(() => res(makeData(40)), 5000)
+          );
 
-      <br />
-
-      <DataTable.Table a11yText="Table a11y text." height={500} width={800} columns={columns} data={items} {...props}>
-        <DataTable.InfiniteLoader
-          itemCount={items.length + 1}
-          isItemLoaded={index => items[index] !== undefined}
-          isNextPageLoading={false}
-          loadMoreItems={async () => {
-            const newItems = await new Promise<Record<string, unknown>[]>(res =>
-              setTimeout(() => res(makeData(40)), 5000)
-            );
-
-            setItems(items.concat(newItems));
-          }}
-        />
-      </DataTable.Table>
-    </>
+          setItems(items.concat(newItems));
+        }}
+      />
+    </DataTable.Table>
   );
 };
 

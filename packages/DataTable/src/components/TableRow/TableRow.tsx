@@ -1,11 +1,15 @@
+/* eslint-disable react/require-default-props */
 import React from "react";
-import { ListChildComponentProps } from "react-window";
 import { useReactTableContext } from "../ReactTableContext";
 import { useThemeContext } from "../ThemeContext";
 import * as sc from "./TableRow.styles";
 
-// TODO: decouple TableRow from ListChildComponentProps
-export default function TableRow({ index, style }: ListChildComponentProps): JSX.Element {
+interface TableRowProps {
+  index: number;
+  style?: React.CSSProperties;
+}
+
+export default function TableRow({ index, style }: TableRowProps): JSX.Element {
   const { rows, prepareRow, totalColumnsWidth } = useReactTableContext();
   const { borderType, hasZebraStripes } = useThemeContext();
   const row = rows[index];

@@ -9,6 +9,7 @@ export const Table = styled.div<{
     border: 1px solid ${tokens.border.color};
     border-collapse: collapse;
     box-sizing: border-box;
+    overflow: auto;
     width: ${typeof width === "string" ? width : `${width}px`};
     ${fontSize()}
 

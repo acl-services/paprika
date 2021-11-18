@@ -1,10 +1,10 @@
 /* eslint-disable react/require-default-props */
 import React from "react";
 import { useTable, useBlockLayout, Column } from "react-table";
-import { extractChildrenProps } from "@paprika/helpers";
+import { extractChildren } from "@paprika/helpers";
 import { gridTypes } from "@paprika/constants";
 
-import { InfiniteLoader, InfiniteLoaderImpl, InfiniteLoaderPublicProps } from "./components/InfiniteLoader";
+import { InfiniteLoaderImpl, InfiniteLoaderPublicProps } from "./components/InfiniteLoader";
 import { ReactTableContext } from "./components/ReactTableContext";
 import { ThemeContext } from "./components/ThemeContext";
 import { TableHeader } from "./components/TableHeader";
@@ -37,6 +37,7 @@ export interface TableProps {
   isHeaderSticky?: boolean;
   renderRow?: (({ index, row }: { index: number; row: Record<string, unknown> }) => JSX.Element) | null;
   width?: string | number;
+  extraCellProps?: Record<string, unknown>;
   [x: string]: unknown;
 }
 
@@ -52,6 +53,7 @@ function Table({
   isHeaderSticky = true,
   renderRow = null,
   width = "100%",
+  extraCellProps = {},
   ...moreProps
 }: TableProps): JSX.Element {
   const defaultColumn = React.useMemo(
@@ -66,12 +68,38 @@ function Table({
       columns,
       data,
       defaultColumn,
+      extraCellProps,
     },
     useBlockLayout,
     useSticky
   );
 
-  const infiniteLoaderPublicProps = extractChildrenProps(children, InfiniteLoader) as InfiniteLoaderPublicProps;
+  function renderTableContent() {
+    const { InfiniteLoader: extractedInfiniteLoaderDefinition } = extractChildren(children, ["InfiniteLoader"]);
+    const hasInfiniteLoader = Boolean(extractedInfiniteLoaderDefinition);
+
+    if (hasInfiniteLoader) {
+      const infiniteLoaderPublicProps = extractedInfiniteLoaderDefinition.props as InfiniteLoaderPublicProps;
+
+      return (
+        <InfiniteLoaderImpl
+          data={data}
+          height={height}
+          innerElementType={InnerElement}
+          getRowHeight={getRowHeight}
+          {...infiniteLoaderPublicProps}
+        />
+      );
+    }
+
+    return (
+      <InnerElement>
+        {tableInstance.rows.map((row, index) => {
+          return <TableRow key={row.id} index={index} />;
+        })}
+      </InnerElement>
+    );
+  }
 
   return (
     <ThemeContext.Provider value={{ borderType, isHeaderSticky, hasZebraStripes }}>
@@ -83,16 +111,7 @@ function Table({
         {...moreProps}
       >
         <div style={{ position: "relative", flex: 1 }}>
-          <ReactTableContext.Provider value={tableInstance}>
-            <InfiniteLoaderImpl
-              data={data}
-              Row={TableRow}
-              height={height}
-              innerElementType={InnerElement}
-              getRowHeight={getRowHeight}
-              {...infiniteLoaderPublicProps}
-            />
-          </ReactTableContext.Provider>
+          <ReactTableContext.Provider value={tableInstance}>{renderTableContent()}</ReactTableContext.Provider>
         </div>
       </sc.Table>
     </ThemeContext.Provider>
