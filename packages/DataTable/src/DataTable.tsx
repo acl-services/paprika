@@ -37,7 +37,7 @@ export interface TableProps {
   isHeaderSticky?: boolean;
   renderRow?: (({ index, row }: { index: number; row: Record<string, unknown> }) => JSX.Element) | null;
   width?: string | number;
-  extraCellProps: Record<string, unknown>;
+  extraCellProps?: Record<string, unknown>;
   [x: string]: unknown;
 }
 
@@ -53,7 +53,7 @@ function Table({
   isHeaderSticky = true,
   renderRow = null,
   width = "100%",
-  extraCellProps,
+  extraCellProps = {},
   ...moreProps
 }: TableProps): JSX.Element {
   const defaultColumn = React.useMemo(
@@ -95,7 +95,7 @@ function Table({
     return (
       <InnerElement>
         {tableInstance.rows.map((row, index) => {
-          return <TableRow index={index} />;
+          return <TableRow key={row.id} index={index} />;
         })}
       </InnerElement>
     );
