@@ -31,6 +31,10 @@ const generalRadioStyle = {
     height: mediumRadioSize,
     left: mediumRadioHalfSize,
   },
+  labelStyles: hasLabel => ({
+    minHeight: mediumRadioSize,
+    padding: `0 0 0 ${getLabelLeftPadding(mediumRadioSize, hasLabel)}`,
+  }),
 };
 
 const styles = {
@@ -65,11 +69,6 @@ const styles = {
     baseFontSize: {
       fontSize: `${fontSizeValue(-1)}px`,
     },
-
-    labelStyles: hasLabel => ({
-      minHeight: mediumRadioSize,
-      padding: `1px 0 0 ${getLabelLeftPadding(mediumRadioSize, hasLabel)}`,
-    }),
   },
   [types.size.LARGE]: {
     ...generalRadioStyle,
@@ -77,11 +76,6 @@ const styles = {
     baseFontSize: {
       fontSize: `${fontSizeValue()}px`,
     },
-
-    labelStyles: hasLabel => ({
-      minHeight: mediumRadioSize,
-      padding: `0 0 0 ${getLabelLeftPadding(mediumRadioSize, hasLabel)}`,
-    }),
   },
 };
 
@@ -118,7 +112,7 @@ export const Radio = styled.div(
         ${styles[size].radioStyles};
         ${z(1)};
         background: ${tokens.color.white};
-        border: 2px solid ${tokens.border.hoverColor};
+        border: 2px solid ${tokens.border.blackLighten40};
         content: "";
         left: 0;
       }
