@@ -1,5 +1,32 @@
 # Changelog
 
+## 2.2.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [4358ed8]
+  - @paprika/l10n@1.1.15-next.0
+
+## 2.2.0
+
+### Minor Changes
+
+- 2463c4d: Fix panel rendering bugs
+
+### Patch Changes
+
+- 1236ea1: Update button font and icon sizes
+- ab8d494: update panel header colour to diligent brand colour
+- Updated dependencies [1236ea1]
+- Updated dependencies [fd24fbe]
+- Updated dependencies [ab8d494]
+  - @paprika/button@1.1.8
+  - @paprika/stylers@1.1.3
+  - @paprika/tokens@1.1.2
+  - @paprika/heading@1.0.11
+  - @paprika/icon@2.1.3
+  - @paprika/overlay@1.0.11
+
 ## 2.2.0-next.1
 
 ### Minor Changes

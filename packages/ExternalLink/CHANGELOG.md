@@ -1,5 +1,22 @@
 # Changelog
 
+## 2.0.19-next.0
+
+### Patch Changes
+
+- Updated dependencies [4358ed8]
+  - @paprika/l10n@1.1.15-next.0
+
+## 2.0.18
+
+### Patch Changes
+
+- Updated dependencies [fd24fbe]
+- Updated dependencies [ab8d494]
+  - @paprika/stylers@1.1.3
+  - @paprika/tokens@1.1.2
+  - @paprika/icon@2.1.3
+
 ## 2.0.18-next.0
 
 ### Patch Changes

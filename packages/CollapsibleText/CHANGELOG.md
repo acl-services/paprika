@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.0.24-next.0
+
+### Patch Changes
+
+- Updated dependencies [4358ed8]
+  - @paprika/l10n@1.1.15-next.0
+
+## 1.0.23
+
+### Patch Changes
+
+- Updated dependencies [1236ea1]
+- Updated dependencies [fd24fbe]
+- Updated dependencies [ab8d494]
+  - @paprika/button@1.1.8
+  - @paprika/tokens@1.1.2
+
 ## 1.0.23-next.0
 
 ### Patch Changes

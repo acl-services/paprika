@@ -1,5 +1,15 @@
 # @paprika/progress-bar
 
+## 1.1.6
+
+### Patch Changes
+
+- Updated dependencies [fd24fbe]
+- Updated dependencies [ab8d494]
+  - @paprika/stylers@1.1.3
+  - @paprika/tokens@1.1.2
+  - @paprika/heading@1.0.11
+
 ## 1.1.6-next.0
 
 ### Patch Changes
