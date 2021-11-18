@@ -13,14 +13,15 @@ function Breadcrumbs(props) {
   const { children, isDark, isAutoCollapsed, ...moreProps } = props;
   const I18n = useI18n();
 
-  const [isCollapsed, setIsCollapsed] = React.useState(shouldShowExpandButton);
   const linkChildren = [extractChildren(children, ["Breadcrumbs.Link"])["Breadcrumbs.Link"]].flat();
   const hasOnlyOneChild = linkChildren.length === 1;
   const shouldShowExpandButton = isAutoCollapsed && linkChildren.length > MAXIMUM_NUM_OF_LEVEL;
 
+  const [isCollapsed, setIsCollapsed] = React.useState(shouldShowExpandButton);
+
   React.useLayoutEffect(() => {
     setIsCollapsed(shouldShowExpandButton);
-  }, [linkChildren.length, shouldShowExpandButton]);
+  }, [shouldShowExpandButton]);
 
   function handleExpand() {
     setIsCollapsed(false);
@@ -33,13 +34,15 @@ function Breadcrumbs(props) {
           {linkChildren.map((child, index) => {
             if (shouldShowExpandButton && index === 0) {
               return (
-                <>
+                // eslint-disable-next-line react/no-array-index-key
+                <React.Fragment key={index}>
                   {child}
                   <ExpandButton onClick={handleExpand} isHidden={!isCollapsed} />
-                </>
+                </React.Fragment>
               );
             }
-            return React.cloneElement(child, { hasOnlyOneChild });
+            // eslint-disable-next-line react/no-array-index-key
+            return React.cloneElement(child, { hasOnlyOneChild, key: index });
           })}
         </sc.List>
       </sc.Nav>
