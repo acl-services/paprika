@@ -30,35 +30,30 @@ storiesOf(storyName, module)
     </Story>
   ));
 
-storiesOf(`${storyName}/Examples`, module)
-  .add("Switch sizes", () => (
-    <Story>
-      <h4>
-        <code>size=&quot;small&quot;</code>
-      </h4>
-      <Example size={Switch.types.size.SMALL} />
-      <p />
-      <h4>
-        <code>size=&quot;medium&quot;</code>
-      </h4>
-      <Example size={Switch.types.size.MEDIUM} />
-      <p />
-      <h4>
-        <code>size=&quot;large&quot;</code>
-      </h4>
-      <Example size={Switch.types.size.LARGE} />
-    </Story>
-  ))
-  .add("Disabled switch", () => (
-    <Story>
-      <h4>
-        <code>isDisabled</code>
-      </h4>
-      <Example isDisabled isChecked={false} />
-      <p />
-      <h4>
-        <code>isDisabled isChecked</code>
-      </h4>
-      <Example isDisabled isChecked />
-    </Story>
-  ));
+storiesOf(`${storyName}/Examples`, module).add("Variations", () => (
+  <Story>
+    <h4>
+      <code>size=&quot;small&quot;</code>
+    </h4>
+    <Example size={Switch.types.size.SMALL} />
+    <p />
+    <h4>
+      <code>size=&quot;medium&quot;</code>
+    </h4>
+    <Example size={Switch.types.size.MEDIUM} />
+    <p />
+    <h4>
+      <code>size=&quot;large&quot;</code>
+    </h4>
+    <Example size={Switch.types.size.LARGE} />
+    <h4>
+      <code>isDisabled</code>
+    </h4>
+    <Example isDisabled isChecked={false} />
+    <p />
+    <h4>
+      <code>isDisabled isChecked</code>
+    </h4>
+    <Example isDisabled isChecked />
+  </Story>
+));
