@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.15-next.1
+
+### Patch Changes
+
+- c3a7523: translations batch
+
 ## 1.1.15-next.0
 
 ### Patch Changes
