@@ -16,76 +16,47 @@ export const ShowcaseStory: (props: Partial<TableProps>) => JSX.Element = props 
   const columns = React.useMemo(
     () => [
       {
-        Header: "Name",
+        Header: "First Name",
+        accessor: "firstName",
+        width: 100,
         isSticky: true,
-        columns: [
-          {
-            Header: "First Name",
-            accessor: "firstName",
-            width: 100,
-          },
-          {
-            Header: "Last Name",
-            accessor: "lastName",
-            width: 100,
-          },
-        ],
       },
       {
-        Header: "Info",
-        columns: [
-          {
-            Header: "Age",
-            accessor: "age",
-            width: 50,
-          },
-          {
-            Header: "Visits",
-            accessor: "visits",
-            width: 60,
-          },
-          {
-            Header: "Status",
-            accessor: "status",
-          },
-        ],
+        Header: "Last Name",
+        accessor: "lastName",
+        width: 100,
+        isSticky: true,
       },
       {
-        Header: " ",
-        columns: [
-          {
-            Header: "Description",
-            accessor: "desc",
-          },
-        ],
+        Header: "Age",
+        accessor: "age",
+        width: 50,
       },
       {
-        Header: " ",
-        columns: [
-          {
-            Header: "More description",
-            accessor: "desc_more",
-          },
-        ],
+        Header: "Visits",
+        accessor: "visits",
+        width: 60,
       },
       {
-        Header: " ",
-        columns: [
-          {
-            Header: "Background",
-            accessor: "background",
-            width: 300,
-          },
-        ],
+        Header: "Status",
+        accessor: "status",
       },
       {
-        Header: " ",
-        columns: [
-          {
-            Header: "Profile Progress",
-            accessor: "progress",
-          },
-        ],
+        Header: "Description",
+        accessor: "desc",
+      },
+      {
+        Header: "More description",
+        accessor: "desc_more",
+      },
+      {
+        Header: "Background",
+        accessor: "background",
+        width: 300,
+      },
+      {
+        Header: "Profile Progress",
+        accessor: "progress",
       },
     ],
     []
@@ -94,7 +65,14 @@ export const ShowcaseStory: (props: Partial<TableProps>) => JSX.Element = props 
   const [items, setItems] = React.useState(() => makeData(5));
 
   return (
-    <DataTable.Table a11yText="Table a11y text." height={500} width={800} columns={columns} data={items} {...props}>
+    <DataTable.Table
+      a11yText="Data table for showcase."
+      height={500}
+      width={800}
+      columns={columns}
+      data={items}
+      {...props}
+    >
       <DataTable.InfiniteLoader
         itemCount={items.length + 1}
         isItemLoaded={index => items[index] !== undefined}

@@ -65,7 +65,7 @@ const CustomizedRowHeightCalculationStory: () => JSX.Element = () => {
       <StoryHeading level={1}>DataTable with customized row height calculation</StoryHeading>
 
       <DataTable.Table
-        a11yText="Table a11y text."
+        a11yText="Data table with customized row height calculation."
         height={500}
         columns={columns}
         data={items}

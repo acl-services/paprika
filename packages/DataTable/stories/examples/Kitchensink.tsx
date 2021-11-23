@@ -162,7 +162,7 @@ export const KitchensinkStory: (props: Partial<TableProps>) => JSX.Element = pro
       <br />
 
       <DataTable.Table
-        a11yText="Table a11y text."
+        a11yText="Kitchensink data table."
         height={500}
         columns={columns}
         data={items}
