@@ -35,25 +35,6 @@ enum ColumnId {
   progress = "progress",
 }
 
-function HeaderMenu() {
-  const handleClick = (value: string) => () => console.log(`clicked ${value}`);
-
-  return (
-    <OverflowMenu>
-      <OverflowMenu.Trigger buttonType="raw">
-        <EllipsisVertical />
-      </OverflowMenu.Trigger>
-      <OverflowMenu.Item onClick={handleClick("one")}>One</OverflowMenu.Item>
-      <OverflowMenu.Item onClick={handleClick("two")}>Two</OverflowMenu.Item>
-      <OverflowMenu.Item onClick={handleClick("three")}>Three</OverflowMenu.Item>
-    </OverflowMenu>
-  );
-}
-
-function Header({ column }: { column: Column }) {
-  return <DataHeader label={headerLabels[column.id as ColumnId]} renderActions={() => <HeaderMenu />} />;
-}
-
 const columnsSettings = [
   {
     id: ColumnId.firstName,
@@ -102,6 +83,25 @@ const columnsSettings = [
   },
 ];
 
+function HeaderMenu() {
+  const handleClick = (value: string) => () => console.log(`clicked ${value}`);
+
+  return (
+    <OverflowMenu>
+      <OverflowMenu.Trigger buttonType="raw">
+        <EllipsisVertical />
+      </OverflowMenu.Trigger>
+      <OverflowMenu.Item onClick={handleClick("one")}>One</OverflowMenu.Item>
+      <OverflowMenu.Item onClick={handleClick("two")}>Two</OverflowMenu.Item>
+      <OverflowMenu.Item onClick={handleClick("three")}>Three</OverflowMenu.Item>
+    </OverflowMenu>
+  );
+}
+
+function Header({ column }: { column: Column }) {
+  return <DataHeader label={headerLabels[column.id as ColumnId]} renderActions={() => <HeaderMenu />} />;
+}
+
 function isFixedColumn(columnId: ColumnId) {
   return columnId === ColumnId.firstName || columnId === ColumnId.lastName;
 }
@@ -124,12 +124,12 @@ export const RealWorldStory: () => JSX.Element = () => {
   });
   const filterProps = getFilterProps();
   const filterItemProps = getFilterItemProps();
-  const { orderedColumnId, isColumnHidden, ...handlers } = useColumnsArrangement({
-    defaultOrderedColumnId: Object.values(ColumnId),
+  const { orderedColumnIds, isColumnHidden, ...handlers } = useColumnsArrangement({
+    defaultOrderedColumnIds: Object.values(ColumnId),
   });
 
   const columns = React.useMemo(() => {
-    return orderedColumnId
+    return orderedColumnIds
       .map((columnId: ColumnId) =>
         isColumnHidden(columnId)
           ? null
@@ -142,7 +142,7 @@ export const RealWorldStory: () => JSX.Element = () => {
             }
       )
       .filter(Boolean);
-  }, [orderedColumnId, isColumnHidden]);
+  }, [orderedColumnIds, isColumnHidden]);
 
   return (
     <>
@@ -164,7 +164,7 @@ export const RealWorldStory: () => JSX.Element = () => {
           </Filter>
         </div>
 
-        <ColumnsArrangement orderedColumnId={orderedColumnId} {...handlers}>
+        <ColumnsArrangement orderedColumnIds={orderedColumnIds} {...handlers}>
           {columnsSettings.map(column => (
             <ColumnsArrangement.ColumnDefinition
               id={column.id}
