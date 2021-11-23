@@ -166,8 +166,8 @@ export const sizeStyles = {
   `,
   [types.LARGE]: css`
     ${stylers.fontSize()};
-    min-height: ${stylers.spacer(5)};
-    padding: 9px ${stylers.spacer(2)};
+    min-height: ${stylers.spacer(4.5)};
+    padding: 6px ${stylers.spacer(2)};
     [data-pka-anchor="button.icon"] svg {
       font-size: ${tokens.icon.sizeSm};
     }
@@ -322,7 +322,7 @@ export const ButtonIcon = styled.span(
     color: ${getIconColor(props)};
     display: inline-flex;
     justify-content: center;
-    margin: 0 ${tokens.spaceSm} 0 0;
+    margin: 0 ${tokens.spaceSm} 0 -${tokens.spaceSm};
     svg {
       vertical-align: -${(stylers.lineHeightValue(-1) - 1) / 2}em;
     }

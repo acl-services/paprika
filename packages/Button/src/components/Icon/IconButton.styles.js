@@ -18,10 +18,10 @@ const iconButtonSizes = {
     width: ${stylers.spacer(4)};
   `,
   [types.LARGE]: css`
-    height: ${stylers.spacer(5)};
+    height: ${stylers.spacer(4.5)};
     line-height: ${Number.parseInt(tokens.space, 10) * 5 - 2}px;
     padding: 0;
-    width: ${stylers.spacer(5)};
+    width: ${stylers.spacer(4.5)};
   `,
 };
 
