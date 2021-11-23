@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.0.14-next.0
+
+### Patch Changes
+
+- Updated dependencies [514dc04]
+  - @paprika/button@1.1.9-next.0
+  - @paprika/panel@2.2.2-next.0
+
 ## 3.0.13
 
 ### Patch Changes

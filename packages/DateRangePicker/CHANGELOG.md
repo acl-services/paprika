@@ -1,5 +1,12 @@
 # @paprika/date-range-picker
 
+## 1.0.30-next.0
+
+### Patch Changes
+
+- @paprika/calendar@2.0.3-next.0
+- @paprika/date-input@1.0.25-next.0
+
 ## 1.0.29
 
 ### Patch Changes

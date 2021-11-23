@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.0.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [514dc04]
+  - @paprika/button@1.1.9-next.0
+  - @paprika/input@4.0.15-next.0
+  - @paprika/toast@1.1.17-next.0
+
 ## 4.0.2
 
 ### Patch Changes

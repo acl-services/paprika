@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.38-next.0
+
+### Patch Changes
+
+- @paprika/list-box@4.0.3-next.0
+
 ## 1.0.37
 
 ### Patch Changes
