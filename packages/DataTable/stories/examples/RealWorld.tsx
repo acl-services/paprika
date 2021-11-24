@@ -6,6 +6,7 @@ import OverflowMenu from "@paprika/overflow-menu";
 import EllipsisVertical from "@paprika/icon/lib/EllipsisVertical";
 import Filter, { useFilter } from "@paprika/filter";
 import { ColumnsArrangement, useColumnsArrangement } from "@paprika/action-bar";
+import ResizeDetector, { useDimensions } from "@paprika/resize-detector";
 import Link from "@paprika/link";
 import { Column } from "react-table";
 import * as DataTable from "../../src";
@@ -106,6 +107,28 @@ function isFixedColumn(columnId: ColumnId) {
   return columnId === ColumnId.firstName || columnId === ColumnId.lastName;
 }
 
+function Table({ columns, data, onLoadMore }: any) {
+  const { width = 1200, height = 500 } = useDimensions();
+
+  return (
+    <DataTable.Table
+      a11yText="Data table for a real world example."
+      height={height}
+      width={width}
+      columns={columns}
+      data={data}
+      borderType="grid"
+    >
+      <DataTable.InfiniteLoader
+        itemCount={data.length + 1}
+        isItemLoaded={index => data[index] !== undefined}
+        isNextPageLoading={false}
+        loadMoreItems={onLoadMore}
+      />
+    </DataTable.Table>
+  );
+}
+
 export const RealWorldStory: () => JSX.Element = () => {
   function NameLink({ value }: { value: string }) {
     return <Link href="wegalvanize.com">{value}</Link>;
@@ -144,6 +167,12 @@ export const RealWorldStory: () => JSX.Element = () => {
       .filter(Boolean);
   }, [orderedColumnIds, isColumnHidden]);
 
+  const handleLoadMore = async () => {
+    const newItems = await new Promise<Record<string, unknown>[]>(res => setTimeout(() => res(makeData(40)), 5000));
+
+    setData(data.concat(newItems));
+  };
+
   return (
     <>
       <div style={{ display: "flex", margin: "12px 0" }}>
@@ -175,27 +204,10 @@ export const RealWorldStory: () => JSX.Element = () => {
           ))}
         </ColumnsArrangement>
       </div>
-      <DataTable.Table
-        a11yText="Data table for a real world example."
-        height={500}
-        width={1200}
-        columns={columns}
-        data={data}
-        borderType="grid"
-      >
-        <DataTable.InfiniteLoader
-          itemCount={data.length + 1}
-          isItemLoaded={index => data[index] !== undefined}
-          isNextPageLoading={false}
-          loadMoreItems={async () => {
-            const newItems = await new Promise<Record<string, unknown>[]>(res =>
-              setTimeout(() => res(makeData(40)), 5000)
-            );
 
-            setData(data.concat(newItems));
-          }}
-        />
-      </DataTable.Table>
+      <ResizeDetector isFullHeight style={{ height: "calc(100vh - 200px)" }}>
+        <Table columns={columns} data={data} onLoadMore={handleLoadMore} />
+      </ResizeDetector>
     </>
   );
 };

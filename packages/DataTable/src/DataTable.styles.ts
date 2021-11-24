@@ -4,12 +4,14 @@ import { fontSize } from "@paprika/stylers/lib/helpers";
 
 export const Table = styled.div<{
   width: string | number;
+  height: number;
 }>(
-  ({ width }) => css`
+  ({ width, height }) => css`
     border: 1px solid ${tokens.border.color};
     border-collapse: collapse;
     box-sizing: border-box;
-    overflow: auto;
+    height: ${`${height}px`};
+    overflow: hidden;
     width: ${typeof width === "string" ? width : `${width}px`};
     ${fontSize()}
 

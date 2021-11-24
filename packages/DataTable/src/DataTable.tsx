@@ -107,6 +107,7 @@ function Table({
         aria-label={a11yText}
         data-pka-anchor="table"
         width={width}
+        height={height}
         {...tableInstance.getTableProps()}
         {...moreProps}
       >
