@@ -1,5 +1,22 @@
 <!-- content -->
 
+## 1.0.29-next.0
+
+### Patch Changes
+
+- Updated dependencies [514dc04]
+  - @paprika/button@1.1.9-next.0
+  - @paprika/data-grid@1.0.25-next.0
+
+## 1.0.28
+
+### Patch Changes
+
+- Updated dependencies [c3a7523]
+- Updated dependencies [4358ed8]
+  - @paprika/l10n@1.1.15
+  - @paprika/data-grid@1.0.24
+
 ## 1.0.28-next.0
 
 ### Patch Changes

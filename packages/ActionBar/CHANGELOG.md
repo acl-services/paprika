@@ -1,5 +1,24 @@
 # Changelog
 
+## 4.0.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [514dc04]
+  - @paprika/button@1.1.9-next.0
+  - @paprika/input@4.0.15-next.0
+  - @paprika/sortable@1.2.9-next.0
+
+## 4.0.2
+
+### Patch Changes
+
+- Updated dependencies [c3a7523]
+- Updated dependencies [4358ed8]
+  - @paprika/l10n@1.1.15
+  - @paprika/input@4.0.14
+  - @paprika/sortable@1.2.8
+
 ## 4.0.2-next.0
 
 ### Patch Changes
