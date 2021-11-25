@@ -106,17 +106,14 @@ export default function Panel(props) {
     switch (slideFrom) {
       case types.slideFroms.LEFT:
         pushContentRefStyle.marginLeft = isOpen ? width : 0;
-        PUSH_REF_TRANSITION_STYLE = "margin-left 0.2s ease";
+        PUSH_REF_TRANSITION_STYLE = isOpen ? "margin-left 0.2s ease" : 0;
         break;
       case types.slideFroms.BOTTOM:
         break;
       default:
         pushContentRefStyle.marginRight = isOpen ? width : 0;
-        PUSH_REF_TRANSITION_STYLE = "margin-right 0.2s ease";
+        PUSH_REF_TRANSITION_STYLE = isOpen ? "margin-right 0.2s ease" : 0;
         break;
-    }
-    if (!isOpen) {
-      pushContentRefStyle.transitionDelay = "0s";
     }
 
     return () => {
