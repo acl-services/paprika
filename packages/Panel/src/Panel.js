@@ -16,7 +16,6 @@ import * as types from "./types";
 import { extractChildren, warnOfPropErrors } from "./helpers";
 import { useOffsetScroll } from "./hooks";
 
-const PUSH_REF_TRANSITION_STYLE = "margin-right 0.2s ease";
 const PUSH_REF_TRANSITION_DELAY_STYLE = "0.1s";
 
 export default function Panel(props) {
@@ -101,22 +100,31 @@ export default function Panel(props) {
     if (getPushContentElement === null) return;
 
     const pushContentRefStyle = getPushContentElement().style;
-
-    pushContentRefStyle.transition = PUSH_REF_TRANSITION_STYLE;
+    let PUSH_REF_TRANSITION_STYLE = "";
     pushContentRefStyle.transitionDelay = PUSH_REF_TRANSITION_DELAY_STYLE;
 
-    if (isOpen) {
-      pushContentRefStyle.marginRight = width;
-    } else {
+    switch (slideFrom) {
+      case types.slideFroms.LEFT:
+        pushContentRefStyle.marginLeft = isOpen ? width : 0;
+        PUSH_REF_TRANSITION_STYLE = "margin-left 0.2s ease";
+        break;
+      case types.slideFroms.BOTTOM:
+        PUSH_REF_TRANSITION_STYLE = "margin-bottom 0.2s ease";
+        break;
+      default:
+        pushContentRefStyle.marginRight = isOpen ? width : 0;
+        PUSH_REF_TRANSITION_STYLE = "margin-right 0.2s ease";
+        break;
+    }
+    if (!isOpen) {
       pushContentRefStyle.transitionDelay = "0s";
-      pushContentRefStyle.marginRight = "0";
     }
 
     return () => {
       pushContentRefStyle.transition = PUSH_REF_TRANSITION_STYLE;
       pushContentRefStyle.transitionDelay = PUSH_REF_TRANSITION_DELAY_STYLE;
     };
-  }, [isOpen, getPushContentElement, width]);
+  }, [isOpen, slideFrom, getPushContentElement, width]);
 
   const focusLockProps = focusLockExtracted ? focusLockExtracted.props : {};
 
