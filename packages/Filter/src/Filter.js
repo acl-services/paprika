@@ -56,9 +56,6 @@ export default function Filter(props) {
     onClear();
   }
 
-  // TODO: when no filters are applied, when you open the panel it flickers
-  // TODO: when add a new filter (and it is set to "AND"), there is no choice made from the drop-down, as the first option is already in use.
-
   const allFieldsAreAlreadyFilteredBy =
     operator === logicalFilterOperators.AND &&
     React.Children.count(children) === columns.length &&
