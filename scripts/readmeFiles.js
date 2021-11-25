@@ -50,19 +50,6 @@ ${content}
   );
 };
 
-// isMenu: {
-//   required: false,
-//   tsType: [Object],
-//   description: 'Icon + text format for Menu'
-// },
-
-// isSubmit: {
-//   type: [Object],
-//   required: false,
-//   description: 'If the type attribute should "submit", instead of the default "button".',
-//   defaultValue: [Object]
-// },
-
 const createPropsTable = ({ info }) => {
   if (!info || !info.props) return "";
 
@@ -74,18 +61,19 @@ const createPropsTable = ({ info }) => {
 
   Object.keys(info.props).map(key => {
     const v = info.props[key] || {};
+    const typeKey = "tsType" in v ? "tsType" : "type";
     let type = "-";
-    if ("type" in v) {
-      if (v.type.name === "union") {
-        type = `[${v.type.value.map(i => i.name)}]`;
+    if (typeKey in v) {
+      if (v[typeKey].name === "union") {
+        type = `[${v[typeKey]["tsType" in v ? "elements" : "value"].map(i => i.name)}]`;
       } else {
         type =
           // eslint-disable-next-line no-nested-ternary
-          v.type.name !== "enum"
-            ? v.type.name
-            : Array.isArray(v.type.value)
-            ? `[${v.type.value.map(i => ` ${i.value}`)}]`
-            : v.type.value;
+          v[typeKey].name !== "enum"
+            ? v[typeKey].name
+            : Array.isArray(v[typeKey].value)
+            ? `[${v[typeKey].value.map(i => ` ${i.value}`)}]`
+            : v[typeKey].value;
       }
     }
 
