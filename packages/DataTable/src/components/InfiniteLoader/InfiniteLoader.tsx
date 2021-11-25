@@ -1,5 +1,3 @@
-/* eslint-disable react/require-default-props */
-/* eslint-disable react/no-unused-prop-types */
 import React from "react";
 import { ListChildComponentProps, VariableSizeList } from "react-window";
 import ReactInfiniteLoader from "react-window-infinite-loader";

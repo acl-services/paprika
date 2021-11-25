@@ -1,4 +1,3 @@
-/* eslint-disable react/require-default-props */
 import React from "react";
 import { useTable, useBlockLayout, Column, Row } from "react-table";
 import { extractChildren } from "@paprika/helpers";
