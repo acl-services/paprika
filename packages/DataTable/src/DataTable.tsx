@@ -146,7 +146,7 @@ const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
       <sc.Table
         aria-label={a11yText}
         aria-rowcount={data.length}
-        data-pka-anchor="table"
+        data-pka-anchor="dataTable"
         width={width}
         height={height}
         {...tableInstance.getTableProps()}

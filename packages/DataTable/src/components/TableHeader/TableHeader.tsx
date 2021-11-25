@@ -9,15 +9,15 @@ export default function TableHeader(): JSX.Element {
 
   return (
     <sc.THEAD
-      data-pka-anchor="table.thead"
+      data-pka-anchor="dataTable.thead"
       isHeaderSticky={isHeaderSticky}
       role="rowgroup"
       totalColumnsWidth={totalColumnsWidth}
     >
       {headerGroups.map(headerGroup => (
-        <sc.TR data-pka-anchor="table.tr" {...headerGroup.getHeaderGroupProps()}>
+        <sc.TR data-pka-anchor="dataTable.tr" {...headerGroup.getHeaderGroupProps()}>
           {headerGroup.headers.map(column => (
-            <sc.TH borderType={borderType} data-pka-anchor="table.th" {...column.getHeaderProps()}>
+            <sc.TH borderType={borderType} data-pka-anchor="dataTable.th" {...column.getHeaderProps()}>
               {column.render("Header")}
             </sc.TH>
           ))}

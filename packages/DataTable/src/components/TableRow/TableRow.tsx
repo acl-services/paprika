@@ -31,7 +31,7 @@ export default function TableRow({ index, style }: TableRowProps): JSX.Element {
 
   return (
     <sc.TR
-      data-pka-anchor="table.tr"
+      data-pka-anchor="dataTable.tr"
       hasBackgroundColor={hasZebraStripes && !!(index % 2)}
       {...restRow}
       style={{ ...rowStyle, width: totalColumnsWidth }}
@@ -39,7 +39,7 @@ export default function TableRow({ index, style }: TableRowProps): JSX.Element {
       {customizedRow
         ? (customizedRow as JSX.Element)
         : row.cells.map(cell => (
-            <sc.TD borderType={borderType} data-pka-anchor="table.td" {...cell.getCellProps()}>
+            <sc.TD borderType={borderType} data-pka-anchor="dataTable.td" {...cell.getCellProps()}>
               {cell.render("Cell")}
             </sc.TD>
           ))}

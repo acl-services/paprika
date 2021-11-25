@@ -2,7 +2,6 @@ import tokens from "@paprika/tokens";
 import { TableDataItemType, TableColumnsWidth } from "../types";
 
 const DEFAULT_HEIGHT = 40;
-// TODO: match desgin
 const DEFAULT_STYLES = `padding: ${tokens.space};border-right:1px solid;border-bottom:1px solid;`;
 
 const containerId = `paprika-data-table__test-area--${Date.now()}`;
@@ -18,6 +17,8 @@ function createRowsContainer(): HTMLElement {
   container.style.width = "fit-content";
   container.style.visibility = "hidden";
   container.style.boxSizing = "border-box";
+  container.style.position = "absolute";
+  container.style.top = "-9999999999px";
 
   document.body.appendChild(container);
 
@@ -63,7 +64,6 @@ export default class RowHeightHelper {
 
     const innerElementsForTheRow = [];
 
-    // TODO: how can we make sure their column id match the key in data object
     for (let [key, value] of Object.entries(rowData)) {
       if (Object.prototype.hasOwnProperty.call(columnsWidth, key)) {
         innerElementsForTheRow.push(
