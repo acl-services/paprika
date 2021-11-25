@@ -11,15 +11,12 @@ const smallCheckboxSize = tokens.checkbox.sizeSm;
 const mediumCheckboxSize = tokens.checkbox.sizeMd;
 
 const mediumCheckboxGeneralStyle = {
-  checkBoxStyles: {
-    height: mediumCheckboxSize,
-    width: mediumCheckboxSize,
-  },
-  labelStyles: hasLabel => ({
-    minHeight: mediumCheckboxSize,
-    padding: `1px 0 0 ${getLabelLeftPadding(mediumCheckboxSize, hasLabel)}`,
-  }),
+  checkBoxStyles: css`
+    height: ${mediumCheckboxSize};
+    width: ${mediumCheckboxSize};
+  `,
 };
+
 const styles = {
   [types.SMALL]: {
     baseFontSize: {
@@ -34,10 +31,6 @@ const styles = {
       height: smallCheckboxSize,
       left: `${toInt(smallCheckboxSize) / 2}px`,
     },
-    labelStyles: hasLabel => ({
-      minHeight: smallCheckboxSize,
-      padding: `0 0 0 ${getLabelLeftPadding(smallCheckboxSize, hasLabel)}`,
-    }),
   },
   [types.MEDIUM]: {
     baseFontSize: {
@@ -49,6 +42,11 @@ const styles = {
       height: mediumCheckboxSize,
       left: `${toInt(mediumCheckboxSize) / 2}px`,
     },
+    labelStyles: hasLabel => ({
+      minHeight: mediumCheckboxSize,
+      lineHeight: 1,
+      padding: `2px 0 0 ${getLabelLeftPadding(mediumCheckboxSize, hasLabel)}`,
+    }),
   },
   [types.LARGE]: {
     baseFontSize: {
@@ -60,6 +58,11 @@ const styles = {
       height: mediumCheckboxSize,
       left: `${toInt(mediumCheckboxSize) / 2}px`,
     },
+    labelStyles: hasLabel => ({
+      minHeight: mediumCheckboxSize,
+      lineHeight: 1,
+      padding: `0 0 0 ${getLabelLeftPadding(mediumCheckboxSize, hasLabel)}`,
+    }),
   },
 };
 

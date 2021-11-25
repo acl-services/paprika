@@ -4,6 +4,7 @@ import { withKnobs } from "@storybook/addon-knobs";
 import { Story } from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
 import CheckboxAlign from "./examples/CheckboxAlign";
+import Variations from "./examples/Variations";
 import CheckboxGrouping from "./examples/CheckboxGrouping";
 import ShowcaseStory from "./examples/Showcase";
 
@@ -22,5 +23,10 @@ storiesOf(`${storyName}/Examples`, module)
   .add("Checkbox Align", () => (
     <Story>
       <CheckboxAlign />
+    </Story>
+  ))
+  .add("Variations", () => (
+    <Story>
+      <Variations />
     </Story>
   ));
