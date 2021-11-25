@@ -106,7 +106,7 @@ export function InfiniteLoaderImpl({
 InfiniteLoaderImpl.displayName = "DataTable.InfiniteLoader";
 
 /* eslint-disable react/no-unused-prop-types */
-export function InfiniteLoader(props: InfiniteLoaderPublicProps): JSX.Element {
+export const InfiniteLoader: React.FC<InfiniteLoaderPublicProps> = (props: InfiniteLoaderPublicProps) => {
   return <></>;
-}
+};
 /* eslint-enable react/no-unused-prop-types */

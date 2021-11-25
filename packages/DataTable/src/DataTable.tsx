@@ -4,7 +4,7 @@ import { useTable, useBlockLayout, Column } from "react-table";
 import { extractChildren } from "@paprika/helpers";
 import { gridTypes } from "@paprika/constants";
 
-import { InfiniteLoaderImpl, InfiniteLoaderPublicProps } from "./components/InfiniteLoader";
+import { InfiniteLoader, InfiniteLoaderImpl, InfiniteLoaderPublicProps } from "./components/InfiniteLoader";
 import { ReactTableContext } from "./components/ReactTableContext";
 import { ThemeContext } from "./components/ThemeContext";
 import { TableHeader } from "./components/TableHeader";
@@ -41,7 +41,11 @@ export interface TableProps {
   [x: string]: unknown;
 }
 
-function Table({
+interface TableComposition {
+  InfiniteLoader: React.FC<InfiniteLoaderPublicProps>;
+}
+
+const Table: React.FC<TableProps> & TableComposition = ({
   a11yText,
   children,
   columns,
@@ -55,7 +59,7 @@ function Table({
   width = "100%",
   extraCellProps = {},
   ...moreProps
-}: TableProps): JSX.Element {
+}: TableProps) => {
   const defaultColumn = React.useMemo(
     () => ({
       width: 150,
@@ -75,6 +79,8 @@ function Table({
   );
 
   function renderTableContent() {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const { InfiniteLoader: extractedInfiniteLoaderDefinition } = extractChildren(children, ["InfiniteLoader"]);
     const hasInfiniteLoader = Boolean(extractedInfiniteLoaderDefinition);
 
@@ -117,8 +123,9 @@ function Table({
       </sc.Table>
     </ThemeContext.Provider>
   );
-}
+};
 
 Table.displayName = "Table";
+Table.InfiniteLoader = InfiniteLoader;
 
 export default Table;

@@ -2,7 +2,7 @@ import React from "react";
 import { select, boolean } from "@storybook/addon-knobs";
 import StoryHeading from "storybook/components/StoryHeading";
 import { Story, Tagline } from "storybook/assets/styles/common.styles";
-import * as DataTable from "../../src";
+import DataTable from "../../src";
 import { TableProps } from "../../src/DataTable";
 import makeData from "../helpers/makeData";
 
@@ -94,7 +94,7 @@ export const MultilevelHeaderStory: (props: Partial<TableProps>) => JSX.Element 
   const [items, setItems] = React.useState(() => makeData(5));
 
   return (
-    <DataTable.Table
+    <DataTable
       a11yText="Multi-level header data table."
       height={500}
       width={800}
@@ -114,7 +114,7 @@ export const MultilevelHeaderStory: (props: Partial<TableProps>) => JSX.Element 
           setItems(items.concat(newItems));
         }}
       />
-    </DataTable.Table>
+    </DataTable>
   );
 };
 

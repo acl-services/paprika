@@ -2,7 +2,7 @@ import React from "react";
 import StoryHeading from "storybook/components/StoryHeading";
 import { select } from "@storybook/addon-knobs";
 import { Story } from "storybook/assets/styles/common.styles";
-import * as DataTable from "../../src";
+import DataTable from "../../src";
 
 function makeData(rows: string, columns: string) {
   return [...Array(parseInt(rows, 10))].map((value, rowIndex) => {
@@ -58,7 +58,7 @@ const PerformanceStory: (settings: Settings) => JSX.Element = ({ rows, columns }
 
       <br />
 
-      <DataTable.Table a11yText="Data table for performance testing." height={600} columns={columnsProp} data={items}>
+      <DataTable a11yText="Data table for performance testing." height={600} columns={columnsProp} data={items}>
         <DataTable.InfiniteLoader
           itemCount={parseInt(rows, 10)}
           isItemLoaded={() => true}
@@ -66,7 +66,7 @@ const PerformanceStory: (settings: Settings) => JSX.Element = ({ rows, columns }
             console.log();
           }}
         />
-      </DataTable.Table>
+      </DataTable>
     </Story>
   );
 };

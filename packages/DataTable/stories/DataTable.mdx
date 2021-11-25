@@ -1,7 +1,7 @@
 import { Meta, Props, Story } from "@storybook/addon-docs/blocks";
 import tokens from "@paprika/tokens";
 import Toast from "@paprika/toast";
-import * as DataTable from "../src";
+import DataTable from "../src";
 import SimpleExample from "./examples/Simple";
 import { MultilevelHeaderStory as MultilevelHeaderExample } from "./examples/MultilevelHeader";
 
@@ -15,9 +15,9 @@ A virtualized table component.
 
 ## Props
 
-### `<DataTable.Table/>`
+### `<DataTable/>`
 
-<Props of={DataTable.Table} />
+<Props of={DataTable} />
 
 ### `<DataTable.InfiniteLoader/>`
 
@@ -102,19 +102,22 @@ In the above example, each object inside of the `columns` array represents a col
   - Specifies whether the column is sticky to the left or not
 
 <Toast>
-  It's important that developers need to use React.useMemo to memorize the <code>columns</code> array to ensure
-  react-table doesn't recalcualte on every render.
+  It's important that developers need to make sure the <code>columns</code> array and <code>data</code> array are
+  memorized, so that react-table doesn't recalcualte on every render.
 </Toast>
 
 To bring them together:
 
 ```jsx
-const data = [
-  /* column */ /* colum */
-  { myColumn1: 1, myColumn2: "hi" }, // row 1
-  { myColumn1: 2, myColumn2: "hello" }, // row 2
-  { myColumn1: 3, myColumn2: "hola" }, // row 3
-];
+const data = React.useMemo(
+  () => [
+    /* column */ /* colum */
+    { myColumn1: 1, myColumn2: "hi" }, // row 1
+    { myColumn1: 2, myColumn2: "hello" }, // row 2
+    { myColumn1: 3, myColumn2: "hola" }, // row 3
+  ],
+  []
+);
 const columns = React.useMemo(
   () => [
     {
@@ -132,19 +135,19 @@ const columns = React.useMemo(
 );
 
 return (
-  <DataTable.Table a11yText="Table a11y text." height={200} columns={columns} data={data}>
+  <DataTable a11yText="Table a11y text." height={200} columns={columns} data={data}>
     <DataTable.InfiniteLoader
       itemCount={data.length}
       isItemLoaded={index => data[index] !== undefined}
       loadMoreItems={async () => console.log("")}
     />
-  </DataTable.Table>
+  </DataTable>
 );
 ```
 
 Result:
 
-<DataTable.Table
+<DataTable
   a11yText="Table a11y text."
   height={200}
   columns={[
@@ -166,7 +169,7 @@ Result:
   ]}
 >
   <DataTable.InfiniteLoader itemCount={3} isItemLoaded={() => true} loadMoreItems={async () => console.log("")} />
-</DataTable.Table>
+</DataTable>
 
 ### Multi-level headers
 

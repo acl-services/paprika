@@ -1,9 +1,10 @@
 import React from "react";
 import StoryHeading from "storybook/components/StoryHeading";
 import { Story } from "storybook/assets/styles/common.styles";
-import * as DataTable from "../../src";
-import makeData from "../helpers/makeData";
+// import RowHeightHelper from "@paprika/data-table/RowHeightHelper";
 import RowHeightHelper from "../../src/helpers/rowHeightHelper";
+import DataTable from "../../src";
+import makeData from "../helpers/makeData";
 
 const rowHeightHelper = new RowHeightHelper({
   defaultHeight: 100,
@@ -64,7 +65,7 @@ const CustomizedRowHeightCalculationStory: () => JSX.Element = () => {
     <Story>
       <StoryHeading level={1}>DataTable with customized row height calculation</StoryHeading>
 
-      <DataTable.Table
+      <DataTable
         a11yText="Data table with customized row height calculation."
         height={500}
         columns={columns}
@@ -73,7 +74,7 @@ const CustomizedRowHeightCalculationStory: () => JSX.Element = () => {
       >
         <DataTable.InfiniteLoader
           itemCount={items.length + 1}
-          isItemLoaded={index => items[index] !== undefined}
+          isItemLoaded={(index: number) => items[index] !== undefined}
           loadMoreItems={async () => {
             const newItems = await new Promise<Record<string, unknown>[]>(res =>
               setTimeout(() => res(makeData(40)), 5000)
@@ -82,7 +83,7 @@ const CustomizedRowHeightCalculationStory: () => JSX.Element = () => {
             setItems(items.concat(newItems));
           }}
         />
-      </DataTable.Table>
+      </DataTable>
     </Story>
   );
 };

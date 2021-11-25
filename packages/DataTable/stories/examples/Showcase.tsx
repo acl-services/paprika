@@ -2,7 +2,7 @@ import React from "react";
 import { select, boolean } from "@storybook/addon-knobs";
 import StoryHeading from "storybook/components/StoryHeading";
 import { Story, Tagline } from "storybook/assets/styles/common.styles";
-import * as DataTable from "../../src";
+import DataTable from "../../src";
 import { TableProps } from "../../src/DataTable";
 import makeData from "../helpers/makeData";
 
@@ -65,14 +65,7 @@ export const ShowcaseStory: (props: Partial<TableProps>) => JSX.Element = props 
   const [items, setItems] = React.useState(() => makeData(5));
 
   return (
-    <DataTable.Table
-      a11yText="Data table for showcase."
-      height={500}
-      width={800}
-      columns={columns}
-      data={items}
-      {...props}
-    >
+    <DataTable a11yText="Data table for showcase." height={500} width={800} columns={columns} data={items} {...props}>
       <DataTable.InfiniteLoader
         itemCount={items.length + 1}
         isItemLoaded={index => items[index] !== undefined}
@@ -85,7 +78,7 @@ export const ShowcaseStory: (props: Partial<TableProps>) => JSX.Element = props 
           setItems(items.concat(newItems));
         }}
       />
-    </DataTable.Table>
+    </DataTable>
   );
 };
 

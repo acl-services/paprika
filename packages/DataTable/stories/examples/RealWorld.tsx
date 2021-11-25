@@ -9,7 +9,7 @@ import { ColumnsArrangement, useColumnsArrangement } from "@paprika/action-bar";
 import ResizeDetector, { useDimensions } from "@paprika/resize-detector";
 import Link from "@paprika/link";
 import { Column } from "react-table";
-import * as DataTable from "../../src";
+import DataTable from "../../src";
 import makeData from "../helpers/makeData";
 
 const headerLabels: Record<ColumnId, string> = {
@@ -111,7 +111,7 @@ function Table({ columns, data, onLoadMore }: any) {
   const { width = 1200, height = 500 } = useDimensions();
 
   return (
-    <DataTable.Table
+    <DataTable
       a11yText="Data table for a real world example."
       height={height}
       width={width}
@@ -125,7 +125,7 @@ function Table({ columns, data, onLoadMore }: any) {
         isNextPageLoading={false}
         loadMoreItems={onLoadMore}
       />
-    </DataTable.Table>
+    </DataTable>
   );
 }
 

@@ -3,7 +3,7 @@ import StoryHeading from "storybook/components/StoryHeading";
 import { select, boolean } from "@storybook/addon-knobs";
 import Button from "@paprika/button";
 import { Story } from "storybook/assets/styles/common.styles";
-import * as DataTable from "../../src";
+import DataTable from "../../src";
 import { TableProps } from "../../src/DataTable";
 import makeData from "../helpers/makeData";
 
@@ -161,7 +161,7 @@ export const KitchensinkStory: (props: Partial<TableProps>) => JSX.Element = pro
 
       <br />
 
-      <DataTable.Table
+      <DataTable
         a11yText="Kitchensink data table."
         height={500}
         columns={columns}
@@ -183,7 +183,7 @@ export const KitchensinkStory: (props: Partial<TableProps>) => JSX.Element = pro
             }}
           />
         ) : null}
-      </DataTable.Table>
+      </DataTable>
     </>
   );
 };
