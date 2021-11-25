@@ -109,7 +109,6 @@ export default function Panel(props) {
         PUSH_REF_TRANSITION_STYLE = "margin-left 0.2s ease";
         break;
       case types.slideFroms.BOTTOM:
-        PUSH_REF_TRANSITION_STYLE = "margin-bottom 0.2s ease";
         break;
       default:
         pushContentRefStyle.marginRight = isOpen ? width : 0;
