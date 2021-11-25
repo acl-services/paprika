@@ -13,9 +13,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "exports": {
-    "RowHeightHelper": "./lib/helpers/rowHeightHelper.js"
-  },
   "scripts": {
     "transpile:types": "tsc -p tsconfig.build.json"
   },
