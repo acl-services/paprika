@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.0.18-next.0
+
+### Patch Changes
+
+- Updated dependencies [514dc04]
+  - @paprika/button@1.1.9-next.0
+
+## 0.0.17
+
+### Patch Changes
+
+- Updated dependencies [c3a7523]
+- Updated dependencies [4358ed8]
+  - @paprika/l10n@1.1.15
+
 ## 0.0.17-next.0
 
 ### Patch Changes

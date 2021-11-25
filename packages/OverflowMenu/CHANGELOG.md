@@ -1,5 +1,22 @@
 # Changelog
 
+## 2.0.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [514dc04]
+  - @paprika/button@1.1.9-next.0
+  - @paprika/confirmation@1.1.17-next.0
+
+## 2.0.2
+
+### Patch Changes
+
+- Updated dependencies [c3a7523]
+- Updated dependencies [4358ed8]
+  - @paprika/l10n@1.1.15
+  - @paprika/confirmation@1.1.16
+
 ## 2.0.2-next.0
 
 ### Patch Changes

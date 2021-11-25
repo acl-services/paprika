@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.0.3-next.0
+
+### Patch Changes
+
+- @paprika/list-box@4.0.3-next.0
+- @paprika/tag@0.0.18-next.0
+
+## 3.0.2
+
+### Patch Changes
+
+- Updated dependencies [c3a7523]
+- Updated dependencies [4358ed8]
+  - @paprika/l10n@1.1.15
+  - @paprika/list-box@4.0.2
+  - @paprika/tag@0.0.17
+
 ## 3.0.2-next.0
 
 ### Patch Changes

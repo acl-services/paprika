@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.9-next.0
+
+### Patch Changes
+
+- 514dc04: update icon butto spacing to match design
+
 ## 1.1.8
 
 ### Patch Changes
