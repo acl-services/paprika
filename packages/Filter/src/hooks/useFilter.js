@@ -5,10 +5,12 @@ import Filter from "../Filter";
 import defaultReducer, { actionTypes } from "./defaultReducer";
 import { logicalFilterOperators } from "../rules";
 import getInitialValueByType from "../helpers/getInitialValueByType";
+import shouldIncludeOption from "../helpers/shouldIncludeOption";
 
-function getDefaultFilter(columns, rulesByType, data) {
-  const firstColumnId = columns[0].id;
-  const firstColumnType = columns.find(column => column.id === firstColumnId).type;
+function getDefaultFilter(columns, rulesByType, data, existingFilters, operator) {
+  const [firstColumnId, firstColumnType] = columns
+    .filter(c => shouldIncludeOption(operator, c, existingFilters, -1))
+    .map(column => [column.id, column.type])[0];
 
   return {
     columnId: firstColumnId,
@@ -39,7 +41,10 @@ export default function useFilter({
   const [state, dispatch] = React.useReducer(reducer, { ...initialState, data }, initState);
 
   function onAddFilter() {
-    dispatch({ type: actionTypes.addFilter, payload: getDefaultFilter(columns, rulesByType, data) });
+    dispatch({
+      type: actionTypes.addFilter,
+      payload: getDefaultFilter(columns, rulesByType, data, state.filters, state.operator),
+    });
   }
 
   function onChangeOperator() {
