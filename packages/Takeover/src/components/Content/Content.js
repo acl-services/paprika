@@ -11,8 +11,8 @@ const StyledContent = styled.div`
   padding: ${spacer(2)};
 `;
 
-export default function Content() {
-  return <StyledContent />;
+export default function Content(props) {
+  return <StyledContent {...props} />;
 }
 
 Content.displayName = "Takeover.Content";
