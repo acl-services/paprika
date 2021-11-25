@@ -1,4 +1,4 @@
-import { Meta, Props, Story } from "@storybook/addon-docs/blocks";
+import { Meta, Props, Story, ArgsTable } from "@storybook/addon-docs/blocks";
 import tokens from "@paprika/tokens";
 import Toast from "@paprika/toast";
 import DataTable from "../src";
@@ -17,11 +17,11 @@ A virtualized table component.
 
 ### `<DataTable/>`
 
-<Props of={DataTable} />
+<ArgsTable of={DataTable} />
 
 ### `<DataTable.InfiniteLoader/>`
 
-<Props of={DataTable.InfiniteLoader} />
+<ArgsTable of={DataTable.InfiniteLoader} />
 
 ## Installation
 
@@ -171,6 +171,8 @@ Result:
   <DataTable.InfiniteLoader itemCount={3} isItemLoaded={() => true} loadMoreItems={async () => console.log("")} />
 </DataTable>
 
+<br />
+
 ### Multi-level headers
 
 To render multi-level headers, you can define a nested `columns` structure, for example:
@@ -218,3 +220,21 @@ const columns = [
 result:
 
 <MultilevelHeaderExample />
+
+<br />
+
+### Custom row height calculation
+
+The default row height calculation is made based on the data of all the columns. Developers can override that by `getRowHeight` prop.
+
+In these cases developers might want to customize the default row height calculation:
+
+1. Setting row heights to a fixed value or variable row height is not necessary.
+
+For example, the height of all the rows in the `DataTable` is `80px`.
+
+2. Shorten the calculation time
+
+By default, `DataTable` will calculate row heights based on the data of all the columns. If a `DataTable` has some columns which would never exceed the width of that column, we can simplify the calculation by skipping those columns. See this [example](/?path=/story/table-datatable--customized-row-height-calculation).
+
+3. If developers want to use a different calculation method

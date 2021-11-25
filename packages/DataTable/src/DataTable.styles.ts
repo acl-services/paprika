@@ -20,3 +20,8 @@ export const Table = styled.div<{
     }
   `
 );
+
+export const ContentWrapper = styled.div`
+  flex: 1;
+  position: relative;
+`;

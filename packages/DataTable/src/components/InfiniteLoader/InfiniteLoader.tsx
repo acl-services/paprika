@@ -53,13 +53,13 @@ function Row(props: ListChildComponentProps): JSX.Element {
 const emptyLoadMore = (_startIndex: number, _stopIndex: number) => undefined;
 
 export function InfiniteLoaderImpl({
-  isItemLoaded,
-  loadMoreItems,
   data,
-  height,
   getRowHeight,
+  height,
   innerElementType,
+  isItemLoaded,
   itemCount,
+  loadMoreItems,
   isNextPageLoading = false,
   minimumBatchSize = 10,
   threshold = 15,
@@ -92,7 +92,6 @@ export function InfiniteLoaderImpl({
           itemSize={getItemSize}
           width="100%"
           onItemsRendered={onItemsRendered}
-          // ref={ref}
           ref={listRef}
           innerElementType={innerElementType}
         >
@@ -105,8 +104,6 @@ export function InfiniteLoaderImpl({
 
 InfiniteLoaderImpl.displayName = "DataTable.InfiniteLoader";
 
-/* eslint-disable react/no-unused-prop-types */
 export const InfiniteLoader: React.FC<InfiniteLoaderPublicProps> = (props: InfiniteLoaderPublicProps) => {
   return <></>;
 };
-/* eslint-enable react/no-unused-prop-types */

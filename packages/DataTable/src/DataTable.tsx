@@ -1,12 +1,13 @@
 /* eslint-disable react/require-default-props */
 import React from "react";
-import { useTable, useBlockLayout, Column } from "react-table";
+import { useTable, useBlockLayout, Column, Row } from "react-table";
 import { extractChildren } from "@paprika/helpers";
 import { gridTypes } from "@paprika/constants";
 
 import { InfiniteLoader, InfiniteLoaderImpl, InfiniteLoaderPublicProps } from "./components/InfiniteLoader";
 import { ReactTableContext } from "./components/ReactTableContext";
 import { ThemeContext } from "./components/ThemeContext";
+import { RenderRowContext } from "./components/RenderRowContext";
 import { TableHeader } from "./components/TableHeader";
 import { TableBody } from "./components/TableBody";
 import { TableRow } from "./components/TableRow";
@@ -25,27 +26,50 @@ function InnerElement({ children, ...rest }: { children: React.ReactNode }): JSX
   );
 }
 
-export interface TableProps {
+export interface DataTableProps {
+  /** Accessible description of the table */
   a11yText: string;
+
   children: React.ReactNode;
+
+  /** Array of column definition */
   columns: Column<TableDataItemType>[];
+
+  /** Array of data to be stored in the table */
   data: TableDataItemType[];
+
+  /** The height of the table in px */
   height: number;
+
+  /** Define the look for borders in the table */
   borderType?: string;
+
+  /** Function to return the row height for each row */
   getRowHeight?: ((index: number) => number) | null;
+
+  /** Add an alternating background on the table rows */
   hasZebraStripes?: boolean;
+
+  /** If the entire table header is sticky or not */
   isHeaderSticky?: boolean;
-  renderRow?: (({ index, row }: { index: number; row: Record<string, unknown> }) => JSX.Element) | null;
+
+  /** Override the table Column configuration for some particular rows */
+  renderRow?: ((row: Row<TableDataItemType>) => unknown) | null;
+
+  /** The width of the table */
   width?: string | number;
+
+  /** Experimental prop */
   extraCellProps?: Record<string, unknown>;
+
   [x: string]: unknown;
 }
 
-interface TableComposition {
+interface DataTableComposition {
   InfiniteLoader: React.FC<InfiniteLoaderPublicProps>;
 }
 
-const Table: React.FC<TableProps> & TableComposition = ({
+const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
   a11yText,
   children,
   columns,
@@ -59,7 +83,7 @@ const Table: React.FC<TableProps> & TableComposition = ({
   width = "100%",
   extraCellProps = {},
   ...moreProps
-}: TableProps) => {
+}: DataTableProps) => {
   const defaultColumn = React.useMemo(
     () => ({
       width: 150,
@@ -117,15 +141,17 @@ const Table: React.FC<TableProps> & TableComposition = ({
         {...tableInstance.getTableProps()}
         {...moreProps}
       >
-        <div style={{ position: "relative", flex: 1 }}>
-          <ReactTableContext.Provider value={tableInstance}>{renderTableContent()}</ReactTableContext.Provider>
-        </div>
+        <sc.ContentWrapper>
+          <RenderRowContext.Provider value={renderRow}>
+            <ReactTableContext.Provider value={tableInstance}>{renderTableContent()}</ReactTableContext.Provider>
+          </RenderRowContext.Provider>
+        </sc.ContentWrapper>
       </sc.Table>
     </ThemeContext.Provider>
   );
 };
 
-Table.displayName = "Table";
-Table.InfiniteLoader = InfiniteLoader;
+DataTable.displayName = "DataTable";
+DataTable.InfiniteLoader = InfiniteLoader;
 
-export default Table;
+export default DataTable;

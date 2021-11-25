@@ -216,7 +216,8 @@ export default (): JSX.Element => (
   <Story>
     <StoryHeading level={1}>DataTable in real world example</StoryHeading>
     <Tagline>
-      <code>DataTable</code> component with <code>DataHeader</code>, <code>Link</code>, <code>Filter</code> and
+      <code>DataTable</code> component with <code>ResizeDetector</code>, <code>DataHeader</code>, <code>Link</code>,
+      <code>Filter</code> and
       <code>ColumnsArrangement</code>
     </Tagline>
     <RealWorldStory />
