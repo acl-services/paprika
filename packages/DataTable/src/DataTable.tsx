@@ -26,6 +26,9 @@ function InnerElement({ children, ...rest }: { children: React.ReactNode }): JSX
   );
 }
 
+// Need to be fixed in constants package
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 type BorderType = gridTypes.GRID | gridTypes.NONE | gridTypes.HORIZONTAL | gridTypes.VERTICAL;
 
 interface ConstantsTypes {
@@ -142,6 +145,7 @@ const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
     <ThemeContext.Provider value={{ borderType, isHeaderSticky, hasZebraStripes }}>
       <sc.Table
         aria-label={a11yText}
+        aria-rowcount={data.length}
         data-pka-anchor="table"
         width={width}
         height={height}
