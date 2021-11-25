@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Heading from "@paprika/heading";
-import ExternalLink from "@paprika/external-link";
+import Link from "@paprika/Link";
 import { Story, Tagline, Rule, Big } from "storybook/assets/styles/common.styles";
 import * as sc from "./ExampleStory.styles";
 
@@ -46,12 +46,13 @@ const ExampleStory = props => {
             </Heading>
           )}
           {component && fileName && (
-            <ExternalLink
+            <Link
+              isExternalLink
               hasNoUnderline
               href={`https://github.com/acl-services/paprika/blob/master/packages/${component}/stories/${fileName}`}
             >
               Source
-            </ExternalLink>
+            </Link>
           )}
         </sc.HeaderFlex>
       )}
