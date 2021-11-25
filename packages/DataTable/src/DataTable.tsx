@@ -26,6 +26,17 @@ function InnerElement({ children, ...rest }: { children: React.ReactNode }): JSX
   );
 }
 
+type BorderType = gridTypes.GRID | gridTypes.NONE | gridTypes.HORIZONTAL | gridTypes.VERTICAL;
+
+interface ConstantsTypes {
+  borderType: BorderType;
+}
+
+interface DataTableComposition {
+  InfiniteLoader: React.FC<InfiniteLoaderPublicProps>;
+  types: ConstantsTypes;
+}
+
 export interface DataTableProps {
   /** Accessible description of the table */
   a11yText: string;
@@ -42,7 +53,7 @@ export interface DataTableProps {
   height: number;
 
   /** Define the look for borders in the table */
-  borderType?: string;
+  borderType?: BorderType;
 
   /** Function to return the row height for each row */
   getRowHeight?: ((index: number) => number) | null;
@@ -63,10 +74,6 @@ export interface DataTableProps {
   extraCellProps?: Record<string, unknown>;
 
   [x: string]: unknown;
-}
-
-interface DataTableComposition {
-  InfiniteLoader: React.FC<InfiniteLoaderPublicProps>;
 }
 
 const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
@@ -153,5 +160,8 @@ const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
 
 DataTable.displayName = "DataTable";
 DataTable.InfiniteLoader = InfiniteLoader;
+DataTable.types = {
+  borderType: gridTypes,
+};
 
 export default DataTable;

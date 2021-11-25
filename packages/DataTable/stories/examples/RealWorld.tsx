@@ -117,7 +117,7 @@ function Table({ columns, data, onLoadMore }: any) {
       width={width}
       columns={columns}
       data={data}
-      borderType="grid"
+      borderType={DataTable.types.borderType.GRID}
     >
       <DataTable.InfiniteLoader
         itemCount={data.length + 1}
