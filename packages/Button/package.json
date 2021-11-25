@@ -1,6 +1,6 @@
 {
   "name": "@paprika/button",
-  "version": "1.1.8",
+  "version": "1.1.9-next.0",
   "description": "Button component, for performing an action on the page you’re viewing.",
   "author": "@paprika",
   "main": "lib/index.js",
