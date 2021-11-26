@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
-import Button from "@paprika/button";
+import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
 import { fontSize, spacer } from "@paprika/stylers/lib/helpers";
 import { truncateText } from "@paprika/stylers/lib/includes";
 import * as types from "./types";
@@ -64,10 +64,10 @@ export const Ellipsis = styled.div(({ size }) => {
   `;
 });
 
-export const Delete = styled(Button.Icon)(({ size }) => {
+export const Delete = styled(TimesCircleIcon)(({ size }) => {
   const fontSize = {
-    medium: "10px",
-    large: "12px",
+    medium: "20px",
+    large: "24px",
   };
 
   const padding = {
@@ -101,152 +101,140 @@ export const Delete = styled(Button.Icon)(({ size }) => {
 
 const themeStyles = {
   [types.themes.BLACK]: css`
-  background: ${tokens.color.black};
+    background: ${tokens.color.black};
 
-  ${Delete} {
-    background: ${tokens.color.blackLighten70};
-    color: ${tokens.color.black};
-    &:hover {
-      background: ${tokens.color.blackLighten60};
+    ${Delete} {
+      color: ${tokens.color.blackLighten70};
+      &:hover {
+        color: ${tokens.color.blackLighten60};
+      }
     }
-   }
-`,
+  `,
 
   [types.themes.BLUE]: css`
-  background: ${tokens.color.blue};
+    background: ${tokens.color.blue};
 
-  ${Delete} {
-    background: ${tokens.color.blackLighten70};
-    color: ${tokens.color.blue};
-    &:hover {
-      background: ${tokens.color.blackLighten60};
+    ${Delete} {
+      color: ${tokens.color.blackLighten70};
+      &:hover {
+        color: ${tokens.color.blackLighten60};
+      }
     }
-   }
-`,
+  `,
 
   [types.themes.GREY]: css`
-  background: ${tokens.color.blackLighten70};
-  color: ${tokens.color.black};
+    background: ${tokens.color.blackLighten70};
+    color: ${tokens.color.black};
 
-  ${Delete} {
-    background: ${tokens.color.blackLighten30};
-    color: ${tokens.color.blackLighten70};
-    &:hover {
-      background: ${tokens.color.blackLighten20};
+    ${Delete} {
+      color: ${tokens.color.blackLighten30};
+      &:hover {
+        color: ${tokens.color.blackLighten20};
+      }
     }
-   }
-`,
+  `,
 
   [types.themes.GREEN]: css`
-  background: ${tokens.color.greenDarken10};
+    background: ${tokens.color.greenDarken10};
 
-  ${Delete} {
-    background: ${tokens.color.blackLighten70};
-    color: ${tokens.color.greenDarken10};
-    &:hover {
-      background: ${tokens.color.blackLighten60};
+    ${Delete} {
+      color: ${tokens.color.blackLighten70};
+      &:hover {
+        color: ${tokens.color.blackLighten60};
+      }
     }
-   }
-`,
+  `,
 
   [types.themes.ORANGE]: css`
-  background: ${tokens.color.orangeDarken10};
+    background: ${tokens.color.orangeDarken10};
 
-  ${Delete} {
-    background: ${tokens.color.blackLighten70};
-    color: ${tokens.color.orangeDarken10};
-    &:hover {
-      background: ${tokens.color.blackLighten60};
+    ${Delete} {
+      color: ${tokens.color.blackLighten70};
+      &:hover {
+        color: ${tokens.color.blackLighten60};
+      }
     }
-   }
-`,
+  `,
 
   [types.themes.LIGHT_BLUE]: css`
-  background: ${tokens.color.blueLighten50};
-  color: ${tokens.color.blueDarken20};
+    background: ${tokens.color.blueLighten50};
+    color: ${tokens.color.blueDarken20};
 
-  ${Delete} {
-    background: ${tokens.color.blackLighten30};
-    color: ${tokens.color.blueLighten50};
-    &:hover {
-      background: ${tokens.color.blackLighten20};
+    ${Delete} {
+      color: ${tokens.color.blackLighten30};
+      &:hover {
+        color: ${tokens.color.blackLighten20};
+      }
     }
-   }
-`,
+  `,
 
   [types.themes.LIGHT_ORANGE]: css`
-  background: ${tokens.color.orangeLighten40};
-  color: ${tokens.color.orangeDarken20};
-
-  ${Delete} {
-    background: ${tokens.color.blackLighten30};
+    background: ${tokens.color.orangeLighten40};
     color: ${tokens.color.orangeDarken20};
-    &:hover {
-      background: ${tokens.color.blackLighten20};
+
+    ${Delete} {
+      color: ${tokens.color.blackLighten30};
+      &:hover {
+        color: ${tokens.color.blackLighten20};
+      }
     }
-   }
-`,
+  `,
 
   [types.severityThemes.NO_RISK]: css`
-  background: ${tokens.color.blackLighten70};
-  color: ${tokens.color.black};
+    background: ${tokens.color.blackLighten70};
+    color: ${tokens.color.black};
 
-  ${Delete} {
-    background: ${tokens.color.blackLighten30};
-    color: ${tokens.color.blackLighten70};
-    &:hover {
-      background: ${tokens.color.blackLighten20};
+    ${Delete} {
+      color: ${tokens.color.blackLighten30};
+      &:hover {
+        color: ${tokens.color.blackLighten20};
+      }
     }
-   }
-`,
+  `,
 
   [types.severityThemes.LOW_RISK]: css`
-  background: #299a7a;
+    background: #299a7a;
 
-  ${Delete} {
-    background: ${tokens.color.blackLighten70};
-    color: #299a7a;
-    &:hover {
-      background: ${tokens.color.blackLighten60};
+    ${Delete} {
+      color: ${tokens.color.blackLighten70};
+      &:hover {
+        color: ${tokens.color.blackLighten60};
+      }
     }
-   }
-`,
+  `,
 
   [types.severityThemes.MEDIUM_RISK]: css`
-  background: #c9af28;
+    background: #c9af28;
 
-  ${Delete} {
-    background: ${tokens.color.blackLighten70};
-    color: #c9af28;
-    &:hover {
-      background: ${tokens.color.blackLighten60};
+    ${Delete} {
+      color: ${tokens.color.blackLighten70};
+      &:hover {
+        color: ${tokens.color.blackLighten60};
+      }
     }
-   }
-`,
+  `,
 
   [types.severityThemes.HIGH_RISK]: css`
-  background: #cd3c44;
+    background: #cd3c44;
 
-  ${Delete} {
-    background: ${tokens.color.blackLighten70};
-    color: #cd3c44;
-    &:hover {
-      background: ${tokens.color.blackLighten60};
+    ${Delete} {
+      color: ${tokens.color.blackLighten70};
+      &:hover {
+        color: ${tokens.color.blackLighten60};
+      }
     }
-   }
-`,
+  `,
 
   [types.severityThemes.ALERT]: css`
-  background: none;
-  border: 1px solid ${tokens.color.orangeDarken10};
-  color: ${tokens.color.orangeDarken10};
+    background: none;
+    border: 1px solid ${tokens.color.orangeDarken10};
+    color: ${tokens.color.orangeDarken10};
 
-  ${Delete} {
-    background: ${tokens.color.blackLighten30};
-    color: ${tokens.color.white};
-    &:hover {
-      background: ${tokens.color.blackLighten20};
+    ${Delete} {
+      color: ${tokens.color.blackLighten30};
+      &:hover {
+        color: ${tokens.color.blackLighten20};
+      }
     }
-   }
-`,
+  `,
 };
