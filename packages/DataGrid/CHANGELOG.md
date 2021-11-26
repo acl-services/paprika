@@ -1,5 +1,35 @@
 # Changelog
 
+## 1.0.25-next.1
+
+### Patch Changes
+
+- Updated dependencies [343d673]
+- Updated dependencies [e2021aa]
+  - @paprika/helpers@2.1.4-next.0
+  - @paprika/panel@2.2.2-next.1
+  - @paprika/button@1.1.9-next.1
+  - @paprika/checkbox@1.0.19-next.0
+  - @paprika/spinner@1.0.13-next.0
+
+## 1.0.25-next.0
+
+### Patch Changes
+
+- Updated dependencies [514dc04]
+  - @paprika/button@1.1.9-next.0
+  - @paprika/panel@2.2.2-next.0
+
+## 1.0.24
+
+### Patch Changes
+
+- 4358ed8: localized columns and rows label
+- Updated dependencies [c3a7523]
+- Updated dependencies [4358ed8]
+  - @paprika/l10n@1.1.15
+  - @paprika/panel@2.2.1
+
 ## 1.0.24-next.0
 
 ### Patch Changes

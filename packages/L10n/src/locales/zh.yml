@@ -14,6 +14,8 @@ zh:
     close: 关闭
     dataGrid:
       a11yTextMessage: "{{value}}。您在第 {{rowIndex}} 行，第 {{columnIndex}} 列。忽略以下信息："
+      rows: "行：{{rowCount}}"
+      columns: "列：{{columnCount}}"
     uploader:
       drop_files: 放下文件以上传
       drop_files_here_or: 在此放下文件以上传或

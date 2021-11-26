@@ -1,5 +1,36 @@
 # Changelog
 
+## 1.5.6-next.1
+
+### Patch Changes
+
+- Updated dependencies [343d673]
+  - @paprika/helpers@2.1.4-next.0
+  - @paprika/button@1.1.9-next.1
+  - @paprika/popover@2.0.2-next.0
+
+## 1.5.6-next.0
+
+### Patch Changes
+
+- Updated dependencies [514dc04]
+  - @paprika/button@1.1.9-next.0
+
+## 1.5.5
+
+### Patch Changes
+
+- 92a8984: Support null children and children wrapped in fragments
+- Updated dependencies [c3a7523]
+- Updated dependencies [4358ed8]
+  - @paprika/l10n@1.1.15
+
+## 1.5.5-next.1
+
+### Patch Changes
+
+- 92a8984: Support null children and children wrapped in fragments
+
 ## 1.5.5-next.0
 
 ### Patch Changes

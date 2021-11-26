@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.1.17-next.1
+
+### Patch Changes
+
+- Updated dependencies [343d673]
+  - @paprika/helpers@2.1.4-next.0
+  - @paprika/button@1.1.9-next.1
+
+## 1.1.17-next.0
+
+### Patch Changes
+
+- Updated dependencies [514dc04]
+  - @paprika/button@1.1.9-next.0
+
+## 1.1.16
+
+### Patch Changes
+
+- 59f5875: update toast and close button on toast sizes
+- Updated dependencies [c3a7523]
+- Updated dependencies [4358ed8]
+  - @paprika/l10n@1.1.15
+
 ## 1.1.16-next.0
 
 ### Patch Changes

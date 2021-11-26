@@ -14,6 +14,8 @@ pt:
     close: Fechar
     dataGrid:
       a11yTextMessage: "{{value}}. Você está na linha {{rowIndex}}, coluna {{columnIndex}}. Ignorar as seguintes informações:"
+      rows: "Linhas: {{rowCount}}"
+      columns: "Colunas: {{columnCount}}"
     uploader:
       drop_files: Solte os arquivos para carregar
       drop_files_here_or: Solte os arquivos para carregar aqui ou

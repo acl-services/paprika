@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.0.20-next.0
+
+### Patch Changes
+
+- Updated dependencies [343d673]
+  - @paprika/helpers@2.1.4-next.0
+
+## 1.0.19
+
+### Patch Changes
+
+- 12384e9: Update radio size/colour
+
+## 1.0.19-next.0
+
+### Patch Changes
+
+- 12384e9: Update radio size/colour
+
 ## 1.0.18
 
 ### Patch Changes
