@@ -2,7 +2,7 @@ import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import { testStoryParameters } from "storybook/assets/storyParameters";
 import Checkbox from "../src/Checkbox";
-import Screener from "./tests/Screener";
+import Screener from "./examples/Variations";
 import A11y from "./tests/A11y";
 
 const storyName = getStoryName("Checkbox");
