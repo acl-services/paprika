@@ -16,6 +16,11 @@
   "scripts": {
     "transpile:types": "tsc -p tsconfig.build.json"
   },
+  "paprikaDocs": {
+    "subComponents": [
+      "InfiniteLoader"
+    ]
+  },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/constants": "^1.0.0",
