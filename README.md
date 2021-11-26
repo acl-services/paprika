@@ -89,7 +89,6 @@ or refer to the [AirTable summary](https://airtable.com/shrkJwkvtbgc3FT22).
 <a href="https://www.npmjs.com/package/@paprika/date-picker"><img src="https://img.shields.io/npm/v/@paprika/date-picker?label=DatePicker" /></a>
 <a href="https://www.npmjs.com/package/@paprika/date-range-picker"><img src="https://img.shields.io/npm/v/@paprika/date-range-picker?label=DateRangePicker" /></a>
 <a href="https://www.npmjs.com/package/@paprika/dialog-actions"><img src="https://img.shields.io/npm/v/@paprika/dialog-actions?label=DialogActions" /></a>
-<a href="https://www.npmjs.com/package/@paprika/external-link"><img src="https://img.shields.io/npm/v/@paprika/external-link?label=ExternalLink" /></a>
 <a href="https://www.npmjs.com/package/@paprika/form-element"><img src="https://img.shields.io/npm/v/@paprika/form-element?label=FormElement" /></a>
 <a href="https://www.npmjs.com/package/@paprika/guard"><img src="https://img.shields.io/npm/v/@paprika/guard?label=Guard" /></a>
 <a href="https://www.npmjs.com/package/@paprika/heading"><img src="https://img.shields.io/npm/v/@paprika/heading?label=Heading" /></a>
@@ -97,6 +96,7 @@ or refer to the [AirTable summary](https://airtable.com/shrkJwkvtbgc3FT22).
 <a href="https://www.npmjs.com/package/@paprika/icon"><img src="https://img.shields.io/npm/v/@paprika/icon?label=Icon" /></a>
 <a href="https://www.npmjs.com/package/@paprika/input"><img src="https://img.shields.io/npm/v/@paprika/input?label=Input" /></a>
 <a href="https://www.npmjs.com/package/@paprika/l10n"><img src="https://img.shields.io/npm/v/@paprika/l10n?label=L10n" /></a>
+<a href="https://www.npmjs.com/package/@paprika/link"><img src="https://img.shields.io/npm/v/@paprika/link?label=Link" /></a>
 <a href="https://www.npmjs.com/package/@paprika/list-box"><img src="https://img.shields.io/npm/v/@paprika/list-box?label=ListBox" /></a>
 <a href="https://www.npmjs.com/package/@paprika/list-box-browser"><img src="https://img.shields.io/npm/v/@paprika/list-box-browser?label=ListBoxBrowser" /></a>
 <a href="https://www.npmjs.com/package/@paprika/modal"><img src="https://img.shields.io/npm/v/@paprika/modal?label=Modal" /></a>
