@@ -5,7 +5,7 @@ import Checkbox from "../../src/Checkbox";
 
 const { CHECKED, UNCHECKED, INDETERMINATE } = Checkbox.types.state;
 
-const ScreenerStory = () => {
+const Variations = () => {
   const [internalCheckedState, setInternalCheckedState] = React.useState(UNCHECKED);
 
   const handleChange = () => {
@@ -45,4 +45,4 @@ const ScreenerStory = () => {
   );
 };
 
-export default ScreenerStory;
+export default Variations;

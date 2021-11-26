@@ -12,7 +12,8 @@ const storyName = getStoryName("Checkbox");
 
 storiesOf(storyName, module)
   .addDecorator(withKnobs)
-  .add("Showcase", ShowcaseStory);
+  .add("Showcase", ShowcaseStory)
+  .add("Variations", Variations);
 
 storiesOf(`${storyName}/Examples`, module)
   .add("Checkbox group", () => (
@@ -23,10 +24,5 @@ storiesOf(`${storyName}/Examples`, module)
   .add("Checkbox Align", () => (
     <Story>
       <CheckboxAlign />
-    </Story>
-  ))
-  .add("Variations", () => (
-    <Story>
-      <Variations />
     </Story>
   ));
