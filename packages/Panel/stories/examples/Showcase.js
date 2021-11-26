@@ -10,6 +10,8 @@ const headerGroup = "<Panel.Header>";
 const footerGroup = "<Panel.Footer>";
 const overlayGroup = "<Panel.Overlay>";
 
+const getMainElement = () => document.querySelector("main");
+
 const sidePanelProps = () => ({
   a11yText: text("a11yText", null, sidePanelGroup),
   isCompact: boolean("isCompact", false, sidePanelGroup),
@@ -24,6 +26,7 @@ const sidePanelProps = () => ({
   width: text("width", "50%", sidePanelGroup),
   zIndex: number("zIndex", undefined, {}, sidePanelGroup),
   offset: object("offset", { top: 0, left: 0, right: 0 }, sidePanelGroup),
+  pushContent: boolean("pushMain", false, sidePanelGroup),
 });
 
 const headerProps = () => ({
@@ -46,7 +49,10 @@ const overlayProps = () => ({
 export default function Showcase() {
   return (
     <>
-      <Panel {...sidePanelProps()}>
+      <Panel
+        {...sidePanelProps()}
+        {...sidePanelProps().pushContent ? { getPushContentElement: getMainElement } : null}
+      >
         {overlayProps().toggleOverlay ? <Panel.Overlay /> : null}
         <Panel.Header {...headerProps()}>{headerProps().children}</Panel.Header>
         <Panel.Content>
