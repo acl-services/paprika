@@ -2,7 +2,7 @@ import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import { testStoryParameters } from "storybook/assets/storyParameters";
 import Switch from "../src/Switch";
-import Screener from "./tests/Screener";
+import Screener from "./examples/Variations";
 import A11y from "./tests/A11y";
 
 const storyName = getStoryName("Switch");
