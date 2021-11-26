@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Heading from "@paprika/heading";
-import Link from "@paprika/Link";
+import Link from "@paprika/link";
 import { Story, Tagline, Rule, Big } from "storybook/assets/styles/common.styles";
 import * as sc from "./ExampleStory.styles";
 
