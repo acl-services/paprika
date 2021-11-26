@@ -90,7 +90,6 @@ export const Delete = styled(TimesCircleIcon)(({ size }) => {
     height: ${width[size]};
     justify-content: center;
     min-height: auto;
-    padding: ${padding[size]};
     width: ${width[size]};
 
     &:focus {
