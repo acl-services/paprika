@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.0.4-next.1
+
+### Patch Changes
+
+- Updated dependencies [e2021aa]
+  - @paprika/panel@2.2.2-next.1
+  - @paprika/button@1.1.9-next.1
+  - @paprika/date-picker@2.0.3-next.1
+  - @paprika/input@4.0.15-next.1
+  - @paprika/list-box@4.0.3-next.1
+  - @paprika/radio@1.0.20-next.0
+  - @paprika/select@2.0.9-next.0
+
 ## 2.0.4-next.0
 
 ### Patch Changes

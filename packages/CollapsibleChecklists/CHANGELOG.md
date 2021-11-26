@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.22-next.0
+
+### Patch Changes
+
+- @paprika/checkbox@1.0.19-next.0
+
 ## 1.0.21
 
 ### Patch Changes
