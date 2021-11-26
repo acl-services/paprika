@@ -1,8 +1,9 @@
+import React from "react";
 import styled from "styled-components";
 import { spacer } from "@paprika/stylers/lib/helpers";
 import tokens from "@paprika/tokens/lib/tokens";
 
-const Content = styled.div`
+const StyledContent = styled.div`
   background-color: ${tokens.color.white};
   border-radius: ${tokens.card.borderRadius};
   box-shadow: ${tokens.card.shadow};
@@ -10,6 +11,8 @@ const Content = styled.div`
   padding: ${spacer(2)};
 `;
 
-Content.displayName = "Takeover.Content";
+export default function Content(props) {
+  return <StyledContent {...props} />;
+}
 
-export default Content;
+Content.displayName = "Takeover.Content";
