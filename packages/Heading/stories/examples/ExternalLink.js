@@ -5,7 +5,11 @@ import { Gap } from "storybook/assets/styles/common.styles";
 import Heading from "../../src/Heading";
 
 export default function ExternalLinkExample() {
-  const renderExternalLink = () => <Link isExternalLink hasTruncation href="http://wegalvanize.com">External Link Text</Link>;
+  const renderExternalLink = () => (
+    <Link isExternalLink hasTruncation href="http://wegalvanize.com">
+      External Link Text
+    </Link>
+  );
 
   return (
     <>
