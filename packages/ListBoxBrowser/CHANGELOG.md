@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.38-next.1
+
+### Patch Changes
+
+- Updated dependencies [343d673]
+  - @paprika/helpers@2.1.4-next.0
+  - @paprika/list-box@4.0.3-next.1
+  - @paprika/spinner@1.0.13-next.0
+
 ## 1.0.38-next.0
 
 ### Patch Changes

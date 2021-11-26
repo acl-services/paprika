@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.4-next.0
+
+### Patch Changes
+
+- 343d673: Adding declaration files.
+
 ## 2.1.3
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.0.26-next.0
+
+### Patch Changes
+
+- Updated dependencies [343d673]
+  - @paprika/helpers@2.1.4-next.0
+  - @paprika/popover@2.0.2-next.0
+
 ## 4.0.25
 
 ### Patch Changes
