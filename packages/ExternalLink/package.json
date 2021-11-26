@@ -1,7 +1,7 @@
 {
   "name": "@paprika/external-link",
-  "version": "2.0.19",
-  "description": "The ExternalLink component links to an external website.",
+  "version": "2.0.20-next.0",
+  "description": "DEPRECATED - The ExternalLink component links to an external website.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "author": "@paprika",
