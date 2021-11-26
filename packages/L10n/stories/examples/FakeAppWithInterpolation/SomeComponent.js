@@ -1,7 +1,7 @@
 import React from "react";
 import { Trans } from "react-i18next";
 import Button from "@paprika/button";
-import Link from "@paprika/external-link";
+import Link from "@paprika/link";
 import { useI18n } from "../../../src";
 
 export default function SomeComponent() {
@@ -15,7 +15,7 @@ export default function SomeComponent() {
           alert("You clicked on tab 2");
         }}
       />
-      <Link href="https://google.ca" hasNoUnderline />
+      <Link href="https://google.ca" isExternalLink hasNoUnderline />
     </Trans>
   );
 }

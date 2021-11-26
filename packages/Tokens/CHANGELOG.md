@@ -1,5 +1,24 @@
 # @paprika/tokens
 
+## 1.1.2
+
+### Patch Changes
+
+- fd24fbe: Fix declaration files.
+- ab8d494: update panel header colour to diligent brand colour
+
+## 1.1.2-next.1
+
+### Patch Changes
+
+- fd24fbe: Fix declaration files.
+
+## 1.1.2-next.0
+
+### Patch Changes
+
+- ab8d494: update panel header colour to diligent brand colour
+
 ## 1.1.1
 
 ### Patch Changes

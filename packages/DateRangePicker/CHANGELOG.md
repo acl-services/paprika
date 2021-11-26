@@ -1,5 +1,66 @@
 # @paprika/date-range-picker
 
+## 1.0.30-next.1
+
+### Patch Changes
+
+- Updated dependencies [343d673]
+  - @paprika/helpers@2.1.4-next.0
+  - @paprika/calendar@2.0.3-next.1
+  - @paprika/date-input@1.0.25-next.1
+  - @paprika/popover@2.0.2-next.0
+
+## 1.0.30-next.0
+
+### Patch Changes
+
+- @paprika/calendar@2.0.3-next.0
+- @paprika/date-input@1.0.25-next.0
+
+## 1.0.29
+
+### Patch Changes
+
+- Updated dependencies [c3a7523]
+- Updated dependencies [4358ed8]
+  - @paprika/l10n@1.1.15
+  - @paprika/calendar@2.0.2
+  - @paprika/date-input@1.0.24
+
+## 1.0.29-next.0
+
+### Patch Changes
+
+- Updated dependencies [4358ed8]
+  - @paprika/l10n@1.1.15-next.0
+  - @paprika/calendar@2.0.2-next.0
+  - @paprika/date-input@1.0.24-next.0
+
+## 1.0.28
+
+### Patch Changes
+
+- Updated dependencies [fd24fbe]
+- Updated dependencies [ab8d494]
+  - @paprika/stylers@1.1.3
+  - @paprika/tokens@1.1.2
+  - @paprika/calendar@2.0.1
+  - @paprika/date-input@1.0.23
+  - @paprika/icon@2.1.3
+  - @paprika/popover@2.0.1
+
+## 1.0.28-next.0
+
+### Patch Changes
+
+- Updated dependencies [ab8d494]
+  - @paprika/tokens@1.1.2-next.0
+  - @paprika/calendar@2.0.1-next.0
+  - @paprika/icon@2.1.3-next.0
+  - @paprika/popover@2.0.1-next.0
+  - @paprika/stylers@1.1.3-next.0
+  - @paprika/date-input@1.0.23-next.0
+
 ## 1.0.27
 
 ### Patch Changes

@@ -1,5 +1,41 @@
 # Changelog
 
+## 1.1.9-next.1
+
+### Patch Changes
+
+- Updated dependencies [343d673]
+  - @paprika/helpers@2.1.4-next.0
+
+## 1.1.9-next.0
+
+### Patch Changes
+
+- 514dc04: update icon butto spacing to match design
+
+## 1.1.8
+
+### Patch Changes
+
+- 1236ea1: Update button font and icon sizes
+- Updated dependencies [fd24fbe]
+- Updated dependencies [ab8d494]
+  - @paprika/stylers@1.1.3
+  - @paprika/tokens@1.1.2
+  - @paprika/icon@2.1.3
+  - @paprika/raw-button@1.0.9
+
+## 1.1.8-next.0
+
+### Patch Changes
+
+- 1236ea1: Update button font and icon sizes
+- Updated dependencies [ab8d494]
+  - @paprika/tokens@1.1.2-next.0
+  - @paprika/icon@2.1.3-next.0
+  - @paprika/raw-button@1.0.9-next.0
+  - @paprika/stylers@1.1.3-next.0
+
 ## 1.1.7
 
 ### Patch Changes

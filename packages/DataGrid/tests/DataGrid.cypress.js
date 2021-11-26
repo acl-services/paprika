@@ -28,13 +28,13 @@ describe("<DataGrid />", () => {
   it("Should have infinity scroll", () => {
     cy.visitStorybook(`${storyPrefix}-backyard-tests--infinity-scroll`);
 
-    cy.findByText(/Rows:300/i).should("exist");
+    cy.findByText(/Rows: 300/i).should("exist");
     cy.findAllByRole("rowgroup")
       .last()
       .then($e => {
         window.requestAnimationFrame(() => $e.get(0).scrollTo(0, $e.get(0).scrollHeight));
       });
-    cy.findByText(/Rows:600/i).should("exist");
+    cy.findByText(/Rows: 600/i).should("exist");
   });
 
   it("Should not show collapsed content", () => {

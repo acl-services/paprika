@@ -1,5 +1,63 @@
 <!-- content -->
 
+## 1.0.29-next.1
+
+### Patch Changes
+
+- @paprika/button@1.1.9-next.1
+- @paprika/data-grid@1.0.25-next.1
+- @paprika/popover@2.0.2-next.0
+
+## 1.0.29-next.0
+
+### Patch Changes
+
+- Updated dependencies [514dc04]
+  - @paprika/button@1.1.9-next.0
+  - @paprika/data-grid@1.0.25-next.0
+
+## 1.0.28
+
+### Patch Changes
+
+- Updated dependencies [c3a7523]
+- Updated dependencies [4358ed8]
+  - @paprika/l10n@1.1.15
+  - @paprika/data-grid@1.0.24
+
+## 1.0.28-next.0
+
+### Patch Changes
+
+- Updated dependencies [4358ed8]
+  - @paprika/data-grid@1.0.24-next.0
+  - @paprika/l10n@1.1.15-next.0
+
+## 1.0.27
+
+### Patch Changes
+
+- Updated dependencies [1236ea1]
+- Updated dependencies [fd24fbe]
+- Updated dependencies [ab8d494]
+  - @paprika/button@1.1.8
+  - @paprika/tokens@1.1.2
+  - @paprika/data-grid@1.0.23
+  - @paprika/icon@2.1.3
+  - @paprika/popover@2.0.1
+
+## 1.0.27-next.0
+
+### Patch Changes
+
+- Updated dependencies [1236ea1]
+- Updated dependencies [ab8d494]
+  - @paprika/button@1.1.8-next.0
+  - @paprika/tokens@1.1.2-next.0
+  - @paprika/data-grid@1.0.23-next.0
+  - @paprika/icon@2.1.3-next.0
+  - @paprika/popover@2.0.1-next.0
+
 ## 1.0.26
 
 ### Patch Changes

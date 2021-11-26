@@ -1,5 +1,96 @@
 <!-- content -->
 
+## 1.0.35-next.1
+
+### Patch Changes
+
+- @paprika/button@1.1.9-next.1
+- @paprika/data-grid@1.0.25-next.1
+- @paprika/overflow-menu@2.0.3-next.1
+- @paprika/popover@2.0.2-next.0
+- @paprika/toast@1.1.17-next.1
+- @paprika/data-field@1.0.29-next.1
+
+## 1.0.35-next.0
+
+### Patch Changes
+
+- Updated dependencies [514dc04]
+  - @paprika/button@1.1.9-next.0
+  - @paprika/data-field@1.0.29-next.0
+  - @paprika/data-grid@1.0.25-next.0
+  - @paprika/overflow-menu@2.0.3-next.0
+  - @paprika/toast@1.1.17-next.0
+
+## 1.0.34
+
+### Patch Changes
+
+- Updated dependencies [c3a7523]
+- Updated dependencies [59f5875]
+- Updated dependencies [4358ed8]
+  - @paprika/l10n@1.1.15
+  - @paprika/toast@1.1.16
+  - @paprika/data-grid@1.0.24
+  - @paprika/data-field@1.0.28
+  - @paprika/overflow-menu@2.0.2
+
+## 1.0.34-next.0
+
+### Patch Changes
+
+- Updated dependencies [59f5875]
+- Updated dependencies [4358ed8]
+  - @paprika/toast@1.1.16-next.0
+  - @paprika/data-grid@1.0.24-next.0
+  - @paprika/l10n@1.1.15-next.0
+  - @paprika/data-field@1.0.28-next.0
+  - @paprika/overflow-menu@2.0.2-next.0
+
+## 1.0.33
+
+### Patch Changes
+
+- Updated dependencies [1236ea1]
+- Updated dependencies [fd24fbe]
+- Updated dependencies [ab8d494]
+  - @paprika/button@1.1.8
+  - @paprika/stylers@1.1.3
+  - @paprika/tokens@1.1.2
+  - @paprika/data-field@1.0.27
+  - @paprika/data-grid@1.0.23
+  - @paprika/icon@2.1.3
+  - @paprika/overflow-menu@2.0.1
+  - @paprika/popover@2.0.1
+  - @paprika/raw-button@1.0.9
+  - @paprika/toast@1.1.15
+
+## 1.0.33-next.1
+
+### Patch Changes
+
+- Updated dependencies [fd24fbe]
+  - @paprika/stylers@1.1.3-next.1
+  - @paprika/tokens@1.1.2-next.1
+  - @paprika/data-grid@1.0.23-next.1
+
+## 1.0.33-next.0
+
+### Patch Changes
+
+- Updated dependencies [1236ea1]
+- Updated dependencies [ab8d494]
+  - @paprika/button@1.1.8-next.0
+  - @paprika/tokens@1.1.2-next.0
+  - @paprika/data-field@1.0.27-next.0
+  - @paprika/data-grid@1.0.23-next.0
+  - @paprika/overflow-menu@2.0.1-next.0
+  - @paprika/toast@1.1.15-next.0
+  - @paprika/icon@2.1.3-next.0
+  - @paprika/popover@2.0.1-next.0
+  - @paprika/raw-button@1.0.9-next.0
+  - @paprika/stylers@1.1.3-next.0
+
 ## 1.0.32
 
 ### Patch Changes
