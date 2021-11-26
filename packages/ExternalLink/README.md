@@ -4,7 +4,7 @@
 
 ## Description
 
-The ExternalLink component links to an external website.
+DEPRECATED - The ExternalLink component links to an external website.
 
 ## Installation
 
