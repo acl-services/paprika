@@ -31,6 +31,10 @@ const styles = {
       height: smallCheckboxSize,
       left: `${toInt(smallCheckboxSize) / 2}px`,
     },
+    labelStyles: hasLabel => ({
+      minHeight: smallCheckboxSize,
+      padding: `0 0 0 ${getLabelLeftPadding(smallCheckboxSize, hasLabel)}`,
+    }),
   },
   [types.MEDIUM]: {
     baseFontSize: {
