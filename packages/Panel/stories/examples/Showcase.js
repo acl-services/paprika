@@ -51,7 +51,7 @@ export default function Showcase() {
     <>
       <Panel
         {...sidePanelProps()}
-        {...sidePanelProps().pushContent ? { getPushContentElement: getMainElement } : null}
+        {...(sidePanelProps().pushContent ? { getPushContentElement: getMainElement } : null)}
       >
         {overlayProps().toggleOverlay ? <Panel.Overlay /> : null}
         <Panel.Header {...headerProps()}>{headerProps().children}</Panel.Header>
