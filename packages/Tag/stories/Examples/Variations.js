@@ -110,7 +110,6 @@ export default function Variations() {
                 key={theme[1]}
                 theme={theme[1]}
                 size={permutation.tagSize}
-                onRemove={handleRemove}
                 avatar={
                   <Avatar isRound size={permutation.avatarSize}>
                     <CalendarIcon />
@@ -134,7 +133,6 @@ export default function Variations() {
                 key={theme[1]}
                 theme={theme[1]}
                 size={permutation.tagSize}
-                onRemove={handleRemove}
                 avatar={
                   <Avatar isRound size={permutation.avatarSize}>
                     <CalendarIcon />
