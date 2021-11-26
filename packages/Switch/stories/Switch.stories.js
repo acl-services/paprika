@@ -6,7 +6,7 @@ import { getStoryName } from "storybook/storyTree";
 import Heading from "@paprika/heading";
 import * as types from "../src/types";
 import Example from "./SwitchExample";
-import Switch from "../src/Switch";
+import Variations from "./examples/Variations";
 
 const storyName = getStoryName("Switch");
 
@@ -28,32 +28,5 @@ storiesOf(storyName, module)
         size={select("size", [types.SMALL, types.MEDIUM, types.LARGE], "medium")}
       />
     </Story>
-  ));
-
-storiesOf(`${storyName}/Examples`, module).add("Variations", () => (
-  <Story>
-    <h4>
-      <code>size=&quot;small&quot;</code>
-    </h4>
-    <Example size={Switch.types.size.SMALL} />
-    <p />
-    <h4>
-      <code>size=&quot;medium&quot;</code>
-    </h4>
-    <Example size={Switch.types.size.MEDIUM} />
-    <p />
-    <h4>
-      <code>size=&quot;large&quot;</code>
-    </h4>
-    <Example size={Switch.types.size.LARGE} />
-    <h4>
-      <code>isDisabled</code>
-    </h4>
-    <Example isDisabled isChecked={false} />
-    <p />
-    <h4>
-      <code>isDisabled isChecked</code>
-    </h4>
-    <Example isDisabled isChecked />
-  </Story>
-));
+  ))
+  .add("Variations", () => <Variations />);
