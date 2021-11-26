@@ -5,7 +5,7 @@ export interface LinkProps {
   [x: string]: any;
 
   /** Text for aria-label. */
-  a11yText?: string;
+  a11yText?: string | null;
 
   /** Open url in a new Tab, is indicated by a Tab icon after the link. */
   isExternalLink?: boolean;
@@ -31,19 +31,34 @@ export interface LinkProps {
   /** Max-width for Link to be truncate, using a number implies px units. */
   maxWidth?: string | number;
 }
+
+interface LinkDefaultProps {
+  a11yText: string | null;
+  children: null;
+  isExternalLink: boolean;
+  hasNoUnderline: boolean;
+  hasTruncation: boolean;
+  isSubtle: boolean;
+  isDark: boolean;
+  isMenu: boolean;
+  maxWidth: string | number;
+}
+
+type LinkPropsWithDefaults = LinkProps & LinkDefaultProps;
+
 function Link(props: LinkProps): JSX.Element {
   const {
-    a11yText = null,
-    children = null,
-    isExternalLink = false,
-    hasNoUnderline = false,
-    hasTruncation = false,
-    isSubtle = false,
-    isDark = false,
-    isMenu = false,
-    maxWidth = "100%",
+    a11yText,
+    children,
+    isExternalLink,
+    hasNoUnderline,
+    hasTruncation,
+    isSubtle,
+    isDark,
+    isMenu,
+    maxWidth,
     ...moreProps
-  } = props;
+  } = props as LinkPropsWithDefaults;
   return (
     <sc.Link
       data-pka-anchor="link"
@@ -67,5 +82,16 @@ function Link(props: LinkProps): JSX.Element {
 }
 
 Link.displayName = "Link";
+Link.defaultProps = {
+  a11yText: null,
+  children: null,
+  isExternalLink: false,
+  hasNoUnderline: false,
+  hasTruncation: false,
+  isSubtle: false,
+  isDark: false,
+  isMenu: false,
+  maxWidth: "100%",
+} as Partial<LinkProps>;
 
 export default Link;

@@ -22,19 +22,19 @@ npm install @paprika/radio
 
 ### Radio
 
-| Prop             | Type                                                                       | required | default                 | Description                                                                                                                                    |
-| ---------------- | -------------------------------------------------------------------------- | -------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| a11yText         | string                                                                     | false    | null                    | Used for aria-label on the radio input                                                                                                         |
-| canDeselect      | bool                                                                       | false    | false                   | Describe if the radio started as selected or not                                                                                               |
-| children         | node                                                                       | false    | null                    | Used for label contents                                                                                                                        |
-| isChecked        | bool                                                                       | false    | false                   |                                                                                                                                                |
-| isDisabled       | bool                                                                       | false    | false                   | Describe if the radio is disabled or not                                                                                                       |
-| defaultIsChecked | bool                                                                       | false    | false                   | Describe if the radio started as checked or not                                                                                                |
-| name             | string                                                                     | false    | ""                      | Name provided for accessibility                                                                                                                |
-| onClick          | custom                                                                     | false    | () => {}                | onClick provided by parent Group component                                                                                                     |
-| size             | [ Radio.types.size.SMALL, Radio.types.size.MEDIUM, Radio.types.size.LARGE] | false    | Radio.types.size.MEDIUM | Size of the labels provided by parent Group component. Size SMALL is depreciated in the design guideline therefore, please use MEDIUM instead. |
-| tabIndex         | [number,string]                                                            | false    | 0                       | Value for tabindex attribute to override the default of 0.                                                                                     |
-| value            | string                                                                     | false    | ""                      | Value applied to the input if needed.                                                                                                          |
+| Prop             | Type                                                                       | required | default                 | Description                                                |
+| ---------------- | -------------------------------------------------------------------------- | -------- | ----------------------- | ---------------------------------------------------------- |
+| a11yText         | string                                                                     | false    | null                    | Used for aria-label on the radio input                     |
+| canDeselect      | bool                                                                       | false    | false                   | Describe if the radio started as selected or not           |
+| children         | node                                                                       | false    | null                    | Used for label contents                                    |
+| isChecked        | bool                                                                       | false    | false                   |                                                            |
+| isDisabled       | bool                                                                       | false    | false                   | Describe if the radio is disabled or not                   |
+| defaultIsChecked | bool                                                                       | false    | false                   | Describe if the radio started as checked or not            |
+| name             | string                                                                     | false    | ""                      | Name provided for accessibility                            |
+| onClick          | custom                                                                     | false    | () => {}                | onClick provided by parent Group component                 |
+| size             | [ Radio.types.size.SMALL, Radio.types.size.MEDIUM, Radio.types.size.LARGE] | false    | Radio.types.size.MEDIUM | Size provided by parent Group component                    |
+| tabIndex         | [number,string]                                                            | false    | 0                       | Value for tabindex attribute to override the default of 0. |
+| value            | string                                                                     | false    | ""                      | Value applied to the input if needed.                      |
 
 ### Radio.Group
 
