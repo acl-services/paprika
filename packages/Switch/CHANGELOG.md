@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.15-next.1
+
+### Patch Changes
+
+- fe39669: Update large size to match the medium size switch
+- Updated dependencies [036fe83]
+  - @paprika/tokens@1.1.3-next.0
+  - @paprika/raw-button@1.0.10-next.0
+  - @paprika/stylers@1.1.4-next.0
+
 ## 1.0.15-next.0
 
 ### Patch Changes

@@ -74,7 +74,9 @@
     "@paprika/data-table": "0.1.0"
   },
   "changesets": [
+    "brave-brooms-allow",
     "bright-dingos-train",
+    "cool-bears-happen",
     "eighty-moons-roll",
     "empty-lamps-reflect",
     "silver-wasps-marry",
