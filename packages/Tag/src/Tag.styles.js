@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
-import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
+import RawButton from "@paprika/raw-button";
 import { fontSize, spacer } from "@paprika/stylers/lib/helpers";
 import { truncateText } from "@paprika/stylers/lib/includes";
 import * as types from "./types";
@@ -64,7 +64,7 @@ export const Ellipsis = styled.div(({ size }) => {
   `;
 });
 
-export const Delete = styled(TimesCircleIcon)(({ size }) => {
+export const Delete = styled(RawButton)(({ size }) => {
   const fontSize = {
     medium: tokens.icon.sizeSm,
     large: tokens.icon.sizeMd,
@@ -93,7 +93,7 @@ export const Delete = styled(TimesCircleIcon)(({ size }) => {
   `;
 });
 
-const lightBackground = css`
+const DeleteButtonStylesForLightBackground = css`
   ${Delete} {
     color: ${tokens.color.blackLighten70};
     &:hover {
@@ -102,7 +102,7 @@ const lightBackground = css`
   }
 `;
 
-const darkBackground = css`
+const DeleteButtonStylesForDarkBackground = css`
   ${Delete} {
     color: ${tokens.color.blackLighten30};
     &:hover {
@@ -114,67 +114,67 @@ const darkBackground = css`
 const themeStyles = {
   [types.themes.BLACK]: css`
     background: ${tokens.color.black};
-    ${lightBackground}
+    ${DeleteButtonStylesForLightBackground}
   `,
 
   [types.themes.BLUE]: css`
     background: ${tokens.color.blue};
-    ${lightBackground}
+    ${DeleteButtonStylesForLightBackground}
   `,
 
   [types.themes.GREY]: css`
     background: ${tokens.color.blackLighten70};
     color: ${tokens.color.black};
-    ${darkBackground}
+    ${DeleteButtonStylesForDarkBackground}
   `,
 
   [types.themes.GREEN]: css`
     background: ${tokens.color.greenDarken10};
-    ${lightBackground}
+    ${DeleteButtonStylesForLightBackground}
   `,
 
   [types.themes.ORANGE]: css`
     background: ${tokens.color.orangeDarken10};
-    ${lightBackground}
+    ${DeleteButtonStylesForLightBackground}
   `,
 
   [types.themes.LIGHT_BLUE]: css`
     background: ${tokens.color.blueLighten50};
     color: ${tokens.color.blueDarken20};
-    ${darkBackground}
+    ${DeleteButtonStylesForDarkBackground}
   `,
 
   [types.themes.LIGHT_ORANGE]: css`
     background: ${tokens.color.orangeLighten40};
     color: ${tokens.color.orangeDarken20};
-    ${darkBackground}
+    ${DeleteButtonStylesForDarkBackground}
   `,
 
   [types.severityThemes.NO_RISK]: css`
     background: ${tokens.color.blackLighten70};
     color: ${tokens.color.black};
-    ${darkBackground}
+    ${DeleteButtonStylesForDarkBackground}
   `,
 
   [types.severityThemes.LOW_RISK]: css`
     background: #299a7a;
-    ${lightBackground}
+    ${DeleteButtonStylesForLightBackground}
   `,
 
   [types.severityThemes.MEDIUM_RISK]: css`
     background: #c9af28;
-    ${lightBackground}
+    ${DeleteButtonStylesForLightBackground}
   `,
 
   [types.severityThemes.HIGH_RISK]: css`
     background: #cd3c44;
-    ${lightBackground}
+    ${DeleteButtonStylesForLightBackground}
   `,
 
   [types.severityThemes.ALERT]: css`
     background: none;
     border: 1px solid ${tokens.color.orangeDarken10};
     color: ${tokens.color.orangeDarken10};
-    ${darkBackground}
+    ${DeleteButtonStylesForDarkBackground}
   `,
 };

@@ -2,4 +2,4 @@
 "@paprika/tag": patch
 ---
 
-change tag styling
+Tag Icon closing Icon (X icon) background color will be changed depending on the tag background
