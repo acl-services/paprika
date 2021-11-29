@@ -100,8 +100,8 @@ export function InfiniteLoaderImpl({
   );
 }
 
-InfiniteLoaderImpl.displayName = "DataTable.InfiniteLoader";
-
 export const InfiniteLoader: React.FC<InfiniteLoaderPublicProps> = (props: InfiniteLoaderPublicProps) => {
   return <></>;
 };
+
+InfiniteLoader.displayName = "DataTable.InfiniteLoader";
