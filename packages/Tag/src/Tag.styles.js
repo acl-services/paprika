@@ -158,3 +158,89 @@ export const Delete = styled(Button.Close)(({ size }) => {
     }
   `;
 });
+
+const lightBackground = css`
+  ${Delete} {
+    color: ${tokens.color.blackLighten70};
+    &:hover {
+      color: ${tokens.color.blackLighten60};
+    }
+  }
+`;
+
+const darkBackground = css`
+  ${Delete} {
+    color: ${tokens.color.blackLighten30};
+    &:hover {
+      color: ${tokens.color.blackLighten20};
+    }
+  }
+`;
+
+const themeStyles = {
+  [types.themes.BLACK]: css`
+    background: ${tokens.color.black};
+    ${lightBackground}
+  `,
+
+  [types.themes.BLUE]: css`
+    background: ${tokens.color.blue};
+    ${lightBackground}
+  `,
+
+  [types.themes.GREY]: css`
+    background: ${tokens.color.blackLighten70};
+    color: ${tokens.color.black};
+    ${darkBackground}
+  `,
+
+  [types.themes.GREEN]: css`
+    background: ${tokens.color.greenDarken10};
+    ${lightBackground}
+  `,
+
+  [types.themes.ORANGE]: css`
+    background: ${tokens.color.orangeDarken10};
+    ${lightBackground}
+  `,
+
+  [types.themes.LIGHT_BLUE]: css`
+    background: ${tokens.color.blueLighten50};
+    color: ${tokens.color.blueDarken20};
+    ${darkBackground}
+  `,
+
+  [types.themes.LIGHT_ORANGE]: css`
+    background: ${tokens.color.orangeLighten40};
+    color: ${tokens.color.orangeDarken20};
+    ${darkBackground}
+  `,
+
+  [types.severityThemes.NO_RISK]: css`
+    background: ${tokens.color.blackLighten70};
+    color: ${tokens.color.black};
+    ${darkBackground}
+  `,
+
+  [types.severityThemes.LOW_RISK]: css`
+    background: #299a7a;
+    ${lightBackground}
+  `,
+
+  [types.severityThemes.MEDIUM_RISK]: css`
+    background: #c9af28;
+    ${lightBackground}
+  `,
+
+  [types.severityThemes.HIGH_RISK]: css`
+    background: #cd3c44;
+    ${lightBackground}
+  `,
+
+  [types.severityThemes.ALERT]: css`
+    background: none;
+    border: 1px solid ${tokens.color.orangeDarken10};
+    color: ${tokens.color.orangeDarken10};
+    ${darkBackground}
+  `,
+};
