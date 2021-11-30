@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import tokens from "@paprika/tokens";
 import Help from "../Help/Help";
 import { FormElementContext } from "../../FormElement";
 import * as sc from "./Label.styles";
@@ -15,6 +16,7 @@ const Label = props => {
   const isDisabled = isDisabledProp === null ? isDisabledContext : isDisabledProp;
   const labelProps = hasFieldSet ? { as: "legend" } : { as: "label" };
   const a11yProps = hasFieldSet ? { ref: refLabel } : { htmlFor: labelId, ref: refLabel };
+  const Spacer = () => <div style={{ width: tokens.spaceSm }} />;
 
   const renderQuestionRequirement = () => {
     if (isRequired) {
@@ -36,12 +38,13 @@ const Label = props => {
       {children}
       {isOptional || isRequired ? (
         <>
-          &nbsp;<sc.Requirement>{renderQuestionRequirement()}</sc.Requirement>
+          <Spacer />
+          <sc.Requirement>{renderQuestionRequirement()}</sc.Requirement>
         </>
       ) : null}
       {help ? (
         <>
-          &nbsp;
+          <Spacer />
           <Help a11yText={helpA11yText} isDisabled={isDisabled}>
             {help}
           </Help>
