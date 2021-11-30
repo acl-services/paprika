@@ -27,7 +27,6 @@
     "@paprika/date-range-picker": "1.0.29",
     "@paprika/dialog-actions": "1.0.23",
     "@paprika/dynamic-hyperlink-transformer": "1.1.23",
-    "@paprika/external-link": "2.0.19",
     "@paprika/filter": "2.0.3",
     "@paprika/form-element": "4.0.25",
     "@paprika/guard": "1.0.1",
@@ -71,9 +70,17 @@
     "@paprika/tokens": "1.1.2",
     "@paprika/uploader": "3.0.11",
     "@paprika/helpers": "2.1.3",
-    "@paprika/seducer": "2.0.3"
+    "@paprika/seducer": "2.0.3",
+    "@paprika/data-table": "0.1.0"
   },
   "changesets": [
-    "empty-lamps-reflect"
+    "brave-brooms-allow",
+    "bright-dingos-train",
+    "cool-bears-happen",
+    "eighty-moons-roll",
+    "empty-lamps-reflect",
+    "silver-wasps-marry",
+    "tricky-cats-remain",
+    "witty-tables-talk"
   ]
 }

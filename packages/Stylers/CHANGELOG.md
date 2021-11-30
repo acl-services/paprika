@@ -1,5 +1,12 @@
 # @paprika/stylers
 
+## 1.1.4-next.0
+
+### Patch Changes
+
+- Updated dependencies [036fe83]
+  - @paprika/tokens@1.1.3-next.0
+
 ## 1.1.3
 
 ### Patch Changes

@@ -1,5 +1,27 @@
 # Changelog
 
+## 2.2.2-next.2
+
+### Patch Changes
+
+- Updated dependencies [036fe83]
+  - @paprika/tokens@1.1.3-next.0
+  - @paprika/button@1.1.9-next.2
+  - @paprika/heading@1.0.12-next.0
+  - @paprika/icon@2.1.4-next.0
+  - @paprika/overlay@1.0.12-next.1
+  - @paprika/stylers@1.1.4-next.0
+
+## 2.2.2-next.1
+
+### Patch Changes
+
+- e2021aa: fix slide effects for bottom/left direction
+- Updated dependencies [343d673]
+  - @paprika/helpers@2.1.4-next.0
+  - @paprika/button@1.1.9-next.1
+  - @paprika/overlay@1.0.12-next.0
+
 ## 2.2.2-next.0
 
 ### Patch Changes
