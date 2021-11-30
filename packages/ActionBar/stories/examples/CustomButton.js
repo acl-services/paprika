@@ -83,6 +83,7 @@ export default function CustomButton() {
       <br />
       <ActionBar>
         <SearchInput
+          initialValue={searchTerm}
           onChange={term => {
             setSearchTerm(term);
           }}
