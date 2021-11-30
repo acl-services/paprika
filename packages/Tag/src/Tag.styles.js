@@ -86,17 +86,14 @@ export const Delete = styled(RawButton)(({ size }) => {
     justify-content: center;
     min-height: auto;
     width: ${width[size]};
-
-    &:focus {
-      background: ${tokens.color.blackLighten60};
-    }
   `;
 });
 
 const DeleteButtonStylesForLightBackground = css`
   ${Delete} {
     color: ${tokens.color.blackLighten70};
-    &:hover {
+    &:hover,
+    &:focus {
       color: ${tokens.color.blackLighten60};
     }
   }
@@ -105,7 +102,8 @@ const DeleteButtonStylesForLightBackground = css`
 const DeleteButtonStylesForDarkBackground = css`
   ${Delete} {
     color: ${tokens.color.blackLighten30};
-    &:hover {
+    &:hover,
+    &:focus {
       color: ${tokens.color.blackLighten20};
     }
   }
