@@ -114,7 +114,10 @@ const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
   function renderTableContent() {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    const { InfiniteLoader: extractedInfiniteLoaderDefinition } = extractChildren(children, ["InfiniteLoader"]);
+    const { "DataTable.InfiniteLoader": extractedInfiniteLoaderDefinition } = extractChildren(children, [
+      "DataTable.InfiniteLoader",
+    ]);
+
     const hasInfiniteLoader = Boolean(extractedInfiniteLoaderDefinition);
 
     if (hasInfiniteLoader) {
