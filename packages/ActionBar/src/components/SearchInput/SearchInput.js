@@ -1,21 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import debounce from "lodash.debounce";
+import { useCallbackDebouncer } from "@paprika/helpers";
 import Input from "@paprika/input";
 import SearchIcon from "@paprika/icon/lib/Search";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import * as sc from "./SearchInput.styles";
 
-function useDebouncer(debounceDelay) {
-  const [debounceCallback] = React.useState(() => debounce(callbackFn => callbackFn(), debounceDelay));
-
-  return debounceCallback;
-}
-
 export default function SearchInput({ a11yText, initialValue, debounceDelay, onChange, placeholder, ...moreProps }) {
   const I18n = useI18n();
   const [searchTerm, setSearchTerm] = React.useState(initialValue);
-  const debounceCallback = useDebouncer(debounceDelay);
+  const debounceCallback = useCallbackDebouncer(debounceDelay);
 
   function handleSearch(e) {
     const newSearchTerm = e.target.value;
