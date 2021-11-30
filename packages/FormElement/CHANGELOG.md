@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.0.26-next.2
+
+### Patch Changes
+
+- 63fd491: Update input box related form elements' style
+
 ## 4.0.26-next.1
 
 ### Patch Changes
