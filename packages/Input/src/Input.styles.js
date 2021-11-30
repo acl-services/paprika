@@ -92,6 +92,7 @@ const disabledIconStyles = css`
 `;
 
 const iconStyles = ({ isDisabled }) => css`
+  color: ${tokens.textColor.icon};
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -111,11 +112,11 @@ export const Icon = styled.span(
 );
 
 export const ClearButton = styled(Button.Icon)`
+  ${iconStyles}
   border-radius: ${tokens.border.radius};
   color: ${tokens.color.blackLighten30};
   right: ${tokens.spaceSm};
   transition: color 0.2s ease-out;
-  ${iconStyles}
 
   &:hover {
     color: ${tokens.color.blackLighten30};
