@@ -65,7 +65,7 @@ export default function Showcase() {
             />
           )}
         </Content>
-        {errorText ? <Error>{errorText}</Error> : <Description>{descriptionText}</Description>}
+        {errorText ? <Error size={rootProps.size}>{errorText}</Error> : <Description>{descriptionText}</Description>}
       </FormElement>
     </L10n>
   );

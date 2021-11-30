@@ -15,12 +15,12 @@ const sizeStyles = {
   `,
   [types.LARGE]: css`
     ${stylers.fontSize()}
-    height: ${stylers.spacer(5)};
+    height: ${stylers.spacer(4.5)};
   `,
 };
 
 const hasIconStyles = ({ size }) => css`
-  padding-left: ${size === types.LARGE ? stylers.spacer(4) : stylers.spacer(3)};
+  padding-left: ${size === types.SMALL ? stylers.spacer(3) : stylers.spacer(3.5)};
 `;
 
 const shouldShowClearButtonStyles = ({ size }) => css`
@@ -76,14 +76,14 @@ const iconSizeStyles = {
     padding: 0 ${tokens.spaceSm};
   `,
   [types.MEDIUM]: css`
-    ${stylers.fontSize()}
-    margin-left: 2px;
-    padding: 0 ${tokens.spaceSm};
+    ${stylers.fontSize(2)}
+    margin-left: ${tokens.spaceSm};
+    margin-right: ${tokens.spaceSm};
   `,
   [types.LARGE]: css`
     ${stylers.fontSize(2)}
     margin-left: ${tokens.spaceSm};
-    padding: 0 ${tokens.spaceSm};
+    margin-right: ${tokens.spaceSm};
   `,
 };
 
@@ -92,7 +92,6 @@ const disabledIconStyles = css`
 `;
 
 const iconStyles = ({ isDisabled }) => css`
-  color: ${tokens.textColor.icon};
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -113,7 +112,7 @@ export const Icon = styled.span(
 
 export const ClearButton = styled(Button.Icon)`
   border-radius: ${tokens.border.radius};
-  color: ${tokens.color.blackLighten50};
+  color: ${tokens.color.blackLighten30};
   right: ${tokens.spaceSm};
   transition: color 0.2s ease-out;
   ${iconStyles}
@@ -126,5 +125,8 @@ export const ClearButton = styled(Button.Icon)`
   &:active {
     color: ${tokens.color.black};
     transform: translateY(-50%);
+  }
+  [data-pka-anchor="button.icon"] {
+    color: inherit;
   }
 `;
