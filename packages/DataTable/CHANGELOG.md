@@ -1,5 +1,11 @@
 # @paprika/data-table
 
+## 0.1.1-next.2
+
+### Patch Changes
+
+- 7dc936f: Fix infinite loader rendering.
+
 ## 0.1.1-next.1
 
 ### Patch Changes
