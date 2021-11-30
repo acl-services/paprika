@@ -37,7 +37,7 @@ npm install @paprika/data-table
 | width           | [string,number]                                                         | false    | "100%"               | The width of the table                                           |
 | extraCellProps  | Record                                                                  | false    | {}                   | Experimental prop                                                |
 
-### InfiniteLoader
+### DataTable.InfiniteLoader
 
 | Prop                                                                            | Type      | required | default | Description                                                                                                                                    |
 | ------------------------------------------------------------------------------- | --------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
