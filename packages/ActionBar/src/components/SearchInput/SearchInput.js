@@ -7,9 +7,9 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 import * as sc from "./SearchInput.styles";
 
 function useDebouncer(debounceDelay) {
-  const debounceCallback = React.useRef(debounce(callbackFn => callbackFn(), debounceDelay));
+  const [debounceCallback] = React.useState(() => debounce(callbackFn => callbackFn(), debounceDelay));
 
-  return debounceCallback.current;
+  return debounceCallback;
 }
 
 export default function SearchInput({ a11yText, initialValue, debounceDelay, onChange, placeholder, ...moreProps }) {
