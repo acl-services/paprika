@@ -74,12 +74,16 @@
     "@paprika/data-table": "0.1.0"
   },
   "changesets": [
+    "angry-pandas-jog",
     "brave-brooms-allow",
     "bright-dingos-train",
     "cool-bears-happen",
     "eighty-moons-roll",
     "empty-lamps-reflect",
+    "kind-lamps-hear",
     "silver-wasps-marry",
+    "slow-starfishes-melt",
+    "tiny-doors-relax",
     "tricky-cats-remain",
     "witty-tables-talk"
   ]

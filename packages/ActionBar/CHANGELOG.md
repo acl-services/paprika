@@ -1,5 +1,31 @@
 # Changelog
 
+## 5.0.0-next.3
+
+### Major Changes
+
+- 80361b2: - Add `initialValue` prop to the `<SearchInput />`
+
+  - Fix the debouncing in `<SearchInput />`
+  - Rename `debouncedValue` to `debounceDelay`
+
+  #### Migration Guide
+
+  1. Change `<SearchInput debouncedValue={value} />` to `<SearchInput debounceDelay={value} />`
+
+  Author: [@AndreyChernykh ](https://github.com/AndreyChernykh)
+
+### Patch Changes
+
+- Updated dependencies [80361b2]
+  - @paprika/helpers@2.2.0-next.1
+  - @paprika/button@1.1.9-next.3
+  - @paprika/input@4.0.15-next.4
+  - @paprika/popover@2.0.2-next.2
+  - @paprika/select@2.0.9-next.2
+  - @paprika/sortable@1.2.9-next.3
+  - @paprika/switch@1.0.15-next.2
+
 ## 4.0.3-next.2
 
 ### Patch Changes
