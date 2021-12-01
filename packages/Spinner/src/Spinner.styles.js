@@ -16,7 +16,7 @@ export const Spinner = styled.div`
 .spinner__visual {
   animation: spin 1.2s infinite linear;
   border-color: rgba(0, 0, 0, 0.1);
-  border-left-color: ${tokens.color.purple};
+  border-left-color: ${props => (props.isDark ? tokens.color.white : tokens.color.purple)};
   border-radius: 50%;
   border-style: solid;
   margin-left: auto;
@@ -25,19 +25,19 @@ export const Spinner = styled.div`
 }
 
 &.spinner--small .spinner__visual {
-  border-width: 2px;
+  border-width: 3px;
   height: ${stylers.spacer(3)};
   width: ${stylers.spacer(3)};
 }
 
 &.spinner--medium .spinner__visual {
-  border-width: 3px;
+  border-width: 5px;
   height: ${stylers.spacer(6)};
   width: ${stylers.spacer(6)};
 }
 
 &.spinner--large .spinner__visual {
-  border-width: 4px;
+  border-width: 8px;
   height: ${stylers.spacer(9)};
   width: ${stylers.spacer(9)};
 }
