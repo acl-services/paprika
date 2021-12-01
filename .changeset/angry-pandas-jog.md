@@ -10,4 +10,4 @@
 
 1. Change `<SearchInput debouncedValue={value} />` to `<SearchInput debounceDelay={value} />`
 
-  Author: [@AndreyChernykh ](https://github.com/AndreyChernykh)
+Author: [@AndreyChernykh ](https://github.com/AndreyChernykh)
