@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
+    "lodash.debounce": "^4.0.8",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
