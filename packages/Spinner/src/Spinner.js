@@ -52,7 +52,7 @@ const defaultProps = {
   className: null,
   caption: null,
   isDark: false,
-  size: Spinner.types.size.MEDIUM
+  size: Spinner.types.size.MEDIUM,
 };
 
 Spinner.displayName = "Spinner";
