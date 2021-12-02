@@ -6,6 +6,7 @@ import defaultReducer, { actionTypes } from "./defaultReducer";
 import { logicalFilterOperators } from "../rules";
 import getInitialValueByType from "../helpers/getInitialValueByType";
 import shouldIncludeOption from "../helpers/shouldIncludeOption";
+import getIllogicalFilters from "../helpers/getIllogicalFilters";
 
 function getDefaultFilter(columns, rulesByType, data, existingFilters, operator) {
   const [firstColumnId, firstColumnType] = columns
@@ -48,9 +49,20 @@ export default function useFilter({
   }
 
   function onChangeOperator() {
+    const oldOperator = state.operator;
+
     dispatch({
       type: actionTypes.changeOperator,
     });
+
+    if (oldOperator === logicalFilterOperators.OR) {
+      const illogicalFilters = getIllogicalFilters(state.filters);
+
+      illogicalFilters.forEach(filter => {
+        console.warn(`Removing illogical filter: ${filter.columnId} ${filter.rule} ${filter.value}`);
+        dispatch({ type: actionTypes.delete, payload: filter.id });
+      });
+    }
   }
 
   function onClear() {
