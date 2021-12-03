@@ -10,13 +10,13 @@ const spinnerSize = {
   small: "spinner--small",
 };
 
-const Spinner = ({ a11yText, className, caption, size, ...moreProps }) => {
+const Spinner = ({ a11yText, className, caption, isDark, size, ...moreProps }) => {
   const rootClasses = classNames(className, spinnerSize[size]);
 
   const bestAria = a11yText || caption || "Loading"; // TODO: l10n
 
   return (
-    <sc.Spinner className={rootClasses} {...moreProps} data-pka-anchor="spinner">
+    <sc.Spinner className={rootClasses} {...moreProps} data-pka-anchor="spinner" isDark={isDark}>
       <div className="spinner__visual" />
       <div className="spinner__caption">{caption}</div>
       <div className="spinner__aria-alert" role="alert" aria-live="polite">
@@ -40,6 +40,9 @@ const propTypes = {
   /** Sets the caption that will display beneath the spinner */
   caption: PropTypes.string,
 
+  /** If the background is dark, different color of spinner will be rendered */
+  isDark: PropTypes.bool,
+
   /** Sets the size of the spinner */
   size: PropTypes.oneOf([Spinner.types.size.SMALL, Spinner.types.size.MEDIUM, Spinner.types.size.LARGE]),
 };
@@ -48,6 +51,7 @@ const defaultProps = {
   a11yText: null,
   className: null,
   caption: null,
+  isDark: false,
   size: Spinner.types.size.MEDIUM,
 };
 
