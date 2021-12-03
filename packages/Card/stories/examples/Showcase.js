@@ -21,7 +21,7 @@ export default () => (
         <Card.Metadata>Created by Phil Smith</Card.Metadata>
         <Card.Metadata>Updated 1 minute ago by Phil Smith</Card.Metadata>
       </Card.Content>
-      <Card.Footer>150 attributes type</Card.Footer>
+      <Card.Footer tagContent="Medium Tag">150 attributes type</Card.Footer>
     </Card>
   </Story>
 );

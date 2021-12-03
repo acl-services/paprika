@@ -9,6 +9,7 @@ export const footerStyles = styled.div`
   box-sizing: border-box;
   color: ${tokens.color.black};
   display: flex;
+  justify-content: space-between;
   ${stylers.fontSize(-1)};
   min-height: ${stylers.spacer(6)};
   padding-left: ${stylers.spacer(2)};

@@ -15,7 +15,7 @@ export const avatarSizeStyles = {
   `,
 
   medium: css`
-    border-radius: 12px;
+    border-radius: ${tokens.card.borderRadius};
     height: ${mediumSize};
     width: ${mediumSize};
     ${stylers.fontSize(3)}
