@@ -8,4 +8,5 @@ export const titleStyles = styled.h1`
   ${stylers.fontSize(0)};
   margin: 0;
   ${stylers.truncateText};
+  padding: ${tokens.spaceSm};
 `;

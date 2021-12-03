@@ -23,6 +23,22 @@ interface FooterProps {
   [x: string]: any;
   /** Body content of the footer */
   children?: React.ReactNode;
+  /** Content of the tag */
+  tagContent?: string;
+  /** Themes of the tag */
+  tagTheme?:
+    | Footer.types.themes.BLACK
+    | Footer.types.themes.BLUE
+    | Footer.types.themes.GREEN
+    | Footer.types.themes.GREY
+    | Footer.types.themes.LIGHT_BLUE
+    | Footer.types.themes.LIGHT_ORANGE
+    | Footer.types.themes.ORANGE
+    | Footer.types.severityThemes.NO_RISK
+    | Footer.types.severityThemes.LOW_RISK
+    | Footer.types.severityThemes.MEDIUM_RISK
+    | Footer.types.severityThemes.HIGH_RISK
+    | Footer.types.severityThemes.ALERT;
 }
 
 declare namespace Card {
@@ -31,6 +47,10 @@ declare namespace Card {
     [x: string]: any;
     /** Primary content. */
     children?: React.ReactNode;
+    /** Callback to be executed when the button is clicked or activated. */
+    onButtonClick?: (...args: any[]) => any;
+    /** Render an icon. */
+    icon?: React.ReactNode;
   }
 }
 declare function Metadata(props: MetadataProps): JSX.Element;
@@ -61,6 +81,25 @@ declare namespace Card {
       const SMALL: any;
       const MEDIUM: any;
       const LARGE: any;
+    }
+  }
+}
+declare namespace Footer {
+  namespace types {
+    namespace themes {
+      const BLACK: any;
+      const BLUE: any;
+      const GREEN: any;
+      const GREY: any;
+      const LIGHT_BLUE: any;
+      const LIGHT_ORANGE: any;
+      const ORANGE: any;
+      const severityThemes: any;
+      const NO_RISK: any;
+      const LOW_RISK: any;
+      const MEDIUM_RISK: any;
+      const HIGH_RISK: any;
+      const ALERT: any;
     }
   }
 }
