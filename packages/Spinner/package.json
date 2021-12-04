@@ -1,6 +1,6 @@
 {
   "name": "@paprika/spinner",
-  "version": "1.0.13-next.2",
+  "version": "1.0.13-next.3",
   "description": "Spinner component tells the user that the app is doing something.",
   "author": "@paprika",
   "main": "lib/index.js",

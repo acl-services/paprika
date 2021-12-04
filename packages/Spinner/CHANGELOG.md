@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.13-next.3
+
+### Patch Changes
+
+- bd09d92: change spinner color depends on the light/dark background
+
 ## 1.0.13-next.2
 
 ### Patch Changes
