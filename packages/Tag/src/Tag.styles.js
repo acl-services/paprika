@@ -1,65 +1,9 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
-import Button from "@paprika/button";
+import RawButton from "@paprika/raw-button";
 import { fontSize, spacer } from "@paprika/stylers/lib/helpers";
 import { truncateText } from "@paprika/stylers/lib/includes";
 import * as types from "./types";
-
-const themeStyles = {
-  [types.themes.BLACK]: css`
-    background: ${tokens.color.black};
-  `,
-
-  [types.themes.BLUE]: css`
-    background: ${tokens.color.blue};
-  `,
-
-  [types.themes.GREY]: css`
-    background: ${tokens.color.blackLighten70};
-    color: ${tokens.color.black};
-  `,
-
-  [types.themes.GREEN]: css`
-    background: ${tokens.color.greenDarken10};
-  `,
-
-  [types.themes.ORANGE]: css`
-    background: ${tokens.color.orangeDarken10};
-  `,
-
-  [types.themes.LIGHT_BLUE]: css`
-    background: ${tokens.color.blueLighten50};
-    color: ${tokens.color.blueDarken20};
-  `,
-
-  [types.themes.LIGHT_ORANGE]: css`
-    background: ${tokens.color.orangeLighten40};
-    color: ${tokens.color.orangeDarken20};
-  `,
-
-  [types.severityThemes.NO_RISK]: css`
-    background: ${tokens.color.blackLighten70};
-    color: ${tokens.color.black};
-  `,
-
-  [types.severityThemes.LOW_RISK]: css`
-    background: #299a7a;
-  `,
-
-  [types.severityThemes.MEDIUM_RISK]: css`
-    background: #c9af28;
-  `,
-
-  [types.severityThemes.HIGH_RISK]: css`
-    background: #cd3c44;
-  `,
-
-  [types.severityThemes.ALERT]: css`
-    background: none;
-    border: 1px solid ${tokens.color.orangeDarken10};
-    color: ${tokens.color.orangeDarken10};
-  `,
-};
 
 export const Tags = styled.ul(
   () => css`
@@ -120,20 +64,15 @@ export const Ellipsis = styled.div(({ size }) => {
   `;
 });
 
-export const Delete = styled(Button.Close)(({ size }) => {
+export const Delete = styled(RawButton)(({ size }) => {
   const fontSize = {
-    medium: "10px",
-    large: "12px",
-  };
-
-  const padding = {
-    medium: "4px",
-    large: "5px",
+    medium: tokens.icon.sizeSm,
+    large: tokens.icon.sizeMd,
   };
 
   const width = {
-    medium: "20px",
-    large: "24px",
+    medium: tokens.icon.sizeSm,
+    large: tokens.icon.sizeMd,
   };
 
   return css`
@@ -146,15 +85,94 @@ export const Delete = styled(Button.Close)(({ size }) => {
     height: ${width[size]};
     justify-content: center;
     min-height: auto;
-    padding: ${padding[size]};
     width: ${width[size]};
-
-    &:hover {
-      background: ${tokens.color.blackLighten60};
-    }
-
-    &:focus {
-      background: ${tokens.color.blackLighten60};
-    }
   `;
 });
+
+const DeleteButtonStylesForLightBackground = css`
+  ${Delete} {
+    color: ${tokens.color.blackLighten70};
+    &:hover,
+    &:focus {
+      color: ${tokens.color.blackLighten60};
+    }
+  }
+`;
+
+const DeleteButtonStylesForDarkBackground = css`
+  ${Delete} {
+    color: ${tokens.color.blackLighten30};
+    &:hover,
+    &:focus {
+      color: ${tokens.color.blackLighten20};
+    }
+  }
+`;
+
+const themeStyles = {
+  [types.themes.BLACK]: css`
+    background: ${tokens.color.black};
+    ${DeleteButtonStylesForLightBackground}
+  `,
+
+  [types.themes.BLUE]: css`
+    background: ${tokens.color.blue};
+    ${DeleteButtonStylesForLightBackground}
+  `,
+
+  [types.themes.GREY]: css`
+    background: ${tokens.color.blackLighten70};
+    color: ${tokens.color.black};
+    ${DeleteButtonStylesForDarkBackground}
+  `,
+
+  [types.themes.GREEN]: css`
+    background: ${tokens.color.greenDarken10};
+    ${DeleteButtonStylesForLightBackground}
+  `,
+
+  [types.themes.ORANGE]: css`
+    background: ${tokens.color.orangeDarken10};
+    ${DeleteButtonStylesForLightBackground}
+  `,
+
+  [types.themes.LIGHT_BLUE]: css`
+    background: ${tokens.color.blueLighten50};
+    color: ${tokens.color.blueDarken20};
+    ${DeleteButtonStylesForDarkBackground}
+  `,
+
+  [types.themes.LIGHT_ORANGE]: css`
+    background: ${tokens.color.orangeLighten40};
+    color: ${tokens.color.orangeDarken20};
+    ${DeleteButtonStylesForDarkBackground}
+  `,
+
+  [types.severityThemes.NO_RISK]: css`
+    background: ${tokens.color.blackLighten70};
+    color: ${tokens.color.black};
+    ${DeleteButtonStylesForDarkBackground}
+  `,
+
+  [types.severityThemes.LOW_RISK]: css`
+    background: #299a7a;
+    ${DeleteButtonStylesForLightBackground}
+  `,
+
+  [types.severityThemes.MEDIUM_RISK]: css`
+    background: #c9af28;
+    ${DeleteButtonStylesForLightBackground}
+  `,
+
+  [types.severityThemes.HIGH_RISK]: css`
+    background: #cd3c44;
+    ${DeleteButtonStylesForLightBackground}
+  `,
+
+  [types.severityThemes.ALERT]: css`
+    background: none;
+    border: 1px solid ${tokens.color.orangeDarken10};
+    color: ${tokens.color.orangeDarken10};
+    ${DeleteButtonStylesForDarkBackground}
+  `,
+};

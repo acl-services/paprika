@@ -49,9 +49,10 @@ refLabel is a React ref for the `<FormElement.Label />`|
 
 ### FormElement.Error
 
-| Prop     | Type | required | default | Description                  |
-| -------- | ---- | -------- | ------- | ---------------------------- |
-| children | node | false    | null    | Content of the error message |
+| Prop     | Type   | required | default                 | Description                  |
+| -------- | ------ | -------- | ----------------------- | ---------------------------- |
+| children | node   | false    | null                    | Content of the error message |
+| size     | custom | false    | Error.types.size.MEDIUM |                              |
 
 ### FormElement.Instructions
 

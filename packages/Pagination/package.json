@@ -1,6 +1,6 @@
 {
   "name": "@paprika/pagination",
-  "version": "1.0.25-next.1",
+  "version": "1.0.25-next.2",
   "description": "The Pagination component allows the user to select a page from a range of pages.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -17,7 +17,7 @@
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/constants": "^1.0.0",
-    "@paprika/helpers": "^2.1.4-next.0",
+    "@paprika/helpers": "^2.2.0-next.1",
     "@paprika/icon": "^2.1.4-next.0",
     "@paprika/raw-button": "^1.0.10-next.0",
     "@paprika/stylers": "^1.1.4-next.0",
