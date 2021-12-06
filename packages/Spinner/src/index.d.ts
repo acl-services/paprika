@@ -9,6 +9,8 @@ interface SpinnerProps {
   className?: string;
   /** Sets the caption that will display beneath the spinner */
   caption?: string;
+  /** If the background is dark, different color of spinner will be rendered */
+  isDark?: boolean;
   /** Sets the size of the spinner */
   size?: Spinner.types.size.SMALL | Spinner.types.size.MEDIUM | Spinner.types.size.LARGE;
 }
