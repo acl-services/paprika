@@ -6,7 +6,7 @@ import { BasicStory, FullHeightStory } from "./examples/Basic";
 import { CustomBreakpointsStory, NoSmallStory, NoLargeStory } from "./examples/Breakpoints";
 import { OnBreakStory } from "./examples/Callbacks";
 import { DebounceSlowStory, DebounceFastStory } from "./examples/Debounce";
-import ResizeDetector, { useDimensions, useBreakpoints } from "../src";
+import ResizeDetector, { useResizeDetectorContext } from "../src";
 
 <Meta
   title={`${getStoryName("ResizeDetector")}/Docs`}
@@ -23,17 +23,16 @@ import ResizeDetector, { useDimensions, useBreakpoints } from "../src";
 You can use the custom hooks provided by the `<ResizeDetector>` to consume the dimensions, or tshirt "size" value (`small` | `medium` | `large`) in a child component of the `<ResizeDetector>`.
 
 ```jsx
-import ResizeDetector, { useDimensions, useBreakpoints } from "@paprika/resize-detector";
+import ResizeDetector, { useResizeDetectorContext } from "@paprika/resize-detector";
 
 function ResizeConsumer() {
-  const { width, height } = useDimensions();
-  const { size } = useBreakpoints();
+  const { width, height, breakpointSize } = useResizeDetectorContext();
 
   return (
     <ColourfulBox>
       {width} x {height}
       <br />
-      [{size}]
+      [{breakpointSize}]
     </ColourfulBox>
   );
 }
@@ -71,13 +70,13 @@ It also has an `isFullHeight` prop, which will cause it to expand to the height 
 
 ### Breakpoints
 
-The `size` value that is provided is a t-shirt size (`small` | `medium` | `large`) which is determined by two breakpoints: `breakpointSmall` + `breakpointLarge`.
+The `breakpointSize` value that is provided is a t-shirt size (`small` | `medium` | `large`) which is determined by two breakpoints: `breakpointSmall` + `breakpointLarge`.
 
-The `breakpointSmall` is the pixel value of the container width at which the `size` value "breaks" _from_ `small` to `medium`.
+The `breakpointSmall` is the pixel value of the container width at which the `breakpointSize` value "breaks" _from_ `small` to `medium`.
 
-The `breakpointLarge` is the pixel value of the container width at which the `size` value "breaks" from `medium` _to_ `large`.
+The `breakpointLarge` is the pixel value of the container width at which the `breakpointSize` value "breaks" from `medium` _to_ `large`.
 
-If either of these is set to `0` or `null`, then that breakpoint will be ignored, and the corresponding `size` will never be applied.
+If either of these is set to `0` or `null`, then that breakpoint will be ignored, and the corresponding `breakpointSize` will never be applied.
 
 #### Custom Breakpoints
 
@@ -121,14 +120,14 @@ If either of these is set to `0` or `null`, then that breakpoint will be ignored
 
 ### Callbacks
 
-The `<ResizeDetector>` has two callback props, `onBreak` and `onResize`. Similar to the custom hooks, they provide the `size` value and the `width` / `height` values, respectively.
+The `<ResizeDetector>` has two callback props, `onBreak` and `onResize`. Similar to the custom hooks, they provide the `breakpointSize` value and the `width` / `height` values, respectively.
 
 These callbacks may be useful for triggering an event, like fetching data or displaying a Modal.
 
 ```jsx
 <ResizeDetector
-  onBreak={size => {
-    showToast(size);
+  onBreak={breakpointSize => {
+    showToast(breakpointSize);
   }}
 >
   <ResizeConsumer />
@@ -147,11 +146,11 @@ These callbacks may be useful for triggering an event, like fetching data or dis
 
 <p>
   By default, the updates emitted by the <code>&lt;ResizeDetector&gt;</code> are debounced with a delay of
-  {ResizeDetector.defaultProps.debounceDelay} ms, but this can be controlled with the <code>debounceDelay</code> prop.
+  {30} ms, but this can be controlled with the <code>debounceDelay</code> prop.
 </p>
 
 ```jsx
-<ResizeDetector debounceDelay={300}>
+<ResizeDetector debounceDelay={30}>
   <ResizeConsumer />
 </ResizeDetector>
 ```

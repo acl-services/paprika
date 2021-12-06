@@ -6,14 +6,12 @@ import CodeViewer from "storybook/components/CodeViewer";
 import { ResizeConsumer } from "../storyHelpers";
 import ResizeDetector from "../../src";
 
-const defaultProps = ResizeDetector.defaultProps;
-
 const getKnobs = () => ({
-  isFullWidth: boolean("isFullWidth", defaultProps.isFullWidth),
-  isFullHeight: boolean("isFullHeight", defaultProps.isFullHeight),
-  debounceDelay: number("debounceDelay", defaultProps.debounceDelay),
-  breakpointSmall: number("breakpointSmall", defaultProps.breakpointSmall),
-  breakpointLarge: number("breakpointLarge", defaultProps.breakpointLarge),
+  isFullWidth: boolean("isFullWidth", true),
+  isFullHeight: boolean("isFullHeight", true),
+  debounceDelay: number("debounceDelay", 30),
+  breakpointSmall: number("breakpointSmall", 360),
+  breakpointLarge: number("breakpointLarge", 768),
 });
 
 const initDimensions = {
@@ -25,8 +23,8 @@ function storybookAction(actionName) {
   return action(actionName);
 }
 
-function handleBreak(size) {
-  return storybookAction("onBreak")(size);
+function handleBreak(breakpointSize) {
+  return storybookAction("onBreak")(breakpointSize);
 }
 
 function handleResize(dimensions) {

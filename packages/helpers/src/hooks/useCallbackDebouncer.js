@@ -14,10 +14,11 @@ import debounce from "lodash.debounce";
  * }
  *
  * @param {number} debounceDelay milliseconds
+ * @param {Object} options https://lodash.com/docs/4.17.15#debounce
  * @returns {callbackFn(callbackFn => any)}
  */
-export default function useCallbackDebouncer(debounceDelay = 0) {
-  const [debounceCallback] = React.useState(() => debounce(callbackFn => callbackFn(), debounceDelay));
+export default function useCallbackDebouncer(debounceDelay = 0, options = {}) {
+  const [debounceCallback] = React.useState(() => debounce(callbackFn => callbackFn(), debounceDelay, options));
 
   return debounceCallback;
 }
