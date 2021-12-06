@@ -1,8 +1,8 @@
 import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
 import Icon from "@paprika/icon/lib/Lock";
+import Avatar from "@paprika/avatar";
 import Card from "../../src";
-import Avatar from "../../src/components/Avatar";
 
 export default () => {
   const data = [
