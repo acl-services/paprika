@@ -40,7 +40,7 @@ const activeStyles = `
 export const cardStyles = styled.div(
   ({ size, isActive, isFullWidth }) => css`
     background: ${tokens.color.white};
-    border: 1px ${tokens.color.blackLighten60};
+    border: 1px solid ${tokens.color.blackLighten60};
     border-radius: ${tokens.card.borderRadius};
     box-shadow: ${tokens.shadow};
     box-sizing: border-box;
