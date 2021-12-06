@@ -11,6 +11,7 @@ import rules, { localeKeysByRule } from "../../rules";
 import FilterPrefix from "../FilterPrefix";
 import shouldIncludeOption from "../../helpers/shouldIncludeOption";
 import * as sc from "./FilterItem.styles";
+import removeIllogicalRules from "../../helpers/removeIllogicalRules";
 
 const propTypes = {
   columnId: PropTypes.string.isRequired,
@@ -124,11 +125,21 @@ function Item(props) {
           <sc.RuleSelect data-pka-anchor="filter.item.ruleSelector">
             <ListBox onChange={handleChangeRule}>
               <ListBox.Trigger hasClearButton={false} />
-              {rulesByType[selectedColumnType].map(rule => (
-                <ListBox.Option key={rule} value={rule} isSelected={rule === selectedRule}>
-                  {I18n.t(`filter.rules.${localeKeysByRule[rule]}`)}
-                </ListBox.Option>
-              ))}
+              {rulesByType[selectedColumnType]
+                .filter(rule =>
+                  removeIllogicalRules(
+                    operator,
+                    rule,
+                    React.Children.toArray(children).map(child => child.props),
+                    selectedColumnId,
+                    id
+                  )
+                )
+                .map(rule => (
+                  <ListBox.Option key={rule} value={rule} isSelected={rule === selectedRule}>
+                    {I18n.t(`filter.rules.${localeKeysByRule[rule]}`)}
+                  </ListBox.Option>
+                ))}
             </ListBox>
           </sc.RuleSelect>
         );

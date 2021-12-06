@@ -7,15 +7,20 @@ import { logicalFilterOperators } from "../rules";
 import getInitialValueByType from "../helpers/getInitialValueByType";
 import shouldIncludeOption from "../helpers/shouldIncludeOption";
 import getIllogicalFilters from "../helpers/getIllogicalFilters";
+import removeIllogicalRules from "../helpers/removeIllogicalRules";
 
 function getDefaultFilter(columns, rulesByType, data, existingFilters, operator) {
   const [firstColumnId, firstColumnType] = columns
     .filter(c => shouldIncludeOption(operator, c, existingFilters, -1))
     .map(column => [column.id, column.type])[0];
 
+  const rule = rulesByType[firstColumnType].filter(rule =>
+    removeIllogicalRules(operator, rule, existingFilters, firstColumnId)
+  )[0];
+
   return {
     columnId: firstColumnId,
-    rule: rulesByType[firstColumnType][0],
+    rule,
     value: getInitialValueByType(firstColumnType, firstColumnId, data),
     id: uuidv4(),
   };
