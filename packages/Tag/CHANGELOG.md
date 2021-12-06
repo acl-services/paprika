@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.18-next.4
+
+### Patch Changes
+
+- 17ab30d: Tag Icon closing Icon (X icon) background color will be changed depending on the tag background
+
 ## 0.0.18-next.3
 
 ### Patch Changes
