@@ -1,5 +1,12 @@
 # @paprika/data-table
 
+## 0.1.1-next.3
+
+### Patch Changes
+
+- Updated dependencies [80361b2]
+  - @paprika/helpers@2.2.0-next.1
+
 ## 0.1.1-next.2
 
 ### Patch Changes

@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.0.26-next.3
+
+### Patch Changes
+
+- Updated dependencies [80361b2]
+  - @paprika/helpers@2.2.0-next.1
+  - @paprika/popover@2.0.2-next.2
+
+## 4.0.26-next.2
+
+### Patch Changes
+
+- 63fd491: Update input box related form elements' style
+
 ## 4.0.26-next.1
 
 ### Patch Changes

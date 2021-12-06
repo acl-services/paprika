@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.2-next.2
+
+### Patch Changes
+
+- Updated dependencies [80361b2]
+  - @paprika/helpers@2.2.0-next.1
+
 ## 1.1.2-next.1
 
 ### Patch Changes

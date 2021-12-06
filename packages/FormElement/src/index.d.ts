@@ -43,6 +43,8 @@ declare namespace FormElement {
     [x: string]: any;
     /** Content of the error message */
     children?: React.ReactNode;
+
+    size?: custom;
   }
 }
 declare namespace FormElement {

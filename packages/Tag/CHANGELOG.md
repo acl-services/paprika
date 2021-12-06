@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.0.18-next.4
+
+### Patch Changes
+
+- 17ab30d: Tag Icon closing Icon (X icon) background color will be changed depending on the tag background
+
+## 0.0.18-next.3
+
+### Patch Changes
+
+- Updated dependencies [80361b2]
+  - @paprika/helpers@2.2.0-next.1
+  - @paprika/button@1.1.9-next.3
+
 ## 0.0.18-next.2
 
 ### Patch Changes

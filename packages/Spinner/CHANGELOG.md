@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.0.13-next.3
+
+### Patch Changes
+
+- bd09d92: change spinner color depends on the light/dark background
+
+## 1.0.13-next.2
+
+### Patch Changes
+
+- Updated dependencies [80361b2]
+  - @paprika/helpers@2.2.0-next.1
+
 ## 1.0.13-next.1
 
 ### Patch Changes

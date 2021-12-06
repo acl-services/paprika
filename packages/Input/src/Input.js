@@ -61,8 +61,6 @@ const Input = React.forwardRef((props, ref) => {
   const renderClear = () => {
     if (!shouldShowClearButton) return null;
 
-    const iconSize = size === types.LARGE ? types.MEDIUM : types.SMALL;
-
     return (
       <sc.ClearButton
         a11yText={i18n.t("input.clear_button.aria_label")}
@@ -70,7 +68,6 @@ const Input = React.forwardRef((props, ref) => {
         isSemantic={false}
         kind={types.MINOR}
         onClick={inputClearHandler}
-        size={iconSize}
       >
         {clearIcon || <TimesCircleIcon />}
       </sc.ClearButton>
@@ -85,7 +82,6 @@ const Input = React.forwardRef((props, ref) => {
     shouldShowClearButton,
     size,
   };
-
   return (
     <sc.InputContainer data-pka-anchor="input.container" {...styleProps} {...containerProps}>
       {icon ? (
