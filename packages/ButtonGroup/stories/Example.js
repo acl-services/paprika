@@ -1,12 +1,12 @@
 import React from "react";
 import ButtonGroup from "../src";
 
-const Example = ({ itemData, isDisabled, ...rest }) => (
-  <ButtonGroup isDisabled {...rest}>
-    {itemData.map((item, idex) => (
+const Example = ({ itemData, isDisabled, ...moreProps }) => (
+  <ButtonGroup isDisabled {...moreProps}>
+    {itemData.map((item, index) => (
       <ButtonGroup.Item
-        key={item}
-        value={idex + 1}
+        key={item.text}
+        value={index + 1}
         defaultIsActive={item.isActive}
         isDisabled={isDisabled || item.isDisabled}
       >
