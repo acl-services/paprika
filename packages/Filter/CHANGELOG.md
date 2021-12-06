@@ -1,5 +1,34 @@
 # Changelog
 
+## 2.0.4-next.2
+
+### Patch Changes
+
+- Updated dependencies [036fe83]
+  - @paprika/tokens@1.1.3-next.0
+  - @paprika/button@1.1.9-next.2
+  - @paprika/date-picker@2.0.3-next.2
+  - @paprika/icon@2.1.4-next.0
+  - @paprika/input@4.0.15-next.2
+  - @paprika/list-box@4.0.3-next.2
+  - @paprika/panel@2.2.2-next.2
+  - @paprika/radio@1.0.20-next.1
+  - @paprika/select@2.0.9-next.1
+  - @paprika/stylers@1.1.4-next.0
+
+## 2.0.4-next.1
+
+### Patch Changes
+
+- Updated dependencies [e2021aa]
+  - @paprika/panel@2.2.2-next.1
+  - @paprika/button@1.1.9-next.1
+  - @paprika/date-picker@2.0.3-next.1
+  - @paprika/input@4.0.15-next.1
+  - @paprika/list-box@4.0.3-next.1
+  - @paprika/radio@1.0.20-next.0
+  - @paprika/select@2.0.9-next.0
+
 ## 2.0.4-next.0
 
 ### Patch Changes

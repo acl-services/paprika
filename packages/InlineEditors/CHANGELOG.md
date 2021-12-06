@@ -1,5 +1,51 @@
 # @paprika/inline-editors
 
+## 1.0.3-next.3
+
+### Patch Changes
+
+- Updated dependencies [80361b2]
+  - @paprika/helpers@2.2.0-next.1
+  - @paprika/input@4.0.15-next.4
+  - @paprika/list-box@4.0.3-next.3
+  - @paprika/popover@2.0.2-next.2
+  - @paprika/spinner@1.0.13-next.2
+  - @paprika/table@1.2.18-next.3
+  - @paprika/tag@0.0.18-next.3
+  - @paprika/textarea@3.0.6-next.2
+
+## 1.0.3-next.2
+
+### Patch Changes
+
+- Updated dependencies [036fe83]
+  - @paprika/tokens@1.1.3-next.0
+  - @paprika/collapsible-text@1.0.25-next.1
+  - @paprika/icon@2.1.4-next.0
+  - @paprika/input@4.0.15-next.2
+  - @paprika/list-box@4.0.3-next.2
+  - @paprika/popover@2.0.2-next.1
+  - @paprika/raw-button@1.0.10-next.0
+  - @paprika/spinner@1.0.13-next.1
+  - @paprika/stylers@1.1.4-next.0
+  - @paprika/table@1.2.18-next.2
+  - @paprika/tag@0.0.18-next.2
+  - @paprika/textarea@3.0.6-next.1
+
+## 1.0.3-next.1
+
+### Patch Changes
+
+- Updated dependencies [343d673]
+  - @paprika/helpers@2.1.4-next.0
+  - @paprika/input@4.0.15-next.1
+  - @paprika/list-box@4.0.3-next.1
+  - @paprika/popover@2.0.2-next.0
+  - @paprika/spinner@1.0.13-next.0
+  - @paprika/table@1.2.18-next.1
+  - @paprika/tag@0.0.18-next.1
+  - @paprika/textarea@3.0.6-next.0
+
 ## 1.0.3-next.0
 
 ### Patch Changes

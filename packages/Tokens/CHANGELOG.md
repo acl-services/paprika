@@ -1,5 +1,11 @@
 # @paprika/tokens
 
+## 1.1.3-next.0
+
+### Patch Changes
+
+- 036fe83: change checkbox size/colour & label font size
+
 ## 1.1.2
 
 ### Patch Changes

@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.2.0-next.1
+
+### Minor Changes
+
+- 80361b2: - Add `useCallbackDebouncer`
+
+  Author: [@AndreyChernykh ](https://github.com/AndreyChernykh)
+
+## 2.1.4-next.0
+
+### Patch Changes
+
+- 343d673: Adding declaration files.
+
 ## 2.1.3
 
 ### Patch Changes
