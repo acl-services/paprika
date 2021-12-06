@@ -1,7 +1,7 @@
 import { logicalFilterOperators } from "../rules";
 import ruleIsBoolean from "./ruleIsBoolean";
 
-export default function shouldIncludeColumn(operator, option, allAddedFilters, thisFiltersIndex) {
+export default function removeIllogicalColumn(operator, option, allAddedFilters, thisFiltersIndex = -1) {
   if (!alreadyFilteringByThisOption(option, allAddedFilters)) {
     return true;
   }

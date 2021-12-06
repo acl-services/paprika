@@ -11,7 +11,7 @@ function putFiltersWithBooleanRulesLast(filterOne, filterTwo) {
   return oneIsBinary ? 1 : -1;
 }
 
-// Get the illogical filters (those filters that use a binary comparator filter, when there are other filters on that column)
+// Get the illogical filters (use a boolean rule, and there are other filters on that column)
 export default function getIllogicalFilters(filters) {
   const filtersClone = [...filters];
   const processedColumnIds = [];
