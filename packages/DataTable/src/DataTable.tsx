@@ -75,7 +75,7 @@ export interface DataTableProps {
 
 const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
   a11yText,
-  children,
+  children = null,
   columns,
   data,
   height,
