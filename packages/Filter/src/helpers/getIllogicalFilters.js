@@ -1,8 +1,8 @@
-import comparatorIsBinary from "./comparatorIsBinary";
+import ruleIsBoolean from "./ruleIsBoolean";
 
-function putFiltersWithBinaryComparatorsLast(filterOne, filterTwo) {
-  const oneIsBinary = comparatorIsBinary(filterOne.rule);
-  const twoIsBinary = comparatorIsBinary(filterTwo.rule);
+function putFiltersWithBooleanRulesLast(filterOne, filterTwo) {
+  const oneIsBinary = ruleIsBoolean(filterOne.rule);
+  const twoIsBinary = ruleIsBoolean(filterTwo.rule);
 
   if (oneIsBinary === twoIsBinary) {
     return 0;
@@ -16,9 +16,9 @@ export default function getIllogicalFilters(filters) {
   const filtersClone = [...filters];
   const processedColumnIds = [];
 
-  return filtersClone.sort(putFiltersWithBinaryComparatorsLast).filter(filter => {
+  return filtersClone.sort(putFiltersWithBooleanRulesLast).filter(filter => {
     if (processedColumnIds.includes(filter.columnId)) {
-      if (comparatorIsBinary(filter.rule)) {
+      if (ruleIsBoolean(filter.rule)) {
         return true;
       }
     } else {

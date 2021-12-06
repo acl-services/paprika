@@ -9,7 +9,7 @@ import FilterContext from "../../context";
 import * as types from "../../types";
 import rules, { localeKeysByRule } from "../../rules";
 import FilterPrefix from "../FilterPrefix";
-import shouldIncludeOption from "../../helpers/shouldIncludeOption";
+import shouldIncludeColumn from "../../helpers/shouldIncludeColumn";
 import * as sc from "./FilterItem.styles";
 import removeIllogicalRules from "../../helpers/removeIllogicalRules";
 
@@ -249,7 +249,7 @@ function Item(props) {
               {columns.length >= MAX_OPTIONS ? <ListBox.Filter /> : null}
               {columns
                 .filter(column =>
-                  shouldIncludeOption(
+                  shouldIncludeColumn(
                     operator,
                     column,
                     React.Children.toArray(children).map(child => child.props),

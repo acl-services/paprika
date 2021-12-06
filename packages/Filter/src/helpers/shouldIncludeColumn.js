@@ -1,7 +1,7 @@
 import { logicalFilterOperators } from "../rules";
-import comparatorIsBinary from "./comparatorIsBinary";
+import ruleIsBoolean from "./ruleIsBoolean";
 
-export default function shouldIncludeOption(operator, option, allAddedFilters, thisFiltersIndex) {
+export default function shouldIncludeColumn(operator, option, allAddedFilters, thisFiltersIndex) {
   if (!alreadyFilteringByThisOption(option, allAddedFilters)) {
     return true;
   }
@@ -40,7 +40,7 @@ function doingOrComparison(operator) {
 // but it is not ok to search for 'goals = 100 and goals = 200' (= is "binary")
 function doingBinaryComparison(option, allAddedFilters) {
   const index = getThisOptionsIndexInAppliedFilters(option, allAddedFilters);
-  return comparatorIsBinary(allAddedFilters[index].rule);
+  return ruleIsBoolean(allAddedFilters[index].rule);
 }
 
 // if the current ListBox option we are examining is used by the current Filter Item we are looping over, it is ok to add it (i.e. include it as a ListBox.Option)

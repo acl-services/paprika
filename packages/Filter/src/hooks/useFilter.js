@@ -5,13 +5,13 @@ import Filter from "../Filter";
 import defaultReducer, { actionTypes } from "./defaultReducer";
 import { logicalFilterOperators } from "../rules";
 import getInitialValueByType from "../helpers/getInitialValueByType";
-import shouldIncludeOption from "../helpers/shouldIncludeOption";
+import shouldIncludeColumn from "../helpers/shouldIncludeColumn";
 import getIllogicalFilters from "../helpers/getIllogicalFilters";
 import removeIllogicalRules from "../helpers/removeIllogicalRules";
 
 function getDefaultFilter(columns, rulesByType, data, existingFilters, operator) {
   const [firstColumnId, firstColumnType] = columns
-    .filter(c => shouldIncludeOption(operator, c, existingFilters, -1))
+    .filter(c => shouldIncludeColumn(operator, c, existingFilters, -1))
     .map(column => [column.id, column.type])[0];
 
   const rule = rulesByType[firstColumnType].filter(rule =>

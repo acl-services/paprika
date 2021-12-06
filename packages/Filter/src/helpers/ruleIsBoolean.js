@@ -1,6 +1,6 @@
 import rules from "../rules";
 
-export default function comparatorIsBinary(comparator) {
+export default function ruleIsBoolean(comparator) {
   return [
     rules.IS,
     rules.IS_NOT,

@@ -10,7 +10,7 @@ import FilterContext from "./context";
 import columnShape from "./columnShape";
 import * as types from "./types";
 import rules, { defaultRulesByType, logicalFilterOperators } from "./rules";
-import comparatorIsBinary from "./helpers/comparatorIsBinary";
+import ruleIsBoolean from "./helpers/ruleIsBoolean";
 import * as sc from "./Filter.styles";
 
 function getLabelText(numberOfFilters, I18n) {
@@ -59,7 +59,7 @@ export default function Filter(props) {
   const allFieldsAreAlreadyFilteredBy =
     operator === logicalFilterOperators.AND &&
     React.Children.count(children) === columns.length &&
-    React.Children.toArray(children).every(child => comparatorIsBinary(child.props.rule));
+    React.Children.toArray(children).every(child => ruleIsBoolean(child.props.rule));
 
   return (
     <FilterContext.Provider value={{ filterRef, children, columns, data, operator, onChangeOperator, rulesByType }}>
