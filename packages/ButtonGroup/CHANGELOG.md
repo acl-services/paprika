@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.21-next.4
+
+### Patch Changes
+
+- 055f780: update font/icon/spacing to aslign new UI kit
+
 ## 1.0.21-next.3
 
 ### Patch Changes
