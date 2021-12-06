@@ -33,7 +33,7 @@ describe("<DataTable />", () => {
     cy.findByText("Haskell").should("be.visible");
   });
 
-  it.only("Should load more data (infinite scroll)", () => {
+  it("Should load more data (infinite scroll)", () => {
     cy.findAllByTestId("dataTable.tr").should("have.length", 6);
     cy.findByTestId("dataTable.tbody")
       .parent()
