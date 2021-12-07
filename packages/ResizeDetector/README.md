@@ -40,17 +40,17 @@ npm install @paprika/resize-detector
 
 `<ResizeDetector>` is a provider component that implements a simple DOM wrapper element and provides callbacks for resize events and custom hooks with dimension values for a consuming application or child component.
 
-Two callback props are provided (`onResize` + `onBreak`), as well a custom hook(`useResizeDetectorContext`) that a child component can use.
+Two callback props are provided (`onResize` + `onBreak`), as well a custom hook(`useResizeDetector`) that a child component can use.
 
 It provides the up-to-date `width` and `height` of its root DOM element as well as a simple tshirt `size` value (`small` | `medium` | `large`) that is determined by two breakpoints, which can be customized or disabled.
 
 #### Custom Hooks Example
 
 ```jsx
-import ResizeDetector, { useResizeDetectorContext } from "@paprika/resize-detector";
+import ResizeDetector, { useResizeDetector } from "@paprika/resize-detector";
 
 function ResizeConsumer() {
-  const { width, height } = useResizeDetectorContext();
+  const { width, height } = useResizeDetector();
   return (
     <div>
       {width} x {height}
@@ -70,7 +70,7 @@ function ResizeApp() {
 #### Render Prop Example
 
 ```tsx
-import ResizeDetector, { useResizeDetectorContext, ResizeDetectorContextValue } from "@paprika/resize-detector";
+import ResizeDetector, { useResizeDetector, ResizeDetectorContextValue } from "@paprika/resize-detector";
 
 function ResizeApp() {
   return (

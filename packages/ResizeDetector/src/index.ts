@@ -1,2 +1,2 @@
-export { default, useResizeDetectorContext } from "./ResizeDetector";
+export { default, useResizeDetector } from "./ResizeDetector";
 export * from "./ResizeDetector";
