@@ -5,17 +5,17 @@ import Filter from "../Filter";
 import defaultReducer, { actionTypes } from "./defaultReducer";
 import { logicalFilterOperators } from "../rules";
 import getInitialValueByType from "../helpers/getInitialValueByType";
-import removeIllogicalColumn from "../helpers/removeIllogicalColumn";
+import isIllogicalColumn from "../helpers/isIllogicalColumn";
 import getIllogicalFilters from "../helpers/getIllogicalFilters";
-import removeIllogicalRules from "../helpers/removeIllogicalRules";
+import isIllogicalRule from "../helpers/isIllogicalRule";
 
 function getDefaultFilter(columns, rulesByType, data, existingFilters, operator) {
   const [firstColumnId, firstColumnType] = columns
-    .filter(c => removeIllogicalColumn(operator, c, existingFilters))
+    .filter(c => isIllogicalColumn(operator, c, existingFilters))
     .map(column => [column.id, column.type])[0];
 
   const rule = rulesByType[firstColumnType].filter(rule =>
-    removeIllogicalRules(operator, rule, existingFilters, firstColumnId)
+    isIllogicalRule(operator, rule, existingFilters, firstColumnId)
   )[0];
 
   return {

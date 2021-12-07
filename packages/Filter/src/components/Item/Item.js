@@ -9,9 +9,9 @@ import FilterContext from "../../context";
 import * as types from "../../types";
 import rules, { localeKeysByRule } from "../../rules";
 import FilterPrefix from "../FilterPrefix";
-import removeIllogicalColumn from "../../helpers/removeIllogicalColumn";
+import isIllogicalColumn from "../../helpers/isIllogicalColumn";
 import * as sc from "./FilterItem.styles";
-import removeIllogicalRules from "../../helpers/removeIllogicalRules";
+import isIllogicalRule from "../../helpers/isIllogicalRule";
 
 const propTypes = {
   columnId: PropTypes.string.isRequired,
@@ -128,7 +128,7 @@ function Item(props) {
             <ListBox onChange={handleChangeRule}>
               <ListBox.Trigger hasClearButton={false} />
               {rulesByType[selectedColumnType]
-                .filter(rule => removeIllogicalRules(operator, rule, existingFilters, selectedColumnId, id))
+                .filter(rule => isIllogicalRule(operator, rule, existingFilters, selectedColumnId, id))
                 .map(rule => (
                   <ListBox.Option key={rule} value={rule} isSelected={rule === selectedRule}>
                     {I18n.t(`filter.rules.${localeKeysByRule[rule]}`)}
@@ -242,7 +242,7 @@ function Item(props) {
               <ListBox.Trigger hasClearButton={false} />
               {columns.length >= MAX_OPTIONS ? <ListBox.Filter /> : null}
               {columns
-                .filter(column => removeIllogicalColumn(operator, column, existingFilters, index))
+                .filter(column => isIllogicalColumn(operator, column, existingFilters, index))
                 .map(column => (
                   <ListBox.Option key={column.id} value={column.id} isSelected={column.id === selectedColumnId}>
                     {column.label}

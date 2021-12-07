@@ -1,7 +1,7 @@
 import { logicalFilterOperators } from "../rules";
 import ruleIsBoolean from "./ruleIsBoolean";
 
-export default function removeIllogicalRules(operator, rule, existingFilters, columnId, filterId = "") {
+export default function isIllogicalRule(operator, rule, existingFilters, columnId, filterId = "") {
   return !(
     operator === logicalFilterOperators.AND &&
     ruleIsBoolean(rule) &&
