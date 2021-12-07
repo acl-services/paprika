@@ -202,6 +202,23 @@ storiesOf(`${storyName}/Examples`, module)
         ))}
       </Modal.Content>
     </Modal>
+  ))
+  .add("with large modal and inputs and contents ", () => (
+    <Modal isOpen size={Modal.types.size.LARGE}>
+      <Modal.Header>Large Modal</Modal.Header>
+      <Modal.Content>
+        <p>
+          Mixtape single-origin coffee put a bird on it flexitarian street cred live-edge you probably haven‘t heard of
+          them.
+        </p>
+        <p>Label</p>
+        <input type="text" data-autofocus style={{ width: "100%", height: "36px" }} />
+      </Modal.Content>
+      <Modal.Footer>
+        <Button kind={Button.types.kind.PRIMARY}>Save</Button>
+        <Button kind={Button.types.kind.MINOR}>Cancel</Button>
+      </Modal.Footer>
+    </Modal>
   ));
 
 storiesOf(`${storyName}/Backyard/Sandbox`, module)

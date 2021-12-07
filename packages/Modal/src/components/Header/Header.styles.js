@@ -7,6 +7,7 @@ export const Header = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
+  min-height: 56px;
   padding: 0 ${spacer(2)};
 `;
 
