@@ -31,7 +31,7 @@ interface ResizeDetectorProps {
   isFullHeight: boolean;
 
   /** Callback that fires when the size change crosses a breakpoint threshold (returns new T-Shirt size value).  */
-  onBreak?: (size: string) => void;
+  onBreak?: (breakpointSize: string) => void;
 
   /** Callback that fires when the size changes (returns new width + height values).  */
   onResize?: (dimensions: Dimensions) => void;
