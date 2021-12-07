@@ -6,7 +6,6 @@ Mirgated to TS; perfomrance improvements;
 
 #### Migration Guide
 
-- `isFullWidth` default value is set to `false` now
 - `useDimensions()` and `useBreakpoints()` were merged into one hook `useResizeDetector()`
 - `size` was renamed to `breakpointSize`
 

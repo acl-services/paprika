@@ -63,7 +63,7 @@ function ResizeDetector({
   debounceDelay = 30,
   onBreak = noop,
   onResize = noop,
-  isFullWidth = false,
+  isFullWidth = true,
   isFullHeight = false,
   ...moreProps
 }: ResizeDetectorProps): JSX.Element {

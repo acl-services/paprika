@@ -6,7 +6,7 @@ import ResizeDetector from "../../src";
 export function BasicStory() {
   return (
     <Resizer initWidth={360} initHeight={100} axis="x">
-      <ResizeDetector isFullWidth>
+      <ResizeDetector>
         <ResizeConsumer />
       </ResizeDetector>
     </Resizer>
@@ -16,7 +16,7 @@ export function BasicStory() {
 export function FullHeightStory() {
   return (
     <Resizer initWidth={360} initHeight={120}>
-      <ResizeDetector isFullWidth isFullHeight>
+      <ResizeDetector isFullHeight>
         <ResizeConsumer />
       </ResizeDetector>
     </Resizer>

@@ -33,7 +33,7 @@ export function OnBreakStory() {
       )}
 
       <Resizer initWidth={360} initHeight={64} axis="x">
-        <ResizeDetector isFullWidth onBreak={handleShowToast}>
+        <ResizeDetector onBreak={handleShowToast}>
           <ResizeConsumer />
         </ResizeDetector>
       </Resizer>
