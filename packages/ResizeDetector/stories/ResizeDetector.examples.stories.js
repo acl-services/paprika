@@ -72,7 +72,7 @@ callbacks.story = {
 export const debounce = () => (
   <ExampleStory storyName="Debounce Examples" component="ResizeDetector" fileName="examples/Debounce.js">
     <p>
-      <code>debounceDelay = 30</code>
+      <code>debounceDelay = 300</code>
     </p>
     <DebounceSlowStory />
     <Gap.Large />
