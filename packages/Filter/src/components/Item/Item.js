@@ -68,6 +68,8 @@ function Item(props) {
     }
   }, [selectedColumnType, data, selectedColumnId]);
 
+  const existingFilters = React.Children.toArray(children).map(child => child.props);
+
   function handleRemoveFilter() {
     filterRef.current.focus();
     onDeleteFilter(id);
@@ -126,15 +128,7 @@ function Item(props) {
             <ListBox onChange={handleChangeRule}>
               <ListBox.Trigger hasClearButton={false} />
               {rulesByType[selectedColumnType]
-                .filter(rule =>
-                  removeIllogicalRules(
-                    operator,
-                    rule,
-                    React.Children.toArray(children).map(child => child.props),
-                    selectedColumnId,
-                    id
-                  )
-                )
+                .filter(rule => removeIllogicalRules(operator, rule, existingFilters, selectedColumnId, id))
                 .map(rule => (
                   <ListBox.Option key={rule} value={rule} isSelected={rule === selectedRule}>
                     {I18n.t(`filter.rules.${localeKeysByRule[rule]}`)}
@@ -248,14 +242,7 @@ function Item(props) {
               <ListBox.Trigger hasClearButton={false} />
               {columns.length >= MAX_OPTIONS ? <ListBox.Filter /> : null}
               {columns
-                .filter(column =>
-                  removeIllogicalColumn(
-                    operator,
-                    column,
-                    React.Children.toArray(children).map(child => child.props),
-                    index
-                  )
-                )
+                .filter(column => removeIllogicalColumn(operator, column, existingFilters, index))
                 .map(column => (
                   <ListBox.Option key={column.id} value={column.id} isSelected={column.id === selectedColumnId}>
                     {column.label}
