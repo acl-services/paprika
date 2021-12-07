@@ -8,7 +8,7 @@ import ResizeDetector from "../../src";
 
 const getKnobs = () => ({
   isFullWidth: boolean("isFullWidth", true),
-  isFullHeight: boolean("isFullHeight", true),
+  isFullHeight: boolean("isFullHeight", false),
   debounceDelay: number("debounceDelay", 30),
   breakpointSmall: number("breakpointSmall", 360),
   breakpointLarge: number("breakpointLarge", 768),

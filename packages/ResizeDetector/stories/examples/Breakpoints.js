@@ -6,7 +6,7 @@ import ResizeDetector from "../../src";
 export function CustomBreakpointsStory() {
   return (
     <Resizer initWidth={360} initHeight={64} axis="x">
-      <ResizeDetector breakpointSmall={100} breakpointLarge={200}>
+      <ResizeDetector isFullWidth breakpointSmall={100} breakpointLarge={200}>
         <ResizeConsumer />
       </ResizeDetector>
     </Resizer>
@@ -16,7 +16,7 @@ export function CustomBreakpointsStory() {
 export function NoSmallStory() {
   return (
     <Resizer initWidth={360} initHeight={64} axis="x">
-      <ResizeDetector breakpointSmall={0} breakpointLarge={200}>
+      <ResizeDetector isFullWidth breakpointSmall={0} breakpointLarge={200}>
         <ResizeConsumer />
       </ResizeDetector>
     </Resizer>
@@ -26,7 +26,7 @@ export function NoSmallStory() {
 export function NoLargeStory() {
   return (
     <Resizer initWidth={360} initHeight={64} axis="x">
-      <ResizeDetector breakpointSmall={100} breakpointLarge={null}>
+      <ResizeDetector isFullWidth breakpointSmall={100} breakpointLarge={null}>
         <ResizeConsumer />
       </ResizeDetector>
     </Resizer>
