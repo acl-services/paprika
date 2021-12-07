@@ -1,6 +1,10 @@
 import styled, { css } from "styled-components";
 
-export const ResizeDetector = styled.span(
+export const ResizeDetector = styled.span<{
+  isFullWidth: boolean;
+  isFullHeight: boolean;
+  [otherProps: string]: unknown;
+}>(
   ({ isFullWidth, isFullHeight }) => css`
     display: inline-block;
 
