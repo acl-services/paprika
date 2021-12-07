@@ -2,4 +2,4 @@
 "@paprika/helpers": minor
 ---
 
-Add the `options` prop to support lodash debounce options
+Add the `options` prop on `useCallbackDebouncer` to support lodash debounce options

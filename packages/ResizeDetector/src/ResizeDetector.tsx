@@ -75,7 +75,6 @@ function ResizeDetector({
 
   useResizeDetector({
     onResize: ({ width, height }) => {
-      console.log({ width, height });
       debounceCallback(() => handleResize({ width: width || 0, height: height || 0 }), { maxWait: MAX_WAIT });
     },
     ref: refContainer,
@@ -104,7 +103,7 @@ function ResizeDetector({
 
   return (
     <sc.ResizeDetector
-      data-pka-anchor="resize-observer"
+      data-pka-anchor="resizeDetector"
       isFullWidth={isFullWidth}
       isFullHeight={isFullHeight}
       {...moreProps}
