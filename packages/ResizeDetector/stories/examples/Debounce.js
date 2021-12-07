@@ -6,7 +6,7 @@ import ResizeDetector from "../../src";
 export function DebounceSlowStory() {
   return (
     <Resizer initWidth={360} initHeight={64} axis="x">
-      <ResizeDetector isFullWidth debounceDelay={300}>
+      <ResizeDetector debounceDelay={300}>
         <ResizeConsumer />
       </ResizeDetector>
     </Resizer>
@@ -16,7 +16,7 @@ export function DebounceSlowStory() {
 export function DebounceFastStory() {
   return (
     <Resizer initWidth={360} initHeight={64} axis="x">
-      <ResizeDetector isFullWidth debounceDelay={0}>
+      <ResizeDetector debounceDelay={0}>
         <ResizeConsumer />
       </ResizeDetector>
     </Resizer>
