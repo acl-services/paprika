@@ -1,6 +1,6 @@
 {
   "name": "@paprika/resize-detector",
-  "version": "1.0.9-next.1",
+  "version": "2.0.0-next.2",
   "description": "A wrapper that provides debounced updates of its dimensions.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/helpers": "^2.2.0-next.1",
+    "@paprika/helpers": "^2.2.0-next.2",
     "use-resize-observer": "^8.0.0"
   },
   "peerDependencies": {

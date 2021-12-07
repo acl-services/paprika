@@ -28,7 +28,7 @@ npm install @paprika/resize-detector
 | breakpointSmall | number                   | false    | 360        | The width at which the size will change from small to the default (medium). 0 or null value will disable. |
 | children        | [ReactReactNode,unknown] | true     | -          | Content to be wrapped which will be provided with live dimensions and (tshirt) size values.               |
 | debounceDelay   | number                   | false    | 30         | The ms delay before firing resize events / making live updates.                                           |
-| isFullWidth     | boolean                  | false    | false      | If the container will match its parent's width like a block level element (width: 100%).                  |
+| isFullWidth     | boolean                  | false    | true       | If the container will match its parent's width like a block level element (width: 100%).                  |
 | isFullHeight    | boolean                  | false    | false      | If the container will match its parent's height (height: 100%).                                           |
 | onBreak         | signature                | false    | () => null | Callback that fires when the size change crosses a breakpoint threshold (returns new T-Shirt size value). |
 | onResize        | signature                | false    | () => null | Callback that fires when the size changes (returns new width + height values).                            |
