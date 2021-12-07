@@ -12,22 +12,22 @@ export type ResizeDetectorContextValue = { width: number; height: number; breakp
 
 interface ResizeDetectorProps {
   /** The width at which the size will change from the default (medium) to large. 0 or null value will disable. */
-  breakpointLarge: number;
+  breakpointLarge?: number;
 
   /** The width at which the size will change from small to the default (medium). 0 or null value will disable. */
-  breakpointSmall: number;
+  breakpointSmall?: number;
 
   /** Content to be wrapped which will be provided with live dimensions and (tshirt) size values.  */
-  children: React.ReactNode | ((context: ResizeDetectorContextValue) => React.ReactNode);
+  children?: React.ReactNode | ((context: ResizeDetectorContextValue) => React.ReactNode);
 
   /** The ms delay before firing resize events / making live updates. */
-  debounceDelay: number;
+  debounceDelay?: number;
 
   /** If the container will match its parent's width like a block level element (width: 100%). */
-  isFullWidth: boolean;
+  isFullWidth?: boolean;
 
   /** If the container will match its parent's height (height: 100%). */
-  isFullHeight: boolean;
+  isFullHeight?: boolean;
 
   /** Callback that fires when the size change crosses a breakpoint threshold (returns new T-Shirt size value).  */
   onBreak?: (breakpointSize: string) => void;
