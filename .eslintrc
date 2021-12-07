@@ -23,6 +23,7 @@
     "camelcase": "off",
     "class-methods-use-this": "off",
     "consistent-return": "off",
+    "import/extensions": "off",
     "import/no-cycle": "off",
     "import/no-extraneous-dependencies": [
       "error",
@@ -68,17 +69,7 @@
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": "off",
     "react/jsx-no-bind": "off",
-    "react/jsx-props-no-spreading": "off",
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
-      }
-    ]
+    "react/jsx-props-no-spreading": "off"
   },
   "overrides": [
     {
