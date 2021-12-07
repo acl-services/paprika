@@ -7,7 +7,7 @@ Mirgated to TS; perfomrance improvements;
 #### Migration Guide
 
 - `isFullWidth` default value is set to `false` now
-- `useDimensions()` and `useBreakpoints()` were merged into one hook `useResizeDetectorContext()`
+- `useDimensions()` and `useBreakpoints()` were merged into one hook `useResizeDetector()`
 - `size` was renamed to `breakpointSize`
 
 Before:
@@ -27,13 +27,13 @@ After:
 import { useResizeDetectorContext } from "../src";
 
 function MyComponent() {
-  const { width, height, breakpointSize } = useResizeDetectorContext();
+  const { width, height, breakpointSize } = useResizeDetector();
 ```
 
 - `@paprika/resize-detector` now supports render prop `children`
 
 ```tsx
-import ResizeDetector, { useResizeDetectorContext, ResizeDetectorContextValue } from "@paprika/resize-detector";
+import ResizeDetector, { useResizeDetector, ResizeDetectorContextValue } from "@paprika/resize-detector";
 
 function MyComponent() {
   return (

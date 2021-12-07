@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import { useResizeDetectorContext } from "../src";
+import { useResizeDetector } from "../src";
 
 export const ColourfulBox = styled.div`
   ${stylers.fontSize(3)};
@@ -18,7 +18,7 @@ export const ColourfulBox = styled.div`
 `;
 
 export function ResizeConsumer() {
-  const { width, height, breakpointSize } = useResizeDetectorContext();
+  const { width, height, breakpointSize } = useResizeDetector();
 
   return (
     <ColourfulBox>

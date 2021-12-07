@@ -1,8 +1,7 @@
 /* eslint-disable react/require-default-props */
 import React from "react";
-import useResizeDetector from "use-resize-observer/polyfilled";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import { useCallbackDebouncer } from "@paprika/helpers";
+import useResizeObserver from "use-resize-observer/polyfilled";
+import { useCallbackDebouncer, ShirtSizes } from "@paprika/helpers";
 import * as sc from "./ResizeDetector.styles";
 
 // TODO: remove this hack after @paprika/helpers is migrated to TS
@@ -41,7 +40,7 @@ const MAX_WAIT = 1000;
 
 const ResizeContext = React.createContext({ width: 0, height: 0, breakpointSize: ShirtSizes_.MEDIUM });
 
-export function useResizeDetectorContext(): ResizeDetectorContextValue {
+export function useResizeDetector(): ResizeDetectorContextValue {
   return React.useContext(ResizeContext);
 }
 
@@ -73,7 +72,7 @@ function ResizeDetector({
   const [dimensions, setDimensions] = React.useState<Dimensions>({ width: 0, height: 0 });
   const breakpointSize = getBreakpointSize(dimensions.width, breakpointSmall, breakpointLarge);
 
-  useResizeDetector({
+  useResizeObserver({
     onResize: ({ width, height }) => {
       debounceCallback(() => handleResize({ width: width || 0, height: height || 0 }), { maxWait: MAX_WAIT });
     },

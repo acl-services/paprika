@@ -6,7 +6,7 @@ import { BasicStory, FullHeightStory } from "./examples/Basic";
 import { CustomBreakpointsStory, NoSmallStory, NoLargeStory } from "./examples/Breakpoints";
 import { OnBreakStory } from "./examples/Callbacks";
 import { DebounceSlowStory, DebounceFastStory } from "./examples/Debounce";
-import ResizeDetector, { useResizeDetectorContext } from "../src";
+import ResizeDetector, { useResizeDetector } from "../src";
 
 <Meta
   title={`${getStoryName("ResizeDetector")}/Docs`}
@@ -23,10 +23,10 @@ import ResizeDetector, { useResizeDetectorContext } from "../src";
 You can use the custom hooks provided by the `<ResizeDetector>` to consume the dimensions, or tshirt "size" value (`small` | `medium` | `large`) in a child component of the `<ResizeDetector>`.
 
 ```jsx
-import ResizeDetector, { useResizeDetectorContext } from "@paprika/resize-detector";
+import ResizeDetector, { useResizeDetector } from "@paprika/resize-detector";
 
 function ResizeConsumer() {
-  const { width, height, breakpointSize } = useResizeDetectorContext();
+  const { width, height, breakpointSize } = useResizeDetector();
 
   return (
     <ColourfulBox>
