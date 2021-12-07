@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0-next.3
+
+### Patch Changes
+
+- 6a43d77: Make some props optional
+
 ## 2.0.0-next.2
 
 ### Major Changes
