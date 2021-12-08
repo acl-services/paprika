@@ -7,7 +7,7 @@ import OverflowMenu from "@paprika/overflow-menu";
 import EllipsisVertical from "@paprika/icon/lib/EllipsisVertical";
 import Filter, { useFilter } from "@paprika/filter";
 import { ColumnsArrangement, useColumnsArrangement } from "@paprika/action-bar";
-import ResizeDetector, { useDimensions } from "@paprika/resize-detector";
+import ResizeDetector, { useResizeDetector } from "@paprika/resize-detector";
 import Link from "@paprika/link";
 import { Column } from "react-table";
 import DataTable from "../../src";
@@ -110,7 +110,7 @@ function isFixedColumn(columnId: ColumnId) {
 }
 
 function Table({ columns, data, onLoadMore, borderType, hasZebraStripes }: any) {
-  const { width = 1200, height = 500 } = useDimensions();
+  const { width = 1200, height = 500 } = useResizeDetector();
 
   return (
     <DataTable
