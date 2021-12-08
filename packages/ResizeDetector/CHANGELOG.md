@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0-next.4
+
+### Patch Changes
+
+- 449cbbe: Change span to div
+
 ## 2.0.0-next.3
 
 ### Patch Changes
