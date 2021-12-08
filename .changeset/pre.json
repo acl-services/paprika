@@ -74,6 +74,7 @@
     "@paprika/data-table": "0.1.0"
   },
   "changesets": [
+    "afraid-feet-unite",
     "angry-pandas-jog",
     "brave-brooms-allow",
     "brown-carrots-fix",
