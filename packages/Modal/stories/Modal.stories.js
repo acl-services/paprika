@@ -215,8 +215,10 @@ storiesOf(`${storyName}/Examples`, module)
         <input type="text" data-autofocus style={{ width: "100%", height: "36px" }} />
       </Modal.Content>
       <Modal.Footer>
-        <Button kind={Button.types.kind.PRIMARY}>Save</Button>
-        <Button kind={Button.types.kind.MINOR}>Cancel</Button>
+        <Button size={Button.types.size.LARGE}>Large Button</Button>
+        <Button size={Button.types.size.LARGE} kind={Button.types.kind.PRIMARY}>
+          Save
+        </Button>
       </Modal.Footer>
     </Modal>
   ));
