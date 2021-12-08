@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const ResizeDetector = styled.span<{
+export const ResizeDetector = styled.div<{
   isFullWidth: boolean;
   isFullHeight: boolean;
   [otherProps: string]: unknown;
