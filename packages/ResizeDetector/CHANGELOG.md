@@ -1,5 +1,67 @@
 # Changelog
 
+## 2.0.0-next.4
+
+### Patch Changes
+
+- 449cbbe: Change span to div
+
+## 2.0.0-next.3
+
+### Patch Changes
+
+- 6a43d77: Make some props optional
+
+## 2.0.0-next.2
+
+### Major Changes
+
+- 9e15465: Mirgated to TS; perfomrance improvements;
+
+  #### Migration Guide
+
+  - `useDimensions()` and `useBreakpoints()` were merged into one hook `useResizeDetector()`
+  - `size` was renamed to `breakpointSize`
+
+  Before:
+
+  ```js
+  import { useDimensions, useBreakpoints } from "../src";
+
+  function MyComponent() {
+    const { width, height } = useDimensions();
+    const { size } = useBreakpoints();
+
+  ```
+
+  After:
+
+  ```ts
+  import { useResizeDetectorContext } from "../src";
+
+  function MyComponent() {
+    const { width, height, breakpointSize } = useResizeDetector();
+  ```
+
+  - `@paprika/resize-detector` now supports render prop `children`
+
+  ```tsx
+  import ResizeDetector, { useResizeDetector, ResizeDetectorContextValue } from "@paprika/resize-detector";
+
+  function MyComponent() {
+    return (
+      <ResizeDetector>
+        {({ width, height }: ResizeDetectorContextValue) => <div>{width} x {height}</div>}
+      </ResizeDetector>;
+    );
+  }
+  ```
+
+### Patch Changes
+
+- Updated dependencies [9e15465]
+  - @paprika/helpers@2.2.0-next.2
+
 ## 1.0.9-next.1
 
 ### Patch Changes
