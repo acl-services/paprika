@@ -62,7 +62,7 @@ export const ShowcaseStory: (props: Partial<TableProps>) => JSX.Element = props 
     []
   );
 
-  const [items, setItems] = React.useState(() => makeData(5));
+  const [items, setItems] = React.useState(() => makeData(40));
 
   return (
     <DataTable a11yText="Data table for showcase." height={500} width={800} columns={columns} data={items} {...props}>
