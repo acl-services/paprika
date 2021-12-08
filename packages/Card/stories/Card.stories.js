@@ -19,4 +19,4 @@ storiesOf(`${storyName}/Examples`, module)
   .add("Basic Card with Content", () => <BasicCardContent />)
   .add("Multiple Card Icons", () => <MultipleCard />)
   .add("Card with Footer Tag", () => <TagCard />)
-  .add("Card with Icon", () => <IconCard />);
+  .add("Card with Header Button Icon", () => <IconCard />);

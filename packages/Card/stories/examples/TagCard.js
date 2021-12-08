@@ -23,8 +23,8 @@ export default () => (
         <Card.Metadata>Updated 1 minute ago by Phil Smith</Card.Metadata>
       </Card.Content>
       <Card.Footer>
-        150 attributes type
-        <Tag size={Tag.types.size.MEDIUM} theme={Tag.types.severityTheme.MEDIUM_RISK}>
+        00 items
+        <Tag size={Tag.types.size.MEDIUM} theme={Tag.types.severityTheme.MEDIUM_RISK} style={{ margin: "0" }}>
           Medium Tag
         </Tag>
       </Card.Footer>

@@ -13,5 +13,5 @@ export const footerStyles = styled.div`
   justify-content: space-between;
   ${stylers.fontSize(-1)};
   min-height: ${stylers.spacer(6)};
-  padding-left: ${stylers.spacer(2)};
+  padding: 0 ${stylers.spacer(2)};
 `;
