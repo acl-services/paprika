@@ -119,8 +119,8 @@ export default () => {
                 </Card.Content>
                 <Card.Footer>
                   <div>
-                    <span>{props.footer1}</span>
-                    <span> {props.footer2}</span>
+                    <div>{props.footer1}</div>
+                    <div> {props.footer2}</div>
                   </div>
                 </Card.Footer>
               </Card>

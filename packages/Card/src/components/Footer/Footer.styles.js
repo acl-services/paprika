@@ -10,8 +10,10 @@ export const footerStyles = styled.div`
   box-sizing: border-box;
   color: ${tokens.color.black};
   display: flex;
+  height: ${stylers.spacer(6)};
   justify-content: space-between;
-  ${stylers.fontSize(-1)};
-  min-height: ${stylers.spacer(6)};
+  overflow: hidden;
   padding: 0 ${stylers.spacer(2)};
+  ${stylers.fontSize(-1)};
+  ${stylers.truncateText}
 `;
