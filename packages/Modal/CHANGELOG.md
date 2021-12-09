@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.20-next.4
+
+### Patch Changes
+
+- 650a90c: style large modal size and footer height
+
 ## 1.0.20-next.3
 
 ### Patch Changes
