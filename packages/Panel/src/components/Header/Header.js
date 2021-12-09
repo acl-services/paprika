@@ -12,7 +12,8 @@ const Header = React.forwardRef((props, ref) => {
     hasCloseButton,
     getPushContentElement,
     isCompact,
-    kind,
+    size,
+    // kind,
     level,
     onClose,
     refHeading,
@@ -24,7 +25,8 @@ const Header = React.forwardRef((props, ref) => {
       data-pka-anchor="panel.header"
       hasPushedElement={!!getPushContentElement}
       isCompact={isCompact}
-      kind={kind}
+      size={size}
+      // kind={kind}
       ref={ref}
       {...moreProps}
     >
@@ -36,8 +38,8 @@ const Header = React.forwardRef((props, ref) => {
           data-pka-anchor="panel.header.close"
           isSemantic={false}
           onClick={onClose}
-          size={isCompact ? types.SMALL : types.MEDIUM}
-          isDark={kind === types.kinds.PRIMARY}
+          size="medium"
+          // isDark={kind === types.kinds.PRIMARY}
         />
       )}
     </sc.Header>
@@ -47,28 +49,29 @@ const Header = React.forwardRef((props, ref) => {
 Header.types = {
   kind: types.kinds,
 };
-
 const propTypes = {
   children: PropTypes.node.isRequired,
   getPushContentElement: PropTypes.func,
   hasCloseButton: PropTypes.bool,
   isCompact: PropTypes.bool,
   isHeaderSticky: PropTypes.bool,
-  kind: PropTypes.oneOf([Header.types.kind.DEFAULT, Header.types.kind.PRIMARY]),
+  // kind: PropTypes.oneOf([Header.types.kind.DEFAULT, Header.types.kind.PRIMARY]),
   level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   onClose: PropTypes.func,
+  size: PropTypes.oneOf([types.sizes.MEDIUM, types.sizes.LARGE]),
   refHeading: RefOf(),
 };
 
 const defaultProps = {
   hasCloseButton: true,
   getPushContentElement: () => {},
-  kind: Header.types.kind.DEFAULT,
+  // kind: Header.types.kind.DEFAULT,
   isHeaderSticky: false,
   level: 2,
   isCompact: false,
   onClose: () => {},
   refHeading: null,
+  size: types.sizes.MEDIUM,
 };
 
 Header.displayName = "Panel.Header";

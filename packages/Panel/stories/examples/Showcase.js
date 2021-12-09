@@ -27,12 +27,12 @@ const sidePanelProps = () => ({
   zIndex: number("zIndex", undefined, {}, sidePanelGroup),
   offset: object("offset", { top: 0, left: 0, right: 0 }, sidePanelGroup),
   pushContent: boolean("pushMain", false, sidePanelGroup),
+  size: text("size", "medium", sidePanelGroup),
 });
 
 const headerProps = () => ({
   children: text("children", "Header", headerGroup),
   hasCloseButton: boolean("hasCloseButton", true, headerGroup),
-  kind: select("kind", ["default", "primary"], "primary", headerGroup),
   level: select("level", [1, 2, 3, 4, 5, 6], 2, headerGroup),
   isSticky: boolean("isSticky", false, headerGroup),
 });
@@ -54,8 +54,10 @@ export default function Showcase() {
         {...(sidePanelProps().pushContent ? { getPushContentElement: getMainElement } : null)}
       >
         {overlayProps().toggleOverlay ? <Panel.Overlay /> : null}
-        <Panel.Header {...headerProps()}>{headerProps().children}</Panel.Header>
-        <Panel.Content>
+        <Panel.Header {...headerProps()} size={sidePanelProps().size}>
+          {headerProps().children}
+        </Panel.Header>
+        <Panel.Content size={sidePanelProps().size}>
           <div
             css={`
               margin: -24px;

@@ -14,3 +14,14 @@ export const slideFroms = {
   LEFT: "left",
   BOTTOM: "bottom",
 };
+
+export const widthTypes = {
+  SMALL: "small",
+  MEDIUM: "medium",
+  LARGE: "large",
+};
+
+export const sizes = {
+  MEDIUM: "medium",
+  LARGE: "large",
+};

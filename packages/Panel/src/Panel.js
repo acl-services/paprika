@@ -25,7 +25,8 @@ export default function Panel(props) {
     getPushContentElement,
     groupOffsetY,
     height,
-    isCompact,
+    // isCompact,
+    size,
     isInline,
     isOpen,
     kind,
@@ -36,6 +37,7 @@ export default function Panel(props) {
     slideFrom,
     width,
     zIndex,
+    hasAccent,
     ...moreProps
   } = props;
 
@@ -146,7 +148,8 @@ export default function Panel(props) {
         groupOffsetY={groupOffsetY}
         header={headerExtracted}
         height={height}
-        isCompact={isCompact}
+        // isCompact={isCompact}
+        size={size}
         isInline={isInline}
         isOpen={isOpen}
         kind={kind}
@@ -159,6 +162,7 @@ export default function Panel(props) {
         slideFrom={slideFrom}
         width={width}
         zIndex={zIndex}
+        hasAccent={hasAccent}
         {...moreProps}
       >
         {children}
@@ -204,6 +208,8 @@ export default function Panel(props) {
 Panel.types = {
   kind: types.kinds,
   slideFrom: types.slideFroms,
+  widthType: types.widthTypes,
+  size: types.sizes,
 };
 
 const propTypes = {
@@ -223,7 +229,10 @@ const propTypes = {
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
   /** Control the compactness of the Panel */
-  isCompact: PropTypes.bool,
+  // isCompact: PropTypes.bool,
+
+  /** Control the size of the Panel */
+  size: PropTypes.oneOfType([types.sizes.MEDIUM, types.sizes.LARGE]),
 
   /** Render the panel inline */
   isInline: PropTypes.bool,
@@ -250,10 +259,19 @@ const propTypes = {
   slideFrom: PropTypes.oneOf([types.slideFroms.RIGHT, types.slideFroms.LEFT, types.slideFroms.BOTTOM]),
 
   /** The width of the open Panel (when slide in from left or right) */
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  width: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    types.widthTypes.SMALL,
+    types.widthTypes.MEDIUM,
+    types.widthTypes.LARGE,
+  ]),
 
   /** Control the z-index of the Panel */
   zIndex: PropTypes.number,
+
+  /** Control the z-index of the Panel */
+  hasAccent: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -261,7 +279,8 @@ const defaultProps = {
   getPushContentElement: null,
   groupOffsetY: 0,
   height: "33%",
-  isCompact: false,
+  // isCompact: false,
+  size: types.sizes.MEDIUM,
   isInline: false,
   isOpen: false,
   kind: types.kinds.DEFAULT,
@@ -272,6 +291,7 @@ const defaultProps = {
   slideFrom: types.slideFroms.RIGHT,
   width: "33%",
   zIndex: zValue(7),
+  hasAccent: false,
 };
 
 Panel.propTypes = propTypes;
