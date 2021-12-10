@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.0.0-next.3
+
+### Major Changes
+
+- 9de1041: ### Removed
+
+  Avatar component is removed and now used as @paprika/avatar
+
+  ### Changed
+
+  change some styling
+
 ## 1.0.13-next.2
 
 ### Patch Changes
