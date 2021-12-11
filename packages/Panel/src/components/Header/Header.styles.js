@@ -24,7 +24,7 @@ const sizeStyles = {
 };
 
 export const hasAccentStyle = css`
-  ${tokens.spaceSm} solid ${tokens.color.blue};
+  border-top: ${tokens.spaceSm} solid ${tokens.color.blue};
 `;
 
 export const Header = styled.div(
@@ -32,7 +32,6 @@ export const Header = styled.div(
     align-items: center;
     border-bottom: 1px solid ${tokens.border.color};
     box-sizing: border-box;
-    border-top: ${hasAccent ? hasAccentStyle : ""};
     display: flex;
     height: ${spacer(8)};
     justify-content: space-between;
@@ -50,5 +49,6 @@ export const Header = styled.div(
     }
 
     ${size ? sizeStyles[size] : ""};
+    ${hasAccent ? hasAccentStyle : ""};
   `
 );
