@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.0.21
+
+### Patch Changes
+
+- 055f780: update font/icon/spacing to aslign new UI kit
+- Updated dependencies [036fe83]
+- Updated dependencies [514dc04]
+- Updated dependencies [9e15465]
+- Updated dependencies [343d673]
+- Updated dependencies [80361b2]
+  - @paprika/tokens@1.1.3
+  - @paprika/button@1.1.9
+  - @paprika/helpers@2.2.0
+  - @paprika/icon@2.1.4
+  - @paprika/stylers@1.1.4
+
 ## 1.0.21-next.4
 
 ### Patch Changes

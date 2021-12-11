@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2
+
+### Patch Changes
+
+- 32bb76d: Use "fs" async API to avoid race condition
+
 ## 0.1.2-next.0
 
 ### Patch Changes

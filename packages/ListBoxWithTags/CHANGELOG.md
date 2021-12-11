@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.0.3
+
+### Patch Changes
+
+- Updated dependencies [036fe83]
+- Updated dependencies [9e15465]
+- Updated dependencies [343d673]
+- Updated dependencies [17ab30d]
+- Updated dependencies [80361b2]
+  - @paprika/tokens@1.1.3
+  - @paprika/helpers@2.2.0
+  - @paprika/tag@0.0.18
+  - @paprika/icon@2.1.4
+  - @paprika/list-box@4.0.3
+  - @paprika/raw-button@1.0.10
+  - @paprika/stylers@1.1.4
+
 ## 3.0.3-next.3
 
 ### Patch Changes

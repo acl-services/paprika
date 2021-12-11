@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.2.0
+
+### Minor Changes
+
+- 9e15465: Add the `options` prop on `useCallbackDebouncer` to support lodash debounce options
+- 80361b2: - Add `useCallbackDebouncer`
+
+  Author: [@AndreyChernykh ](https://github.com/AndreyChernykh)
+
+### Patch Changes
+
+- 343d673: Adding declaration files.
+
 ## 2.2.0-next.2
 
 ### Minor Changes

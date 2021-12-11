@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.0.25
+
+### Patch Changes
+
+- Updated dependencies [036fe83]
+- Updated dependencies [514dc04]
+- Updated dependencies [bd09d92]
+- Updated dependencies [9e15465]
+- Updated dependencies [343d673]
+- Updated dependencies [80361b2]
+- Updated dependencies [e2021aa]
+  - @paprika/checkbox@1.0.19
+  - @paprika/tokens@1.1.3
+  - @paprika/button@1.1.9
+  - @paprika/spinner@1.0.13
+  - @paprika/helpers@2.2.0
+  - @paprika/panel@2.2.2
+  - @paprika/icon@2.1.4
+  - @paprika/raw-button@1.0.10
+  - @paprika/stylers@1.1.4
+
 ## 1.0.25-next.3
 
 ### Patch Changes
