@@ -13,8 +13,8 @@ const Header = React.forwardRef((props, ref) => {
     getPushContentElement,
     isCompact,
     size,
-    // kind,
     level,
+    hasAccent,
     onClose,
     refHeading,
     ...moreProps
@@ -24,9 +24,8 @@ const Header = React.forwardRef((props, ref) => {
     <sc.Header
       data-pka-anchor="panel.header"
       hasPushedElement={!!getPushContentElement}
-      isCompact={isCompact}
       size={size}
-      // kind={kind}
+      hasAccent={hasAccent}
       ref={ref}
       {...moreProps}
     >
@@ -39,7 +38,6 @@ const Header = React.forwardRef((props, ref) => {
           isSemantic={false}
           onClick={onClose}
           size="medium"
-          // isDark={kind === types.kinds.PRIMARY}
         />
       )}
     </sc.Header>
@@ -55,7 +53,7 @@ const propTypes = {
   hasCloseButton: PropTypes.bool,
   isCompact: PropTypes.bool,
   isHeaderSticky: PropTypes.bool,
-  // kind: PropTypes.oneOf([Header.types.kind.DEFAULT, Header.types.kind.PRIMARY]),
+  hasAccent: PropTypes.bool,
   level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   onClose: PropTypes.func,
   size: PropTypes.oneOf([types.sizes.MEDIUM, types.sizes.LARGE]),
@@ -65,13 +63,13 @@ const propTypes = {
 const defaultProps = {
   hasCloseButton: true,
   getPushContentElement: () => {},
-  // kind: Header.types.kind.DEFAULT,
   isHeaderSticky: false,
   level: 2,
   isCompact: false,
   onClose: () => {},
   refHeading: null,
   size: types.sizes.MEDIUM,
+  hasAccent: false, 
 };
 
 Header.displayName = "Panel.Header";

@@ -2,13 +2,12 @@ import styled, { css } from "styled-components";
 import { spacer } from "@paprika/stylers/lib/helpers";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens/lib/tokens";
-import Button from "@paprika/button";
 import * as types from "../../types";
 
 const sizeStyles = {
   [types.sizes.MEDIUM]: css`
     height: 18px;
-    padding: 12px 16px;
+    padding: ${tokens.spaceLg} ${stylers.spacer(2)};
 
     [data-pka-anchor="heading"] {
       margin: 0;
@@ -16,7 +15,7 @@ const sizeStyles = {
   `,
   [types.sizes.LARGE]: css`
     height: 23px;
-    padding: 16px 24px;
+    padding: ${stylers.spacer(2)} ${stylers.spacer(3)};
 
     [data-pka-anchor="heading"] {
       margin: 0;
@@ -24,11 +23,16 @@ const sizeStyles = {
   `,
 };
 
+export const hasAccentStyle = css`
+  ${tokens.spaceSm} solid ${tokens.color.blue};
+`;
+
 export const Header = styled.div(
-  ({ size }) => css`
+  ({ size, hasAccent }) => css`
     align-items: center;
-    border-bottom: 1px solid ${tokens.border.color}; 
+    border-bottom: 1px solid ${tokens.border.color};
     box-sizing: border-box;
+    border-top: ${hasAccent ? hasAccentStyle : ""};
     display: flex;
     height: ${spacer(8)};
     justify-content: space-between;
@@ -45,6 +49,6 @@ export const Header = styled.div(
       margin: 0;
     }
 
-    ${size ? sizeStyles[size] : ""};s
+    ${size ? sizeStyles[size] : ""};
   `
 );

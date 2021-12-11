@@ -4,12 +4,10 @@ import * as sc from "./Footer.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
-  height: PropTypes.number,
   isSticky: PropTypes.bool,
 };
 
 const defaultProps = {
-  height: 72,
   isSticky: false,
 };
 

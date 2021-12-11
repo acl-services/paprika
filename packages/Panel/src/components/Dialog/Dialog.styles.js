@@ -7,8 +7,7 @@ const childPanelCss = ({ size, groupOffsetY, offset }) => {
   const totalOffset = size ? 48 : 64;
   const childBottomOffsetY = totalOffset + groupOffsetY + offset.top;
   return css`
-    border-bottom-left-radius: ${tokens.spaceSm};
-    border-top-left-radius: ${tokens.spaceSm};
+    border-radius: ${tokens.card.borderRadius} 0px 0px ${tokens.card.borderRadius};
     height: calc(100% - ${childBottomOffsetY}px);
     margin-top: ${size ? `${stylers.spacer(3)}` : `${stylers.spacer(4)}`};
   `;

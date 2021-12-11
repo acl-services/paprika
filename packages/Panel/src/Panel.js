@@ -25,7 +25,6 @@ export default function Panel(props) {
     getPushContentElement,
     groupOffsetY,
     height,
-    // isCompact,
     size,
     isInline,
     isOpen,
@@ -148,7 +147,6 @@ export default function Panel(props) {
         groupOffsetY={groupOffsetY}
         header={headerExtracted}
         height={height}
-        // isCompact={isCompact}
         size={size}
         isInline={isInline}
         isOpen={isOpen}
@@ -228,9 +226,6 @@ const propTypes = {
   /** The height of the open Panel (when slide in from bottom) */
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
-  /** Control the compactness of the Panel */
-  // isCompact: PropTypes.bool,
-
   /** Control the size of the Panel */
   size: PropTypes.oneOfType([types.sizes.MEDIUM, types.sizes.LARGE]),
 
@@ -270,7 +265,7 @@ const propTypes = {
   /** Control the z-index of the Panel */
   zIndex: PropTypes.number,
 
-  /** Control the z-index of the Panel */
+  /** Differentiate between similar coloured UI elements */
   hasAccent: PropTypes.bool,
 };
 
@@ -279,7 +274,6 @@ const defaultProps = {
   getPushContentElement: null,
   groupOffsetY: 0,
   height: "33%",
-  // isCompact: false,
   size: types.sizes.MEDIUM,
   isInline: false,
   isOpen: false,
