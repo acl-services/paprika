@@ -1,5 +1,19 @@
 # @paprika/data-table
 
+## 0.1.1
+
+### Patch Changes
+
+- 343d673: Publish DataTable
+- 7dc936f: Fix infinite loader rendering.
+- Updated dependencies [036fe83]
+- Updated dependencies [9e15465]
+- Updated dependencies [343d673]
+- Updated dependencies [80361b2]
+  - @paprika/tokens@1.1.3
+  - @paprika/helpers@2.2.0
+  - @paprika/stylers@1.1.4
+
 ## 0.1.1-next.3
 
 ### Patch Changes

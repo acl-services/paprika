@@ -1,7 +1,7 @@
 import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
+import Avatar from "@paprika/avatar";
 import Card from "../../src";
-import Avatar from "../../src/components/Avatar";
 
 export default () => (
   <Story>

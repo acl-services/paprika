@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.25
+
+### Patch Changes
+
+- Updated dependencies [63fd491]
+- Updated dependencies [9e15465]
+- Updated dependencies [343d673]
+- Updated dependencies [80361b2]
+  - @paprika/input@4.0.15
+  - @paprika/helpers@2.2.0
+  - @paprika/icon@2.1.4
+
 ## 1.0.25-next.3
 
 ### Patch Changes

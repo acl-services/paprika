@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.22
+
+### Patch Changes
+
+- Updated dependencies [036fe83]
+  - @paprika/checkbox@1.0.19
+  - @paprika/tokens@1.1.3
+  - @paprika/collapsible@1.1.21
+  - @paprika/stylers@1.1.4
+
 ## 1.0.22-next.1
 
 ### Patch Changes

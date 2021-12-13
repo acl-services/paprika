@@ -1,8 +1,8 @@
 import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
 import Icon from "@paprika/icon/lib/Lock";
+import Avatar from "@paprika/avatar";
 import Card from "../../src";
-import Avatar from "../../src/components/Avatar";
 
 export default () => {
   const data = [
@@ -119,8 +119,8 @@ export default () => {
                 </Card.Content>
                 <Card.Footer>
                   <div>
-                    <span>{props.footer1}</span>
-                    <span> {props.footer2}</span>
+                    <div>{props.footer1}</div>
+                    <div> {props.footer2}</div>
                   </div>
                 </Card.Footer>
               </Card>
