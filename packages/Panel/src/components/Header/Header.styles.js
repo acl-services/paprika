@@ -33,7 +33,6 @@ export const Header = styled.div(
     border-bottom: 1px solid ${tokens.border.color};
     box-sizing: border-box;
     display: flex;
-    height: ${spacer(8)};
     justify-content: space-between;
     min-height: ${spacer(6)};
     padding: ${spacer(2)} ${spacer(3)};
