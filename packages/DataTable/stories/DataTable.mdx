@@ -4,6 +4,7 @@ import Toast from "@paprika/toast";
 import DataTable from "../src";
 import SimpleExample from "./examples/Simple";
 import { MultilevelHeaderStory as MultilevelHeaderExample } from "./examples/MultilevelHeader";
+import { default as CustomizedRowHeightCalculationExample } from "./examples/CustomizedRowHeightCalculation";
 
 # DataTable
 
@@ -238,3 +239,65 @@ For example, the height of all the rows in the `DataTable` is `80px`.
 By default, `DataTable` will calculate row heights based on the data of all the columns. If a `DataTable` has some columns which would never exceed the width of that column, we can simplify the calculation by skipping those columns. See this [example](/?path=/story/table-datatable--customized-row-height-calculation).
 
 3. If developers want to use a different calculation method
+
+<br />
+
+To customize the row height calculation, you can use `getRowHeight` prop:
+
+```jsx
+function getRowHeight(index: number) {
+  // By doing this, the row height calculation will be faster since it's only calculating the styles based on one column
+  return rowHeightHelper.calculate({
+    rowData: { desc: items[index] ? items[index].desc : "" },
+    columnsWidth: {
+      desc: 600,
+    },
+  });
+}
+
+<DataTable
+  a11yText="Data table with customized row height calculation."
+  height={500}
+  columns={columns}
+  data={items}
+  getRowHeight={getRowHeight}
+/>;
+```
+
+result:
+
+<CustomizedRowHeightCalculationExample />
+
+<br />
+
+### Custom cell or header cell
+
+To render different content for cell or header cell. Please refer to [react-table doc](https://react-table.tanstack.com/docs/api/useTable#column-options) about the `column options`. In each `Column` object, you can use `Header` and `Cell` property to customize the render content inside them.
+
+For example:
+
+```jsx
+function MyHeader({ column }: { column: Column }) {
+  return <DataHeader label={headerLabels[column.id as ColumnId]} renderActions={() => <HeaderMenu />} />;
+}
+
+function MyCell({ value }: { value: string }) {
+  return <Link href="wegalvanize.com">{value}</Link>;
+}
+
+const columns = React.useMemo(() => [
+  // customized header cell and customized cell
+  {
+    Header: MyHeader
+    accessor: 'name',
+    Cell: MyCell
+  },
+  // customized header cell and default cell
+  {
+    Header: MyHeader
+    accessor: 'address',
+  }
+], [])
+```
+
+For a real world example, please see this [storybook link](https://paprika.highbond.com/?path=/story/table-datatable--real-world)
