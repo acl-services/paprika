@@ -25,7 +25,7 @@ npm install @paprika/data-table
 | Prop            | Type            | required | default              | Description                                                      |
 | --------------- | --------------- | -------- | -------------------- | ---------------------------------------------------------------- |
 | a11yText        | string          | true     | -                    | Accessible description of the table                              |
-| children        | ReactReactNode  | false    | -                    |                                                                  |
+| children        | ReactReactNode  | false    | null                 |                                                                  |
 | columns         | Array           | true     | -                    | Array of column definition                                       |
 | data            | Array           | true     | -                    | Array of data to be stored in the table                          |
 | height          | number          | true     | -                    | The height of the table in px                                    |
