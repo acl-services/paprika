@@ -1,5 +1,12 @@
 # @paprika/data-table
 
+## 0.1.2-next.0
+
+### Patch Changes
+
+- 2b92f13: - Changed `children` prop to optional.
+  - Some typing definition improvements.
+
 ## 0.1.1
 
 ### Patch Changes
