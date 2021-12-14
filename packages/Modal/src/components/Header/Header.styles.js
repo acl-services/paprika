@@ -6,8 +6,8 @@ import Heading from "@paprika/heading";
 export const Header = styled.div`
   align-items: center;
   display: flex;
+  height: ${spacer(7)};
   justify-content: space-between;
-  min-height: ${spacer(7)};
   padding: 0 ${spacer(2)};
 `;
 
