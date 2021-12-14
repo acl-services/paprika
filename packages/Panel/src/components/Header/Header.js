@@ -11,7 +11,6 @@ const Header = React.forwardRef((props, ref) => {
     children,
     hasCloseButton,
     getPushContentElement,
-    isCompact,
     size,
     level,
     hasAccent,
@@ -29,7 +28,7 @@ const Header = React.forwardRef((props, ref) => {
       ref={ref}
       {...moreProps}
     >
-      <Heading level={level} displayLevel={isCompact ? 4 : 3} ref={refHeading}>
+      <Heading level={level} ref={refHeading}>
         {children}
       </Heading>
       {hasCloseButton && (
@@ -44,14 +43,10 @@ const Header = React.forwardRef((props, ref) => {
   );
 });
 
-Header.types = {
-  kind: types.kinds,
-};
 const propTypes = {
   children: PropTypes.node.isRequired,
   getPushContentElement: PropTypes.func,
   hasCloseButton: PropTypes.bool,
-  isCompact: PropTypes.bool,
   isHeaderSticky: PropTypes.bool,
   hasAccent: PropTypes.bool,
   level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
@@ -65,7 +60,6 @@ const defaultProps = {
   getPushContentElement: () => {},
   isHeaderSticky: false,
   level: 2,
-  isCompact: false,
   onClose: () => {},
   refHeading: null,
   size: types.sizes.MEDIUM,

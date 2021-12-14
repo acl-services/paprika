@@ -7,7 +7,6 @@ const childPanelCss = ({ size, groupOffsetY, offset }) => {
   const totalOffset = size ? 48 : 64;
   const childBottomOffsetY = totalOffset + groupOffsetY + offset.top;
   return css`
-    border-radius: ${tokens.card.borderRadius} 0px 0px ${tokens.card.borderRadius};
     height: calc(100% - ${childBottomOffsetY}px);
     margin-top: ${size ? `${stylers.spacer(3)}` : `${stylers.spacer(4)}`};
   `;
@@ -34,10 +33,6 @@ function slideOut(slideInTransform, slideOutTransform) {
       }
       `;
 }
-
-const compactStyles = css`
-  padding: ${stylers.spacer(2)};
-`;
 
 function getSlideOutTransform(slideFrom) {
   switch (slideFrom) {
@@ -114,7 +109,6 @@ export const Dialog = styled.div(
         left = `${offset.left}px`;
         right = `${offset.right}px`;
         bottom = 0;
-        borderTop = `1px solid ${tokens.border.color}`;
         break;
       default:
     }
@@ -128,7 +122,7 @@ export const Dialog = styled.div(
         `
       : "";
     const childPanel = kind === "child" ? childPanelCss : "";
-    const boxShadow = hasPushedElement ? "none" : tokens.modal.shadow;
+    const boxShadow = hasPushedElement ? "none" : "0 12px 24px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.16)";
 
     return css`
       ${animationStyle};
@@ -160,7 +154,7 @@ export const Dialog = styled.div(
 );
 
 export const DialogContent = styled.div(
-  ({ hasPushedElement, slideFrom, size, kind }) => css`
+  ({ hasPushedElement, slideFrom, size }) => css`
   flex-grow: 1;
   margin: 0;
   padding: 0;
@@ -171,7 +165,7 @@ export const DialogContent = styled.div(
 
   ${hasPushedElement && slideFrom === types.slideFroms.LEFT ? `border-right: 1px solid ${tokens.border.color}` : ""}
   ${hasPushedElement && slideFrom === types.slideFroms.RIGHT ? `border-left: 1px solid ${tokens.border.color}` : ""}
-  ${size || kind === "child" ? compactStyles : ""};
+  ${size === "child" ? childPanelCss : ""};
 `
 );
 

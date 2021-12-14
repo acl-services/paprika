@@ -8,18 +8,10 @@ const sizeStyles = {
   [types.sizes.MEDIUM]: css`
     height: 18px;
     padding: ${tokens.spaceLg} ${stylers.spacer(2)};
-
-    [data-pka-anchor="heading"] {
-      margin: 0;
-    }
   `,
   [types.sizes.LARGE]: css`
     height: 23px;
     padding: ${stylers.spacer(2)} ${stylers.spacer(3)};
-
-    [data-pka-anchor="heading"] {
-      margin: 0;
-    }
   `,
 };
 

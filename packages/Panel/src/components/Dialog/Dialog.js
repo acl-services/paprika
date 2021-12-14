@@ -17,7 +17,6 @@ function Dialog(props) {
     header,
     height,
     kind,
-    isCompact,
     isInline,
     offset,
     onClose,
@@ -37,7 +36,6 @@ function Dialog(props) {
       <sc.DialogContent
         data-pka-anchor="panel.content"
         hasPushedElement={!!getPushContentElement}
-        isCompact={isCompact}
         isOpen={isOpen}
         kind={kind}
         ref={refPanelContent}
@@ -52,10 +50,8 @@ function Dialog(props) {
     setIsAnimating(true);
   }, [isOpen]);
 
-  const dialogFooter = footer ? React.cloneElement(footer, { refPanel, isCompact }) : null;
-  const dialogHeader = header
-    ? React.cloneElement(header, { ref: refHeader, isCompact, onClose, getPushContentElement })
-    : null;
+  const dialogFooter = footer ? React.cloneElement(footer, { refPanel }) : null;
+  const dialogHeader = header ? React.cloneElement(header, { ref: refHeader, onClose, getPushContentElement }) : null;
 
   const handleAnimationEnd = () => {
     setIsAnimating(false);
@@ -89,7 +85,6 @@ function Dialog(props) {
       hasPushedElement={!!getPushContentElement}
       height={height}
       isAnimating={isAnimating}
-      isCompact={isCompact}
       isInline={isInline}
       isOpen={isOpen}
       kind={kind}
@@ -120,7 +115,6 @@ const propTypes = {
   header: PropTypes.node,
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   kind: PropTypes.oneOf([Dialog.types.kind.DEFAULT, Dialog.types.kind.CHILD]),
-  isCompact: PropTypes.bool,
   isInline: PropTypes.bool,
   offset: PropTypes.shape({
     top: PropTypes.number.isRequired,
@@ -143,7 +137,6 @@ const defaultProps = {
   groupOffsetY: 0,
   header: null,
   kind: Dialog.types.kind.DEFAULT,
-  isCompact: false,
   isInline: false,
   onClose: () => {},
   slideFrom: types.slideFroms.RIGHT,

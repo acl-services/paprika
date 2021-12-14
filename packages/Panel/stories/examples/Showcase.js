@@ -14,7 +14,6 @@ const getMainElement = () => document.querySelector("main");
 
 const sidePanelProps = () => ({
   a11yText: text("a11yText", null, sidePanelGroup),
-  isCompact: boolean("isCompact", false, sidePanelGroup),
   isInline: boolean("isInline", false, sidePanelGroup),
   isOpen: boolean("isOpen", true, sidePanelGroup),
   slideFrom: select(
