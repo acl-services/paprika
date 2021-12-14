@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.19-next.0
+
+### Patch Changes
+
+- eb42e40: tag icon should be fixed as 20px
+
 ## 0.0.18
 
 ### Patch Changes
