@@ -74,6 +74,8 @@
     "@paprika/seducer": "2.0.3"
   },
   "changesets": [
+    "five-cups-turn",
+    "heavy-dragons-exercise",
     "slimy-dolls-cross"
   ]
 }

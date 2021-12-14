@@ -1,5 +1,12 @@
 # @paprika/inline-editors
 
+## 1.0.4-next.0
+
+### Patch Changes
+
+- Updated dependencies [eb42e40]
+  - @paprika/tag@0.0.19-next.0
+
 ## 1.0.3
 
 ### Patch Changes
