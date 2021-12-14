@@ -3,7 +3,7 @@ import { select, boolean } from "@storybook/addon-knobs";
 import StoryHeading from "storybook/components/StoryHeading";
 import { Story, Tagline } from "storybook/assets/styles/common.styles";
 import DataTable from "../../src";
-import { TableProps } from "../../src/DataTable";
+import { DataTableProps } from "../../src/DataTable";
 import makeData from "../helpers/makeData";
 
 const props = () => ({
@@ -12,7 +12,7 @@ const props = () => ({
   isHeaderSticky: boolean("isHeaderSticky", true),
 });
 
-export const ShowcaseStory: (props: Partial<TableProps>) => JSX.Element = props => {
+export const ShowcaseStory: (props: Partial<DataTableProps>) => JSX.Element = props => {
   const columns = React.useMemo(
     () => [
       {

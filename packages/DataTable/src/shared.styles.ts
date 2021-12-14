@@ -1,8 +1,9 @@
 import { css, FlattenSimpleInterpolation } from "styled-components";
 import tokens from "@paprika/tokens";
 import { gridTypes } from "@paprika/constants";
+import { BorderType } from "./types";
 
-export function cellStyles({ borderType }: { borderType: string }): FlattenSimpleInterpolation {
+export function cellStyles({ borderType }: { borderType: BorderType }): FlattenSimpleInterpolation {
   return css`
     overflow: hidden;
     padding: ${tokens.space};
