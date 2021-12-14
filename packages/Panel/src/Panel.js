@@ -170,14 +170,14 @@ export default function Panel(props) {
       sidePanel = dialog;
     } else if (!overlayExtracted) {
       sidePanel = (
-        <Portal active portalMount={portalMount}>
+        <Portal active container={portalMount}>
           {dialog}
         </Portal>
       );
     } else {
       const { children, focusLockOptions, ...morePropsForOverlay } = overlayExtracted.props;
       sidePanel = (
-        <Portal active portalMount={portalMount}>
+        <Portal active container={portalMount}>
           <OriginalOverlay
             data-pka-anchor="panel.overlay"
             focusLockOptions={focusLockProps}
@@ -279,7 +279,7 @@ const defaultProps = {
   slideFrom: types.slideFroms.RIGHT,
   width: "33%",
   zIndex: zValue(7),
-  portalMount: document.body,
+  portalMount: null,
 };
 
 Panel.propTypes = propTypes;

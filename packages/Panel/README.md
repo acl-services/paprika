@@ -40,6 +40,7 @@ npm install @paprika/panel
 | slideFrom             | [ Panel.types.slideFroms.RIGHT, Panel.types.slideFroms.LEFT, Panel.types.slideFroms.BOTTOM] | false    | Panel.types.slideFroms.RIGHT  | Control where the Panel slides in from                                                                                                          |
 | width                 | [string,number]                                                                             | false    | "33%"                         | The width of the open Panel (when slide in from left or right)                                                                                  |
 | zIndex                | number                                                                                      | false    | zValue(7)                     | Control the z-index of the Panel                                                                                                                |
+| portalMount           | element                                                                                     | false    | null                          |                                                                                                                                                 |
 
 ### Panel.Header
 

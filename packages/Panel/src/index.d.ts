@@ -35,6 +35,8 @@ interface PanelProps {
   width?: string | number;
   /** Control the z-index of the Panel */
   zIndex?: number;
+
+  portalMount?: element;
 }
 
 declare namespace Panel {
