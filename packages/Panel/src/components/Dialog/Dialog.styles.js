@@ -3,14 +3,9 @@ import tokens from "@paprika/tokens";
 import styled, { css, keyframes } from "styled-components";
 import * as types from "../../types";
 
-const childPanelCss = ({ size, groupOffsetY, offset }) => {
-  const totalOffset = size ? 48 : 64;
-  const childBottomOffsetY = totalOffset + groupOffsetY + offset.top;
-  return css`
-    height: calc(100% - ${childBottomOffsetY}px);
-    margin-top: ${size ? `${stylers.spacer(3)}` : `${stylers.spacer(4)}`};
-  `;
-};
+const childPanelCss = ({ size }) => css`
+  margin-top: ${size === types.sizes.MEDIUM ? `${stylers.spacer(3)}` : `${stylers.spacer(4)}`};
+`;
 
 function slideIn(slideInTransform, slideOutTransform) {
   return keyframes`
@@ -154,7 +149,7 @@ export const Dialog = styled.div(
 );
 
 export const DialogContent = styled.div(
-  ({ hasPushedElement, slideFrom, size }) => css`
+  ({ hasPushedElement, slideFrom, kind }) => css`
   flex-grow: 1;
   margin: 0;
   padding: 0;
@@ -165,7 +160,7 @@ export const DialogContent = styled.div(
 
   ${hasPushedElement && slideFrom === types.slideFroms.LEFT ? `border-right: 1px solid ${tokens.border.color}` : ""}
   ${hasPushedElement && slideFrom === types.slideFroms.RIGHT ? `border-left: 1px solid ${tokens.border.color}` : ""}
-  ${size === "child" ? childPanelCss : ""};
+  ${kind === "child" ? childPanelCss : ""};
 `
 );
 

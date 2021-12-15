@@ -26,13 +26,7 @@ const sidePanelProps = () => ({
   zIndex: number("zIndex", undefined, {}, sidePanelGroup),
   offset: object("offset", { top: 0, left: 0, right: 0 }, sidePanelGroup),
   pushContent: boolean("pushMain", false, sidePanelGroup),
-  size: select(
-    "size",
-    [Panel.types.size.MEDIUM, Panel.types.size.LARGE],
-    Panel.types.size.MEDIUM,
-    sidePanelGroup
-  ),
-  
+  size: select("size", [Panel.types.size.MEDIUM, Panel.types.size.LARGE], Panel.types.size.MEDIUM, sidePanelGroup),
 });
 
 const headerProps = () => ({
@@ -40,7 +34,7 @@ const headerProps = () => ({
   hasCloseButton: boolean("hasCloseButton", true, headerGroup),
   level: select("level", [1, 2, 3, 4, 5, 6], 2, headerGroup),
   isSticky: boolean("isSticky", false, headerGroup),
-  hasAccent: boolean("hasAccent", true, headerGroup),
+  hasAccent: boolean("hasAccent", false, headerGroup),
 });
 
 const footerProps = () => ({

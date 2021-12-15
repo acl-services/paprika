@@ -36,7 +36,7 @@ const Header = React.forwardRef((props, ref) => {
           data-pka-anchor="panel.header.close"
           isSemantic={false}
           onClick={onClose}
-          size="medium"
+          size={Button.types.size.MEDIUM}
         />
       )}
     </sc.Header>
@@ -63,7 +63,7 @@ const defaultProps = {
   onClose: () => {},
   refHeading: null,
   size: types.sizes.MEDIUM,
-  hasAccent: false, 
+  hasAccent: false,
 };
 
 Header.displayName = "Panel.Header";
