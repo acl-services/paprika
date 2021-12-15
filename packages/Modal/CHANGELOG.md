@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.21-next.0
+
+### Patch Changes
+
+- 54a0a88: Change modal header height to 56px and the button size is changed it to large in the showcase
+
 ## 1.0.20
 
 ### Patch Changes

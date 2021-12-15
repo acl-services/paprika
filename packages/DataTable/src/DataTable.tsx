@@ -13,7 +13,7 @@ import { TableRow } from "./components/TableRow";
 import useSticky from "./hooks/useSticky";
 import useTableDimensions from "./hooks/useTableDimensions";
 
-import { TableDataItemType } from "./types";
+import { TableDataItemType, BorderType } from "./types";
 
 import * as sc from "./DataTable.styles";
 
@@ -29,11 +29,6 @@ function InnerElement({ children, ...rest }: { children: React.ReactNode }): JSX
   );
 }
 
-// Need to be fixed in constants package
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-type BorderType = gridTypes.GRID | gridTypes.NONE | gridTypes.HORIZONTAL | gridTypes.VERTICAL;
-
 interface ConstantsTypes {
   borderType: BorderType;
 }
@@ -48,7 +43,7 @@ export interface DataTableProps {
   /** Accessible description of the table */
   a11yText: string;
 
-  children: React.ReactNode;
+  children?: React.ReactNode;
 
   /** Array of column definition */
   columns: Column<TableDataItemType>[];
@@ -75,17 +70,17 @@ export interface DataTableProps {
   isHeaderSticky?: boolean;
 
   /** Override the table Column configuration for some particular rows */
-  renderRow?: ((row: Row<TableDataItemType>) => unknown) | null;
+  renderRow?: ((row: Row<TableDataItemType>) => React.ReactNode) | null;
 
   /** Experimental prop */
-  extraCellProps?: Record<string, unknown>;
+  extraCellProps?: Record<string, any>;
 
-  [x: string]: unknown;
+  [x: string]: any;
 }
 
 const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
   a11yText,
-  children,
+  children = null,
   columns,
   data,
   height,

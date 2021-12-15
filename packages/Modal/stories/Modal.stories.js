@@ -42,9 +42,11 @@ const ModalStory = ({ children }) => {
         <Modal.Header hasCloseButton={boolean("Has close button", true, "Header")}>Header</Modal.Header>
         {children}
         <Modal.Footer>
-          <Button kind={Button.types.kind.PRIMARY}>Primary</Button>
-          <Button>Secondary</Button>
-          <Button kind={Button.types.kind.MINOR} onClick={toggle}>
+          <Button size={Button.types.size.LARGE} kind={Button.types.kind.PRIMARY}>
+            Primary
+          </Button>
+          <Button size={Button.types.size.LARGE}>Secondary</Button>
+          <Button size={Button.types.size.LARGE} kind={Button.types.kind.MINOR} onClick={toggle}>
             Cancel
           </Button>
         </Modal.Footer>

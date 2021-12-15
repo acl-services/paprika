@@ -64,30 +64,18 @@ export const Ellipsis = styled.div(({ size }) => {
   `;
 });
 
-export const Delete = styled(RawButton)(({ size }) => {
-  const fontSize = {
-    medium: tokens.icon.sizeSm,
-    large: tokens.icon.sizeMd,
-  };
-
-  const width = {
-    medium: tokens.icon.sizeSm,
-    large: tokens.icon.sizeMd,
-  };
-
-  return css`
-    align-items: center;
-    border-radius: 50%;
-    box-sizing: border-box;
-    display: flex;
-    flex-shrink: 0;
-    font-size: ${fontSize[size]};
-    height: ${width[size]};
-    justify-content: center;
-    min-height: auto;
-    width: ${width[size]};
-  `;
-});
+export const Delete = styled(RawButton)`
+  align-items: center;
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: flex;
+  flex-shrink: 0;
+  font-size: ${tokens.icon.sizeSm};
+  height: ${tokens.icon.sizeSm};
+  justify-content: center;
+  min-height: auto;
+  width: ${tokens.icon.sizeSm};
+`;
 
 const DeleteButtonStylesForLightBackground = css`
   ${Delete} {

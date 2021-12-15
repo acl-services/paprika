@@ -73,5 +73,10 @@
     "@paprika/helpers": "2.2.0",
     "@paprika/seducer": "2.0.3"
   },
-  "changesets": []
+  "changesets": [
+    "five-cups-turn",
+    "heavy-dragons-exercise",
+    "slimy-dolls-cross",
+    "young-bananas-mix"
+  ]
 }
