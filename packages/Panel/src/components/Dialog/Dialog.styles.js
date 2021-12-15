@@ -92,7 +92,7 @@ export const Dialog = styled.div(
     let right = null;
     let top = null;
     let bottom = null;
-    let borderTop = null;
+    const borderTop = null;
 
     switch (slideFrom) {
       case types.slideFroms.LEFT:

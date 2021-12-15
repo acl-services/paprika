@@ -80,7 +80,6 @@ export default function GroupPanel() {
           }}
           kind="child"
           width={400}
-          isCompact
           isOpen={spChild}
         >
           <Panel.Header>Child of Parent 2</Panel.Header>
