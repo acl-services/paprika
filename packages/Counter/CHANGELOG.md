@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.3-next.0
+
+### Patch Changes
+
+- eb42e40: fix padding's small bug
+
 ## 1.1.2
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.19-next.0
+
+### Patch Changes
+
+- Updated dependencies [eb42e40]
+  - @paprika/counter@1.1.3-next.0
+
 ## 2.0.18
 
 ### Patch Changes
