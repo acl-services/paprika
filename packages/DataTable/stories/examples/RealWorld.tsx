@@ -213,7 +213,6 @@ export const RealWorldStory: (props: { isForTesting?: boolean }) => JSX.Element 
 
       <DataTable
         a11yText="Data table for a real world example."
-        width={1000}
         columns={columns}
         data={data}
         borderType={borderType}
@@ -225,7 +224,7 @@ export const RealWorldStory: (props: { isForTesting?: boolean }) => JSX.Element 
           isNextPageLoading={false}
           loadMoreItems={handleLoadMore}
         />
-        <DataTable.ResizeContainer style={{ height: "calc(100vh)" }} />
+        <DataTable.ResizeContainer style={{ height: "calc(100vh - 200px)" }} />
       </DataTable>
     </>
   );

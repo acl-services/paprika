@@ -11,7 +11,7 @@ import { TableHeader } from "./components/TableHeader";
 import { TableBody } from "./components/TableBody";
 import { TableRow } from "./components/TableRow";
 import useSticky from "./hooks/useSticky";
-import useTableHeight from "./hooks/useTableHeight";
+import useTableDimensions from "./hooks/useTableDimensions";
 
 import { TableDataItemType } from "./types";
 
@@ -88,18 +88,18 @@ const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
   children,
   columns,
   data,
-  height = 300,
+  height,
+  width,
   borderType = gridTypes.HORIZONTAL,
   getRowHeight = null,
   hasZebraStripes = false,
   isHeaderSticky = true,
   renderRow = null,
-  width = "100%",
   extraCellProps = {},
   ...moreProps
 }: DataTableProps) => {
   const tableRef = React.useRef<HTMLDivElement>(null);
-  const { getTableHeight } = useTableHeight(tableRef, data.length);
+  const { getTableHeight, getTableWidth } = useTableDimensions(tableRef, data.length, height, width);
 
   const defaultColumn = React.useMemo(
     () => ({
@@ -154,7 +154,7 @@ const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
     );
   }
 
-  function renderTable(maxHeight: number) {
+  function renderTable(height: number, width: number | string) {
     return (
       <sc.Table
         ref={tableRef}
@@ -162,29 +162,41 @@ const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
         aria-rowcount={data.length}
         data-pka-anchor="dataTable"
         width={width}
-        height={getTableHeight(maxHeight)}
+        height={height}
         {...tableInstance.getTableProps()}
         {...moreProps}
       >
         <sc.ContentWrapper>
           <RenderRowContext.Provider value={renderRow}>
-            <ReactTableContext.Provider value={tableInstance}>
-              {renderTableContent(maxHeight)}
-            </ReactTableContext.Provider>
+            <ReactTableContext.Provider value={tableInstance}>{renderTableContent(height)}</ReactTableContext.Provider>
           </RenderRowContext.Provider>
         </sc.ContentWrapper>
       </sc.Table>
     );
   }
 
+  if (!extractedResizeContainer) {
+    if (width === undefined) {
+      console.warn("The `width` prop should be specified if `<DataTable.ResizeContainer>` is not used");
+    }
+
+    if (height === undefined) {
+      console.warn("The `height` prop should be specified if `<DataTable.ResizeContainer>` is not used");
+    }
+  }
+
   return (
     <ThemeContext.Provider value={{ borderType, isHeaderSticky, hasZebraStripes }}>
       {extractedResizeContainer ? (
         <div {...extractedResizeContainer.props}>
-          <ResizeDetector isFullHeight>{({ height: maxHeight }) => renderTable(maxHeight)}</ResizeDetector>
+          <ResizeDetector isFullHeight>
+            {({ height: maxHeight, width: maxWidth }) =>
+              renderTable(getTableHeight(maxHeight), getTableWidth(maxWidth))
+            }
+          </ResizeDetector>
         </div>
       ) : (
-        renderTable(height)
+        renderTable(height || 0, width || 0)
       )}
     </ThemeContext.Provider>
   );
