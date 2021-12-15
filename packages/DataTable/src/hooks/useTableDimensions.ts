@@ -14,10 +14,10 @@ export default function useTableDimensions(
   tableRef: React.RefObject<HTMLDivElement>,
   itemCount: number,
   height?: number,
-  width?: number
+  width?: number | string
 ): {
   getTableHeight: (maxHeight: number) => number;
-  getTableWidth: (maxWidth: number) => number;
+  getTableWidth: (maxWidth: number) => number | string;
 } {
   const [dimensions, setDimensions] = React.useState<Dimensions>({
     width: undefined,
