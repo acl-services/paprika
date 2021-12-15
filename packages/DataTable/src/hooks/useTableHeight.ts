@@ -2,12 +2,17 @@ import React from "react";
 
 export default function useTableHeight(
   tableRef: React.RefObject<HTMLDivElement>,
-  itemCount?: number
+  itemCount: number
 ): { getTableHeight: (maxHeight: number) => number } {
   const tableHeightRef = React.useRef<number | undefined>();
 
   React.useLayoutEffect(() => {
     if (!tableRef.current) {
+      return;
+    }
+
+    if (tableHeightRef.current !== undefined && itemCount > 100) {
+      // Optimization: skip the consequent calculations for long lists
       return;
     }
 
@@ -18,7 +23,7 @@ export default function useTableHeight(
 
     if (tbodyEl && theadEl) {
       const height = tbodyEl.getBoundingClientRect().height + theadEl.getBoundingClientRect().height;
-      console.log("height", height);
+
       tableHeightRef.current = height;
     }
   }, [itemCount, tableRef]);

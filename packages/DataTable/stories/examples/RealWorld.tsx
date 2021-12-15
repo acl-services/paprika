@@ -213,7 +213,6 @@ export const RealWorldStory: (props: { isForTesting?: boolean }) => JSX.Element 
 
       <DataTable
         a11yText="Data table for a real world example."
-        height={1}
         width={1000}
         columns={columns}
         data={data}

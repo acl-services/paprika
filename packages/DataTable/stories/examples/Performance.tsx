@@ -63,7 +63,7 @@ const PerformanceStory: (settings: Settings) => JSX.Element = ({ rows, columns }
           itemCount={parseInt(rows, 10)}
           isItemLoaded={() => true}
           loadMoreItems={async () => {
-            console.log();
+            // do nothing
           }}
         />
       </DataTable>

@@ -40,7 +40,9 @@ const SimpleStory: () => JSX.Element = () => {
       <DataTable.InfiniteLoader
         itemCount={items.length}
         isItemLoaded={index => items[index] !== undefined}
-        loadMoreItems={async () => console.log("")}
+        loadMoreItems={async () => {
+          // do nothing
+        }}
       />
     </DataTable>
   );

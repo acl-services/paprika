@@ -238,3 +238,18 @@ For example, the height of all the rows in the `DataTable` is `80px`.
 By default, `DataTable` will calculate row heights based on the data of all the columns. If a `DataTable` has some columns which would never exceed the width of that column, we can simplify the calculation by skipping those columns. See this [example](/?path=/story/table-datatable--customized-row-height-calculation).
 
 3. If developers want to use a different calculation method
+
+### Table height calculation
+
+There are few ways to set the `height` of the `DataTable`
+
+One, is to set the prop like this `<DataTable height={200} {...otherProps}>`
+
+A more flexible option is to use a resizer that will automatically adapt to the viewport size:
+
+```jsx
+// In this case the `height` prop will be ignored
+<DataTable {...otherProps}>
+  <DataTable.ResizeContainer style={{ height: "calc(100vh)" }} />
+</DataTable>
+```

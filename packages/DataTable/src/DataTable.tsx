@@ -17,10 +17,7 @@ import { TableDataItemType } from "./types";
 
 import * as sc from "./DataTable.styles";
 
-export const ResizeContainer: React.FC<Record<string, any>> = (...moreProps) => {
-  return <></>;
-};
-
+export const ResizeContainer: React.FC<Record<string, any>> = (...moreProps) => <></>;
 ResizeContainer.displayName = "DataTable.ResizeContainer";
 
 function InnerElement({ children, ...rest }: { children: React.ReactNode }): JSX.Element {
@@ -60,7 +57,10 @@ export interface DataTableProps {
   data: TableDataItemType[];
 
   /** The height of the table in px */
-  height: number;
+  height?: number;
+
+  /** The width of the table */
+  width?: string | number;
 
   /** Define the look for borders in the table */
   borderType?: BorderType;
@@ -77,9 +77,6 @@ export interface DataTableProps {
   /** Override the table Column configuration for some particular rows */
   renderRow?: ((row: Row<TableDataItemType>) => unknown) | null;
 
-  /** The width of the table */
-  width?: string | number;
-
   /** Experimental prop */
   extraCellProps?: Record<string, unknown>;
 
@@ -91,7 +88,7 @@ const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
   children,
   columns,
   data,
-  height,
+  height = 300,
   borderType = gridTypes.HORIZONTAL,
   getRowHeight = null,
   hasZebraStripes = false,
