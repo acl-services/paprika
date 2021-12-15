@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.24
+
+### Patch Changes
+
+- Updated dependencies [036fe83]
+- Updated dependencies [514dc04]
+  - @paprika/tokens@1.1.3
+  - @paprika/button@1.1.9
+
 ## 1.0.24-next.1
 
 ### Patch Changes

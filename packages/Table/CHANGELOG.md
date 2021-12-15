@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.2.18
+
+### Patch Changes
+
+- Updated dependencies [036fe83]
+- Updated dependencies [514dc04]
+- Updated dependencies [9e15465]
+- Updated dependencies [343d673]
+- Updated dependencies [80361b2]
+  - @paprika/tokens@1.1.3
+  - @paprika/button@1.1.9
+  - @paprika/helpers@2.2.0
+  - @paprika/overflow-menu@2.0.3
+  - @paprika/stylers@1.1.4
+
 ## 1.2.18-next.3
 
 ### Patch Changes

@@ -42,9 +42,11 @@ const ModalStory = ({ children }) => {
         <Modal.Header hasCloseButton={boolean("Has close button", true, "Header")}>Header</Modal.Header>
         {children}
         <Modal.Footer>
-          <Button kind={Button.types.kind.PRIMARY}>Primary</Button>
-          <Button>Secondary</Button>
-          <Button kind={Button.types.kind.MINOR} onClick={toggle}>
+          <Button size={Button.types.size.LARGE} kind={Button.types.kind.PRIMARY}>
+            Primary
+          </Button>
+          <Button size={Button.types.size.LARGE}>Secondary</Button>
+          <Button size={Button.types.size.LARGE} kind={Button.types.kind.MINOR} onClick={toggle}>
             Cancel
           </Button>
         </Modal.Footer>
@@ -201,6 +203,25 @@ storiesOf(`${storyName}/Examples`, module)
           </p>
         ))}
       </Modal.Content>
+    </Modal>
+  ))
+  .add("with large modal and inputs and contents ", () => (
+    <Modal isOpen size={Modal.types.size.LARGE}>
+      <Modal.Header>Large Modal</Modal.Header>
+      <Modal.Content>
+        <p>
+          Mixtape single-origin coffee put a bird on it flexitarian street cred live-edge you probably haven‘t heard of
+          them.
+        </p>
+        <p>Label</p>
+        <input type="text" data-autofocus style={{ width: "100%", height: "36px" }} />
+      </Modal.Content>
+      <Modal.Footer>
+        <Button size={Button.types.size.LARGE}>Large Button</Button>
+        <Button size={Button.types.size.LARGE} kind={Button.types.kind.PRIMARY}>
+          Save
+        </Button>
+      </Modal.Footer>
     </Modal>
   ));
 

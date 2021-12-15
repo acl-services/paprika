@@ -3,7 +3,7 @@ import { select, boolean } from "@storybook/addon-knobs";
 import StoryHeading from "storybook/components/StoryHeading";
 import { Story, Tagline } from "storybook/assets/styles/common.styles";
 import DataTable from "../../src";
-import { TableProps } from "../../src/DataTable";
+import { DataTableProps } from "../../src/DataTable";
 import makeData from "../helpers/makeData";
 
 const props = () => ({
@@ -12,7 +12,7 @@ const props = () => ({
   isHeaderSticky: boolean("isHeaderSticky", true),
 });
 
-export const ShowcaseStory: (props: Partial<TableProps>) => JSX.Element = props => {
+export const ShowcaseStory: (props: Partial<DataTableProps>) => JSX.Element = props => {
   const columns = React.useMemo(
     () => [
       {
@@ -62,7 +62,7 @@ export const ShowcaseStory: (props: Partial<TableProps>) => JSX.Element = props 
     []
   );
 
-  const [items, setItems] = React.useState(() => makeData(5));
+  const [items, setItems] = React.useState(() => makeData(40));
 
   return (
     <DataTable a11yText="Data table for showcase." height={500} width={800} columns={columns} data={items} {...props}>
