@@ -3,15 +3,15 @@ import PropTypes from "prop-types";
 import { RefOf } from "@paprika/helpers";
 import Button from "@paprika/button";
 import Heading from "@paprika/heading";
-import * as types from "../../types";
+import PanelContext from "../../PanelContext";
 import * as sc from "./Header.styles";
 
 const Header = React.forwardRef((props, ref) => {
+  const size = React.useContext(PanelContext).size;
   const {
     children,
     hasCloseButton,
     getPushContentElement,
-    size,
     level,
     hasAccent,
     onClose,
@@ -23,8 +23,8 @@ const Header = React.forwardRef((props, ref) => {
     <sc.Header
       data-pka-anchor="panel.header"
       hasPushedElement={!!getPushContentElement}
-      size={size}
       hasAccent={hasAccent}
+      size={size}
       ref={ref}
       {...moreProps}
     >
@@ -51,7 +51,6 @@ const propTypes = {
   hasAccent: PropTypes.bool,
   level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   onClose: PropTypes.func,
-  size: PropTypes.oneOf([types.sizes.MEDIUM, types.sizes.LARGE]),
   refHeading: RefOf(),
 };
 
@@ -62,7 +61,6 @@ const defaultProps = {
   level: 2,
   onClose: () => {},
   refHeading: null,
-  size: types.sizes.MEDIUM,
   hasAccent: false,
 };
 

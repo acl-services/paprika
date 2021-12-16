@@ -16,7 +16,6 @@ function Dialog(props) {
     onAnimationEnd,
     header,
     height,
-    kind,
     isInline,
     offset,
     onClose,
@@ -37,7 +36,6 @@ function Dialog(props) {
         data-pka-anchor="panel.content"
         hasPushedElement={!!getPushContentElement}
         isOpen={isOpen}
-        kind={kind}
         ref={refPanelContent}
         role="region"
         tabIndex="0"
@@ -87,7 +85,6 @@ function Dialog(props) {
       isAnimating={isAnimating}
       isInline={isInline}
       isOpen={isOpen}
-      kind={kind}
       offset={offset}
       onAnimationEnd={handleAnimationEnd}
       ref={refPanel}
@@ -102,10 +99,6 @@ function Dialog(props) {
   );
 }
 
-Dialog.types = {
-  kind: { DEFAULT: types.kinds.DEFAULT, PRIMARY: types.kinds.PRIMARY },
-};
-
 const propTypes = {
   a11yText: PropTypes.string,
   children: PropTypes.node.isRequired,
@@ -114,7 +107,6 @@ const propTypes = {
   groupOffsetY: PropTypes.number,
   header: PropTypes.node,
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  kind: PropTypes.oneOf([Dialog.types.kind.DEFAULT, Dialog.types.kind.CHILD]),
   isInline: PropTypes.bool,
   offset: PropTypes.shape({
     top: PropTypes.number.isRequired,
@@ -136,7 +128,6 @@ const defaultProps = {
   getPushContentElement: () => {},
   groupOffsetY: 0,
   header: null,
-  kind: Dialog.types.kind.DEFAULT,
   isInline: false,
   onClose: () => {},
   slideFrom: types.slideFroms.RIGHT,

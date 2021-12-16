@@ -7,10 +7,12 @@ import * as types from "../../types";
 const sizeStyles = {
   [types.sizes.MEDIUM]: css`
     height: 18px;
+    min-height: ${spacer(6)};
     padding: ${tokens.spaceLg} ${stylers.spacer(2)};
   `,
   [types.sizes.LARGE]: css`
     height: 23px;
+    min-height: ${spacer(8)};
     padding: ${stylers.spacer(2)} ${stylers.spacer(3)};
   `,
 };
@@ -26,8 +28,6 @@ export const Header = styled.div(
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
-    min-height: ${spacer(6)};
-    padding: ${spacer(2)} ${spacer(3)};
     width: 100%;
     &:focus {
       outline: 0;
@@ -39,7 +39,7 @@ export const Header = styled.div(
       margin: 0;
     }
 
-    ${size ? sizeStyles[size] : ""};
+    ${sizeStyles[size]};
     ${hasAccent ? hasAccentStyle : ""};
   `
 );

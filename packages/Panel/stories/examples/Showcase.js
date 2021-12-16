@@ -31,10 +31,10 @@ const sidePanelProps = () => ({
 
 const headerProps = () => ({
   children: text("children", "Header", headerGroup),
+  hasAccent: boolean("hasAccent", false, headerGroup),
   hasCloseButton: boolean("hasCloseButton", true, headerGroup),
   level: select("level", [1, 2, 3, 4, 5, 6], 2, headerGroup),
   isSticky: boolean("isSticky", false, headerGroup),
-  hasAccent: boolean("hasAccent", false, headerGroup),
 });
 
 const footerProps = () => ({
@@ -53,10 +53,8 @@ export default function Showcase() {
         {...(sidePanelProps().pushContent ? { getPushContentElement: getMainElement } : null)}
       >
         {overlayProps().toggleOverlay ? <Panel.Overlay /> : null}
-        <Panel.Header {...headerProps()} size={sidePanelProps().size}>
-          {headerProps().children}
-        </Panel.Header>
-        <Panel.Content size={sidePanelProps().size}>
+        <Panel.Header {...headerProps()}>{headerProps().children}</Panel.Header>
+        <Panel.Content>
           <div
             css={`
               margin: -24px;

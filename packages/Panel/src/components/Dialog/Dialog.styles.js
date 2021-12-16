@@ -3,10 +3,6 @@ import tokens from "@paprika/tokens";
 import styled, { css, keyframes } from "styled-components";
 import * as types from "../../types";
 
-const childPanelCss = ({ size }) => css`
-  margin-top: ${size === types.sizes.MEDIUM ? `${stylers.spacer(3)}` : `${stylers.spacer(4)}`};
-`;
-
 function slideIn(slideInTransform, slideOutTransform) {
   return keyframes`
       from {
@@ -77,7 +73,7 @@ function getWidth(width) {
 }
 
 export const Dialog = styled.div(
-  ({ hasPushedElement, height, isAnimating, isInline, isOpen, kind, offset, slideFrom, width, zIndex }) => {
+  ({ hasPushedElement, height, isAnimating, isInline, isOpen, offset, slideFrom, width, zIndex }) => {
     const slideOutTransform = getSlideOutTransform(slideFrom);
     const slideInTransform = getSlideInTransform(slideFrom);
 
@@ -116,7 +112,6 @@ export const Dialog = styled.div(
             0.4s forwards;
         `
       : "";
-    const childPanel = kind === "child" ? childPanelCss : "";
     const boxShadow = hasPushedElement ? "none" : "0 12px 24px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.16)";
 
     return css`
@@ -127,7 +122,6 @@ export const Dialog = styled.div(
       bottom: ${bottom};
       box-shadow: ${boxShadow};
       box-sizing: border-box;
-      ${childPanel}
       display: flex;
       flex-direction: column;
       height: ${calculatedHeight};
@@ -149,19 +143,18 @@ export const Dialog = styled.div(
 );
 
 export const DialogContent = styled.div(
-  ({ hasPushedElement, slideFrom, kind }) => css`
-  flex-grow: 1;
-  margin: 0;
-  padding: 0;
+  ({ hasPushedElement, slideFrom }) => css`
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
 
-  &:focus {
-    ${stylers.focusRing.subtle(true)};
-  }
+    &:focus {
+      ${stylers.focusRing.subtle(true)};
+    }
 
-  ${hasPushedElement && slideFrom === types.slideFroms.LEFT ? `border-right: 1px solid ${tokens.border.color}` : ""}
-  ${hasPushedElement && slideFrom === types.slideFroms.RIGHT ? `border-left: 1px solid ${tokens.border.color}` : ""}
-  ${kind === "child" ? childPanelCss : ""};
-`
+    ${hasPushedElement && slideFrom === types.slideFroms.LEFT ? `border-right: 1px solid ${tokens.border.color}` : ""}
+    ${hasPushedElement && slideFrom === types.slideFroms.RIGHT ? `border-left: 1px solid ${tokens.border.color}` : ""}
+  `
 );
 
 export const Main = styled.div`

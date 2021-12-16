@@ -11,6 +11,7 @@ import Overlay from "./components/Overlay";
 import Trigger from "./components/Trigger";
 import Group from "./components/Group";
 import FocusLock from "./components/FocusLock";
+import PanelContext from "./PanelContext";
 import * as types from "./types";
 
 import { extractChildren, warnOfPropErrors } from "./helpers";
@@ -28,7 +29,6 @@ export default function Panel(props) {
     size,
     isInline,
     isOpen,
-    kind,
     offset,
     onAfterClose,
     onAfterOpen,
@@ -137,6 +137,10 @@ export default function Panel(props) {
 
   let sidePanel = null;
 
+  const contextValue = {
+    size,
+  };
+
   if (isVisible) {
     const dialog = (
       <Dialog
@@ -150,7 +154,6 @@ export default function Panel(props) {
         size={size}
         isInline={isInline}
         isOpen={isOpen}
-        kind={kind}
         offset={calculatedOffset}
         onAnimationEnd={handleAnimationEnd}
         onClose={onClose}
@@ -195,16 +198,15 @@ export default function Panel(props) {
   const shouldDisableBodyOverflow = (overlayExtracted || isInline) && isOpen;
 
   return (
-    <>
+    <PanelContext.Provider value={contextValue}>
       {shouldDisableBodyOverflow && <LockBodyScroll />}
       {trigger}
       {sidePanel}
-    </>
+    </PanelContext.Provider>
   );
 }
 
 Panel.types = {
-  kind: types.kinds,
   slideFrom: types.slideFroms,
   widthType: types.widthTypes,
   size: types.sizes,
@@ -234,9 +236,6 @@ const propTypes = {
 
   /** Control the visibility of the Panel. This prop makes the Panel appear. */
   isOpen: PropTypes.bool,
-
-  /** Modify the look of the Panel */
-  kind: PropTypes.oneOf([Panel.types.kind.DEFAULT, Panel.types.kind.CHILD, Panel.types.kind.PRIMARY]),
 
   /** Control offset of the Panel. Only use 'top' when sliding in from the left or right. Only use 'left' or 'right' when sliding in from the bottom. */
   offset: PropTypes.shape({ top: PropTypes.number, left: PropTypes.number, right: PropTypes.number }),
@@ -277,7 +276,6 @@ const defaultProps = {
   size: types.sizes.MEDIUM,
   isInline: false,
   isOpen: false,
-  kind: types.kinds.DEFAULT,
   offset: { top: 0, left: 0, right: 0 },
   onAfterClose: () => {},
   onAfterOpen: () => {},
