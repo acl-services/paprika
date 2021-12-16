@@ -8,7 +8,7 @@
 
 @function pow($base, $exponent) {
   $unit: $base * 0 + 1;
-  $base: $base / $unit;
+  $base: calc($base / $unit);
   $value: $base;
 
   // No non-intergers allowed
@@ -18,15 +18,15 @@
 
   @if $exponent > 0 {
     @for $i from 1 to $exponent {
-      $value: $value * $base;
+      $value: calc($value * $base);
     }
   } @else {
     @for $i from (-1 + 1) to (abs($exponent) + 1) {
-      $value: $value / $base;
+      $value: calc($value / $base);
     }
   }
 
-  @return $value * $unit;
+  @return calc($value * $unit);
 }
 
 // Typography
@@ -36,7 +36,7 @@ $font-scale-ratio: 1.125;
 
 // Return a font-size value from on a modular scale
 @function font-scale($scale: 0) {
-  @return round($font-scale-base * pow($font-scale-ratio, $scale));
+  @return calc(round($font-scale-base * pow($font-scale-ratio, $scale)));
 }
 
 $leading-scale-base: 1.4;
@@ -44,7 +44,7 @@ $leading-scale-ratio: 1.125;
 
 // Return a line-height value from on a modular scale
 @function line-height-scale($scale: 0) {
-  @return round($leading-scale-base * (pow($leading-scale-ratio, $scale) * 100)) / 100;
+  @return calc(round($leading-scale-base * (pow($leading-scale-ratio, $scale) * 100)) / 100);
 }
 
 // Layout
