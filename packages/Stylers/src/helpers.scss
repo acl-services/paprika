@@ -6,9 +6,34 @@
 
 // Utilities
 
+@function div($dividend, $divisor, $precision: 12) {
+  $sign: if($dividend > 0 and $divisor > 0 or $dividend < 0 and $divisor < 0, 1, -1);
+  @if $dividend == 0 {
+    @return 0;
+  }
+  @if $divisor == 0 {
+    @error "NAN";
+  }
+  $remainder: $dividend;
+  $result: 0;
+  $factor: 10;
+  @while ($remainder > 0) {
+    $quotient: 0;
+    @while ($remainder >= $divisor) {
+      $remainder: $remainder - $divisor;
+      $quotient: $quotient + 1;
+    }
+    $result: $result * 10 + $quotient;
+    $factor: $factor * 0.1;
+    $remainder: $remainder * 10;
+  }
+  $result: $result * $factor * $sign;
+  @return $result;
+}
+
 @function pow($base, $exponent) {
   $unit: $base * 0 + 1;
-  $base: calc($base / $unit);
+  $base: div($base,$unit);
   $value: $base;
 
   // No non-intergers allowed
@@ -18,15 +43,15 @@
 
   @if $exponent > 0 {
     @for $i from 1 to $exponent {
-      $value: calc($value * $base);
+      $value: $value * $base;
     }
   } @else {
     @for $i from (-1 + 1) to (abs($exponent) + 1) {
-      $value: calc($value / $base);
+      $value: div($value,$base);
     }
   }
 
-  @return calc($value * $unit);
+  @return $value * $unit;
 }
 
 // Typography
@@ -36,7 +61,7 @@ $font-scale-ratio: 1.125;
 
 // Return a font-size value from on a modular scale
 @function font-scale($scale: 0) {
-  @return calc(round($font-scale-base * pow($font-scale-ratio, $scale)));
+  @return round($font-scale-base * pow($font-scale-ratio, $scale));
 }
 
 $leading-scale-base: 1.4;
@@ -44,7 +69,7 @@ $leading-scale-ratio: 1.125;
 
 // Return a line-height value from on a modular scale
 @function line-height-scale($scale: 0) {
-  @return calc(round($leading-scale-base * (pow($leading-scale-ratio, $scale) * 100)) / 100);
+  @return div(round($leading-scale-base * (pow($leading-scale-ratio, $scale) * 100)),100);
 }
 
 // Layout
