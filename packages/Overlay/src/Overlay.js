@@ -10,7 +10,7 @@ const propTypes = {
   backdropClassName: PropTypes.string,
   children: PropTypes.func,
 
-  /** container of the Overlay element */
+  /** Portal container for the Overlay */
   container: PropTypes.node,
 
   focusLockOptions: PropTypes.shape({

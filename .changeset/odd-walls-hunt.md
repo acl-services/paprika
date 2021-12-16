@@ -1,6 +1,7 @@
 ---
+"@paprika/overlay": patch
 "@paprika/panel": minor
-"@paprika/helpers": minor
+"@paprika/helpers": patch
 ---
 
-Updated Panel/Portal to support Shadow DOM
+Added `container` prop to Panel to support Shadow DOM

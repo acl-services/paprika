@@ -7,7 +7,7 @@ interface OverlayProps {
   backdropClassName?: string;
 
   children?: (...args: any[]) => any;
-  /** container of the Overlay element */
+  /** Portal container for the Overlay */
   container?: React.ReactNode;
 
   focusLockOptions?: shape;

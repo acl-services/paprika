@@ -7,6 +7,8 @@ interface PanelProps {
   a11yText?: string;
   /** The content for the Panel. */
   children: React.ReactNode;
+  /** Portal container for the Panel */
+  container?: React.ReactNode;
   /** Function that provides the container DOM element to be pushed. */
   getPushContentElement?: (...args: any[]) => any;
   /** Y offset that is passed down from <Panel.Group> */
@@ -35,8 +37,6 @@ interface PanelProps {
   width?: string | number;
   /** Control the z-index of the Panel */
   zIndex?: number;
-
-  portalMount?: element;
 }
 
 declare namespace Panel {
