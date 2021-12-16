@@ -1,16 +1,18 @@
 import React from "react";
 import StoryHeading from "storybook/components/StoryHeading";
 import { Story, Tagline } from "storybook/assets/styles/common.styles";
+import Button from "@paprika/button";
 import DataHeader from "@paprika/data-header";
 import OverflowMenu from "@paprika/overflow-menu";
 import EllipsisVertical from "@paprika/icon/lib/EllipsisVertical";
 import Filter, { useFilter } from "@paprika/filter";
 import { ColumnsArrangement, useColumnsArrangement } from "@paprika/action-bar";
-import ResizeDetector, { useDimensions } from "@paprika/resize-detector";
+import ResizeDetector, { useResizeDetector } from "@paprika/resize-detector";
 import Link from "@paprika/link";
 import { Column } from "react-table";
 import DataTable from "../../src";
 import makeData from "../helpers/makeData";
+import makeFixedData from "../helpers/makeFixedData";
 
 const headerLabels: Record<ColumnId, string> = {
   firstName: "First name",
@@ -107,8 +109,8 @@ function isFixedColumn(columnId: ColumnId) {
   return columnId === ColumnId.firstName || columnId === ColumnId.lastName;
 }
 
-function Table({ columns, data, onLoadMore }: any) {
-  const { width = 1200, height = 500 } = useDimensions();
+function Table({ columns, data, onLoadMore, borderType, hasZebraStripes }: any) {
+  const { width = 1200, height = 500 } = useResizeDetector();
 
   return (
     <DataTable
@@ -117,7 +119,8 @@ function Table({ columns, data, onLoadMore }: any) {
       width={width}
       columns={columns}
       data={data}
-      borderType={DataTable.types.borderType.GRID}
+      borderType={borderType}
+      hasZebraStripes={hasZebraStripes}
     >
       <DataTable.InfiniteLoader
         itemCount={data.length + 1}
@@ -129,12 +132,14 @@ function Table({ columns, data, onLoadMore }: any) {
   );
 }
 
-export const RealWorldStory: () => JSX.Element = () => {
+export const RealWorldStory: (props: { isForTesting?: boolean }) => JSX.Element = ({ isForTesting = false }) => {
   function NameLink({ value }: { value: string }) {
     return <Link href="wegalvanize.com">{value}</Link>;
   }
 
-  const [data, setData] = React.useState(() => makeData(5));
+  const [data, setData] = React.useState(() => (isForTesting ? makeFixedData(40) : makeData(40)));
+  const [borderType, setBorderType] = React.useState(DataTable.types.borderType.GRID);
+  const [hasZebraStripes, setHasZebraStripes] = React.useState(false);
 
   const { filters, filteredData, getFilterProps, getFilterItemProps } = useFilter({
     columns: columnsSettings,
@@ -168,10 +173,25 @@ export const RealWorldStory: () => JSX.Element = () => {
   }, [orderedColumnIds, isColumnHidden]);
 
   const handleLoadMore = async () => {
-    const newItems = await new Promise<Record<string, unknown>[]>(res => setTimeout(() => res(makeData(40)), 5000));
+    const newItems = await new Promise<Record<string, unknown>[]>(res =>
+      setTimeout(() => res(isForTesting ? makeFixedData(40) : makeData(40)), 5000)
+    );
 
     setData(data.concat(newItems));
   };
+
+  function handleToggleBorderType() {
+    setBorderType((prev: string) => {
+      const allValues = Object.values(DataTable.types.borderType);
+      const index = allValues.indexOf(prev);
+      if (index >= 0 && index < allValues.length - 1) return allValues[index + 1];
+      return allValues[0];
+    });
+  }
+
+  function handleRowBackgroundPattern() {
+    setHasZebraStripes(prev => !prev);
+  }
 
   return (
     <>
@@ -203,10 +223,27 @@ export const RealWorldStory: () => JSX.Element = () => {
             />
           ))}
         </ColumnsArrangement>
+
+        {isForTesting ? (
+          <>
+            <Button data-pka-anchor="dataTable.toggleBorder" onClick={handleToggleBorderType}>
+              Toggle border type
+            </Button>
+            <Button data-pka-anchor="dataTable.toggleBackground" onClick={handleRowBackgroundPattern}>
+              Toggle row background pattern
+            </Button>
+          </>
+        ) : null}
       </div>
 
       <ResizeDetector isFullHeight style={{ height: "calc(100vh - 200px)" }}>
-        <Table columns={columns} data={data} onLoadMore={handleLoadMore} />
+        <Table
+          columns={columns}
+          data={data}
+          onLoadMore={handleLoadMore}
+          borderType={borderType}
+          hasZebraStripes={hasZebraStripes}
+        />
       </ResizeDetector>
     </>
   );

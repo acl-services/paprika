@@ -1,5 +1,34 @@
 # Changelog
 
+## 1.0.21-next.0
+
+### Patch Changes
+
+- 54a0a88: Change modal header height to 56px and the button size is changed it to large in the showcase
+
+## 1.0.20
+
+### Patch Changes
+
+- 650a90c: style large modal size and footer height
+- Updated dependencies [036fe83]
+- Updated dependencies [514dc04]
+- Updated dependencies [9e15465]
+- Updated dependencies [343d673]
+- Updated dependencies [80361b2]
+  - @paprika/tokens@1.1.3
+  - @paprika/button@1.1.9
+  - @paprika/helpers@2.2.0
+  - @paprika/heading@1.0.12
+  - @paprika/overlay@1.0.12
+  - @paprika/stylers@1.1.4
+
+## 1.0.20-next.4
+
+### Patch Changes
+
+- 650a90c: style large modal size and footer height
+
 ## 1.0.20-next.3
 
 ### Patch Changes

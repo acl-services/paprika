@@ -1,5 +1,24 @@
 # Changelog
 
+## 2.0.4
+
+### Patch Changes
+
+- Updated dependencies [036fe83]
+- Updated dependencies [514dc04]
+- Updated dependencies [63fd491]
+- Updated dependencies [e2021aa]
+  - @paprika/tokens@1.1.3
+  - @paprika/button@1.1.9
+  - @paprika/input@4.0.15
+  - @paprika/panel@2.2.2
+  - @paprika/date-picker@2.0.3
+  - @paprika/icon@2.1.4
+  - @paprika/list-box@4.0.3
+  - @paprika/radio@1.0.20
+  - @paprika/select@2.0.9
+  - @paprika/stylers@1.1.4
+
 ## 2.0.4-next.2
 
 ### Patch Changes
