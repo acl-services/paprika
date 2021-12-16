@@ -224,7 +224,7 @@ export const RealWorldStory: (props: { isForTesting?: boolean }) => JSX.Element 
           isNextPageLoading={false}
           loadMoreItems={handleLoadMore}
         />
-        <DataTable.ResizeContainer style={{ height: "calc(100vh - 200px)" }} />
+        <DataTable.ResizeContainer style={{ height: "calc(100vh - 200px)", width: "100%" }} />
       </DataTable>
     </>
   );

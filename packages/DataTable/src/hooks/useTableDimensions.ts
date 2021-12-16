@@ -45,7 +45,7 @@ export default function useTableDimensions(
       const headRect = theadEl.getBoundingClientRect();
 
       return {
-        width: bodyRect.width + headRect.width,
+        width: headRect.width,
         height: prev.height !== undefined && itemCount > 100 ? prev.height : bodyRect.height + headRect.height,
       };
     });
