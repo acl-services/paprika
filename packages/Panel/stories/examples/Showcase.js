@@ -33,7 +33,6 @@ const headerProps = () => ({
   children: text("children", "Header", headerGroup),
   hasAccent: boolean("hasAccent", false, headerGroup),
   hasCloseButton: boolean("hasCloseButton", true, headerGroup),
-  level: select("level", [1, 2, 3, 4, 5, 6], 2, headerGroup),
   isSticky: boolean("isSticky", false, headerGroup),
 });
 

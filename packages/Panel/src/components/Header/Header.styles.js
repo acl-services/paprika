@@ -6,14 +6,16 @@ import * as types from "../../types";
 
 const sizeStyles = {
   [types.sizes.MEDIUM]: css`
-    height: 18px;
-    min-height: ${spacer(6)};
+    font-weight: bold;
+    height: ${spacer(6)};
     padding: ${tokens.spaceLg} ${stylers.spacer(2)};
+    ${stylers.fontSize(1)}
   `,
   [types.sizes.LARGE]: css`
-    height: 23px;
-    min-height: ${spacer(8)};
+    font-weight: bold;
+    height: ${spacer(8)};
     padding: ${stylers.spacer(2)} ${stylers.spacer(3)};
+    ${stylers.fontSize(3)};
   `,
 };
 
