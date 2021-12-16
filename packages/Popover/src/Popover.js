@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import * as constants from "@paprika/constants/lib/Constants";
 import tokens from "@paprika/tokens";
 import { zValue } from "@paprika/stylers/lib/helpers";
-import { callAll } from "@paprika/helpers";
+import { callAll, DOMElementType } from "@paprika/helpers";
 
 import * as types from "./types";
 import isInsideBoundaries from "./helpers/isInsideBoundaries";
@@ -36,10 +36,11 @@ class Popover extends React.Component {
     this.$popover = React.createRef();
     this.$trigger = null;
     this.$tip = null; // this ref comes from a callback of the <Tip /> component
+    this.container = props.container ?? document.body;
 
     if (props.isPortal) {
       const portalNode = document.createElement("div");
-      this.$portal = document.body.appendChild(portalNode);
+      this.$portal = this.container.appendChild(portalNode);
     }
 
     this.focusableElements = [];
@@ -157,7 +158,7 @@ class Popover extends React.Component {
     this.closeTimer = null;
 
     if (this.props.isPortal) {
-      document.body.removeChild(this.$portal);
+      this.container.removeChild(this.$portal);
     }
   }
 
@@ -170,9 +171,9 @@ class Popover extends React.Component {
     $shadowContent.style.maxWidth = this.props.maxWidth;
     $shadowContent.style.minWidth = this.props.minWidth;
 
-    document.body.appendChild($shadowContent);
+    this.container.appendChild($shadowContent);
     const contentWidth = getBoundingClientRect($shadowContent).width;
-    document.body.removeChild($shadowContent);
+    this.container.removeChild($shadowContent);
 
     return contentWidth;
   }
@@ -234,7 +235,7 @@ class Popover extends React.Component {
   // eslint-disable-next-line react/sort-comp
   handleReposition = throttle(() => {
     if (this.isOpen()) {
-      const scrollContainer = this.props.getScrollContainer === null ? document.body : this.props.getScrollContainer();
+      const scrollContainer = this.props.getScrollContainer === null ? this.container : this.props.getScrollContainer();
       if (
         !isInsideBoundaries({
           $container: scrollContainer,
@@ -533,6 +534,9 @@ const propTypes = {
 
   /** Number setting the z-index for the popover content / tip. */
   zIndex: PropTypes.number,
+
+  /** Portal container for the Panel (DOM element) */
+  container: DOMElementType,
 };
 
 const defaultProps = {
@@ -552,6 +556,7 @@ const defaultProps = {
   shouldKeepFocus: false,
   shouldUnmount: true,
   zIndex: zValue(1),
+  container: null,
 };
 
 Popover.displayName = "Popover";
