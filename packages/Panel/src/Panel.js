@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { zValue } from "@paprika/stylers/lib/helpers";
-import { LockBodyScroll, Portal } from "@paprika/helpers";
+import { LockBodyScroll, Portal, DOMElementType } from "@paprika/helpers";
 import OriginalOverlay from "@paprika/overlay";
 import Content from "./components/Content";
 import Dialog from "./components/Dialog";
@@ -219,8 +219,8 @@ const propTypes = {
   /** The content for the Panel. */
   children: PropTypes.node.isRequired,
 
-  /** Portal container for the Panel */
-  container: PropTypes.node,
+  /** Portal container for the Panel (DOM element) */
+  container: DOMElementType,
 
   /** Function that provides the container DOM element to be pushed. */
   getPushContentElement: PropTypes.func,
