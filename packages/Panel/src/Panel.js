@@ -22,6 +22,7 @@ export default function Panel(props) {
   // Props
   const {
     a11yText,
+    container,
     getPushContentElement,
     groupOffsetY,
     height,
@@ -36,7 +37,6 @@ export default function Panel(props) {
     slideFrom,
     width,
     zIndex,
-    portalMount,
     ...moreProps
   } = props;
 
@@ -170,14 +170,14 @@ export default function Panel(props) {
       sidePanel = dialog;
     } else if (!overlayExtracted) {
       sidePanel = (
-        <Portal active container={portalMount}>
+        <Portal active container={container}>
           {dialog}
         </Portal>
       );
     } else {
       const { children, focusLockOptions, ...morePropsForOverlay } = overlayExtracted.props;
       sidePanel = (
-        <Portal active container={portalMount}>
+        <Portal active container={container}>
           <OriginalOverlay
             data-pka-anchor="panel.overlay"
             focusLockOptions={focusLockProps}
@@ -185,6 +185,7 @@ export default function Panel(props) {
             isOpen={isOpen}
             onClose={onClose}
             zIndex={zIndex}
+            container={container}
             {...morePropsForOverlay}
           >
             {state => React.cloneElement(dialog, { state })}
@@ -217,6 +218,9 @@ const propTypes = {
 
   /** The content for the Panel. */
   children: PropTypes.node.isRequired,
+
+  /** Portal container for the Panel */
+  container: PropTypes.node,
 
   /** Function that provides the container DOM element to be pushed. */
   getPushContentElement: PropTypes.func,
@@ -259,12 +263,11 @@ const propTypes = {
 
   /** Control the z-index of the Panel */
   zIndex: PropTypes.number,
-
-  portalMount: PropTypes.element,
 };
 
 const defaultProps = {
   a11yText: null,
+  container: null,
   getPushContentElement: null,
   groupOffsetY: 0,
   height: "33%",
@@ -279,7 +282,6 @@ const defaultProps = {
   slideFrom: types.slideFroms.RIGHT,
   width: "33%",
   zIndex: zValue(7),
-  portalMount: null,
 };
 
 Panel.propTypes = propTypes;
