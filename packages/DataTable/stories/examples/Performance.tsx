@@ -58,12 +58,18 @@ const PerformanceStory: (settings: Settings) => JSX.Element = ({ rows, columns }
 
       <br />
 
-      <DataTable a11yText="Data table for performance testing." height={600} columns={columnsProp} data={items}>
+      <DataTable
+        a11yText="Data table for performance testing."
+        height={600}
+        width="100%"
+        columns={columnsProp}
+        data={items}
+      >
         <DataTable.InfiniteLoader
           itemCount={parseInt(rows, 10)}
           isItemLoaded={() => true}
           loadMoreItems={async () => {
-            console.log();
+            // do nothing
           }}
         />
       </DataTable>

@@ -1,5 +1,11 @@
 # @paprika/data-table
 
+## 0.2.0-next.1
+
+### Minor Changes
+
+- 2ed3472: Add auto-resizer to the DataTable
+
 ## 0.1.2-next.0
 
 ### Patch Changes

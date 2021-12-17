@@ -74,6 +74,7 @@
     "@paprika/seducer": "2.0.3"
   },
   "changesets": [
+    "calm-pianos-dress",
     "five-cups-turn",
     "heavy-dragons-exercise",
     "slimy-dolls-cross",

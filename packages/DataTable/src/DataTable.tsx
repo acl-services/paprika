@@ -1,8 +1,8 @@
 import React from "react";
 import { useTable, useBlockLayout, Column, Row } from "react-table";
+import ResizeDetector from "@paprika/resize-detector";
 import { extractChildren } from "@paprika/helpers";
 import { gridTypes } from "@paprika/constants";
-
 import { InfiniteLoader, InfiniteLoaderImpl, InfiniteLoaderPublicProps } from "./components/InfiniteLoader";
 import { ReactTableContext } from "./components/ReactTableContext";
 import { ThemeContext } from "./components/ThemeContext";
@@ -11,10 +11,14 @@ import { TableHeader } from "./components/TableHeader";
 import { TableBody } from "./components/TableBody";
 import { TableRow } from "./components/TableRow";
 import useSticky from "./hooks/useSticky";
+import useTableDimensions from "./hooks/useTableDimensions";
 
 import { TableDataItemType, BorderType } from "./types";
 
 import * as sc from "./DataTable.styles";
+
+export const ResizeContainer: React.FC<Record<string, any>> = (...moreProps) => <></>;
+ResizeContainer.displayName = "DataTable.ResizeContainer";
 
 function InnerElement({ children, ...rest }: { children: React.ReactNode }): JSX.Element {
   return (
@@ -31,6 +35,7 @@ interface ConstantsTypes {
 
 interface DataTableComposition {
   InfiniteLoader: React.FC<InfiniteLoaderPublicProps>;
+  ResizeContainer: React.FC<Record<string, any>>;
   types: ConstantsTypes;
 }
 
@@ -47,7 +52,10 @@ export interface DataTableProps {
   data: TableDataItemType[];
 
   /** The height of the table in px */
-  height: number;
+  height?: number;
+
+  /** The width of the table */
+  width?: string | number;
 
   /** Define the look for borders in the table */
   borderType?: BorderType;
@@ -64,9 +72,6 @@ export interface DataTableProps {
   /** Override the table Column configuration for some particular rows */
   renderRow?: ((row: Row<TableDataItemType>) => React.ReactNode) | null;
 
-  /** The width of the table */
-  width?: string | number;
-
   /** Experimental prop */
   extraCellProps?: Record<string, any>;
 
@@ -79,15 +84,18 @@ const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
   columns,
   data,
   height,
+  width,
   borderType = gridTypes.HORIZONTAL,
   getRowHeight = null,
   hasZebraStripes = false,
   isHeaderSticky = true,
   renderRow = null,
-  width = "100%",
   extraCellProps = {},
   ...moreProps
 }: DataTableProps) => {
+  const tableRef = React.useRef<HTMLDivElement>(null);
+  const { getTableHeight, getTableWidth } = useTableDimensions(tableRef, data.length, height, width);
+
   const defaultColumn = React.useMemo(
     () => ({
       width: 150,
@@ -106,13 +114,16 @@ const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
     useSticky
   );
 
-  function renderTableContent() {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  /* eslint-disable @typescript-eslint/ban-ts-comment */
+  const {
     // @ts-ignore
-    const { "DataTable.InfiniteLoader": extractedInfiniteLoaderDefinition } = extractChildren(children, [
-      "DataTable.InfiniteLoader",
-    ]);
+    "DataTable.InfiniteLoader": extractedInfiniteLoaderDefinition,
+    // @ts-ignore
+    "DataTable.ResizeContainer": extractedResizeContainer,
+  } = extractChildren(children, ["DataTable.InfiniteLoader", "DataTable.ResizeContainer"]);
+  /* eslint-enable @typescript-eslint/ban-ts-comment */
 
+  function renderTableContent(maxHeight: number) {
     const hasInfiniteLoader = Boolean(extractedInfiniteLoaderDefinition);
 
     if (hasInfiniteLoader) {
@@ -121,7 +132,7 @@ const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
       return (
         <InfiniteLoaderImpl
           data={data}
-          height={height}
+          height={maxHeight}
           innerElementType={InnerElement}
           getRowHeight={getRowHeight}
           {...infiniteLoaderPublicProps}
@@ -138,9 +149,10 @@ const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
     );
   }
 
-  return (
-    <ThemeContext.Provider value={{ borderType, isHeaderSticky, hasZebraStripes }}>
+  function renderTable(height: number, width: number | string) {
+    return (
       <sc.Table
+        ref={tableRef}
         aria-label={a11yText}
         aria-rowcount={data.length}
         data-pka-anchor="dataTable"
@@ -151,16 +163,43 @@ const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
       >
         <sc.ContentWrapper>
           <RenderRowContext.Provider value={renderRow}>
-            <ReactTableContext.Provider value={tableInstance}>{renderTableContent()}</ReactTableContext.Provider>
+            <ReactTableContext.Provider value={tableInstance}>{renderTableContent(height)}</ReactTableContext.Provider>
           </RenderRowContext.Provider>
         </sc.ContentWrapper>
       </sc.Table>
+    );
+  }
+
+  if (!extractedResizeContainer) {
+    if (width === undefined) {
+      console.warn("The `width` prop should be specified if `<DataTable.ResizeContainer>` is not used");
+    }
+
+    if (height === undefined) {
+      console.warn("The `height` prop should be specified if `<DataTable.ResizeContainer>` is not used");
+    }
+  }
+
+  return (
+    <ThemeContext.Provider value={{ borderType, isHeaderSticky, hasZebraStripes }}>
+      {extractedResizeContainer ? (
+        <div {...extractedResizeContainer.props}>
+          <ResizeDetector isFullHeight>
+            {({ height: maxHeight, width: maxWidth }) =>
+              renderTable(getTableHeight(maxHeight), getTableWidth(maxWidth))
+            }
+          </ResizeDetector>
+        </div>
+      ) : (
+        renderTable(height || 0, width || 0)
+      )}
     </ThemeContext.Provider>
   );
 };
 
 DataTable.displayName = "DataTable";
 DataTable.InfiniteLoader = InfiniteLoader;
+DataTable.ResizeContainer = ResizeContainer;
 DataTable.types = {
   borderType: gridTypes,
 };
