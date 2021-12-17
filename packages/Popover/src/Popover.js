@@ -1,3 +1,5 @@
+/* eslint-disable react/sort-comp */
+
 import React from "react";
 import memoizeOne from "memoize-one";
 import PropTypes from "prop-types";
@@ -36,12 +38,8 @@ class Popover extends React.Component {
     this.$popover = React.createRef();
     this.$trigger = null;
     this.$tip = null; // this ref comes from a callback of the <Tip /> component
-    this.container = props.container ?? document.body;
 
-    if (props.isPortal) {
-      const portalNode = document.createElement("div");
-      this.$portal = this.container.appendChild(portalNode);
-    }
+    this.mountPortal(props);
 
     this.focusableElements = [];
     this.triggerFocusIndex = null;
@@ -147,6 +145,13 @@ class Popover extends React.Component {
     }
 
     if (this.isOpen() && prevProps !== this.props) this.setVisibilityAndPosition();
+
+    const shouldRemountPortal =
+      this.props.isPortal && (this.props.container || document.body) !== this.$portal?.parentNode;
+    if (shouldRemountPortal) {
+      this.$portal.remove();
+      this.mountPortal(this.props);
+    }
   }
 
   componentWillUnmount() {
@@ -158,8 +163,12 @@ class Popover extends React.Component {
     this.closeTimer = null;
 
     if (this.props.isPortal) {
-      this.container.removeChild(this.$portal);
+      this.$portal.remove();
     }
+  }
+
+  getContainer() {
+    return this.props.container ?? document.body;
   }
 
   getContentWidth() {
@@ -171,9 +180,9 @@ class Popover extends React.Component {
     $shadowContent.style.maxWidth = this.props.maxWidth;
     $shadowContent.style.minWidth = this.props.minWidth;
 
-    this.container.appendChild($shadowContent);
+    this.getContainer().appendChild($shadowContent);
     const contentWidth = getBoundingClientRect($shadowContent).width;
-    this.container.removeChild($shadowContent);
+    this.getContainer().removeChild($shadowContent);
 
     return contentWidth;
   }
@@ -231,11 +240,9 @@ class Popover extends React.Component {
     };
   };
 
-  // eslint is forcing to put handleReposition before ComponentDidMount
-  // eslint-disable-next-line react/sort-comp
   handleReposition = throttle(() => {
     if (this.isOpen()) {
-      const scrollContainer = this.props.getScrollContainer === null ? this.container : this.props.getScrollContainer();
+      const scrollContainer = this.props.getScrollContainer === null ? document.body : this.props.getScrollContainer();
       if (
         !isInsideBoundaries({
           $container: scrollContainer,
@@ -272,6 +279,13 @@ class Popover extends React.Component {
       }
     }
   };
+
+  mountPortal(props) {
+    if (props.isPortal) {
+      const portalNode = document.createElement("div");
+      this.$portal = this.getContainer().appendChild(portalNode);
+    }
+  }
 
   focusIsOnCertainElementInPopover = which => {
     const focusableElementsInPopover = this.$content.querySelectorAll(focusableElementSelector);
