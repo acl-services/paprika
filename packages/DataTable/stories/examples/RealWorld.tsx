@@ -7,7 +7,6 @@ import OverflowMenu from "@paprika/overflow-menu";
 import EllipsisVertical from "@paprika/icon/lib/EllipsisVertical";
 import Filter, { useFilter } from "@paprika/filter";
 import { ColumnsArrangement, useColumnsArrangement } from "@paprika/action-bar";
-import ResizeDetector, { useResizeDetector } from "@paprika/resize-detector";
 import Link from "@paprika/link";
 import { Column } from "react-table";
 import DataTable from "../../src";
@@ -109,29 +108,6 @@ function isFixedColumn(columnId: ColumnId) {
   return columnId === ColumnId.firstName || columnId === ColumnId.lastName;
 }
 
-function Table({ columns, data, onLoadMore, borderType, hasZebraStripes }: any) {
-  const { width = 1200, height = 500 } = useResizeDetector();
-
-  return (
-    <DataTable
-      a11yText="Data table for a real world example."
-      height={height}
-      width={width}
-      columns={columns}
-      data={data}
-      borderType={borderType}
-      hasZebraStripes={hasZebraStripes}
-    >
-      <DataTable.InfiniteLoader
-        itemCount={data.length + 1}
-        isItemLoaded={index => data[index] !== undefined}
-        isNextPageLoading={false}
-        loadMoreItems={onLoadMore}
-      />
-    </DataTable>
-  );
-}
-
 export const RealWorldStory: (props: { isForTesting?: boolean }) => JSX.Element = ({ isForTesting = false }) => {
   function NameLink({ value }: { value: string }) {
     return <Link href="wegalvanize.com">{value}</Link>;
@@ -176,7 +152,6 @@ export const RealWorldStory: (props: { isForTesting?: boolean }) => JSX.Element 
     const newItems = await new Promise<Record<string, unknown>[]>(res =>
       setTimeout(() => res(isForTesting ? makeFixedData(40) : makeData(40)), 5000)
     );
-
     setData(data.concat(newItems));
   };
 
@@ -236,15 +211,21 @@ export const RealWorldStory: (props: { isForTesting?: boolean }) => JSX.Element 
         ) : null}
       </div>
 
-      <ResizeDetector isFullHeight style={{ height: "calc(100vh - 200px)" }}>
-        <Table
-          columns={columns}
-          data={data}
-          onLoadMore={handleLoadMore}
-          borderType={borderType}
-          hasZebraStripes={hasZebraStripes}
+      <DataTable
+        a11yText="Data table for a real world example."
+        columns={columns}
+        data={data}
+        borderType={borderType}
+        hasZebraStripes={hasZebraStripes}
+      >
+        <DataTable.InfiniteLoader
+          itemCount={data.length + 1}
+          isItemLoaded={index => data[index] !== undefined}
+          isNextPageLoading={false}
+          loadMoreItems={handleLoadMore}
         />
-      </ResizeDetector>
+        <DataTable.ResizeContainer style={{ height: "calc(100vh - 200px)", width: "100%" }} />
+      </DataTable>
     </>
   );
 };
