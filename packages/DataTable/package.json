@@ -1,6 +1,6 @@
 {
   "name": "@paprika/data-table",
-  "version": "0.1.2-next.0",
+  "version": "0.2.0-next.1",
   "description": "A virtualized table component.",
   "author": "@paprika",
   "license": "MIT",
