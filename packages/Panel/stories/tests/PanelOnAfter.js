@@ -25,7 +25,7 @@ export default function PanelOnAfter() {
           offsetY={40}
         >
           <Panel.Header>
-            <Heading level={2}>Cypress</Heading>
+            <Heading>Cypress</Heading>
           </Panel.Header>
         </Panel>
       </p>
