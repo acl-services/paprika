@@ -70,7 +70,7 @@
       @for $i from 0 through 7 {
         &:nth-child(#{$i + 1}) {
           left: $offset * $i;
-          top: calc($offset / 4 * $i);
+          top: calc($offset / 4 * #{$i});
           z-index: z($i);
         }
       }
