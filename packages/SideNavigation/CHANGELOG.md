@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.0.15-next.0
+
+### Patch Changes
+
+- Updated dependencies [b9df017]
+  - @paprika/panel@2.2.3-next.0
+
 ## 3.0.14
 
 ### Patch Changes
