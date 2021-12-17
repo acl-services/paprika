@@ -6,18 +6,18 @@
 
 // Utilities
 
-@function div($dividend, $divisor) {
+@function div($dividend, $divisor, $precision: 12) {
   $sign: if($dividend > 0 and $divisor > 0 or $dividend < 0 and $divisor < 0, 1, -1);
   @if $dividend == 0 {
     @return 0;
   }
   @if $divisor == 0 {
-    @error "NAN";
+    @error "NaN";
   }
   $remainder: $dividend;
   $result: 0;
   $factor: 10;
-  @while ($remainder > 0) {
+  @while ($remainder > 0 and $precision >= 0) {
     $quotient: 0;
     @while ($remainder >= $divisor) {
       $remainder: $remainder - $divisor;
@@ -26,8 +26,13 @@
     $result: $result * 10 + $quotient;
     $factor: $factor * 0.1;
     $remainder: $remainder * 10;
+    $precision: $precision - 1;
+    @if ($precision < 0 and $remainder >= $divisor * 5) {
+      $result: $result + 1;
+    }
   }
   $result: $result * $factor * $sign;
+
   @return $result;
 }
 
