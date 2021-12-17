@@ -13,14 +13,12 @@ interface PanelProps {
   groupOffsetY?: number;
   /** The height of the open Panel (when slide in from bottom) */
   height?: string | number;
-  /** Control the compactness of the Panel */
-  isCompact?: boolean;
   /** Render the panel inline */
   isInline?: boolean;
   /** Control the visibility of the Panel. This prop makes the Panel appear. */
   isOpen?: boolean;
-  /** Modify the look of the Panel */
-  kind?: Panel.types.kind.DEFAULT | Panel.types.kind.CHILD | Panel.types.kind.PRIMARY;
+  /** Control the size of the Panel */
+  size?: Panel.types.sizes.MEDIUM | Panel.types.sizes.LARGE;
   /** Control offset of the Panel. Only use 'top' when sliding in from the left or right. Only use 'left' or 'right' when sliding in from the bottom. */
   offset?: shape;
   /** Callback once the Panel has been closed event */
@@ -48,13 +46,9 @@ declare namespace Panel {
 
     hasCloseButton?: boolean;
 
-    isCompact?: boolean;
-
     isHeaderSticky?: boolean;
 
-    kind?: Header.types.kind.DEFAULT | Header.types.kind.PRIMARY;
-
-    level?: 1 | 2 | 3 | 4 | 5 | 6;
+    hasAccent?: boolean;
 
     onClose?: (...args: any[]) => any;
 
@@ -75,8 +69,6 @@ declare namespace Panel {
     [x: string]: any;
 
     children: React.ReactNode;
-
-    height?: number;
 
     isSticky?: boolean;
   }
@@ -118,27 +110,10 @@ declare namespace Panel {
 
 declare namespace Panel {
   namespace types {
-    namespace kind {
-      const DEFAULT: any;
-      const CHILD: any;
-      const PRIMARY: any;
-    }
-  }
-}
-declare namespace Panel {
-  namespace types {
     namespace slideFroms {
       const RIGHT: any;
       const LEFT: any;
       const BOTTOM: any;
-    }
-  }
-}
-declare namespace Header {
-  namespace types {
-    namespace kind {
-      const DEFAULT: any;
-      const PRIMARY: any;
     }
   }
 }

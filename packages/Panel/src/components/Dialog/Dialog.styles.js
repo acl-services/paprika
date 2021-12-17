@@ -3,17 +3,6 @@ import tokens from "@paprika/tokens";
 import styled, { css, keyframes } from "styled-components";
 import * as types from "../../types";
 
-const childPanelCss = ({ isCompact, groupOffsetY, offset }) => {
-  const totalOffset = isCompact ? 48 : 64;
-  const childBottomOffsetY = totalOffset + groupOffsetY + offset.top;
-  return css`
-    border-bottom-left-radius: ${tokens.spaceSm};
-    border-top-left-radius: ${tokens.spaceSm};
-    height: calc(100% - ${childBottomOffsetY}px);
-    margin-top: ${isCompact ? `${stylers.spacer(3)}` : `${stylers.spacer(4)}`};
-  `;
-};
-
 function slideIn(slideInTransform, slideOutTransform) {
   return keyframes`
       from {
@@ -35,10 +24,6 @@ function slideOut(slideInTransform, slideOutTransform) {
       }
       `;
 }
-
-const compactStyles = css`
-  padding: ${stylers.spacer(2)};
-`;
 
 function getSlideOutTransform(slideFrom) {
   switch (slideFrom) {
@@ -64,9 +49,31 @@ function getSlideInTransform(slideFrom) {
       return null;
   }
 }
+function getWidth(width) {
+  let result = "";
+  if (Number.isNaN(Number(width))) {
+    switch (width) {
+      case types.widthTypes.SMALL:
+        result = "350px";
+        break;
+      case types.widthTypes.MEDIUM:
+        result = "420px";
+        break;
+      case types.widthTypes.LARGE:
+        result = "640px";
+        break;
+      default:
+        result = width;
+        break;
+    }
+  } else {
+    result = `${width}px`;
+  }
+  return result;
+}
 
 export const Dialog = styled.div(
-  ({ hasPushedElement, height, isAnimating, isInline, isOpen, kind, offset, slideFrom, width, zIndex }) => {
+  ({ hasPushedElement, height, isAnimating, isInline, isOpen, offset, slideFrom, width, zIndex }) => {
     const slideOutTransform = getSlideOutTransform(slideFrom);
     const slideInTransform = getSlideInTransform(slideFrom);
 
@@ -76,13 +83,13 @@ export const Dialog = styled.div(
     let right = null;
     let top = null;
     let bottom = null;
-    let borderTop = null;
+    const borderTop = null;
 
     switch (slideFrom) {
       case types.slideFroms.LEFT:
       case types.slideFroms.RIGHT:
         calculatedHeight = offset.top ? `calc(100% - ${offset.top}px);` : "100%";
-        calculatedWidth = Number.isNaN(Number(width)) ? width : `${width}px`;
+        calculatedWidth = getWidth(width);
         left = slideFrom === types.slideFroms.LEFT ? 0 : null;
         right = slideFrom === types.slideFroms.RIGHT ? 0 : null;
         top = `${offset.top}px`;
@@ -93,7 +100,6 @@ export const Dialog = styled.div(
         left = `${offset.left}px`;
         right = `${offset.right}px`;
         bottom = 0;
-        borderTop = `1px solid ${tokens.border.color}`;
         break;
       default:
     }
@@ -106,9 +112,7 @@ export const Dialog = styled.div(
             0.4s forwards;
         `
       : "";
-
-    const childPanel = kind === "child" ? childPanelCss : "";
-    const boxShadow = hasPushedElement ? "none" : tokens.modal.shadow;
+    const boxShadow = hasPushedElement ? "none" : "0 12px 24px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.16)";
 
     return css`
       ${animationStyle};
@@ -118,7 +122,6 @@ export const Dialog = styled.div(
       bottom: ${bottom};
       box-shadow: ${boxShadow};
       box-sizing: border-box;
-      ${childPanel}
       display: flex;
       flex-direction: column;
       height: ${calculatedHeight};
@@ -140,19 +143,18 @@ export const Dialog = styled.div(
 );
 
 export const DialogContent = styled.div(
-  ({ hasPushedElement, slideFrom, isCompact, kind }) => css`
-  flex-grow: 1;
-  margin: 0;
-  padding: 0;
+  ({ hasPushedElement, slideFrom }) => css`
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
 
-  &:focus {
-    ${stylers.focusRing.subtle(true)};
-  }
+    &:focus {
+      ${stylers.focusRing.subtle(true)};
+    }
 
-  ${hasPushedElement && slideFrom === types.slideFroms.LEFT ? `border-right: 1px solid ${tokens.border.color}` : ""}
-  ${hasPushedElement && slideFrom === types.slideFroms.RIGHT ? `border-left: 1px solid ${tokens.border.color}` : ""}
-  ${isCompact || kind === "child" ? compactStyles : ""};
-`
+    ${hasPushedElement && slideFrom === types.slideFroms.LEFT ? `border-right: 1px solid ${tokens.border.color}` : ""}
+    ${hasPushedElement && slideFrom === types.slideFroms.RIGHT ? `border-left: 1px solid ${tokens.border.color}` : ""}
+  `
 );
 
 export const Main = styled.div`

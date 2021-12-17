@@ -14,7 +14,6 @@ const getMainElement = () => document.querySelector("main");
 
 const sidePanelProps = () => ({
   a11yText: text("a11yText", null, sidePanelGroup),
-  isCompact: boolean("isCompact", false, sidePanelGroup),
   isInline: boolean("isInline", false, sidePanelGroup),
   isOpen: boolean("isOpen", true, sidePanelGroup),
   slideFrom: select(
@@ -27,19 +26,18 @@ const sidePanelProps = () => ({
   zIndex: number("zIndex", undefined, {}, sidePanelGroup),
   offset: object("offset", { top: 0, left: 0, right: 0 }, sidePanelGroup),
   pushContent: boolean("pushMain", false, sidePanelGroup),
+  size: select("size", [Panel.types.size.MEDIUM, Panel.types.size.LARGE], Panel.types.size.MEDIUM, sidePanelGroup),
 });
 
 const headerProps = () => ({
   children: text("children", "Header", headerGroup),
+  hasAccent: boolean("hasAccent", false, headerGroup),
   hasCloseButton: boolean("hasCloseButton", true, headerGroup),
-  kind: select("kind", ["default", "primary"], "primary", headerGroup),
-  level: select("level", [1, 2, 3, 4, 5, 6], 2, headerGroup),
   isSticky: boolean("isSticky", false, headerGroup),
 });
 
 const footerProps = () => ({
   isSticky: boolean("isSticky", false, footerGroup),
-  height: number("height", 72, {}, footerGroup),
 });
 
 const overlayProps = () => ({
