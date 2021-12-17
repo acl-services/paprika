@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.3-next.0
+
+### Patch Changes
+
+- b9df017: Update panel styling to align with new design guidelines
+
 ## 2.2.2
 
 ### Patch Changes
