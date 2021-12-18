@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.19
+
+### Patch Changes
+
+- eb42e40: tag icon should be fixed as 20px
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5
+
 ## 0.0.19-next.1
 
 ### Patch Changes

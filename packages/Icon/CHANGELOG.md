@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.5
+
+### Patch Changes
+
+- 32de383: Adjust scaling styles to better support Safari
+
 ## 2.1.5-next.0
 
 ### Patch Changes

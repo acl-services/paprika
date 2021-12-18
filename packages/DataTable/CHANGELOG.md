@@ -1,5 +1,16 @@
 # @paprika/data-table
 
+## 0.2.0
+
+### Minor Changes
+
+- 2ed3472: Add auto-resizer to the DataTable
+
+### Patch Changes
+
+- 2b92f13: - Changed `children` prop to optional.
+  - Some typing definition improvements.
+
 ## 0.2.0-next.1
 
 ### Minor Changes

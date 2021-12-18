@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.2.3
+
+### Patch Changes
+
+- b9df017: Update panel styling to align with new design guidelines
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5
+  - @paprika/button@1.1.10
+
 ## 2.2.3-next.1
 
 ### Patch Changes

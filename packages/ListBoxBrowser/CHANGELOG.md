@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.39
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5
+  - @paprika/list-box@4.0.4
+
 ## 1.0.39-next.0
 
 ### Patch Changes
