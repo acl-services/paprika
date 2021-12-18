@@ -147,9 +147,8 @@ class Popover extends React.Component {
     if (this.isOpen() && prevProps !== this.props) this.setVisibilityAndPosition();
 
     const shouldRemountPortal =
-      this.props.isPortal && (this.props.container || document.body) !== this.$portal?.parentNode;
+      this.isOpen() && this.props.isPortal && (this.props.container || document.body) !== this.$portal?.parentNode;
     if (shouldRemountPortal) {
-      this.$portal.remove();
       this.mountPortal(this.props);
     }
   }
@@ -282,6 +281,7 @@ class Popover extends React.Component {
 
   mountPortal(props) {
     if (props.isPortal) {
+      if (this.$portal) this.$portal.remove();
       const portalNode = document.createElement("div");
       this.$portal = this.getContainer().appendChild(portalNode);
     }
