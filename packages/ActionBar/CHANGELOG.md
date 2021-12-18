@@ -1,5 +1,16 @@
 # Changelog
 
+## 5.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5-next.0
+  - @paprika/button@1.1.10-next.0
+  - @paprika/input@4.0.16-next.0
+  - @paprika/select@2.0.10-next.0
+  - @paprika/sortable@1.2.10-next.0
+
 ## 5.0.0
 
 ### Major Changes

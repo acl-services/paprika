@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.26-next.1
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5-next.0
+  - @paprika/button@1.1.10-next.0
+  - @paprika/checkbox@1.0.20-next.0
+  - @paprika/panel@2.2.3-next.1
+
 ## 1.0.26-next.0
 
 ### Patch Changes

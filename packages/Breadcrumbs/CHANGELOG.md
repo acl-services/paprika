@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.7-next.0
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5-next.0
+  - @paprika/button@1.1.10-next.0
+
 ## 1.5.6
 
 ### Patch Changes
