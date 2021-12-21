@@ -31,7 +31,7 @@ export default function NestedPopoverPanel() {
         </Popover>
       </Panel.Content>
       <Panel.Footer>
-        <Button>Default action</Button>
+        <Button style={{ marginRight: "8px" }}>Default action</Button>
         <Button kind="minor">Cancel</Button>
       </Panel.Footer>
     </Panel>

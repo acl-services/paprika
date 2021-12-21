@@ -11,7 +11,9 @@ export const Footer = styled.div(
     display: flex;
     flex-shrink: 0;
     height: ${size === types.sizes.MEDIUM ? `${stylers.spacer(7)}` : `68px`};
-    padding: ${stylers.spacer(2)} ${stylers.spacer(3)};
+    padding: ${size === types.sizes.MEDIUM
+      ? `${tokens.spaceLg} ${stylers.spacer(2)}`
+      : `${stylers.spacer(2)} ${stylers.spacer(3)}`};
     position: relative;
     transition: opacity 0.3s ease-in;
     width: 100%;
