@@ -64,9 +64,7 @@ export default function Showcase() {
           <TextLine repeat={50} />
         </Panel.Content>
         <Panel.Footer {...footerProps()}>
-          <Button kind="primary" style={{ marginRight: "8px" }}>
-            Default action
-          </Button>
+          <Button kind="primary">Default action</Button>
           <Button kind="minor">Cancel</Button>
         </Panel.Footer>
         <Panel.FocusLock autoFocus={false} />

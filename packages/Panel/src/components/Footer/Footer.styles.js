@@ -17,5 +17,9 @@ export const Footer = styled.div(
     position: relative;
     transition: opacity 0.3s ease-in;
     width: 100%;
+
+    [data-pka-anchor="button"]:not(:last-child) {
+      margin-right: ${tokens.space};
+    }
   `
 );

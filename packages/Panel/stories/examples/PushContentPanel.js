@@ -20,7 +20,7 @@ export default function PushContentPanel() {
           <TextLine repeat={100} />
         </Panel.Content>
         <Panel.Footer>
-          <Button style={{ marginRight: "8px" }}>Default action</Button>
+          <Button>Default action</Button>
           <Button kind="minor">Cancel</Button>
         </Panel.Footer>
       </Panel>
