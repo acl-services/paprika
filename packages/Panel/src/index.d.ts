@@ -117,3 +117,22 @@ declare namespace Panel {
     }
   }
 }
+
+declare namespace Panel {
+  namespace types {
+    namespace widthTypes {
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE: any;
+    }
+  }
+}
+
+declare namespace Panel {
+  namespace types {
+    namespace size {
+      const MEDIUM: any;
+      const LARGE: any;
+    }
+  }
+}

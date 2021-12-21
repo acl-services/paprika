@@ -8,13 +8,13 @@ const sizeStyles = {
   [types.sizes.MEDIUM]: css`
     font-weight: bold;
     height: ${spacer(6)};
-    padding: ${tokens.spaceLg} ${stylers.spacer(2)};
+    padding: ${tokens.space} 10px ${tokens.space} ${stylers.spacer(2)};
     ${stylers.fontSize(1)}
   `,
   [types.sizes.LARGE]: css`
     font-weight: bold;
     height: ${spacer(8)};
-    padding: ${stylers.spacer(2)} ${stylers.spacer(3)};
+    padding: ${stylers.spacer(2)} 18px ${stylers.spacer(2)} ${stylers.spacer(3)};
     ${stylers.fontSize(3)};
   `,
 };
