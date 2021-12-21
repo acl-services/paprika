@@ -1,5 +1,37 @@
 # Changelog
 
+## 4.0.16
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5
+  - @paprika/button@1.1.10
+
+## 4.0.16-next.0
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5-next.0
+  - @paprika/button@1.1.10-next.0
+
+## 4.0.15
+
+### Patch Changes
+
+- 63fd491: Update input box related form elements' style
+- Updated dependencies [036fe83]
+- Updated dependencies [514dc04]
+- Updated dependencies [9e15465]
+- Updated dependencies [343d673]
+- Updated dependencies [80361b2]
+  - @paprika/tokens@1.1.3
+  - @paprika/button@1.1.9
+  - @paprika/helpers@2.2.0
+  - @paprika/icon@2.1.4
+  - @paprika/stylers@1.1.4
+
 ## 4.0.15-next.4
 
 ### Patch Changes

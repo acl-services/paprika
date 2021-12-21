@@ -1,5 +1,48 @@
 # Changelog
 
+## 3.0.4
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+- Updated dependencies [eb42e40]
+  - @paprika/icon@2.1.5
+  - @paprika/tag@0.0.19
+  - @paprika/list-box@4.0.4
+
+## 3.0.4-next.1
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5-next.0
+  - @paprika/list-box@4.0.4-next.0
+  - @paprika/tag@0.0.19-next.1
+
+## 3.0.4-next.0
+
+### Patch Changes
+
+- Updated dependencies [eb42e40]
+  - @paprika/tag@0.0.19-next.0
+
+## 3.0.3
+
+### Patch Changes
+
+- Updated dependencies [036fe83]
+- Updated dependencies [9e15465]
+- Updated dependencies [343d673]
+- Updated dependencies [17ab30d]
+- Updated dependencies [80361b2]
+  - @paprika/tokens@1.1.3
+  - @paprika/helpers@2.2.0
+  - @paprika/tag@0.0.18
+  - @paprika/icon@2.1.4
+  - @paprika/list-box@4.0.3
+  - @paprika/raw-button@1.0.10
+  - @paprika/stylers@1.1.4
+
 ## 3.0.3-next.3
 
 ### Patch Changes

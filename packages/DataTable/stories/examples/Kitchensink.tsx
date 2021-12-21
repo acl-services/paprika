@@ -4,7 +4,7 @@ import { select, boolean } from "@storybook/addon-knobs";
 import Button from "@paprika/button";
 import { Story } from "storybook/assets/styles/common.styles";
 import DataTable from "../../src";
-import { TableProps } from "../../src/DataTable";
+import { DataTableProps } from "../../src/DataTable";
 import makeData from "../helpers/makeData";
 
 const props = () => ({
@@ -30,7 +30,7 @@ function CustomCell(props: any) {
   );
 }
 
-export const KitchensinkStory: (props: Partial<TableProps>) => JSX.Element = props => {
+export const KitchensinkStory: (props: Partial<DataTableProps>) => JSX.Element = props => {
   const columns = React.useMemo(
     () => [
       {
@@ -164,6 +164,7 @@ export const KitchensinkStory: (props: Partial<TableProps>) => JSX.Element = pro
       <DataTable
         a11yText="Kitchensink data table."
         height={500}
+        width="100%"
         columns={columns}
         data={items}
         extraCellProps={{ onClick: updateName }}

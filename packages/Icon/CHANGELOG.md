@@ -1,5 +1,24 @@
 # Changelog
 
+## 2.1.5
+
+### Patch Changes
+
+- 32de383: Adjust scaling styles to better support Safari
+
+## 2.1.5-next.0
+
+### Patch Changes
+
+- 32de383: Adjust scaling styles to better support Safari
+
+## 2.1.4
+
+### Patch Changes
+
+- Updated dependencies [036fe83]
+  - @paprika/tokens@1.1.3
+
 ## 2.1.4-next.0
 
 ### Patch Changes

@@ -18,7 +18,7 @@ function createRowsContainer(): HTMLElement {
   container.style.visibility = "hidden";
   container.style.boxSizing = "border-box";
   container.style.position = "absolute";
-  container.style.top = "-9999999999px";
+  container.style.left = "-999999px";
 
   document.body.appendChild(container);
 
@@ -31,6 +31,7 @@ function createRowContainer(parentContainer: HTMLElement): HTMLElement {
   rowContainer.style.display = "flex";
   rowContainer.style.flexWrap = "nowrap";
   rowContainer.style.boxSizing = "border-box";
+  rowContainer.style.visibility = "hidden";
 
   parentContainer.appendChild(rowContainer);
 

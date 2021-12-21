@@ -1,5 +1,32 @@
 # Changelog
 
+## 2.0.10
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5
+
+## 2.0.10-next.0
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5-next.0
+
+## 2.0.9
+
+### Patch Changes
+
+- Updated dependencies [036fe83]
+- Updated dependencies [9e15465]
+- Updated dependencies [343d673]
+- Updated dependencies [80361b2]
+  - @paprika/tokens@1.1.3
+  - @paprika/helpers@2.2.0
+  - @paprika/icon@2.1.4
+  - @paprika/stylers@1.1.4
+
 ## 2.0.9-next.2
 
 ### Patch Changes

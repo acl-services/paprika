@@ -22,20 +22,20 @@ npm install @paprika/data-table
 
 ### DataTable
 
-| Prop            | Type                                                                    | required | default              | Description                                                      |
-| --------------- | ----------------------------------------------------------------------- | -------- | -------------------- | ---------------------------------------------------------------- |
-| a11yText        | string                                                                  | true     | -                    | Accessible description of the table                              |
-| children        | ReactReactNode                                                          | true     | -                    |                                                                  |
-| columns         | Array                                                                   | true     | -                    | Array of column definition                                       |
-| data            | Array                                                                   | true     | -                    | Array of data to be stored in the table                          |
-| height          | number                                                                  | true     | -                    | The height of the table in px                                    |
-| borderType      | [gridTypes.GRID,gridTypes.NONE,gridTypes.HORIZONTAL,gridTypes.VERTICAL] | false    | gridTypes.HORIZONTAL | Define the look for borders in the table                         |
-| getRowHeight    | [unknown,null]                                                          | false    | null                 | Function to return the row height for each row                   |
-| hasZebraStripes | boolean                                                                 | false    | false                | Add an alternating background on the table rows                  |
-| isHeaderSticky  | boolean                                                                 | false    | true                 | If the entire table header is sticky or not                      |
-| renderRow       | [unknown,null]                                                          | false    | null                 | Override the table Column configuration for some particular rows |
-| width           | [string,number]                                                         | false    | "100%"               | The width of the table                                           |
-| extraCellProps  | Record                                                                  | false    | {}                   | Experimental prop                                                |
+| Prop            | Type            | required | default              | Description                                                      |
+| --------------- | --------------- | -------- | -------------------- | ---------------------------------------------------------------- |
+| a11yText        | string          | true     | -                    | Accessible description of the table                              |
+| children        | ReactReactNode  | false    | null                 |                                                                  |
+| columns         | Array           | true     | -                    | Array of column definition                                       |
+| data            | Array           | true     | -                    | Array of data to be stored in the table                          |
+| height          | number          | false    | -                    | The height of the table in px                                    |
+| width           | [string,number] | false    | -                    | The width of the table                                           |
+| borderType      | BorderType      | false    | gridTypes.HORIZONTAL | Define the look for borders in the table                         |
+| getRowHeight    | [unknown,null]  | false    | null                 | Function to return the row height for each row                   |
+| hasZebraStripes | boolean         | false    | false                | Add an alternating background on the table rows                  |
+| isHeaderSticky  | boolean         | false    | true                 | If the entire table header is sticky or not                      |
+| renderRow       | [unknown,null]  | false    | null                 | Override the table Column configuration for some particular rows |
+| extraCellProps  | Record          | false    | {}                   | Experimental prop                                                |
 
 ### DataTable.InfiniteLoader
 

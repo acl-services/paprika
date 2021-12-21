@@ -1,5 +1,54 @@
 # Changelog
 
+## 1.0.26
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+- Updated dependencies [b9df017]
+  - @paprika/icon@2.1.5
+  - @paprika/panel@2.2.3
+  - @paprika/button@1.1.10
+  - @paprika/checkbox@1.0.20
+
+## 1.0.26-next.1
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5-next.0
+  - @paprika/button@1.1.10-next.0
+  - @paprika/checkbox@1.0.20-next.0
+  - @paprika/panel@2.2.3-next.1
+
+## 1.0.26-next.0
+
+### Patch Changes
+
+- Updated dependencies [b9df017]
+  - @paprika/panel@2.2.3-next.0
+
+## 1.0.25
+
+### Patch Changes
+
+- Updated dependencies [036fe83]
+- Updated dependencies [514dc04]
+- Updated dependencies [bd09d92]
+- Updated dependencies [9e15465]
+- Updated dependencies [343d673]
+- Updated dependencies [80361b2]
+- Updated dependencies [e2021aa]
+  - @paprika/checkbox@1.0.19
+  - @paprika/tokens@1.1.3
+  - @paprika/button@1.1.9
+  - @paprika/spinner@1.0.13
+  - @paprika/helpers@2.2.0
+  - @paprika/panel@2.2.2
+  - @paprika/icon@2.1.4
+  - @paprika/raw-button@1.0.10
+  - @paprika/stylers@1.1.4
+
 ## 1.0.25-next.3
 
 ### Patch Changes

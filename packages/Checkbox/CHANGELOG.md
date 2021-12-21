@@ -1,5 +1,33 @@
 # Changelog
 
+## 1.0.20
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5
+
+## 1.0.20-next.0
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5-next.0
+
+## 1.0.19
+
+### Patch Changes
+
+- 036fe83: change checkbox size/colour & label font size
+- Updated dependencies [036fe83]
+- Updated dependencies [9e15465]
+- Updated dependencies [343d673]
+- Updated dependencies [80361b2]
+  - @paprika/tokens@1.1.3
+  - @paprika/helpers@2.2.0
+  - @paprika/icon@2.1.4
+  - @paprika/stylers@1.1.4
+
 ## 1.0.19-next.2
 
 ### Patch Changes

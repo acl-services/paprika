@@ -11,6 +11,7 @@ import Overlay from "./components/Overlay";
 import Trigger from "./components/Trigger";
 import Group from "./components/Group";
 import FocusLock from "./components/FocusLock";
+import PanelContext from "./PanelContext";
 import * as types from "./types";
 
 import { extractChildren, warnOfPropErrors } from "./helpers";
@@ -25,10 +26,9 @@ export default function Panel(props) {
     getPushContentElement,
     groupOffsetY,
     height,
-    isCompact,
+    size,
     isInline,
     isOpen,
-    kind,
     offset,
     onAfterClose,
     onAfterOpen,
@@ -36,6 +36,7 @@ export default function Panel(props) {
     slideFrom,
     width,
     zIndex,
+    hasAccent,
     ...moreProps
   } = props;
 
@@ -136,6 +137,10 @@ export default function Panel(props) {
 
   let sidePanel = null;
 
+  const contextValue = {
+    size,
+  };
+
   if (isVisible) {
     const dialog = (
       <Dialog
@@ -146,10 +151,9 @@ export default function Panel(props) {
         groupOffsetY={groupOffsetY}
         header={headerExtracted}
         height={height}
-        isCompact={isCompact}
+        size={size}
         isInline={isInline}
         isOpen={isOpen}
-        kind={kind}
         offset={calculatedOffset}
         onAnimationEnd={handleAnimationEnd}
         onClose={onClose}
@@ -159,6 +163,7 @@ export default function Panel(props) {
         slideFrom={slideFrom}
         width={width}
         zIndex={zIndex}
+        hasAccent={hasAccent}
         {...moreProps}
       >
         {children}
@@ -193,17 +198,18 @@ export default function Panel(props) {
   const shouldDisableBodyOverflow = (overlayExtracted || isInline) && isOpen;
 
   return (
-    <>
+    <PanelContext.Provider value={contextValue}>
       {shouldDisableBodyOverflow && <LockBodyScroll />}
       {trigger}
       {sidePanel}
-    </>
+    </PanelContext.Provider>
   );
 }
 
 Panel.types = {
-  kind: types.kinds,
   slideFrom: types.slideFroms,
+  widthType: types.widthTypes,
+  size: types.sizes,
 };
 
 const propTypes = {
@@ -222,17 +228,14 @@ const propTypes = {
   /** The height of the open Panel (when slide in from bottom) */
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
-  /** Control the compactness of the Panel */
-  isCompact: PropTypes.bool,
+  /** Control the size of the Panel */
+  size: PropTypes.oneOfType([types.sizes.MEDIUM, types.sizes.LARGE]),
 
   /** Render the panel inline */
   isInline: PropTypes.bool,
 
   /** Control the visibility of the Panel. This prop makes the Panel appear. */
   isOpen: PropTypes.bool,
-
-  /** Modify the look of the Panel */
-  kind: PropTypes.oneOf([Panel.types.kind.DEFAULT, Panel.types.kind.CHILD, Panel.types.kind.PRIMARY]),
 
   /** Control offset of the Panel. Only use 'top' when sliding in from the left or right. Only use 'left' or 'right' when sliding in from the bottom. */
   offset: PropTypes.shape({ top: PropTypes.number, left: PropTypes.number, right: PropTypes.number }),
@@ -250,10 +253,19 @@ const propTypes = {
   slideFrom: PropTypes.oneOf([types.slideFroms.RIGHT, types.slideFroms.LEFT, types.slideFroms.BOTTOM]),
 
   /** The width of the open Panel (when slide in from left or right) */
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  width: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    types.widthTypes.SMALL,
+    types.widthTypes.MEDIUM,
+    types.widthTypes.LARGE,
+  ]),
 
   /** Control the z-index of the Panel */
   zIndex: PropTypes.number,
+
+  /** Differentiate between similar coloured UI elements */
+  hasAccent: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -261,10 +273,9 @@ const defaultProps = {
   getPushContentElement: null,
   groupOffsetY: 0,
   height: "33%",
-  isCompact: false,
+  size: types.sizes.MEDIUM,
   isInline: false,
   isOpen: false,
-  kind: types.kinds.DEFAULT,
   offset: { top: 0, left: 0, right: 0 },
   onAfterClose: () => {},
   onAfterOpen: () => {},
@@ -272,6 +283,7 @@ const defaultProps = {
   slideFrom: types.slideFroms.RIGHT,
   width: "33%",
   zIndex: zValue(7),
+  hasAccent: false,
 };
 
 Panel.propTypes = propTypes;

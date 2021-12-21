@@ -17,7 +17,7 @@ export default function BasicPanel() {
         <Panel.Trigger kind="primary" onClick={toggle}>
           {isOpen ? "close" : "open"}
         </Panel.Trigger>
-        <Panel.Header kind="primary">Header</Panel.Header>
+        <Panel.Header>Header</Panel.Header>
         <Panel.Content>
           <TextLine repeat={100} />
         </Panel.Content>

@@ -14,7 +14,7 @@ const counterSizeStyles = {
     ${stylers.fontSize(-1)}; 
     line-height: ${tokens.counter.small};
     min-width: ${tokens.counter.medium};
-    padding: 1 2px;
+    padding: 1px 2px;
   `,
 };
 
