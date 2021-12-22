@@ -31,18 +31,16 @@ const defaultProps = {
 
 const MAX_OPTIONS = 15;
 
-function Item(props) {
-  const {
-    index,
-    onChangeFilter,
-    onDeleteFilter,
-    id,
-    columnId: selectedColumnId,
-    rule: selectedRule,
-    value,
-    renderValueField: renderCustomValueField,
-  } = props;
-
+function Item({
+  index,
+  onChangeFilter,
+  onDeleteFilter,
+  id,
+  columnId: selectedColumnId,
+  rule: selectedRule,
+  value,
+  renderValueField: renderCustomValueField,
+}) {
   const { children, columns, data, filterRef, onChangeOperator, operator, rulesByType } = React.useContext(
     FilterContext
   );
@@ -110,12 +108,7 @@ function Item(props) {
   }
 
   function handleChangeMultiSelectFilterValue(indices, options) {
-    const values = [];
-    indices.forEach(index => {
-      values.push(options[index].value);
-    });
-
-    onChangeFilter(types.changeTypes.FILTER_VALUE, { id, value: values });
+    onChangeFilter(types.changeTypes.FILTER_VALUE, { id, value: indices.map(index => options[index].value) });
   }
 
   function renderRuleField() {
@@ -147,9 +140,13 @@ function Item(props) {
       selectedRule === rules.IS_EMPTY ||
       selectedRule === rules.IS_NOT_EMPTY;
 
-    if (shouldNotShowValueField) return null;
+    if (shouldNotShowValueField) {
+      return null;
+    }
 
-    if (renderCustomValueField) return renderCustomValueField();
+    if (renderCustomValueField) {
+      return renderCustomValueField();
+    }
 
     switch (selectedColumnType) {
       case types.columnTypes.BOOLEAN:

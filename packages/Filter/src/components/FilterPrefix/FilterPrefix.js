@@ -15,11 +15,10 @@ const defaultProps = {
   operator: logicalFilterOperators.AND,
 };
 
-function Prefix(props) {
-  const { index, onChangeOperator, operator } = props;
+function Prefix({ index, onChangeOperator, operator }) {
   const I18n = useI18n();
   const isAnd = operator === logicalFilterOperators.AND;
-  const staticPrefix = <sc.TextWrapper>{I18n.t(`filter.${isAnd ? "and" : "or"}`)}</sc.TextWrapper>;
+  const staticPrefix = <sc.TextWrapper>{isAnd ? I18n.t("filter.and") : I18n.t("filter.or")}</sc.TextWrapper>;
 
   function handleChangeOperator(activeIndex) {
     onChangeOperator(activeIndex === 0 ? logicalFilterOperators.AND : logicalFilterOperators.OR);

@@ -1,5 +1,5 @@
 import { logicalFilterOperators } from "../rules";
-import ruleIsBoolean from "./ruleIsBoolean";
+import isEqualityRule from "./isEqualityRule";
 
 export default function isIllogicalColumn(operator, option, allAddedFilters, thisFiltersIndex = -1) {
   if (!alreadyFilteringByThisOption(option, allAddedFilters)) {
@@ -40,7 +40,7 @@ function doingOrComparison(operator) {
 // but it is not ok to search for 'goals = 100 and goals = 200' (= is "binary")
 function doingBinaryComparison(option, allAddedFilters) {
   const index = getThisOptionsIndexInAppliedFilters(option, allAddedFilters);
-  return ruleIsBoolean(allAddedFilters[index].rule);
+  return isEqualityRule(allAddedFilters[index].rule);
 }
 
 // if the current ListBox option we are examining is used by the current Filter Item we are looping over, it is ok to add it (i.e. include it as a ListBox.Option)

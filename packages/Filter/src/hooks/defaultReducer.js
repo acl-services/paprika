@@ -35,7 +35,9 @@ export default function defaultReducer(draft, action) {
       const { changedFilterItem } = payload;
 
       draft.filters.forEach(filterItem => {
-        if (filterItem.id !== changedFilterItem.id) return;
+        if (filterItem.id !== changedFilterItem.id) {
+          return;
+        }
 
         switch (payload.type) {
           case types.changeTypes.COLUMN: {

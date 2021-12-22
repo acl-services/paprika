@@ -10,30 +10,29 @@ import FilterContext from "./context";
 import columnShape from "./columnShape";
 import * as types from "./types";
 import rules, { defaultRulesByType, logicalFilterOperators } from "./rules";
-import ruleIsBoolean from "./helpers/ruleIsBoolean";
+import isEqualityRule from "./helpers/isEqualityRule";
 import * as sc from "./Filter.styles";
 
 function getLabelText(numberOfFilters, I18n) {
   return numberOfFilters ? I18n.t("filter.label_with_count", { count: numberOfFilters }) : I18n.t("filter.label");
 }
 
-export default function Filter(props) {
-  const {
-    children,
-    columns,
-    data,
-    numberApplied,
-    maxFiltersAllowed,
-    onAddFilter,
-    onApply,
-    onCancel,
-    onChangeOperator,
-    onClear,
-    operator,
-    rulesByType,
-    zIndex,
-    ...moreProps
-  } = props;
+export default function Filter({
+  children,
+  columns,
+  data,
+  numberApplied,
+  maxFiltersAllowed,
+  onAddFilter,
+  onApply,
+  onCancel,
+  onChangeOperator,
+  onClear,
+  operator,
+  rulesByType,
+  zIndex,
+  ...moreProps
+}) {
   const I18n = useI18n();
   const filterRef = React.useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -59,7 +58,7 @@ export default function Filter(props) {
   const allFieldsAreAlreadyFilteredBy =
     operator === logicalFilterOperators.AND &&
     React.Children.count(children) === columns.length &&
-    React.Children.toArray(children).every(child => ruleIsBoolean(child.props.rule));
+    React.Children.toArray(children).every(child => isEqualityRule(child.props.rule));
 
   return (
     <FilterContext.Provider value={{ filterRef, children, columns, data, operator, onChangeOperator, rulesByType }}>

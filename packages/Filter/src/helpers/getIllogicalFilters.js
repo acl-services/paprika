@@ -1,14 +1,14 @@
-import ruleIsBoolean from "./ruleIsBoolean";
+import isEqualityRule from "./isEqualityRule";
 
-function putFiltersWithBooleanRulesLast(filterOne, filterTwo) {
-  const oneIsBinary = ruleIsBoolean(filterOne.rule);
-  const twoIsBinary = ruleIsBoolean(filterTwo.rule);
+function putFiltersWithEqualityRulesLast(filterA, filterB) {
+  const aIsEqualityRule = isEqualityRule(filterA.rule);
+  const bIsEqualityRule = isEqualityRule(filterB.rule);
 
-  if (oneIsBinary === twoIsBinary) {
+  if (aIsEqualityRule === bIsEqualityRule) {
     return 0;
   }
 
-  return oneIsBinary ? 1 : -1;
+  return aIsEqualityRule ? 1 : -1;
 }
 
 // Get the illogical filters (use a boolean rule, and there are other filters on that column)
@@ -16,9 +16,9 @@ export default function getIllogicalFilters(filters) {
   const filtersClone = [...filters];
   const processedColumnIds = [];
 
-  return filtersClone.sort(putFiltersWithBooleanRulesLast).filter(filter => {
+  return filtersClone.sort(putFiltersWithEqualityRulesLast).filter(filter => {
     if (processedColumnIds.includes(filter.columnId)) {
-      if (ruleIsBoolean(filter.rule)) {
+      if (isEqualityRule(filter.rule)) {
         return true;
       }
     } else {
