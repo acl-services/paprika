@@ -10,9 +10,9 @@ import getIllogicalFilters from "../helpers/getIllogicalFilters";
 import isIllogicalRule from "../helpers/isIllogicalRule";
 
 function getDefaultFilter(columns, rulesByType, data, existingFilters, operator) {
-  const [firstColumnId, firstColumnType] = columns
-    .filter(c => isIllogicalColumn(operator, c, existingFilters))
-    .map(column => [column.id, column.type])[0];
+  const { id: firstColumnId, type: firstColumnType } = columns.filter(column =>
+    isIllogicalColumn(operator, column, existingFilters)
+  )[0];
 
   const rule = rulesByType[firstColumnType].filter(rule =>
     isIllogicalRule(operator, rule, existingFilters, firstColumnId)

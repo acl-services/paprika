@@ -31,7 +31,7 @@ const defaultProps = {
 
 const MAX_OPTIONS = 15;
 
-function Item({
+function FilterItem({
   index,
   onChangeFilter,
   onDeleteFilter,
@@ -265,8 +265,8 @@ function Item({
   );
 }
 
-Item.propTypes = propTypes;
-Item.types = types;
-Item.defaultProps = defaultProps;
+FilterItem.propTypes = propTypes;
+FilterItem.types = types;
+FilterItem.defaultProps = defaultProps;
 
-export default Item;
+export default FilterItem;
