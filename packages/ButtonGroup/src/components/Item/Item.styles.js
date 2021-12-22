@@ -42,6 +42,7 @@ export const Item = styled(Button)(
   ({ isActive, isDisabled }) => css`
   ${stylers.truncateText}
   display: block;
+  margin: 0;
   
   &:focus {
     ${stylers.z(3)}
