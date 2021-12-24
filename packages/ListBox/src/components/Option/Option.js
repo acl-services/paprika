@@ -2,10 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { PropsContext } from "../../store/PropsProvider";
 import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
+import Checkbox from "@paprika/checkbox";
 import * as sc from "./Option.styles";
 
 const Option = props => {
-  const { index, groupId, label, id, internalHandleOnClick, isSelected, ...moreProps } = props; // eslint-disable-line
+  const { index, groupId, label, id, internalHandleOnClick, isSelected, isMulti, ...moreProps } = props; // eslint-disable-line
   const providedProps = React.useContext(PropsContext);
   const { isReadOnly, size } = providedProps;
   const isDisabled = providedProps.isDisabled || props.isDisabled || isReadOnly;
@@ -24,6 +25,7 @@ const Option = props => {
       data-pka-prevent-default-on-select={props.preventDefaultOnSelect}
       tabIndex={-1}
     >
+      {props.isMulti === true ? <Checkbox style={{marginRight: "8px"}}/> : ""}
       {typeof props.children === "function" ? props.children({ isSelected, isDisabled, id }) : props.children}
     </sc.Option>
   );
@@ -64,10 +66,13 @@ Option.propTypes = {
 
   /** Internal prop, which shouldn't be documented */
   preventDefaultOnSelect: PropTypes.bool,
+
+  isMulti: PropTypes.bool,
 };
 
 Option.defaultProps = {
   isDisabled: false,
+  isMulti: true, 
   isHidden: false,
   preventDefaultOnSelect: false,
   isSelected: null,
