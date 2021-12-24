@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import * as types from "../../types";
 
 const blueSelected = tokens.color.blueLighten50;
 
@@ -18,39 +17,32 @@ const disabledStyles = css`
   }
 `;
 
-const fontSize = {
-  [types.SMALL]: css`
-    ${stylers.fontSize(-2)}
-  `,
-  [types.MEDIUM]: css`
-    ${stylers.fontSize(-1)}
-  `,
-  [types.LARGE]: css`
-    ${stylers.fontSize()}
-  `,
-};
-
 const stateStyles = ({ isSelected, hasPreventDefaultOnSelect }) => css`
   &:hover {
     ${hasPreventDefaultOnSelect ? "background: transparent;" : ""};
     background: ${isSelected ? blueSelected : tokens.color.blackLighten70};
+    width: 100%;
   }
 
   &:focus {
     border-bottom-color: transparent;
     border-radius: ${tokens.border.radius};
     ${hasPreventDefaultOnSelect ? stylers.focusRing.subtle() : stylers.focusRing()}
+    width: 100%;
   }
 `;
 
 export const Option = styled.li(
-  ({ size, isDisabled, isSelected }) => css`
+  ({ isDisabled, isSelected }) => css`
+    align-items: center;
     border: 2px solid transparent;
     border-radius: 3px;
     cursor: pointer;
+    display: flex;
     margin-bottom: ${tokens.spaceSm};
-    padding: ${tokens.spaceSm};
-    ${fontSize[size]}
+    max-height: ${stylers.spacer(6)};
+    min-height: ${stylers.spacer(4)};
+    ${stylers.fontSize(-1)}
 
     &:hover {
       ${isDisabled ? "cursor: not-allowed;" : ""};
