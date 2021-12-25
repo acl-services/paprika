@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.23
+
+### Patch Changes
+
+- 07ee1aa: Removed gap in Safari between buttons in ButtonGroup
+
 ## 1.0.23-next.0
 
 ### Patch Changes

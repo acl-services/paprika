@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.0.16
+
+### Patch Changes
+
+- Updated dependencies [676ae73]
+  - @paprika/panel@2.2.4
+
 ## 3.0.16-next.0
 
 ### Patch Changes
