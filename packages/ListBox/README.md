@@ -95,7 +95,7 @@ see: options/helpers/options.js|
 | onClickCancel     | func                                                                          | false    | null                      | Callback to be executed when the cancel button is clicked or activated by keyboard. |
 | onClickClear      | func                                                                          | false    | null                      | Callback to be executed when the clear button is clicked or activated by keyboard.  |
 | renderExtraButton | func                                                                          | false    | () => {}                  | Render an extra button beside the clear button                                      |
-| size              | [ Button.types.size.SMALL, Button.types.size.MEDIUM, Button.types.size.LARGE] | false    | Button.types.size.SMALL   | Determines the size of the footer                                                   |
+| size              | [ Button.types.size.SMALL, Button.types.size.MEDIUM, Button.types.size.LARGE] | false    | Button.types.size.MEDIUM  | Determines the size of the footer                                                   |
 
 ### ListBox.Option
 
@@ -112,6 +112,7 @@ see: options/helpers/options.js|
 | internalHandleOnClick  | func        | true     | -       | Internal prop, which shouldn't be documented                                           |
 | id                     | string      | true     | -       | Internal prop, which shouldn't be documented                                           |
 | preventDefaultOnSelect | bool        | false    | false   | Internal prop, which shouldn't be documented                                           |
+| isMulti                | bool        | false    | false   | Let the user to select multiple options at same time                                   |
 
 ### ListBox.Popover
 

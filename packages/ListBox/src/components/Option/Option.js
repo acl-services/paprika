@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Checkbox from "@paprika/checkbox";
 import { PropsContext } from "../../store/PropsProvider";
 import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
-import Checkbox from "@paprika/checkbox";
 import * as sc from "./Option.styles";
 
 const Option = props => {
@@ -10,6 +10,9 @@ const Option = props => {
   const providedProps = React.useContext(PropsContext);
   const { isReadOnly, size } = providedProps;
   const isDisabled = providedProps.isDisabled || props.isDisabled || isReadOnly;
+  const { CHECKED, UNCHECKED } = Checkbox.types.state;
+  const [checkedState, setCheckedState] = React.useState(UNCHECKED);
+  const handleChange = () => setCheckedState(checkedState === CHECKED ? UNCHECKED : CHECKED);
   return (
     <sc.Option
       {...moreProps}
@@ -18,6 +21,7 @@ const Option = props => {
       id={id}
       isDisabled={isDisabled}
       isSelected={isSelected}
+      isMulti={isMulti}
       size={size}
       key={index}
       onClick={event => internalHandleOnClick({ event, isDisabled, onClick: props.onClick, index })}
@@ -25,7 +29,15 @@ const Option = props => {
       data-pka-prevent-default-on-select={props.preventDefaultOnSelect}
       tabIndex={-1}
     >
-      {props.isMulti === true ? <Checkbox style={{marginRight: "8px"}}/> : ""}
+      {isMulti ? (
+        <Checkbox
+          checkedState={isSelected ? CHECKED : checkedState}
+          onChange={handleChange}
+          style={{ paddingRight: "8px" }}
+        />
+      ) : (
+        ""
+      )}
       {typeof props.children === "function" ? props.children({ isSelected, isDisabled, id }) : props.children}
     </sc.Option>
   );
@@ -67,12 +79,13 @@ Option.propTypes = {
   /** Internal prop, which shouldn't be documented */
   preventDefaultOnSelect: PropTypes.bool,
 
+  /** Let the user to select multiple options at same time */
   isMulti: PropTypes.bool,
 };
 
 Option.defaultProps = {
   isDisabled: false,
-  isMulti: true, 
+  isMulti: false,
   isHidden: false,
   preventDefaultOnSelect: false,
   isSelected: null,

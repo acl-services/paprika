@@ -35,7 +35,7 @@ function Options(props) {
     if (child === null) return null;
 
     const type = child.type.type || child.type;
-
+    const { isMulti } = state;
     const { displayName = null } = type;
 
     if (type && isWhiteListed(displayName)) {
@@ -51,6 +51,7 @@ function Options(props) {
         id,
         index,
         isPopoverOpen,
+        isMulti,
         internalHandleOnClick: memoizedOnClickHandler,
         isSelected,
       });
