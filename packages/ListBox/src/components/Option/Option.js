@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Checkbox from "@paprika/checkbox";
+import PlusIcon from "@paprika/icon/lib/Add";
 import { PropsContext } from "../../store/PropsProvider";
 import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
 import * as sc from "./Option.styles";
 
 const Option = props => {
-  const { index, groupId, label, id, internalHandleOnClick, isSelected, isMulti, ...moreProps } = props; // eslint-disable-line
+  const { index, groupId, label, id, internalHandleOnClick, isSelected, isMulti, hasTag, ...moreProps } = props; // eslint-disable-line
   const providedProps = React.useContext(PropsContext);
   const { isReadOnly, size } = providedProps;
   const isDisabled = providedProps.isDisabled || props.isDisabled || isReadOnly;
@@ -22,6 +23,7 @@ const Option = props => {
       isDisabled={isDisabled}
       isSelected={isSelected}
       isMulti={isMulti}
+      hasTag={hasTag}
       size={size}
       key={index}
       onClick={event => internalHandleOnClick({ event, isDisabled, onClick: props.onClick, index })}
@@ -30,14 +32,16 @@ const Option = props => {
       tabIndex={-1}
     >
       {isMulti ? (
-        <Checkbox
-          checkedState={isSelected ? CHECKED : checkedState}
-          onChange={handleChange}
-          style={{ paddingRight: "8px" }}
-        />
-      ) : (
-        ""
-      )}
+        !hasTag ? (
+          <Checkbox
+            checkedState={isSelected ? CHECKED : checkedState}
+            onChange={handleChange}
+            style={{ paddingRight: "8px" }}
+          />
+        ) : (
+          <PlusIcon style={{ paddingRight: "8px" }} />
+        )
+      ) : null}
       {typeof props.children === "function" ? props.children({ isSelected, isDisabled, id }) : props.children}
     </sc.Option>
   );
@@ -81,11 +85,15 @@ Option.propTypes = {
 
   /** Let the user to select multiple options at same time */
   isMulti: PropTypes.bool,
+
+  /** If there is a tag */
+  hasTag: PropTypes.bool,
 };
 
 Option.defaultProps = {
   isDisabled: false,
   isMulti: false,
+  hasTag: false,
   isHidden: false,
   preventDefaultOnSelect: false,
   isSelected: null,

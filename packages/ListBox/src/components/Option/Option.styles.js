@@ -18,17 +18,18 @@ const disabledStyles = css`
 `;
 
 const stateStyles = ({ isSelected, hasPreventDefaultOnSelect }) => css`
+  border-radius: 0;
+  margin: 0 -9999rem;
+  padding: 0.25rem 9999rem;
+
   &:hover {
     ${hasPreventDefaultOnSelect ? "background: transparent;" : ""};
     background: ${isSelected ? blueSelected : tokens.color.blackLighten70};
-    width: 100%;
   }
 
   &:focus {
     border-bottom-color: transparent;
-    border-radius: ${tokens.border.radius};
     ${hasPreventDefaultOnSelect ? stylers.focusRing.subtle() : stylers.focusRing()}
-    width: 100%;
   }
 `;
 

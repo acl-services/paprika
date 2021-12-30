@@ -26,6 +26,7 @@ npm install @paprika/list-box
 | -------------- | ----------------------------------------------------------------------------------------------------------- | -------- | ---------------------------------- | ------------------------------------------------------------------------------ |
 | children       | arrayOf                                                                                                     | false    | null                               | Child of type <ListBox.Option />, <ListBox.Divider />, etc                     |
 | hasError       | bool                                                                                                        | false    | false                              | If ListBox is in an error state                                                |
+| hasTag         | bool                                                                                                        | false    | false                              | If there is a tag                                                              |
 | hasImplicitAll | bool                                                                                                        | false    | false                              | Has implicit "All items selected" value when no item is selected               |
 | height         | [string,number]                                                                                             | false    | 200                                | The maximum height for the options container. Using a number implies px units. |
 | isDisabled     | bool                                                                                                        | false    | false                              | Disables the ListBox if true                                                   |
@@ -113,6 +114,7 @@ see: options/helpers/options.js|
 | id                     | string      | true     | -       | Internal prop, which shouldn't be documented                                           |
 | preventDefaultOnSelect | bool        | false    | false   | Internal prop, which shouldn't be documented                                           |
 | isMulti                | bool        | false    | false   | Let the user to select multiple options at same time                                   |
+| hasTag                 | bool        | false    | false   | If there is a tag                                                                      |
 
 ### ListBox.Popover
 

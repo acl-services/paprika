@@ -7,6 +7,8 @@ interface ListBoxProps {
   children?: node[];
   /** If ListBox is in an error state */
   hasError?: boolean;
+  /** If there is a tag */
+  hasTag?: boolean;
   /** Has implicit "All items selected" value when no item is selected */
   hasImplicitAll?: boolean;
   /** The maximum height for the options container. Using a number implies px units. */
@@ -152,6 +154,8 @@ declare namespace ListBox {
     preventDefaultOnSelect?: boolean;
     /** Let the user to select multiple options at same time */
     isMulti?: boolean;
+    /** If there is a tag */
+    hasTag?: boolean;
   }
 }
 declare namespace ListBox {

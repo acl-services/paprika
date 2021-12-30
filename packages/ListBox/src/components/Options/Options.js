@@ -13,6 +13,7 @@ function Options(props) {
         options: state.options,
         hasFilter: state.hasFilter,
         isMulti: state.isMulti,
+        hasTag: state.hasTag,
         refListBox: state.refListBox,
         refListContainer: state.refListBoxContainer,
       };
@@ -22,6 +23,7 @@ function Options(props) {
       state.options,
       state.hasFilter,
       state.isMulti,
+      state.hasTag,
       state.refListBox,
       state.refListBoxContainer,
       dispatch,
@@ -35,7 +37,7 @@ function Options(props) {
     if (child === null) return null;
 
     const type = child.type.type || child.type;
-    const { isMulti } = state;
+    const { isMulti, hasTag } = state;
     const { displayName = null } = type;
 
     if (type && isWhiteListed(displayName)) {
@@ -52,6 +54,7 @@ function Options(props) {
         index,
         isPopoverOpen,
         isMulti,
+        hasTag,
         internalHandleOnClick: memoizedOnClickHandler,
         isSelected,
       });
