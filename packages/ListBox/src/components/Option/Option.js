@@ -7,13 +7,35 @@ import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
 import * as sc from "./Option.styles";
 
 const Option = props => {
-  const { index, groupId, label, id, internalHandleOnClick, isSelected, isMulti, hasTag, ...moreProps } = props; // eslint-disable-line
+  const {
+    index,
+    groupId,
+    label,
+    id,
+    internalHandleOnClick,
+    isSelected,
+    isAvatar,
+    isMulti,
+    hasTag,
+    ...moreProps
+  } = props; // eslint-disable-line
   const providedProps = React.useContext(PropsContext);
   const { isReadOnly, size } = providedProps;
   const isDisabled = providedProps.isDisabled || props.isDisabled || isReadOnly;
   const { CHECKED, UNCHECKED } = Checkbox.types.state;
   const [checkedState, setCheckedState] = React.useState(UNCHECKED);
   const handleChange = () => setCheckedState(checkedState === CHECKED ? UNCHECKED : CHECKED);
+  const checkIcon =
+    isMulti &&
+    (!hasTag ? (
+      <Checkbox
+        checkedState={isSelected ? CHECKED : checkedState}
+        onChange={handleChange}
+        style={{ paddingRight: "8px" }}
+      />
+    ) : (
+      <PlusIcon style={{ paddingRight: "8px" }} />
+    ));
   return (
     <sc.Option
       {...moreProps}
@@ -23,6 +45,7 @@ const Option = props => {
       isDisabled={isDisabled}
       isSelected={isSelected}
       isMulti={isMulti}
+      isAvatar={isAvatar}
       hasTag={hasTag}
       size={size}
       key={index}
@@ -31,17 +54,7 @@ const Option = props => {
       data-pka-prevent-default-on-select={props.preventDefaultOnSelect}
       tabIndex={-1}
     >
-      {isMulti ? (
-        !hasTag ? (
-          <Checkbox
-            checkedState={isSelected ? CHECKED : checkedState}
-            onChange={handleChange}
-            style={{ paddingRight: "8px" }}
-          />
-        ) : (
-          <PlusIcon style={{ paddingRight: "8px" }} />
-        )
-      ) : null}
+      {isAvatar ? null : checkIcon}
       {typeof props.children === "function" ? props.children({ isSelected, isDisabled, id }) : props.children}
     </sc.Option>
   );
@@ -58,6 +71,9 @@ Option.propTypes = {
 
   /** Describe if the option started as selected or not */
   defaultIsSelected: PropTypes.bool,
+
+  /** If there is an avatar, no icon is displayed */
+  isAvatar: PropTypes.bool,
 
   /** Describe if the option is enable or not */
   isDisabled: PropTypes.bool,
@@ -91,6 +107,7 @@ Option.propTypes = {
 };
 
 Option.defaultProps = {
+  isAvatar: false,
   isDisabled: false,
   isMulti: false,
   hasTag: false,

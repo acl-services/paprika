@@ -33,6 +33,7 @@ export default function CustomTrigger() {
       renderTag={renderTag}
       selectedOptions={getSelectedOptions()}
       {...listBoxWithTagsProps}
+      isAvatar={false}
     >
       {filteredData.map(option => {
         if (typeof option.isCustom !== "undefined") {

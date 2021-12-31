@@ -106,6 +106,7 @@ export default function UncontrolledUsers() {
         renderTag={renderTag}
         selectedOptions={getSelectedOptions()}
         {...listBoxWithTagsProps}
+        isAvatar={false}
       >
         {filteredData.map(option => {
           const color = getAvatarColors(option.name);

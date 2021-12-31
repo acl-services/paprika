@@ -29,6 +29,7 @@ npm install @paprika/list-box
 | hasTag         | bool                                                                                                        | false    | false                              | If there is a tag                                                              |
 | hasImplicitAll | bool                                                                                                        | false    | false                              | Has implicit "All items selected" value when no item is selected               |
 | height         | [string,number]                                                                                             | false    | 200                                | The maximum height for the options container. Using a number implies px units. |
+| isAvatar       | bool                                                                                                        | false    | false                              | If there is an avatar, no icon is displayed                                    |
 | isDisabled     | bool                                                                                                        | false    | false                              | Disables the ListBox if true                                                   |
 | isInline       | bool                                                                                                        | false    | false                              | This options will display the list-box without the Popover                     |
 | isMulti        | bool                                                                                                        | false    | false                              | Let the user to select multiple options at same time                           |
@@ -105,6 +106,7 @@ see: options/helpers/options.js|
 | children               | [node,func] | true     | -       | String, number or JSX content                                                          |
 | isSelected             | bool        | false    | null    |                                                                                        |
 | defaultIsSelected      | bool        | false    | null    | Describe if the option started as selected or not                                      |
+| isAvatar               | bool        | false    | false   | If there is an avatar, no icon is displayed                                            |
 | isDisabled             | bool        | false    | false   | Describe if the option is enable or not                                                |
 | isHidden               | bool        | false    | false   | Describe if the option is hidden or not                                                |
 | label                  | string      | false    | null    | When the children are not a String, label should need to be add so the filter can work |

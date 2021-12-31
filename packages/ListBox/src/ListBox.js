@@ -26,6 +26,7 @@ export function ListBox(props) {
     // exclude from moreProps
     hasError,
     hasTag,
+    isAvatar,
     isDisabled,
     isInline: excludedIsInline,
     isMulti,
@@ -113,6 +114,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     // exclude from moreProps
     hasError,
     hasTag,
+    isAvatar,
     isDisabled,
     isInline,
     isReadOnly,
@@ -216,6 +218,9 @@ export const propTypes = {
   /** The maximum height for the options container. Using a number implies px units. */
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
+  /** If there is an avatar, no icon is displayed */
+  isAvatar: PropTypes.bool,
+
   /** Disables the ListBox if true */
   isDisabled: PropTypes.bool,
 
@@ -257,6 +262,7 @@ export const defaultProps = {
   hasTag: false,
   hasImplicitAll: false,
   height: 200,
+  isAvatar: false,
   isDisabled: false,
   isInline: false,
   isMulti: false,
