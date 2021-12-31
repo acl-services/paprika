@@ -154,10 +154,6 @@ declare namespace ListBox {
     id: string;
     /** Internal prop, which shouldn't be documented */
     preventDefaultOnSelect?: boolean;
-    /** Let the user to select multiple options at same time */
-    isMulti?: boolean;
-    /** If there is a tag */
-    hasTag?: boolean;
   }
 }
 declare namespace ListBox {

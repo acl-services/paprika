@@ -9,7 +9,7 @@ export const List = styled.ul(
     margin: 0;
     max-height: ${stylers.cssValue(height)};
     overflow: auto;
-    ${noResultsFound || !hasOptions ? `padding: 0 ${tokens.space};` : `padding: ${tokens.space};`}
+    ${noResultsFound || !hasOptions ? `padding: 0 ${tokens.space};` : `padding: 0;`}
 
     &:focus {
       outline: none;

@@ -3,6 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Checkbox from "@paprika/checkbox";
 import PlusIcon from "@paprika/icon/lib/Add";
+import tokens from "@paprika/tokens";
 import { PropsContext } from "../../store/PropsProvider";
 import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
 import * as sc from "./Option.styles";
@@ -32,10 +33,10 @@ const Option = props => {
       <Checkbox
         checkedState={isSelected ? CHECKED : checkedState}
         onChange={handleChange}
-        style={{ paddingRight: "8px" }}
+        style={{ paddingRight: tokens.space }}
       />
     ) : (
-      <PlusIcon style={{ paddingRight: "8px" }} />
+      <PlusIcon style={{ paddingRight: tokens.space }} />
     ));
   return (
     <sc.Option
@@ -45,9 +46,6 @@ const Option = props => {
       id={id}
       isDisabled={isDisabled}
       isSelected={isSelected}
-      isMulti={isMulti}
-      isAvatar={isAvatar}
-      hasTag={hasTag}
       size={size}
       key={index}
       onClick={event => internalHandleOnClick({ event, isDisabled, onClick: props.onClick, index })}
@@ -99,19 +97,11 @@ Option.propTypes = {
 
   /** Internal prop, which shouldn't be documented */
   preventDefaultOnSelect: PropTypes.bool,
-
-  /** Let the user to select multiple options at same time */
-  isMulti: PropTypes.bool,
-
-  /** If there is a tag */
-  hasTag: PropTypes.bool,
 };
 
 Option.defaultProps = {
   isAvatar: false,
   isDisabled: false,
-  isMulti: false,
-  hasTag: false,
   isHidden: false,
   preventDefaultOnSelect: false,
   isSelected: null,

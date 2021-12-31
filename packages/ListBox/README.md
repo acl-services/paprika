@@ -114,8 +114,6 @@ see: options/helpers/options.js|
 | internalHandleOnClick  | func        | true     | -       | Internal prop, which shouldn't be documented                                           |
 | id                     | string      | true     | -       | Internal prop, which shouldn't be documented                                           |
 | preventDefaultOnSelect | bool        | false    | false   | Internal prop, which shouldn't be documented                                           |
-| isMulti                | bool        | false    | false   | Let the user to select multiple options at same time                                   |
-| hasTag                 | bool        | false    | false   | If there is a tag                                                                      |
 
 ### ListBox.Popover
 

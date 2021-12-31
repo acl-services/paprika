@@ -9,7 +9,6 @@ function initializeState(props) {
   const {
     height,
     isMulti,
-    isAvatar,
     hasTag,
     isOpen,
 
@@ -42,7 +41,6 @@ function initializeState(props) {
     hasPopupOpened: false,
     hasTag,
     height,
-    isAvatar,
     isMulti,
     isOpen,
     lastKnownSelectedOptions: selectedOptions.slice(0),

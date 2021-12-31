@@ -18,10 +18,6 @@ const disabledStyles = css`
 `;
 
 const stateStyles = ({ isSelected, hasPreventDefaultOnSelect }) => css`
-  border-radius: 0;
-  margin: 0 -1rem;
-  padding: 0 1rem;
-
   &:hover {
     ${hasPreventDefaultOnSelect ? "background: transparent;" : ""};
     background: ${isSelected ? blueSelected : tokens.color.blackLighten70};
@@ -29,20 +25,18 @@ const stateStyles = ({ isSelected, hasPreventDefaultOnSelect }) => css`
 
   &:focus {
     border-bottom-color: transparent;
-    ${hasPreventDefaultOnSelect ? stylers.focusRing.subtle() : stylers.focusRing()}
+    ${hasPreventDefaultOnSelect ? stylers.focusRing.subtle(true) : stylers.focusRing(true)}
   }
 `;
 
 export const Option = styled.li(
   ({ isDisabled, isSelected }) => css`
     align-items: center;
-    border: 2px solid transparent;
-    border-radius: 3px;
     cursor: pointer;
     display: flex;
-    margin-bottom: ${tokens.spaceSm};
     max-height: ${stylers.spacer(6)};
     min-height: ${stylers.spacer(4)};
+    padding-left: 12px;
     ${stylers.fontSize(-1)}
 
     &:hover {
