@@ -33,7 +33,6 @@ export default function CustomTrigger() {
       renderTag={renderTag}
       selectedOptions={getSelectedOptions()}
       {...listBoxWithTagsProps}
-      isAvatar={false}
     >
       {filteredData.map(option => {
         if (typeof option.isCustom !== "undefined") {
@@ -42,7 +41,7 @@ export default function CustomTrigger() {
 
         const color = getAvatarColors(option.label);
         return !isSelected(option.label) ? (
-          <ListBox.Option value={option.label} key={option.label} label={option.label}>
+          <ListBox.Option value={option.label} key={option.label} label={option.label} isAvatar>
             <Avatar size={Avatar.types.size.MEDIUM} backgroundColor={color.backgroundColor} color={color.fontColor}>
               {getInitialsFromText(option.label)}
             </Avatar>

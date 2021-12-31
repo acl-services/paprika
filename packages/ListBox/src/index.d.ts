@@ -13,8 +13,6 @@ interface ListBoxProps {
   hasImplicitAll?: boolean;
   /** The maximum height for the options container. Using a number implies px units. */
   height?: string | number;
-  /** If there is an avatar, no icon is displayed */
-  isAvatar?: boolean;
   /** Disables the ListBox if true */
   isDisabled?: boolean;
   /** This options will display the list-box without the Popover */

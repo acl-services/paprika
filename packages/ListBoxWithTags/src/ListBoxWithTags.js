@@ -129,7 +129,7 @@ export default function ListBoxWithTags(props) {
 
   return (
     <div ref={refDivRoot}>
-      <ListBox ref={refListBox} isMulti hasTag isAvatar size={validSize} onChange={handleChange} {...moreProps}>
+      <ListBox ref={refListBox} isMulti hasTag size={validSize} onChange={handleChange} {...moreProps}>
         <ListBox.Content {...extendedProps["ListBox.Content"]} />
         <ListBox.Trigger {...extendedProps["ListBox.Trigger"]}>
           {(...[, , , attributes]) => <TriggerWithTags {...triggerProps} {...attributes} />}

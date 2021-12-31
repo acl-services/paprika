@@ -106,12 +106,11 @@ export default function UncontrolledUsers() {
         renderTag={renderTag}
         selectedOptions={getSelectedOptions()}
         {...listBoxWithTagsProps}
-        isAvatar={false}
       >
         {filteredData.map(option => {
           const color = getAvatarColors(option.name);
           return !isSelected(option.id) ? (
-            <ListBox.Option id={option.id} key={option.id} label={option.name}>
+            <ListBox.Option id={option.id} key={option.id} label={option.name} isAvatar>
               <div>
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <Avatar

@@ -12,7 +12,6 @@ function Options(props) {
       const stateForClickHandler = {
         options: state.options,
         hasFilter: state.hasFilter,
-        isAvatar: state.isAvatar,
         isMulti: state.isMulti,
         hasTag: state.hasTag,
         refListBox: state.refListBox,
@@ -23,7 +22,6 @@ function Options(props) {
     [
       state.options,
       state.hasFilter,
-      state.isAvatar,
       state.isMulti,
       state.hasTag,
       state.refListBox,
@@ -39,7 +37,7 @@ function Options(props) {
     if (child === null) return null;
 
     const type = child.type.type || child.type;
-    const { isAvatar, isMulti, hasTag } = state;
+    const { isMulti, hasTag } = state;
     const { displayName = null } = type;
 
     if (type && isWhiteListed(displayName)) {
@@ -55,14 +53,12 @@ function Options(props) {
         id,
         index,
         isPopoverOpen,
-        isAvatar,
         isMulti,
         hasTag,
         internalHandleOnClick: memoizedOnClickHandler,
         isSelected,
       });
     }
-
     return child;
   });
 }
