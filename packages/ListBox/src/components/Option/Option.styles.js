@@ -19,8 +19,8 @@ const disabledStyles = css`
 
 const stateStyles = ({ isSelected, hasPreventDefaultOnSelect }) => css`
   border-radius: 0;
-  margin: 0 -9999rem;
-  padding: 0.25rem 9999rem;
+  margin: 0 -1rem;
+  padding: 0 1rem;
 
   &:hover {
     ${hasPreventDefaultOnSelect ? "background: transparent;" : ""};

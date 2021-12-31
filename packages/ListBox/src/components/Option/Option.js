@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import PropTypes from "prop-types";
 import Checkbox from "@paprika/checkbox";
@@ -18,7 +19,7 @@ const Option = props => {
     isMulti,
     hasTag,
     ...moreProps
-  } = props; // eslint-disable-line
+  } = props;
   const providedProps = React.useContext(PropsContext);
   const { isReadOnly, size } = providedProps;
   const isDisabled = providedProps.isDisabled || props.isDisabled || isReadOnly;

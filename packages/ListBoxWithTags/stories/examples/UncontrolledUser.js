@@ -111,7 +111,7 @@ export default function UncontrolledUsers() {
           const color = getAvatarColors(option.name);
           return !isSelected(option.id) ? (
             <ListBox.Option id={option.id} key={option.id} label={option.name} isAvatar>
-              <div>
+              <div style={{ marginTop: "6px" }}>
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <Avatar
                     isRound
