@@ -6,7 +6,7 @@ export const Divider = styled.li(
   ({ isDisabled }) => css`
     border: 2px solid transparent;
     color: ${isDisabled ? tokens.color.blackLighten60 : tokens.color.blackLighten20};
-    padding: 14px 12px 2px;
+    padding: 14px 0 2px ${tokens.spaceLg};
     width: 100%;
     ${stylers.fontSize(-1)};
   `
