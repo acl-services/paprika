@@ -150,9 +150,11 @@ export default function ListBoxWithTags(props) {
           <ListBox.RawItem>{noResultsMessage}</ListBox.RawItem>
         )}
         {allOptionsAreSelected && (
-          <ListBox.RawItem>
-            {allOptionsAreSelectedMessage || t("listBoxWithTags.all_items_have_been_selected")}
-          </ListBox.RawItem>
+          <div>
+            <ListBox.RawItem>
+              {allOptionsAreSelectedMessage || t("listBoxWithTags.all_items_have_been_selected")}
+            </ListBox.RawItem>
+          </div>
         )}
       </ListBox>
     </div>
