@@ -42,10 +42,12 @@ export default function CustomTrigger() {
         const color = getAvatarColors(option.label);
         return !isSelected(option.label) ? (
           <ListBox.Option value={option.label} key={option.label} label={option.label} isAvatar>
-            <Avatar size={Avatar.types.size.MEDIUM} backgroundColor={color.backgroundColor} color={color.fontColor}>
-              {getInitialsFromText(option.label)}
-            </Avatar>
-            <span style={{ fontSize: "1.3rem", paddingLeft: "8px" }}>{option.label}</span>
+            <div style={{ marginBottom: "4px" }}>
+              <Avatar size={Avatar.types.size.MEDIUM} backgroundColor={color.backgroundColor} color={color.fontColor}>
+                {getInitialsFromText(option.label)}
+              </Avatar>
+              <span style={{ fontSize: "1.3rem", paddingLeft: "8px" }}>{option.label}</span>
+            </div>
           </ListBox.Option>
         ) : null;
       })}
