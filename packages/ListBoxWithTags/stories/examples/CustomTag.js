@@ -41,7 +41,7 @@ export default function CustomTrigger() {
 
         const color = getAvatarColors(option.label);
         return !isSelected(option.label) ? (
-          <ListBox.Option value={option.label} key={option.label} label={option.label} isAvatar>
+          <ListBox.Option value={option.label} key={option.label} label={option.label} hasIcon>
             <Avatar size={Avatar.types.size.MEDIUM} backgroundColor={color.backgroundColor} color={color.fontColor}>
               {getInitialsFromText(option.label)}
             </Avatar>

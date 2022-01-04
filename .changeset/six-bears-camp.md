@@ -1,5 +1,6 @@
 ---
 "@paprika/list-box": patch
+"@paprika/list-box-browser": patch
 "@paprika/list-box-with-tags": patch
 ---
 

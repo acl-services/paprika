@@ -16,7 +16,7 @@ const Option = props => {
     id,
     internalHandleOnClick,
     isSelected,
-    isAvatar,
+    hasIcon,
     isMulti,
     hasTag,
     ...moreProps
@@ -53,7 +53,7 @@ const Option = props => {
       data-pka-prevent-default-on-select={props.preventDefaultOnSelect}
       tabIndex={-1}
     >
-      {isAvatar ? null : checkIcon}
+      {hasIcon ? null : checkIcon}
       {typeof props.children === "function" ? props.children({ isSelected, isDisabled, id }) : props.children}
     </sc.Option>
   );
@@ -71,8 +71,8 @@ Option.propTypes = {
   /** Describe if the option started as selected or not */
   defaultIsSelected: PropTypes.bool,
 
-  /** If there is an avatar, no icon is displayed */
-  isAvatar: PropTypes.bool,
+  /** When there is no need any icons */
+  hasIcon: PropTypes.bool,
 
   /** Describe if the option is enable or not */
   isDisabled: PropTypes.bool,
@@ -100,7 +100,7 @@ Option.propTypes = {
 };
 
 Option.defaultProps = {
-  isAvatar: false,
+  hasIcon: false,
   isDisabled: false,
   isHidden: false,
   preventDefaultOnSelect: false,
