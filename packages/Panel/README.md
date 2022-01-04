@@ -33,7 +33,7 @@ npm install @paprika/panel
 | isCompact             | bool                                                                                        | false    | false                         | Control the compactness of the Panel                                                                                                            |
 | isInline              | bool                                                                                        | false    | false                         | Render the panel inline                                                                                                                         |
 | isOpen                | bool                                                                                        | false    | false                         | Control the visibility of the Panel. This prop makes the Panel appear.                                                                          |
-| kind                  | [ Panel.types.kind.DEFAULT, Panel.types.kind.CHILD, Panel.types.kind.PRIMARY]               | false    | Panel.types.kinds.DEFAULT     | Modify the look of the Panel                                                                                                                    |
+| size                  | [ Panel.types.sizes.MEDIUM, Panel.types.sizes.LARGE]                                        | false    | Panel.types.sizes.MEDIUM      | Control the size of the Panel                                                                                                                   |
 | offset                | shape                                                                                       | false    | { top: 0, left: 0, right: 0 } | Control offset of the Panel. Only use 'top' when sliding in from the left or right. Only use 'left' or 'right' when sliding in from the bottom. |
 | onAfterClose          | func                                                                                        | false    | () => {}                      | Callback once the Panel has been closed event                                                                                                   |
 | onAfterOpen           | func                                                                                        | false    | () => {}                      | Callback once the Panel has been opened event                                                                                                   |
@@ -44,17 +44,15 @@ npm install @paprika/panel
 
 ### Panel.Header
 
-| Prop                  | Type                                                    | required | default                   | Description |
-| --------------------- | ------------------------------------------------------- | -------- | ------------------------- | ----------- |
-| children              | node                                                    | true     | -                         |             |
-| getPushContentElement | func                                                    | false    | () => {}                  |             |
-| hasCloseButton        | bool                                                    | false    | true                      |             |
-| isCompact             | bool                                                    | false    | false                     |             |
-| isHeaderSticky        | bool                                                    | false    | false                     |             |
-| kind                  | [ Header.types.kind.DEFAULT, Header.types.kind.PRIMARY] | false    | Header.types.kind.DEFAULT |             |
-| level                 | [ 1, 2, 3, 4, 5, 6]                                     | false    | 2                         |             |
-| onClose               | func                                                    | false    | () => {}                  |             |
-| refHeading            | custom                                                  | false    | null                      |             |
+| Prop                  | Type   | required | default  | Description |
+| --------------------- | ------ | -------- | -------- | ----------- |
+| children              | node   | true     | -        |             |
+| getPushContentElement | func   | false    | () => {} |             |
+| hasCloseButton        | bool   | false    | true     |             |
+| isCompact             | bool   | false    | false    |             |
+| isHeaderSticky        | bool   | false    | false    |             |
+| onClose               | func   | false    | () => {} |             |
+| refHeading            | custom | false    | null     |             |
 
 ### Panel.Content
 
@@ -64,11 +62,10 @@ npm install @paprika/panel
 
 ### Panel.Footer
 
-| Prop     | Type   | required | default | Description |
-| -------- | ------ | -------- | ------- | ----------- |
-| children | node   | true     | -       |             |
-| height   | number | false    | 72      |             |
-| isSticky | bool   | false    | false   |             |
+| Prop     | Type | required | default | Description |
+| -------- | ---- | -------- | ------- | ----------- |
+| children | node | true     | -       |             |
+| isSticky | bool | false    | false   |             |
 
 ### Panel.Overlay
 
@@ -115,7 +112,7 @@ import Panel from "@paprika/panel";
 const [isOpen, setIsOpen] = React.useState(true);
 
 <Panel isOpen={isOpen} onClose={() => setIsOpen(false)} slideFrom={Panel.types.slideFrom.LEFT}>
-  <Panel.Header kind="primary">Header</Panel.Header>
+  <Panel.Header>Header</Panel.Header>
   <Panel.Content>Your content here</Panel.Content>
   <Panel.Footer>
     <button>Accept</button>

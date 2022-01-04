@@ -301,3 +301,18 @@ const columns = React.useMemo(() => [
 ```
 
 For a real world example, please see this [storybook link](https://paprika.highbond.com/?path=/story/table-datatable--real-world)
+
+### Table height calculation
+
+There are few ways to set the `height` of the `DataTable`
+
+One, is to set the prop like this `<DataTable height={200} {...otherProps}>`
+
+A more flexible option is to use a resizer that will automatically adapt to the viewport size:
+
+```jsx
+// In this case the `height` prop will be ignored
+<DataTable {...otherProps}>
+  <DataTable.ResizeContainer style={{ height: "calc(100vh)" }} />
+</DataTable>
+```

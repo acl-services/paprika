@@ -1,5 +1,45 @@
 # Changelog
 
+## 3.0.16
+
+### Patch Changes
+
+- Updated dependencies [676ae73]
+  - @paprika/panel@2.2.4
+
+## 3.0.16-next.0
+
+### Patch Changes
+
+- Updated dependencies [676ae73]
+  - @paprika/panel@2.2.4-next.0
+
+## 3.0.15
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+- Updated dependencies [b9df017]
+  - @paprika/icon@2.1.5
+  - @paprika/panel@2.2.3
+  - @paprika/button@1.1.10
+
+## 3.0.15-next.1
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5-next.0
+  - @paprika/button@1.1.10-next.0
+  - @paprika/panel@2.2.3-next.1
+
+## 3.0.15-next.0
+
+### Patch Changes
+
+- Updated dependencies [b9df017]
+  - @paprika/panel@2.2.3-next.0
+
 ## 3.0.14
 
 ### Patch Changes

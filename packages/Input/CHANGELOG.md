@@ -1,5 +1,21 @@
 # Changelog
 
+## 4.0.16
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5
+  - @paprika/button@1.1.10
+
+## 4.0.16-next.0
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5-next.0
+  - @paprika/button@1.1.10-next.0
+
 ## 4.0.15
 
 ### Patch Changes

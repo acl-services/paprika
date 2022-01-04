@@ -14,10 +14,8 @@ export default function PushContentPanel() {
     <>
       <Nav />
       <Panel getPushContentElement={getMainElement} isOpen={isOpen} onClose={toggle} pushContentWidth="50%" width="50%">
-        <Panel.Trigger kind="primary" onClick={toggle}>
-          {isOpen ? "close" : "open"}
-        </Panel.Trigger>
-        <Panel.Header kind="primary">Header</Panel.Header>
+        <Panel.Trigger onClick={toggle}>{isOpen ? "close" : "open"}</Panel.Trigger>
+        <Panel.Header>Header</Panel.Header>
         <Panel.Content>
           <TextLine repeat={100} />
         </Panel.Content>

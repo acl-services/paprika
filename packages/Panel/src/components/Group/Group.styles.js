@@ -1,14 +1,14 @@
 import styled, { css } from "styled-components";
 
 export const Group = styled.div(
-  ({ zIndex, offsetY }) => css`
+  ({ zIndex }) => css`
     box-sizing: border-box;
     display: flex;
     height: 100%;
     justify-content: flex-end;
     position: fixed;
     right: 0;
-    top: ${offsetY}px;
+    top: 0;
     visibility: hidden;
     width: 100%;
     z-index: ${zIndex};

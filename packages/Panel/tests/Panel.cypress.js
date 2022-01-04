@@ -49,10 +49,10 @@ describe("<Panel />", () => {
     sidePanel2.should("be.visible");
     sidePanelChild.should("be.visible");
 
-    cy.findByTestId("button-panel1").click();
+    cy.findByTestId("button-panel1").click({ force: true });
     cy.findByTestId("panel1").should("not.exist");
 
-    cy.findByTestId("button-panel2").click();
+    cy.findByTestId("button-panel2").click({ force: true });
     cy.findByTestId("panel2").should("not.exist");
 
     cy.findByTestId("button-panel1").click();

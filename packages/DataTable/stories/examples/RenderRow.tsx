@@ -58,7 +58,9 @@ const RenderRow: () => JSX.Element = () => {
       <DataTable.InfiniteLoader
         itemCount={data.length}
         isItemLoaded={index => data[index] !== undefined}
-        loadMoreItems={async () => console.log("")}
+        loadMoreItems={async () => {
+          // do nothing
+        }}
       />
     </DataTable>
   );

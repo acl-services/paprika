@@ -1,5 +1,41 @@
 <!-- content -->
 
+## 1.0.31
+
+### Patch Changes
+
+- @paprika/data-grid@1.0.27
+
+## 1.0.31-next.0
+
+### Patch Changes
+
+- @paprika/data-grid@1.0.27-next.0
+
+## 1.0.30
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5
+  - @paprika/button@1.1.10
+  - @paprika/data-grid@1.0.26
+
+## 1.0.30-next.1
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5-next.0
+  - @paprika/button@1.1.10-next.0
+  - @paprika/data-grid@1.0.26-next.1
+
+## 1.0.30-next.0
+
+### Patch Changes
+
+- @paprika/data-grid@1.0.26-next.0
+
 ## 1.0.29
 
 ### Patch Changes
