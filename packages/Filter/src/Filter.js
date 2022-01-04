@@ -5,35 +5,30 @@ import Button from "@paprika/button";
 import FilterIcon from "@paprika/icon/lib/Filter";
 import Panel from "@paprika/panel";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import Item from "./components/Item";
+import FilterItem from "./components/FilterItem";
 import FilterContext from "./context";
 import columnShape from "./columnShape";
 import * as types from "./types";
 import rules, { defaultRulesByType, logicalFilterOperators } from "./rules";
-
+import isEqualityRule from "./helpers/isEqualityRule";
 import * as sc from "./Filter.styles";
 
-function getLabelText(numberOfFilters, I18n) {
-  return numberOfFilters ? I18n.t("filter.label_with_count", { count: numberOfFilters }) : I18n.t("filter.label");
-}
-
-export default function Filter(props) {
-  const {
-    children,
-    columns,
-    data,
-    numberApplied,
-    maxFiltersAllowed,
-    onAddFilter,
-    onApply,
-    onCancel,
-    onChangeOperator,
-    onClear,
-    operator,
-    rulesByType,
-    zIndex,
-    ...moreProps
-  } = props;
+export default function Filter({
+  children,
+  columns,
+  data,
+  numberApplied,
+  maxFiltersAllowed,
+  onAddFilter,
+  onApply,
+  onCancel,
+  onChangeOperator,
+  onClear,
+  operator,
+  rulesByType,
+  zIndex,
+  ...moreProps
+}) {
   const I18n = useI18n();
   const filterRef = React.useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -56,8 +51,15 @@ export default function Filter(props) {
     onClear();
   }
 
+  const childrenArray = React.Children.toArray(children);
+
+  const allFieldsAreAlreadyFilteredBy =
+    operator === logicalFilterOperators.AND &&
+    childrenArray.length === columns.length &&
+    childrenArray.every(child => isEqualityRule(child.props.rule));
+
   return (
-    <FilterContext.Provider value={{ filterRef, columns, data, operator, onChangeOperator, rulesByType }}>
+    <FilterContext.Provider value={{ filterRef, children, columns, data, operator, onChangeOperator, rulesByType }}>
       <Panel
         a11yText={I18n.t("filter.label")}
         data-pka-anchor="filter.panel"
@@ -80,15 +82,15 @@ export default function Filter(props) {
           kind={Button.types.kind.FLAT}
           onClick={handleClickTrigger}
         >
-          {getLabelText(numberApplied, I18n)}
+          {numberApplied > 0 ? I18n.t("filter.label_with_count", { count: numberApplied }) : I18n.t("filter.label")}
         </Panel.Trigger>
         <sc.FilterPanel ref={filterRef}>
-          {React.Children.count(children) === 0 ? (
+          {childrenArray.length === 0 ? (
             <sc.GenericNoAppliedPlaceholder>{I18n.t("filter.no_filters_applied")}</sc.GenericNoAppliedPlaceholder>
           ) : (
             children
           )}
-          {React.Children.count(children) < maxFiltersAllowed && (
+          {childrenArray.length < maxFiltersAllowed && !allFieldsAreAlreadyFilteredBy && (
             <Button data-pka-anchor="filter.addFilterButton" icon={<AddIcon />} onClick={onAddFilter}>
               {I18n.t("filter.actions.add")}
             </Button>
@@ -115,7 +117,7 @@ export default function Filter(props) {
 Filter.displayName = "Filter";
 
 Filter.defaultRulesByType = defaultRulesByType;
-Filter.Item = Item;
+Filter.Item = FilterItem;
 Filter.operator = logicalFilterOperators;
 Filter.rules = rules;
 Filter.types = types;

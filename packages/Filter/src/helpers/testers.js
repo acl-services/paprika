@@ -5,15 +5,27 @@ const is = (value, testValue) => (testValue === "" ? true : value === testValue)
 const isNot = (value, testValue) => (testValue === "" ? true : value !== testValue);
 const isBlank = value => value === null || value === undefined || value === "";
 const isNotBlank = value => value !== null && value !== undefined && value !== "";
+
 const processNumber = (value, testValue, testFunction) => {
-  if (testValue === "") return true;
+  if (testValue === "") {
+    return true;
+  }
+
   const testNumber = parseFloat(testValue, 10);
   return Number.isNaN(testNumber) ? false : testFunction(value, testNumber);
 };
+
 const processDate = (momentParsingFormat, value, testValue, testFunction) => {
-  if (testValue === "") return true;
+  if (testValue === "") {
+    return true;
+  }
+
   const testDate = moment(testValue, momentParsingFormat);
-  if (testDate.isValid()) return testFunction(moment(value, momentParsingFormat), testDate);
+
+  if (testDate.isValid()) {
+    return testFunction(moment(value, momentParsingFormat), testDate);
+  }
+
   return false;
 };
 

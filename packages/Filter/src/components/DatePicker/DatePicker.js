@@ -9,15 +9,12 @@ const propTypes = {
   parsingFormat: PropTypes.string.isRequired,
 };
 
-export default function DatePickerWrapper(props) {
-  const { initialDate, onChange, parsingFormat } = props;
-
-  function getMomentDate(dateStr) {
-    return dateStr === "" ? null : moment(dateStr, parsingFormat);
-  }
-
-  const memorizedGetMomentDate = React.useCallback(getMomentDate, [parsingFormat]);
-  const [date, setDate] = React.useState(memorizedGetMomentDate(initialDate));
+export default function DatePickerWrapper({ initialDate, onChange, parsingFormat }) {
+  const memorizedGetMomentDate = React.useCallback(
+    dateStr => (dateStr === "" ? null : moment(dateStr, parsingFormat)),
+    [parsingFormat]
+  );
+  const [date, setDate] = React.useState(() => memorizedGetMomentDate(initialDate));
 
   React.useEffect(() => {
     setDate(memorizedGetMomentDate(initialDate));

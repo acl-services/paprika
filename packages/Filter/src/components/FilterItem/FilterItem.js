@@ -9,7 +9,9 @@ import FilterContext from "../../context";
 import * as types from "../../types";
 import rules, { localeKeysByRule } from "../../rules";
 import FilterPrefix from "../FilterPrefix";
+import isIllogicalColumn from "../../helpers/isIllogicalColumn";
 import * as sc from "./FilterItem.styles";
+import isIllogicalRule from "../../helpers/isIllogicalRule";
 
 const propTypes = {
   columnId: PropTypes.string.isRequired,
@@ -29,19 +31,19 @@ const defaultProps = {
 
 const MAX_OPTIONS = 15;
 
-function Item(props) {
-  const {
-    index,
-    onChangeFilter,
-    onDeleteFilter,
-    id,
-    columnId: selectedColumnId,
-    rule: selectedRule,
-    value,
-    renderValueField: renderCustomValueField,
-  } = props;
-
-  const { columns, data, filterRef, onChangeOperator, operator, rulesByType } = React.useContext(FilterContext);
+function FilterItem({
+  index,
+  onChangeFilter,
+  onDeleteFilter,
+  id,
+  columnId: selectedColumnId,
+  rule: selectedRule,
+  value,
+  renderValueField: renderCustomValueField,
+}) {
+  const { children, columns, data, filterRef, onChangeOperator, operator, rulesByType } = React.useContext(
+    FilterContext
+  );
   const I18n = useI18n();
 
   const selectedColumnType = columns.find(({ id }) => id === selectedColumnId).type;
@@ -63,6 +65,8 @@ function Item(props) {
         return null;
     }
   }, [selectedColumnType, data, selectedColumnId]);
+
+  const existingFilters = React.Children.toArray(children).map(child => child.props);
 
   function handleRemoveFilter() {
     filterRef.current.focus();
@@ -104,12 +108,7 @@ function Item(props) {
   }
 
   function handleChangeMultiSelectFilterValue(indices, options) {
-    const values = [];
-    indices.forEach(index => {
-      values.push(options[index].value);
-    });
-
-    onChangeFilter(types.changeTypes.FILTER_VALUE, { id, value: values });
+    onChangeFilter(types.changeTypes.FILTER_VALUE, { id, value: indices.map(index => options[index].value) });
   }
 
   function renderRuleField() {
@@ -121,16 +120,19 @@ function Item(props) {
           <sc.RuleSelect data-pka-anchor="filter.item.ruleSelector">
             <ListBox onChange={handleChangeRule}>
               <ListBox.Trigger hasClearButton={false} />
-              {rulesByType[selectedColumnType].map(rule => (
-                <ListBox.Option key={rule} value={rule} isSelected={rule === selectedRule}>
-                  {I18n.t(`filter.rules.${localeKeysByRule[rule]}`)}
-                </ListBox.Option>
-              ))}
+              {rulesByType[selectedColumnType]
+                .filter(rule => isIllogicalRule(operator, rule, existingFilters, selectedColumnId, id))
+                .map(rule => (
+                  <ListBox.Option key={rule} value={rule} isSelected={rule === selectedRule}>
+                    {I18n.t(`filter.rules.${localeKeysByRule[rule]}`)}
+                  </ListBox.Option>
+                ))}
             </ListBox>
           </sc.RuleSelect>
         );
     }
   }
+
   function renderValueField() {
     const shouldNotShowValueField =
       selectedRule === rules.IS_BLANK ||
@@ -138,9 +140,13 @@ function Item(props) {
       selectedRule === rules.IS_EMPTY ||
       selectedRule === rules.IS_NOT_EMPTY;
 
-    if (shouldNotShowValueField) return null;
+    if (shouldNotShowValueField) {
+      return null;
+    }
 
-    if (renderCustomValueField) return renderCustomValueField();
+    if (renderCustomValueField) {
+      return renderCustomValueField();
+    }
 
     switch (selectedColumnType) {
       case types.columnTypes.BOOLEAN:
@@ -232,11 +238,13 @@ function Item(props) {
             <ListBox onChange={handleChangeColumn}>
               <ListBox.Trigger hasClearButton={false} />
               {columns.length >= MAX_OPTIONS ? <ListBox.Filter /> : null}
-              {columns.map(column => (
-                <ListBox.Option key={column.id} value={column.id} isSelected={column.id === selectedColumnId}>
-                  {column.label}
-                </ListBox.Option>
-              ))}
+              {columns
+                .filter(column => isIllogicalColumn(operator, column, existingFilters, index))
+                .map(column => (
+                  <ListBox.Option key={column.id} value={column.id} isSelected={column.id === selectedColumnId}>
+                    {column.label}
+                  </ListBox.Option>
+                ))}
             </ListBox>
           </sc.ColumnSelect>
 
@@ -257,8 +265,8 @@ function Item(props) {
   );
 }
 
-Item.propTypes = propTypes;
-Item.types = types;
-Item.defaultProps = defaultProps;
+FilterItem.propTypes = propTypes;
+FilterItem.types = types;
+FilterItem.defaultProps = defaultProps;
 
-export default Item;
+export default FilterItem;
