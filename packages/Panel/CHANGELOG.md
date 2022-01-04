@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.4
+
+### Patch Changes
+
+- 676ae73: Add padding size for the header and the space between button
+
 ## 2.2.4-next.0
 
 ### Patch Changes

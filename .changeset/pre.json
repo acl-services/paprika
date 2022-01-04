@@ -7,7 +7,7 @@
     "@paprika/breadcrumbs": "1.5.7",
     "@paprika/build-translations": "0.1.2",
     "@paprika/button": "1.1.10",
-    "@paprika/button-group": "1.0.22",
+    "@paprika/button-group": "1.0.23",
     "@paprika/calendar": "2.0.4",
     "@paprika/card": "2.0.0",
     "@paprika/checkbox": "1.0.20",
@@ -19,16 +19,16 @@
     "@paprika/constants": "1.0.0",
     "@paprika/copy-input": "1.3.13",
     "@paprika/counter": "1.1.3",
-    "@paprika/data-field": "1.0.30",
-    "@paprika/data-grid": "1.0.26",
-    "@paprika/data-header": "1.0.36",
+    "@paprika/data-field": "1.0.31",
+    "@paprika/data-grid": "1.0.27",
+    "@paprika/data-header": "1.0.37",
     "@paprika/data-table": "0.2.0",
     "@paprika/date-input": "1.0.26",
     "@paprika/date-picker": "2.0.4",
     "@paprika/date-range-picker": "1.0.31",
     "@paprika/dialog-actions": "1.0.25",
     "@paprika/dynamic-hyperlink-transformer": "1.1.24",
-    "@paprika/filter": "2.0.5",
+    "@paprika/filter": "2.0.6",
     "@paprika/form-element": "4.0.27",
     "@paprika/guard": "1.0.1",
     "@paprika/heading": "1.0.12",
@@ -46,7 +46,7 @@
     "@paprika/overflow-menu": "2.0.4",
     "@paprika/overlay": "1.0.12",
     "@paprika/pagination": "1.0.26",
-    "@paprika/panel": "2.2.3",
+    "@paprika/panel": "2.2.4",
     "@paprika/popover": "2.0.2",
     "@paprika/progress-accordion": "1.1.17",
     "@paprika/progress-bar": "1.1.7",
@@ -55,7 +55,7 @@
     "@paprika/resize-detector": "2.0.0",
     "@paprika/search": "2.0.4",
     "@paprika/select": "2.0.10",
-    "@paprika/side-navigation": "3.0.15",
+    "@paprika/side-navigation": "3.0.16",
     "@paprika/sortable": "1.2.10",
     "@paprika/spinner": "1.0.13",
     "@paprika/status-tracker": "2.0.4",
@@ -73,8 +73,5 @@
     "@paprika/helpers": "2.2.0",
     "@paprika/seducer": "2.0.3"
   },
-  "changesets": [
-    "eighty-lemons-melt",
-    "rotten-forks-return"
-  ]
+  "changesets": []
 }

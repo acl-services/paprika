@@ -1,5 +1,12 @@
 <!-- content -->
 
+## 1.0.37
+
+### Patch Changes
+
+- @paprika/data-field@1.0.31
+- @paprika/data-grid@1.0.27
+
 ## 1.0.37-next.0
 
 ### Patch Changes
