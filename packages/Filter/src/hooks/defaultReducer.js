@@ -11,6 +11,7 @@ export const actionTypes = {
   changeOperator: "changeOperator",
   clear: "clear",
   delete: "delete",
+  updateData: "updateData",
 };
 
 export default function defaultReducer(draft, action) {
@@ -18,6 +19,16 @@ export default function defaultReducer(draft, action) {
     case actionTypes.addFilter:
       draft.filters.push(action.payload);
       break;
+    case actionTypes.updateData: {
+      draft.data = action.payload.newData;
+      draft.filteredData = filterData({
+        filters: draft.filters,
+        operator: draft.operator,
+        columns: action.payload.columns,
+        data: action.payload.newData,
+      });
+      break;
+    }
     case actionTypes.apply: {
       draft.numberApplied = draft.filters.length;
       if (!draft.isResultControlled) {
