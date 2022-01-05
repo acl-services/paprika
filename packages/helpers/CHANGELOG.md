@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.1-next.0
+
+### Patch Changes
+
+- 63f9a05: Added `container` prop to Panel to support Shadow DOM
+
 ## 2.2.0
 
 ### Minor Changes

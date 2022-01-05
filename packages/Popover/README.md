@@ -41,6 +41,7 @@ npm install @paprika/popover
 | shouldKeepFocus       | bool                                                                                                        | false    | false                        | If focus will stay at the trigger when showing popover. Popover can still be closed when clicking outside or pressing escape key.                            |
 | shouldUnmount         | bool                                                                                                        | false    | true                         | Should unmount Popover Content or Tip Subcomponents from DOM when popover is closed                                                                          |
 | zIndex                | number                                                                                                      | false    | zValue(1)                    | Number setting the z-index for the popover content / tip.                                                                                                    |
+| container             | custom                                                                                                      | false    | null                         | Portal container for the Panel (DOM element)                                                                                                                 |
 
 ### Popover.Trigger
 

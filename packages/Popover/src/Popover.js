@@ -1,3 +1,5 @@
+/* eslint-disable react/sort-comp */
+
 import React from "react";
 import memoizeOne from "memoize-one";
 import PropTypes from "prop-types";
@@ -6,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 import * as constants from "@paprika/constants/lib/Constants";
 import tokens from "@paprika/tokens";
 import { zValue } from "@paprika/stylers/lib/helpers";
-import { callAll } from "@paprika/helpers";
+import { callAll, DOMElementType } from "@paprika/helpers";
 
 import * as types from "./types";
 import isInsideBoundaries from "./helpers/isInsideBoundaries";
@@ -37,10 +39,7 @@ class Popover extends React.Component {
     this.$trigger = null;
     this.$tip = null; // this ref comes from a callback of the <Tip /> component
 
-    if (props.isPortal) {
-      const portalNode = document.createElement("div");
-      this.$portal = document.body.appendChild(portalNode);
-    }
+    this.mountPortal(props);
 
     this.focusableElements = [];
     this.triggerFocusIndex = null;
@@ -146,6 +145,12 @@ class Popover extends React.Component {
     }
 
     if (this.isOpen() && prevProps !== this.props) this.setVisibilityAndPosition();
+
+    const shouldRemountPortal =
+      this.isOpen() && this.props.isPortal && (this.props.container || document.body) !== this.$portal?.parentNode;
+    if (shouldRemountPortal) {
+      this.mountPortal(this.props);
+    }
   }
 
   componentWillUnmount() {
@@ -157,8 +162,12 @@ class Popover extends React.Component {
     this.closeTimer = null;
 
     if (this.props.isPortal) {
-      document.body.removeChild(this.$portal);
+      this.$portal.remove();
     }
+  }
+
+  getContainer() {
+    return this.props.container ?? document.body;
   }
 
   getContentWidth() {
@@ -170,9 +179,9 @@ class Popover extends React.Component {
     $shadowContent.style.maxWidth = this.props.maxWidth;
     $shadowContent.style.minWidth = this.props.minWidth;
 
-    document.body.appendChild($shadowContent);
+    this.getContainer().appendChild($shadowContent);
     const contentWidth = getBoundingClientRect($shadowContent).width;
-    document.body.removeChild($shadowContent);
+    this.getContainer().removeChild($shadowContent);
 
     return contentWidth;
   }
@@ -230,8 +239,6 @@ class Popover extends React.Component {
     };
   };
 
-  // eslint is forcing to put handleReposition before ComponentDidMount
-  // eslint-disable-next-line react/sort-comp
   handleReposition = throttle(() => {
     if (this.isOpen()) {
       const scrollContainer = this.props.getScrollContainer === null ? document.body : this.props.getScrollContainer();
@@ -271,6 +278,14 @@ class Popover extends React.Component {
       }
     }
   };
+
+  mountPortal(props) {
+    if (props.isPortal) {
+      if (this.$portal) this.$portal.remove();
+      const portalNode = document.createElement("div");
+      this.$portal = this.getContainer().appendChild(portalNode);
+    }
+  }
 
   focusIsOnCertainElementInPopover = which => {
     const focusableElementsInPopover = this.$content.querySelectorAll(focusableElementSelector);
@@ -533,6 +548,9 @@ const propTypes = {
 
   /** Number setting the z-index for the popover content / tip. */
   zIndex: PropTypes.number,
+
+  /** Portal container for the Panel (DOM element) */
+  container: DOMElementType,
 };
 
 const defaultProps = {
@@ -552,6 +570,7 @@ const defaultProps = {
   shouldKeepFocus: false,
   shouldUnmount: true,
   zIndex: zValue(1),
+  container: null,
 };
 
 Popover.displayName = "Popover";
