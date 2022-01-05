@@ -1,11 +1,13 @@
 import React from "react";
+import tokens from "@paprika/tokens";
+import Button from "@paprika/button";
 import Panel from "../../src";
 import { TextLine } from "../helpers";
 
 export default function FromBottom() {
   const [isFooterOpen, setIsFooterOpen] = React.useState(true);
   const [isNavOpen, setIsNavOpen] = React.useState(true);
-  const navWidth = { expanded: 300, collapsed: 30 };
+  const navWidth = { expanded: 295, collapsed: 30 };
 
   const toggleFooter = () => {
     setIsFooterOpen(state => !state);
@@ -21,23 +23,22 @@ export default function FromBottom() {
   return (
     <>
       <div style={{ display: "flex", height: "100vh" }}>
-        <nav style={{ flex: `0 0 ${getNavWidth()}px`, background: "red" }}>
-          <button type="button" onClick={toggleNav}>
+        <nav style={{ flex: `0 0 ${getNavWidth()}px`, background: tokens.color.diligentLighten70 }}>
+          <Button kind="primary" type="button" onClick={toggleNav} style={{ margin: "10px" }}>
             {isNavOpen ? <span>&laquo;</span> : <span>&raquo;</span>}
-          </button>
+          </Button>
         </nav>
         <div style={{ flex: 1, padding: "10px" }}>
           <p>Try toggling the div on the left and notice the Panel&apos;s width adjusts (controlled by consumer).</p>
-          <button type="button" onClick={toggleFooter}>
-            {isFooterOpen ? "close" : "open"} the bottom Panel
-          </button>
+          <Button kind="primary" type="button" onClick={toggleFooter}>
+            {isFooterOpen ? "Close" : "Open"} The Bottom Panel
+          </Button>
         </div>
       </div>
-
       <Panel
         height={150}
         isOpen={isFooterOpen}
-        offset={{ left: getNavWidth() }}
+        offset={{ left: isNavOpen ? 320 : 75 }}
         onClose={toggleFooter}
         slideFrom={Panel.types.slideFrom.BOTTOM}
       >

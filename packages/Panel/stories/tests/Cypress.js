@@ -1,12 +1,11 @@
 import React from "react";
 import Heading from "@paprika/heading";
 import Panel from "../../src";
-import { TextLine, Nav } from "../helpers";
+import { TextLine } from "../helpers";
 
 export function PanelDefaultSticky() {
   return (
     <>
-      <Nav />
       <p>
         <Panel data-pka-anchor="panel" isOpen offset={{ top: 40 }}>
           <Panel.Header>
@@ -33,7 +32,6 @@ export function PanelFocusLockDisabled() {
 export function PanelFooterSticky() {
   return (
     <>
-      <Nav />
       <p>
         <Panel isOpen>
           <TextLine repeat={100} />
@@ -51,7 +49,6 @@ export function PanelOnAfter() {
 
   return (
     <>
-      <Nav />
       <p>
         <Panel
           onAfterOpen={() => {

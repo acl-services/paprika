@@ -9,6 +9,7 @@ import GroupPanel from "./examples/GroupPanel";
 import PushContentPanel from "./examples/PushContentPanel";
 import StickyPanel from "./examples/StickyPanel";
 import NestedPopoverPanel from "./examples/NestedPopoverPanel";
+import CoPlanarPanel from "./examples/CoPlanarPanel";
 
 import Panel from "../src";
 
@@ -37,6 +38,14 @@ export const basic = () => (
 );
 
 basic.story = sidePanelStoryParameters;
+
+export const coplanarPanel = () => (
+  <ExampleStory component="Panel" storyName="Co-Planar Panel" fileName="examples/CoPlanarPanel.js">
+    <CoPlanarPanel />
+  </ExampleStory>
+);
+
+coplanarPanel.story = sidePanelStoryParameters;
 
 export const focusHeading = () => (
   <ExampleStory component="Panel" storyName="Focus Heading Panel" fileName="examples/FocusHeading.js">

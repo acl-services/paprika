@@ -1,18 +1,12 @@
 import React from "react";
 import Button from "@paprika/button";
 import Panel from "../../src";
-import { Nav, TextLine } from "../helpers";
+import { TextLine } from "../helpers";
 
 export default function GroupPanel() {
   const [spParent1, setSpParent1] = React.useState(true);
   const [spParent2, setSpParent2] = React.useState(true);
   const [spChild, setSpChild] = React.useState(true);
-  const menu = {
-    padding: "8px",
-    display: "flex",
-    width: "150px",
-    justifyContent: "space-between",
-  };
 
   const handleParent2 = () => {
     if (spParent2) {
@@ -29,16 +23,12 @@ export default function GroupPanel() {
 
   return (
     <>
-      <Nav>
-        <div style={menu}>
-          <Button data-pka-anchor="button-panel1" onClick={handleParent1} size="small">
-            Parent 1
-          </Button>
-          <Button data-pka-anchor="button-panel2" onClick={handleParent2} size="small">
-            Parent 2
-          </Button>
-        </div>
-      </Nav>
+      <Button data-pka-anchor="button-panel1" onClick={handleParent1} kind="primary">
+        Parent 1
+      </Button>
+      <Button data-pka-anchor="button-panel2" onClick={handleParent2} kind="primary">
+        Parent 2
+      </Button>
       <div style={{ display: "flex" }}>
         <div style={{ width: "400px", margin: "25px" }}>
           <TextLine repeat={100} />

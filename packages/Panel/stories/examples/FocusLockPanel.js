@@ -1,4 +1,5 @@
 import React from "react";
+import Input from "@paprika/input";
 import Panel from "../../src";
 
 export default function FocusLockPanel() {
@@ -7,7 +8,7 @@ export default function FocusLockPanel() {
       <Panel.Overlay />
       <Panel.Header>Header</Panel.Header>
       <Panel.Content>
-        <input type="text" data-autofocus />
+        <Input type="text" data-autofocus />
       </Panel.Content>
     </Panel>
   );
