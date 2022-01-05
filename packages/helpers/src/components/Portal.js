@@ -1,11 +1,12 @@
 import ReactDOM from "react-dom";
 import React from "react";
 import PropTypes from "prop-types";
+import { DOMElementType } from "..";
 
 const propTypes = {
   children: PropTypes.node,
   active: PropTypes.bool,
-  container: PropTypes.node,
+  container: DOMElementType,
 };
 
 const defaultProps = {
