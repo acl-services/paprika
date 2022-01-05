@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.0.27
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5
+
+## 4.0.27-next.0
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5-next.0
+
 ## 4.0.26
 
 ### Patch Changes

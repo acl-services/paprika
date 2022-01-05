@@ -16,8 +16,6 @@ function Dialog(props) {
     onAnimationEnd,
     header,
     height,
-    kind,
-    isCompact,
     isInline,
     offset,
     onClose,
@@ -37,9 +35,7 @@ function Dialog(props) {
       <sc.DialogContent
         data-pka-anchor="panel.content"
         hasPushedElement={!!getPushContentElement}
-        isCompact={isCompact}
         isOpen={isOpen}
-        kind={kind}
         ref={refPanelContent}
         role="region"
         tabIndex="0"
@@ -52,10 +48,8 @@ function Dialog(props) {
     setIsAnimating(true);
   }, [isOpen]);
 
-  const dialogFooter = footer ? React.cloneElement(footer, { refPanel, isCompact }) : null;
-  const dialogHeader = header
-    ? React.cloneElement(header, { ref: refHeader, isCompact, onClose, getPushContentElement })
-    : null;
+  const dialogFooter = footer ? React.cloneElement(footer, { refPanel }) : null;
+  const dialogHeader = header ? React.cloneElement(header, { ref: refHeader, onClose, getPushContentElement }) : null;
 
   const handleAnimationEnd = () => {
     setIsAnimating(false);
@@ -89,10 +83,8 @@ function Dialog(props) {
       hasPushedElement={!!getPushContentElement}
       height={height}
       isAnimating={isAnimating}
-      isCompact={isCompact}
       isInline={isInline}
       isOpen={isOpen}
-      kind={kind}
       offset={offset}
       onAnimationEnd={handleAnimationEnd}
       ref={refPanel}
@@ -107,10 +99,6 @@ function Dialog(props) {
   );
 }
 
-Dialog.types = {
-  kind: { DEFAULT: types.kinds.DEFAULT, PRIMARY: types.kinds.PRIMARY },
-};
-
 const propTypes = {
   a11yText: PropTypes.string,
   children: PropTypes.node.isRequired,
@@ -119,8 +107,6 @@ const propTypes = {
   groupOffsetY: PropTypes.number,
   header: PropTypes.node,
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  kind: PropTypes.oneOf([Dialog.types.kind.DEFAULT, Dialog.types.kind.CHILD]),
-  isCompact: PropTypes.bool,
   isInline: PropTypes.bool,
   offset: PropTypes.shape({
     top: PropTypes.number.isRequired,
@@ -142,8 +128,6 @@ const defaultProps = {
   getPushContentElement: () => {},
   groupOffsetY: 0,
   header: null,
-  kind: Dialog.types.kind.DEFAULT,
-  isCompact: false,
   isInline: false,
   onClose: () => {},
   slideFrom: types.slideFroms.RIGHT,

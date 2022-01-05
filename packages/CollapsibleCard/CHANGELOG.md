@@ -1,5 +1,23 @@
 # Changelog
 
+## 2.0.19
+
+### Patch Changes
+
+- Updated dependencies [eb42e40]
+- Updated dependencies [32de383]
+  - @paprika/counter@1.1.3
+  - @paprika/icon@2.1.5
+  - @paprika/button@1.1.10
+
+## 2.0.19-next.1
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5-next.0
+  - @paprika/button@1.1.10-next.0
+
 ## 2.0.19-next.0
 
 ### Patch Changes

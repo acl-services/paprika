@@ -1,6 +1,6 @@
 {
   "name": "@paprika/link",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "The Link component produces a standard anchor tag that navigates to another URL.",
   "author": "@paprika",
   "license": "MIT",
@@ -21,7 +21,7 @@
     "@paprika/stylers": "^1.1.4",
     "@paprika/tokens": "^1.1.3",
     "prop-types": "^15.7.2",
-    "@paprika/icon": "^2.1.4"
+    "@paprika/icon": "^2.1.5"
   },
   "peerDependencies": {
     "react": "^16.8.4",

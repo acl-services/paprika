@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.0.4
+
+### Patch Changes
+
+- @paprika/calendar@2.0.4
+- @paprika/date-input@1.0.26
+
+## 2.0.4-next.0
+
+### Patch Changes
+
+- @paprika/calendar@2.0.4-next.0
+- @paprika/date-input@1.0.26-next.0
+
 ## 2.0.3
 
 ### Patch Changes

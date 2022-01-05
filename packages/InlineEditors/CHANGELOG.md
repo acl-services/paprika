@@ -1,5 +1,37 @@
 # @paprika/inline-editors
 
+## 1.0.5-next.0
+
+### Patch Changes
+
+- Updated dependencies [e38dcb1]
+  - @paprika/list-box@4.0.5-next.0
+
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+- Updated dependencies [eb42e40]
+  - @paprika/icon@2.1.5
+  - @paprika/tag@0.0.19
+  - @paprika/collapsible-text@1.0.26
+  - @paprika/input@4.0.16
+  - @paprika/list-box@4.0.4
+  - @paprika/table@1.2.19
+
+## 1.0.4-next.1
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5-next.0
+  - @paprika/input@4.0.16-next.0
+  - @paprika/list-box@4.0.4-next.0
+  - @paprika/tag@0.0.19-next.1
+  - @paprika/collapsible-text@1.0.26-next.0
+  - @paprika/table@1.2.19-next.0
+
 ## 1.0.4-next.0
 
 ### Patch Changes

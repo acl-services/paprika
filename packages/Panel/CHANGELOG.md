@@ -1,5 +1,40 @@
 # Changelog
 
+## 2.2.4
+
+### Patch Changes
+
+- 676ae73: Add padding size for the header and the space between button
+
+## 2.2.4-next.0
+
+### Patch Changes
+
+- 676ae73: Add padding size for the header and the space between button
+
+## 2.2.3
+
+### Patch Changes
+
+- b9df017: Update panel styling to align with new design guidelines
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5
+  - @paprika/button@1.1.10
+
+## 2.2.3-next.1
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5-next.0
+  - @paprika/button@1.1.10-next.0
+
+## 2.2.3-next.0
+
+### Patch Changes
+
+- b9df017: Update panel styling to align with new design guidelines
+
 ## 2.2.2
 
 ### Patch Changes

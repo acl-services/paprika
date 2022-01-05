@@ -1,14 +1,42 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import PropTypes from "prop-types";
+import Checkbox from "@paprika/checkbox";
+import tokens from "@paprika/tokens";
 import { PropsContext } from "../../store/PropsProvider";
 import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
 import * as sc from "./Option.styles";
 
 const Option = props => {
-  const { index, groupId, label, id, internalHandleOnClick, isSelected, ...moreProps } = props; // eslint-disable-line
+  const {
+    index,
+    groupId,
+    label,
+    id,
+    internalHandleOnClick,
+    isSelected,
+    hasNoIcon,
+    isMulti,
+    hasTag,
+    ...moreProps
+  } = props;
   const providedProps = React.useContext(PropsContext);
   const { isReadOnly, size } = providedProps;
   const isDisabled = providedProps.isDisabled || props.isDisabled || isReadOnly;
+  const { CHECKED, UNCHECKED } = Checkbox.types.state;
+  const [checkedState, setCheckedState] = React.useState(UNCHECKED);
+  const handleChange = () => setCheckedState(checkedState === CHECKED ? UNCHECKED : CHECKED);
+  const checkIcon =
+    isMulti &&
+    (!hasTag ? (
+      <Checkbox
+        checkedState={isSelected ? CHECKED : checkedState}
+        onChange={handleChange}
+        style={{ paddingRight: tokens.space }}
+      />
+    ) : (
+      <sc.PlusIcon />
+    ));
   return (
     <sc.Option
       {...moreProps}
@@ -24,6 +52,7 @@ const Option = props => {
       data-pka-prevent-default-on-select={props.preventDefaultOnSelect}
       tabIndex={-1}
     >
+      {hasNoIcon ? null : checkIcon}
       {typeof props.children === "function" ? props.children({ isSelected, isDisabled, id }) : props.children}
     </sc.Option>
   );
@@ -40,6 +69,9 @@ Option.propTypes = {
 
   /** Describe if the option started as selected or not */
   defaultIsSelected: PropTypes.bool,
+
+  /** When no PlusIcon or CheckBox are needed */
+  hasNoIcon: PropTypes.bool,
 
   /** Describe if the option is enable or not */
   isDisabled: PropTypes.bool,
@@ -67,6 +99,7 @@ Option.propTypes = {
 };
 
 Option.defaultProps = {
+  hasNoIcon: false,
   isDisabled: false,
   isHidden: false,
   preventDefaultOnSelect: false,

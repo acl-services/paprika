@@ -164,6 +164,7 @@ export const KitchensinkStory: (props: Partial<DataTableProps>) => JSX.Element =
       <DataTable
         a11yText="Kitchensink data table."
         height={500}
+        width="100%"
         columns={columns}
         data={items}
         extraCellProps={{ onClick: updateName }}

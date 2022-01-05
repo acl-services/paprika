@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.1.17
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5
+  - @paprika/collapsible@1.1.22
+
+## 1.1.17-next.0
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5-next.0
+  - @paprika/collapsible@1.1.22-next.0
+
 ## 1.1.16
 
 ### Patch Changes
