@@ -161,7 +161,7 @@ const defaultProps = {
   onClickCancel: null,
   onClickClear: null,
   renderExtraButton: () => {},
-  size: Button.types.size.SMALL,
+  size: Button.types.size.MEDIUM,
 };
 
 Footer.propTypes = propTypes;

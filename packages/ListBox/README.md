@@ -26,6 +26,7 @@ npm install @paprika/list-box
 | -------------- | ----------------------------------------------------------------------------------------------------------- | -------- | ---------------------------------- | ------------------------------------------------------------------------------ |
 | children       | arrayOf                                                                                                     | false    | null                               | Child of type <ListBox.Option />, <ListBox.Divider />, etc                     |
 | hasError       | bool                                                                                                        | false    | false                              | If ListBox is in an error state                                                |
+| hasTag         | bool                                                                                                        | false    | false                              | If there is a tag                                                              |
 | hasImplicitAll | bool                                                                                                        | false    | false                              | Has implicit "All items selected" value when no item is selected               |
 | height         | [string,number]                                                                                             | false    | 200                                | The maximum height for the options container. Using a number implies px units. |
 | isDisabled     | bool                                                                                                        | false    | false                              | Disables the ListBox if true                                                   |
@@ -95,7 +96,7 @@ see: options/helpers/options.js|
 | onClickCancel     | func                                                                          | false    | null                      | Callback to be executed when the cancel button is clicked or activated by keyboard. |
 | onClickClear      | func                                                                          | false    | null                      | Callback to be executed when the clear button is clicked or activated by keyboard.  |
 | renderExtraButton | func                                                                          | false    | () => {}                  | Render an extra button beside the clear button                                      |
-| size              | [ Button.types.size.SMALL, Button.types.size.MEDIUM, Button.types.size.LARGE] | false    | Button.types.size.SMALL   | Determines the size of the footer                                                   |
+| size              | [ Button.types.size.SMALL, Button.types.size.MEDIUM, Button.types.size.LARGE] | false    | Button.types.size.MEDIUM  | Determines the size of the footer                                                   |
 
 ### ListBox.Option
 
@@ -104,6 +105,7 @@ see: options/helpers/options.js|
 | children               | [node,func] | true     | -       | String, number or JSX content                                                          |
 | isSelected             | bool        | false    | null    |                                                                                        |
 | defaultIsSelected      | bool        | false    | null    | Describe if the option started as selected or not                                      |
+| hasNoIcon              | bool        | false    | false   | When no PlusIcon or CheckBox are needed                                                        |
 | isDisabled             | bool        | false    | false   | Describe if the option is enable or not                                                |
 | isHidden               | bool        | false    | false   | Describe if the option is hidden or not                                                |
 | label                  | string      | false    | null    | When the children are not a String, label should need to be add so the filter can work |
