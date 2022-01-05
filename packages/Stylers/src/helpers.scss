@@ -6,6 +6,12 @@
 
 // Utilities
 
+// Divide the given `$divident` by the given `$divisor`
+// Author: Foundation Community
+// Date: 2021
+// Code version: v6.6.3
+// Availability: https://github.com/ahukkanen/foundation-sites/blob/28f0cc3252272e0c6d3e2b18d376a6beda6f766f/scss/util/_math.scss
+
 @function div($dividend, $divisor, $precision: 12) {
   $sign: if($dividend > 0 and $divisor > 0 or $dividend < 0 and $divisor < 0, 1, -1);
   @if $dividend == 0 {
