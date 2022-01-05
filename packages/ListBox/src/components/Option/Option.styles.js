@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import PaprikaAddIcon from "@paprika/icon/lib/Add";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
@@ -47,3 +48,9 @@ export const Option = styled.li(
     ${isDisabled ? disabledStyles : stateStyles}
   `
 );
+
+export const PlusIcon = styled(PaprikaAddIcon)`
+  color: ${tokens.color.blackLighten20};
+  font-size: 20px;
+  padding-right: ${tokens.space};
+`;

@@ -2,7 +2,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Checkbox from "@paprika/checkbox";
-import PlusIcon from "@paprika/icon/lib/Add";
 import tokens from "@paprika/tokens";
 import { PropsContext } from "../../store/PropsProvider";
 import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
@@ -16,7 +15,7 @@ const Option = props => {
     id,
     internalHandleOnClick,
     isSelected,
-    hasIcon,
+    hasNoIcon,
     isMulti,
     hasTag,
     ...moreProps
@@ -36,7 +35,7 @@ const Option = props => {
         style={{ paddingRight: tokens.space }}
       />
     ) : (
-      <PlusIcon style={{ paddingRight: tokens.space }} />
+      <sc.PlusIcon />
     ));
   return (
     <sc.Option
@@ -53,7 +52,7 @@ const Option = props => {
       data-pka-prevent-default-on-select={props.preventDefaultOnSelect}
       tabIndex={-1}
     >
-      {hasIcon ? null : checkIcon}
+      {hasNoIcon ? null : checkIcon}
       {typeof props.children === "function" ? props.children({ isSelected, isDisabled, id }) : props.children}
     </sc.Option>
   );
@@ -72,7 +71,7 @@ Option.propTypes = {
   defaultIsSelected: PropTypes.bool,
 
   /** When there is no need any icons */
-  hasIcon: PropTypes.bool,
+  hasNoIcon: PropTypes.bool,
 
   /** Describe if the option is enable or not */
   isDisabled: PropTypes.bool,
@@ -100,7 +99,7 @@ Option.propTypes = {
 };
 
 Option.defaultProps = {
-  hasIcon: false,
+  hasNoIcon: false,
   isDisabled: false,
   isHidden: false,
   preventDefaultOnSelect: false,

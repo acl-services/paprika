@@ -59,7 +59,7 @@ export default function CustomListBox(props) {
     <ListBox key={id} height={height} isMulti={isMulti} isInline onChange={onChange}>
       <ListBox.Trigger isHidden />
       {hasOnUp ? (
-        <ListBox.Option hasIcon onClick={onUp}>
+        <ListBox.Option hasNoIcon onClick={onUp}>
           <span css={backButton} data-pka-anchor="list-box-browser.list-option-back">
             <ArrowLeft />
             {i18n.t("back")}
@@ -70,7 +70,7 @@ export default function CustomListBox(props) {
         const { $$key, attributes, hasOptions } = option;
         return (
           <ListBox.Option
-            hasIcon
+            hasNoIcon
             preventDefaultOnSelect={isSelectable({ hasOptions, isParentSelectable })}
             isSelected={isSelected({ browserKey, $$key, selectedOptions, isRootListBox })}
             key={$$key}
