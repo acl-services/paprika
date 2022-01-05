@@ -37,7 +37,7 @@ export const Option = styled.li(
     display: flex;
     max-height: ${stylers.spacer(6)};
     min-height: ${stylers.spacer(4)};
-    padding-left: 12px;
+    padding-left: ${tokens.spaceLg};
     ${stylers.fontSize(-1)}
 
     &:hover {

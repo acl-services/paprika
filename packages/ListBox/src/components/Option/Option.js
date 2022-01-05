@@ -70,7 +70,7 @@ Option.propTypes = {
   /** Describe if the option started as selected or not */
   defaultIsSelected: PropTypes.bool,
 
-  /** When there is no need any icons */
+  /** When no PlusIcon or CheckBox are needed */
   hasNoIcon: PropTypes.bool,
 
   /** Describe if the option is enable or not */

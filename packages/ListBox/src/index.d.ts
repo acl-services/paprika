@@ -136,7 +136,7 @@ declare namespace ListBox {
     isSelected?: boolean;
     /** Describe if the option started as selected or not */
     defaultIsSelected?: boolean;
-    /** When there is no need any icons */
+    /** When no PlusIcon or CheckBox are needed */
     hasNoIcon?: boolean;
     /** Describe if the option is enable or not */
     isDisabled?: boolean;
