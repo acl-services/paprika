@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.26-next.0
+
+### Patch Changes
+
+- @paprika/button@1.1.11-next.0
+
 ## 1.0.25
 
 ### Patch Changes

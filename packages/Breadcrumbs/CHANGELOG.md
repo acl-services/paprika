@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.5.8-next.0
+
+### Patch Changes
+
+- Updated dependencies [63f9a05]
+  - @paprika/helpers@2.2.1-next.0
+  - @paprika/button@1.1.11-next.0
+  - @paprika/popover@2.0.3-next.0
+
 ## 1.5.7
 
 ### Patch Changes
