@@ -3,4 +3,4 @@
 "@paprika/tokens": patch
 ---
 
-replace division with div()
+replace / with div()
