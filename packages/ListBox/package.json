@@ -1,6 +1,6 @@
 {
   "name": "@paprika/list-box",
-  "version": "4.0.4",
+  "version": "4.0.5-next.0",
   "description": "The ListBox component allows users to select one or more options from a list contained within the component",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -8,6 +8,7 @@
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/button": "^1.1.10",
     "@paprika/constants": "^1.0.0",
+    "@paprika/checkbox": "^1.0.20",
     "@paprika/helpers": "^2.2.0",
     "@paprika/icon": "^2.1.5",
     "@paprika/input": "^4.0.16",

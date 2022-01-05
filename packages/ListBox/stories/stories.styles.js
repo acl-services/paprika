@@ -1,14 +1,15 @@
 import styled from "styled-components";
+import { spacer } from "@paprika/stylers/lib/helpers";
 
 export const Frame = styled.div`
   padding: 32px;
 `;
 
 export const ImageOption = styled.div`
-  height: 60px;
-  line-height: 60px;
+  height: ${spacer(6)};
+  line-height: ${spacer(6)};
   text-align: center;
-  width: 60px;
+  width: ${spacer(6)};
 
   img {
     max-height: 100%;

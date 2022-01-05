@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.1.0-next.0
+
+### Minor Changes
+
+- 9e6fab9: added updateData hook so user can manually update data
+
+### Patch Changes
+
+- Updated dependencies [e38dcb1]
+  - @paprika/list-box@4.0.5-next.0
+
 ## 2.0.6
 
 ### Patch Changes

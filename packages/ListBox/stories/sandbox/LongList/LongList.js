@@ -1,5 +1,4 @@
 import React from "react";
-import Checkbox from "@paprika/checkbox";
 import { v4 as uuidv4 } from "uuid";
 import { number } from "@storybook/addon-knobs";
 import { uniqueNamesGenerator, countries } from "unique-names-generator";
@@ -18,7 +17,6 @@ function handleChange(selectedIndexes) {
 }
 
 export default function LongList() {
-  const { CHECKED, UNCHECKED } = Checkbox.types.state;
   const { numOfItems } = getKnobs();
   const countriesArray = [...Array(numOfItems)].map(() => uniqueNamesGenerator(config));
 
@@ -26,15 +24,7 @@ export default function LongList() {
     <ListBox isMulti onChange={handleChange}>
       {countriesArray.map(country => (
         <ListBox.Option label={country} key={`opt_${uuidv4()}`}>
-          {({ isSelected }) => (
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <Checkbox
-                checkedState={isSelected ? CHECKED : UNCHECKED}
-                style={{ paddingRight: "8px", pointerEvents: "none" }}
-              />
-              {country}
-            </div>
-          )}
+          <div style={{ display: "flex", alignItems: "center" }}>{country}</div>
         </ListBox.Option>
       ))}
     </ListBox>
