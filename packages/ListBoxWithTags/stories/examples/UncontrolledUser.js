@@ -110,8 +110,8 @@ export default function UncontrolledUsers() {
         {filteredData.map(option => {
           const color = getAvatarColors(option.name);
           return !isSelected(option.id) ? (
-            <ListBox.Option id={option.id} key={option.id} label={option.name}>
-              <div>
+            <ListBox.Option id={option.id} key={option.id} label={option.name} hasNoIcon>
+              <div style={{ marginTop: "6px" }}>
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <Avatar
                     isRound

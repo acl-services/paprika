@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { zValue } from "@paprika/stylers/lib/helpers";
-import { LockBodyScroll, Portal } from "@paprika/helpers";
+import { LockBodyScroll, Portal, DOMElementType } from "@paprika/helpers";
 import OriginalOverlay from "@paprika/overlay";
 import Content from "./components/Content";
 import Dialog from "./components/Dialog";
@@ -23,6 +23,7 @@ export default function Panel(props) {
   // Props
   const {
     a11yText,
+    container,
     getPushContentElement,
     groupOffsetY,
     height,
@@ -173,11 +174,15 @@ export default function Panel(props) {
     if (isInline) {
       sidePanel = dialog;
     } else if (!overlayExtracted) {
-      sidePanel = <Portal active>{dialog}</Portal>;
+      sidePanel = (
+        <Portal active container={container}>
+          {dialog}
+        </Portal>
+      );
     } else {
       const { children, focusLockOptions, ...morePropsForOverlay } = overlayExtracted.props;
       sidePanel = (
-        <Portal active>
+        <Portal active container={container}>
           <OriginalOverlay
             data-pka-anchor="panel.overlay"
             focusLockOptions={focusLockProps}
@@ -185,6 +190,7 @@ export default function Panel(props) {
             isOpen={isOpen}
             onClose={onClose}
             zIndex={zIndex}
+            container={container}
             {...morePropsForOverlay}
           >
             {state => React.cloneElement(dialog, { state })}
@@ -218,6 +224,9 @@ const propTypes = {
 
   /** The content for the Panel. */
   children: PropTypes.node.isRequired,
+
+  /** Portal container for the Panel (DOM element) */
+  container: DOMElementType,
 
   /** Function that provides the container DOM element to be pushed. */
   getPushContentElement: PropTypes.func,
@@ -270,6 +279,7 @@ const propTypes = {
 
 const defaultProps = {
   a11yText: null,
+  container: null,
   getPushContentElement: null,
   groupOffsetY: 0,
   height: "33%",

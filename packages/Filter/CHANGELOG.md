@@ -1,5 +1,29 @@
 # Changelog
 
+## 2.1.0-next.1
+
+### Patch Changes
+
+- Updated dependencies [63f9a05]
+  - @paprika/panel@2.3.0-next.0
+  - @paprika/button@1.1.11-next.0
+  - @paprika/date-picker@2.0.5-next.0
+  - @paprika/input@4.0.17-next.0
+  - @paprika/list-box@4.0.5-next.1
+  - @paprika/radio@1.0.22-next.0
+  - @paprika/select@2.0.11-next.0
+
+## 2.1.0-next.0
+
+### Minor Changes
+
+- 9e6fab9: added updateData hook so user can manually update data
+
+### Patch Changes
+
+- Updated dependencies [e38dcb1]
+  - @paprika/list-box@4.0.5-next.0
+
 ## 2.0.6
 
 ### Patch Changes

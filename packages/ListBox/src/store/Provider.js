@@ -9,6 +9,7 @@ function initializeState(props) {
   const {
     height,
     isMulti,
+    hasTag,
     isOpen,
 
     childrenOptions,
@@ -38,6 +39,7 @@ function initializeState(props) {
     hasFilter: false,
     hasFooter: false,
     hasPopupOpened: false,
+    hasTag,
     height,
     isMulti,
     isOpen,

@@ -52,6 +52,7 @@ export const labelContainer = css`
   font-size: ${stylers.spacer(2)};
   justify-content: flex-start;
   position: relative;
+  width: calc(100% - ${tokens.spaceLg});
 `;
 
 export const label = css`

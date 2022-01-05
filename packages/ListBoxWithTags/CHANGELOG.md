@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.0.5-next.1
+
+### Patch Changes
+
+- Updated dependencies [63f9a05]
+  - @paprika/helpers@2.2.1-next.0
+  - @paprika/list-box@4.0.5-next.1
+  - @paprika/tag@0.0.20-next.0
+
+## 3.0.5-next.0
+
+### Patch Changes
+
+- e38dcb1: The ListBox's overall styling has changed (e.g., footer height & isMulti/hasTag always render an Icon & no divider, etc.)
+- Updated dependencies [e38dcb1]
+  - @paprika/list-box@4.0.5-next.0
+
 ## 3.0.4
 
 ### Patch Changes

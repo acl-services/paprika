@@ -37,6 +37,8 @@ interface PopoverProps {
   shouldUnmount?: boolean;
   /** Number setting the z-index for the popover content / tip. */
   zIndex?: number;
+  /** Portal container for the Panel (DOM element) */
+  container?: custom;
 }
 
 declare namespace Popover {
