@@ -1,5 +1,12 @@
 # @paprika/inline-editors
 
+## 1.0.5-next.0
+
+### Patch Changes
+
+- Updated dependencies [e38dcb1]
+  - @paprika/list-box@4.0.5-next.0
+
 ## 1.0.4
 
 ### Patch Changes
