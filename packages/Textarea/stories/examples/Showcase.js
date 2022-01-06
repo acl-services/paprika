@@ -1,6 +1,7 @@
 import React from "react";
 import { boolean, select, text } from "@storybook/addon-knobs";
 import CodeViewer from "storybook/components/CodeViewer";
+import { TextareaStory } from "../Textarea.stories.styles";
 import Textarea from "../../src";
 
 const getKnobs = () => ({
@@ -17,8 +18,10 @@ const getKnobs = () => ({
 
 export default function Showcase() {
   return (
-    <CodeViewer>
-      <Textarea {...getKnobs()} />
-    </CodeViewer>
+    <TextareaStory storyName="Textarea" tagline={TextareaStory.defaultTaglines.showcase}>
+      <CodeViewer>
+        <Textarea {...getKnobs()} />
+      </CodeViewer>
+    </TextareaStory>
   );
 }

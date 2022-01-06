@@ -1,6 +1,7 @@
 import React from "react";
 import { boolean, select } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
+import ExampleStory from "storybook/components/ExampleStory";
 import Radio from "../../src/Radio";
 import types from "../../src/types";
 
@@ -12,17 +13,19 @@ const getKnobs = () => ({
 
 const Showcase = props => (
   <>
-    <Radio.Group
-      onChange={activeIndex => {
-        action("Radio selection changed to index ")(activeIndex);
-      }}
-      {...props}
-    >
-      <Radio defaultIsChecked>Radio 1</Radio>
-      <Radio>Radio 2</Radio>
-      <Radio>Radio 3</Radio>
-      <Radio isDisabled>Radio 4</Radio>
-    </Radio.Group>
+    <ExampleStory storyName="Radio" tagline={ExampleStory.defaultTaglines.showcase}>
+      <Radio.Group
+        onChange={activeIndex => {
+          action("Radio selection changed to index ")(activeIndex);
+        }}
+        {...props}
+      >
+        <Radio defaultIsChecked>Radio 1</Radio>
+        <Radio>Radio 2</Radio>
+        <Radio>Radio 3</Radio>
+        <Radio isDisabled>Radio 4</Radio>
+      </Radio.Group>
+    </ExampleStory>
   </>
 );
 

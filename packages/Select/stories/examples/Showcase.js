@@ -1,6 +1,7 @@
 import React from "react";
 import { boolean, select, text } from "@storybook/addon-knobs";
 import CodeViewer from "storybook/components/CodeViewer";
+import { SelectStory } from "../Select.stories.styles";
 import Select from "../../src";
 
 function renderChildren() {
@@ -23,8 +24,10 @@ const getKnobs = () => ({
 
 export default function Showcase() {
   return (
-    <CodeViewer>
-      <Select {...getKnobs()}>{renderChildren()}</Select>
-    </CodeViewer>
+    <SelectStory storyName="Select" tagline={SelectStory.defaultTaglines.showcase}>
+      <CodeViewer>
+        <Select {...getKnobs()}>{renderChildren()}</Select>
+      </CodeViewer>
+    </SelectStory>
   );
 }

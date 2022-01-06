@@ -3,6 +3,7 @@ import { boolean, select, text } from "@storybook/addon-knobs";
 import SearchIcon from "@paprika/icon/lib/Search";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
 import CodeViewer from "storybook/components/CodeViewer";
+import { InputStory } from "../Input.stories.styles";
 import Input from "../../src";
 
 const iconSelections = {
@@ -25,8 +26,10 @@ const getKnobs = () => ({
 
 export default function Showcase() {
   return (
-    <CodeViewer>
-      <Input {...getKnobs()} />
-    </CodeViewer>
+    <InputStory storyName="Input" tagline={InputStory.defaultTaglines.showcase}>
+      <CodeViewer>
+        <Input {...getKnobs()} storyName="Input" />
+      </CodeViewer>
+    </InputStory>
   );
 }

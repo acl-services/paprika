@@ -5,20 +5,15 @@ import { showcaseStoryParameters, variationsStoryParameters } from "storybook/as
 import { InputStory } from "./Input.stories.styles";
 import Showcase from "./examples/Showcase";
 import Variations from "./examples/Variations";
-
-const storyName = getStoryName("Input");
+import Input from "../src";
 
 export default {
-  title: storyName,
+  title: getStoryName("Input"),
+  component: Input,
 };
 
-export const showcase = () => (
-  <InputStory storyName="Input" tagline={InputStory.defaultTaglines.showcase}>
-    <Showcase />
-  </InputStory>
-);
+export const showcase = Showcase;
 showcase.story = {
-  name: "Showcase",
   decorators: [withKnobs],
   parameters: showcaseStoryParameters,
 };

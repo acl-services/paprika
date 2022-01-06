@@ -5,19 +5,14 @@ import { showcaseStoryParameters, variationsStoryParameters } from "storybook/as
 import ExampleStory from "storybook/components/ExampleStory";
 import Showcase from "./examples/Showcase";
 import Variations from "./examples/Variations";
-
-const storyName = getStoryName("Radio");
+import Radio from "../src/Radio.styles";
 
 export default {
-  title: storyName,
+  title: getStoryName("Radio"),
+  component: Radio,
 };
 
-export const showcase = () => (
-  <ExampleStory storyName="Radio" tagline={ExampleStory.defaultTaglines.showcase}>
-    <Showcase />
-  </ExampleStory>
-);
-
+export const showcase = Showcase;
 showcase.story = {
   name: "Showcase",
   decorators: [withKnobs],
