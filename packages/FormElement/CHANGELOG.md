@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.0.28-next.1
+
+### Patch Changes
+
+- Updated dependencies [15b2a9a]
+  - @paprika/stylers@1.1.5-next.0
+  - @paprika/tokens@1.1.4-next.0
+  - @paprika/popover@2.0.3-next.1
+  - @paprika/icon@2.1.6-next.0
+
 ## 4.0.28-next.0
 
 ### Patch Changes

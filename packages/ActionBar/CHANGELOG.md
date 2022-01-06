@@ -1,5 +1,20 @@
 # Changelog
 
+## 5.0.2-next.1
+
+### Patch Changes
+
+- Updated dependencies [15b2a9a]
+  - @paprika/stylers@1.1.5-next.0
+  - @paprika/tokens@1.1.4-next.0
+  - @paprika/button@1.1.11-next.1
+  - @paprika/input@4.0.17-next.1
+  - @paprika/popover@2.0.3-next.1
+  - @paprika/select@2.0.11-next.1
+  - @paprika/sortable@1.2.11-next.1
+  - @paprika/switch@1.0.16-next.1
+  - @paprika/icon@2.1.6-next.0
+
 ## 5.0.2-next.0
 
 ### Patch Changes

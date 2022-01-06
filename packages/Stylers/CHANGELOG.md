@@ -1,5 +1,13 @@
 # @paprika/stylers
 
+## 1.1.5-next.0
+
+### Patch Changes
+
+- 15b2a9a: replace / with div()
+- Updated dependencies [15b2a9a]
+  - @paprika/tokens@1.1.4-next.0
+
 ## 1.1.4
 
 ### Patch Changes
