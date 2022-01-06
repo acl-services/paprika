@@ -1,32 +1,34 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
-import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
-import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
+import { withKnobs } from "@storybook/addon-knobs";
+import { showcaseStoryParameters, variationsStoryParameters } from "storybook/assets/storyParameters";
 import { getStoryName } from "storybook/storyTree";
-import Heading from "@paprika/heading";
-import * as types from "../src/types";
-import Example from "./SwitchExample";
+import ExampleStory from "storybook/components/ExampleStory";
+import Showcase from "./examples/Showcase";
 import Variations from "./examples/Variations";
+import Switch from "../src";
 
-const storyName = getStoryName("Switch");
+export default {
+  title: getStoryName("Switch"),
+  component: Switch,
+};
 
-storiesOf(storyName, module)
-  .addDecorator(withKnobs)
-  .add("Showcase", () => (
-    <Story>
-      <Heading level={1} displayLevel={2} isLight>
-        <code>&lt;Switch /&gt;</code>
-      </Heading>
-      <Tagline>
-        <b>Showcase</b> – Interact with the props API
-      </Tagline>
-      <Rule />
-      <Example
-        a11yText={text("a11yText", "")}
-        canPropagate={boolean("canPropagate", true)}
-        isDisabled={boolean("isDisabled", false)}
-        size={select("size", [types.SMALL, types.MEDIUM, types.LARGE], "medium")}
-      />
-    </Story>
-  ))
-  .add("Variations", () => <Variations />);
+export const showcase = Showcase;
+showcase.story = {
+  decorators: [withKnobs],
+  parameters: showcaseStoryParameters,
+};
+
+export const variations = () => (
+  <ExampleStory
+    storyName="Switch"
+    tagline={ExampleStory.defaultTaglines.variations}
+    component="Switch"
+    fileName="examples/Variations.js"
+  >
+    <Variations />
+  </ExampleStory>
+);
+variations.story = {
+  name: "Variations",
+  parameters: variationsStoryParameters,
+};

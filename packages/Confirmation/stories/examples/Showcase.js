@@ -1,9 +1,8 @@
 import React from "react";
-import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
+import ExampleStory from "storybook/components/ExampleStory";
 import { select, text, boolean } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import L10n from "@paprika/l10n";
-import Heading from "@paprika/heading";
 import Confirmation from "../../src";
 
 const handleConfirm = handleCloseConfirm => {
@@ -27,21 +26,16 @@ const confirmationProps = () => ({
   isPending: boolean("Is Pending", false),
 });
 
-const ExampleStory = props => (
+const ConfirmationStory = props => (
   <>
-    <Story>
-      <Heading level={1} displayLevel={2} isLight>
-        Confirmation Showcase
-      </Heading>
-      <Tagline>Play with the controls to change the confirmation.</Tagline>
-      <Rule />
+    <ExampleStory storyName="Confirmation" tagline={ExampleStory.defaultTaglines.showcase}>
       <L10n locale={select("locale", ["en", "de", "es", "fr", "ja", "pt", "zh"], "en")}>
         <Confirmation onConfirm={handleConfirm} onClose={handleClose} {...props}>
           <Confirmation.TriggerButton>Trigger</Confirmation.TriggerButton>
         </Confirmation>
       </L10n>
-    </Story>
+    </ExampleStory>
   </>
 );
 
-export default () => <ExampleStory {...confirmationProps()} />;
+export default () => <ConfirmationStory {...confirmationProps()} />;
