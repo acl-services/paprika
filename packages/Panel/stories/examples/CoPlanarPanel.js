@@ -11,7 +11,9 @@ export default function CoPlanarPanel() {
   return (
     <>
       <Panel isOpen={isOpen} onClose={toggle} offset={{ top: 50 }}>
-        <Panel.Header isSticky>Header isSticky</Panel.Header>
+        <Panel.Header isSticky hasAccent>
+          Header isSticky
+        </Panel.Header>
         <Panel.Content>
           <TextLine repeat={50} />
         </Panel.Content>

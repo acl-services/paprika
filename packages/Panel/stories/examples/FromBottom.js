@@ -7,7 +7,8 @@ import { TextLine } from "../helpers";
 export default function FromBottom() {
   const [isFooterOpen, setIsFooterOpen] = React.useState(true);
   const [isNavOpen, setIsNavOpen] = React.useState(true);
-  const navWidth = { expanded: 295, collapsed: 30 };
+  const navWidth = { expanded: 295, collapsed: 32 };
+  const storyPadding = 24;
 
   const toggleFooter = () => {
     setIsFooterOpen(state => !state);
@@ -38,7 +39,7 @@ export default function FromBottom() {
       <Panel
         height={150}
         isOpen={isFooterOpen}
-        offset={{ left: isNavOpen ? 320 : 75 }}
+        offset={{ left: getNavWidth() + storyPadding }}
         onClose={toggleFooter}
         slideFrom={Panel.types.slideFrom.BOTTOM}
       >
