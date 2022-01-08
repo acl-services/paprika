@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.0.20
+
+### Patch Changes
+
+- Updated dependencies [63f9a05]
+- Updated dependencies [15b2a9a]
+  - @paprika/helpers@2.2.1
+  - @paprika/stylers@1.1.5
+  - @paprika/tokens@1.1.4
+  - @paprika/icon@2.1.6
+  - @paprika/raw-button@1.0.11
+
 ## 0.0.20-next.1
 
 ### Patch Changes

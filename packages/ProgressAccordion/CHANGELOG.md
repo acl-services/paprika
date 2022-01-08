@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.18
+
+### Patch Changes
+
+- Updated dependencies [15b2a9a]
+  - @paprika/stylers@1.1.5
+  - @paprika/tokens@1.1.4
+  - @paprika/collapsible@1.1.23
+  - @paprika/icon@2.1.6
+
 ## 1.1.18-next.0
 
 ### Patch Changes

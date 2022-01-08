@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.0.40
+
+### Patch Changes
+
+- e38dcb1: The ListBox's overall styling has changed (e.g., footer height & isMulti/hasTag always render an Icon & no divider, etc.)
+- Updated dependencies [63f9a05]
+- Updated dependencies [e38dcb1]
+- Updated dependencies [15b2a9a]
+  - @paprika/helpers@2.2.1
+  - @paprika/list-box@4.0.5
+  - @paprika/stylers@1.1.5
+  - @paprika/tokens@1.1.4
+  - @paprika/icon@2.1.6
+  - @paprika/raw-button@1.0.11
+  - @paprika/spinner@1.0.14
+
 ## 1.0.40-next.2
 
 ### Patch Changes
