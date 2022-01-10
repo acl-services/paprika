@@ -1,5 +1,21 @@
 <!-- content -->
 
+## 1.0.38
+
+### Patch Changes
+
+- Updated dependencies [15b2a9a]
+  - @paprika/stylers@1.1.5
+  - @paprika/tokens@1.1.4
+  - @paprika/button@1.1.11
+  - @paprika/data-field@1.0.32
+  - @paprika/data-grid@1.0.28
+  - @paprika/icon@2.1.6
+  - @paprika/overflow-menu@2.0.5
+  - @paprika/popover@2.0.3
+  - @paprika/raw-button@1.0.11
+  - @paprika/toast@1.1.19
+
 ## 1.0.38-next.1
 
 ### Patch Changes
