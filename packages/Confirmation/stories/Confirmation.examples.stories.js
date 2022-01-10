@@ -1,5 +1,6 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
+import { exampleStoryParameters } from "storybook/assets/storyParameters";
 import ExampleStory from "storybook/components/ExampleStory";
 import L10n from "@paprika/l10n";
 import ConfirmationExample from "./examples/ConfirmationExample";
@@ -12,16 +13,6 @@ import Confirmation from "../src";
 
 const storyName = getStoryName("Confirmation");
 
-const confirmationStoryParameters = {
-  parameters: {
-    viewMode: "story",
-    options: {
-      isToolshown: false,
-      docs: { disable: true },
-    },
-  },
-};
-
 export default {
   title: `${storyName}/Examples`,
   component: Confirmation,
@@ -33,7 +24,7 @@ export const basic = () => (
   </ExampleStory>
 );
 
-basic.story = confirmationStoryParameters;
+basic.story = exampleStoryParameters;
 
 export const locale = () => (
   <ExampleStory
@@ -47,7 +38,7 @@ export const locale = () => (
   </ExampleStory>
 );
 
-locale.story = confirmationStoryParameters;
+locale.story = exampleStoryParameters;
 
 export const trigger = () => (
   <>
@@ -77,7 +68,7 @@ export const trigger = () => (
   </>
 );
 
-trigger.story = confirmationStoryParameters;
+trigger.story = exampleStoryParameters;
 
 export const async = () => (
   <ExampleStory
@@ -89,4 +80,4 @@ export const async = () => (
   </ExampleStory>
 );
 
-async.story = confirmationStoryParameters;
+async.story = exampleStoryParameters;

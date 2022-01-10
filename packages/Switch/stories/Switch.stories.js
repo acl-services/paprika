@@ -12,7 +12,11 @@ export default {
   component: Switch,
 };
 
-export const showcase = Showcase;
+export const showcase = () => (
+  <ExampleStory storyName="Confirmation" tagline={ExampleStory.defaultTaglines.showcase}>
+    <Showcase />
+  </ExampleStory>
+);
 showcase.story = {
   decorators: [withKnobs],
   parameters: showcaseStoryParameters,

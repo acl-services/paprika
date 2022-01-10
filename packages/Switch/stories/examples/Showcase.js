@@ -1,6 +1,5 @@
 import React from "react";
 import { boolean, select, text } from "@storybook/addon-knobs";
-import ExampleStory from "storybook/components/ExampleStory";
 import * as types from "../../src/types";
 import SwitchExample from "../SwitchExample";
 
@@ -12,9 +11,5 @@ const getKnobs = () => ({
 });
 
 export default function Showcase() {
-  return (
-    <ExampleStory storyName="Switch" tagline={ExampleStory.defaultTaglines.showcase}>
-      <SwitchExample {...getKnobs()} />
-    </ExampleStory>
-  );
+  return <SwitchExample {...getKnobs()} />;
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import ExampleStory from "storybook/components/ExampleStory";
 import { select, text, boolean } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import L10n from "@paprika/l10n";
@@ -27,15 +26,11 @@ const confirmationProps = () => ({
 });
 
 const ConfirmationStory = props => (
-  <>
-    <ExampleStory storyName="Confirmation" tagline={ExampleStory.defaultTaglines.showcase}>
-      <L10n locale={select("locale", ["en", "de", "es", "fr", "ja", "pt", "zh"], "en")}>
-        <Confirmation onConfirm={handleConfirm} onClose={handleClose} {...props}>
-          <Confirmation.TriggerButton>Trigger</Confirmation.TriggerButton>
-        </Confirmation>
-      </L10n>
-    </ExampleStory>
-  </>
+  <L10n locale={select("locale", ["en", "de", "es", "fr", "ja", "pt", "zh"], "en")}>
+    <Confirmation onConfirm={handleConfirm} onClose={handleClose} {...props}>
+      <Confirmation.TriggerButton>Trigger</Confirmation.TriggerButton>
+    </Confirmation>
+  </L10n>
 );
 
 export default () => <ConfirmationStory {...confirmationProps()} />;
