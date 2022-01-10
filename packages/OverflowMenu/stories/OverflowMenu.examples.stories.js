@@ -1,6 +1,8 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import ExampleStory from "storybook/components/ExampleStory";
+import L10n from "@paprika/l10n";
+import { exampleStoryParameters } from "storybook/assets/storyParameters";
 import OverflowMenuExample from "./examples/OverflowMenuExample";
 import OverflowMenuMultiConfirmationExample from "./examples/OverflowMenuMultiConfirmationExample";
 import OverflowMenuDividersExample from "./examples/OverflowMenuDividersExample";
@@ -11,16 +13,6 @@ import OverflowMenuWithCustomClassExample from "./examples/OverflowMenuWithCusto
 import OverflowMenu from "../src";
 
 const storyName = getStoryName("OverflowMenu");
-
-const OverflowMenuStoryParameters = {
-  parameters: {
-    viewMode: "story",
-    options: {
-      isToolshown: false,
-      docs: { disable: true },
-    },
-  },
-};
 
 export default {
   title: `${storyName}/Examples`,
@@ -33,7 +25,7 @@ export const basic = () => (
   </ExampleStory>
 );
 
-basic.story = OverflowMenuStoryParameters;
+basic.story = exampleStoryParameters;
 
 export const locale = () => (
   <ExampleStory component="OverflowMenu" storyName="Locale" fileName="examples/OverflowMenuExample.js">
@@ -43,7 +35,7 @@ export const locale = () => (
   </ExampleStory>
 );
 
-locale.story = OverflowMenuStoryParameters;
+locale.story = exampleStoryParameters;
 
 export const modals = () => (
   <ExampleStory component="OverflowMenu" storyName="Modals" fileName="examples/OverflowMenuMultiConfirmationExample.js">
@@ -51,7 +43,7 @@ export const modals = () => (
   </ExampleStory>
 );
 
-modals.story = OverflowMenuStoryParameters;
+modals.story = exampleStoryParameters;
 
 export const dividers = () => (
   <ExampleStory component="OverflowMenu" storyName="Dividers" fileName="examples/OverflowMenuDividersExample.js">
@@ -59,7 +51,7 @@ export const dividers = () => (
   </ExampleStory>
 );
 
-dividers.story = OverflowMenuStoryParameters;
+dividers.story = exampleStoryParameters;
 
 export const longestStory = () => (
   <ExampleStory component="OverflowMenu" storyName="Longest Story" fileName="examples/OverflowMenuLongestExample.js">
@@ -67,7 +59,7 @@ export const longestStory = () => (
   </ExampleStory>
 );
 
-longestStory.story = OverflowMenuStoryParameters;
+longestStory.story = exampleStoryParameters;
 
 export const triggerExamples = () => (
   <ExampleStory component="OverflowMenu" storyName="Trigger Examples" fileName="examples/OverflowMenuTriggerExample.js">
@@ -75,7 +67,7 @@ export const triggerExamples = () => (
   </ExampleStory>
 );
 
-triggerExamples.story = OverflowMenuStoryParameters;
+triggerExamples.story = exampleStoryParameters;
 
 export const onClose = () => (
   <ExampleStory component="OverflowMenu" storyName="onClose Examples" fileName="examples/OverflowMenuOnCloseExample.js">
@@ -83,7 +75,7 @@ export const onClose = () => (
   </ExampleStory>
 );
 
-onClose.story = OverflowMenuStoryParameters;
+onClose.story = exampleStoryParameters;
 
 export const popoverContent = () => (
   <ExampleStory
@@ -95,4 +87,4 @@ export const popoverContent = () => (
   </ExampleStory>
 );
 
-popoverContent.story = OverflowMenuStoryParameters;
+popoverContent.story = exampleStoryParameters;

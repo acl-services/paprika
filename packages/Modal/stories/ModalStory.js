@@ -11,7 +11,6 @@ const LongBlock = styled.div`
   padding-bottom: 200vh;
 `;
 
-
 const ModalStory = ({ children }) => {
   const [isOpen, setIsOpen] = React.useState(true);
   const toggle = () => {

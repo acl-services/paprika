@@ -22,7 +22,7 @@ const LongBlock = styled.div`
   padding-bottom: 200vh;
 `;
 
-export const zIndex = () => {
+export const ZIndex = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const toggle = () => {
     setIsOpen(state => !state);
@@ -41,8 +41,8 @@ export const zIndex = () => {
             The <code>zIndex</code> prop of this <code>&lt;Modal&gt;</code> is also <code>99</code>.
           </p>
           <p>
-            Because the content is renderered as a <code>&lt;Portal&gt;</code> at the end of the DOM, it will be
-            painted on top.
+            Because the content is renderered as a <code>&lt;Portal&gt;</code> at the end of the DOM, it will be painted
+            on top.
           </p>
           {repeat(4, key => (
             <p key={key}>Hexagon heirloom kitsch DIY man bun cloud bread succulent meggings.</p>
@@ -72,34 +72,32 @@ export const zIndex = () => {
       </div>
     </div>
   );
-}
+};
 
-zIndex.story = {
+ZIndex.story = {
   name: "Z Index",
   parameters: testStoryParameters,
 };
 
 export const nestedPanel = () =>
-React.createElement(() => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const toggle = () => {
-    setIsOpen(state => !state);
-  };
+  React.createElement(() => {
+    const [isOpen, setIsOpen] = React.useState(false);
+    const toggle = () => {
+      setIsOpen(state => !state);
+    };
 
-  return (
-    <ModalStory>
-      <Modal.Content>
-        <Panel isOpen={isOpen} onClose={toggle}>
-          <Panel.Overlay />
-          <Panel.Trigger kind={Panel.types.kind.PRIMARY} onClick={toggle}>
-            {isOpen ? "close" : "open side panel"}
-          </Panel.Trigger>
-          <Panel.Header>Header</Panel.Header>
-        </Panel>
-      </Modal.Content>
-    </ModalStory>
-  );
-})
+    return (
+      <ModalStory>
+        <Modal.Content>
+          <Panel isOpen={isOpen} onClose={toggle}>
+            <Panel.Overlay />
+            <Panel.Trigger onClick={toggle}>{isOpen ? "close" : "open side panel"}</Panel.Trigger>
+            <Panel.Header>Header</Panel.Header>
+          </Panel>
+        </Modal.Content>
+      </ModalStory>
+    );
+  });
 
 nestedPanel.story = {
   name: "with nested Panel",
@@ -107,42 +105,42 @@ nestedPanel.story = {
 };
 
 export const wrappingModal = () =>
-React.createElement(() => {
-  const [isOpen, setIsOpen] = React.useState(true);
-  const toggle = () => {
-    setIsOpen(state => !state);
-  };
+  React.createElement(() => {
+    const [isOpen, setIsOpen] = React.useState(true);
+    const toggle = () => {
+      setIsOpen(state => !state);
+    };
 
-  return (
-    <LongBlock>
-      <Button onClick={toggle}>Open Modal</Button>
-      <Modal
-        isOpen={isOpen}
-        onClose={toggle}
-        size={select("Size", [types.SMALL, types.MEDIUM, types.LARGE], types.MEDIUM, "Modal")}
-      >
-        <form
-          onSubmit={event => {
-            alert("submitted");
-            event.preventDefault();
-          }}
+    return (
+      <LongBlock>
+        <Button onClick={toggle}>Open Modal</Button>
+        <Modal
+          isOpen={isOpen}
+          onClose={toggle}
+          size={select("Size", [types.SMALL, types.MEDIUM, types.LARGE], types.MEDIUM, "Modal")}
         >
-          <Modal.Header hasCloseButton={boolean("Has close button", true, "Header")}>Header</Modal.Header>
-          <Modal.Content>
-            <input type="text" defaultValue="press enter while focus" />
-          </Modal.Content>
-          <Modal.Footer>
-            <Button isSubmit isSemantic={false} kind={Button.types.kind.PRIMARY}>
-              Primary
-            </Button>
-          </Modal.Footer>
-        </form>
-      </Modal>
-    </LongBlock>
-  );
-})
+          <form
+            onSubmit={event => {
+              alert("submitted");
+              event.preventDefault();
+            }}
+          >
+            <Modal.Header hasCloseButton={boolean("Has close button", true, "Header")}>Header</Modal.Header>
+            <Modal.Content>
+              <input type="text" defaultValue="press enter while focus" />
+            </Modal.Content>
+            <Modal.Footer>
+              <Button isSubmit isSemantic={false} kind={Button.types.kind.PRIMARY}>
+                Primary
+              </Button>
+            </Modal.Footer>
+          </form>
+        </Modal>
+      </LongBlock>
+    );
+  });
 
 wrappingModal.story = {
-  name: "With form wrapping modal components",
+  name: "with form wrapping modal components",
   parameters: testStoryParameters,
 };

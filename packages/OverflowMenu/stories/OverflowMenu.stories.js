@@ -1,7 +1,9 @@
+import React from "react";
 import { showcaseStoryParameters } from "storybook/assets/storyParameters";
+import ExampleStory from "storybook/components/ExampleStory";
 import { withKnobs } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
-import ShowcaseStory from "./examples/Showcase";
+import Showcase from "./examples/Showcase";
 import OverflowMenu from "../src";
 
 export default {
@@ -9,7 +11,12 @@ export default {
   component: OverflowMenu,
 };
 
-export const showcase = ShowcaseStory;
+export const showcase = () => (
+  <ExampleStory storyName="OverlowMenu" tagline={ExampleStory.defaultTaglines.showcase}>
+    <Showcase />
+  </ExampleStory>
+);
+
 showcase.story = {
   decorators: [withKnobs],
   parameters: showcaseStoryParameters,

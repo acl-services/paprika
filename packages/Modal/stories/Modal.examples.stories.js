@@ -1,26 +1,17 @@
 import React from "react";
 import { repeat } from "storybook/assets/styles/common.styles";
 import ExampleStory from "storybook/components/ExampleStory";
+import { exampleStoryParameters } from "storybook/assets/storyParameters";
 import { getStoryName } from "storybook/storyTree";
-import ModalStory from "./ModalStory";
 import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import Button from "@paprika/button";
 import stylers from "@paprika/stylers";
+import ModalStory from "./ModalStory";
 
 import Modal from "../src";
 
 const storyName = getStoryName("Modal");
-
-const ModalStoryParameters = {
-  parameters: {
-    viewMode: "story",
-    options: {
-      isToolshown: false,
-      docs: { disable: true },
-    },
-  },
-};
 
 export default {
   title: `${storyName}/Examples`,
@@ -33,7 +24,7 @@ const DemoFullWidthContent = styled.div`
 `;
 
 export const basic = () => (
-  <ExampleStory component="Modal" storyName="Basic" fileName="">
+  <ExampleStory component="Modal" storyName="Basic" fileName="./ModalStory.js">
     <ModalStory>
       <Modal.Content>
         {repeat(25, key => (
@@ -44,20 +35,20 @@ export const basic = () => (
   </ExampleStory>
 );
 
-basic.story = ModalStoryParameters;
+basic.story = exampleStoryParameters;
 
 export const fullWidthContent = () => (
-  <ExampleStory component="Modal" storyName="with full-width content" fileName="">
+  <ExampleStory component="Modal" storyName="with full-width content" fileName="./ModalStory.js">
     <ModalStory>
       <DemoFullWidthContent />
     </ModalStory>
   </ExampleStory>
 );
 
-fullWidthContent.story = ModalStoryParameters;
+fullWidthContent.story = exampleStoryParameters;
 
 export const autoFocusInput = () => (
-  <ExampleStory component="Modal" storyName="with autofocus on input" fileName="">
+  <ExampleStory component="Modal" storyName="with autofocus on input">
     <Modal isOpen>
       <Modal.Content>
         <p>With input auto focus</p>
@@ -67,10 +58,10 @@ export const autoFocusInput = () => (
   </ExampleStory>
 );
 
-autoFocusInput.story = ModalStoryParameters;
+autoFocusInput.story = exampleStoryParameters;
 
 export const disableAutoFocus = () => (
-  <ExampleStory component="Modal" storyName="with disabled autofocus" fileName="">
+  <ExampleStory component="Modal" storyName="with disabled autofocus">
     <Modal isOpen>
       <Modal.FocusLock autoFocus={false} />
       <Modal.Header>Header</Modal.Header>
@@ -81,14 +72,14 @@ export const disableAutoFocus = () => (
   </ExampleStory>
 );
 
-disableAutoFocus.story = ModalStoryParameters;
+disableAutoFocus.story = exampleStoryParameters;
 
-export const focusHeading = () => {
+export const FocusHeading = () => {
   const refHeading = React.useRef(null);
   const [isOpen, setOpen] = React.useState(false);
 
   return (
-    <ExampleStory component="Modal" storyName="with focus on heading" fileName="">
+    <ExampleStory component="Modal" storyName="with focus on heading">
       <Button
         onClick={() => {
           setOpen(true);
@@ -124,10 +115,10 @@ export const focusHeading = () => {
   );
 };
 
-focusHeading.story = ModalStoryParameters;
+FocusHeading.story = exampleStoryParameters;
 
 export const headerColoured = () => (
-  <ExampleStory component="Modal" storyName="with header coloured" fileName="">
+  <ExampleStory component="Modal" storyName="with header coloured">
     <Modal isOpen>
       <Modal.FocusLock autoFocus={false} />
       <Modal.Header style={{ backgroundColor: tokens.color.blueLighten30 }}>
@@ -146,10 +137,10 @@ export const headerColoured = () => (
   </ExampleStory>
 );
 
-headerColoured.story = ModalStoryParameters;
+headerColoured.story = exampleStoryParameters;
 
 export const truncateHeader = () => (
-  <ExampleStory component="Modal" storyName="with truncated (single line) header text" fileName="">
+  <ExampleStory component="Modal" storyName="with truncated (single line) header text">
     <Modal isOpen>
       <Modal.FocusLock autoFocus={false} />
       <Modal.Header isSingleLine>
@@ -168,10 +159,10 @@ export const truncateHeader = () => (
   </ExampleStory>
 );
 
-truncateHeader.story = ModalStoryParameters;
+truncateHeader.story = exampleStoryParameters;
 
 export const noCloseButton = () => (
-  <ExampleStory component="Modal" storyName="with truncated (single line) header text and no close button" fileName="">
+  <ExampleStory component="Modal" storyName="with truncated (single line) header text and no close button">
     <Modal isOpen>
       <Modal.FocusLock autoFocus={false} />
       <Modal.Header isSingleLine hasCloseButton={false}>
@@ -190,10 +181,10 @@ export const noCloseButton = () => (
   </ExampleStory>
 );
 
-noCloseButton.story = ModalStoryParameters;
+noCloseButton.story = exampleStoryParameters;
 
 export const withLargeModal = () => (
-  <ExampleStory component="Modal" storyName="with large modal and inputs and contents" fileName="">
+  <ExampleStory component="Modal" storyName="with large modal and inputs and contents">
     <Modal isOpen size={Modal.types.size.LARGE}>
       <Modal.Header>Large Modal</Modal.Header>
       <Modal.Content>
@@ -214,4 +205,4 @@ export const withLargeModal = () => (
   </ExampleStory>
 );
 
-withLargeModal.story = ModalStoryParameters;
+withLargeModal.story = exampleStoryParameters;
