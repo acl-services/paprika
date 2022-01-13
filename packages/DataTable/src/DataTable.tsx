@@ -182,23 +182,22 @@ const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
 
   const wrapperRef = React.useRef<HTMLElement>(null);
 
-  const containerMaxHeight = extractedResizeContainer.element.getBoundingClientRect().height;
-
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     if (wrapperRef.current) {
-      wrapperRef.current.style.height = `${containerMaxHeight}px`;
+      const maxContainerHeight = extractedResizeContainer?.props?.style?.height;
+      wrapperRef.current.style.height = maxContainerHeight || "100%";
     }
 
     const t = setTimeout(() => {
       if (wrapperRef.current) {
         wrapperRef.current.style.height = "auto";
       }
-    }, 1000);
+    }, 50);
 
     return () => {
       clearTimeout(t);
     };
-  }, [data.length, containerMaxHeight]);
+  }, [data.length, extractedResizeContainer.props.style.height]);
 
   return (
     <ThemeContext.Provider value={{ borderType, isHeaderSticky, hasZebraStripes }}>
