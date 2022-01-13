@@ -1,27 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
 import * as constants from "@paprika/constants/lib/Constants";
 import * as sc from "./Spinner.styles";
 
-const spinnerSize = {
-  large: "spinner--large",
-  medium: "spinner--medium",
-  small: "spinner--small",
-};
-
 const Spinner = ({ a11yText, className, caption, isDark, size, ...moreProps }) => {
-  const rootClasses = classNames(className, spinnerSize[size]);
-
   const bestAria = a11yText || caption || "Loading"; // TODO: l10n
 
   return (
-    <sc.Spinner className={rootClasses} {...moreProps} data-pka-anchor="spinner" isDark={isDark}>
-      <div className="spinner__visual" />
-      <div className="spinner__caption">{caption}</div>
-      <div className="spinner__aria-alert" role="alert" aria-live="polite">
+    <sc.Spinner isDark={isDark} size={size} className={className} {...moreProps} data-pka-anchor="spinner">
+      <sc.SpinnerVisual />
+      <sc.Caption>{caption}</sc.Caption>
+      <sc.AriaAlert role="alert" aria-live="polite">
         {bestAria}
-      </div>
+      </sc.AriaAlert>
     </sc.Spinner>
   );
 };
