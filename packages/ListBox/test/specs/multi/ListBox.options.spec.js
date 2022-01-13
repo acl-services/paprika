@@ -31,24 +31,17 @@ function renderComponent(props = {}, children = childrenContent) {
     selectJupiter: () => {
       fireEvent.click(rendered.getByText(/jupiter/i));
     },
-    expectDropdownIsHidden: () => {
-      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toBeTruthy();
-    },
-    expectDropdownIsNotHidden: () => {
-      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toMatch(/false/i);
-    },
   };
 }
 
 describe("ListBox.Options", () => {
   it("should have custom checkboxes", () => {
-    const renderCheckbox = jest.fn(({ isSelected }) => {
-      return isSelected ? "✅" : "🙅‍";
-    });
-    const { getByText, queryByText } = renderComponent({}, [
+    const renderCheckbox = jest.fn(({ isSelected }) => (isSelected ? "✅" : "🙅‍"));
+    const { getByText, queryByText, openSelect } = renderComponent({}, [
       <ListBox.Option key="option1">{renderCheckbox}</ListBox.Option>,
     ]);
 
+    openSelect();
     expect(renderCheckbox).toHaveBeenCalled();
     expect(getByText(/🙅‍/i)).toBeInTheDocument();
     expect(queryByText(/✅/i)).not.toBeInTheDocument();
@@ -56,15 +49,11 @@ describe("ListBox.Options", () => {
 
   it("should have correct checkbox beside selected and non-selected options", () => {
     function createOptions() {
-      return ["option1", "option2", "option3"].map(option => {
-        return (
-          <ListBox.Option key={option}>
-            {({ isSelected }) => {
-              return isSelected ? `✅ ${option}` : `🙅 ${option}‍`;
-            }}
-          </ListBox.Option>
-        );
-      });
+      return ["option1", "option2", "option3"].map(option => (
+        <ListBox.Option key={option}>
+          {({ isSelected }) => (isSelected ? `✅ ${option}` : `🙅 ${option}‍`)}
+        </ListBox.Option>
+      ));
     }
 
     const { getByText, getByTestId } = renderComponent({}, createOptions());

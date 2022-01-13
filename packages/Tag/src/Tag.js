@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
 import * as sc from "./Tag.styles";
 import * as types from "./types";
 
@@ -31,11 +32,14 @@ export default function Tag(props) {
           a11yText={a11yText || a11yTagText}
           isDisabled={isDisabled}
           size={size}
+          theme={moreProps.theme}
           data-pka-anchor="tag.remove"
           data-qa-anchor="paprika.tag.remove"
           onClick={handleRemove}
           onKeyDown={handleDeleteKeyDown}
-        />
+        >
+          <TimesCircleIcon />
+        </sc.Delete>
       ) : null}
     </>
   );

@@ -14,6 +14,8 @@ de:
     close: Schließen
     dataGrid:
       a11yTextMessage: "{{value}}. Sie befinden sich in Reihe {{rowIndex}}, Spalte {{columnIndex}}. Ignorieren Sie die folgenden Informationen:"
+      rows: "Reihen: {{rowCount}}"
+      columns: "Spalten: {{columnCount}}"
     uploader:
       drop_files: Dateien zum Hochladen ablegen
       drop_files_here_or: Legen Sie Dateien zum Hochladen hier ab oder

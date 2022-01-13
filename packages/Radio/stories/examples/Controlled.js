@@ -27,13 +27,11 @@ const ExampleStory = () => {
       </StoryHeading>
       <Gap.Small />
       <Radio.Group onChange={handleRadioChange}>
-        {radioItems.map((item, index) => {
-          return (
-            <Radio key={item} isChecked={index === checkedIndex}>
-              {item}
-            </Radio>
-          );
-        })}
+        {radioItems.map((item, index) => (
+          <Radio key={item} isChecked={index === checkedIndex}>
+            {item}
+          </Radio>
+        ))}
       </Radio.Group>
       <Gap />
       Set selection state:{" "}

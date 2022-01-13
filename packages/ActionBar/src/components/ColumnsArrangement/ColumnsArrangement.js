@@ -5,9 +5,10 @@ import Input from "@paprika/input";
 import Popover from "@paprika/popover";
 import Sortable from "@paprika/sortable";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import { extractChildren } from "@paprika/helpers";
+import { extractChildren, extractChildrenProps } from "@paprika/helpers";
 import tokens from "@paprika/tokens";
 import ColumnManagingItem from "./ColumnsArrangementItem";
+import PopoverContentPropsCollector from "./PopoverContentPropsCollector";
 import ColumnDefinition from "./ColumnDefinition";
 import * as sc from "./ColumnsArrangement.styles";
 
@@ -52,16 +53,18 @@ export default function ColumnsArrangement(props) {
   const { "ColumnsArrangement.ColumnDefinition": extractedColumnDefinitions } = extractChildren(children, [
     "ColumnsArrangement.ColumnDefinition",
   ]);
-  const columns = extractedColumnDefinitions.reduce((columns, columnDefinition) => {
-    return {
+  const columns = extractedColumnDefinitions.reduce(
+    (columns, columnDefinition) => ({
       ...columns,
       [columnDefinition.props.id]: {
         label: columnDefinition.props.label,
         isHidden: columnDefinition.props.isHidden,
         isDisabled: columnDefinition.props.isDisabled,
       },
-    };
-  }, {});
+    }),
+    {}
+  );
+  const popoverContentProps = extractChildrenProps(children, PopoverContentPropsCollector);
 
   const hiddenColumns = Object.keys(columns).filter(columnId => columns[columnId].isHidden);
 
@@ -106,7 +109,7 @@ export default function ColumnsArrangement(props) {
           )}
         </Popover.Trigger>
       )}
-      <Popover.Content>
+      <Popover.Content {...popoverContentProps}>
         <Popover.Card>
           <Input
             data-pka-anchor="actionBar.columnsArrangement.filter"
@@ -167,3 +170,4 @@ ColumnsArrangement.propTypes = propTypes;
 ColumnsArrangement.defaultProps = defaultProps;
 ColumnsArrangement.displayName = "ActionBar.ColumnsArrangement";
 ColumnsArrangement.ColumnDefinition = ColumnDefinition;
+ColumnsArrangement.PopoverContent = PopoverContentPropsCollector;

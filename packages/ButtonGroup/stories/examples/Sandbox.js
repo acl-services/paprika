@@ -6,6 +6,7 @@ import { boolean, select } from "@storybook/addon-knobs";
 import { Story, Rule } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
 import Calendar from "@paprika/icon/lib/Calendar";
+import tokens from "@paprika/tokens";
 import ButtonGroup from "../../src";
 import * as types from "../../src/types";
 
@@ -49,13 +50,19 @@ const ExampleStory = props => {
         <>
           <ButtonGroup.Item value={3}>Three Three Three Three Three Three</ButtonGroup.Item>
           <ButtonGroup.Item value="four">
-            <Calendar />
+            <Calendar size={tokens.icon.sizeSm} />
           </ButtonGroup.Item>
         </>
       </ButtonGroup>
       <p>
         <button onClick={handleFocus}>Focus Post</button>
       </p>
+      <Rule />
+      <ButtonGroup {...props} ref={refButtonGroup}>
+        <ButtonGroup.Item value="one" kind={ButtonGroup.Item.types.kind.PRIMARY}>
+          A single button in the group
+        </ButtonGroup.Item>
+      </ButtonGroup>
     </Story>
   );
 };

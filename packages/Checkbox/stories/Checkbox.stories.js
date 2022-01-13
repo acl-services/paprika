@@ -4,6 +4,7 @@ import { withKnobs } from "@storybook/addon-knobs";
 import { Story } from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
 import CheckboxAlign from "./examples/CheckboxAlign";
+import Variations from "./examples/Variations";
 import CheckboxGrouping from "./examples/CheckboxGrouping";
 import ShowcaseStory from "./examples/Showcase";
 
@@ -11,7 +12,8 @@ const storyName = getStoryName("Checkbox");
 
 storiesOf(storyName, module)
   .addDecorator(withKnobs)
-  .add("Showcase", ShowcaseStory);
+  .add("Showcase", ShowcaseStory)
+  .add("Variations", Variations);
 
 storiesOf(`${storyName}/Examples`, module)
   .add("Checkbox group", () => (

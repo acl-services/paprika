@@ -5,18 +5,18 @@ import { TextLine, Nav } from "../helpers";
 
 export default function PanelDefaultSticky() {
   return (
-    <React.Fragment>
+    <>
       <Nav />
       <p>
         <Panel data-pka-anchor="panel" isOpen offset={{ top: 40 }}>
           <Panel.Header>
-            <Heading level={2}>Cypress</Heading>
+            <Heading>Cypress</Heading>
           </Panel.Header>
         </Panel>
       </p>
       <div style={{ width: "400px", margin: "25px" }}>
         <TextLine repeat={100} />
       </div>
-    </React.Fragment>
+    </>
   );
 }

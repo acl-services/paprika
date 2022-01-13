@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable react/no-array-index-key */
 import React from "react";
 import L10n from "@paprika/l10n";
@@ -111,6 +110,7 @@ export default function Variations() {
                 key={theme[1]}
                 theme={theme[1]}
                 size={permutation.tagSize}
+                onRemove={handleRemove}
                 avatar={
                   <Avatar isRound size={permutation.avatarSize}>
                     <CalendarIcon />
@@ -134,6 +134,7 @@ export default function Variations() {
                 key={theme[1]}
                 theme={theme[1]}
                 size={permutation.tagSize}
+                onRemove={handleRemove}
                 avatar={
                   <Avatar isRound size={permutation.avatarSize}>
                     <CalendarIcon />

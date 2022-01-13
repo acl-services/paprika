@@ -1,5 +1,382 @@
 # Changelog
 
+## 4.0.5
+
+### Patch Changes
+
+- e38dcb1: The ListBox's overall styling has changed (e.g., footer height & isMulti/hasTag always render an Icon & no divider, etc.)
+- Updated dependencies [63f9a05]
+- Updated dependencies [15b2a9a]
+  - @paprika/helpers@2.2.1
+  - @paprika/stylers@1.1.5
+  - @paprika/tokens@1.1.4
+  - @paprika/button@1.1.11
+  - @paprika/checkbox@1.0.21
+  - @paprika/icon@2.1.6
+  - @paprika/input@4.0.17
+  - @paprika/popover@2.0.3
+  - @paprika/raw-button@1.0.11
+  - @paprika/toast@1.1.19
+
+## 4.0.5-next.2
+
+### Patch Changes
+
+- Updated dependencies [15b2a9a]
+  - @paprika/stylers@1.1.5-next.0
+  - @paprika/tokens@1.1.4-next.0
+  - @paprika/button@1.1.11-next.1
+  - @paprika/checkbox@1.0.21-next.1
+  - @paprika/input@4.0.17-next.1
+  - @paprika/popover@2.0.3-next.1
+  - @paprika/raw-button@1.0.11-next.0
+  - @paprika/toast@1.1.19-next.1
+  - @paprika/icon@2.1.6-next.0
+
+## 4.0.5-next.1
+
+### Patch Changes
+
+- Updated dependencies [63f9a05]
+  - @paprika/helpers@2.2.1-next.0
+  - @paprika/button@1.1.11-next.0
+  - @paprika/checkbox@1.0.21-next.0
+  - @paprika/input@4.0.17-next.0
+  - @paprika/popover@2.0.3-next.0
+  - @paprika/toast@1.1.19-next.0
+
+## 4.0.5-next.0
+
+### Patch Changes
+
+- e38dcb1: The ListBox's overall styling has changed (e.g., footer height & isMulti/hasTag always render an Icon & no divider, etc.)
+
+## 4.0.4
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5
+  - @paprika/button@1.1.10
+  - @paprika/input@4.0.16
+  - @paprika/toast@1.1.18
+
+## 4.0.4-next.0
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5-next.0
+  - @paprika/button@1.1.10-next.0
+  - @paprika/input@4.0.16-next.0
+  - @paprika/toast@1.1.18-next.0
+
+## 4.0.3
+
+### Patch Changes
+
+- Updated dependencies [036fe83]
+- Updated dependencies [514dc04]
+- Updated dependencies [63fd491]
+- Updated dependencies [9e15465]
+- Updated dependencies [343d673]
+- Updated dependencies [80361b2]
+  - @paprika/tokens@1.1.3
+  - @paprika/button@1.1.9
+  - @paprika/input@4.0.15
+  - @paprika/helpers@2.2.0
+  - @paprika/icon@2.1.4
+  - @paprika/popover@2.0.2
+  - @paprika/raw-button@1.0.10
+  - @paprika/stylers@1.1.4
+  - @paprika/toast@1.1.17
+
+## 4.0.3-next.3
+
+### Patch Changes
+
+- Updated dependencies [80361b2]
+  - @paprika/helpers@2.2.0-next.1
+  - @paprika/button@1.1.9-next.3
+  - @paprika/input@4.0.15-next.4
+  - @paprika/popover@2.0.2-next.2
+  - @paprika/toast@1.1.17-next.3
+
+## 4.0.3-next.2
+
+### Patch Changes
+
+- Updated dependencies [036fe83]
+  - @paprika/tokens@1.1.3-next.0
+  - @paprika/button@1.1.9-next.2
+  - @paprika/icon@2.1.4-next.0
+  - @paprika/input@4.0.15-next.2
+  - @paprika/popover@2.0.2-next.1
+  - @paprika/raw-button@1.0.10-next.0
+  - @paprika/stylers@1.1.4-next.0
+  - @paprika/toast@1.1.17-next.2
+
+## 4.0.3-next.1
+
+### Patch Changes
+
+- Updated dependencies [343d673]
+  - @paprika/helpers@2.1.4-next.0
+  - @paprika/button@1.1.9-next.1
+  - @paprika/input@4.0.15-next.1
+  - @paprika/popover@2.0.2-next.0
+  - @paprika/toast@1.1.17-next.1
+
+## 4.0.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [514dc04]
+  - @paprika/button@1.1.9-next.0
+  - @paprika/input@4.0.15-next.0
+  - @paprika/toast@1.1.17-next.0
+
+## 4.0.2
+
+### Patch Changes
+
+- Updated dependencies [c3a7523]
+- Updated dependencies [59f5875]
+- Updated dependencies [4358ed8]
+  - @paprika/l10n@1.1.15
+  - @paprika/toast@1.1.16
+  - @paprika/input@4.0.14
+
+## 4.0.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [59f5875]
+- Updated dependencies [4358ed8]
+  - @paprika/toast@1.1.16-next.0
+  - @paprika/l10n@1.1.15-next.0
+  - @paprika/input@4.0.14-next.0
+
+## 4.0.1
+
+### Patch Changes
+
+- Updated dependencies [1236ea1]
+- Updated dependencies [fd24fbe]
+- Updated dependencies [ab8d494]
+  - @paprika/button@1.1.8
+  - @paprika/stylers@1.1.3
+  - @paprika/tokens@1.1.2
+  - @paprika/icon@2.1.3
+  - @paprika/input@4.0.13
+  - @paprika/popover@2.0.1
+  - @paprika/raw-button@1.0.9
+  - @paprika/toast@1.1.15
+
+## 4.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [1236ea1]
+- Updated dependencies [ab8d494]
+  - @paprika/button@1.1.8-next.0
+  - @paprika/tokens@1.1.2-next.0
+  - @paprika/input@4.0.13-next.0
+  - @paprika/toast@1.1.15-next.0
+  - @paprika/icon@2.1.3-next.0
+  - @paprika/popover@2.0.1-next.0
+  - @paprika/raw-button@1.0.9-next.0
+  - @paprika/stylers@1.1.3-next.0
+
+## 4.0.0
+
+### Major Changes
+
+- 371d3d3: Refactored Popover to not add content to the dom when closed by default
+
+### Patch Changes
+
+- Updated dependencies [371d3d3]
+- Updated dependencies [27e1439]
+  - @paprika/popover@2.0.0
+  - @paprika/icon@2.1.2
+  - @paprika/tokens@1.1.1
+  - @paprika/button@1.1.7
+  - @paprika/input@4.0.12
+  - @paprika/raw-button@1.0.8
+  - @paprika/stylers@1.1.2
+  - @paprika/toast@1.1.14
+
+## 4.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies [27e1439]
+  - @paprika/icon@2.1.2-next.0
+  - @paprika/tokens@1.1.1-next.0
+  - @paprika/button@1.1.7-next.0
+  - @paprika/input@4.0.12-next.0
+  - @paprika/toast@1.1.14-next.0
+  - @paprika/popover@2.0.0-next.1
+  - @paprika/raw-button@1.0.8-next.0
+  - @paprika/stylers@1.1.2-next.0
+
+## 4.0.0-next.0
+
+### Major Changes
+
+- 371d3d3: Refactored Popover to not add content to the dom when closed by default
+
+### Patch Changes
+
+- Updated dependencies [371d3d3]
+  - @paprika/popover@2.0.0-next.0
+
+## 3.6.2
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+- Updated dependencies [fd94ddb]
+  - @paprika/tokens@1.1.0
+  - @paprika/button@1.1.6
+  - @paprika/icon@2.1.1
+  - @paprika/input@4.0.11
+  - @paprika/popover@1.2.6
+  - @paprika/raw-button@1.0.7
+  - @paprika/stylers@1.1.1
+  - @paprika/toast@1.1.13
+
+## 3.6.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+  - @paprika/tokens@1.1.0-next.0
+  - @paprika/button@1.1.6-next.0
+  - @paprika/icon@2.1.1-next.0
+  - @paprika/input@4.0.11-next.0
+  - @paprika/popover@1.2.6-next.0
+  - @paprika/raw-button@1.0.7-next.0
+  - @paprika/stylers@1.1.1-next.0
+  - @paprika/toast@1.1.13-next.0
+
+## 3.6.1
+
+### Patch Changes
+
+- Updated dependencies [5e1c563]
+  - @paprika/icon@2.1.0
+  - @paprika/button@1.1.5
+  - @paprika/input@4.0.10
+  - @paprika/toast@1.1.12
+
+## 3.6.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [5e1c563]
+  - @paprika/icon@2.1.0-next.0
+  - @paprika/button@1.1.5-next.0
+  - @paprika/input@4.0.10-next.0
+  - @paprika/toast@1.1.12-next.0
+
+## 3.6.0
+
+### Minor Changes
+
+- 3316b43: Listbox interaction performance improvements
+
+## 3.6.0-next.0
+
+### Minor Changes
+
+- 3316b43: Listbox interaction performance improvements
+
+## 3.5.1
+
+### Patch Changes
+
+- a56eed3: Don't focus trigger if there's no ref
+
+## 3.5.1-next.0
+
+### Patch Changes
+
+- a56eed3: Don't focus trigger if there's no ref
+
+## 3.5.0
+
+### Minor Changes
+
+- ca237ea: - Support all css values for `height` prop for `<ListBox>`
+  - Support `hasClearButton` prop for `<ListBox.Filter>`
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+  - @paprika/stylers@1.1.0
+  - @paprika/button@1.1.4
+  - @paprika/input@4.0.9
+  - @paprika/popover@1.2.5
+  - @paprika/raw-button@1.0.6
+  - @paprika/toast@1.1.11
+
+## 3.5.0-next.0
+
+### Minor Changes
+
+- ca237ea: - Support all css values for `height` prop for `<ListBox>`
+  - Support `hasClearButton` prop for `<ListBox.Filter>`
+
+### Patch Changes
+
+- Updated dependencies [ca237ea]
+  - @paprika/stylers@1.1.0-next.0
+  - @paprika/button@1.1.4-next.0
+  - @paprika/input@4.0.9-next.0
+  - @paprika/popover@1.2.5-next.0
+  - @paprika/raw-button@1.0.6-next.0
+  - @paprika/toast@1.1.11-next.0
+
+## 3.4.5
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14
+  - @paprika/input@4.0.8
+  - @paprika/toast@1.1.10
+
+## 3.4.5-next.0
+
+### Patch Changes
+
+- Updated dependencies [825c870]
+  - @paprika/l10n@1.1.14-next.0
+  - @paprika/input@4.0.8-next.0
+  - @paprika/toast@1.1.10-next.0
+
+## 3.4.4
+
+### Patch Changes
+
+- Updated dependencies [c0ebd9b]
+  - @paprika/icon@2.0.0
+  - @paprika/button@1.1.3
+  - @paprika/input@4.0.7
+  - @paprika/toast@1.1.9
+
+## 3.4.4-next.0
+
+### Patch Changes
+
+- Updated dependencies [c0ebd9b]
+  - @paprika/icon@2.0.0-next.0
+  - @paprika/button@1.1.3-next.0
+  - @paprika/input@4.0.7-next.0
+  - @paprika/toast@1.1.9-next.0
+
 ## 3.4.3
 
 ### Patch Changes

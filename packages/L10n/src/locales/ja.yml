@@ -14,6 +14,8 @@ ja:
     close: 閉じる
     dataGrid:
       a11yTextMessage: "{{value}}. 行 {{rowIndex}}、列 {{columnIndex}} の位置にいます。次の情報は無視してください。"
+      rows: "行: {{rowCount}}"
+      columns: "列: {{columnCount}}"
     uploader:
       drop_files: アップロードするファイルをドロップ
       drop_files_here_or: アップロードするファイルをここにドロップまたは

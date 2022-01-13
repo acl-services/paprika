@@ -6,6 +6,6 @@ export const titleStyles = styled.h1`
   box-sizing: border-box;
   color: ${tokens.color.black};
   ${stylers.fontSize(0)};
-  margin: 0;
+  margin: ${tokens.spaceSm} 0;
   ${stylers.truncateText};
 `;

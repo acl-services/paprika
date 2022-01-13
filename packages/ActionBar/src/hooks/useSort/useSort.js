@@ -31,7 +31,7 @@ export default function useSort({ data = null, columns, maxSortFields = null }) 
     setSortedFields(prevFields => [
       ...prevFields,
       {
-        id: `filter-item-${uuidv4}`,
+        id: `filter-item-${uuidv4()}`,
         columnId: columns[0].id,
         direction: "ASCEND",
       },

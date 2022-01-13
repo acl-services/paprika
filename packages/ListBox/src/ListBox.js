@@ -25,6 +25,7 @@ export function ListBox(props) {
 
     // exclude from moreProps
     hasError,
+    hasTag,
     isDisabled,
     isInline: excludedIsInline,
     isMulti,
@@ -111,6 +112,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
 
     // exclude from moreProps
     hasError,
+    hasTag,
     isDisabled,
     isInline,
     isReadOnly,
@@ -205,11 +207,14 @@ export const propTypes = {
   /** If ListBox is in an error state  */
   hasError: PropTypes.bool,
 
+  /** If there is a tag */
+  hasTag: PropTypes.bool,
+
   /** Has implicit "All items selected" value when no item is selected */
   hasImplicitAll: PropTypes.bool,
 
-  /** Indicate which is the height for the options container */
-  height: PropTypes.number,
+  /** The maximum height for the options container. Using a number implies px units. */
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
   /** Disables the ListBox if true */
   isDisabled: PropTypes.bool,
@@ -249,6 +254,7 @@ export const propTypes = {
 export const defaultProps = {
   children: null,
   hasError: false,
+  hasTag: false,
   hasImplicitAll: false,
   height: 200,
   isDisabled: false,

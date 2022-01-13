@@ -6,6 +6,8 @@ import tokens from "@paprika/tokens";
 
 export const toInt = token => Number.parseInt(token, 10);
 
+export const cssValue = value => (Number.isNaN(Number(value)) ? value : `${value}px`);
+
 //
 // Typography
 //
@@ -38,13 +40,9 @@ function zIsValid(level) {
   return /^-1$|^[0-7]$|^inherit$|^initial$|^auto$/.test(level);
 }
 
-export const z = level => {
-  return zIsValid(level) ? `z-index: ${level};` : `z-index: 1;`;
-};
+export const z = level => (zIsValid(level) ? `z-index: ${level};` : `z-index: 1;`);
 
-export const zValue = level => {
-  return zIsValid(level) ? level : 1;
-};
+export const zValue = level => (zIsValid(level) ? level : 1);
 
 //
 // Color

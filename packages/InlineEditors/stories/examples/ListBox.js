@@ -165,9 +165,7 @@ export function ListBoxMultipleStory() {
 
   function handleSubmit(indexes, options) {
     setIsEditing(false);
-    const nextValue = indexes.map(index => {
-      return options[index].value;
-    });
+    const nextValue = indexes.map(index => options[index].value);
     setValue(nextValue);
   }
 
@@ -183,15 +181,13 @@ export function ListBoxMultipleStory() {
         onChange={props => {
           console.log("onChange", props);
         }}
-        renderValue={indexes => {
-          return (
-            <Tags>
-              {indexes.map(index => {
-                return <Tag key={subscriptionTypes[index - 1].label}>{subscriptionTypes[index - 1].label}</Tag>;
-              })}
-            </Tags>
-          );
-        }}
+        renderValue={indexes => (
+          <Tags>
+            {indexes.map(index => (
+              <Tag key={subscriptionTypes[index - 1].label}>{subscriptionTypes[index - 1].label}</Tag>
+            ))}
+          </Tags>
+        )}
         onSubmit={handleSubmit}
       >
         {subscriptionTypes.map(subscription => (

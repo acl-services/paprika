@@ -103,19 +103,21 @@ export default function ListBoxWithTags(props) {
     "ListBox.Content": {},
   };
 
-  const filteredChildren = React.useMemo(() => {
-    return React.Children.map(children, child => {
-      if (
-        child &&
-        ["ListBox.Trigger", "ListBox.Box", "ListBox.Filter", "ListBox.Content"].includes(child.type.displayName)
-      ) {
-        const { children, ...moreProps } = child.props;
-        extendedProps[child.type.displayName] = moreProps;
-        return null;
-      }
-      return child;
-    });
-  }, [children, extendedProps]);
+  const filteredChildren = React.useMemo(
+    () =>
+      React.Children.map(children, child => {
+        if (
+          child &&
+          ["ListBox.Trigger", "ListBox.Box", "ListBox.Filter", "ListBox.Content"].includes(child.type.displayName)
+        ) {
+          const { children, ...moreProps } = child.props;
+          extendedProps[child.type.displayName] = moreProps;
+          return null;
+        }
+        return child;
+      }),
+    [children, extendedProps]
+  );
 
   React.useEffect(() => {
     if (refListBox.current && refFilter.current) {
@@ -127,7 +129,7 @@ export default function ListBoxWithTags(props) {
 
   return (
     <div ref={refDivRoot}>
-      <ListBox ref={refListBox} isMulti size={validSize} onChange={handleChange} {...moreProps}>
+      <ListBox ref={refListBox} isMulti hasTag size={validSize} onChange={handleChange} {...moreProps}>
         <ListBox.Content {...extendedProps["ListBox.Content"]} />
         <ListBox.Trigger {...extendedProps["ListBox.Trigger"]}>
           {(...[, , , attributes]) => <TriggerWithTags {...triggerProps} {...attributes} />}
@@ -148,9 +150,11 @@ export default function ListBoxWithTags(props) {
           <ListBox.RawItem>{noResultsMessage}</ListBox.RawItem>
         )}
         {allOptionsAreSelected && (
-          <ListBox.RawItem>
-            {allOptionsAreSelectedMessage || t("listBoxWithTags.all_items_have_been_selected")}
-          </ListBox.RawItem>
+          <span>
+            <ListBox.RawItem>
+              {allOptionsAreSelectedMessage || t("listBoxWithTags.all_items_have_been_selected")}
+            </ListBox.RawItem>
+          </span>
         )}
       </ListBox>
     </div>

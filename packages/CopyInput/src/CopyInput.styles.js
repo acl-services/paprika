@@ -20,5 +20,7 @@ export const Value = styled.div`
 `;
 
 export const HiddenInput = styled(Input)`
-  display: none;
+  &[data-pka-anchor="input"] {
+    display: none;
+  }
 `;

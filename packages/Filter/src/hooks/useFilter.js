@@ -95,5 +95,11 @@ export default function useFilter({
     filteredData: state.filteredData,
     getFilterProps,
     getFilterItemProps,
+    updateData: newData => {
+      dispatch({
+        type: actionTypes.updateData,
+        payload: { columns, newData },
+      });
+    },
   };
 }

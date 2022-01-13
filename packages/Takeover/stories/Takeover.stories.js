@@ -71,9 +71,7 @@ const Example = () => (
 
 storiesOf(storyName, module)
   .addDecorator(withKnobs)
-  .add("Showcase", () => {
-    return <Example />;
-  });
+  .add("Showcase", () => <Example />);
 
 storiesOf(`${storyName}/Examples`, module)
   .add("Basic", () => (

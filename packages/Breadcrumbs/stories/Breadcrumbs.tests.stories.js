@@ -1,7 +1,7 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import { testStoryParameters } from "storybook/assets/storyParameters";
-import Screener from "./examples/Screener";
+import Screener from "./examples/Variations";
 import RerenderBreadcrumbs from "./examples/RerenderBreadcrumbs";
 
 const storyName = getStoryName("Breadcrumbs");

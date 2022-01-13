@@ -1,11 +1,12 @@
 import ReactDOM from "react-dom";
 import React from "react";
 import PropTypes from "prop-types";
+import { DOMElementType } from "..";
 
 const propTypes = {
   children: PropTypes.node,
   active: PropTypes.bool,
-  container: PropTypes.node,
+  container: DOMElementType,
 };
 
 const defaultProps = {
@@ -17,11 +18,7 @@ const defaultProps = {
 function Portal(props) {
   const { active, children, container } = props;
 
-  return active ? (
-    ReactDOM.createPortal(children, container || document.body)
-  ) : (
-    <React.Fragment>{children}</React.Fragment>
-  );
+  return active ? ReactDOM.createPortal(children, container || document.body) : <>{children}</>;
 }
 
 Portal.propTypes = propTypes;

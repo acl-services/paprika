@@ -14,6 +14,8 @@ es:
     close: Cerrar
     dataGrid:
       a11yTextMessage: "{{value}}. Está en la fila {{rowIndex}}, columna {{columnIndex}}. Haga caso omiso de la siguiente información:"
+      rows: "Filas: {{rowCount}}"
+      columns: "Columnas: {{columnCount}}"
     uploader:
       drop_files: Soltar archivos a cargar
       drop_files_here_or: Suelte los archivos a cargar aquí o

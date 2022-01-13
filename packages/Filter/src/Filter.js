@@ -32,6 +32,7 @@ export default function Filter(props) {
     operator,
     rulesByType,
     zIndex,
+    ...moreProps
   } = props;
   const I18n = useI18n();
   const filterRef = React.useRef(null);
@@ -64,6 +65,7 @@ export default function Filter(props) {
         isOpen={isOpen}
         onClose={handleCancel}
         zIndex={zIndex}
+        {...moreProps}
       >
         <Panel.Header>
           <sc.PanelHeaderWrapper>

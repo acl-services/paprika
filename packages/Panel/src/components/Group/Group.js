@@ -30,17 +30,13 @@ export default function Group(props) {
 
   const offsetScroll = useOffsetScroll(offsetY);
 
-  if (sidePanels.filter(sidePanel => !sidePanel.props.isOpen).length === sidePanels.length) {
-    return null;
-  }
-
   return ReactDOM.createPortal(
-    <React.Fragment>
+    <>
       {OverlayExtracted}
       <sc.Group {...moreProps} offsetY={offsetScroll} data-pka-anchor="panel.group">
         {sidePanels.map(sidePanel => React.cloneElement(sidePanel, { isInline: true, groupOffsetY: offsetY }))}
       </sc.Group>
-    </React.Fragment>,
+    </>,
     document.body
   );
 }

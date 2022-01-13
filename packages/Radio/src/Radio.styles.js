@@ -4,18 +4,34 @@ import { boxSizingStyles, visuallyHidden } from "@paprika/stylers/lib/includes";
 import tokens from "@paprika/tokens";
 import types from "./types";
 
-const getLabelLeftPadding = (radioSize, hasLabel) => {
-  return hasLabel ? `${toInt(radioSize) + toInt(tokens.space)}px` : radioSize;
-};
+const getLabelLeftPadding = (radioSize, hasLabel) =>
+  hasLabel ? `${toInt(radioSize) + toInt(tokens.space)}px` : radioSize;
 
 const smallRadioSize = tokens.radio.sizeSm;
 const mediumRadioSize = tokens.radio.sizeMd;
-const largeRadioSize = tokens.radio.sizeLg;
 
 const getHalfSizeCss = sizeCss => `${toInt(sizeCss) / 2}px`;
 const smallRadioHalfSize = getHalfSizeCss(smallRadioSize);
 const mediumRadioHalfSize = getHalfSizeCss(mediumRadioSize);
-const largeRadioHalfSize = getHalfSizeCss(largeRadioSize);
+
+const generalRadioStyle = {
+  radioStyles: {
+    height: mediumRadioSize,
+    width: mediumRadioSize,
+    borderRadius: mediumRadioHalfSize,
+  },
+  radioIconBackgroundStyles: {
+    borderRadius: "6px",
+    height: "10px",
+    top: "5px",
+    width: "10px",
+  },
+  radioIconStyles: {
+    fontSize: `${fontSizeValue(-2)}px`,
+    height: mediumRadioSize,
+    left: mediumRadioHalfSize,
+  },
+};
 
 const styles = {
   [types.size.SMALL]: {
@@ -38,66 +54,32 @@ const styles = {
       height: smallRadioSize,
       left: smallRadioHalfSize,
     },
-    labelStyles: hasLabel => {
-      return {
-        minHeight: smallRadioSize,
-        padding: `0 0 0 ${getLabelLeftPadding(smallRadioSize, hasLabel)}`,
-      };
-    },
+    labelStyles: hasLabel => ({
+      minHeight: smallRadioSize,
+      padding: `0 0 0 ${getLabelLeftPadding(smallRadioSize, hasLabel)}`,
+    }),
   },
   [types.size.MEDIUM]: {
+    ...generalRadioStyle,
+
     baseFontSize: {
-      fontSize: `${fontSizeValue()}px`,
+      fontSize: `${fontSizeValue(-1)}px`,
     },
-    radioStyles: {
-      height: mediumRadioSize,
-      width: mediumRadioSize,
-      borderRadius: mediumRadioHalfSize,
-    },
-    radioIconBackgroundStyles: {
-      borderRadius: "6px",
-      height: "10px",
-      top: "5px",
-      width: "10px",
-    },
-    radioIconStyles: {
-      fontSize: `${fontSizeValue(-2)}px`,
-      height: mediumRadioSize,
-      left: mediumRadioHalfSize,
-    },
-    labelStyles: hasLabel => {
-      return {
-        minHeight: mediumRadioSize,
-        padding: `1px 0 0 ${getLabelLeftPadding(mediumRadioSize, hasLabel)}`,
-      };
-    },
+    labelStyles: hasLabel => ({
+      minHeight: mediumRadioSize,
+      padding: `1px 0 0 ${getLabelLeftPadding(mediumRadioSize, hasLabel)}`,
+    }),
   },
   [types.size.LARGE]: {
+    ...generalRadioStyle,
+
     baseFontSize: {
       fontSize: `${fontSizeValue()}px`,
     },
-    radioStyles: {
-      height: largeRadioSize,
-      width: largeRadioSize,
-      borderRadius: largeRadioHalfSize,
-    },
-    radioIconBackgroundStyles: {
-      borderRadius: "6px",
-      height: "12px",
-      top: "6px",
-      width: "12px",
-    },
-    radioIconStyles: {
-      fontSize: `${fontSizeValue()}px`,
-      height: largeRadioSize,
-      left: largeRadioHalfSize,
-    },
-    labelStyles: hasLabel => {
-      return {
-        minHeight: largeRadioSize,
-        padding: `3px 0 0 ${getLabelLeftPadding(largeRadioSize, hasLabel)}`,
-      };
-    },
+    labelStyles: hasLabel => ({
+      minHeight: mediumRadioSize,
+      padding: `0 0 0 ${getLabelLeftPadding(mediumRadioSize, hasLabel)}`,
+    }),
   },
 };
 
@@ -134,7 +116,7 @@ export const Radio = styled.div(
         ${styles[size].radioStyles};
         ${z(1)};
         background: ${tokens.color.white};
-        border: 2px solid ${tokens.border.color};
+        border: 2px solid ${tokens.color.blackLighten40};
         content: "";
         left: 0;
       }
@@ -178,6 +160,11 @@ export const Radio = styled.div(
           opacity: 0.5;
           transition: none;
         }
+
+        & + label:before {
+          border: 2px solid ${tokens.color.blackLighten60};
+        }
+
         &:checked {
           & + label:hover::before {
             border: 2px solid ${tokens.color.black};

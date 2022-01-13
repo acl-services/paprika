@@ -16,38 +16,20 @@ export default {
   title: getStoryName("InlineEditors"),
 };
 
-export const ListBoxWithinATable = () => {
-  return <Table />;
-};
+export const ListBoxWithinATable = () => <Table />;
 
-export const ListBoxWithinATableError = () => {
-  return <TableErrorStory />;
-};
+export const ListBoxWithinATableError = () => <TableErrorStory />;
 
-export const ListBoxSingle = () => {
-  return <ListBoxSingleStory />;
-};
+export const ListBoxSingle = () => <ListBoxSingleStory />;
 
-export const ListBoxMultipleWithError = () => {
-  return <ListBoxMultipleWithErrorExample />;
-};
+export const ListBoxMultipleWithError = () => <ListBoxMultipleWithErrorExample />;
 
-export const ListBoxMultipleWithLoading = () => {
-  return <ListBoxMultipleWithLoadingExample />;
-};
+export const ListBoxMultipleWithLoading = () => <ListBoxMultipleWithLoadingExample />;
 
-export const ListBoxMultipleWithSuccess = () => {
-  return <ListBoxMultipleWithSuccessExample />;
-};
+export const ListBoxMultipleWithSuccess = () => <ListBoxMultipleWithSuccessExample />;
 
-export const Input = () => {
-  return <InputExample />;
-};
+export const Input = () => <InputExample />;
 
-export const Textarea = () => {
-  return <TextareaExample />;
-};
+export const Textarea = () => <TextareaExample />;
 
-export const ForScreener = () => {
-  return <ForScreenerExample />;
-};
+export const ForScreener = () => <ForScreenerExample />;

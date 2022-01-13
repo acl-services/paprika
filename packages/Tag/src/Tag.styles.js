@@ -1,76 +1,20 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
-import Button from "@paprika/button";
+import RawButton from "@paprika/raw-button";
 import { fontSize, spacer } from "@paprika/stylers/lib/helpers";
 import { truncateText } from "@paprika/stylers/lib/includes";
 import * as types from "./types";
 
-const themeStyles = {
-  [types.themes.BLACK]: css`
-    background: ${tokens.color.black};
-  `,
-
-  [types.themes.BLUE]: css`
-    background: ${tokens.color.blue};
-  `,
-
-  [types.themes.GREY]: css`
-    background: ${tokens.color.blackLighten70};
-    color: ${tokens.color.black};
-  `,
-
-  [types.themes.GREEN]: css`
-    background: ${tokens.color.greenDarken10};
-  `,
-
-  [types.themes.ORANGE]: css`
-    background: ${tokens.color.orangeDarken10};
-  `,
-
-  [types.themes.LIGHT_BLUE]: css`
-    background: ${tokens.color.blueLighten50};
-    color: ${tokens.color.blueDarken20};
-  `,
-
-  [types.themes.LIGHT_ORANGE]: css`
-    background: ${tokens.color.orangeLighten40};
-    color: ${tokens.color.orangeDarken20};
-  `,
-
-  [types.severityThemes.NO_RISK]: css`
-    background: ${tokens.color.blackLighten70};
-    color: ${tokens.color.black};
-  `,
-
-  [types.severityThemes.LOW_RISK]: css`
-    background: #299a7a;
-  `,
-
-  [types.severityThemes.MEDIUM_RISK]: css`
-    background: #c9af28;
-  `,
-
-  [types.severityThemes.HIGH_RISK]: css`
-    background: #cd3c44;
-  `,
-
-  [types.severityThemes.ALERT]: css`
-    background: none;
-    border: 1px solid ${tokens.color.orangeDarken10};
-    color: ${tokens.color.orangeDarken10};
-  `,
-};
-
-export const Tags = styled.ul(() => {
-  return css`
+export const Tags = styled.ul(
+  () => css`
     display: flex;
     flex-wrap: wrap;
     line-height: 1;
     list-style-type: none;
     margin: 0;
     padding: 0;
-  `;
-});
+  `
+);
 
 const widthAndHeight = {
   medium: "24px",
@@ -120,41 +64,103 @@ export const Ellipsis = styled.div(({ size }) => {
   `;
 });
 
-export const Delete = styled(Button.Close)(({ size }) => {
-  const fontSize = {
-    medium: "10px",
-    large: "12px",
-  };
+export const Delete = styled(RawButton)`
+  align-items: center;
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: flex;
+  flex-shrink: 0;
+  font-size: ${tokens.icon.sizeSm};
+  height: ${tokens.icon.sizeSm};
+  justify-content: center;
+  min-height: auto;
+  width: ${tokens.icon.sizeSm};
+`;
 
-  const padding = {
-    medium: "4px",
-    large: "5px",
-  };
-
-  const width = {
-    medium: "20px",
-    large: "24px",
-  };
-
-  return css`
-    align-items: center;
-    border-radius: 50%;
-    box-sizing: border-box;
-    display: flex;
-    flex-shrink: 0;
-    font-size: ${fontSize[size]};
-    height: ${width[size]};
-    justify-content: center;
-    min-height: auto;
-    padding: ${padding[size]};
-    width: ${width[size]};
-
-    &:hover {
-      background: ${tokens.color.blackLighten60};
-    }
-
+const DeleteButtonStylesForLightBackground = css`
+  ${Delete} {
+    color: ${tokens.color.blackLighten70};
+    &:hover,
     &:focus {
-      background: ${tokens.color.blackLighten60};
+      color: ${tokens.color.blackLighten60};
     }
-  `;
-});
+  }
+`;
+
+const DeleteButtonStylesForDarkBackground = css`
+  ${Delete} {
+    color: ${tokens.color.blackLighten30};
+    &:hover,
+    &:focus {
+      color: ${tokens.color.blackLighten20};
+    }
+  }
+`;
+
+const themeStyles = {
+  [types.themes.BLACK]: css`
+    background: ${tokens.color.black};
+    ${DeleteButtonStylesForLightBackground}
+  `,
+
+  [types.themes.BLUE]: css`
+    background: ${tokens.color.blue};
+    ${DeleteButtonStylesForLightBackground}
+  `,
+
+  [types.themes.GREY]: css`
+    background: ${tokens.color.blackLighten70};
+    color: ${tokens.color.black};
+    ${DeleteButtonStylesForDarkBackground}
+  `,
+
+  [types.themes.GREEN]: css`
+    background: ${tokens.color.greenDarken10};
+    ${DeleteButtonStylesForLightBackground}
+  `,
+
+  [types.themes.ORANGE]: css`
+    background: ${tokens.color.orangeDarken10};
+    ${DeleteButtonStylesForLightBackground}
+  `,
+
+  [types.themes.LIGHT_BLUE]: css`
+    background: ${tokens.color.blueLighten50};
+    color: ${tokens.color.blueDarken20};
+    ${DeleteButtonStylesForDarkBackground}
+  `,
+
+  [types.themes.LIGHT_ORANGE]: css`
+    background: ${tokens.color.orangeLighten40};
+    color: ${tokens.color.orangeDarken20};
+    ${DeleteButtonStylesForDarkBackground}
+  `,
+
+  [types.severityThemes.NO_RISK]: css`
+    background: ${tokens.color.blackLighten70};
+    color: ${tokens.color.black};
+    ${DeleteButtonStylesForDarkBackground}
+  `,
+
+  [types.severityThemes.LOW_RISK]: css`
+    background: #299a7a;
+    ${DeleteButtonStylesForLightBackground}
+  `,
+
+  [types.severityThemes.MEDIUM_RISK]: css`
+    background: #c9af28;
+    ${DeleteButtonStylesForLightBackground}
+  `,
+
+  [types.severityThemes.HIGH_RISK]: css`
+    background: #cd3c44;
+    ${DeleteButtonStylesForLightBackground}
+  `,
+
+  [types.severityThemes.ALERT]: css`
+    background: none;
+    border: 1px solid ${tokens.color.orangeDarken10};
+    color: ${tokens.color.orangeDarken10};
+    ${DeleteButtonStylesForDarkBackground}
+  `,
+};

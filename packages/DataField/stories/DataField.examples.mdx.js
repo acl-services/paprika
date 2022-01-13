@@ -5,13 +5,13 @@ import styled, { css } from "styled-components";
 
 import DataField from "../src";
 
-const SimpleContainer = styled.div(() => {
-  return css`
+const SimpleContainer = styled.div(
+  () => css`
     [data-pka-anchor="data-field.numeric"] {
       height: auto;
     }
-  `;
-});
+  `
+);
 
 const data = [
   { name: "Abbeline Doe", income: 153234.87, taxes: 32300.34 },

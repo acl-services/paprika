@@ -1,6 +1,6 @@
 {
   "name": "@paprika/heading",
-  "version": "1.0.7",
+  "version": "1.0.13",
   "description": "Heading component provides different level of headings with various stylings such as divides, underline, light or hidden.",
   "author": "@paprika",
   "license": "MIT",
@@ -16,8 +16,8 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/stylers": "^1.0.1",
-    "@paprika/tokens": "^1.0.0",
+    "@paprika/stylers": "^1.1.5",
+    "@paprika/tokens": "^1.1.4",
     "class-names": "^1.0.0",
     "classnames": "^2.2.6",
     "prop-types": "^15.7.2"

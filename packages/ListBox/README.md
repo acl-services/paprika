@@ -22,22 +22,23 @@ npm install @paprika/list-box
 
 ### ListBox
 
-| Prop           | Type                                                                                                        | required | default                            | Description                                                        |
-| -------------- | ----------------------------------------------------------------------------------------------------------- | -------- | ---------------------------------- | ------------------------------------------------------------------ |
-| children       | arrayOf                                                                                                     | false    | null                               | Child of type <ListBox.Option />, <ListBox.Divider />, etc         |
-| hasError       | bool                                                                                                        | false    | false                              | If ListBox is in an error state                                    |
-| hasImplicitAll | bool                                                                                                        | false    | false                              | Has implicit "All items selected" value when no item is selected   |
-| height         | number                                                                                                      | false    | 200                                | Indicate which is the height for the options container             |
-| isDisabled     | bool                                                                                                        | false    | false                              | Disables the ListBox if true                                       |
-| isInline       | bool                                                                                                        | false    | false                              | This options will display the list-box without the Popover         |
-| isMulti        | bool                                                                                                        | false    | false                              | Let the user to select multiple options at same time               |
-| isOpen         | bool                                                                                                        | false    | false                              | Indicates if the popover is visible                                |
-| isReadOnly     | bool                                                                                                        | false    | false                              | The ListBox will not allow value to be changed                     |
-| onChange       | func                                                                                                        | false    | () => {}                           | Callback returning the current selection on the ListBox            |
-| placeholder    | string                                                                                                      | false    | null                               | Default label for trigger when the ListBox has no option selected  |
-| size           | [ ListBoxContainer.types.size.SMALL, ListBoxContainer.types.size.MEDIUM, ListBoxContainer.types.size.LARGE] | false    | ListBoxContainer.types.size.MEDIUM | Size of the trigger and options (font size, height, padding, etc). |
-| contentOffsetX | number                                                                                                      | false    | 0                                  | Lets the user control the X-axis offset for the ListBox content    |
-| contentOffsetY | number                                                                                                      | false    | 0                                  | Lets the user control the Y-axis offset for the ListBox content    |
+| Prop           | Type                                                                                                        | required | default                            | Description                                                                    |
+| -------------- | ----------------------------------------------------------------------------------------------------------- | -------- | ---------------------------------- | ------------------------------------------------------------------------------ |
+| children       | arrayOf                                                                                                     | false    | null                               | Child of type <ListBox.Option />, <ListBox.Divider />, etc                     |
+| hasError       | bool                                                                                                        | false    | false                              | If ListBox is in an error state                                                |
+| hasTag         | bool                                                                                                        | false    | false                              | If there is a tag                                                              |
+| hasImplicitAll | bool                                                                                                        | false    | false                              | Has implicit "All items selected" value when no item is selected               |
+| height         | [string,number]                                                                                             | false    | 200                                | The maximum height for the options container. Using a number implies px units. |
+| isDisabled     | bool                                                                                                        | false    | false                              | Disables the ListBox if true                                                   |
+| isInline       | bool                                                                                                        | false    | false                              | This options will display the list-box without the Popover                     |
+| isMulti        | bool                                                                                                        | false    | false                              | Let the user to select multiple options at same time                           |
+| isOpen         | bool                                                                                                        | false    | false                              | Indicates if the popover is visible                                            |
+| isReadOnly     | bool                                                                                                        | false    | false                              | The ListBox will not allow value to be changed                                 |
+| onChange       | func                                                                                                        | false    | () => {}                           | Callback returning the current selection on the ListBox                        |
+| placeholder    | string                                                                                                      | false    | null                               | Default label for trigger when the ListBox has no option selected              |
+| size           | [ ListBoxContainer.types.size.SMALL, ListBoxContainer.types.size.MEDIUM, ListBoxContainer.types.size.LARGE] | false    | ListBoxContainer.types.size.MEDIUM | Size of the trigger and options (font size, height, padding, etc).             |
+| contentOffsetX | number                                                                                                      | false    | 0                                  | Lets the user control the X-axis offset for the ListBox content                |
+| contentOffsetY | number                                                                                                      | false    | 0                                  | Lets the user control the Y-axis offset for the ListBox content                |
 
 ### ListBox.A11y
 
@@ -95,7 +96,7 @@ see: options/helpers/options.js|
 | onClickCancel     | func                                                                          | false    | null                      | Callback to be executed when the cancel button is clicked or activated by keyboard. |
 | onClickClear      | func                                                                          | false    | null                      | Callback to be executed when the clear button is clicked or activated by keyboard.  |
 | renderExtraButton | func                                                                          | false    | () => {}                  | Render an extra button beside the clear button                                      |
-| size              | [ Button.types.size.SMALL, Button.types.size.MEDIUM, Button.types.size.LARGE] | false    | Button.types.size.SMALL   | Determines the size of the footer                                                   |
+| size              | [ Button.types.size.SMALL, Button.types.size.MEDIUM, Button.types.size.LARGE] | false    | Button.types.size.MEDIUM  | Determines the size of the footer                                                   |
 
 ### ListBox.Option
 
@@ -104,11 +105,14 @@ see: options/helpers/options.js|
 | children               | [node,func] | true     | -       | String, number or JSX content                                                          |
 | isSelected             | bool        | false    | null    |                                                                                        |
 | defaultIsSelected      | bool        | false    | null    | Describe if the option started as selected or not                                      |
+| hasNoIcon              | bool        | false    | false   | When no PlusIcon or CheckBox are needed                                                |
 | isDisabled             | bool        | false    | false   | Describe if the option is enable or not                                                |
 | isHidden               | bool        | false    | false   | Describe if the option is hidden or not                                                |
 | label                  | string      | false    | null    | When the children are not a String, label should need to be add so the filter can work |
 | onClick                | func        | false    | null    | Callback for the clicking event                                                        |
 | value                  | any         | false    | null    | Value of your option this can be any data structure                                    |
+| internalHandleOnClick  | func        | true     | -       | Internal prop, which shouldn't be documented                                           |
+| id                     | string      | true     | -       | Internal prop, which shouldn't be documented                                           |
 | preventDefaultOnSelect | bool        | false    | false   | Internal prop, which shouldn't be documented                                           |
 
 ### ListBox.Popover
@@ -126,17 +130,17 @@ see: options/helpers/options.js|
 
 ### ListBox.Trigger
 
-| Prop                | Type        | required | default            | Description                                                                         |
-| ------------------- | ----------- | -------- | ------------------ | ----------------------------------------------------------------------------------- |
-| clearIcon           | node        | false    | null               | Custom clear icon                                                                   |
-| children            | [node,func] | false    | <React.Fragment /> | Body content of the trigger.                                                        |
-| hasClearButton      | bool        | false    | true               | If true it adds a clear button                                                      |
-| hasImplicitAll      | bool        | false    | false              | Has implicit "All items selected" value when no item is selected                    |
-| label               | string      | false    | null               | Override the label with a custom one.                                               |
-| onClickClear        | func        | false    | null               | Callback to be executed when the clear button is clicked or activated by keyboard.  |
-| onClickFooterAccept | func        | false    | null               | Callback to be executed when the accept button is clicked or activated by keyboard. |
-| placeholder         | string      | false    | null               | Sets a placeholder for the trigger                                                  |
-| isHidden            | bool        | false    | false              | If true the trigger will be hidden                                                  |
+| Prop                | Type        | required | default | Description                                                                         |
+| ------------------- | ----------- | -------- | ------- | ----------------------------------------------------------------------------------- |
+| clearIcon           | node        | false    | null    | Custom clear icon                                                                   |
+| children            | [node,func] | false    | <></>   | Body content of the trigger.                                                        |
+| hasClearButton      | bool        | false    | true    | If true it adds a clear button                                                      |
+| hasImplicitAll      | bool        | false    | false   | Has implicit "All items selected" value when no item is selected                    |
+| label               | string      | false    | null    | Override the label with a custom one.                                               |
+| onClickClear        | func        | false    | null    | Callback to be executed when the clear button is clicked or activated by keyboard.  |
+| onClickFooterAccept | func        | false    | null    | Callback to be executed when the accept button is clicked or activated by keyboard. |
+| placeholder         | string      | false    | null    | Sets a placeholder for the trigger                                                  |
+| isHidden            | bool        | false    | false   | If true the trigger will be hidden                                                  |
 
 <!-- end: Autogenerated - do not modify -->
 <!-- content -->

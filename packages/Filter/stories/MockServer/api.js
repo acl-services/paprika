@@ -1,17 +1,15 @@
 import data from "../Showcase/data";
 
-export const fetchAll = () => {
-  return new Promise(resolve => {
+export const fetchAll = () =>
+  new Promise(resolve => {
     setTimeout(() => {
       resolve(data);
     }, 800);
   });
-};
 
-export const filterBy = () => {
-  return new Promise(resolve => {
+export const filterBy = () =>
+  new Promise(resolve => {
     setTimeout(() => {
       resolve([data[1]]);
     }, 800);
   });
-};

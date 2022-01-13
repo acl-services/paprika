@@ -7,10 +7,12 @@ interface ListBoxProps {
   children?: node[];
   /** If ListBox is in an error state */
   hasError?: boolean;
+  /** If there is a tag */
+  hasTag?: boolean;
   /** Has implicit "All items selected" value when no item is selected */
   hasImplicitAll?: boolean;
-  /** Indicate which is the height for the options container */
-  height?: number;
+  /** The maximum height for the options container. Using a number implies px units. */
+  height?: string | number;
   /** Disables the ListBox if true */
   isDisabled?: boolean;
   /** This options will display the list-box without the Popover */
@@ -134,6 +136,8 @@ declare namespace ListBox {
     isSelected?: boolean;
     /** Describe if the option started as selected or not */
     defaultIsSelected?: boolean;
+    /** When no PlusIcon or CheckBox are needed */
+    hasNoIcon?: boolean;
     /** Describe if the option is enable or not */
     isDisabled?: boolean;
     /** Describe if the option is hidden or not */
@@ -144,6 +148,10 @@ declare namespace ListBox {
     onClick?: (...args: any[]) => any;
     /** Value of your option this can be any data structure */
     value?: any;
+    /** Internal prop, which shouldn't be documented */
+    internalHandleOnClick: (...args: any[]) => any;
+    /** Internal prop, which shouldn't be documented */
+    id: string;
     /** Internal prop, which shouldn't be documented */
     preventDefaultOnSelect?: boolean;
   }

@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "@paprika/button";
 import Popover from "@paprika/popover";
+import { useI18n } from "@paprika/l10n";
 import { extractChildren, extractChildrenProps } from "@paprika/helpers";
 import LinkTooltipContentPropsCollector from "./LinkTooltipContentPropsCollector";
 import IsDarkContext from "../../context";
@@ -18,11 +19,11 @@ function isString(item) {
 
 function Link(props) {
   const { children, hasOnlyOneChild, href, as, ...moreProps } = props;
+  const I18n = useI18n();
   const isDark = React.useContext(IsDarkContext);
   const {
     children: [extractedChildren],
   } = extractChildren(children, ["Breadcrumbs.Link.Tooltip"]);
-
   const TooltipProps = extractChildrenProps(children, LinkTooltipContentPropsCollector);
   const shouldTruncate = isString(extractedChildren) && extractedChildren.length > MAXIMUM_NUM_OF_CHARACTER;
   const isUsingDefaultLinkComponent = !as;
@@ -32,13 +33,18 @@ function Link(props) {
     href: href || undefined,
     isDark,
   };
-
   if (isUsingDefaultLinkComponent) {
     commonComponentProps.kind = Button.types.kind.MINOR;
   }
 
+  function renderBackIcon() {
+    return hasOnlyOneChild ? (
+      <sc.BackIcon aria-label={I18n.t("breadcrumbs.aria_back_to")} data-pka-anchor="breadcrumbs.back-icon" />
+    ) : null;
+  }
+
   return (
-    <sc.ListItem data-pka-anchor="breadcrumbs.list-item">
+    <sc.ListItem data-pka-anchor="breadcrumbs.list-item" isUsingDefaultLinkComponent={isUsingDefaultLinkComponent}>
       {shouldTruncate ? (
         <Popover isDark isEager>
           <Popover.Trigger>
@@ -53,6 +59,7 @@ function Link(props) {
                 {...a11yAttributes}
                 {...moreProps}
               >
+                {renderBackIcon()}
                 {truncate(extractedChildren)}
               </sc.Link>
             )}
@@ -65,6 +72,7 @@ function Link(props) {
         </Popover>
       ) : (
         <sc.Link {...commonComponentProps} {...moreProps}>
+          {renderBackIcon()}
           {extractedChildren}
         </sc.Link>
       )}

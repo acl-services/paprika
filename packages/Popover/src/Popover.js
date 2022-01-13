@@ -1,3 +1,5 @@
+/* eslint-disable react/sort-comp */
+
 import React from "react";
 import memoizeOne from "memoize-one";
 import PropTypes from "prop-types";
@@ -6,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 import * as constants from "@paprika/constants/lib/Constants";
 import tokens from "@paprika/tokens";
 import { zValue } from "@paprika/stylers/lib/helpers";
-import { callAll } from "@paprika/helpers";
+import { callAll, DOMElementType } from "@paprika/helpers";
 
 import * as types from "./types";
 import isInsideBoundaries from "./helpers/isInsideBoundaries";
@@ -37,10 +39,7 @@ class Popover extends React.Component {
     this.$trigger = null;
     this.$tip = null; // this ref comes from a callback of the <Tip /> component
 
-    if (props.isPortal) {
-      const portalNode = document.createElement("div");
-      this.$portal = document.body.appendChild(portalNode);
-    }
+    this.mountPortal(props);
 
     this.focusableElements = [];
     this.triggerFocusIndex = null;
@@ -87,7 +86,8 @@ class Popover extends React.Component {
       tip,
       zIndex,
       ariaIdForContent,
-      handleKeyDown
+      handleKeyDown,
+      shouldUnmount
     ) => ({
       content: {
         ...content,
@@ -104,6 +104,7 @@ class Popover extends React.Component {
       onDelayedClose: this.handleDelayedClose,
       onDelayedOpen: this.handleDelayedOpen,
       onOpen: this.handleOpen,
+      onAfterOpen: e => this.handleOnAfterOpen(e),
       isPortal,
       portalElement,
       refContent,
@@ -111,6 +112,7 @@ class Popover extends React.Component {
       shouldKeepFocus,
       tip,
       handleKeyDown,
+      shouldUnmount,
     })
   );
 
@@ -143,6 +145,12 @@ class Popover extends React.Component {
     }
 
     if (this.isOpen() && prevProps !== this.props) this.setVisibilityAndPosition();
+
+    const shouldRemountPortal =
+      this.isOpen() && this.props.isPortal && (this.props.container || document.body) !== this.$portal?.parentNode;
+    if (shouldRemountPortal) {
+      this.mountPortal(this.props);
+    }
   }
 
   componentWillUnmount() {
@@ -154,8 +162,12 @@ class Popover extends React.Component {
     this.closeTimer = null;
 
     if (this.props.isPortal) {
-      document.body.removeChild(this.$portal);
+      this.$portal.remove();
     }
+  }
+
+  getContainer() {
+    return this.props.container ?? document.body;
   }
 
   getContentWidth() {
@@ -167,9 +179,9 @@ class Popover extends React.Component {
     $shadowContent.style.maxWidth = this.props.maxWidth;
     $shadowContent.style.minWidth = this.props.minWidth;
 
-    document.body.appendChild($shadowContent);
+    this.getContainer().appendChild($shadowContent);
     const contentWidth = getBoundingClientRect($shadowContent).width;
-    document.body.removeChild($shadowContent);
+    this.getContainer().removeChild($shadowContent);
 
     return contentWidth;
   }
@@ -227,8 +239,6 @@ class Popover extends React.Component {
     };
   };
 
-  // eslint is forcing to put handleReposition before ComponentDidMount
-  // eslint-disable-next-line react/sort-comp
   handleReposition = throttle(() => {
     if (this.isOpen()) {
       const scrollContainer = this.props.getScrollContainer === null ? document.body : this.props.getScrollContainer();
@@ -264,10 +274,18 @@ class Popover extends React.Component {
         this.focusableElements[this.triggerFocusIndex].focus();
       } else if (!event.shiftKey && (isFocusOnLast || isFocusOnOnly)) {
         event.preventDefault();
-        this.focusableElements[this.triggerFocusIndex + 1].focus();
+        this.focusableElements[this.triggerFocusIndex + 1]?.focus();
       }
     }
   };
+
+  mountPortal(props) {
+    if (props.isPortal) {
+      if (this.$portal) this.$portal.remove();
+      const portalNode = document.createElement("div");
+      this.$portal = this.getContainer().appendChild(portalNode);
+    }
+  }
 
   focusIsOnCertainElementInPopover = which => {
     const focusableElementsInPopover = this.$content.querySelectorAll(focusableElementSelector);
@@ -295,10 +313,10 @@ class Popover extends React.Component {
     });
   };
 
-  handleTransitionEnd = event => {
-    if (!this.props.shouldKeepFocus && !this.props.isEager && this.isOpen() && event.propertyName === "opacity") {
+  handleOnAfterOpen = element => {
+    if (!this.props.shouldKeepFocus && !this.props.isEager && this.isOpen()) {
       this.setPopoverTriggerFocusIndex();
-      event.target.focus();
+      element.focus();
     }
   };
 
@@ -341,7 +359,9 @@ class Popover extends React.Component {
 
   open() {
     this.$trigger = document.activeElement;
-    this.setVisibilityAndPosition(true);
+    this.setState({ isOpen: true }, () => {
+      this.setVisibilityAndPosition(true);
+    });
   }
 
   close() {
@@ -383,7 +403,6 @@ class Popover extends React.Component {
         this.props.getScrollContainer().addEventListener("scroll", this.handleReposition, false);
       }
 
-      this.$content.addEventListener("transitionend", this.handleTransitionEnd, false);
       this.hasListeners = true;
     }
   }
@@ -398,7 +417,6 @@ class Popover extends React.Component {
         this.props.getScrollContainer().removeEventListener("scroll", this.handleReposition);
       }
 
-      this.$content.removeEventListener("transitionend", this.handleTransitionEnd);
       this.hasListeners = false;
     }
   }
@@ -418,6 +436,7 @@ class Popover extends React.Component {
       offset,
       getPositioningElement,
       getScrollContainer,
+      shouldUnmount,
       zIndex,
       ...moreProps
     } = this.props;
@@ -437,7 +456,8 @@ class Popover extends React.Component {
       this.state.tip,
       zIndex,
       this.ariaIdForContent,
-      this.handleKeyDown
+      e => this.handleKeyDown(e),
+      shouldUnmount
     );
 
     return (
@@ -523,8 +543,14 @@ const propTypes = {
   /** If focus will stay at the trigger when showing popover. Popover can still be closed when clicking outside or pressing escape key. */
   shouldKeepFocus: PropTypes.bool,
 
+  /** Should unmount Popover Content or Tip Subcomponents from DOM when popover is closed */
+  shouldUnmount: PropTypes.bool,
+
   /** Number setting the z-index for the popover content / tip. */
   zIndex: PropTypes.number,
+
+  /** Portal container for the Panel (DOM element) */
+  container: DOMElementType,
 };
 
 const defaultProps = {
@@ -542,7 +568,9 @@ const defaultProps = {
   getPositioningElement: null,
   getScrollContainer: null,
   shouldKeepFocus: false,
+  shouldUnmount: true,
   zIndex: zValue(1),
+  container: null,
 };
 
 Popover.displayName = "Popover";
