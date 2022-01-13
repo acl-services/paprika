@@ -190,12 +190,12 @@ const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
 
     const t = setTimeout(() => {
       if (wrapperRef.current) {
-        wrapperRef.current.style.height = "auto";
+        wrapperRef.current.style.height = wrapperRef?.current?.firstChild?.getBoundingClientRect().height || "auto";
       }
     }, 50);
 
     return () => {
-      clearTimeout(t);
+      clearTimeout(t)
     };
   }, [data.length, extractedResizeContainer.props.style.height]);
 
