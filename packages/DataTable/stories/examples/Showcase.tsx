@@ -27,45 +27,45 @@ export const ShowcaseStory: (props: Partial<DataTableProps>) => JSX.Element = pr
         width: 100,
         isSticky: true,
       },
-      {
-        Header: "Age",
-        accessor: "age",
-        width: 50,
-      },
-      {
-        Header: "Visits",
-        accessor: "visits",
-        width: 60,
-      },
-      {
-        Header: "Status",
-        accessor: "status",
-      },
-      {
-        Header: "Description",
-        accessor: "desc",
-      },
-      {
-        Header: "More description",
-        accessor: "desc_more",
-      },
-      {
-        Header: "Background",
-        accessor: "background",
-        width: 300,
-      },
-      {
-        Header: "Profile Progress",
-        accessor: "progress",
-      },
+      // {
+      //   Header: "Age",
+      //   accessor: "age",
+      //   width: 50,
+      // },
+      // {
+      //   Header: "Visits",
+      //   accessor: "visits",
+      //   width: 60,
+      // },
+      // {
+      //   Header: "Status",
+      //   accessor: "status",
+      // },
+      // {
+      //   Header: "Description",
+      //   accessor: "desc",
+      // },
+      // {
+      //   Header: "More description",
+      //   accessor: "desc_more",
+      // },
+      // {
+      //   Header: "Background",
+      //   accessor: "background",
+      //   width: 300,
+      // },
+      // {
+      //   Header: "Profile Progress",
+      //   accessor: "progress",
+      // },
     ],
     []
   );
 
-  const [items, setItems] = React.useState(() => makeData(40));
+  const [items, setItems] = React.useState(() => makeData(2));
 
   return (
-    <DataTable a11yText="Data table for showcase." height={500} width={800} columns={columns} data={items} {...props}>
+    <DataTable a11yText="Data table for showcase." columns={columns} data={items} {...props}>
       <DataTable.InfiniteLoader
         itemCount={items.length + 1}
         isItemLoaded={index => items[index] !== undefined}
@@ -74,10 +74,10 @@ export const ShowcaseStory: (props: Partial<DataTableProps>) => JSX.Element = pr
           const newItems = await new Promise<Record<string, unknown>[]>(res =>
             setTimeout(() => res(makeData(40)), 5000)
           );
-
           setItems(items.concat(newItems));
         }}
       />
+      <DataTable.ResizeContainer style={{ height: "calc(100vh - 200px)", width: "100%" }} />
     </DataTable>
   );
 };
@@ -87,5 +87,6 @@ export default () => (
     <StoryHeading level={1}>DataTable</StoryHeading>
     <Tagline>DataTable component.</Tagline>
     <ShowcaseStory {...props()} />
+    efewf
   </Story>
 );

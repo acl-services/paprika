@@ -180,10 +180,30 @@ const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
     }
   }
 
+  const wrapperRef = React.useRef<HTMLElement>(null);
+
+  const containerMaxHeight = extractedResizeContainer.element.getBoundingClientRect().height;
+
+  React.useEffect(() => {
+    if (wrapperRef.current) {
+      wrapperRef.current.style.height = `${containerMaxHeight}px`;
+    }
+
+    const t = setTimeout(() => {
+      if (wrapperRef.current) {
+        wrapperRef.current.style.height = "auto";
+      }
+    }, 1000);
+
+    return () => {
+      clearTimeout(t);
+    };
+  }, [data.length, containerMaxHeight]);
+
   return (
     <ThemeContext.Provider value={{ borderType, isHeaderSticky, hasZebraStripes }}>
       {extractedResizeContainer ? (
-        <div {...extractedResizeContainer.props}>
+        <div {...extractedResizeContainer.props} ref={wrapperRef}>
           <ResizeDetector isFullHeight>
             {({ height: maxHeight, width: maxWidth }) =>
               renderTable(getTableHeight(maxHeight), getTableWidth(maxWidth))
