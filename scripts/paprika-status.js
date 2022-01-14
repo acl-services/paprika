@@ -9,13 +9,6 @@ class PaprikaStatus {
     this.PATH_TO_COMPONENTS = "./packages/";
     this.LOCAL_HOST = "http://localhost:9009/";
 
-    this.gitOutput = "output_git.xml";
-    this.lineCount = "line_count.json";
-    this.bugCountOutput = "bug_count.json";
-    this.choreCount = "chore_count.json";
-    this.featCount = "feat_count.json";
-    this.a11yReport = "a11y_report.md";
-    this.countCommits = "count_commits.json";
     this.version = "package.json";
     this.jestSummary = "coverage/coverage-summary.json";
     this.statuses = JSON.parse(fs.existsSync("./status.json") && fs.readFileSync("./status.json", "utf8")) || {};
@@ -23,17 +16,12 @@ class PaprikaStatus {
 
   getStorybookA11yReport(subDir, commits) {
     try {
-      child_process.spawnSync(
+      const result = child_process.spawnSync(
         `yarn`,
-        [
-          `storybook-a11y-report`,
-          `--storybookUrl ${this.LOCAL_HOST}`,
-          `--include '${tree.getStoryName(subDir)}/**'`,
-          `--outDir ${this.PATH_TO_COMPONENTS + subDir}`,
-        ],
-        { shell: true, timeout: 60000 }
+        [`storybook-a11y-report`, `--storybookUrl ${this.LOCAL_HOST}`, `--include '${tree.getStoryName(subDir)}/**'`],
+        { shell: true, timeout: 0 }
       );
-      commits.a11yReport = this.parseA11y(`${this.PATH_TO_COMPONENTS + subDir}/${this.a11yReport}`);
+      commits.a11yReport = this.parseA11y(result.stdout.toString());
     } catch (e) {
       console.log(e);
     }
@@ -42,19 +30,19 @@ class PaprikaStatus {
   getCommitPrefixCounts(subDir, commits) {
     const path = this.PATH_TO_COMPONENTS + subDir;
     try {
-      child_process.execSync(`git rev-list --count HEAD -- ${path} > ${path}/${this.countCommits}`);
-      child_process.execSync(
-        `git rev-list --count HEAD --grep="fix(" --count -- ${path} > ${path}/${this.bugCountOutput}`
-      );
-      child_process.execSync(
-        `git rev-list --count HEAD --grep="chore(" --count -- ${path} > ${path}/${this.choreCount}`
-      );
-      child_process.execSync(`git rev-list --count HEAD --grep="feat(" --count -- ${path} > ${path}/${this.featCount}`);
+      const commitCount = child_process.execSync(`git rev-list --count HEAD -- ${path}`).toString();
+      const bugCount = child_process.execSync(`git rev-list --count HEAD --grep="fix(" --count -- ${path}`).toString();
+      const choreCount = child_process
+        .execSync(`git rev-list --count HEAD --grep="chore(" --count -- ${path}`)
+        .toString();
+      const featCount = child_process
+        .execSync(`git rev-list --count HEAD --grep="feat(" --count -- ${path}`)
+        .toString();
 
-      commits.commitCount = parseInt(fs.readFileSync(`${path}/${this.countCommits}`, "utf8").toString(), 10);
-      commits.bugCount = parseInt(fs.readFileSync(`${path}/${this.bugCountOutput}`, "utf8").toString(), 10);
-      commits.choreCount = parseInt(fs.readFileSync(`${path}/${this.choreCount}`, "utf8").toString(), 10);
-      commits.featCount = parseInt(fs.readFileSync(`${path}/${this.featCount}`, "utf8").toString(), 10);
+      commits.commitCount = parseInt(commitCount, 10);
+      commits.bugCount = parseInt(bugCount, 10);
+      commits.choreCount = parseInt(choreCount, 10);
+      commits.featCount = parseInt(featCount, 10);
     } catch (e) {
       console.log(e);
     }
@@ -88,11 +76,10 @@ class PaprikaStatus {
 
   getPaprikaStatuses() {
     // ignore merges and commits made by Paprika Bot
-    const log = `git log --no-merges --invert-grep --author='Paprika Semaphore 2.0' -n 1 -- . > ${this.gitOutput}`;
-    const lineCount = `git ls-files | xargs cat | wc -l > ${this.lineCount}`;
+    const log = `git log --no-merges --invert-grep --author='Paprika Semaphore 2.0' -n 1 -- .`;
+    const lineCount = `git ls-files | xargs cat | wc -l`;
     fs.readdirSync(this.PATH_TO_COMPONENTS).forEach(subDir => {
       const commits = {};
-      child_process.execSync(`cd ${this.PATH_TO_COMPONENTS + subDir} && ${log} && ${lineCount}`);
       this.getCommitPrefixCounts(subDir, commits);
       this.getStorybookA11yReport(subDir, commits);
       this.getTestStatistics(subDir, commits);
@@ -100,9 +87,9 @@ class PaprikaStatus {
         commits.version = JSON.parse(
           fs.readFileSync(`${this.PATH_TO_COMPONENTS + subDir}/${this.version}`, "utf8")
         ).version;
-        commits.logs = fs.readFileSync(`${this.PATH_TO_COMPONENTS + subDir}/${this.gitOutput}`, "utf8");
+        commits.logs = child_process.execSync(`cd ${this.PATH_TO_COMPONENTS + subDir} && ${log}`).toString();
         commits.lineCount = parseInt(
-          fs.readFileSync(`${this.PATH_TO_COMPONENTS + subDir}/${this.lineCount}`, "utf8").toString(),
+          child_process.execSync(`cd ${this.PATH_TO_COMPONENTS + subDir} && ${lineCount}`).toString(),
           10
         );
         this.statuses[subDir] = commits;
@@ -111,35 +98,32 @@ class PaprikaStatus {
       } catch (e) {
         this.statuses[subDir] = { error: e };
       }
-      child_process.execSync(
-        `cd ${this.PATH_TO_COMPONENTS + subDir} && rm -f ${this.gitOutput} && rm -f ${this.countCommits} && rm -f ${
-          this.bugCountOutput
-        } && rm -f ${this.choreCount} && rm -f ${this.featCount} && rm -f ${this.lineCount} && rm -f ${this.a11yReport}`
-      );
       child_process.execSync(`rm -f ${this.jestSummary}`);
     });
     fs.writeFileSync("./status.json", JSON.stringify(this.statuses));
   }
 
-  parseA11y(path) {
-    let report;
-    try {
-      report = fs.readFileSync(path, "utf8");
-    } catch (e) {
-      return [];
-    }
-    const output = [];
-    const cur = {};
+  parseA11y(report) {
+    const foundIssues = {};
+    let curId;
     report.split("\n").forEach(line => {
+      if (!line.includes("A11y ID: ") && !line.includes("description: ")) {
+        return;
+      }
       if (line.includes("A11y ID: ")) {
-        if (Object.keys(cur).length > 0) output.push(Object.assign({}, cur));
-        cur.A11yID = line.split("A11y ID: ")[1];
+        curId = line.split("A11y ID: ")[1];
+        if (foundIssues[curId]) {
+          return;
+        }
       }
       if (line.includes("description: ")) {
-        cur.description = line.split("description: ")[1];
+        foundIssues[curId] = line.split("description: ")[1];
       }
     });
-    return output;
+    return Object.keys(foundIssues).map(a11yId => ({
+      A11yID: a11yId,
+      description: foundIssues[a11yId],
+    }));
   }
 
   run() {
