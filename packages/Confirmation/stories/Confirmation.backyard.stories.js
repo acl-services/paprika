@@ -1,8 +1,7 @@
-import React from "react";
 import { testStoryParameters } from "storybook/assets/storyParameters";
 import { getStoryName } from "storybook/storyTree";
-import ConfirmationExample from "./examples/ConfirmationExample";
 import Confirmation from "../src";
+import Screener from "./examples/Screener";
 
 const storyName = getStoryName("Confirmation");
 
@@ -11,7 +10,7 @@ export default {
   component: Confirmation,
 };
 
-export const ScreenerStory = () => <ConfirmationExample />;
+export const ScreenerStory = Screener;
 
 ScreenerStory.story = {
   name: "Screener",
