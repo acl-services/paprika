@@ -1,5 +1,23 @@
 # Changelog
 
+## 2.2.12
+
+### Patch Changes
+
+- Updated dependencies [63f9a05]
+- Updated dependencies [15b2a9a]
+  - @paprika/helpers@2.2.1
+  - @paprika/stylers@1.1.5
+  - @paprika/tokens@1.1.4
+
+## 2.2.12-next.1
+
+### Patch Changes
+
+- Updated dependencies [15b2a9a]
+  - @paprika/stylers@1.1.5-next.0
+  - @paprika/tokens@1.1.4-next.0
+
 ## 2.2.12-next.0
 
 ### Patch Changes

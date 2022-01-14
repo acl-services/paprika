@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.0.13
+
+### Patch Changes
+
+- 63f9a05: Added `container` prop to Panel to support Shadow DOM
+- Updated dependencies [63f9a05]
+- Updated dependencies [15b2a9a]
+  - @paprika/helpers@2.2.1
+  - @paprika/tokens@1.1.4
+
+## 1.0.13-next.1
+
+### Patch Changes
+
+- Updated dependencies [15b2a9a]
+  - @paprika/tokens@1.1.4-next.0
+
 ## 1.0.13-next.0
 
 ### Patch Changes

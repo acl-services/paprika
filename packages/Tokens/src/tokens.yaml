@@ -203,8 +203,8 @@ counter:
   medium: 19px
 #
 pill:
-  small-radius: 8px / 50%
-  medium-radius: 12px / 50%
+  small-radius: 8px unquote("/") 50%
+  medium-radius: 12px unquote("/") 50%
 #
 background-color:
   level0: $color--black-lighten-80
