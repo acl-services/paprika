@@ -9,27 +9,23 @@ import ConfirmationExampleWithTriggerIcon from "./examples/ConfirmationExampleWi
 import ConfirmationExampleWithTriggerRaw from "./examples/ConfirmationExampleWithTriggerRaw";
 import ConfirmationExampleWithAsyncAction from "./examples/ConfirmationExampleWithAsyncAction";
 
-import Confirmation from "../src";
-
 const storyName = getStoryName("Confirmation");
 
 export default {
   title: `${storyName}/Examples`,
-  component: Confirmation,
 };
 
 export const basic = () => (
-  <ExampleStory component="Confirmation" storyName="Basic" fileName="examples/ConfirmationExample.js">
+  <ExampleStory component="Confirmation" storyName="Basic Confirmation" fileName="examples/ConfirmationExample.js">
     <ConfirmationExample />
   </ExampleStory>
 );
-
-basic.story = exampleStoryParameters;
+basic.story = { parameters: exampleStoryParameters };
 
 export const locale = () => (
   <ExampleStory
     component="Confirmation"
-    storyName="ConfirmationExample with locale"
+    storyName="Confirmation with Chinese locale"
     fileName="examples/ConfirmationExample.js"
   >
     <L10n locale="zh">
@@ -37,47 +33,54 @@ export const locale = () => (
     </L10n>
   </ExampleStory>
 );
-
-locale.story = exampleStoryParameters;
+locale.story = { parameters: exampleStoryParameters };
 
 export const trigger = () => (
-  <>
-    <ExampleStory
-      component="Confirmation"
-      storyName="ConfirmationExample with trigger"
-      fileName="examples/ConfirmationExampleWithTrigger.js"
-    >
-      <ConfirmationExampleWithTrigger />
-    </ExampleStory>
-    <br />
-    <ExampleStory
-      component="Confirmation"
-      storyName="Trigger example with icon button"
-      fileName="examples/ConfirmationExampleWithTriggerIcon.js"
-    >
-      <ConfirmationExampleWithTriggerIcon />
-    </ExampleStory>
-    <br />
-    <ExampleStory
-      component="Confirmation"
-      storyName="Trigger example with raw button"
-      fileName="examples/ConfirmationExampleWithTriggerRaw.js"
-    >
-      <ConfirmationExampleWithTriggerRaw />
-    </ExampleStory>
-  </>
+  <ExampleStory
+    component="Confirmation"
+    storyName="Confirmation with trigger"
+    fileName="examples/ConfirmationExampleWithTrigger.js"
+  >
+    <ConfirmationExampleWithTrigger />
+  </ExampleStory>
 );
+trigger.story = { parameters: exampleStoryParameters };
 
-trigger.story = exampleStoryParameters;
+export const triggerIcon = () => (
+  <ExampleStory
+    component="Confirmation"
+    storyName="Trigger example with Button.Icon"
+    fileName="examples/ConfirmationExampleWithTriggerIcon.js"
+  >
+    <ConfirmationExampleWithTriggerIcon />
+  </ExampleStory>
+);
+triggerIcon.story = {
+  name: "Icon Trigger",
+  parameters: exampleStoryParameters,
+};
+
+export const triggerButton = () => (
+  <ExampleStory
+    component="Confirmation"
+    storyName="Trigger example with RawButton"
+    fileName="examples/ConfirmationExampleWithTriggerRaw.js"
+  >
+    <ConfirmationExampleWithTriggerRaw />
+  </ExampleStory>
+);
+triggerButton.story = {
+  name: "RawButton Trigger",
+  parameters: exampleStoryParameters,
+};
 
 export const async = () => (
   <ExampleStory
     component="Confirmation"
-    storyName="ConfirmationExample with async action"
+    storyName="Confirmation with async action"
     fileName="examples/ConfirmationExampleWithAsyncAction.js"
   >
     <ConfirmationExampleWithAsyncAction />
   </ExampleStory>
 );
-
-async.story = exampleStoryParameters;
+async.story = { parameters: exampleStoryParameters };
