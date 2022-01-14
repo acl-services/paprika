@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import styled, { css, keyframes } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
@@ -26,7 +25,7 @@ export const Caption = styled.div`
   ${stylers.lineHeight(-2)}
   ${stylers.truncateText}
   color: ${tokens.color.blackLighten20};
-  fontWeight: normal;
+  font-weight: normal;
   margin: ${tokens.space} auto 0 auto;
   overflow: hidden;
   text-align: center;
@@ -38,7 +37,7 @@ export const AriaAlert = styled.div`
 
 const SpinnerVisualStyles = {
   small: css`
-    borderwidth: 3px;
+    border-width: 3px;
     height: ${stylers.spacer(3)};
     width: ${stylers.spacer(3)};
   `,
