@@ -6,13 +6,15 @@ import { TextLine } from "../helpers";
 export function PanelDefaultSticky() {
   return (
     <>
-      <p>
-        <Panel data-pka-anchor="panel" isOpen offset={{ top: 40 }}>
-          <Panel.Header>
-            <Heading>Cypress</Heading>
-          </Panel.Header>
-        </Panel>
-      </p>
+      <div
+        data-pka-anchor="global-navigator"
+        style={{ display: "flex", justifyContent: "flex-end", width: "100%", height: "40px", background: "#2F3B4D" }}
+      />
+      <Panel data-pka-anchor="panel" isOpen offset={{ top: 40 }}>
+        <Panel.Header hasAccent>
+          <Heading>Cypress</Heading>
+        </Panel.Header>
+      </Panel>
       <div style={{ width: "400px", margin: "25px" }}>
         <TextLine repeat={100} />
       </div>
