@@ -65,13 +65,11 @@ describe("ListBox.Trigger", () => {
       dispatch({ type: types.togglePopover });
     };
 
-    const onRenderTrigger = jest.fn((selected, options, { dispatch, propsForTrigger, types, refTrigger }) => {
-      return (
-        <button type="button" {...propsForTrigger()} onClick={togglePopover(dispatch, types)} ref={refTrigger}>
-          Toggle ListBox
-        </button>
-      );
-    });
+    const onRenderTrigger = jest.fn((selected, options, { dispatch, propsForTrigger, types, refTrigger }) => (
+      <button type="button" {...propsForTrigger()} onClick={togglePopover(dispatch, types)} ref={refTrigger}>
+        Toggle ListBox
+      </button>
+    ));
 
     const { getByText } = renderComponent({}, [
       <ListBox.Trigger key="trigger">{onRenderTrigger}</ListBox.Trigger>,

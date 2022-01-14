@@ -17,6 +17,7 @@ const storyTree = [
       "DataField",
       "DataGrid",
       "DataHeader",
+      "DataTable",
       "Filter",
       "Table"
     ],
@@ -28,7 +29,7 @@ const storyTree = [
       "ButtonGroup",
       "OverflowMenu",
       "DialogActions",
-      "ExternalLink",
+      "Link",
       "RawButton",
       "StatusTracker"
     ],

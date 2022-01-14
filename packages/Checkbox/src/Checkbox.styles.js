@@ -4,13 +4,18 @@ import { boxSizingStyles, visuallyHidden } from "@paprika/stylers/lib/includes";
 import tokens from "@paprika/tokens";
 import * as types from "./types";
 
-const getLabelLeftPadding = (checkboxSize, hasLabel) => {
-  return hasLabel ? `${toInt(checkboxSize) + toInt(tokens.space)}px` : checkboxSize;
-};
+const getLabelLeftPadding = (checkboxSize, hasLabel) =>
+  hasLabel ? `${toInt(checkboxSize) + toInt(tokens.space)}px` : checkboxSize;
 
 const smallCheckboxSize = tokens.checkbox.sizeSm;
 const mediumCheckboxSize = tokens.checkbox.sizeMd;
-const largeCheckboxSize = tokens.checkbox.sizeLg;
+
+const mediumCheckboxGeneralStyle = {
+  checkBoxStyles: css`
+    height: ${mediumCheckboxSize};
+    width: ${mediumCheckboxSize};
+  `,
+};
 
 const styles = {
   [types.SMALL]: {
@@ -26,52 +31,42 @@ const styles = {
       height: smallCheckboxSize,
       left: `${toInt(smallCheckboxSize) / 2}px`,
     },
-    labelStyles: hasLabel => {
-      return {
-        minHeight: smallCheckboxSize,
-        padding: `0 0 0 ${getLabelLeftPadding(smallCheckboxSize, hasLabel)}`,
-      };
-    },
+    labelStyles: hasLabel => ({
+      minHeight: smallCheckboxSize,
+      padding: `0 0 0 ${getLabelLeftPadding(smallCheckboxSize, hasLabel)}`,
+    }),
   },
   [types.MEDIUM]: {
     baseFontSize: {
-      fontSize: `${fontSizeValue()}px`,
+      fontSize: `${fontSizeValue(-1)}px`,
     },
-    checkBoxStyles: {
-      height: mediumCheckboxSize,
-      width: mediumCheckboxSize,
-    },
+    ...mediumCheckboxGeneralStyle,
     checkBoxIconStyles: {
       fontSize: `${fontSizeValue(-1)}px`,
       height: mediumCheckboxSize,
       left: `${toInt(mediumCheckboxSize) / 2}px`,
     },
-    labelStyles: hasLabel => {
-      return {
-        minHeight: mediumCheckboxSize,
-        padding: `1px 0 0 ${getLabelLeftPadding(mediumCheckboxSize, hasLabel)}`,
-      };
-    },
+    labelStyles: hasLabel => ({
+      minHeight: mediumCheckboxSize,
+      lineHeight: 1,
+      padding: `2px 0 0 ${getLabelLeftPadding(mediumCheckboxSize, hasLabel)}`,
+    }),
   },
   [types.LARGE]: {
     baseFontSize: {
       fontSize: `${fontSizeValue()}px`,
     },
-    checkBoxStyles: {
-      height: largeCheckboxSize,
-      width: largeCheckboxSize,
-    },
+    ...mediumCheckboxGeneralStyle,
     checkBoxIconStyles: {
       fontSize: `${fontSizeValue()}px`,
-      height: largeCheckboxSize,
-      left: `${toInt(largeCheckboxSize) / 2}px`,
+      height: mediumCheckboxSize,
+      left: `${toInt(mediumCheckboxSize) / 2}px`,
     },
-    labelStyles: hasLabel => {
-      return {
-        minHeight: largeCheckboxSize,
-        padding: `3px 0 0 ${getLabelLeftPadding(largeCheckboxSize, hasLabel)}`,
-      };
-    },
+    labelStyles: hasLabel => ({
+      minHeight: mediumCheckboxSize,
+      lineHeight: 1,
+      padding: `0 0 0 ${getLabelLeftPadding(mediumCheckboxSize, hasLabel)}`,
+    }),
   },
 };
 
@@ -110,7 +105,7 @@ export const Checkbox = styled.div(
 
       & + label::before {
         background: ${tokens.color.white};
-        border: 2px solid ${tokens.border.color};
+        border: 2px solid ${tokens.border.hoverColor};
         border-radius: ${tokens.border.radius};
         content: "";
         left: 0;
@@ -161,6 +156,9 @@ export const Checkbox = styled.div(
           cursor: not-allowed;
           opacity: 0.5;
           transition: none;
+        }
+        & + label:before {
+          border: 2px solid ${tokens.border.color};
         }
         &:checked,
         &:indeterminate {

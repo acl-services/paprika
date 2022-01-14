@@ -10,14 +10,14 @@ export const Requirement = styled.div`
 
 export const Label = styled.div(
   ({ isVisuallyHidden, isDisabledStyle }) => css`
+    align-items: center;
     color: ${tokens.textColor.default};
-    display: block;
+    display: flex;
     font-size: inherit;
     font-weight: bold;
     margin: 0 ${tokens.space} ${tokens.spaceSm} 0;
     padding: 0;
     position: relative;
-    ${stylers.lineHeight(-1)}
     ${isVisuallyHidden && stylers.visuallyHidden}
     ${isDisabledStyle && `opacity: 0.5;`}
   `

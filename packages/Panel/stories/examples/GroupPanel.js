@@ -28,7 +28,7 @@ export default function GroupPanel() {
   };
 
   return (
-    <React.Fragment>
+    <>
       <Nav>
         <div style={menu}>
           <Button data-pka-anchor="button-panel1" onClick={handleParent1} size="small">
@@ -55,14 +55,14 @@ export default function GroupPanel() {
       </div>
       <Panel.Group offsetY={40}>
         <Panel data-pka-anchor="panel1" width={400} onClose={handleParent1} isOpen={spParent1}>
-          <Panel.Header kind="primary">Parent 1</Panel.Header>
+          <Panel.Header>Parent 1</Panel.Header>
           <Panel.Content>
             <TextLine repeat={100} />
             <Button>Test button</Button>
           </Panel.Content>
         </Panel>
         <Panel data-pka-anchor="panel2" onClose={handleParent2} width={400} isOpen={spParent2}>
-          <Panel.Header kind="primary">Parent 2</Panel.Header>
+          <Panel.Header>Parent 2</Panel.Header>
           <Panel.Content>
             <Button
               onClick={() => {
@@ -78,9 +78,7 @@ export default function GroupPanel() {
           onClose={() => {
             setSpChild(false);
           }}
-          kind="child"
           width={400}
-          isCompact
           isOpen={spChild}
         >
           <Panel.Header>Child of Parent 2</Panel.Header>
@@ -92,6 +90,6 @@ export default function GroupPanel() {
           </Panel.Footer>
         </Panel>
       </Panel.Group>
-    </React.Fragment>
+    </>
   );
 }

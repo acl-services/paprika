@@ -31,9 +31,9 @@ export function Open() {
         {...listBoxWithTagsProps}
         isOpen
       >
-        {filteredData.map(option => {
-          return !isSelected(option.name) ? <ListBox.Option label={option.name}>{option.name}</ListBox.Option> : null;
-        })}
+        {filteredData.map(option =>
+          !isSelected(option.name) ? <ListBox.Option label={option.name}>{option.name}</ListBox.Option> : null
+        )}
       </ListBox>
     </div>
   );
@@ -58,9 +58,9 @@ export function Selected() {
         {...listBoxWithTagsProps}
         isOpen
       >
-        {filteredData.map(option => {
-          return !isSelected(option.name) ? <ListBox.Option label={option.name}>{option.name}</ListBox.Option> : null;
-        })}
+        {filteredData.map(option =>
+          !isSelected(option.name) ? <ListBox.Option label={option.name}>{option.name}</ListBox.Option> : null
+        )}
       </ListBox>
     </div>
   );

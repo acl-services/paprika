@@ -4,7 +4,6 @@ import { boolean, select, text } from "@storybook/addon-knobs";
 import AddIcon from "@paprika/icon/lib/Add";
 import TimesIcon from "@paprika/icon/lib/Times";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
-import * as types from "../../src/types";
 import Button from "../../src";
 
 function clickHandler() {
@@ -20,12 +19,8 @@ const iconSelections = {
 
 const getKnobs = () => ({
   children: text("label", "Give now"),
-  size: select("size", types.DEFAULT, "medium"),
-  kind: select(
-    "type",
-    [types.DEFAULT, types.PRIMARY, types.SECONDARY, types.DESTRUCTIVE, types.FLAT, types.MINOR, types.LINK],
-    "default"
-  ),
+  size: select("size", Object.values(Button.types.size), Button.types.size.MEDIUM),
+  kind: select("type", Object.values(Button.types.kind), Button.types.kind.DEFAULT),
   onClick: clickHandler,
   icon: iconSelections[select("icon", Object.keys(iconSelections), null)],
   isActive: boolean("isActive", false),

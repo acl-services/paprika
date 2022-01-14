@@ -37,9 +37,7 @@ export function App() {
       ) : (
         <DataGrid ref={refDataGrid} data={data} keygen="id" hasZebraStripes>
           {data.length
-            ? Object.keys(data[0]).map(key => {
-                return <DataGrid.ColumnDefinition key={key} header={key} cell={key} />;
-              })
+            ? Object.keys(data[0]).map(key => <DataGrid.ColumnDefinition key={key} header={key} cell={key} />)
             : null}
         </DataGrid>
       )}

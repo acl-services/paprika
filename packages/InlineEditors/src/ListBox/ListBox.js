@@ -5,13 +5,8 @@ import Editor from "../Editor";
 import * as sc from "./ListBox.styles";
 import { status } from "../types";
 
-const isPopoverVisible = ({ rowIndex, columnIndex }) => {
-  return (
-    document
-      .querySelector([`[data-paprika-anchor-inline-cell="${rowIndex}-${columnIndex}"]`])
-      .parentElement.getAttribute("aria-hidden") === "true"
-  );
-};
+const isPopoverClosed = ({ rowIndex, columnIndex }) =>
+  document.querySelector([`[data-paprika-anchor-inline-cell="${rowIndex}-${columnIndex}"]`]);
 
 export default function InlineListBox(props) {
   const {
@@ -59,7 +54,7 @@ export default function InlineListBox(props) {
   }
 
   function handleBlur() {
-    if (isPopoverVisible({ rowIndex, columnIndex })) {
+    if (!isPopoverClosed({ rowIndex, columnIndex })) {
       window.requestAnimationFrame(() => {
         handleClose();
       });

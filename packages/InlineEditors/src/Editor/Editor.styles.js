@@ -3,8 +3,8 @@ import tokens from "@paprika/tokens";
 import styled, { css, keyframes } from "styled-components";
 import { status as statusType } from "../types";
 
-export const Value = styled(RawButton)(({ status }) => {
-  return css`
+export const Value = styled(RawButton)(
+  ({ status }) => css`
     &:hover,
     &:focus {
       background: ${tokens.color.white};
@@ -24,11 +24,11 @@ export const Value = styled(RawButton)(({ status }) => {
     ${status === statusType.ERROR
       ? `border: 1px solid ${tokens.color.orange}; border-radius: ${tokens.border.radius}; background: ${tokens.color.white};`
       : ""}
-  `;
-});
+  `
+);
 
-export const OptimisticValue = styled.div(() => {
-  return css`
+export const OptimisticValue = styled.div(
+  () => css`
     align-items: center;
     box-sizing: border-box;
     color: ${tokens.color.cremeDarken30};
@@ -37,8 +37,8 @@ export const OptimisticValue = styled.div(() => {
     padding: ${tokens.spaceSm};
     position: relative;
     width: 100%;
-  `;
-});
+  `
+);
 
 const fadeOut = keyframes`
     from {
@@ -51,19 +51,17 @@ const fadeOut = keyframes`
 
 `;
 
-const icon = () => {
-  return css`
-    align-items: center;
-    display: flex;
-    height: 100%;
-    justify-content: center;
-    padding-right: 2px;
-    position: relative;
-  `;
-};
+const icon = () => css`
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  padding-right: 2px;
+  position: relative;
+`;
 
-export const Success = styled.div(() => {
-  return css`
+export const Success = styled.div(
+  () => css`
     animation: ${fadeOut} 0.3s ease-out;
     animation-delay: 1s;
     animation-fill-mode: forwards;
@@ -71,33 +69,33 @@ export const Success = styled.div(() => {
     font-size: 1.3rem;
     opacity: 1;
     top: 2px;
-  `;
-});
+  `
+);
 
-export const Error = styled.div(() => {
-  return css`
+export const Error = styled.div(
+  () => css`
     ${icon};
     background: transparent;
     color: ${tokens.color.orange};
     font-size: 1.3rem;
     position: relative;
     top: 2px;
-  `;
-});
+  `
+);
 
-export const Idle = styled.div(() => {
-  return css`
+export const Idle = styled.div(
+  () => css`
     ${icon};
     opacity: 0;
-  `;
-});
+  `
+);
 
-export const Loading = styled.div(() => {
-  return css`
+export const Loading = styled.div(
+  () => css`
     ${icon};
     /* why does this has a margin? and is a plain className? */
     .spinner__caption {
       margin: 0;
     }
-  `;
-});
+  `
+);

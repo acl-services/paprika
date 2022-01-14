@@ -10,14 +10,14 @@ export default function BasicPanel() {
   };
 
   return (
-    <React.Fragment>
+    <>
       <Nav />
       <Panel a11yText="Panel View" isOpen={isOpen} onClose={toggle}>
         <Panel.Overlay />
         <Panel.Trigger kind="primary" onClick={toggle}>
           {isOpen ? "close" : "open"}
         </Panel.Trigger>
-        <Panel.Header kind="primary">Header</Panel.Header>
+        <Panel.Header>Header</Panel.Header>
         <Panel.Content>
           <TextLine repeat={100} />
         </Panel.Content>
@@ -27,6 +27,6 @@ export default function BasicPanel() {
         </Panel.Footer>
       </Panel>
       <TextLine repeat={100} />
-    </React.Fragment>
+    </>
   );
 }

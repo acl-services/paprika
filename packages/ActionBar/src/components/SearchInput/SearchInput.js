@@ -1,23 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
-import debounce from "lodash.debounce";
+import { useCallbackDebouncer } from "@paprika/helpers";
 import Input from "@paprika/input";
 import SearchIcon from "@paprika/icon/lib/Search";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import * as sc from "./SearchInput.styles";
 
-export default function SearchInput(props) {
-  const { a11yText, debouncedValue, onChange, placeholder, ...moreProps } = props;
+export default function SearchInput({ a11yText, initialValue, debounceDelay, onChange, placeholder, ...moreProps }) {
   const I18n = useI18n();
-  const [searchTerm, setSearchTerm] = React.useState("");
-  const debouncedOnChange = React.useCallback(debounce(onChange, debouncedValue), [onChange, debouncedValue]);
+  const [searchTerm, setSearchTerm] = React.useState(initialValue);
+  const debounceCallback = useCallbackDebouncer(debounceDelay);
 
   function handleSearch(e) {
     const newSearchTerm = e.target.value;
     setSearchTerm(newSearchTerm);
 
     if (onChange) {
-      debouncedOnChange(newSearchTerm);
+      debounceCallback(() => onChange(newSearchTerm));
     }
   }
 
@@ -40,8 +39,11 @@ const propTypes = {
   /** Descriptive a11y text for assistive technologies. */
   a11yText: PropTypes.string,
 
-  /** Debounced value will be used for onChange. */
-  debouncedValue: PropTypes.number,
+  /** SearchInput will be initialized with this value on the first render */
+  initialValue: PropTypes.string,
+
+  /** Debounce delay (ms) will be used for onChange. */
+  debounceDelay: PropTypes.number,
 
   /** Placeholder for the search input. */
   placeholder: PropTypes.string,
@@ -52,7 +54,8 @@ const propTypes = {
 
 const defaultProps = {
   a11yText: null,
-  debouncedValue: 500,
+  initialValue: "",
+  debounceDelay: 500,
   placeholder: null,
   onChange: null,
 };

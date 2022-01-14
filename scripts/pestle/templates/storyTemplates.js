@@ -1,3 +1,5 @@
+const { pascalCase } = require("pascal-case");
+
 function renderStoryFolderTemplate(view) {
   const { componentName } = view;
   return `import React from "react";
@@ -22,6 +24,41 @@ function renderStoryFolderTemplate(view) {
     name: "Showcase",
     decorators: [withKnobs],
     parameters: showcaseStoryParameters,
+  };
+`;
+}
+
+function addVariationTemplate(view) {
+  const { componentName } = view;
+  return `
+  import Variations from "./examples/Variations";
+  
+  export const variations = () => (
+    <ExampleStory storyName="${componentName}" tagline={ExampleStory.defaultTaglines.variations}>
+      <Variations />
+    </ExampleStory>
+  );
+  variations.story = {
+    name: "Variations",
+    parameters: variationsStoryParameters,
+  };
+`;
+}
+
+function addExampleTemplate(view) {
+  const { storyName } = view;
+  return `
+  import ${pascalCase(storyName)} from "./examples/${pascalCase(storyName)}";
+  
+  export const ${pascalCase(storyName)}Example = () => (
+    <ExampleStory storyName="${storyName}">
+      <${pascalCase(storyName)} />
+    </ExampleStory>
+  );
+
+  ${pascalCase(storyName)}Example.story = {
+    name: "${storyName}",
+    parameters: exampleStoryParameters,
   };
 `;
 }
@@ -53,7 +90,7 @@ function renderExampleStoryFolderTemplate(view) {
   import { exampleStoryParameters } from "storybook/assets/storyParameters";
   import ExampleStory from "storybook/components/ExampleStory";
   import ${componentName} from "../src/${componentName}";
-  import ${storyName} from "./examples/${storyName}";
+  import ${pascalCase(storyName)} from "./examples/${pascalCase(storyName)}";
   
   const storyName = getStoryName("${componentName}");
   
@@ -61,13 +98,13 @@ function renderExampleStoryFolderTemplate(view) {
     title: \`\${storyName}/Examples\`,
     component: ${componentName},
   };
-  
-  export const ${storyName.toLowerCase()}Example = () => (
-    <ExampleStory storyName="${storyName}" component="${componentName}" fileName="examples/${storyName}.js">
-      <${storyName} />
+
+  export const ${pascalCase(storyName)}Example = () => (
+    <ExampleStory storyName="${storyName}" component="${componentName}" fileName="examples/${pascalCase(storyName)}.js">
+      <${pascalCase(storyName)} />
     </ExampleStory>
   );
-  ${storyName.toLowerCase()}Example.story = { name: "${storyName}", parameters: exampleStoryParameters };
+  ${pascalCase(storyName)}Example.story = { name: "${storyName}", parameters: exampleStoryParameters };
 `;
 }
 
@@ -77,7 +114,7 @@ function renderExampleStoryTemplate(view) {
 import ${componentName} from "../../src";
 // import { Story, CenteredStory, Rule, Big, Small, Tagline, Gap, repeat, breaklines, CodeHeading } from "storybook/assets/styles/common.styles";
 
-export default function ${storyName}Example() {
+export default function ${pascalCase(storyName)}Example() {
   return (
     <${componentName} />
   );
@@ -144,7 +181,9 @@ import { getStoryName } from "storybook/storyTree";
 import { docsStoryParameters } from "storybook/assets/storyParameters";
 import Readme from "../README.md";
 import ${componentName} from "../src";
+
 <Meta title={\`\${getStoryName("${componentName}")}/ Docs\`} component={${componentName}} parameters={{ ...docsStoryParameters }} />
+
 <Description markdown={Readme} />
 `;
 }
@@ -157,5 +196,7 @@ module.exports = {
   renderVariationStoryTemplate,
   renderShowcaseStoryTemplate,
   renderScreenerStoryTemplate,
-  renderMXDFileTemplate
+  renderMXDFileTemplate,
+  addVariationTemplate,
+  addExampleTemplate,
 };

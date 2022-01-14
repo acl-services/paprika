@@ -61,8 +61,8 @@ export default function OptionsSelected() {
         </span>
       </div>
       <div css={container}>
-        {Object.keys(selectedOptions).map(key => {
-          return selectedOptions[key].map(option => {
+        {Object.keys(selectedOptions).map(key =>
+          selectedOptions[key].map(option => {
             const breadcrumb = getBreadcrumb({ data: localData, option });
             return (
               <div key={option.$$key} css={optionStyles} data-pka-anchor="list-box-browser-selected-option">
@@ -88,8 +88,8 @@ export default function OptionsSelected() {
                 </RawButton>
               </div>
             );
-          });
-        })}
+          })
+        )}
       </div>
     </>
   );

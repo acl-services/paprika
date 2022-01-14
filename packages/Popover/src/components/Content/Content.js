@@ -1,4 +1,5 @@
 import React from "react";
+import { Transition } from "react-transition-group";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { callAll } from "@paprika/helpers";
@@ -26,9 +27,11 @@ const Content = React.forwardRef((props, ref) => {
     onClose,
     onDelayedClose,
     onDelayedOpen,
+    onAfterOpen,
     portalElement,
     refContent,
     handleKeyDown,
+    shouldUnmount,
   } = React.useContext(PopoverContext);
 
   // TODO: extract this to Storybook story somehow so supporting numbers as strings is not required
@@ -62,7 +65,7 @@ const Content = React.forwardRef((props, ref) => {
       if (!isElementContainsFocus(currentTarget)) {
         onClose();
       }
-    }, parseInt(PopoverConstants.transition, 10));
+    }, PopoverConstants.animationDuration);
   }
 
   function cssValue(value) {
@@ -86,26 +89,31 @@ const Content = React.forwardRef((props, ref) => {
   if (content.width && content.width !== "auto") {
     contentStyles.width = content.width;
   }
-  /* eslint-disable jsx-a11y/mouse-events-have-key-events */
+
+  const transitionProps = shouldUnmount ? { mountOnEnter: true, unmountOnExit: true } : {};
+
   const ContentStyledComponent = (
-    <ContentStyled
-      aria-hidden={!isOpen}
-      data-component-name="PopoverContent"
-      data-pka-anchor="popover.content"
-      id={content.ariaId}
-      isOpen={isOpen}
-      ref={handleRef}
-      style={contentStyles}
-      tabIndex="-1"
-      zIndex={content.zIndex}
-      {...moreProps}
-      onBlur={callAll(handleBlur, moreProps.onBlur)}
-      onMouseOut={callAll(handleMouseEvent, moreProps.onMouseOut)}
-      onMouseOver={callAll(handleMouseEvent, moreProps.onMouseOver)}
-      onKeyDown={callAll(handleKeyDown, moreProps.onKeyDown)}
-    >
-      {props.children}
-    </ContentStyled>
+    <Transition {...transitionProps} in={isOpen} timeout={PopoverConstants.animationDuration} onEntered={onAfterOpen}>
+      {state => (
+        <ContentStyled
+          state={state}
+          data-component-name="PopoverContent"
+          data-pka-anchor="popover.content"
+          id={content.ariaId}
+          ref={handleRef}
+          style={contentStyles}
+          tabIndex="-1"
+          zIndex={content.zIndex}
+          {...moreProps}
+          onBlur={callAll(handleBlur, moreProps.onBlur)}
+          onMouseOut={callAll(handleMouseEvent, moreProps.onMouseOut)}
+          onMouseOver={callAll(handleMouseEvent, moreProps.onMouseOver)}
+          onKeyDown={callAll(handleKeyDown, moreProps.onKeyDown)}
+        >
+          {props.children}
+        </ContentStyled>
+      )}
+    </Transition>
   );
 
   if (isPortal) {

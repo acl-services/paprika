@@ -7,6 +7,8 @@ interface ListBoxProps {
   children?: node[];
   /** If ListBox is in an error state */
   hasError?: boolean;
+  /** If there is a tag */
+  hasTag?: boolean;
   /** Has implicit "All items selected" value when no item is selected */
   hasImplicitAll?: boolean;
   /** The maximum height for the options container. Using a number implies px units. */
@@ -134,6 +136,8 @@ declare namespace ListBox {
     isSelected?: boolean;
     /** Describe if the option started as selected or not */
     defaultIsSelected?: boolean;
+    /** When no PlusIcon or CheckBox are needed */
+    hasNoIcon?: boolean;
     /** Describe if the option is enable or not */
     isDisabled?: boolean;
     /** Describe if the option is hidden or not */

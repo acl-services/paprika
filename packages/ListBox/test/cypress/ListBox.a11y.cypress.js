@@ -49,7 +49,7 @@ describe("ListBox MultiSelect a11y", () => {
     pressKey("downarrow");
     pressKey("enter");
     toggleDropdown();
-    cy.get(selectors.popover).should("not.be.visible");
+    cy.get(selectors.popover).should("not.exist");
     toggleDropdown();
     cy.get(selectors.filterInput).should("have.focus");
   });
@@ -78,7 +78,7 @@ describe("ListBox SingleSelect a11y", () => {
     pressKey("downarrow");
     pressKey("downarrow");
     pressKey("enter");
-    cy.get(selectors.popover).should("not.be.visible");
+    cy.get(selectors.popover).should("not.exist");
     toggleDropdown();
     optionHasFocus("Darth Vader");
   });

@@ -101,12 +101,7 @@ export default function useColumnsArrangement({
     );
   }
 
-  const isColumnHidden = React.useCallback(
-    columnId => {
-      return hiddenColumnIds.includes(columnId);
-    },
-    [hiddenColumnIds]
-  );
+  const isColumnHidden = React.useCallback(columnId => hiddenColumnIds.includes(columnId), [hiddenColumnIds]);
 
   function handleChangeOrder({ source, destination }) {
     if (!canMove({ source, destination })) return;

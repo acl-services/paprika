@@ -36,9 +36,7 @@ export default function LazyListBox() {
   };
 
   const handleClickAccept = (selected, options, selectedIndex, more) => {
-    const selectedIds = selected.map(id => {
-      return options[id].value.id;
-    });
+    const selectedIds = selected.map(id => options[id].value.id);
 
     const { dispatch: dispatchListBox, actionTypes: actionTypesListBox } = more;
 
@@ -161,18 +159,16 @@ export default function LazyListBox() {
   }
 
   function renderOptions() {
-    const characterOptions = state.characters.map(character => {
-      return character.data.results.map(result => {
-        return (
-          <ListBox.Option value={result} key={result.id} isHidden={state.selectedCharacters.includes(result.id)}>
-            <MarvelOption result={result} />
-          </ListBox.Option>
-        );
-      });
-    });
+    const characterOptions = state.characters.map(character =>
+      character.data.results.map(result => (
+        <ListBox.Option value={result} key={result.id} isHidden={state.selectedCharacters.includes(result.id)}>
+          <MarvelOption result={result} />
+        </ListBox.Option>
+      ))
+    );
 
     return (
-      <React.Fragment>
+      <>
         <ListBox.Divider key="divider_1">Divider 1</ListBox.Divider>
         {characterOptions[0]}
         {renderLoadMore(0)}
@@ -183,7 +179,7 @@ export default function LazyListBox() {
         {characterOptions[2]}
         {renderLoadMore(2)}
         {renderFooter()}
-      </React.Fragment>
+      </>
     );
   }
 
@@ -193,20 +189,18 @@ export default function LazyListBox() {
     if (!state.searchedCharacters.data || !state.searchedCharacters.data.results.length)
       return <ListBox.Option preventDefaultOnSelect>No Results</ListBox.Option>;
 
-    const Options = state.searchedCharacters.data.results.map(result => {
-      return (
-        <ListBox.Option value={result} key={result.id} isHidden={state.selectedCharacters.includes(result.id)}>
-          <MarvelOption result={result} />
-        </ListBox.Option>
-      );
-    });
+    const Options = state.searchedCharacters.data.results.map(result => (
+      <ListBox.Option value={result} key={result.id} isHidden={state.selectedCharacters.includes(result.id)}>
+        <MarvelOption result={result} />
+      </ListBox.Option>
+    ));
 
     return (
-      <React.Fragment>
+      <>
         <ListBox.Divider>Results</ListBox.Divider>
         {Options}
         {renderFooter()}
-      </React.Fragment>
+      </>
     );
   }
 
@@ -223,7 +217,7 @@ export default function LazyListBox() {
   );
 
   return (
-    <React.Fragment>
+    <>
       {state.selectedCharacters.length ? (
         <Results charactersCache={charactersCache} ids={state.selectedCharacters} />
       ) : null}
@@ -234,6 +228,6 @@ export default function LazyListBox() {
         {state.searchedCharacters && state.search !== "" ? renderSearchedOptions() : null}
         {state.characters.length && state.search === "" ? renderOptions() : null}
       </ListBox>
-    </React.Fragment>
+    </>
   );
 }

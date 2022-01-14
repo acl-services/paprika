@@ -11,9 +11,7 @@ export function isRoot(key) {
 
 function getOptions(indexes, list) {
   if (Array.isArray(indexes)) {
-    return indexes.map(index => {
-      return list[index].value;
-    });
+    return indexes.map(index => list[index].value);
   }
 
   const options = [list[indexes].value].filter(chunk => chunk);
@@ -79,7 +77,6 @@ export function getData({
       } else {
         refDefaultSelectedOptions.current = { ...refDefaultSelectedOptions.current, [option.parent]: [option] };
       }
-      /* eslint-enable no-param-reassing */
     }
 
     // checking if its initial view
@@ -145,9 +142,9 @@ export function onChange({ source, indexes, list, isParentSelectable, setSelecte
         const option = getOptions(indexes, list);
         if (option === null) return {};
 
-        const isSameOption = Object.keys(selectedOptions).some(key => {
-          return selectedOptions[key][0].$$key === option[0].$$key;
-        });
+        const isSameOption = Object.keys(selectedOptions).some(
+          key => selectedOptions[key][0].$$key === option[0].$$key
+        );
 
         if (isSameOption) {
           return {};
@@ -174,20 +171,14 @@ export function onChange({ source, indexes, list, isParentSelectable, setSelecte
       .filter(chunk => chunk);
 
     if (options.length) {
-      setSelectedOptions(selectedOptions => {
-        return { ...selectedOptions, root: [...options] };
-      });
+      setSelectedOptions(selectedOptions => ({ ...selectedOptions, root: [...options] }));
       return;
     }
 
-    setSelectedOptions(selectedOptions => {
-      return { ...selectedOptions, root: [] };
-    });
+    setSelectedOptions(selectedOptions => ({ ...selectedOptions, root: [] }));
   }
 
-  setSelectedOptions(selectedOptions => {
-    return { ...selectedOptions, [browserKey]: getOptions(indexes, list) };
-  });
+  setSelectedOptions(selectedOptions => ({ ...selectedOptions, [browserKey]: getOptions(indexes, list) }));
 }
 
 export function focusListBoxBrowser($root, hasLeftColumn) {

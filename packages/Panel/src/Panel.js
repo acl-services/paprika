@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { zValue } from "@paprika/stylers/lib/helpers";
-import { LockBodyScroll, Portal } from "@paprika/helpers";
+import { LockBodyScroll, Portal, DOMElementType } from "@paprika/helpers";
 import OriginalOverlay from "@paprika/overlay";
 import Content from "./components/Content";
 import Dialog from "./components/Dialog";
@@ -11,25 +11,25 @@ import Overlay from "./components/Overlay";
 import Trigger from "./components/Trigger";
 import Group from "./components/Group";
 import FocusLock from "./components/FocusLock";
+import PanelContext from "./PanelContext";
 import * as types from "./types";
 
 import { extractChildren, warnOfPropErrors } from "./helpers";
 import { useOffsetScroll } from "./hooks";
 
-const PUSH_REF_TRANSITION_STYLE = "margin-right 0.2s ease";
 const PUSH_REF_TRANSITION_DELAY_STYLE = "0.1s";
 
 export default function Panel(props) {
   // Props
   const {
     a11yText,
+    container,
     getPushContentElement,
     groupOffsetY,
     height,
-    isCompact,
+    size,
     isInline,
     isOpen,
-    kind,
     offset,
     onAfterClose,
     onAfterOpen,
@@ -37,6 +37,7 @@ export default function Panel(props) {
     slideFrom,
     width,
     zIndex,
+    hasAccent,
     ...moreProps
   } = props;
 
@@ -101,22 +102,27 @@ export default function Panel(props) {
     if (getPushContentElement === null) return;
 
     const pushContentRefStyle = getPushContentElement().style;
-
-    pushContentRefStyle.transition = PUSH_REF_TRANSITION_STYLE;
+    let PUSH_REF_TRANSITION_STYLE = "";
     pushContentRefStyle.transitionDelay = PUSH_REF_TRANSITION_DELAY_STYLE;
 
-    if (isOpen) {
-      pushContentRefStyle.marginRight = width;
-    } else {
-      pushContentRefStyle.transitionDelay = "0s";
-      pushContentRefStyle.marginRight = "0";
+    switch (slideFrom) {
+      case types.slideFroms.LEFT:
+        pushContentRefStyle.marginLeft = isOpen ? width : 0;
+        PUSH_REF_TRANSITION_STYLE = isOpen ? "margin-left 0.2s ease" : 0;
+        break;
+      case types.slideFroms.BOTTOM:
+        break;
+      default:
+        pushContentRefStyle.marginRight = isOpen ? width : 0;
+        PUSH_REF_TRANSITION_STYLE = isOpen ? "margin-right 0.2s ease" : 0;
+        break;
     }
 
     return () => {
       pushContentRefStyle.transition = PUSH_REF_TRANSITION_STYLE;
       pushContentRefStyle.transitionDelay = PUSH_REF_TRANSITION_DELAY_STYLE;
     };
-  }, [isOpen, getPushContentElement, width]);
+  }, [isOpen, slideFrom, getPushContentElement, width]);
 
   const focusLockProps = focusLockExtracted ? focusLockExtracted.props : {};
 
@@ -132,6 +138,10 @@ export default function Panel(props) {
 
   let sidePanel = null;
 
+  const contextValue = {
+    size,
+  };
+
   if (isVisible) {
     const dialog = (
       <Dialog
@@ -142,10 +152,9 @@ export default function Panel(props) {
         groupOffsetY={groupOffsetY}
         header={headerExtracted}
         height={height}
-        isCompact={isCompact}
+        size={size}
         isInline={isInline}
         isOpen={isOpen}
-        kind={kind}
         offset={calculatedOffset}
         onAnimationEnd={handleAnimationEnd}
         onClose={onClose}
@@ -155,6 +164,7 @@ export default function Panel(props) {
         slideFrom={slideFrom}
         width={width}
         zIndex={zIndex}
+        hasAccent={hasAccent}
         {...moreProps}
       >
         {children}
@@ -164,11 +174,15 @@ export default function Panel(props) {
     if (isInline) {
       sidePanel = dialog;
     } else if (!overlayExtracted) {
-      sidePanel = <Portal active>{dialog}</Portal>;
+      sidePanel = (
+        <Portal active container={container}>
+          {dialog}
+        </Portal>
+      );
     } else {
       const { children, focusLockOptions, ...morePropsForOverlay } = overlayExtracted.props;
       sidePanel = (
-        <Portal active>
+        <Portal active container={container}>
           <OriginalOverlay
             data-pka-anchor="panel.overlay"
             focusLockOptions={focusLockProps}
@@ -176,6 +190,7 @@ export default function Panel(props) {
             isOpen={isOpen}
             onClose={onClose}
             zIndex={zIndex}
+            container={container}
             {...morePropsForOverlay}
           >
             {state => React.cloneElement(dialog, { state })}
@@ -189,17 +204,18 @@ export default function Panel(props) {
   const shouldDisableBodyOverflow = (overlayExtracted || isInline) && isOpen;
 
   return (
-    <React.Fragment>
+    <PanelContext.Provider value={contextValue}>
       {shouldDisableBodyOverflow && <LockBodyScroll />}
       {trigger}
       {sidePanel}
-    </React.Fragment>
+    </PanelContext.Provider>
   );
 }
 
 Panel.types = {
-  kind: types.kinds,
   slideFrom: types.slideFroms,
+  widthType: types.widthTypes,
+  size: types.sizes,
 };
 
 const propTypes = {
@@ -208,6 +224,9 @@ const propTypes = {
 
   /** The content for the Panel. */
   children: PropTypes.node.isRequired,
+
+  /** Portal container for the Panel (DOM element) */
+  container: DOMElementType,
 
   /** Function that provides the container DOM element to be pushed. */
   getPushContentElement: PropTypes.func,
@@ -218,17 +237,14 @@ const propTypes = {
   /** The height of the open Panel (when slide in from bottom) */
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
-  /** Control the compactness of the Panel */
-  isCompact: PropTypes.bool,
+  /** Control the size of the Panel */
+  size: PropTypes.oneOfType([types.sizes.MEDIUM, types.sizes.LARGE]),
 
   /** Render the panel inline */
   isInline: PropTypes.bool,
 
   /** Control the visibility of the Panel. This prop makes the Panel appear. */
   isOpen: PropTypes.bool,
-
-  /** Modify the look of the Panel */
-  kind: PropTypes.oneOf([Panel.types.kind.DEFAULT, Panel.types.kind.CHILD, Panel.types.kind.PRIMARY]),
 
   /** Control offset of the Panel. Only use 'top' when sliding in from the left or right. Only use 'left' or 'right' when sliding in from the bottom. */
   offset: PropTypes.shape({ top: PropTypes.number, left: PropTypes.number, right: PropTypes.number }),
@@ -246,21 +262,30 @@ const propTypes = {
   slideFrom: PropTypes.oneOf([types.slideFroms.RIGHT, types.slideFroms.LEFT, types.slideFroms.BOTTOM]),
 
   /** The width of the open Panel (when slide in from left or right) */
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  width: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    types.widthTypes.SMALL,
+    types.widthTypes.MEDIUM,
+    types.widthTypes.LARGE,
+  ]),
 
   /** Control the z-index of the Panel */
   zIndex: PropTypes.number,
+
+  /** Differentiate between similar coloured UI elements */
+  hasAccent: PropTypes.bool,
 };
 
 const defaultProps = {
   a11yText: null,
+  container: null,
   getPushContentElement: null,
   groupOffsetY: 0,
   height: "33%",
-  isCompact: false,
+  size: types.sizes.MEDIUM,
   isInline: false,
   isOpen: false,
-  kind: types.kinds.DEFAULT,
   offset: { top: 0, left: 0, right: 0 },
   onAfterClose: () => {},
   onAfterOpen: () => {},
@@ -268,6 +293,7 @@ const defaultProps = {
   slideFrom: types.slideFroms.RIGHT,
   width: "33%",
   zIndex: zValue(7),
+  hasAccent: false,
 };
 
 Panel.propTypes = propTypes;

@@ -7,21 +7,17 @@ const users = getUsers(20);
 const cellTypes = ["an", "name", "status", "role", "subscription", "reportsRole", "activations", "signed"];
 
 const cellRenders = {
-  name: () => ({ row }) => {
-    return (
+  name: () => ({ row }) => (
+    <div>
+      <div>{row.name}</div>
       <div>
-        <div>{row.name}</div>
-        <div>
-          <a href="https://wegalvanize.com" rel="noreferrer" target="_blank">
-            Some link
-          </a>
-        </div>
+        <a href="https://wegalvanize.com" rel="noreferrer" target="_blank">
+          Some link
+        </a>
       </div>
-    );
-  },
-  an: () => ({ row }) => {
-    return <input type="checkbox" defaultChecked={row.an} />;
-  },
+    </div>
+  ),
+  an: () => ({ row }) => <input type="checkbox" defaultChecked={row.an} />,
   subscription: ({ setData }) => props => {
     const { setStatus, setOptimisticValue, statusType } = useTable({
       rowIndex: props.rowIndex,

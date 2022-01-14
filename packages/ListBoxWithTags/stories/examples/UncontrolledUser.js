@@ -91,9 +91,9 @@ export default function UncontrolledUsers() {
       <ListBox
         allOptionsAreSelected={defaultFilteredData.length === getSelectedOptions().length}
         allOptionsAreSelectedMessage="All directors have been selected"
-        onAddCustomOption={listBoxWithTagsProps.onAddCustomOption(label => {
+        onAddCustomOption={listBoxWithTagsProps.onAddCustomOption(label =>
           // This allowed you override the default behaviour when creating a custom option
-          return {
+          ({
             id: label,
             email: label,
             username: `@${label.split("@")[0]}`,
@@ -101,8 +101,8 @@ export default function UncontrolledUsers() {
             nationality: "(Can)",
             name: "Canadian",
             movie: "Atanarjuat: The Fast Runner",
-          };
-        })}
+          })
+        )}
         renderTag={renderTag}
         selectedOptions={getSelectedOptions()}
         {...listBoxWithTagsProps}
@@ -110,8 +110,8 @@ export default function UncontrolledUsers() {
         {filteredData.map(option => {
           const color = getAvatarColors(option.name);
           return !isSelected(option.id) ? (
-            <ListBox.Option id={option.id} key={option.id} label={option.name}>
-              <div>
+            <ListBox.Option id={option.id} key={option.id} label={option.name} hasNoIcon>
+              <div style={{ marginTop: "6px" }}>
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <Avatar
                     isRound

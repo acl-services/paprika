@@ -1,5 +1,155 @@
 # Changelog
 
+## 1.0.27
+
+### Patch Changes
+
+- Updated dependencies [63f9a05]
+  - @paprika/helpers@2.2.1
+  - @paprika/icon@2.1.6
+  - @paprika/input@4.0.17
+
+## 1.0.27-next.1
+
+### Patch Changes
+
+- @paprika/input@4.0.17-next.1
+- @paprika/icon@2.1.6-next.0
+
+## 1.0.27-next.0
+
+### Patch Changes
+
+- Updated dependencies [63f9a05]
+  - @paprika/helpers@2.2.1-next.0
+  - @paprika/input@4.0.17-next.0
+
+## 1.0.26
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5
+  - @paprika/input@4.0.16
+
+## 1.0.26-next.0
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5-next.0
+  - @paprika/input@4.0.16-next.0
+
+## 1.0.25
+
+### Patch Changes
+
+- Updated dependencies [63fd491]
+- Updated dependencies [9e15465]
+- Updated dependencies [343d673]
+- Updated dependencies [80361b2]
+  - @paprika/input@4.0.15
+  - @paprika/helpers@2.2.0
+  - @paprika/icon@2.1.4
+
+## 1.0.25-next.3
+
+### Patch Changes
+
+- Updated dependencies [80361b2]
+  - @paprika/helpers@2.2.0-next.1
+  - @paprika/input@4.0.15-next.4
+
+## 1.0.25-next.2
+
+### Patch Changes
+
+- @paprika/icon@2.1.4-next.0
+- @paprika/input@4.0.15-next.2
+
+## 1.0.25-next.1
+
+### Patch Changes
+
+- Updated dependencies [343d673]
+  - @paprika/helpers@2.1.4-next.0
+  - @paprika/input@4.0.15-next.1
+
+## 1.0.25-next.0
+
+### Patch Changes
+
+- @paprika/input@4.0.15-next.0
+
+## 1.0.24
+
+### Patch Changes
+
+- Updated dependencies [c3a7523]
+- Updated dependencies [4358ed8]
+  - @paprika/l10n@1.1.15
+  - @paprika/input@4.0.14
+
+## 1.0.24-next.0
+
+### Patch Changes
+
+- Updated dependencies [4358ed8]
+  - @paprika/l10n@1.1.15-next.0
+  - @paprika/input@4.0.14-next.0
+
+## 1.0.23
+
+### Patch Changes
+
+- @paprika/icon@2.1.3
+- @paprika/input@4.0.13
+
+## 1.0.23-next.0
+
+### Patch Changes
+
+- @paprika/input@4.0.13-next.0
+- @paprika/icon@2.1.3-next.0
+
+## 1.0.22
+
+### Patch Changes
+
+- Updated dependencies [27e1439]
+  - @paprika/icon@2.1.2
+  - @paprika/input@4.0.12
+
+## 1.0.22-next.0
+
+### Patch Changes
+
+- Updated dependencies [27e1439]
+  - @paprika/icon@2.1.2-next.0
+  - @paprika/input@4.0.12-next.0
+
+## 1.0.21
+
+### Patch Changes
+
+- @paprika/icon@2.1.1
+- @paprika/input@4.0.11
+
+## 1.0.21-next.0
+
+### Patch Changes
+
+- @paprika/icon@2.1.1-next.0
+- @paprika/input@4.0.11-next.0
+
+## 1.0.20
+
+### Patch Changes
+
+- Updated dependencies [5e1c563]
+  - @paprika/icon@2.1.0
+  - @paprika/input@4.0.10
+
 ## 1.0.20-next.0
 
 ### Patch Changes

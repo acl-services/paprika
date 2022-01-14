@@ -57,14 +57,12 @@ describe("ListBoxTags", () => {
     const { container } = render(<Uncontrolled />);
 
     await waitFor(() => {
-      expect(getPopover()).toHaveAttribute("aria-hidden", "true");
+      expect(getPopover()).not.toBeInTheDocument();
     });
 
     fireEvent.click(getTrigger(container));
 
-    await waitFor(() => {
-      expect(getPopover()).toHaveAttribute("aria-hidden", "false");
-    });
+    expect(getPopover()).toBeInTheDocument();
   });
 
   it("should add options to the ListBoxWithTags", async () => {

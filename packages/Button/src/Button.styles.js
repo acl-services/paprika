@@ -117,13 +117,15 @@ export const commonStyles = css`
   border-style: solid;
   border-width: 1px;
   box-sizing: border-box;
+  color: ${tokens.textColor.default};
   cursor: pointer;
   display: inline-flex;
   font-weight: bold;
+  overflow: hidden;
+  position: relative;
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
-
   &:active {
     transform: scale(0.98);
   }
@@ -157,12 +159,18 @@ export const sizeStyles = {
   [types.MEDIUM]: css`
     ${stylers.fontSize(-1)};
     min-height: ${stylers.spacer(4)};
-    padding: 6.5px ${tokens.spaceLg};
+    padding: 5px ${tokens.spaceLg};
+    [data-pka-anchor="button.icon"] svg {
+      font-size: ${tokens.icon.sizeSm};
+    }
   `,
   [types.LARGE]: css`
     ${stylers.fontSize()};
-    min-height: ${stylers.spacer(5)};
-    padding: 9px ${stylers.spacer(2)};
+    min-height: ${stylers.spacer(4.5)};
+    padding: 6px ${stylers.spacer(2)};
+    [data-pka-anchor="button.icon"] svg {
+      font-size: ${tokens.icon.sizeSm};
+    }
   `,
 };
 
@@ -238,7 +246,6 @@ export const kindStyles = {
 
   [types.MINOR]: ({ isDisabled }) => css`
     ${textButtonStyles}
-
     &:hover {
       text-decoration: underline;
     }
@@ -309,15 +316,13 @@ const iconColors = {
 };
 
 const getIconColor = ({ isDisabled, kind }) => (isDisabled ? tokens.color.blackDisabled : iconColors[kind]);
-
 export const ButtonIcon = styled.span(
   ({ isPending, isSuffixIcon, ...props }) => css`
     align-items: center;
     color: ${getIconColor(props)};
     display: inline-flex;
     justify-content: center;
-    margin: 0 ${tokens.spaceSm} 0 0;
-
+    margin: 0 ${tokens.spaceSm} 0 -${tokens.spaceSm};
     svg {
       vertical-align: -${(stylers.lineHeightValue(-1) - 1) / 2}em;
     }

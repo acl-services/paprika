@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 /**
  * Summary: Prints the current processing action via the dev console, with it's previous state and the next state after passing inside the reducer.
  *

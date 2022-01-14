@@ -25,7 +25,7 @@ const flags = {
 
 export function App() {
   return (
-    <React.Fragment>
+    <>
       <Sbook.Story>
         <DataGrid data={data} width={650}>
           <DataGrid.ColumnDefinition
@@ -53,7 +53,7 @@ export function App() {
           <DataGrid.ColumnDefinition header="Status 3" cell="status" />
         </DataGrid>
       </Sbook.Story>
-    </React.Fragment>
+    </>
   );
 }
 

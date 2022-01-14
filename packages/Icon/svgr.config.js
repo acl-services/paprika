@@ -12,8 +12,9 @@ module.exports = {
   },
   svgProps: {
     // We need to render string template
+    // prettier-ignore
     // eslint-disable-next-line no-template-curly-in-string
-    css: "{`color: ${props.color};width: ${props.size};height: ${props.size};vertical-align: text-top;`}",
+    css: "{`color:${props.color}; width:${props.size}; height:${props.size}; font-size:${props.size}; vertical-align:text-top;`}",
     "data-pka-anchor": "icon",
     focusable: false,
   },

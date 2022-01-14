@@ -1,5 +1,339 @@
 # @paprika/inline-editors
 
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies [63f9a05]
+- Updated dependencies [e38dcb1]
+- Updated dependencies [15b2a9a]
+  - @paprika/helpers@2.2.1
+  - @paprika/list-box@4.0.5
+  - @paprika/stylers@1.1.5
+  - @paprika/tokens@1.1.4
+  - @paprika/collapsible-text@1.0.27
+  - @paprika/icon@2.1.6
+  - @paprika/input@4.0.17
+  - @paprika/popover@2.0.3
+  - @paprika/raw-button@1.0.11
+  - @paprika/spinner@1.0.14
+  - @paprika/table@1.2.20
+  - @paprika/tag@0.0.20
+  - @paprika/textarea@3.0.7
+
+## 1.0.5-next.2
+
+### Patch Changes
+
+- Updated dependencies [15b2a9a]
+  - @paprika/stylers@1.1.5-next.0
+  - @paprika/tokens@1.1.4-next.0
+  - @paprika/input@4.0.17-next.1
+  - @paprika/list-box@4.0.5-next.2
+  - @paprika/popover@2.0.3-next.1
+  - @paprika/raw-button@1.0.11-next.0
+  - @paprika/spinner@1.0.14-next.1
+  - @paprika/table@1.2.20-next.1
+  - @paprika/tag@0.0.20-next.1
+  - @paprika/textarea@3.0.7-next.1
+  - @paprika/collapsible-text@1.0.27-next.1
+  - @paprika/icon@2.1.6-next.0
+
+## 1.0.5-next.1
+
+### Patch Changes
+
+- Updated dependencies [63f9a05]
+  - @paprika/helpers@2.2.1-next.0
+  - @paprika/input@4.0.17-next.0
+  - @paprika/list-box@4.0.5-next.1
+  - @paprika/popover@2.0.3-next.0
+  - @paprika/spinner@1.0.14-next.0
+  - @paprika/table@1.2.20-next.0
+  - @paprika/tag@0.0.20-next.0
+  - @paprika/textarea@3.0.7-next.0
+  - @paprika/collapsible-text@1.0.27-next.0
+
+## 1.0.5-next.0
+
+### Patch Changes
+
+- Updated dependencies [e38dcb1]
+  - @paprika/list-box@4.0.5-next.0
+
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+- Updated dependencies [eb42e40]
+  - @paprika/icon@2.1.5
+  - @paprika/tag@0.0.19
+  - @paprika/collapsible-text@1.0.26
+  - @paprika/input@4.0.16
+  - @paprika/list-box@4.0.4
+  - @paprika/table@1.2.19
+
+## 1.0.4-next.1
+
+### Patch Changes
+
+- Updated dependencies [32de383]
+  - @paprika/icon@2.1.5-next.0
+  - @paprika/input@4.0.16-next.0
+  - @paprika/list-box@4.0.4-next.0
+  - @paprika/tag@0.0.19-next.1
+  - @paprika/collapsible-text@1.0.26-next.0
+  - @paprika/table@1.2.19-next.0
+
+## 1.0.4-next.0
+
+### Patch Changes
+
+- Updated dependencies [eb42e40]
+  - @paprika/tag@0.0.19-next.0
+
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies [036fe83]
+- Updated dependencies [bd09d92]
+- Updated dependencies [63fd491]
+- Updated dependencies [9e15465]
+- Updated dependencies [343d673]
+- Updated dependencies [17ab30d]
+- Updated dependencies [80361b2]
+  - @paprika/tokens@1.1.3
+  - @paprika/spinner@1.0.13
+  - @paprika/input@4.0.15
+  - @paprika/helpers@2.2.0
+  - @paprika/tag@0.0.18
+  - @paprika/collapsible-text@1.0.25
+  - @paprika/icon@2.1.4
+  - @paprika/list-box@4.0.3
+  - @paprika/popover@2.0.2
+  - @paprika/raw-button@1.0.10
+  - @paprika/stylers@1.1.4
+  - @paprika/table@1.2.18
+  - @paprika/textarea@3.0.6
+
+## 1.0.3-next.3
+
+### Patch Changes
+
+- Updated dependencies [80361b2]
+  - @paprika/helpers@2.2.0-next.1
+  - @paprika/input@4.0.15-next.4
+  - @paprika/list-box@4.0.3-next.3
+  - @paprika/popover@2.0.2-next.2
+  - @paprika/spinner@1.0.13-next.2
+  - @paprika/table@1.2.18-next.3
+  - @paprika/tag@0.0.18-next.3
+  - @paprika/textarea@3.0.6-next.2
+
+## 1.0.3-next.2
+
+### Patch Changes
+
+- Updated dependencies [036fe83]
+  - @paprika/tokens@1.1.3-next.0
+  - @paprika/collapsible-text@1.0.25-next.1
+  - @paprika/icon@2.1.4-next.0
+  - @paprika/input@4.0.15-next.2
+  - @paprika/list-box@4.0.3-next.2
+  - @paprika/popover@2.0.2-next.1
+  - @paprika/raw-button@1.0.10-next.0
+  - @paprika/spinner@1.0.13-next.1
+  - @paprika/stylers@1.1.4-next.0
+  - @paprika/table@1.2.18-next.2
+  - @paprika/tag@0.0.18-next.2
+  - @paprika/textarea@3.0.6-next.1
+
+## 1.0.3-next.1
+
+### Patch Changes
+
+- Updated dependencies [343d673]
+  - @paprika/helpers@2.1.4-next.0
+  - @paprika/input@4.0.15-next.1
+  - @paprika/list-box@4.0.3-next.1
+  - @paprika/popover@2.0.2-next.0
+  - @paprika/spinner@1.0.13-next.0
+  - @paprika/table@1.2.18-next.1
+  - @paprika/tag@0.0.18-next.1
+  - @paprika/textarea@3.0.6-next.0
+
+## 1.0.3-next.0
+
+### Patch Changes
+
+- @paprika/collapsible-text@1.0.25-next.0
+- @paprika/input@4.0.15-next.0
+- @paprika/list-box@4.0.3-next.0
+- @paprika/table@1.2.18-next.0
+- @paprika/tag@0.0.18-next.0
+
+## 1.0.2
+
+### Patch Changes
+
+- @paprika/collapsible-text@1.0.24
+- @paprika/input@4.0.14
+- @paprika/list-box@4.0.2
+- @paprika/table@1.2.17
+- @paprika/tag@0.0.17
+
+## 1.0.2-next.0
+
+### Patch Changes
+
+- @paprika/list-box@4.0.2-next.0
+- @paprika/collapsible-text@1.0.24-next.0
+- @paprika/input@4.0.14-next.0
+- @paprika/tag@0.0.17-next.0
+- @paprika/table@1.2.17-next.0
+
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies [fd24fbe]
+- Updated dependencies [ab8d494]
+  - @paprika/stylers@1.1.3
+  - @paprika/tokens@1.1.2
+  - @paprika/collapsible-text@1.0.23
+  - @paprika/icon@2.1.3
+  - @paprika/input@4.0.13
+  - @paprika/list-box@4.0.1
+  - @paprika/popover@2.0.1
+  - @paprika/raw-button@1.0.9
+  - @paprika/spinner@1.0.12
+  - @paprika/table@1.2.16
+  - @paprika/tag@0.0.16
+  - @paprika/textarea@3.0.5
+
+## 1.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [ab8d494]
+  - @paprika/tokens@1.1.2-next.0
+  - @paprika/collapsible-text@1.0.23-next.0
+  - @paprika/input@4.0.13-next.0
+  - @paprika/list-box@4.0.1-next.0
+  - @paprika/table@1.2.16-next.0
+  - @paprika/tag@0.0.16-next.0
+  - @paprika/icon@2.1.3-next.0
+  - @paprika/popover@2.0.1-next.0
+  - @paprika/raw-button@1.0.9-next.0
+  - @paprika/spinner@1.0.12-next.0
+  - @paprika/stylers@1.1.3-next.0
+  - @paprika/textarea@3.0.5-next.0
+
+## 1.0.0
+
+### Major Changes
+
+- 371d3d3: Refactored Popover to not add content to the dom when closed by default
+
+### Patch Changes
+
+- Updated dependencies [371d3d3]
+- Updated dependencies [27e1439]
+  - @paprika/list-box@4.0.0
+  - @paprika/popover@2.0.0
+  - @paprika/icon@2.1.2
+  - @paprika/tokens@1.1.1
+  - @paprika/collapsible-text@1.0.22
+  - @paprika/input@4.0.12
+  - @paprika/raw-button@1.0.8
+  - @paprika/spinner@1.0.11
+  - @paprika/stylers@1.1.2
+  - @paprika/table@1.2.15
+  - @paprika/tag@0.0.15
+  - @paprika/textarea@3.0.4
+
+## 1.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies [27e1439]
+  - @paprika/icon@2.1.2-next.0
+  - @paprika/tokens@1.1.1-next.0
+  - @paprika/input@4.0.12-next.0
+  - @paprika/list-box@4.0.0-next.1
+  - @paprika/collapsible-text@1.0.22-next.0
+  - @paprika/popover@2.0.0-next.1
+  - @paprika/raw-button@1.0.8-next.0
+  - @paprika/spinner@1.0.11-next.0
+  - @paprika/stylers@1.1.2-next.0
+  - @paprika/table@1.2.15-next.1
+  - @paprika/tag@0.0.15-next.0
+  - @paprika/textarea@3.0.4-next.0
+
+## 1.0.0-next.0
+
+### Major Changes
+
+- 371d3d3: Refactored Popover to not add content to the dom when closed by default
+
+### Patch Changes
+
+- Updated dependencies [371d3d3]
+  - @paprika/list-box@4.0.0-next.0
+  - @paprika/popover@2.0.0-next.0
+  - @paprika/table@1.2.15-next.0
+
+## 0.2.19
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+- Updated dependencies [fd94ddb]
+  - @paprika/tokens@1.1.0
+  - @paprika/collapsible-text@1.0.21
+  - @paprika/icon@2.1.1
+  - @paprika/input@4.0.11
+  - @paprika/list-box@3.6.2
+  - @paprika/popover@1.2.6
+  - @paprika/raw-button@1.0.7
+  - @paprika/spinner@1.0.10
+  - @paprika/stylers@1.1.1
+  - @paprika/table@1.2.14
+  - @paprika/tag@0.0.14
+  - @paprika/textarea@3.0.3
+
+## 0.2.19-next.0
+
+### Patch Changes
+
+- Updated dependencies [3385c1f]
+  - @paprika/tokens@1.1.0-next.0
+  - @paprika/collapsible-text@1.0.21-next.0
+  - @paprika/icon@2.1.1-next.0
+  - @paprika/input@4.0.11-next.0
+  - @paprika/list-box@3.6.2-next.0
+  - @paprika/popover@1.2.6-next.0
+  - @paprika/raw-button@1.0.7-next.0
+  - @paprika/spinner@1.0.10-next.0
+  - @paprika/stylers@1.1.1-next.0
+  - @paprika/table@1.2.14-next.0
+  - @paprika/tag@0.0.14-next.0
+  - @paprika/textarea@3.0.3-next.0
+
+## 0.2.18
+
+### Patch Changes
+
+- Updated dependencies [5e1c563]
+  - @paprika/icon@2.1.0
+  - @paprika/collapsible-text@1.0.20
+  - @paprika/input@4.0.10
+  - @paprika/list-box@3.6.1
+  - @paprika/table@1.2.13
+  - @paprika/tag@0.0.13
+
 ## 0.2.18-next.0
 
 ### Patch Changes

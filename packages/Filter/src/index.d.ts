@@ -48,5 +48,5 @@ interface ItemProps {
 
   rule: string;
 
-  value: string | bool | array;
+  value: string | bool | array | number;
 }

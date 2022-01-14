@@ -36,15 +36,14 @@ export const arrowRightButton = css`
     width: ${stylers.spacer(3)};
   }
 
-  ${({ isParentSelectable }) => {
-    return isParentSelectable
+  ${({ isParentSelectable }) =>
+    isParentSelectable
       ? ""
       : css`
           background: transparent;
           border: 1px solid transparent;
           border-radius: ${tokens.border.radius};
-        `;
-  }}
+        `}
 `;
 
 export const labelContainer = css`
@@ -53,6 +52,7 @@ export const labelContainer = css`
   font-size: ${stylers.spacer(2)};
   justify-content: flex-start;
   position: relative;
+  width: calc(100% - ${tokens.spaceLg});
 `;
 
 export const label = css`

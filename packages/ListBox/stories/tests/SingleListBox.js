@@ -11,15 +11,15 @@ function renderOptions() {
 }
 
 export const WithContainerScroll = () => (
-  <React.Fragment>
+  <>
     <p style={{ height: 400 }} />
     <ListBox getScrollContainer={() => document.querySelector("#root > div")}>{characters.heroes}</ListBox>
     <p style={{ height: 1000 }} />
-  </React.Fragment>
+  </>
 );
 
 export const CustomFilter = () => (
-  <React.Fragment>
+  <>
     <p style={{ padding: "10px" }}>
       Type <strong>O</strong> or <strong>P</strong> to filter specific options. P will filter indexes [1,4] and O will
       do the same with [0, 3]
@@ -44,7 +44,7 @@ export const CustomFilter = () => (
       />
       {renderOptions()}
     </ListBox>
-  </React.Fragment>
+  </>
 );
 
 export const SingleListBox = () => (

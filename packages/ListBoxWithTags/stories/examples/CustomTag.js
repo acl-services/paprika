@@ -41,11 +41,11 @@ export default function CustomTrigger() {
 
         const color = getAvatarColors(option.label);
         return !isSelected(option.label) ? (
-          <ListBox.Option value={option.label} key={option.label} label={option.label}>
+          <ListBox.Option value={option.label} key={option.label} label={option.label} hasNoIcon>
             <Avatar size={Avatar.types.size.MEDIUM} backgroundColor={color.backgroundColor} color={color.fontColor}>
               {getInitialsFromText(option.label)}
             </Avatar>
-            <span style={{ fontSize: "1.3rem", paddingLeft: "8px" }}>{option.label}</span>
+            <span style={{ fontSize: "1.3rem", paddingLeft: "8px", lineHeight: "48px" }}>{option.label}</span>
           </ListBox.Option>
         ) : null;
       })}

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import PanelContext from "../../PanelContext";
 import * as sc from "./Content.styles";
 
 const propTypes = {
@@ -13,8 +14,9 @@ const defaultProps = {
 
 const Content = React.forwardRef((props, ref) => {
   const { children } = props;
+  const size = React.useContext(PanelContext).size;
   return (
-    <sc.Content data-pka-anchor="panel.content" ref={ref} {...props}>
+    <sc.Content data-pka-anchor="panel.content" ref={ref} size={size} {...props}>
       {children}
     </sc.Content>
   );

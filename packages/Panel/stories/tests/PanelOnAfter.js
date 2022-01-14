@@ -7,7 +7,7 @@ export default function PanelOnAfter() {
   const [isOpen, setIsOpen] = React.useState(true);
 
   return (
-    <React.Fragment>
+    <>
       <Nav />
       <p>
         <Panel
@@ -25,13 +25,13 @@ export default function PanelOnAfter() {
           offsetY={40}
         >
           <Panel.Header>
-            <Heading level={2}>Cypress</Heading>
+            <Heading>Cypress</Heading>
           </Panel.Header>
         </Panel>
       </p>
       <div style={{ width: "400px", margin: "25px" }}>
         <TextLine repeat={100} />
       </div>
-    </React.Fragment>
+    </>
   );
 }

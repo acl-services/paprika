@@ -12,6 +12,7 @@ export { default as LockBodyScroll } from "./components/LockBodyScroll";
 export { default as Portal } from "./components/Portal";
 
 // hooks
+export { default as useCallbackDebouncer } from "./hooks/useCallbackDebouncer";
 export { default as useDebounce } from "./hooks/useDebounce";
 export { default as useForwardDomRef } from "./hooks/useForwardDomRef";
 export { default as useMountedRef } from "./hooks/useMountedRef";

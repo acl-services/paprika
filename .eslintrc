@@ -17,11 +17,13 @@
     }
   },
   "plugins": ["cypress", "react-hooks", "better-styled-components"],
+  "ignorePatterns": ["**/*.d.ts"], // For script generated typing files
   "rules": {
     "no-shadow": "off",
     "camelcase": "off",
     "class-methods-use-this": "off",
     "consistent-return": "off",
+    "import/extensions": "off",
     "import/no-cycle": "off",
     "import/no-extraneous-dependencies": [
       "error",
@@ -57,17 +59,38 @@
     "no-underscore-dangle": "off",
     "prefer-destructuring": "off",
     "react/destructuring-assignment": "off",
-    "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
     "react/jsx-one-expression-per-line": "off",
     "react/no-multi-comp": "off",
     "react/prefer-stateless-function": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "better-styled-components/sort-declarations-alphabetically": "error"
+    "better-styled-components/sort-declarations-alphabetically": "error",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "react/jsx-no-bind": "off",
+    "react/jsx-props-no-spreading": "off"
   },
   "overrides": [
     {
-      "files": ["packages/**/stories/**/*.js"],
+      "files": "**/*.+(ts|tsx)",
+      "parser": "@typescript-eslint/parser",
+      "extends": ["plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
+      "settings": {
+        "import/resolver": {
+          "node": {
+            "extensions": [".js", ".jsx", ".ts", ".tsx", ".json"]
+          }
+        }
+      },
+      "rules": {
+        "@typescript-eslint/no-unused-vars": ["warn", { "args": "none", "ignoreRestSiblings": true }],
+        "prefer-const": 0,
+        "@typescript-eslint/no-non-null-assertion": "off"
+      }
+    },
+    {
+      "files": ["packages/**/stories/**/*.+(js|tsx|ts|tsx)"],
       "rules": {
         "react/prop-types": "off",
         "import/no-extraneous-dependencies": "off",
@@ -75,7 +98,7 @@
       }
     },
     {
-      "files": ["packages/**/*.spec.js"],
+      "files": ["packages/**/*.spec.+(js|tsx|ts|tsx)"],
       "rules": { "import/no-extraneous-dependencies": "off" },
       "globals": {
         "given": true

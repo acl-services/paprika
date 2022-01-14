@@ -34,18 +34,16 @@ function Menu(props) {
   );
 }
 
-export const DataGridExample = () => {
-  return (
-    <div style={{ padding: "32px" }}>
-      <DataGrid data={data}>
-        <DataGrid.ColumnDefinition
-          header={() => <DataHeader label="name" type="numeric" renderActions={() => <Menu type="some" />} />}
-          cell="name"
-        />
-        <DataGrid.ColumnDefinition header="Income" cell={({ row }) => row.income} />
-        <DataGrid.ColumnDefinition header="Taxes" cell={({ row }) => row.taxes} />
-        <DataGrid.ColumnDefinition header="Revenue" cell={({ row }) => Number(row.income - row.taxes)} />
-      </DataGrid>
-    </div>
-  );
-};
+export const DataGridExample = () => (
+  <div style={{ padding: "32px" }}>
+    <DataGrid data={data}>
+      <DataGrid.ColumnDefinition
+        header={() => <DataHeader label="name" type="numeric" renderActions={() => <Menu type="some" />} />}
+        cell="name"
+      />
+      <DataGrid.ColumnDefinition header="Income" cell={({ row }) => row.income} />
+      <DataGrid.ColumnDefinition header="Taxes" cell={({ row }) => row.taxes} />
+      <DataGrid.ColumnDefinition header="Revenue" cell={({ row }) => Number(row.income - row.taxes)} />
+    </DataGrid>
+  </div>
+);
