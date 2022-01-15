@@ -1,14 +1,5 @@
 import React from "react";
 
-export const Nav = props => (
-  <div
-    data-pka-anchor="purple-navigator"
-    style={{ display: "flex", justifyContent: "flex-end", width: "100%", height: "40px", background: "#4B2164" }}
-  >
-    {props.children}
-  </div>
-);
-
 export const TextLine = props => {
   const { repeat } = props;
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
+import { exampleStoryParameters } from "storybook/assets/storyParameters";
 import ExampleStory from "storybook/components/ExampleStory";
 import BasicPanel from "./examples/BasicPanel";
 import FocusHeading from "./examples/FocusHeading";
@@ -9,6 +10,7 @@ import GroupPanel from "./examples/GroupPanel";
 import PushContentPanel from "./examples/PushContentPanel";
 import StickyPanel from "./examples/StickyPanel";
 import NestedPopoverPanel from "./examples/NestedPopoverPanel";
+import CoPlanarPanel from "./examples/CoPlanarPanel";
 
 import Panel from "../src";
 
@@ -37,6 +39,14 @@ export const basic = () => (
 );
 
 basic.story = sidePanelStoryParameters;
+
+export const coplanarPanel = () => (
+  <ExampleStory component="Panel" storyName="Co-Planar Panel" fileName="examples/CoPlanarPanel.js">
+    <CoPlanarPanel />
+  </ExampleStory>
+);
+
+coplanarPanel.story = { name: "Co-Planar Panel", parameters: exampleStoryParameters };
 
 export const focusHeading = () => (
   <ExampleStory component="Panel" storyName="Focus Heading Panel" fileName="examples/FocusHeading.js">
