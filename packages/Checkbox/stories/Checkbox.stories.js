@@ -1,28 +1,34 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
-import { Story } from "storybook/assets/styles/common.styles";
+import { showcaseStoryParameters, variationsStoryParameters } from "storybook/assets/storyParameters";
 import { getStoryName } from "storybook/storyTree";
-import CheckboxAlign from "./examples/CheckboxAlign";
+import ExampleStory from "storybook/components/ExampleStory";
 import Variations from "./examples/Variations";
-import CheckboxGrouping from "./examples/CheckboxGrouping";
 import ShowcaseStory from "./examples/Showcase";
+import Checkbox from "../src";
 
-const storyName = getStoryName("Checkbox");
+export default {
+  title: getStoryName("Checkbox"),
+  component: Checkbox,
+};
 
-storiesOf(storyName, module)
-  .addDecorator(withKnobs)
-  .add("Showcase", ShowcaseStory)
-  .add("Variations", Variations);
+export const showcase = ShowcaseStory;
+showcase.story = {
+  decorators: [withKnobs],
+  parameters: showcaseStoryParameters,
+};
 
-storiesOf(`${storyName}/Examples`, module)
-  .add("Checkbox group", () => (
-    <Story>
-      <CheckboxGrouping />
-    </Story>
-  ))
-  .add("Checkbox Align", () => (
-    <Story>
-      <CheckboxAlign />
-    </Story>
-  ));
+export const variations = () => (
+  <ExampleStory
+    storyName="Checkbox"
+    tagline={ExampleStory.defaultTaglines.variations}
+    component="Checkbox"
+    fileName="examples/Variations.js"
+  >
+    <Variations />
+  </ExampleStory>
+);
+variations.story = {
+  name: "Variations",
+  parameters: variationsStoryParameters,
+};
