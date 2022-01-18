@@ -45,7 +45,7 @@ const Group = React.forwardRef((props, ref) => {
   };
 
   React.useImperativeHandle(ref, () => ({
-    updateCheckIndex: index => {
+    updateCheckedIndex: index => {
       setCheckedIndex(index);
     },
   }));
