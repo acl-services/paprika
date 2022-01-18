@@ -50,7 +50,7 @@ function Group(props) {
         if (child && child.type && child.type.displayName === "Radio") {
           return React.cloneElement(child, {
             onClick: () => handleRadioClick(index),
-            isChecked: checkedIndex === index,
+            isChecked: child.props.isUnchecked ? false : checkedIndex === index,
             isDisabled: isDisabled || child.props.isDisabled,
             canDeselect,
             size,
