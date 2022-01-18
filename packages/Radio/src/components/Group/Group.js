@@ -27,7 +27,7 @@ const defaultProps = {
   size: types.size.MEDIUM,
 };
 
-function Group(props) {
+const Group = React.forwardRef((props, ref) => {
   const { canDeselect, children, isDisabled, onChange, size, ...moreGroupProps } = props;
   const defaultCheckedIndex = React.Children.toArray(children).findIndex(child => child.props.defaultIsChecked);
   const selectedIndex = React.Children.toArray(children).findIndex(child => child.props.isChecked);
@@ -43,6 +43,12 @@ function Group(props) {
     onChange(index);
     setCheckedIndex(canDeselect ? getDeselectableIndex(index) : index);
   };
+
+  React.useImperativeHandle(ref, () => ({
+    updateCheckIndex: index => {
+      setCheckedIndex(index);
+    },
+  }));
 
   return (
     <div data-pka-anchor="radio.group" {...moreGroupProps}>
@@ -62,7 +68,7 @@ function Group(props) {
       })}
     </div>
   );
-}
+});
 
 Group.displayName = "Radio.Group";
 Group.propTypes = propTypes;
