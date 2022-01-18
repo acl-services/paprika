@@ -1,11 +1,10 @@
 import React from "react";
 import Panel from "../../src";
-import { TextLine, Nav } from "../helpers";
+import { TextLine } from "../helpers";
 
 export default function PanelFooterSticky() {
   return (
     <>
-      <Nav />
       <p>
         <Panel isOpen>
           <TextLine repeat={100} />

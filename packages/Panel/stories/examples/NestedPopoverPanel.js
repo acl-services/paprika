@@ -13,7 +13,9 @@ export default function NestedPopoverPanel() {
   return (
     <Panel a11yText="Panel View" isOpen={isOpen} onClose={toggle}>
       <Panel.Overlay />
-      <Panel.Trigger onClick={toggle}>{isOpen ? "close" : "open"}</Panel.Trigger>
+      <Panel.Trigger kind="primary" onClick={toggle}>
+        {isOpen ? "Close" : "Open"}
+      </Panel.Trigger>
       <Panel.Header>Header</Panel.Header>
       <Panel.Content>
         <Popover zIndex={11}>

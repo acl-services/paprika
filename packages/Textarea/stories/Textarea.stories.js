@@ -5,9 +5,6 @@ import { showcaseStoryParameters, variationsStoryParameters } from "storybook/as
 import { TextareaStory } from "./Textarea.stories.styles";
 import Showcase from "./examples/Showcase";
 import Variations from "./examples/Variations";
-// import Uncontrolled from "./examples/Uncontrolled";
-// import Sizes from "./examples/Sizes";
-// import ScreenerStory from "./examples/test/Screener";
 
 const storyName = getStoryName("Textarea");
 
@@ -40,10 +37,3 @@ variations.story = {
   name: "Variations",
   parameters: variationsStoryParameters,
 };
-
-// storiesOf(`${storyName}/Examples`, module)
-//   .add("Uncontrolled", Uncontrolled)
-//   .add("Sizes", () => <Sizes />);
-
-// storiesOf(`${storyName}/Backyard/Tests`, module)
-//   .add("Screener", () => <ScreenerStory />)
