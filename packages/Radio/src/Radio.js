@@ -15,7 +15,6 @@ function Radio(props) {
     a11yText,
     children,
     isChecked,
-    isUnchecked,
     isDisabled,
     name,
     canDeselect,
@@ -103,8 +102,6 @@ const propTypes = {
   defaultIsChecked: PropTypes.bool,
   /** Name provided for accessibility */
   name: PropTypes.string,
-  /** Allows to control checkable state from custom logic */
-  isUnchecked: PropTypes.bool,
   /** onClick provided by parent Group component */
   onClick: () => {},
   /** Size provided by parent Group component */
@@ -123,7 +120,6 @@ const defaultProps = {
   isChecked: false,
   isDisabled: false,
   name: "",
-  isUnchecked: false,
   onClick: () => {},
   size: Radio.types.size.MEDIUM,
   tabIndex: 0,
