@@ -10,6 +10,9 @@ const propTypes = {
   /** The individual radio items. */
   children: PropTypes.node,
 
+  /** Set checkedIndex from Group level */
+  indexChecked: PropTypes.number,
+
   /** Are all radios disabled */
   isDisabled: PropTypes.bool,
 
@@ -25,11 +28,13 @@ const defaultProps = {
   children: null,
   isDisabled: false,
   size: types.size.MEDIUM,
+  indexChecked: null,
 };
 
 function Group(props) {
-  const { canDeselect, children, isDisabled, onChange, size, ...moreGroupProps } = props;
-  const defaultCheckedIndex = React.Children.toArray(children).findIndex(child => child.props.defaultIsChecked);
+  const { canDeselect, children, isDisabled, onChange, size, indexChecked, ...moreGroupProps } = props;
+  const defaultCheckedIndex =
+    indexChecked || React.Children.toArray(children).findIndex(child => child.props.defaultIsChecked);
   const selectedIndex = React.Children.toArray(children).findIndex(child => child.props.isChecked);
   const [generatedName] = React.useState(() => `radio-group_${uuidv4()}`);
 
@@ -50,7 +55,7 @@ function Group(props) {
         if (child && child.type && child.type.displayName === "Radio") {
           return React.cloneElement(child, {
             onClick: () => handleRadioClick(index),
-            isChecked: checkedIndex === index,
+            isChecked: indexChecked ? indexChecked === index : checkedIndex === index,
             isDisabled: isDisabled || child.props.isDisabled,
             canDeselect,
             size,
