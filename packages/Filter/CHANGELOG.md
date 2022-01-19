@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.1-next.1
+
+### Patch Changes
+
+- b6642f0: immer@9.0.12 to resolve [CVE-2021-3757](https://github.com/advisories/GHSA-c36v-fmgq-m8hx)
+
 ## 2.1.1-next.0
 
 ### Patch Changes
