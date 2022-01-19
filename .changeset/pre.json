@@ -73,5 +73,7 @@
     "@paprika/helpers": "2.2.1",
     "@paprika/seducer": "2.0.3"
   },
-  "changesets": []
+  "changesets": [
+    "red-files-guess"
+  ]
 }

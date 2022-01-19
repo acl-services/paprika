@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.1.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [b7b291a]
+  - @paprika/radio@1.0.23-next.0
+
 ## 2.1.0
 
 ### Minor Changes
