@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.15-next.0
+
+### Patch Changes
+
+- 623369a: Refactor class style to styled component and refactor storybook stories to use CSF
+
 ## 1.0.14
 
 ### Patch Changes
