@@ -16,6 +16,7 @@ const isDarkStyles = {
   backgroundColor: "#d7d7d7",
   width: "200px",
   paddingTop: "5px",
+  margin: "auto",
 };
 
 const ExampleStory = props => (
@@ -25,7 +26,7 @@ const ExampleStory = props => (
     </Heading>
     <Tagline>Use the knobs to tinker with the props.</Tagline>
     <Rule />
-    <Spinner {...props} style={props.isDark ? isDarkStyles : null} />
+    <Spinner {...props} style={props.isDark ? isDarkStyles : null} size={props.size} />
   </Story>
 );
 

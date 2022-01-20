@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@paprika/button";
 import Panel from "../../src";
-import { Nav, TextLine } from "../helpers";
+import { TextLine } from "../helpers";
 
 export default function PushContentPanel() {
   const [isOpen, setIsOpen] = React.useState(true);
@@ -12,9 +12,10 @@ export default function PushContentPanel() {
 
   return (
     <>
-      <Nav />
       <Panel getPushContentElement={getMainElement} isOpen={isOpen} onClose={toggle} pushContentWidth="50%" width="50%">
-        <Panel.Trigger onClick={toggle}>{isOpen ? "close" : "open"}</Panel.Trigger>
+        <Panel.Trigger kind="primary" onClick={toggle}>
+          {isOpen ? "Close" : "Open"}
+        </Panel.Trigger>
         <Panel.Header>Header</Panel.Header>
         <Panel.Content>
           <TextLine repeat={100} />

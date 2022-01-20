@@ -1,14 +1,13 @@
 import React from "react";
 import Heading from "@paprika/heading";
 import Panel from "../../src";
-import { TextLine, Nav } from "../helpers";
+import { TextLine } from "../helpers";
 
 export default function PanelOnAfter() {
   const [isOpen, setIsOpen] = React.useState(true);
 
   return (
     <>
-      <Nav />
       <p>
         <Panel
           onAfterOpen={() => {

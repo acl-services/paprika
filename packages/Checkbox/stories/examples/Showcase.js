@@ -30,7 +30,7 @@ const ExampleStory = props => {
   return (
     <CheckboxStory>
       <Heading level={1} displayLevel={2} isLight>
-        Showcase
+        Checkbox
       </Heading>
       <Tagline>Use the knobs to tinker with the props.</Tagline>
       <Rule />
