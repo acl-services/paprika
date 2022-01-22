@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.23
+
+### Patch Changes
+
+- b7b291a: Added hook so user can update checkIndex via ref
+
 ## 1.0.23-next.0
 
 ### Patch Changes

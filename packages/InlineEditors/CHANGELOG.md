@@ -1,5 +1,12 @@
 # @paprika/inline-editors
 
+## 1.0.6
+
+### Patch Changes
+
+- Updated dependencies [623369a]
+  - @paprika/spinner@1.0.15
+
 ## 1.0.6-next.0
 
 ### Patch Changes
