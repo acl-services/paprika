@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from "react";
 import { useTable, useBlockLayout, Column, Row } from "react-table";
 import ResizeDetector from "@paprika/resize-detector";
@@ -109,6 +110,7 @@ const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
       data,
       defaultColumn,
       extraCellProps,
+      totalColumnsWidth: width,
     },
     useBlockLayout,
     useSticky
@@ -124,6 +126,10 @@ const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
   /* eslint-enable @typescript-eslint/ban-ts-comment */
 
   function renderTableContent(maxHeight: number) {
+    if (!extractedInfiniteLoaderDefinition) {
+      return null;
+    }
+
     const hasInfiniteLoader = Boolean(extractedInfiniteLoaderDefinition);
 
     if (hasInfiniteLoader) {
@@ -181,23 +187,29 @@ const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
   }
 
   const wrapperRef = React.useRef<HTMLElement>(null);
+  const maxContainerHeight = extractedResizeContainer ? extractedResizeContainer.props.style.height : null;
 
   React.useLayoutEffect(() => {
+    if (!extractedResizeContainer) {
+      return;
+    }
+
     if (wrapperRef.current) {
-      const maxContainerHeight = extractedResizeContainer?.props?.style?.height;
       wrapperRef.current.style.height = maxContainerHeight || "100%";
     }
 
     const t = setTimeout(() => {
       if (wrapperRef.current) {
-        wrapperRef.current.style.height = wrapperRef?.current?.firstChild?.getBoundingClientRect().height || "auto";
+        wrapperRef.current.style.height = wrapperRef.current
+          ? (wrapperRef.current.firstChild as any).getBoundingClientRect().height
+          : "auto";
       }
     }, 50);
 
     return () => {
-      clearTimeout(t)
+      clearTimeout(t);
     };
-  }, [data.length, extractedResizeContainer.props.style.height]);
+  }, [data.length, extractedResizeContainer, maxContainerHeight]);
 
   return (
     <ThemeContext.Provider value={{ borderType, isHeaderSticky, hasZebraStripes }}>

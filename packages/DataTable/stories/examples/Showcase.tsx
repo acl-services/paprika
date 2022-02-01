@@ -1,5 +1,6 @@
 import React from "react";
 import { select, boolean } from "@storybook/addon-knobs";
+import CollapsibleCard from "@paprika/collapsible-card";
 import StoryHeading from "storybook/components/StoryHeading";
 import { Story, Tagline } from "storybook/assets/styles/common.styles";
 import DataTable from "../../src";
@@ -71,10 +72,10 @@ export const ShowcaseStory: (props: Partial<DataTableProps>) => JSX.Element = pr
         isItemLoaded={index => items[index] !== undefined}
         isNextPageLoading={false}
         loadMoreItems={async () => {
-          const newItems = await new Promise<Record<string, unknown>[]>(res =>
-            setTimeout(() => res(makeData(40)), 5000)
-          );
-          setItems(items.concat(newItems));
+          // const newItems = await new Promise<Record<string, unknown>[]>(res =>
+          //   setTimeout(() => res(makeData(40)), 5000)
+          // );
+          // setItems(items.concat(newItems));
         }}
       />
       <DataTable.ResizeContainer style={{ height: "calc(100vh - 200px)", width: "100%" }} />
@@ -82,11 +83,27 @@ export const ShowcaseStory: (props: Partial<DataTableProps>) => JSX.Element = pr
   );
 };
 
-export default () => (
-  <Story>
-    <StoryHeading level={1}>DataTable</StoryHeading>
-    <Tagline>DataTable component.</Tagline>
-    <ShowcaseStory {...props()} />
-    efewf
-  </Story>
-);
+export default function ShowcaseWrapper() {
+  const [s, setS] = React.useState(false);
+
+  function onToggleIsCollapsed(v: any) {
+    setS(v);
+  }
+
+  return (
+    <Story>
+      <StoryHeading level={1}>DataTable</StoryHeading>
+      <Tagline>DataTable component.</Tagline>
+      efewf
+      <ShowcaseStory {...props()} />
+      <CollapsibleCard onToggleIsCollapsed={onToggleIsCollapsed}>
+        <CollapsibleCard.Header>
+          <CollapsibleCard.Segment>wfewfw</CollapsibleCard.Segment>
+        </CollapsibleCard.Header>
+        <CollapsibleCard.Body>
+          <ShowcaseStory key={s.toString()} {...props()} />
+        </CollapsibleCard.Body>
+      </CollapsibleCard>
+    </Story>
+  );
+}
