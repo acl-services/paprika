@@ -1,6 +1,6 @@
 {
   "name": "@paprika/spinner",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Spinner component tells the user that the app is doing something.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -20,7 +20,6 @@
     "@paprika/helpers": "^2.2.1",
     "@paprika/stylers": "^1.1.5",
     "@paprika/tokens": "^1.1.4",
-    "classnames": "^2.2.6",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

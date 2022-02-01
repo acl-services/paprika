@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@paprika/button";
 import Panel from "../../src";
-import { Nav, TextLine } from "../helpers";
+import { TextLine } from "../helpers";
 
 export default function BasicPanel() {
   const [isOpen, setIsOpen] = React.useState(true);
@@ -11,11 +11,10 @@ export default function BasicPanel() {
 
   return (
     <>
-      <Nav />
       <Panel a11yText="Panel View" isOpen={isOpen} onClose={toggle}>
         <Panel.Overlay />
         <Panel.Trigger kind="primary" onClick={toggle}>
-          {isOpen ? "close" : "open"}
+          {isOpen ? "Close" : "Open"}
         </Panel.Trigger>
         <Panel.Header>Header</Panel.Header>
         <Panel.Content>

@@ -1,5 +1,26 @@
 # Changelog
 
+## 2.1.1
+
+### Patch Changes
+
+- b6642f0: immer@9.0.12 to resolve [CVE-2021-3757](https://github.com/advisories/GHSA-c36v-fmgq-m8hx)
+- Updated dependencies [b7b291a]
+  - @paprika/radio@1.0.23
+
+## 2.1.1-next.1
+
+### Patch Changes
+
+- b6642f0: immer@9.0.12 to resolve [CVE-2021-3757](https://github.com/advisories/GHSA-c36v-fmgq-m8hx)
+
+## 2.1.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [b7b291a]
+  - @paprika/radio@1.0.23-next.0
+
 ## 2.1.0
 
 ### Minor Changes
