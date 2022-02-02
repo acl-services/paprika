@@ -187,6 +187,7 @@ const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
   }
 
   const wrapperRef = React.useRef<HTMLElement>(null);
+  // const maxContainerHeight = extractedResizeContainer?.props?.style?.height;
   const maxContainerHeight = extractedResizeContainer ? extractedResizeContainer.props.style.height : null;
 
   React.useLayoutEffect(() => {
@@ -214,13 +215,17 @@ const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
   return (
     <ThemeContext.Provider value={{ borderType, isHeaderSticky, hasZebraStripes }}>
       {extractedResizeContainer ? (
-        <div {...extractedResizeContainer.props} ref={wrapperRef}>
-          <ResizeDetector isFullHeight>
-            {({ height: maxHeight, width: maxWidth }) =>
-              renderTable(getTableHeight(maxHeight), getTableWidth(maxWidth))
-            }
-          </ResizeDetector>
-        </div>
+        <ResizeDetector {...extractedResizeContainer.props} ref={wrapperRef}>
+          {({ height: maxHeight, width: maxWidth }) => {
+            const bordersSize = 2;
+            const realWidth = getTableWidth(maxWidth) + bordersSize;
+            const realHeight = getTableHeight(maxHeight) + bordersSize;
+            const bestHeight = maxHeight <= bordersSize ? realHeight : maxHeight;
+            const bestWidth = maxWidth <= bordersSize ? realWidth : maxWidth;
+
+            return renderTable(bestHeight, bestWidth);
+          }}
+        </ResizeDetector>
       ) : (
         renderTable(height || 0, width || 0)
       )}

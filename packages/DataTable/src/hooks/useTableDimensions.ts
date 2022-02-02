@@ -59,8 +59,8 @@ export default function useTableDimensions(
     if (dimensions.height === undefined) {
       return maxHeight;
     }
-
-    return Math.min(dimensions.height, maxHeight);
+    return dimensions.height;
+    // return Math.min(dimensions.height, maxHeight);
   }
 
   function getTableWidth(maxWidth: number) {
@@ -72,7 +72,8 @@ export default function useTableDimensions(
       return maxWidth;
     }
 
-    return Math.min(dimensions.width, maxWidth);
+    return dimensions.width;
+    // return Math.min(dimensions.width, maxWidth);
   }
 
   return {

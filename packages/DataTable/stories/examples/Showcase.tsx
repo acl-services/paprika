@@ -1,11 +1,12 @@
 import React from "react";
 import { select, boolean } from "@storybook/addon-knobs";
 import CollapsibleCard from "@paprika/collapsible-card";
-import StoryHeading from "storybook/components/StoryHeading";
-import { Story, Tagline } from "storybook/assets/styles/common.styles";
+import { Story } from "storybook/assets/styles/common.styles";
 import DataTable from "../../src";
 import { DataTableProps } from "../../src/DataTable";
 import makeData from "../helpers/makeData";
+
+const dataRows = 3;
 
 const props = () => ({
   borderType: select("borderType", ["grid", "none", "horizontal", "vertical"], "horizontal"),
@@ -26,83 +27,75 @@ export const ShowcaseStory: (props: Partial<DataTableProps>) => JSX.Element = pr
         Header: "Last Name",
         accessor: "lastName",
         width: 100,
-        isSticky: true,
+        // isSticky: true,
       },
-      // {
-      //   Header: "Age",
-      //   accessor: "age",
-      //   width: 50,
-      // },
-      // {
-      //   Header: "Visits",
-      //   accessor: "visits",
-      //   width: 60,
-      // },
-      // {
-      //   Header: "Status",
-      //   accessor: "status",
-      // },
-      // {
-      //   Header: "Description",
-      //   accessor: "desc",
-      // },
-      // {
-      //   Header: "More description",
-      //   accessor: "desc_more",
-      // },
-      // {
-      //   Header: "Background",
-      //   accessor: "background",
-      //   width: 300,
-      // },
-      // {
-      //   Header: "Profile Progress",
-      //   accessor: "progress",
-      // },
+      {
+        Header: "Age",
+        accessor: "age",
+        width: 50,
+      },
+      {
+        Header: "Visits",
+        accessor: "visits",
+        width: 60,
+      },
+      {
+        Header: "Status",
+        accessor: "status",
+      },
+      {
+        Header: "Description",
+        accessor: "desc",
+      },
+      {
+        Header: "More description",
+        accessor: "desc_more",
+      },
+      {
+        Header: "Background",
+        accessor: "background",
+        width: 300,
+      },
+      {
+        Header: "Profile Progress",
+        accessor: "progress",
+      },
     ],
     []
   );
 
-  const [items, setItems] = React.useState(() => makeData(2));
+  const [items] = React.useState(() => makeData(dataRows));
 
   return (
     <DataTable a11yText="Data table for showcase." columns={columns} data={items} {...props}>
       <DataTable.InfiniteLoader
-        itemCount={items.length + 1}
+        itemCount={items.length}
         isItemLoaded={index => items[index] !== undefined}
         isNextPageLoading={false}
-        loadMoreItems={async () => {
-          // const newItems = await new Promise<Record<string, unknown>[]>(res =>
-          //   setTimeout(() => res(makeData(40)), 5000)
-          // );
-          // setItems(items.concat(newItems));
-        }}
+        loadMoreItems={async () => {}}
       />
-      <DataTable.ResizeContainer style={{ height: "calc(100vh - 200px)", width: "100%" }} />
+      <DataTable.ResizeContainer style={{ maxHeight: "50vh", width: "auto", maxWidth: "100%", background: "#fdd" }} />
     </DataTable>
   );
 };
 
 export default function ShowcaseWrapper() {
-  const [s, setS] = React.useState(false);
-
-  function onToggleIsCollapsed(v: any) {
-    setS(v);
-  }
+  const [isCollapsed, setCollapsed] = React.useState(true);
 
   return (
     <Story>
-      <StoryHeading level={1}>DataTable</StoryHeading>
-      <Tagline>DataTable component.</Tagline>
-      efewf
       <ShowcaseStory {...props()} />
-      <CollapsibleCard onToggleIsCollapsed={onToggleIsCollapsed}>
+      <p>———</p>
+      <CollapsibleCard
+        onToggleIsCollapsed={isCollapsed => {
+          setCollapsed(isCollapsed);
+        }}
+        isCollapsed={isCollapsed}
+      >
         <CollapsibleCard.Header>
-          <CollapsibleCard.Segment>wfewfw</CollapsibleCard.Segment>
+          <CollapsibleCard.Segment>Collapsed Table</CollapsibleCard.Segment>
         </CollapsibleCard.Header>
-        <CollapsibleCard.Body>
-          <ShowcaseStory key={s.toString()} {...props()} />
-        </CollapsibleCard.Body>
+        <CollapsibleCard.Body>{!isCollapsed && <ShowcaseStory {...props()} />}</CollapsibleCard.Body>
       </CollapsibleCard>
     </Story>
   );
