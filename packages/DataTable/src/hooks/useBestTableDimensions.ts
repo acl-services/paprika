@@ -2,6 +2,8 @@ import React from "react";
 import debounce from "lodash.debounce";
 import convertSizeStringToNumber, { Direction } from "../helpers/convertSizeStringToNumber";
 
+const DEBOUNCE_DELAY = 300;
+
 type Dimensions = {
   width: number;
   height: number;
@@ -11,21 +13,21 @@ type Dimensions = {
 export default function useBestTableDimensions({
   tableRef,
   componentRef,
-  height: maxHeight,
-  width: maxWidth,
+  maxHeight,
+  maxWidth,
   shouldResizeWithViewport,
 }: {
   tableRef: React.RefObject<HTMLDivElement>;
   componentRef: React.RefObject<unknown>;
-  height: string;
-  width: string;
+  maxHeight: string;
+  maxWidth: string;
   shouldResizeWithViewport: boolean;
 }): Dimensions {
-  const [dimensions, setDimensions] = React.useState<Dimensions>({
+  const [dimensions, setDimensions] = React.useState<Dimensions>(() => ({
     width: convertSizeStringToNumber(maxWidth, Direction.width),
     height: convertSizeStringToNumber(maxHeight, Direction.height),
     shouldHaveHorizontalScroll: false,
-  });
+  }));
 
   const resetDimension = React.useCallback(() => {
     if (!tableRef.current) return;
@@ -53,7 +55,7 @@ export default function useBestTableDimensions({
 
   React.useLayoutEffect(() => {
     resetDimension();
-    const debouncedReset = debounce(resetDimension, 300);
+    const debouncedReset = debounce(resetDimension, DEBOUNCE_DELAY);
 
     if (shouldResizeWithViewport) {
       window.addEventListener("resize", debouncedReset);

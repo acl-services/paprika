@@ -67,7 +67,7 @@ const CustomizedRowHeightCalculationStory: () => JSX.Element = () => {
 
       <DataTable
         a11yText="Data table with customized row height calculation."
-        height="500px"
+        maxHeight="500px"
         columns={columns}
         data={items}
         getRowHeight={getRowHeight}

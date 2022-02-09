@@ -15,9 +15,6 @@ import { TableDataItemType, BorderType } from "./types";
 
 import * as sc from "./DataTable.styles";
 
-const ResizeContainer: React.FC<Record<string, any>> = (...moreProps) => <></>;
-ResizeContainer.displayName = "DataTable.ResizeContainer";
-
 function InnerElement({ children, ...rest }: { children: React.ReactNode }): JSX.Element {
   return (
     <>
@@ -33,7 +30,6 @@ interface ConstantsTypes {
 
 interface DataTableComposition {
   InfiniteLoader: React.FC<InfiniteLoaderPublicProps>;
-  ResizeContainer: React.FC<Record<string, any>>;
   types: ConstantsTypes;
 }
 
@@ -50,10 +46,10 @@ export interface DataTableProps {
   data: TableDataItemType[];
 
   /** The max height of the table in px/vh/calc(xvh+/-xpx) */
-  height?: string;
+  maxHeight?: string;
 
   /** The max width of the table in px/vw/calc(xvw+/-xpx) */
-  width?: string;
+  maxWidth?: string;
 
   /** Define the look for borders in the table */
   borderType?: BorderType;
@@ -85,21 +81,27 @@ function DataTable(
     children = null,
     columns,
     data,
-    height = "100vh",
-    width = "100vw",
+    maxHeight = "100vh",
+    maxWidth = "100vw",
     borderType = gridTypes.HORIZONTAL,
     getRowHeight = null,
     hasZebraStripes = false,
     isHeaderSticky = true,
     renderRow = null,
-    shouldResizeWithViewport = false,
+    shouldResizeWithViewport = true,
     extraCellProps = {},
     ...moreProps
   }: DataTableProps,
   componentRef: React.RefObject<unknown>
 ) {
   const tableRef = React.useRef<HTMLDivElement>(null);
-  const bestDimensions = useBestTableDimensions({ tableRef, componentRef, height, width, shouldResizeWithViewport });
+  const bestDimensions = useBestTableDimensions({
+    tableRef,
+    componentRef,
+    maxHeight,
+    maxWidth,
+    shouldResizeWithViewport,
+  });
 
   const defaultColumn = React.useMemo(
     () => ({
@@ -123,12 +125,10 @@ function DataTable(
   const {
     // @ts-ignore
     "DataTable.InfiniteLoader": extractedInfiniteLoaderDefinition,
-    // @ts-ignore
-    "DataTable.ResizeContainer": extractedResizeContainer,
-  } = extractChildren(children, ["DataTable.InfiniteLoader", "DataTable.ResizeContainer"]);
+  } = extractChildren(children, ["DataTable.InfiniteLoader"]);
   /* eslint-enable @typescript-eslint/ban-ts-comment */
 
-  function renderTableContent(maxHeight: number) {
+  function renderTableContent() {
     const hasInfiniteLoader = Boolean(extractedInfiniteLoaderDefinition);
 
     if (hasInfiniteLoader) {
@@ -137,7 +137,7 @@ function DataTable(
       return (
         <InfiniteLoaderImpl
           data={data}
-          height={maxHeight}
+          height={bestDimensions.height}
           innerElementType={InnerElement}
           getRowHeight={getRowHeight}
           shouldHaveHorizontalScroll={bestDimensions.shouldHaveHorizontalScroll}
@@ -155,10 +155,6 @@ function DataTable(
     );
   }
 
-  if (extractedResizeContainer) {
-    console.warn("The `DataTable.ResizeContainer` has been deprecated, please use `height` and `width` prop instead.");
-  }
-
   return (
     <ThemeContext.Provider value={{ borderType, isHeaderSticky, hasZebraStripes }}>
       <sc.Table
@@ -173,9 +169,7 @@ function DataTable(
       >
         <sc.ContentWrapper>
           <RenderRowContext.Provider value={renderRow}>
-            <ReactTableContext.Provider value={tableInstance}>
-              {renderTableContent(bestDimensions.height)}
-            </ReactTableContext.Provider>
+            <ReactTableContext.Provider value={tableInstance}>{renderTableContent()}</ReactTableContext.Provider>
           </RenderRowContext.Provider>
         </sc.ContentWrapper>
       </sc.Table>
@@ -193,7 +187,6 @@ const DataTableWithRef = React.forwardRef(DataTable);
 
 DataTableWithRef.displayName = "DataTable";
 DataTableWithRef.InfiniteLoader = InfiniteLoader;
-DataTableWithRef.ResizeContainer = ResizeContainer;
 DataTableWithRef.types = {
   borderType: gridTypes,
 };

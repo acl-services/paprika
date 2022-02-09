@@ -68,12 +68,11 @@ export const ShowcaseStory: (props: Partial<DataTableProps>) => JSX.Element = pr
   return (
     <DataTable
       a11yText="Data table for showcase."
-      height="calc(100vh-160px)"
-      width="calc(100vw-80px)"
+      maxHeight="calc(100vh-160px)"
+      maxWidth="calc(100vw-80px)"
       columns={columns}
       data={items}
       ref={tableRef}
-      shouldResizeWithViewport
       {...props}
     >
       <DataTable.InfiniteLoader

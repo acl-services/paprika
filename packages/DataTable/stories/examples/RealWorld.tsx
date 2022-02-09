@@ -213,12 +213,11 @@ export const RealWorldStory: (props: { isForTesting?: boolean }) => JSX.Element 
 
       <DataTable
         a11yText="Data table for a real world example."
-        height="calc(100vh-200px)"
+        maxHeight="calc(100vh-200px)"
         columns={columns}
         data={data}
         borderType={borderType}
         hasZebraStripes={hasZebraStripes}
-        shouldResizeWithViewport
       >
         <DataTable.InfiniteLoader
           itemCount={data.length + 1}

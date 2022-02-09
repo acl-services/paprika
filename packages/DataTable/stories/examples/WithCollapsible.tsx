@@ -42,7 +42,7 @@ export const WithCollapsibleStory: () => JSX.Element = () => {
   const tableRef = React.useRef<DataTableRef>(null);
 
   return (
-    <DataTable a11yText="Data table for showcase." columns={columns} height="400px" data={items} ref={tableRef}>
+    <DataTable a11yText="Data table for showcase." columns={columns} maxHeight="400px" data={items} ref={tableRef}>
       <DataTable.InfiniteLoader
         itemCount={items.length}
         isItemLoaded={(index: number) => items[index] !== undefined}
