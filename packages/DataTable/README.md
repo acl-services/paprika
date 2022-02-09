@@ -28,8 +28,8 @@ npm install @paprika/data-table
 | children                 | ReactReactNode | false    | null                 |                                                                  |
 | columns                  | Array          | true     | -                    | Array of column definition                                       |
 | data                     | Array          | true     | -                    | Array of data to be stored in the table                          |
-| height                   | string         | false    | "100vh"              | The max height of the table in px/vh/calc                        |
-| width                    | string         | false    | "100vw"              | The max width of the table in px/vw/calc                         |
+| height                   | string         | false    | "100vh"              | The max height of the table in px/vh/calc(xvh+/-xpx)             |
+| width                    | string         | false    | "100vw"              | The max width of the table in px/vw/calc(xvw+/-xpx)              |
 | borderType               | BorderType     | false    | gridTypes.HORIZONTAL | Define the look for borders in the table                         |
 | getRowHeight             | [unknown,null] | false    | null                 | Function to return the row height for each row                   |
 | hasZebraStripes          | boolean        | false    | false                | Add an alternating background on the table rows                  |

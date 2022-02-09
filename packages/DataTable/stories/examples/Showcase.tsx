@@ -1,6 +1,5 @@
 import React from "react";
 import { select, boolean } from "@storybook/addon-knobs";
-import CollapsibleCard from "@paprika/collapsible-card";
 import StoryHeading from "storybook/components/StoryHeading";
 import { Story, Tagline } from "storybook/assets/styles/common.styles";
 import DataTable, { DataTableRef } from "../../src";
@@ -12,7 +11,7 @@ const props = () => ({
   hasZebraStripes: boolean("hasZebraStripes", false),
   isHeaderSticky: boolean("isHeaderSticky", true),
 });
-// 312 200 + 110
+
 export const ShowcaseStory: (props: Partial<DataTableProps>) => JSX.Element = props => {
   const columns = React.useMemo(
     () => [
@@ -95,12 +94,10 @@ export const ShowcaseStory: (props: Partial<DataTableProps>) => JSX.Element = pr
   );
 };
 
-export default () => {
-  return (
-    <Story>
-      <StoryHeading level={1}>DataTable</StoryHeading>
-      <Tagline>DataTable component.</Tagline>
-      <ShowcaseStory {...props()} />
-    </Story>
-  );
-};
+export default () => (
+  <Story>
+    <StoryHeading level={1}>DataTable</StoryHeading>
+    <Tagline>DataTable component.</Tagline>
+    <ShowcaseStory {...props()} />
+  </Story>
+);

@@ -99,7 +99,7 @@ function DataTable(
   componentRef: React.RefObject<unknown>
 ) {
   const tableRef = React.useRef<HTMLDivElement>(null);
-  const bestDimensions = useBestTableDimensions({ tableRef, height, width, componentRef, shouldResizeWithViewport });
+  const bestDimensions = useBestTableDimensions({ tableRef, componentRef, height, width, shouldResizeWithViewport });
 
   const defaultColumn = React.useMemo(
     () => ({
