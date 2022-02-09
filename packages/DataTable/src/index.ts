@@ -14,3 +14,4 @@ export type ColumnInterface = ColumnInterfaceAlias;
 export type ColumnInstance = ColumnInstanceAlias;
 export type Cell = CellAlias;
 export type Row = RowAlias;
+export type DataTableRef = { resize: () => void };

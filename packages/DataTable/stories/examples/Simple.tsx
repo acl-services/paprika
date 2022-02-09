@@ -36,7 +36,7 @@ const SimpleStory: () => JSX.Element = () => {
   const [items, setItems] = React.useState(() => makeData(40));
 
   return (
-    <DataTable a11yText="A simple data table." height={500} width={477} columns={columns} data={items}>
+    <DataTable a11yText="A simple data table." height="500px" columns={columns} data={items}>
       <DataTable.InfiniteLoader
         itemCount={items.length}
         isItemLoaded={index => items[index] !== undefined}

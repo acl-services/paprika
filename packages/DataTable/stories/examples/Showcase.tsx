@@ -1,8 +1,9 @@
 import React from "react";
 import { select, boolean } from "@storybook/addon-knobs";
+import CollapsibleCard from "@paprika/collapsible-card";
 import StoryHeading from "storybook/components/StoryHeading";
 import { Story, Tagline } from "storybook/assets/styles/common.styles";
-import DataTable from "../../src";
+import DataTable, { DataTableRef } from "../../src";
 import { DataTableProps } from "../../src/DataTable";
 import makeData from "../helpers/makeData";
 
@@ -11,7 +12,7 @@ const props = () => ({
   hasZebraStripes: boolean("hasZebraStripes", false),
   isHeaderSticky: boolean("isHeaderSticky", true),
 });
-
+// 312 200 + 110
 export const ShowcaseStory: (props: Partial<DataTableProps>) => JSX.Element = props => {
   const columns = React.useMemo(
     () => [
@@ -62,30 +63,44 @@ export const ShowcaseStory: (props: Partial<DataTableProps>) => JSX.Element = pr
     []
   );
 
-  const [items, setItems] = React.useState(() => makeData(40));
+  const [items, setItems] = React.useState(() => makeData(3));
+  const tableRef = React.useRef<DataTableRef>(null);
 
   return (
-    <DataTable a11yText="Data table for showcase." height={500} width={800} columns={columns} data={items} {...props}>
+    <DataTable
+      a11yText="Data table for showcase."
+      height="calc(100vh-160px)"
+      width="calc(100vw-80px)"
+      columns={columns}
+      data={items}
+      ref={tableRef}
+      shouldResizeWithViewport
+      {...props}
+    >
       <DataTable.InfiniteLoader
         itemCount={items.length + 1}
-        isItemLoaded={index => items[index] !== undefined}
+        isItemLoaded={(index: number) => items[index] !== undefined}
         isNextPageLoading={false}
         loadMoreItems={async () => {
           const newItems = await new Promise<Record<string, unknown>[]>(res =>
             setTimeout(() => res(makeData(40)), 5000)
           );
-
           setItems(items.concat(newItems));
+          if (tableRef.current) {
+            tableRef.current.resize();
+          }
         }}
       />
     </DataTable>
   );
 };
 
-export default () => (
-  <Story>
-    <StoryHeading level={1}>DataTable</StoryHeading>
-    <Tagline>DataTable component.</Tagline>
-    <ShowcaseStory {...props()} />
-  </Story>
-);
+export default () => {
+  return (
+    <Story>
+      <StoryHeading level={1}>DataTable</StoryHeading>
+      <Tagline>DataTable component.</Tagline>
+      <ShowcaseStory {...props()} />
+    </Story>
+  );
+};

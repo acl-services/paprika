@@ -1,6 +1,5 @@
 import React from "react";
 import { useTable, useBlockLayout, Column, Row } from "react-table";
-import ResizeDetector from "@paprika/resize-detector";
 import { extractChildren } from "@paprika/helpers";
 import { gridTypes } from "@paprika/constants";
 import { InfiniteLoader, InfiniteLoaderImpl, InfiniteLoaderPublicProps } from "./components/InfiniteLoader";
@@ -11,13 +10,12 @@ import { TableHeader } from "./components/TableHeader";
 import { TableBody } from "./components/TableBody";
 import { TableRow } from "./components/TableRow";
 import useSticky from "./hooks/useSticky";
-import useTableDimensions from "./hooks/useTableDimensions";
-
+import useBestTableDimensions from "./hooks/useBestTableDimensions";
 import { TableDataItemType, BorderType } from "./types";
 
 import * as sc from "./DataTable.styles";
 
-export const ResizeContainer: React.FC<Record<string, any>> = (...moreProps) => <></>;
+const ResizeContainer: React.FC<Record<string, any>> = (...moreProps) => <></>;
 ResizeContainer.displayName = "DataTable.ResizeContainer";
 
 function InnerElement({ children, ...rest }: { children: React.ReactNode }): JSX.Element {
@@ -51,11 +49,11 @@ export interface DataTableProps {
   /** Array of data to be stored in the table */
   data: TableDataItemType[];
 
-  /** The height of the table in px */
-  height?: number;
+  /** The max height of the table in px/vh/calc(xvh+/-xpx) */
+  height?: string;
 
-  /** The width of the table */
-  width?: string | number;
+  /** The max width of the table in px/vw/calc(xvw+/-xpx) */
+  width?: string;
 
   /** Define the look for borders in the table */
   borderType?: BorderType;
@@ -72,29 +70,36 @@ export interface DataTableProps {
   /** Override the table Column configuration for some particular rows */
   renderRow?: ((row: Row<TableDataItemType>) => React.ReactNode) | null;
 
+  /** If the table should be resized when the viewport size changed */
+  shouldResizeWithViewport?: boolean;
+
   /** Experimental prop */
   extraCellProps?: Record<string, any>;
 
   [x: string]: any;
 }
 
-const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
-  a11yText,
-  children = null,
-  columns,
-  data,
-  height,
-  width,
-  borderType = gridTypes.HORIZONTAL,
-  getRowHeight = null,
-  hasZebraStripes = false,
-  isHeaderSticky = true,
-  renderRow = null,
-  extraCellProps = {},
-  ...moreProps
-}: DataTableProps) => {
+function DataTable(
+  {
+    a11yText,
+    children = null,
+    columns,
+    data,
+    height = "100vh",
+    width = "100vw",
+    borderType = gridTypes.HORIZONTAL,
+    getRowHeight = null,
+    hasZebraStripes = false,
+    isHeaderSticky = true,
+    renderRow = null,
+    shouldResizeWithViewport = false,
+    extraCellProps = {},
+    ...moreProps
+  }: DataTableProps,
+  componentRef: React.RefObject<unknown>
+) {
   const tableRef = React.useRef<HTMLDivElement>(null);
-  const { getTableHeight, getTableWidth } = useTableDimensions(tableRef, data.length, height, width);
+  const bestDimensions = useBestTableDimensions({ tableRef, height, width, componentRef, shouldResizeWithViewport });
 
   const defaultColumn = React.useMemo(
     () => ({
@@ -135,6 +140,7 @@ const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
           height={maxHeight}
           innerElementType={InnerElement}
           getRowHeight={getRowHeight}
+          shouldHaveHorizontalScroll={bestDimensions.shouldHaveHorizontalScroll}
           {...infiniteLoaderPublicProps}
         />
       );
@@ -149,59 +155,47 @@ const DataTable: React.FC<DataTableProps> & DataTableComposition = ({
     );
   }
 
-  function renderTable(height: number, width: number | string) {
-    return (
+  if (extractedResizeContainer) {
+    console.warn("The `DataTable.ResizeContainer` has been deprecated, please use `height` and `width` prop instead.");
+  }
+
+  return (
+    <ThemeContext.Provider value={{ borderType, isHeaderSticky, hasZebraStripes }}>
       <sc.Table
         ref={tableRef}
         aria-label={a11yText}
         aria-rowcount={data.length}
         data-pka-anchor="dataTable"
-        width={width}
-        height={height}
+        width={bestDimensions.width}
+        height={bestDimensions.height}
         {...tableInstance.getTableProps()}
         {...moreProps}
       >
         <sc.ContentWrapper>
           <RenderRowContext.Provider value={renderRow}>
-            <ReactTableContext.Provider value={tableInstance}>{renderTableContent(height)}</ReactTableContext.Provider>
+            <ReactTableContext.Provider value={tableInstance}>
+              {renderTableContent(bestDimensions.height)}
+            </ReactTableContext.Provider>
           </RenderRowContext.Provider>
         </sc.ContentWrapper>
       </sc.Table>
-    );
-  }
-
-  if (!extractedResizeContainer) {
-    if (width === undefined) {
-      console.warn("The `width` prop should be specified if `<DataTable.ResizeContainer>` is not used");
-    }
-
-    if (height === undefined) {
-      console.warn("The `height` prop should be specified if `<DataTable.ResizeContainer>` is not used");
-    }
-  }
-
-  return (
-    <ThemeContext.Provider value={{ borderType, isHeaderSticky, hasZebraStripes }}>
-      {extractedResizeContainer ? (
-        <div {...extractedResizeContainer.props}>
-          <ResizeDetector isFullHeight>
-            {({ height: maxHeight, width: maxWidth }) =>
-              renderTable(getTableHeight(maxHeight), getTableWidth(maxWidth))
-            }
-          </ResizeDetector>
-        </div>
-      ) : (
-        renderTable(height || 0, width || 0)
-      )}
     </ThemeContext.Provider>
   );
-};
+}
 
-DataTable.displayName = "DataTable";
-DataTable.InfiniteLoader = InfiniteLoader;
-DataTable.ResizeContainer = ResizeContainer;
-DataTable.types = {
+declare module "react" {
+  function forwardRef<T, P = unknown>(
+    render: (props: P, ref: React.RefObject<T>) => React.ReactElement | null
+  ): React.FC<DataTableProps> & DataTableComposition;
+}
+
+const DataTableWithRef = React.forwardRef(DataTable);
+
+DataTableWithRef.displayName = "DataTable";
+DataTableWithRef.InfiniteLoader = InfiniteLoader;
+DataTableWithRef.ResizeContainer = ResizeContainer;
+DataTableWithRef.types = {
   borderType: gridTypes,
 };
 
-export default DataTable;
+export default DataTableWithRef;

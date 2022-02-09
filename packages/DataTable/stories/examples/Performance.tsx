@@ -60,8 +60,8 @@ const PerformanceStory: (settings: Settings) => JSX.Element = ({ rows, columns }
 
       <DataTable
         a11yText="Data table for performance testing."
-        height={600}
-        width="100%"
+        height="calc(100vh-160px)"
+        width="calc(100vw-80px)"
         columns={columnsProp}
         data={items}
       >
