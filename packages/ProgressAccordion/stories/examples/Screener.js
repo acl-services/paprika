@@ -6,8 +6,8 @@ import ProgressAccordion from "../../src";
 
 const screenerScript = new Steps()
   .snapshot("Collapsed")
-  .click(".screener-progress-accordion [role='listitem']:nth-child(1) .collapsible__label")
-  .click(".screener-progress-accordion [role='listitem']:nth-child(2) .collapsible__label")
+  .click(".screener-progress-accordion [role='listitem']:nth-child(1) [data-pka-anchor='collapsible.iconTrigger']")
+  .click(".screener-progress-accordion [role='listitem']:nth-child(2) [data-pka-anchor='collapsible.iconTrigger']")
   .snapshot("Expanded")
   .end();
 
