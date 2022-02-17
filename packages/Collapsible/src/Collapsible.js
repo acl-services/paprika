@@ -66,7 +66,7 @@ const Collapsible = props => {
           aria-expanded={!isCollapsed}
           iconAlign={iconAlign}
           isToggleIconOnly
-          data-pka-anchor="collapsible.iconTrigger"
+          data-pka-anchor="collapsible.icon-trigger"
           isDisabled={isDisabled}
           onClick={props.onClick}
           aria-describedby={triggerAriaDescribedby}
