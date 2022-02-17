@@ -14,35 +14,30 @@ export default {
 };
 
 export const ScreenerStory = () => <Screener />;
-
 ScreenerStory.story = {
   name: "Screener",
   parameters: testStoryParameters,
 };
 
 export const PanelDefaultStickyStory = () => <PanelDefaultSticky />;
-
 PanelDefaultStickyStory.story = {
   name: "Panel Sticky",
   parameters: testStoryParameters,
 };
 
 export const PanelOnAfterStory = () => <PanelOnAfter />;
-
 PanelOnAfterStory.story = {
   name: "Panel OnAfter",
   parameters: testStoryParameters,
 };
 
 export const PanelFocusLockDisabledStory = () => <PanelFocusLockDisabled />;
-
 PanelFocusLockDisabledStory.story = {
   name: "Panel Focus Lock",
   parameters: testStoryParameters,
 };
 
 export const PanelFooterStickyStory = () => <PanelFooterSticky />;
-
 PanelFooterStickyStory.story = {
   name: "Panel Footer Sticky",
   parameters: testStoryParameters,

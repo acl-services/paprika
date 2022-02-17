@@ -96,8 +96,8 @@ export const MultilevelHeaderStory: (props: Partial<DataTableProps>) => JSX.Elem
   return (
     <DataTable
       a11yText="Multi-level header data table."
-      height={500}
-      width={800}
+      maxHeight="500px"
+      maxWidth="800px"
       columns={columns}
       data={items}
       {...props}

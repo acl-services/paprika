@@ -22,20 +22,21 @@ npm install @paprika/data-table
 
 ### DataTable
 
-| Prop            | Type            | required | default              | Description                                                      |
-| --------------- | --------------- | -------- | -------------------- | ---------------------------------------------------------------- |
-| a11yText        | string          | true     | -                    | Accessible description of the table                              |
-| children        | ReactReactNode  | false    | null                 |                                                                  |
-| columns         | Array           | true     | -                    | Array of column definition                                       |
-| data            | Array           | true     | -                    | Array of data to be stored in the table                          |
-| height          | number          | false    | -                    | The height of the table in px                                    |
-| width           | [string,number] | false    | -                    | The width of the table                                           |
-| borderType      | BorderType      | false    | gridTypes.HORIZONTAL | Define the look for borders in the table                         |
-| getRowHeight    | [unknown,null]  | false    | null                 | Function to return the row height for each row                   |
-| hasZebraStripes | boolean         | false    | false                | Add an alternating background on the table rows                  |
-| isHeaderSticky  | boolean         | false    | true                 | If the entire table header is sticky or not                      |
-| renderRow       | [unknown,null]  | false    | null                 | Override the table Column configuration for some particular rows |
-| extraCellProps  | Record          | false    | {}                   | Experimental prop                                                |
+| Prop                     | Type           | required | default              | Description                                                      |
+| ------------------------ | -------------- | -------- | -------------------- | ---------------------------------------------------------------- |
+| a11yText                 | string         | true     | -                    | Accessible description of the table                              |
+| children                 | ReactReactNode | false    | null                 |                                                                  |
+| columns                  | Array          | true     | -                    | Array of column definition                                       |
+| data                     | Array          | true     | -                    | Array of data to be stored in the table                          |
+| maxHeight                | string         | false    | "100vh"              | The max height of the table in px/vh/calc(xvh+/-xpx)             |
+| maxWidth                 | string         | false    | "100vw"              | The max width of the table in px/vw/calc(xvw+/-xpx)              |
+| borderType               | BorderType     | false    | gridTypes.HORIZONTAL | Define the look for borders in the table                         |
+| getRowHeight             | [unknown,null] | false    | null                 | Function to return the row height for each row                   |
+| hasZebraStripes          | boolean        | false    | false                | Add an alternating background on the table rows                  |
+| isHeaderSticky           | boolean        | false    | true                 | If the entire table header is sticky or not                      |
+| renderRow                | [unknown,null] | false    | null                 | Override the table Column configuration for some particular rows |
+| shouldResizeWithViewport | boolean        | false    | true                 | If the table should be resized when the viewport size changed    |
+| extraCellProps           | Record         | false    | {}                   | Experimental prop                                                |
 
 ### DataTable.InfiniteLoader
 

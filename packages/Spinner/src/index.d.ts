@@ -5,8 +5,6 @@ interface SpinnerProps {
   [x: string]: any;
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
   a11yText?: string;
-  /** Sets the className for the spinner */
-  className?: string;
   /** Sets the caption that will display beneath the spinner */
   caption?: string;
   /** If the background is dark, different color of spinner will be rendered */

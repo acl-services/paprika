@@ -6,7 +6,7 @@ const testStory = "panel-tests";
 describe("<Panel />", () => {
   it("should convert <Panel offset={} /> into sticky mode", () => {
     cy.visitStorybook(`${testStory}--panel-default-sticky-story`);
-    cy.findByTestId("purple-navigator").should("be.visible");
+    cy.findByTestId("global-navigator").should("be.visible");
     cy.findByTestId("panel").then($element => {
       expect($element.css("top")).to.be.equal("40px");
     });

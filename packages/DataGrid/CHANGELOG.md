@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.29
+
+### Patch Changes
+
+- Updated dependencies [623369a]
+  - @paprika/spinner@1.0.15
+
+## 1.0.29-next.0
+
+### Patch Changes
+
+- Updated dependencies [623369a]
+  - @paprika/spinner@1.0.15-next.0
+
 ## 1.0.28
 
 ### Patch Changes

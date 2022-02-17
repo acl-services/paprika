@@ -14,6 +14,7 @@ export default function FocusHeading() {
         onClick={() => {
           setOpen(true);
         }}
+        kind="primary"
       >
         Open Panel
       </Button>

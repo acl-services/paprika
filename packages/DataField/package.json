@@ -1,6 +1,6 @@
 {
   "name": "@paprika/data-field",
-  "version": "1.0.32",
+  "version": "1.0.33",
   "description": "Field Types package is a set of components that help the Table and DataGrid to enhance the cell property to display different value in a ease manner",
   "author": "@paprika",
   "license": "MIT",
@@ -18,7 +18,7 @@
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/button": "^1.1.11",
     "@paprika/constants": "^1.0.0",
-    "@paprika/data-grid": "^1.0.28",
+    "@paprika/data-grid": "^1.0.29",
     "@paprika/icon": "^2.1.6",
     "@paprika/popover": "^2.0.3",
     "@paprika/tokens": "^1.1.4",

@@ -38,6 +38,7 @@ interface InfiniteLoaderPrivateProps {
   innerElementType: (props: { children: React.ReactNode }) => JSX.Element;
   height: number;
   getRowHeight: ((index: number) => number) | null;
+  shouldHaveHorizontalScroll: boolean;
 }
 
 function Row(props: ListChildComponentProps): JSX.Element {
@@ -58,6 +59,7 @@ export function InfiniteLoaderImpl({
   isItemLoaded,
   itemCount,
   loadMoreItems,
+  shouldHaveHorizontalScroll,
   isNextPageLoading = false,
   minimumBatchSize = 10,
   threshold = 15,
@@ -92,6 +94,7 @@ export function InfiniteLoaderImpl({
           onItemsRendered={onItemsRendered}
           ref={listRef}
           innerElementType={innerElementType}
+          style={{ overflowX: shouldHaveHorizontalScroll ? "auto" : "hidden" }}
         >
           {Row}
         </VariableSizeList>
