@@ -95,7 +95,9 @@ const Collapsible = props => {
   return (
     <sc.Collapsible {...collapsibleProps} role="group" {...moreProps}>
       {hasOnlyIconToggle ? renderCollapsibleByIcon() : renderDefaultCollapsible()}
-      <sc.CollapsibleBody style={isCollapsed ? hiddenStyles : null}>{children}</sc.CollapsibleBody>
+      <sc.CollapsibleBody data-pka-anchor="collapsible.body" style={isCollapsed ? hiddenStyles : null}>
+        {children}
+      </sc.CollapsibleBody>
     </sc.Collapsible>
   );
 };
