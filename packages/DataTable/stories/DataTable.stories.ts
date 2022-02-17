@@ -7,6 +7,7 @@ import Performance from "./examples/Performance";
 import RealWorld from "./examples/RealWorld";
 import RenderRow from "./examples/RenderRow";
 import Showcase from "./examples/Showcase";
+import WithCollapsible from "./examples/WithCollapsible";
 
 export default {
   title: getStoryName("DataTable"),
@@ -26,3 +27,5 @@ export const renderRow = RenderRow;
 export const realWorld = RealWorld;
 
 export const performance = Performance;
+
+export const withCollapsible = WithCollapsible;

@@ -2,7 +2,7 @@ import React from "react";
 import { select, boolean } from "@storybook/addon-knobs";
 import StoryHeading from "storybook/components/StoryHeading";
 import { Story, Tagline } from "storybook/assets/styles/common.styles";
-import DataTable from "../../src";
+import DataTable, { DataTableRef } from "../../src";
 import { DataTableProps } from "../../src/DataTable";
 import makeData from "../helpers/makeData";
 
@@ -62,20 +62,31 @@ export const ShowcaseStory: (props: Partial<DataTableProps>) => JSX.Element = pr
     []
   );
 
-  const [items, setItems] = React.useState(() => makeData(40));
+  const [items, setItems] = React.useState(() => makeData(3));
+  const tableRef = React.useRef<DataTableRef>(null);
 
   return (
-    <DataTable a11yText="Data table for showcase." height={500} width={800} columns={columns} data={items} {...props}>
+    <DataTable
+      a11yText="Data table for showcase."
+      maxHeight="calc(100vh-160px)"
+      maxWidth="calc(100vw-80px)"
+      columns={columns}
+      data={items}
+      ref={tableRef}
+      {...props}
+    >
       <DataTable.InfiniteLoader
         itemCount={items.length + 1}
-        isItemLoaded={index => items[index] !== undefined}
+        isItemLoaded={(index: number) => items[index] !== undefined}
         isNextPageLoading={false}
         loadMoreItems={async () => {
           const newItems = await new Promise<Record<string, unknown>[]>(res =>
             setTimeout(() => res(makeData(40)), 5000)
           );
-
           setItems(items.concat(newItems));
+          if (tableRef.current) {
+            tableRef.current.resize();
+          }
         }}
       />
     </DataTable>

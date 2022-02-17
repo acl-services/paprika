@@ -3,7 +3,7 @@ import tokens from "@paprika/tokens";
 import { fontSize } from "@paprika/stylers/lib/helpers";
 
 export const Table = styled.div<{
-  width: string | number;
+  width: number;
   height: number;
 }>(
   ({ width, height }) => css`
@@ -12,7 +12,7 @@ export const Table = styled.div<{
     box-sizing: border-box;
     height: ${`${height}px`};
     overflow: hidden;
-    width: ${typeof width === "string" ? width : `${width}px`};
+    width: ${`${width}px`};
     ${fontSize()}
 
     * {

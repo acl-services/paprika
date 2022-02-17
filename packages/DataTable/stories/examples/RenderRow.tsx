@@ -47,14 +47,7 @@ const RenderRow: () => JSX.Element = () => {
   }
 
   return (
-    <DataTable
-      a11yText="A simple data table."
-      height={500}
-      width={477}
-      columns={columns}
-      data={data}
-      renderRow={renderRow}
-    >
+    <DataTable a11yText="A simple data table." maxHeight="500px" columns={columns} data={data} renderRow={renderRow}>
       <DataTable.InfiniteLoader
         itemCount={data.length}
         isItemLoaded={index => data[index] !== undefined}

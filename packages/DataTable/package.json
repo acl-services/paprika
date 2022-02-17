@@ -1,6 +1,6 @@
 {
   "name": "@paprika/data-table",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "A virtualized table component.",
   "author": "@paprika",
   "license": "MIT",
@@ -25,14 +25,15 @@
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/constants": "^1.0.0",
     "@paprika/helpers": "^2.2.1",
-    "@paprika/resize-detector": "^2.0.1",
     "@paprika/stylers": "^1.1.5",
     "@paprika/tokens": "^1.1.4",
+    "lodash.debounce": "^4.0.8",
     "react-table": "^7.7.0",
     "react-window": "^1.8.6",
     "react-window-infinite-loader": "^1.0.7"
   },
   "devDependencies": {
+    "@types/lodash.debounce": "^4.0.6",
     "@types/react-table": "^7.7.7",
     "@types/react-window": "^1.8.5",
     "@types/react-window-infinite-loader": "^1.0.5"
