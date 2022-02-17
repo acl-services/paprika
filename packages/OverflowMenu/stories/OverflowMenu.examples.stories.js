@@ -43,7 +43,7 @@ export const modals = () => (
   </ExampleStory>
 );
 
-modals.story = exampleStoryParameters;
+modals.story = { name: "Multiple Confirmations", parameters: exampleStoryParameters };
 
 export const dividers = () => (
   <ExampleStory component="OverflowMenu" storyName="Dividers" fileName="examples/OverflowMenuDividersExample.js">
@@ -87,4 +87,4 @@ export const popoverContent = () => (
   </ExampleStory>
 );
 
-popoverContent.story = exampleStoryParameters;
+popoverContent.story = { name: "Custom class on Popover Content", parameters: exampleStoryParameters };

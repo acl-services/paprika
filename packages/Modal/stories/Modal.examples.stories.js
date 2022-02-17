@@ -35,7 +35,7 @@ export const basic = () => (
   </ExampleStory>
 );
 
-basic.story = exampleStoryParameters;
+basic.story = { parameters: exampleStoryParameters };
 
 export const fullWidthContent = () => (
   <ExampleStory component="Modal" storyName="with full-width content" fileName="./ModalStory.js">
@@ -45,7 +45,7 @@ export const fullWidthContent = () => (
   </ExampleStory>
 );
 
-fullWidthContent.story = exampleStoryParameters;
+fullWidthContent.story = { parameters: exampleStoryParameters };
 
 export const autoFocusInput = () => (
   <ExampleStory component="Modal" storyName="with autofocus on input">
@@ -58,7 +58,7 @@ export const autoFocusInput = () => (
   </ExampleStory>
 );
 
-autoFocusInput.story = exampleStoryParameters;
+autoFocusInput.story = { parameters: exampleStoryParameters };
 
 export const disableAutoFocus = () => (
   <ExampleStory component="Modal" storyName="with disabled autofocus">
@@ -72,7 +72,7 @@ export const disableAutoFocus = () => (
   </ExampleStory>
 );
 
-disableAutoFocus.story = exampleStoryParameters;
+disableAutoFocus.story = { parameters: exampleStoryParameters };
 
 export const FocusHeading = () => {
   const refHeading = React.useRef(null);
@@ -115,7 +115,7 @@ export const FocusHeading = () => {
   );
 };
 
-FocusHeading.story = exampleStoryParameters;
+FocusHeading.story = { parameters: exampleStoryParameters };
 
 export const headerColoured = () => (
   <ExampleStory component="Modal" storyName="with header coloured">
@@ -137,7 +137,7 @@ export const headerColoured = () => (
   </ExampleStory>
 );
 
-headerColoured.story = exampleStoryParameters;
+headerColoured.story = { parameters: exampleStoryParameters };
 
 export const truncateHeader = () => (
   <ExampleStory component="Modal" storyName="with truncated (single line) header text">
@@ -159,7 +159,7 @@ export const truncateHeader = () => (
   </ExampleStory>
 );
 
-truncateHeader.story = exampleStoryParameters;
+truncateHeader.story = { parameters: exampleStoryParameters };
 
 export const noCloseButton = () => (
   <ExampleStory component="Modal" storyName="with truncated (single line) header text and no close button">
@@ -181,7 +181,7 @@ export const noCloseButton = () => (
   </ExampleStory>
 );
 
-noCloseButton.story = exampleStoryParameters;
+noCloseButton.story = { parameters: exampleStoryParameters };
 
 export const withLargeModal = () => (
   <ExampleStory component="Modal" storyName="with large modal and inputs and contents">
@@ -205,4 +205,4 @@ export const withLargeModal = () => (
   </ExampleStory>
 );
 
-withLargeModal.story = exampleStoryParameters;
+withLargeModal.story = { parameters: exampleStoryParameters };

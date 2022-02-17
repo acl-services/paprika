@@ -55,10 +55,10 @@ describe("<Panel />", () => {
     cy.findByTestId("button-panel2").click({ force: true });
     cy.findByTestId("panel2").should("not.exist");
 
-    cy.findByTestId("button-panel1").click();
+    cy.findByTestId("button-panel1").click({ force: true });
     cy.findByTestId("panel1").should("exist");
 
-    cy.findByTestId("button-panel2").click();
+    cy.findByTestId("button-panel2").click({ force: true });
     cy.findByTestId("panel2").should("exist");
 
     cy.contains(/Toggle Child/i).click();
