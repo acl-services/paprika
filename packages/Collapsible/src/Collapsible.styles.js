@@ -1,6 +1,7 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
+import RawButton from "@paprika/raw-button";
 
 export const Collapsible = styled.div`
   &, * {
@@ -13,46 +14,37 @@ export const Collapsible = styled.div`
   display: block;
   line-height: ${stylers.spacer(3)};
   width: 100%;
+`;
 
-  .collapsible__label {
-    display: inline-block;
+export const CollapsibleLabel = styled(RawButton)(
+  ({ iconAlign, isToggleIconOnly }) => css`
     border-radius: ${tokens.border.radius};
+    display: inline-block;
     margin-left: -${tokens.spaceSm};
     margin-right: -${tokens.spaceSm};
     padding-left: ${tokens.spaceSm};
     padding-right: ${tokens.spaceSm};
     width: calc(100% + ${tokens.space});
-  }
 
-  .collapsible__icon--left {
-    margin-right: ${tokens.spaceSm};
-  }
+    ${isToggleIconOnly && `margin: 0; width: auto;`}
 
-  .collapsible__icon--right {
-    float: right;
-    margin-left: ${tokens.spaceSm};
-  }
-  
-  .collapsible__label--is-toggle-icon-only {
-    margin: 0;
-    width: auto;
-  }
+    ${iconAlign === "left" && `margin-right: ${tokens.spaceSm};`}
+    ${iconAlign === "right" && `float: right; margin-left: ${tokens.spaceSm};`}
+  `
+);
 
-  .collapsible__label--left {
-    margin-right: ${tokens.spaceSm}; 
-  }
+export const CollapsibleIcon = styled.span(
+  ({ iconAlign }) => css`
+    ${iconAlign === "left" && `margin-right: ${tokens.spaceSm};`}
+    ${iconAlign === "right" && `float: right; margin-left: ${tokens.spaceSm};`}
 
-  .collapsible__label--right {
-    float: right;
-    margin-left: ${tokens.spaceSm};
-  }
+    [data-pka-anchor="icon"] {
+      color: ${tokens.textColor.icon};
+      vertical-align: -2px;
+    }
+  `
+);
 
-  .collapsible__icon svg {
-    color: ${tokens.textColor.icon};
-    vertical-align: -2px; 
-  }
-
-  .collapsible__body {
-    width: 100%;
-  }
+export const CollapsibleBody = styled.div`
+  width: 100%;
 `;

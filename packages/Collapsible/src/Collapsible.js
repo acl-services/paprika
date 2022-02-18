@@ -4,10 +4,105 @@ import RightArrowIcon from "@paprika/icon/lib/ArrowRight";
 import DownArrowIcon from "@paprika/icon/lib/ArrowDown";
 import UpArrowIcon from "@paprika/icon/lib/ArrowUp";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import RawButton from "@paprika/raw-button";
 import * as sc from "./Collapsible.styles";
 
-const propTypes = {
+const Collapsible = props => {
+  const {
+    a11yText,
+    children,
+    iconAlign,
+    iconCollapse,
+    iconExpand,
+    isCollapsed,
+    isDisabled,
+    hasOnlyIconToggle,
+    onClick,
+    label,
+    ...moreProps
+  } = props;
+
+  const I18n = useI18n();
+  let hasWarnedForA11yText = false;
+
+  const collapsedIcon =
+    props.iconAlign === "right" ? [<UpArrowIcon />, <DownArrowIcon />] : [props.iconExpand, props.iconCollapse];
+
+  const checkPropsError = () => {
+    if (!props.a11yText && !(I18n && I18n.t) && !hasWarnedForA11yText) {
+      hasWarnedForA11yText = true;
+      console.error(
+        "Error: It is necessary to provide either an a11yText prop or the i18n.t function via the L10n component for Collapsible."
+      );
+    }
+  };
+
+  const renderDefaultCollapsible = () => {
+    const { a11yText, label, isCollapsed, isDisabled, iconAlign, triggerAriaDescribedby } = props;
+
+    return (
+      <sc.CollapsibleLabel
+        a11yText={a11yText || I18n.t("collapsible.ariaText")}
+        aria-expanded={!isCollapsed}
+        data-pka-anchor="collapsible.trigger"
+        isDisabled={isDisabled}
+        onClick={props.onClick}
+        aria-describedby={triggerAriaDescribedby}
+      >
+        <sc.CollapsibleIcon aria-hidden="true" data-pka-anchor="collapsible.icon" iconAlign={iconAlign}>
+          {collapsedIcon[+isCollapsed]}
+        </sc.CollapsibleIcon>
+        {label}
+      </sc.CollapsibleLabel>
+    );
+  };
+
+  const renderCollapsibleByIcon = () => {
+    const { a11yText, label, isCollapsed, isDisabled, iconAlign, triggerAriaDescribedby } = props;
+
+    return (
+      <div data-pka-anchor="collapsible.heading">
+        <sc.CollapsibleLabel
+          a11yText={a11yText || I18n.t("collapsible.ariaText")}
+          aria-expanded={!isCollapsed}
+          iconAlign={iconAlign}
+          isToggleIconOnly
+          data-pka-anchor="collapsible.icon-trigger"
+          isDisabled={isDisabled}
+          onClick={props.onClick}
+          aria-describedby={triggerAriaDescribedby}
+        >
+          <sc.CollapsibleIcon aria-hidden="true" data-pka-anchor="collapsible.icon">
+            {collapsedIcon[+isCollapsed]}
+          </sc.CollapsibleIcon>
+        </sc.CollapsibleLabel>
+        {label}
+      </div>
+    );
+  };
+
+  React.useEffect(() => {
+    checkPropsError();
+  });
+
+  const collapsibleProps = {
+    isCollapsed,
+  };
+
+  const hiddenStyles = {
+    display: "none",
+  };
+
+  return (
+    <sc.Collapsible {...collapsibleProps} role="group" {...moreProps}>
+      {hasOnlyIconToggle ? renderCollapsibleByIcon() : renderDefaultCollapsible()}
+      <sc.CollapsibleBody data-pka-anchor="collapsible.body" style={isCollapsed ? hiddenStyles : null}>
+        {children}
+      </sc.CollapsibleBody>
+    </sc.Collapsible>
+  );
+};
+
+Collapsible.propTypes = {
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
   a11yText: PropTypes.string,
 
@@ -41,7 +136,7 @@ const propTypes = {
   triggerAriaDescribedby: PropTypes.string,
 };
 
-const defaultProps = {
+Collapsible.defaultProps = {
   a11yText: null,
   children: null,
   iconAlign: "left",
@@ -54,108 +149,6 @@ const defaultProps = {
   triggerAriaDescribedby: null,
 };
 
-const Collapsible = props => {
-  const I18n = useI18n();
-  let hasWarnedForA11yText = false;
-
-  const collapsedIcon =
-    props.iconAlign === "right" ? [<UpArrowIcon />, <DownArrowIcon />] : [props.iconExpand, props.iconCollapse];
-
-  const checkPropsError = () => {
-    if (!props.a11yText && !(I18n && I18n.t) && !hasWarnedForA11yText) {
-      hasWarnedForA11yText = true;
-      console.error(
-        "Error: It is necessary to provide either an a11yText prop or the i18n.t function via the L10n component for Collapsible."
-      );
-    }
-  };
-
-  const renderDefaultCollapsible = () => {
-    const { a11yText, label, isCollapsed, isDisabled, iconAlign, triggerAriaDescribedby } = props;
-
-    return (
-      <RawButton
-        a11yText={a11yText || I18n.t("collapsible.ariaText")}
-        aria-expanded={!isCollapsed}
-        className="collapsible__label"
-        data-pka-anchor="collapsible.trigger"
-        isDisabled={isDisabled}
-        onClick={props.onClick}
-        aria-describedby={triggerAriaDescribedby}
-      >
-        <span
-          data-pka-anchor="collapsible.icon"
-          className={`collapsible__icon collapsible__icon--${iconAlign}`}
-          aria-hidden="true"
-        >
-          {collapsedIcon[+isCollapsed]}
-        </span>
-        {label}
-      </RawButton>
-    );
-  };
-
-  const renderCollapsibleByIcon = () => {
-    const { a11yText, label, isCollapsed, isDisabled, iconAlign, triggerAriaDescribedby } = props;
-
-    return (
-      <div data-pka-anchor="collapsible.heading">
-        <RawButton
-          a11yText={a11yText || I18n.t("collapsible.ariaText")}
-          aria-expanded={!isCollapsed}
-          className={`collapsible__label collapsible__label--is-toggle-icon-only collapsible__label--${iconAlign}`}
-          data-pka-anchor="collapsible.iconTrigger"
-          isDisabled={isDisabled}
-          onClick={props.onClick}
-          aria-describedby={triggerAriaDescribedby}
-        >
-          <span data-pka-anchor="collapsible.icon" aria-hidden="true" className="collapsible__icon">
-            {collapsedIcon[+isCollapsed]}
-          </span>
-        </RawButton>
-        {label}
-      </div>
-    );
-  };
-
-  React.useEffect(() => {
-    checkPropsError();
-  });
-
-  const {
-    a11yText,
-    children,
-    iconAlign,
-    iconCollapse,
-    iconExpand,
-    isCollapsed,
-    isDisabled,
-    hasOnlyIconToggle,
-    onClick,
-    label,
-    ...moreProps
-  } = props;
-
-  const collapsibleProps = {
-    isCollapsed,
-  };
-
-  const hiddenStyles = {
-    display: "none",
-  };
-
-  return (
-    <sc.Collapsible {...collapsibleProps} role="group" {...moreProps}>
-      {hasOnlyIconToggle ? renderCollapsibleByIcon() : renderDefaultCollapsible()}
-      <div className="collapsible__body" style={isCollapsed ? hiddenStyles : null}>
-        {children}
-      </div>
-    </sc.Collapsible>
-  );
-};
-
 Collapsible.displayName = "Collapsible";
-Collapsible.propTypes = propTypes;
-Collapsible.defaultProps = defaultProps;
 
 export default Collapsible;
