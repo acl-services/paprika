@@ -1,6 +1,8 @@
 import React from "react";
 import { ListChildComponentProps, VariableSizeList } from "react-window";
+import isEqual from "lodash.isequal";
 import ReactInfiniteLoader from "react-window-infinite-loader";
+import { usePrevious } from "@paprika/helpers";
 import TableRow from "../TableRow/TableRow";
 import { TableDataItemType } from "../../types";
 import useItemSizeCalculator from "./useItemSizeCalculator";
@@ -66,7 +68,25 @@ export function InfiniteLoaderImpl({
 }: InfiniteLoaderPrivateProps & InfiniteLoaderPublicProps): JSX.Element {
   const infiniteLoaderRef = React.useRef(null);
   const listRef = React.useRef<VariableSizeList>(null);
-  const { getItemSize } = useItemSizeCalculator(data, getRowHeight);
+  const { getItemSize, clearRowHeights } = useItemSizeCalculator(data, getRowHeight);
+
+  const prevData: TableDataItemType[] | undefined = usePrevious(data);
+
+  React.useLayoutEffect(() => {
+    if (prevData && listRef.current) {
+      const changedIndexes: number[] = [];
+      prevData.forEach((row: TableDataItemType, index: number) => {
+        if (!isEqual(row, data[index])) {
+          changedIndexes.push(index);
+        }
+      });
+
+      if (changedIndexes && changedIndexes.length) {
+        clearRowHeights(changedIndexes);
+        listRef.current.resetAfterIndex(changedIndexes[0]);
+      }
+    }
+  }, [data, prevData, clearRowHeights]);
 
   async function handleLoadMoreItems() {
     await loadMoreItems();
