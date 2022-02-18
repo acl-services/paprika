@@ -28,7 +28,7 @@ export const Header = styled.div(
 );
 
 export const Heading = styled(OriginalHeading)`
-  margin: 0 0 0 ${spacer(2)};
+  margin: ${spacer(2)} 0 ${spacer(2)} ${spacer(3)};
 `;
 
 export const CloseButton = styled.div`

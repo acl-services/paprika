@@ -42,7 +42,7 @@ const propTypes = {
 
 const defaultProps = {
   hasCloseButton: true,
-  level: 3,
+  level: 2,
   kind: Header.types.kind.DEFAULT,
   onClose: () => {},
   refHeading: null,
