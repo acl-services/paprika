@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0-next.0
+
+### Minor Changes
+
+- 7ec4d66: Refactor styles to follow latest Paprika conventions for styled-components. Classnames are removed and pka-anchors should be used instead.
+
 ## 1.1.23
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.25-next.0
+
+### Patch Changes
+
+- Updated dependencies [7ec4d66]
+  - @paprika/collapsible@1.2.0-next.0
+
 ## 1.0.24
 
 ### Patch Changes
