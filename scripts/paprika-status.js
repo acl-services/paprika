@@ -2,7 +2,7 @@
 /* eslint no-param-reassign: ["error", { "props": true, "ignorePropertyModificationsFor": ["commits"] }] */
 const fs = require("fs");
 const child_process = require("child_process");
-const tree = require("../.storybook/storyTree");
+const OUTPUT_FILE_PATH = "./status.json";
 
 class PaprikaStatus {
   constructor() {
@@ -11,20 +11,7 @@ class PaprikaStatus {
 
     this.version = "package.json";
     this.jestSummary = "coverage/coverage-summary.json";
-    this.statuses = JSON.parse(fs.existsSync("./status.json") && fs.readFileSync("./status.json", "utf8")) || {};
-  }
-
-  getStorybookA11yReport(subDir, commits) {
-    try {
-      const result = child_process.spawnSync(
-        `yarn`,
-        [`storybook-a11y-report`, `--storybookUrl ${this.LOCAL_HOST}`, `--include '${tree.getStoryName(subDir)}/**'`],
-        { shell: true, timeout: 0 }
-      );
-      commits.a11yReport = this.parseA11y(result.stdout.toString());
-    } catch (e) {
-      console.log(e);
-    }
+    this.statuses = JSON.parse(fs.existsSync(OUTPUT_FILE_PATH) && fs.readFileSync(OUTPUT_FILE_PATH, "utf8")) || {};
   }
 
   getCommitPrefixCounts(subDir, commits) {
@@ -81,7 +68,6 @@ class PaprikaStatus {
     fs.readdirSync(this.PATH_TO_COMPONENTS).forEach(subDir => {
       const commits = {};
       this.getCommitPrefixCounts(subDir, commits);
-      this.getStorybookA11yReport(subDir, commits);
       this.getTestStatistics(subDir, commits);
       try {
         commits.version = JSON.parse(
@@ -100,30 +86,7 @@ class PaprikaStatus {
       }
       child_process.execSync(`rm -f ${this.jestSummary}`);
     });
-    fs.writeFileSync("./status.json", JSON.stringify(this.statuses));
-  }
-
-  parseA11y(report) {
-    const foundIssues = {};
-    let curId;
-    report.split("\n").forEach(line => {
-      if (!line.includes("A11y ID: ") && !line.includes("description: ")) {
-        return;
-      }
-      if (line.includes("A11y ID: ")) {
-        curId = line.split("A11y ID: ")[1];
-        if (foundIssues[curId]) {
-          return;
-        }
-      }
-      if (line.includes("description: ")) {
-        foundIssues[curId] = line.split("description: ")[1];
-      }
-    });
-    return Object.keys(foundIssues).map(a11yId => ({
-      A11yID: a11yId,
-      description: foundIssues[a11yId],
-    }));
+    fs.writeFileSync(OUTPUT_FILE_PATH, JSON.stringify(this.statuses));
   }
 
   run() {

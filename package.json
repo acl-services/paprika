@@ -32,8 +32,9 @@
     "transpile": "lerna exec --concurrency 2 -- babel --extensions .js,.jsx,.ts,.tsx --root-mode upward src --source-maps --copy-files --out-dir lib",
     "transpile:esm": "lerna exec --concurrency 2 --scope '@paprika/@(action-bar|avatar|calendar|collapsible-card|data-grid|filter|form-element|guard|helpers|icon|list-box-with-tags|mock-endpoints|modal|seducer|stylers|table)' -- babel --extensions .js,.jsx,.ts,.tsx --root-mode upward src --source-maps --copy-files --config-file ../../babel.config.esm.js --out-dir lib/esm",
     "validate:ts": "yarn tsc --noEmit --emitDeclarationOnly false",
-    "paprika-status": "run-p --race storybook getStatus",
-    "getStatus": "wait-on http://localhost:9009/iframe.html && node scripts/paprika-status"
+    "paprika-status": "node scripts/paprika-status",
+    "paprika-status:a11y": "run-p --race storybook getA11yStatus",
+    "getA11yStatus": "wait-on http://localhost:9009/iframe.html && node --max-old-space-size=8192 scripts/paprika-status--a11y"
   },
   "engines": {
     "node": ">=12.13.0",
