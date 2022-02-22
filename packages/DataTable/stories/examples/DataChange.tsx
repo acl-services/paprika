@@ -77,6 +77,7 @@ const DataChangeStory: () => JSX.Element = () => {
           itemCount={items.length}
           isItemLoaded={index => items[index] !== undefined}
           loadMoreItems={async () => {
+            console.log("callign loadmore items");
             // do nothing
           }}
         />

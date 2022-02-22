@@ -1,8 +1,8 @@
 import React from "react";
 import { ListChildComponentProps, VariableSizeList } from "react-window";
 import isEqual from "lodash.isequal";
-import ReactInfiniteLoader from "react-window-infinite-loader";
 import { usePrevious } from "@paprika/helpers";
+import ReactInfiniteLoader from "react-window-infinite-loader";
 import TableRow from "../TableRow/TableRow";
 import { TableDataItemType } from "../../types";
 import useItemSizeCalculator from "./useItemSizeCalculator";
@@ -41,6 +41,8 @@ interface InfiniteLoaderPrivateProps {
   height: number;
   getRowHeight: ((index: number) => number) | null;
   shouldHaveHorizontalScroll: boolean;
+  shouldHaveVerticalScroll: boolean;
+  resetDimension: () => void;
 }
 
 function Row(props: ListChildComponentProps): JSX.Element {
@@ -62,38 +64,48 @@ export function InfiniteLoaderImpl({
   itemCount,
   loadMoreItems,
   shouldHaveHorizontalScroll,
+  shouldHaveVerticalScroll,
   isNextPageLoading = false,
   minimumBatchSize = 10,
   threshold = 15,
+  resetDimension,
 }: InfiniteLoaderPrivateProps & InfiniteLoaderPublicProps): JSX.Element {
   const infiniteLoaderRef = React.useRef(null);
   const listRef = React.useRef<VariableSizeList>(null);
+  const isLoadingMoreItemsRef = React.useRef(false);
   const { getItemSize, clearRowHeights } = useItemSizeCalculator(data, getRowHeight);
 
   const prevData: TableDataItemType[] | undefined = usePrevious(data);
 
   React.useLayoutEffect(() => {
-    if (prevData && listRef.current) {
-      const changedIndexes: number[] = [];
-      prevData.forEach((row: TableDataItemType, index: number) => {
-        if (!isEqual(row, data[index])) {
-          changedIndexes.push(index);
+    if (!isLoadingMoreItemsRef.current && prevData && listRef.current) {
+      if (data.length !== prevData.length) {
+        resetDimension();
+      } else {
+        const changedIndexes: number[] = [];
+        prevData.forEach((row: TableDataItemType, index: number) => {
+          if (!isEqual(row, data[index])) {
+            changedIndexes.push(index);
+          }
+        });
+        if (changedIndexes.length > 0) {
+          console.log(changedIndexes);
+          clearRowHeights(changedIndexes);
+          listRef.current.resetAfterIndex(changedIndexes[0]);
+          setTimeout(resetDimension, 100);
         }
-      });
-
-      if (changedIndexes && changedIndexes.length) {
-        clearRowHeights(changedIndexes);
-        listRef.current.resetAfterIndex(changedIndexes[0]);
       }
     }
-  }, [data, prevData, clearRowHeights]);
+  }, [data, prevData, clearRowHeights, resetDimension]);
 
   async function handleLoadMoreItems() {
+    isLoadingMoreItemsRef.current = true;
     await loadMoreItems();
 
     if (listRef.current) {
       listRef.current.resetAfterIndex(itemCount - 1);
     }
+    isLoadingMoreItemsRef.current = false;
   }
 
   return (
@@ -114,7 +126,10 @@ export function InfiniteLoaderImpl({
           onItemsRendered={onItemsRendered}
           ref={listRef}
           innerElementType={innerElementType}
-          style={{ overflowX: shouldHaveHorizontalScroll ? "auto" : "hidden" }}
+          style={{
+            overflowX: shouldHaveHorizontalScroll ? "auto" : "hidden",
+            overflowY: shouldHaveVerticalScroll ? "auto" : "hidden",
+          }}
         >
           {Row}
         </VariableSizeList>

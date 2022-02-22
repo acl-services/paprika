@@ -8,6 +8,7 @@ type Dimensions = {
   width: number;
   height: number;
   shouldHaveHorizontalScroll: boolean;
+  shouldHaveVerticalScroll: boolean;
 };
 
 export default function useBestTableDimensions({
@@ -22,12 +23,16 @@ export default function useBestTableDimensions({
   maxHeight: string;
   maxWidth: string;
   shouldResizeWithViewport: boolean;
-}): Dimensions {
+}): { dimensions: Dimensions; resetDimension: () => void } {
   const [dimensions, setDimensions] = React.useState<Dimensions>(() => ({
     width: convertSizeStringToNumber(maxWidth, Direction.width),
     height: convertSizeStringToNumber(maxHeight, Direction.height),
     shouldHaveHorizontalScroll: false,
+    shouldHaveVerticalScroll: false,
   }));
+
+  const maxWidthInNumber = React.useCallback(() => convertSizeStringToNumber(maxWidth, Direction.width), [maxWidth]);
+  const maxHeightInNumber = React.useCallback(() => convertSizeStringToNumber(maxHeight, Direction.width), [maxHeight]);
 
   const resetDimension = React.useCallback(() => {
     if (!tableRef.current) return;
@@ -42,16 +47,15 @@ export default function useBestTableDimensions({
     setDimensions(() => {
       const realWidth = theadEl.clientWidth;
       const realHeight = theadEl.clientHeight + tbodyEl.clientHeight;
-      const maxWidthInNumber = convertSizeStringToNumber(maxWidth, Direction.width);
-      const maxHeightInNumber = convertSizeStringToNumber(maxHeight, Direction.height);
 
       return {
-        width: Math.min(maxWidthInNumber, realWidth),
-        height: Math.min(maxHeightInNumber, realHeight),
-        shouldHaveHorizontalScroll: maxWidthInNumber < realWidth,
+        width: Math.min(maxWidthInNumber(), realWidth),
+        height: Math.min(maxHeightInNumber(), realHeight),
+        shouldHaveHorizontalScroll: maxWidthInNumber() < realWidth,
+        shouldHaveVerticalScroll: maxHeightInNumber() < realHeight,
       };
     });
-  }, [maxHeight, maxWidth, tableRef]);
+  }, [maxHeightInNumber, maxWidthInNumber, tableRef]);
 
   React.useLayoutEffect(() => {
     resetDimension();
@@ -72,5 +76,5 @@ export default function useBestTableDimensions({
     resize: resetDimension,
   }));
 
-  return dimensions;
+  return { dimensions, resetDimension };
 }

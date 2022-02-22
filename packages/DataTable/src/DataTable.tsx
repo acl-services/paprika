@@ -32,7 +32,6 @@ interface DataTableComposition {
   InfiniteLoader: React.FC<InfiniteLoaderPublicProps>;
   types: ConstantsTypes;
 }
-
 export interface DataTableProps {
   /** Accessible description of the table */
   a11yText: string;
@@ -95,7 +94,7 @@ function DataTable(
   componentRef: React.RefObject<unknown>
 ) {
   const tableRef = React.useRef<HTMLDivElement>(null);
-  const bestDimensions = useBestTableDimensions({
+  const { dimensions: bestDimensions, resetDimension } = useBestTableDimensions({
     tableRef,
     componentRef,
     maxHeight,
@@ -127,10 +126,9 @@ function DataTable(
     "DataTable.InfiniteLoader": extractedInfiniteLoaderDefinition,
   } = extractChildren(children, ["DataTable.InfiniteLoader"]);
   /* eslint-enable @typescript-eslint/ban-ts-comment */
+  const hasInfiniteLoader = Boolean(extractedInfiniteLoaderDefinition);
 
   function renderTableContent() {
-    const hasInfiniteLoader = Boolean(extractedInfiniteLoaderDefinition);
-
     if (hasInfiniteLoader) {
       const infiniteLoaderPublicProps = extractedInfiniteLoaderDefinition.props as InfiniteLoaderPublicProps;
 
@@ -140,7 +138,9 @@ function DataTable(
           height={bestDimensions.height}
           innerElementType={InnerElement}
           getRowHeight={getRowHeight}
+          resetDimension={resetDimension}
           shouldHaveHorizontalScroll={bestDimensions.shouldHaveHorizontalScroll}
+          shouldHaveVerticalScroll={bestDimensions.shouldHaveVerticalScroll}
           {...infiniteLoaderPublicProps}
         />
       );
@@ -164,6 +164,7 @@ function DataTable(
         data-pka-anchor="dataTable"
         width={bestDimensions.width}
         height={bestDimensions.height}
+        hasInfiniteLoader={hasInfiniteLoader}
         {...tableInstance.getTableProps()}
         {...moreProps}
       >
