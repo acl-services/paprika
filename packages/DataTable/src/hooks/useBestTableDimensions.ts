@@ -8,7 +8,6 @@ type Dimensions = {
   width: number;
   height: number;
   shouldHaveHorizontalScroll: boolean;
-  shouldHaveVerticalScroll: boolean;
 };
 
 export default function useBestTableDimensions({
@@ -30,7 +29,6 @@ export default function useBestTableDimensions({
     width: maxWidthInNumber,
     height: maxHeightInNumber,
     shouldHaveHorizontalScroll: false,
-    shouldHaveVerticalScroll: false,
   }));
 
   const resetDimension = React.useCallback(() => {
@@ -51,7 +49,6 @@ export default function useBestTableDimensions({
         width: Math.min(maxWidthInNumber, realWidth),
         height: Math.min(maxHeightInNumber, realHeight),
         shouldHaveHorizontalScroll: maxWidthInNumber < realWidth,
-        shouldHaveVerticalScroll: maxHeightInNumber < realHeight,
       };
     });
   }, [maxHeightInNumber, maxWidthInNumber, tableRef]);

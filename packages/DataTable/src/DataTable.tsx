@@ -32,6 +32,7 @@ interface DataTableComposition {
   InfiniteLoader: React.FC<InfiniteLoaderPublicProps>;
   types: ConstantsTypes;
 }
+
 export interface DataTableProps {
   /** Accessible description of the table */
   a11yText: string;
@@ -140,7 +141,6 @@ function DataTable(
           getRowHeight={getRowHeight}
           resetDimension={resetDimension}
           shouldHaveHorizontalScroll={bestDimensions.shouldHaveHorizontalScroll}
-          shouldHaveVerticalScroll={bestDimensions.shouldHaveVerticalScroll}
           {...infiniteLoaderPublicProps}
         />
       );

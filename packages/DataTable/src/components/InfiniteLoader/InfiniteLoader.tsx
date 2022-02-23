@@ -40,7 +40,6 @@ interface InfiniteLoaderPrivateProps {
   height: number;
   getRowHeight: ((index: number) => number) | null;
   shouldHaveHorizontalScroll: boolean;
-  shouldHaveVerticalScroll: boolean;
   resetDimension: () => void;
 }
 
@@ -63,7 +62,6 @@ export function InfiniteLoaderImpl({
   itemCount,
   loadMoreItems,
   shouldHaveHorizontalScroll,
-  shouldHaveVerticalScroll,
   isNextPageLoading = false,
   minimumBatchSize = 10,
   threshold = 15,
@@ -86,14 +84,14 @@ export function InfiniteLoaderImpl({
       if (changedIndexes.length > 0) {
         clearRowHeights(changedIndexes);
         listRef.current.resetAfterIndex(changedIndexes[0]);
-        if (!shouldHaveVerticalScroll) setTimeout(resetDimension, 0);
+        setTimeout(resetDimension, 0);
       } else if (data.length !== prevData.current.length) {
-        if (!shouldHaveVerticalScroll) resetDimension();
+        resetDimension();
       }
     }
     prevData.current = data;
     isLoadingMoreItemsRef.current = false;
-  }, [data, clearRowHeights, resetDimension, shouldHaveVerticalScroll]);
+  }, [data, clearRowHeights, resetDimension]);
 
   async function handleLoadMoreItems() {
     isLoadingMoreItemsRef.current = true;
@@ -124,7 +122,6 @@ export function InfiniteLoaderImpl({
           innerElementType={innerElementType}
           style={{
             overflowX: shouldHaveHorizontalScroll ? "auto" : "hidden",
-            overflowY: shouldHaveVerticalScroll ? "auto" : "hidden",
           }}
         >
           {Row}
