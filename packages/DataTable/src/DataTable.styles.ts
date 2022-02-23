@@ -12,10 +12,9 @@ export const Table = styled.div<{
     border-collapse: collapse;
     box-sizing: border-box;
     height: ${`${height}px`};
+    overflow: ${hasInfiniteLoader ? `hidden;` : `auto;`}
     width: ${`${width}px`};
     ${fontSize()}
-
-    overflow: ${hasInfiniteLoader ? `hidden;` : `auto;`}
 
     * {
       box-sizing: inherit;

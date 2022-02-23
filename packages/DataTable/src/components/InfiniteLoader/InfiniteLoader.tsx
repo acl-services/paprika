@@ -79,7 +79,7 @@ export function InfiniteLoaderImpl({
 
   React.useLayoutEffect(() => {
     if (!isLoadingMoreItemsRef.current && prevData && listRef.current) {
-      if (!shouldHaveVerticalScroll && data.length !== prevData.length) {
+      if (data.length !== prevData.length) {
         isLoadingMoreItemsRef.current = true;
         resetDimension();
       } else {
@@ -92,13 +92,13 @@ export function InfiniteLoaderImpl({
         if (changedIndexes.length > 0) {
           clearRowHeights(changedIndexes);
           listRef.current.resetAfterIndex(changedIndexes[0]);
-          setTimeout(resetDimension, 100);
+          setTimeout(resetDimension, 0);
         }
       }
     } else {
       isLoadingMoreItemsRef.current = false;
     }
-  }, [data, prevData, clearRowHeights, resetDimension, shouldHaveVerticalScroll]);
+  }, [data, prevData, clearRowHeights, resetDimension]);
 
   async function handleLoadMoreItems() {
     isLoadingMoreItemsRef.current = true;
