@@ -22,7 +22,7 @@ export default function useBestTableDimensions({
   maxHeight: string;
   maxWidth: string;
   shouldResizeWithViewport: boolean;
-}): Dimensions {
+}): { dimensions: Dimensions; resetDimension: () => void } {
   const [dimensions, setDimensions] = React.useState<Dimensions>(() => ({
     width: convertSizeStringToNumber(maxWidth, Direction.width),
     height: convertSizeStringToNumber(maxHeight, Direction.height),
@@ -72,5 +72,5 @@ export default function useBestTableDimensions({
     resize: resetDimension,
   }));
 
-  return dimensions;
+  return { dimensions, resetDimension };
 }

@@ -117,7 +117,7 @@ export const RealWorldStory: (props: { isForTesting?: boolean }) => JSX.Element 
   const [borderType, setBorderType] = React.useState(DataTable.types.borderType.GRID);
   const [hasZebraStripes, setHasZebraStripes] = React.useState(false);
 
-  const { filters, filteredData, getFilterProps, getFilterItemProps } = useFilter({
+  const { filters, getFilterProps, getFilterItemProps } = useFilter({
     columns: columnsSettings,
     data,
     initialState: {
