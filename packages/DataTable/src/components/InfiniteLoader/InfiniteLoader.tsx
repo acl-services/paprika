@@ -1,7 +1,6 @@
 import React from "react";
 import { ListChildComponentProps, VariableSizeList } from "react-window";
 import isEqual from "lodash.isequal";
-import { usePrevious } from "@paprika/helpers";
 import ReactInfiniteLoader from "react-window-infinite-loader";
 import TableRow from "../TableRow/TableRow";
 import { TableDataItemType } from "../../types";
@@ -73,32 +72,28 @@ export function InfiniteLoaderImpl({
   const infiniteLoaderRef = React.useRef(null);
   const listRef = React.useRef<VariableSizeList>(null);
   const isLoadingMoreItemsRef = React.useRef(false);
+  const prevData = React.useRef<TableDataItemType[]>(data);
   const { getItemSize, clearRowHeights } = useItemSizeCalculator(data, getRowHeight);
 
-  const prevData: TableDataItemType[] | undefined = usePrevious(data);
-
   React.useLayoutEffect(() => {
-    if (!isLoadingMoreItemsRef.current && prevData && listRef.current) {
-      if (data.length !== prevData.length) {
-        isLoadingMoreItemsRef.current = true;
-        resetDimension();
-      } else {
-        const changedIndexes: number[] = [];
-        prevData.forEach((row: TableDataItemType, index: number) => {
-          if (!isEqual(row, data[index])) {
-            changedIndexes.push(index);
-          }
-        });
-        if (changedIndexes.length > 0) {
-          clearRowHeights(changedIndexes);
-          listRef.current.resetAfterIndex(changedIndexes[0]);
-          setTimeout(resetDimension, 0);
+    if (!isLoadingMoreItemsRef.current && listRef.current) {
+      const changedIndexes: number[] = [];
+      prevData.current.forEach((row: TableDataItemType, index: number) => {
+        if (!isEqual(row, data[index])) {
+          changedIndexes.push(index);
         }
+      });
+      if (changedIndexes.length > 0) {
+        clearRowHeights(changedIndexes);
+        listRef.current.resetAfterIndex(changedIndexes[0]);
+        if (!shouldHaveVerticalScroll) setTimeout(resetDimension, 0);
+      } else if (data.length !== prevData.current.length) {
+        if (!shouldHaveVerticalScroll) resetDimension();
       }
-    } else {
-      isLoadingMoreItemsRef.current = false;
     }
-  }, [data, prevData, clearRowHeights, resetDimension]);
+    prevData.current = data;
+    isLoadingMoreItemsRef.current = false;
+  }, [data, clearRowHeights, resetDimension, shouldHaveVerticalScroll]);
 
   async function handleLoadMoreItems() {
     isLoadingMoreItemsRef.current = true;

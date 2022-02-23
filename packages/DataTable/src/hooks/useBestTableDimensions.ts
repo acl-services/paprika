@@ -24,15 +24,14 @@ export default function useBestTableDimensions({
   maxWidth: string;
   shouldResizeWithViewport: boolean;
 }): { dimensions: Dimensions; resetDimension: () => void } {
+  const maxWidthInNumber = React.useMemo(() => convertSizeStringToNumber(maxWidth, Direction.width), [maxWidth]);
+  const maxHeightInNumber = React.useMemo(() => convertSizeStringToNumber(maxHeight, Direction.height), [maxHeight]);
   const [dimensions, setDimensions] = React.useState<Dimensions>(() => ({
-    width: convertSizeStringToNumber(maxWidth, Direction.width),
-    height: convertSizeStringToNumber(maxHeight, Direction.height),
+    width: maxWidthInNumber,
+    height: maxHeightInNumber,
     shouldHaveHorizontalScroll: false,
     shouldHaveVerticalScroll: false,
   }));
-
-  const maxWidthInNumber = React.useCallback(() => convertSizeStringToNumber(maxWidth, Direction.width), [maxWidth]);
-  const maxHeightInNumber = React.useCallback(() => convertSizeStringToNumber(maxHeight, Direction.width), [maxHeight]);
 
   const resetDimension = React.useCallback(() => {
     if (!tableRef.current) return;
@@ -49,10 +48,10 @@ export default function useBestTableDimensions({
       const realHeight = theadEl.clientHeight + tbodyEl.clientHeight;
 
       return {
-        width: Math.min(maxWidthInNumber(), realWidth),
-        height: Math.min(maxHeightInNumber(), realHeight),
-        shouldHaveHorizontalScroll: maxWidthInNumber() < realWidth,
-        shouldHaveVerticalScroll: maxHeightInNumber() < realHeight,
+        width: Math.min(maxWidthInNumber, realWidth),
+        height: Math.min(maxHeightInNumber, realHeight),
+        shouldHaveHorizontalScroll: maxWidthInNumber < realWidth,
+        shouldHaveVerticalScroll: maxHeightInNumber < realHeight,
       };
     });
   }, [maxHeightInNumber, maxWidthInNumber, tableRef]);
