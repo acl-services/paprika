@@ -23,11 +23,9 @@ export default function useBestTableDimensions({
   maxWidth: string;
   shouldResizeWithViewport: boolean;
 }): { dimensions: Dimensions; resetDimension: () => void } {
-  const maxWidthInNumber = React.useMemo(() => convertSizeStringToNumber(maxWidth, Direction.width), [maxWidth]);
-  const maxHeightInNumber = React.useMemo(() => convertSizeStringToNumber(maxHeight, Direction.height), [maxHeight]);
   const [dimensions, setDimensions] = React.useState<Dimensions>(() => ({
-    width: maxWidthInNumber,
-    height: maxHeightInNumber,
+    width: convertSizeStringToNumber(maxWidth, Direction.width),
+    height: convertSizeStringToNumber(maxHeight, Direction.height),
     shouldHaveHorizontalScroll: false,
   }));
 
@@ -44,6 +42,8 @@ export default function useBestTableDimensions({
     setDimensions(() => {
       const realWidth = theadEl.clientWidth;
       const realHeight = theadEl.clientHeight + tbodyEl.clientHeight;
+      const maxWidthInNumber = convertSizeStringToNumber(maxWidth, Direction.width);
+      const maxHeightInNumber = convertSizeStringToNumber(maxHeight, Direction.height);
 
       return {
         width: Math.min(maxWidthInNumber, realWidth),
@@ -51,7 +51,7 @@ export default function useBestTableDimensions({
         shouldHaveHorizontalScroll: maxWidthInNumber < realWidth,
       };
     });
-  }, [maxHeightInNumber, maxWidthInNumber, tableRef]);
+  }, [maxHeight, maxWidth, tableRef]);
 
   React.useLayoutEffect(() => {
     resetDimension();
