@@ -11,9 +11,9 @@
     "@paprika/calendar": "2.0.5",
     "@paprika/card": "2.0.1",
     "@paprika/checkbox": "1.0.21",
-    "@paprika/collapsible": "1.1.23",
+    "@paprika/collapsible": "1.2.0",
     "@paprika/collapsible-card": "2.0.20",
-    "@paprika/collapsible-checklists": "1.0.24",
+    "@paprika/collapsible-checklists": "1.0.25",
     "@paprika/collapsible-text": "1.0.27",
     "@paprika/confirmation": "1.1.19",
     "@paprika/constants": "1.0.0",
@@ -48,7 +48,7 @@
     "@paprika/pagination": "1.0.27",
     "@paprika/panel": "2.3.0",
     "@paprika/popover": "2.0.3",
-    "@paprika/progress-accordion": "1.1.18",
+    "@paprika/progress-accordion": "1.1.19",
     "@paprika/progress-bar": "1.1.8",
     "@paprika/radio": "1.0.23",
     "@paprika/raw-button": "1.0.11",
@@ -73,7 +73,5 @@
     "@paprika/helpers": "2.2.1",
     "@paprika/seducer": "2.0.3"
   },
-  "changesets": [
-    "pink-melons-rest"
-  ]
+  "changesets": []
 }
