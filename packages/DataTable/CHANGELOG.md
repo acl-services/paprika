@@ -1,5 +1,11 @@
 # @paprika/data-table
 
+## 1.1.0
+
+### Minor Changes
+
+- d3c2e23: DataTable updates on data change
+
 ## 1.1.0-next.0
 
 ### Minor Changes
