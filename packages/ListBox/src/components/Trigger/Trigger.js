@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
 import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import { getActiveElement } from "@paprika/helpers";
 import Label from "../Label";
 import { handleKeyDownKeyboardKeys, handleKeyUpKeyboardKeys } from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../useListBox";
@@ -78,8 +79,7 @@ export default function Trigger(props) {
   React.useEffect(() => {
     if (
       isOpen &&
-      document.activeElement &&
-      document.activeElement.dataset?.pkaAnchor === "list-box-trigger" &&
+      getActiveElement()?.dataset?.pkaAnchor === "list-box-trigger" &&
       state.selectedOptions.length &&
       !state.isMulti
     ) {

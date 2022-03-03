@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ClockIcon from "@paprika/icon/lib/Clock";
 import Input from "@paprika/input";
+import { getActiveElement } from "@paprika/helpers";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Popover from "@paprika/popover";
 import Picker from "./components/Picker/Picker";
@@ -126,7 +127,7 @@ function TimePicker(props) {
     let target = event.relatedTarget;
     if (target === null) {
       // IE11 fix https://stackoverflow.com/a/49325196/196038
-      target = document.activeElement;
+      target = getActiveElement();
     }
 
     if (timeinputDom && timeinputDom.contains(target)) {

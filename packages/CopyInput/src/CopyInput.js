@@ -5,7 +5,7 @@ import Popover from "@paprika/popover";
 import Button from "@paprika/button";
 import Toast from "@paprika/toast";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import { extractChildrenProps } from "@paprika/helpers";
+import { extractChildrenProps, getActiveElement } from "@paprika/helpers";
 import CopyIcon from "@paprika/icon/lib/Clipboard";
 import CopyInputInputPropsCollector from "./components/Input/Input";
 import CopyInputButtonPropsCollector from "./components/Button/Button";
@@ -41,7 +41,7 @@ function CopyInput(props) {
     } else {
       // Fall back browser support
       const textbox = document.createElement("textarea");
-      const activator = document.activeElement;
+      const activator = getActiveElement();
       document.body.appendChild(textbox);
       textbox.value = textToCopy;
       textbox.select();
