@@ -75,9 +75,13 @@ A variety of custom React prop types including:
 
 ### DOM Functions
 
+#### getActiveElement()
+
+Returns the element that is currently focussed, even when that element is found within an open web component.
+
 #### isElementContainsFocus(element)
 
-Returns `true` if the `document.activeElement` is the `element` argument, or any descendent of `element`.
+Returns `true` if the element that is currently focussed is the `element` argument, or any descendent of `element`.
 
 <br />
 
