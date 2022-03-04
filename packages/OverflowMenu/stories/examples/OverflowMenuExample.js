@@ -16,7 +16,7 @@ const OverflowMenuExample = () => (
   <OverflowMenu align="bottom">
     <OverflowMenu.Content data-your-custom-attribute="your-custom-attribute-value" />
     <OverflowMenu.Trigger
-      id="overflow-menu__trigger"
+      data-pka-anchor="overflow-menu__trigger"
       onClick={() => {
         console.log("clicked trigger");
       }}
