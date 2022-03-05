@@ -1,24 +1,22 @@
-import { getStoryUrlPrefix } from "../../../.storybook/storyTree";
-
 describe("<OverflowMenu />", () => {
   beforeEach(() => {
-    cy.visitStorybook(`${getStoryUrlPrefix("OverflowMenu")}-backyard-tests--cypress`);
+    cy.visitStorybook(`overflowmenu-tests--cypres`);
   });
 
   it("should show hide overflow content when when clicking trigger", () => {
-    cy.findByTestId('[data-pka-anchor="overflow-menu__trigger"]').click();
+    cy.findByTestId("overflow-menu__trigger").click();
     cy.findByTestId("popover.content").should("be.visible");
     cy.wait(250).then(() => {
-      cy.findByTestId('[data-pka-anchor="overflow-menu__trigger"]').click();
+      cy.findByTestId("overflow-menu__trigger").click();
       cy.findByTestId("popover.content").should("not.exist");
     });
   });
 
   it("should retain trigger focus when the overflow is closed", () => {
-    cy.findByTestId('[data-pka-anchor="overflow-menu__trigger"]').click();
+    cy.findByTestId("overflow-menu__trigger").click();
     cy.wait(250).then(() => {
-      cy.findByTestId('[data-pka-anchor="overflow-menu__trigger"]').click();
-      cy.findByTestId('[data-pka-anchor="overflow-menu__trigger"]').then(triggerElement => {
+      cy.findByTestId("overflow-menu__trigger").click();
+      cy.findByTestId("overflow-menu__trigger").then(triggerElement => {
         cy.focused().then(e => {
           expect(triggerElement.get(0) === e.get(0)).equal(true);
         });
