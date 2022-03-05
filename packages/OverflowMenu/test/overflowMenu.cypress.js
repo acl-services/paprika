@@ -1,8 +1,6 @@
-import { getStoryUrlPrefix } from "../../../.storybook/storyTree";
-
 describe("<OverflowMenu />", () => {
   beforeEach(() => {
-    cy.visitStorybook(`${getStoryUrlPrefix("OverflowMenu")}-backyard-tests--cypress`);
+    cy.visitStorybook(`overflowmenu-tests--cypres`);
   });
 
   it("should show hide overflow content when when clicking trigger", () => {
