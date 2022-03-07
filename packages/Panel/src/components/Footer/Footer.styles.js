@@ -6,7 +6,7 @@ import * as types from "../../types";
 export const Footer = styled.div(
   ({ size }) => css`
     align-items: center;
-    background: ${tokens.color.blackLighten80};
+    background: ${tokens.color.blackLighten70};
     box-sizing: border-box;
     display: flex;
     flex-shrink: 0;
