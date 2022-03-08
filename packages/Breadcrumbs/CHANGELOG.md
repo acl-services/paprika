@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.5.9-next.0
+
+### Patch Changes
+
+- Updated dependencies [0bf34d9]
+  - @paprika/tokens@1.1.5-next.0
+  - @paprika/button@1.1.12-next.0
+  - @paprika/icon@2.1.7-next.0
+  - @paprika/popover@2.0.4-next.0
+  - @paprika/stylers@1.1.6-next.0
+
 ## 1.5.8
 
 ### Patch Changes

@@ -179,7 +179,7 @@ modal:
   margin: ($space * 3)
   top: 100px
   footer:
-    background-color: $color--black-lighten-80
+    background-color: $color--black-lighten-70
 #
 checkbox:
   size-sm: 16px

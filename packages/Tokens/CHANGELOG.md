@@ -1,5 +1,11 @@
 # @paprika/tokens
 
+## 1.1.5-next.0
+
+### Patch Changes
+
+- 0bf34d9: panel and modal footer background color changes to #f0f0f0
+
 ## 1.1.4
 
 ### Patch Changes

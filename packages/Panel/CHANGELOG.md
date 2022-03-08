@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.3.1-next.0
+
+### Patch Changes
+
+- 0bf34d9: panel and modal footer background color changes to #f0f0f0
+- Updated dependencies [0bf34d9]
+  - @paprika/tokens@1.1.5-next.0
+  - @paprika/button@1.1.12-next.0
+  - @paprika/icon@2.1.7-next.0
+  - @paprika/overlay@1.0.14-next.0
+  - @paprika/stylers@1.1.6-next.0
+
 ## 2.3.0
 
 ### Minor Changes

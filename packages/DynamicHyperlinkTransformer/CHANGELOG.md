@@ -1,5 +1,14 @@
 # @paprika/dynamic-hyperlink-transformer
 
+## 1.1.26-next.0
+
+### Patch Changes
+
+- Updated dependencies [0bf34d9]
+  - @paprika/tokens@1.1.5-next.0
+  - @paprika/stylers@1.1.6-next.0
+  - @paprika/tabs@2.3.5-next.0
+
 ## 1.1.25
 
 ### Patch Changes

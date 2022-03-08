@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.3.15-next.0
+
+### Patch Changes
+
+- Updated dependencies [0bf34d9]
+  - @paprika/tokens@1.1.5-next.0
+  - @paprika/button@1.1.12-next.0
+  - @paprika/icon@2.1.7-next.0
+  - @paprika/input@4.0.18-next.0
+  - @paprika/popover@2.0.4-next.0
+  - @paprika/toast@1.1.20-next.0
+
 ## 1.3.14
 
 ### Patch Changes
