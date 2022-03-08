@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 import * as constants from "@paprika/constants/lib/Constants";
 import tokens from "@paprika/tokens";
 import { zValue } from "@paprika/stylers/lib/helpers";
-import { callAll, DOMElementType } from "@paprika/helpers";
+import { callAll, DOMElementType, getActiveElement } from "@paprika/helpers";
 
 import * as types from "./types";
 import isInsideBoundaries from "./helpers/isInsideBoundaries";
@@ -263,11 +263,11 @@ class Popover extends React.Component {
       this.close();
       this.$trigger.focus();
     } else if (event.key === "Tab" && this.isOpen() && this.$trigger) {
-      const isFocusOnFirst = this.focusIsOnCertainElementInPopover("first") || document.activeElement === this.$content;
+      const activeElement = getActiveElement();
+      const isFocusOnFirst = this.focusIsOnCertainElementInPopover("first") || activeElement === this.$content;
       const isFocusOnLast = this.focusIsOnCertainElementInPopover("last");
       const isFocusOnOnly =
-        (document.activeElement === this.$content &&
-          this.$content.querySelectorAll(focusableElementSelector).length) === 0;
+        (activeElement === this.$content && this.$content.querySelectorAll(focusableElementSelector).length) === 0;
 
       if (event.shiftKey && isFocusOnFirst) {
         event.preventDefault();
@@ -291,7 +291,7 @@ class Popover extends React.Component {
     const focusableElementsInPopover = this.$content.querySelectorAll(focusableElementSelector);
     const index = which === "first" ? 0 : focusableElementsInPopover.length - 1;
 
-    return document.activeElement === focusableElementsInPopover[index];
+    return getActiveElement() === focusableElementsInPopover[index];
   };
 
   elementIsDescendentOfPopover = elem => {
@@ -358,7 +358,7 @@ class Popover extends React.Component {
   };
 
   open() {
-    this.$trigger = document.activeElement;
+    this.$trigger = getActiveElement();
     this.setState({ isOpen: true }, () => {
       this.setVisibilityAndPosition(true);
     });

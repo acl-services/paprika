@@ -1,10 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { getActiveElement } from "@paprika/helpers";
+
 import { getDOMAttributesForListBox } from "../../helpers/DOMAttributes";
 import { handleKeyDownKeyboardKeys } from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../useListBox";
 import { OnChangeContext } from "../../store/OnChangeProvider";
 import { PropsContext } from "../../store/PropsProvider";
+
 import * as sc from "./Content.styles";
 
 const handleBlur = (state, dispatch, onCancelFooter) => () => {
@@ -15,17 +18,15 @@ const handleBlur = (state, dispatch, onCancelFooter) => () => {
   // via document.activeElement instead of returning
   // the body element automatically
   window.requestAnimationFrame(() => {
+    const activeElement = getActiveElement();
+
     // in case the on blur happens on the trigger it should ignore it and let the trigger to control the flow of the
     // popover
-    if (state.refTriggerContainer.current && state.refTriggerContainer.current.contains(document.activeElement)) {
+    if (state.refTriggerContainer.current && state.refTriggerContainer.current.contains(activeElement)) {
       return;
     }
 
-    if (
-      refListBoxContainer &&
-      refListBoxContainer.current &&
-      !refListBoxContainer.current.contains(document.activeElement)
-    ) {
+    if (refListBoxContainer && refListBoxContainer.current && !refListBoxContainer.current.contains(activeElement)) {
       dispatch({ type: useListBox.types.closePopover });
 
       if (state.hasFooter) {
