@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.3.15-next.1
+
+### Patch Changes
+
+- 0dcf307: Refactored to use `getActiveElement` from `@paprika/helpers` to support web components.
+- Updated dependencies [0dcf307]
+- Updated dependencies [0dcf307]
+  - @paprika/popover@2.0.4-next.1
+  - @paprika/helpers@2.3.0-next.0
+  - @paprika/button@1.1.12-next.1
+  - @paprika/input@4.0.18-next.1
+  - @paprika/toast@1.1.20-next.1
+
 ## 1.3.15-next.0
 
 ### Patch Changes

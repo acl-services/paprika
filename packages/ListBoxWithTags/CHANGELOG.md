@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.0.6-next.1
+
+### Patch Changes
+
+- Updated dependencies [0dcf307]
+- Updated dependencies [0dcf307]
+  - @paprika/list-box@4.0.6-next.1
+  - @paprika/helpers@2.3.0-next.0
+  - @paprika/tag@0.0.21-next.1
+
 ## 3.0.6-next.0
 
 ### Patch Changes

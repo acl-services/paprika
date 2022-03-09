@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.0.8-next.1
+
+### Patch Changes
+
+- Updated dependencies [0dcf307]
+- Updated dependencies [0dcf307]
+  - @paprika/helpers@2.3.0-next.0
+
 ## 3.0.8-next.0
 
 ### Patch Changes

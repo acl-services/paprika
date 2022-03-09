@@ -1,5 +1,19 @@
 # Changelog
 
+## 5.0.4-next.1
+
+### Patch Changes
+
+- Updated dependencies [0dcf307]
+- Updated dependencies [0dcf307]
+  - @paprika/popover@2.0.4-next.1
+  - @paprika/helpers@2.3.0-next.0
+  - @paprika/button@1.1.12-next.1
+  - @paprika/input@4.0.18-next.1
+  - @paprika/select@2.0.12-next.1
+  - @paprika/sortable@1.2.12-next.1
+  - @paprika/switch@1.0.17-next.1
+
 ## 5.0.4-next.0
 
 ### Patch Changes

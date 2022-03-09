@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.0.15-next.1
+
+### Patch Changes
+
+- Updated dependencies [0dcf307]
+- Updated dependencies [0dcf307]
+  - @paprika/popover@2.0.4-next.1
+  - @paprika/helpers@2.3.0-next.0
+  - @paprika/button@1.1.12-next.1
+
 ## 3.0.15-next.0
 
 ### Patch Changes
