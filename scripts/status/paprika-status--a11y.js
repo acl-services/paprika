@@ -2,7 +2,8 @@
 /* eslint no-param-reassign: ["error", { "props": true, "ignorePropertyModificationsFor": ["commits"] }] */
 const fs = require("fs");
 const child_process = require("child_process");
-const tree = require("../.storybook/storyTree");
+
+const tree = require("../../.storybook/storyTree");
 const OUTPUT_FILE_PATH = "./status-a11y.json";
 
 class PaprikaA11yStatus {
