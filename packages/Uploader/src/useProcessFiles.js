@@ -35,17 +35,9 @@ const setFile = (file, callback) => files => {
   return cloneFiles;
 };
 
-export default function useProcessFiles({
-  hasAutoUpload,
-  onProcessed,
-  onCompleted,
-  endpoint,
-  defaultIsDisabled,
-  headers,
-  onRequest,
-}) {
+export default function useProcessFiles({ hasAutoUpload, onProcessed, onCompleted, endpoint, headers, onRequest }) {
   const [uploadingFileList, setUploadingFileList] = React.useState([]);
-  const [isDisabled, setIsDisabled] = React.useState(defaultIsDisabled);
+  const [isBusy, setIsBusy] = React.useState(false);
   const [isCompleted, setisCompleted] = React.useState(null);
   const [files, setFiles] = React.useState([]);
 
@@ -107,7 +99,7 @@ export default function useProcessFiles({
 
     function areAllFilesProccessed() {
       if (files.every(file => file.processed)) {
-        setIsDisabled(() => false);
+        setIsBusy(() => false);
         setisCompleted(() => true);
         onCompleted(files);
       }
@@ -159,13 +151,13 @@ export default function useProcessFiles({
       );
     }
 
-    if (files.length && !isSameList(files, uploadingFileList) && !isDisabled) {
+    if (files.length && !isSameList(files, uploadingFileList) && !isBusy) {
       if (files.every(file => !file.isValid || file.status === types.status.SUCCESS)) {
         return;
       }
 
       setUploadingFileList(() => JSON.parse(JSON.stringify(files)));
-      setIsDisabled(() => true);
+      setIsBusy(() => true);
       setisCompleted(() => null);
       onProcessed(files);
 
@@ -175,7 +167,7 @@ export default function useProcessFiles({
         }
       });
     }
-  }, [files, uploadingFileList, isDisabled, onCompleted, endpoint, headers, onRequest, onProcessed]);
+  }, [files, uploadingFileList, isBusy, onCompleted, endpoint, headers, onRequest, onProcessed]);
 
   React.useEffect(() => {
     if (hasAutoUpload) {
@@ -183,5 +175,5 @@ export default function useProcessFiles({
     }
   }, [files, hasAutoUpload, upload]);
 
-  return { files, setFiles, isDisabled, isCompleted, upload, removeFile, cancelFile };
+  return { files, setFiles, isBusy, isCompleted, upload, removeFile, cancelFile };
 }

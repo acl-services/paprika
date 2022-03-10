@@ -32,9 +32,9 @@ const propTypes = {
   */
   children: PropTypes.node.isRequired,
   /**
-    initial disable state for the uploader
+    Is uploader disabled.
   */
-  defaultIsDisabled: PropTypes.bool,
+  isDisabled: PropTypes.bool,
   /**
     The url that will be use to upload the files.
   */
@@ -79,12 +79,16 @@ const propTypes = {
    * Callback fired when the user cancels an uploading file.
    */
   onCancel: PropTypes.func,
+  /**
+   * z-index for popovers inside the uploader.
+   */
+  zIndex: PropTypes.number,
 };
 
 const defaultProps = {
   a11yText: null,
   canChooseMultiple: true,
-  defaultIsDisabled: false,
+  isDisabled: false,
   hasAutoUpload: true,
   headers: [],
   isBodyDroppable: true,
@@ -96,6 +100,7 @@ const defaultProps = {
   onProcessed: () => {},
   onRequest: null,
   supportedMimeTypes: ["*/*"],
+  zIndex: 1,
 };
 
 function getDocumentBody() {
@@ -113,11 +118,11 @@ const Uploader = React.forwardRef((props, ref) => {
     a11yText,
     canChooseMultiple,
     children,
-    defaultIsDisabled,
     endpoint,
     hasAutoUpload,
     headers,
     isBodyDroppable,
+    isDisabled,
     maxFileSize,
     onCancel,
     onChange,
@@ -126,6 +131,7 @@ const Uploader = React.forwardRef((props, ref) => {
     onProcessed,
     onRequest,
     supportedMimeTypes,
+    zIndex,
     ...morePropsOnUploaderWrapper
   } = props;
 
@@ -141,8 +147,7 @@ const Uploader = React.forwardRef((props, ref) => {
     },
   }));
 
-  const { files, isCompleted, isDisabled, removeFile, cancelFile, setFiles, upload } = useProcessFiles({
-    defaultIsDisabled,
+  const { files, isCompleted, isBusy, removeFile, cancelFile, setFiles, upload } = useProcessFiles({
     endpoint,
     hasAutoUpload,
     headers,
@@ -153,7 +158,7 @@ const Uploader = React.forwardRef((props, ref) => {
 
   const handleChange = React.useCallback(
     event => {
-      if (isDisabled) return;
+      if (isDisabled || isBusy) return;
 
       const files = getFiles({ event, maxFileSize, supportedMimeTypes, endpoint });
       setFiles(() => {
@@ -164,13 +169,12 @@ const Uploader = React.forwardRef((props, ref) => {
       });
       onChange(files);
     },
-    [canChooseMultiple, endpoint, isDisabled, maxFileSize, setFiles, supportedMimeTypes, onChange]
+    [canChooseMultiple, endpoint, isDisabled, isBusy, maxFileSize, setFiles, supportedMimeTypes, onChange]
   );
 
   const { isDragLeave, isDraggingOver } = useDragAndDropEvents({
     dropArea: isBodyDroppable ? getDocumentBody : getContainer(refContainer),
     handleChange,
-    defaultIsDisabled,
   });
 
   const value = {
@@ -179,6 +183,7 @@ const Uploader = React.forwardRef((props, ref) => {
     extendedInputProps,
     files,
     handleChange,
+    isBusy,
     isCompleted,
     isDisabled,
     isDraggingOver,
@@ -193,6 +198,7 @@ const Uploader = React.forwardRef((props, ref) => {
     removeFile,
     supportedMimeTypes,
     upload,
+    zIndex,
   };
 
   return <UploaderContext.Provider value={value}>{children}</UploaderContext.Provider>;
