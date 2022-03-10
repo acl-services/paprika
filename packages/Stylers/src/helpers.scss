@@ -178,22 +178,6 @@ $leading-scale-ratio: 1.125;
   }
 }
 
-// Pills
-
-@mixin pill-small-radius() {
-  border-top-left-radius: $pill--small-radius;
-  border-top-right-radius: $pill--small-radius;
-  border-bottom-right-radius: $pill--small-radius;
-  border-bottom-left-radius: $pill--small-radius;
-}
-
-@mixin pill-medium-radius() {
-  border-top-left-radius: $pill--medium-radius;
-  border-top-right-radius: $pill--medium-radius;
-  border-bottom-right-radius: $pill--medium-radius;
-  border-bottom-left-radius: $pill--medium-radius;
-}
-
 // Forms
 
 @mixin placeholder() {
