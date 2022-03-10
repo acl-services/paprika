@@ -1,1 +1,3 @@
-export const isActiveElementPopover = () => document.activeElement.dataset.componentName === "PopoverContent";
+import { getActiveElement } from "@paprika/helpers";
+
+export const isActiveElementPopover = () => getActiveElement().dataset.componentName === "PopoverContent";

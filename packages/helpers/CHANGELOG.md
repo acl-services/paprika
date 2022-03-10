@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.3.0-next.0
+
+### Minor Changes
+
+- 0dcf307: Added `getActiveElement()` helper that can pierce the shadow DOM.
+
+### Patch Changes
+
+- 0dcf307: Refactored to use `getActiveElement` from `@paprika/helpers` to support web components.
+
 ## 2.2.1
 
 ### Patch Changes

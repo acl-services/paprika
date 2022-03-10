@@ -1,4 +1,6 @@
 import "@paprika/helpers/lib/polyfills/elementClosest";
+import { getActiveElement } from "@paprika/helpers";
+
 import useListBox from "../../../useListBox";
 import invokeOnChange from "../../../helpers/invokeOnChange";
 import { KEY_PRESS, CLICK } from "../../../types";
@@ -19,6 +21,8 @@ function getOptions(event) {
 }
 
 function getNextUp(event) {
+  const activeElement = getActiveElement();
+
   function next(element) {
     const list = event.target.closest("[data-pka-anchor='styled-list']");
     const HTMLChildren = list.children;
@@ -33,7 +37,7 @@ function getNextUp(event) {
       return sibling;
     }
 
-    const box = document.activeElement.closest("[data-pka-anchor='list-box-box']");
+    const box = activeElement.closest("[data-pka-anchor='list-box-box']");
     const filter = box.querySelector("[data-pka-anchor='list-filter-input']");
     if (filter) {
       filter.focus();
@@ -43,12 +47,12 @@ function getNextUp(event) {
   }
 
   // an activeElement is an option
-  if (document.activeElement && document.activeElement.getAttribute("role") === "option") {
-    return next(document.activeElement);
+  if (activeElement && activeElement.getAttribute("role") === "option") {
+    return next(activeElement);
   }
 
   // filter is already focussed just ignore the event
-  if (document.activeElement.dataset?.pkaAnchor === "list-filter-input") {
+  if (activeElement.dataset?.pkaAnchor === "list-filter-input") {
     return null;
   }
 
@@ -62,6 +66,8 @@ function getNextUp(event) {
 }
 
 function getNextDown(event) {
+  const activeElement = getActiveElement();
+
   function next(element) {
     const list = event.target.closest("[data-pka-anchor='styled-list']");
     const HTMLOptions = list.children;
@@ -81,8 +87,8 @@ function getNextDown(event) {
   }
 
   // an activeElement is an option
-  if (document.activeElement.getAttribute("role") === "option") {
-    return next(document.activeElement);
+  if (activeElement.getAttribute("role") === "option") {
+    return next(activeElement);
   }
 
   const options = getOptions(event);
@@ -215,7 +221,7 @@ export const handleClickOption = ({ event, onClick, index, isDisabled, state, di
   const hasPreventDefaultOnSelect = options[index].preventDefaultOnSelect;
 
   const focusListBoxContentIfHasNotFilter =
-    refListBox.current.contains(event.target) && document.activeElement === document.body && !hasFilter;
+    refListBox.current.contains(event.target) && getActiveElement() === document.body && !hasFilter;
 
   if (focusListBoxContentIfHasNotFilter && refListBoxContainer?.current) {
     refListBoxContainer.current.focus();
@@ -301,7 +307,7 @@ export function handleEnterOrSpace({ event, providedProps, state, dispatch, onCh
     // for single select the option is set when the user interact with up and down arrows
     // no need to notify which option is selected just close the popover unless the option is disabled
     // id is null when in the focus of filter bar for space/ enter event
-    const id = state.optionsIndex[document.activeElement.getAttribute("id")];
+    const id = state.optionsIndex[getActiveElement().getAttribute("id")];
     if (state.options[id] && !state.options[id].isDisabled) {
       dispatch({ type: useListBox.types.closePopover });
 

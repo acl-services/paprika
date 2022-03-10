@@ -72,7 +72,7 @@ describe("Collapsible", () => {
 
   it("should show the expand/collapse icon when collapsed", () => {
     const { container } = renderComponent({ isCollapsed: true });
-    expect(container.querySelector(".collapsible__icon--left")).toBeVisible();
+    expect(container.querySelector("[data-pka-anchor='collapsible.icon']")).toBeVisible();
   });
 
   it("should show custom icons", () => {

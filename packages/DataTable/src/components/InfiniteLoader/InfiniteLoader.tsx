@@ -1,5 +1,6 @@
 import React from "react";
 import { ListChildComponentProps, VariableSizeList } from "react-window";
+import isEqual from "lodash.isequal";
 import ReactInfiniteLoader from "react-window-infinite-loader";
 import TableRow from "../TableRow/TableRow";
 import { TableDataItemType } from "../../types";
@@ -39,6 +40,7 @@ interface InfiniteLoaderPrivateProps {
   height: number;
   getRowHeight: ((index: number) => number) | null;
   shouldHaveHorizontalScroll: boolean;
+  resetDimension: () => void;
 }
 
 function Row(props: ListChildComponentProps): JSX.Element {
@@ -63,12 +65,36 @@ export function InfiniteLoaderImpl({
   isNextPageLoading = false,
   minimumBatchSize = 10,
   threshold = 15,
+  resetDimension,
 }: InfiniteLoaderPrivateProps & InfiniteLoaderPublicProps): JSX.Element {
   const infiniteLoaderRef = React.useRef(null);
   const listRef = React.useRef<VariableSizeList>(null);
-  const { getItemSize } = useItemSizeCalculator(data, getRowHeight);
+  const isLoadingMoreItemsRef = React.useRef(false);
+  const prevData = React.useRef<TableDataItemType[]>(data);
+  const { getItemSize, clearRowHeights } = useItemSizeCalculator(data, getRowHeight);
+
+  React.useLayoutEffect(() => {
+    if (!isLoadingMoreItemsRef.current && listRef.current) {
+      const changedIndexes: number[] = [];
+      prevData.current.forEach((row: TableDataItemType, index: number) => {
+        if (!isEqual(row, data[index])) {
+          changedIndexes.push(index);
+        }
+      });
+      if (changedIndexes.length > 0) {
+        clearRowHeights(changedIndexes);
+        listRef.current.resetAfterIndex(changedIndexes[0]);
+        setTimeout(resetDimension, 0);
+      } else if (data.length !== prevData.current.length) {
+        resetDimension();
+      }
+    }
+    prevData.current = data;
+    isLoadingMoreItemsRef.current = false;
+  }, [data, clearRowHeights, resetDimension]);
 
   async function handleLoadMoreItems() {
+    isLoadingMoreItemsRef.current = true;
     await loadMoreItems();
 
     if (listRef.current) {
@@ -94,7 +120,9 @@ export function InfiniteLoaderImpl({
           onItemsRendered={onItemsRendered}
           ref={listRef}
           innerElementType={innerElementType}
-          style={{ overflowX: shouldHaveHorizontalScroll ? "auto" : "hidden" }}
+          style={{
+            overflowX: shouldHaveHorizontalScroll ? "auto" : "hidden",
+          }}
         >
           {Row}
         </VariableSizeList>

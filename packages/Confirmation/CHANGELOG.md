@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.1.20-next.1
+
+### Patch Changes
+
+- Updated dependencies [0dcf307]
+- Updated dependencies [0dcf307]
+  - @paprika/popover@2.0.4-next.1
+  - @paprika/helpers@2.3.0-next.0
+  - @paprika/button@1.1.12-next.1
+
+## 1.1.20-next.0
+
+### Patch Changes
+
+- Updated dependencies [0bf34d9]
+  - @paprika/tokens@1.1.5-next.0
+  - @paprika/button@1.1.12-next.0
+  - @paprika/heading@1.0.14-next.0
+  - @paprika/popover@2.0.4-next.0
+  - @paprika/raw-button@1.0.12-next.0
+  - @paprika/stylers@1.1.6-next.0
+
 ## 1.1.19
 
 ### Patch Changes

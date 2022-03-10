@@ -1,5 +1,33 @@
 # @paprika/data-table
 
+## 1.1.1-next.1
+
+### Patch Changes
+
+- Updated dependencies [0dcf307]
+- Updated dependencies [0dcf307]
+  - @paprika/helpers@2.3.0-next.0
+
+## 1.1.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [0bf34d9]
+  - @paprika/tokens@1.1.5-next.0
+  - @paprika/stylers@1.1.6-next.0
+
+## 1.1.0
+
+### Minor Changes
+
+- d3c2e23: DataTable updates on data change
+
+## 1.1.0-next.0
+
+### Minor Changes
+
+- d3c2e23: DataTable updates on data change
+
 ## 1.0.0
 
 ### Major Changes

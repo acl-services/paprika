@@ -8,7 +8,7 @@ const rowHeightHelper = new RowHeightHelper();
 export default function useItemSizeCalculator(
   data: TableDataItemType[],
   getRowHeight: ((index: number) => number) | null
-): { getItemSize: (index: number) => number } {
+): { getItemSize: (index: number) => number; clearRowHeights: (indexes: number[]) => void } {
   const rowHeights = React.useRef<Record<number, number>>({});
   const { allColumns } = useReactTableContext();
 
@@ -22,6 +22,11 @@ export default function useItemSizeCalculator(
         {} as TableColumnsWidth
       ),
     [allColumns]
+  );
+
+  const clearRowHeights = React.useCallback(
+    (indexes: number[]) => indexes.forEach(index => delete rowHeights.current[index]),
+    []
   );
 
   function getItemSize(index: number): number {
@@ -44,5 +49,5 @@ export default function useItemSizeCalculator(
     return rowHeights.current[index];
   }
 
-  return { getItemSize };
+  return { getItemSize, clearRowHeights };
 }

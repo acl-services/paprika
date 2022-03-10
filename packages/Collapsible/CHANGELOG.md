@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.2.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [0bf34d9]
+  - @paprika/tokens@1.1.5-next.0
+  - @paprika/icon@2.1.7-next.0
+  - @paprika/raw-button@1.0.12-next.0
+  - @paprika/stylers@1.1.6-next.0
+
+## 1.2.0
+
+### Minor Changes
+
+- 7ec4d66: Refactor styles to follow latest Paprika conventions for styled-components. Classnames are removed and pka-anchors should be used instead.
+
+## 1.2.0-next.0
+
+### Minor Changes
+
+- 7ec4d66: Refactor styles to follow latest Paprika conventions for styled-components. Classnames are removed and pka-anchors should be used instead.
+
 ## 1.1.23
 
 ### Patch Changes

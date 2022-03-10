@@ -1,10 +1,8 @@
 import React from "react";
-import { Rule, Tagline } from "storybook/assets/styles/common.styles";
 import { select, text } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import { AlignTypes } from "@paprika/helpers";
 import L10n from "@paprika/l10n";
-import Heading from "@paprika/heading";
 import Confirmation from "@paprika/confirmation";
 import { OverflowMenuStory } from "../OverflowMenu.stories.styles";
 import OverflowMenu from "../../src";
@@ -36,13 +34,8 @@ const handleItemClick = val => {
   action("Clicked a item")(val);
 };
 
-const ExampleStory = () => (
+const Showcase = () => (
   <OverflowMenuStory>
-    <Heading level={1} displayLevel={2} isLight>
-      OverflowMenu Showcase
-    </Heading>
-    <Tagline>Play with the controls to change the overflow.</Tagline>
-    <Rule />
     <L10n locale="en">
       <OverflowMenu
         style={{ marginLeft: "300px", marginTop: "200px" }}
@@ -88,4 +81,4 @@ const ExampleStory = () => (
   </OverflowMenuStory>
 );
 
-export default () => <ExampleStory {...overflowComponentProps()} {...confirmationComponentProps()} />;
+export default () => <Showcase {...overflowComponentProps()} {...confirmationComponentProps()} />;

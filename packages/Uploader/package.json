@@ -1,6 +1,6 @@
 {
   "name": "@paprika/uploader",
-  "version": "3.0.14",
+  "version": "3.0.15-next.1",
   "description": "The Uploader component lets you upload files and see progress.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -16,13 +16,13 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^1.1.11",
-    "@paprika/helpers": "^2.2.1",
-    "@paprika/icon": "^2.1.6",
-    "@paprika/popover": "^2.0.3",
-    "@paprika/raw-button": "^1.0.11",
-    "@paprika/stylers": "^1.1.5",
-    "@paprika/tokens": "^1.1.4",
+    "@paprika/button": "^1.1.12-next.1",
+    "@paprika/helpers": "^2.3.0-next.0",
+    "@paprika/icon": "^2.1.7-next.0",
+    "@paprika/popover": "^2.0.4-next.1",
+    "@paprika/raw-button": "^1.0.12-next.0",
+    "@paprika/stylers": "^1.1.6-next.0",
+    "@paprika/tokens": "^1.1.5-next.0",
     "prop-types": "^15.7.2",
     "superagent": "^5.1.0",
     "uuid": "^8.3.2"
