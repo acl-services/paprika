@@ -41,7 +41,7 @@ const defaultProps = {
 function File(props) {
   const { error, fileKey, name, progress, size, status, onError, onCancel } = props;
 
-  const { cancelFile } = React.useContext(UploaderContext);
+  const { cancelFile, zIndex } = React.useContext(UploaderContext);
   const I18n = useI18n();
   const sizeWithUnits = getNumberWithUnits(I18n, size);
   const progressWithUnits = getNumberWithUnits(I18n, (size * progress) / 100);
@@ -51,7 +51,7 @@ function File(props) {
     switch (status) {
       case types.status.ERROR:
         return (
-          <Popover isDark isEager>
+          <Popover isDark isEager zIndex={zIndex}>
             <Popover.Tip />
             <Popover.Trigger aria-label={I18n.t("uploader.restart_upload", { name })}>
               <Caution color={tokens.color.orange} />
@@ -67,7 +67,7 @@ function File(props) {
         return <CheckIcon color={tokens.color.green} aria-hidden />;
       default:
         return (
-          <Popover isDark isEager>
+          <Popover isDark isEager zIndex={zIndex}>
             <Popover.Tip />
             <Popover.Trigger>
               {(handler, a11yAttributes) => (
