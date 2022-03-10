@@ -11,8 +11,8 @@ interface UploaderProps {
   canChooseMultiple?: boolean;
   /** children nodes */
   children: React.ReactNode;
-  /** initial disable state for the uploader */
-  defaultIsDisabled?: boolean;
+  /** Is uploader disabled. */
+  isDisabled?: boolean;
   /** The url that will be use to upload the files. */
   endpoint: string;
   /** On true will upload the file as soon they are selected or dropped */
@@ -35,4 +35,6 @@ interface UploaderProps {
   onError?: (...args: any[]) => any;
   /** Callback fired when the user cancels an uploading file. */
   onCancel?: (...args: any[]) => any;
+  /** z-index for popovers inside the uploader. */
+  zIndex?: number;
 }
