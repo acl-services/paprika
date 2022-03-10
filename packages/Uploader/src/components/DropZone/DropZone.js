@@ -19,6 +19,8 @@ const DropZone = React.memo(() => {
     refContainer,
     refInput,
     supportedMimeTypes,
+    isBusy,
+    isDisabled,
   } = React.useContext(UploaderContext);
   const uploadIconColor = isDraggingOver ? tokens.color.purpleDarken10 : tokens.color.blackLighten50;
 
@@ -35,6 +37,7 @@ const DropZone = React.memo(() => {
         }}
         isSemantic={false}
         tabIndex={-1}
+        isDisabled={isDisabled || isBusy}
       >
         {I18n.t("uploader.choose_from_computer")}
       </sc.DropZoneButton>
