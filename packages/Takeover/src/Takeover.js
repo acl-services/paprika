@@ -30,6 +30,9 @@ const propTypes = {
 
   /** The z-index of the Takeover content */
   zIndex: PropTypes.number,
+
+  /** Set Takeover to full width without any margins and max-width */
+  isFullWidth: PropTypes.boolean,
 };
 
 const defaultProps = {
@@ -38,10 +41,11 @@ const defaultProps = {
   onAfterClose: () => {},
   onAfterOpen: () => {},
   zIndex: zValue(5),
+  isFullWidth: false,
 };
 
 export default function Takeover(props) {
-  const { a11yText, isOpen, onClose, onAfterClose, onAfterOpen, zIndex, ...moreProps } = props;
+  const { a11yText, isOpen, onClose, onAfterClose, onAfterOpen, zIndex, isFullWidth, ...moreProps } = props;
 
   const {
     "Takeover.Content": contentExtracted,
@@ -64,7 +68,7 @@ export default function Takeover(props) {
 
   const overlayProps = {
     "data-pka-anchor": "takeover.overlay",
-    hasBackdrop: false,
+    hasBackdrop: true,
     focusLockOptions,
     ...(overlayExtracted && overlayExtracted.props),
     isOpen,
@@ -72,6 +76,7 @@ export default function Takeover(props) {
     onAfterOpen,
     onClose,
     zIndex,
+    isBackdropClickDisabled: true,
   };
 
   function getAriaLabel() {
@@ -91,6 +96,7 @@ export default function Takeover(props) {
       {state => (
         <sc.Takeover
           state={state}
+          isFullWidth={isFullWidth}
           {...moreProps}
           aria-label={getAriaLabel()}
           aria-modal

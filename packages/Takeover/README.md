@@ -22,26 +22,28 @@ npm install @paprika/takeover
 
 ### Takeover
 
-| Prop         | Type   | required | default   | Description                                            |
-| ------------ | ------ | -------- | --------- | ------------------------------------------------------ |
-| a11yText     | string | false    | null      |                                                        |
-| children     | node   | true     | -         | The content for the Takeover                           |
-| isOpen       | bool   | true     | -         | Control the visibility of the Takeover                 |
-| onAfterClose | func   | false    | () => {}  | Callback once the Takeover has been closed event       |
-| onAfterOpen  | func   | false    | () => {}  | Callback once the Takeover has been opened event       |
-| onClose      | func   | false    | () => {}  | Callback triggered when the takeover needs to be close |
-| zIndex       | number | false    | zValue(5) | The z-index of the Takeover content                    |
+| Prop         | Type   | required | default   | Description                                                  |
+| ------------ | ------ | -------- | --------- | ------------------------------------------------------------ |
+| a11yText     | string | false    | null      |                                                              |
+| children     | node   | true     | -         | The content for the Takeover                                 |
+| isOpen       | bool   | true     | -         | Control the visibility of the Takeover                       |
+| onAfterClose | func   | false    | () => {}  | Callback once the Takeover has been closed event             |
+| onAfterOpen  | func   | false    | () => {}  | Callback once the Takeover has been opened event             |
+| onClose      | func   | false    | () => {}  | Callback triggered when the takeover needs to be close       |
+| zIndex       | number | false    | zValue(5) | The z-index of the Takeover content                          |
+| isFullWidth  | custom | false    | false     | Set Takeover to full width without any margins and max-width |
 
 ### Takeover.Header
 
-| Prop           | Type                                                    | required | default                   | Description |
-| -------------- | ------------------------------------------------------- | -------- | ------------------------- | ----------- |
-| children       | node                                                    | true     | -                         |             |
-| hasCloseButton | bool                                                    | false    | true                      |             |
-| kind           | [ Header.types.kind.DEFAULT, Header.types.kind.PRIMARY] | false    | Header.types.kind.DEFAULT |             |
-| level          | [ 1, 2, 3, 4, 5, 6]                                     | false    | 3                         |             |
-| onClose        | func                                                    | false    | () => {}                  |             |
-| refHeading     | custom                                                  | false    | null                      |             |
+| Prop           | Type                                                    | required | default                   | Description                                                           |
+| -------------- | ------------------------------------------------------- | -------- | ------------------------- | --------------------------------------------------------------------- |
+| children       | node                                                    | true     | -                         |                                                                       |
+| hasCloseButton | bool                                                    | false    | true                      |                                                                       |
+| kind           | [ Header.types.kind.DEFAULT, Header.types.kind.PRIMARY] | false    | Header.types.kind.DEFAULT |                                                                       |
+| level          | [ 1, 2, 3, 4, 5, 6]                                     | false    | 2                         |                                                                       |
+| onClose        | func                                                    | false    | () => {}                  |                                                                       |
+| refHeading     | custom                                                  | false    | null                      |                                                                       |
+| headerTools    | node                                                    | false    | null                      | Add node object to the right side of heading next to the close button |
 
 ### Takeover.FocusLock
 

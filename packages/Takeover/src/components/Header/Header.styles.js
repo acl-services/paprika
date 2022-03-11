@@ -28,10 +28,32 @@ export const Header = styled.div(
 );
 
 export const Heading = styled(OriginalHeading)`
-  margin: ${spacer(2)} 0 ${spacer(2)} ${spacer(3)};
+  margin: 0;
+  padding: 18px 0 17px ${spacer(3)};
 `;
 
 export const CloseButton = styled.div`
   border-left: 1px solid ${tokens.border.color};
-  padding: ${spacer(1)};
+  padding: 16.5px ${spacer(2)} ${spacer(2)} 15.5px;
 `;
+
+export const HeaderRightContainer = styled.div`
+  align-items: center;
+  display: flex;
+`;
+
+export const ToolContainer = styled.div(
+  () => css`
+    padding-right: ${spacer(2)};
+    button {
+      margin-left: ${spacer(1)};
+      margin-right: ${spacer(1)};
+      &:last-of-type {
+        margin-left: 0;
+      }
+      &:first-of-type {
+        margin-left: ${spacer(1)};
+      }
+    }
+  `
+);

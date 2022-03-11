@@ -47,6 +47,7 @@ const propTypes = {
   onClose: PropTypes.func,
   onAfterOpen: PropTypes.func,
   onAfterClose: PropTypes.func,
+  isBackdropClickDisabled: PropTypes.bool,
 
   /** z-index of the Overlay wrapper */
   zIndex: PropTypes.number,
@@ -61,6 +62,7 @@ const defaultProps = {
   onAfterClose: () => {},
   onAfterOpen: () => {},
   onClose: () => {},
+  isBackdropClickDisabled: false,
   zIndex: null,
 };
 
@@ -75,6 +77,7 @@ const Overlay = props => {
     onAfterClose,
     onAfterOpen,
     onClose,
+    isBackdropClickDisabled,
     ...moreProps
   } = props;
 
@@ -116,7 +119,7 @@ const Overlay = props => {
                 <sc.Backdrop
                   className={backdropClassName}
                   state={state}
-                  onClick={onClose}
+                  onClick={isBackdropClickDisabled ? null : onClose}
                   data-pka-anchor="overlay.backdrop"
                 />
               )}
