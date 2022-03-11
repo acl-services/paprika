@@ -5,6 +5,7 @@ const child_process = require("child_process");
 const OUTPUT_FILE = "./status.json";
 const PACKAGES_PATH = "./packages/";
 const TEST_COVERAGE_SUMMARY = "coverage/coverage-summary.json";
+
 const results = JSON.parse(fs.existsSync(OUTPUT_FILE) && fs.readFileSync(OUTPUT_FILE, "utf8")) || {};
 
 function parseNumberResultFor(strCommand) {
@@ -33,7 +34,7 @@ function getTestStatistics(subDir) {
     }
     return jestSummary;
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 }
 
