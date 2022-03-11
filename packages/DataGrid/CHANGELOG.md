@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.30-next.2
+
+### Patch Changes
+
+- Updated dependencies [9ac6aca]
+  - @paprika/tokens@2.0.0-next.1
+  - @paprika/button@1.1.12-next.2
+  - @paprika/checkbox@1.0.22-next.2
+  - @paprika/icon@2.1.7-next.1
+  - @paprika/panel@2.3.1-next.2
+  - @paprika/raw-button@1.0.12-next.1
+  - @paprika/spinner@1.0.16-next.2
+  - @paprika/stylers@1.1.6-next.1
+
 ## 1.0.30-next.1
 
 ### Patch Changes

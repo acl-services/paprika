@@ -1,5 +1,20 @@
 # Changelog
 
+## 4.0.6-next.2
+
+### Patch Changes
+
+- Updated dependencies [9ac6aca]
+  - @paprika/tokens@2.0.0-next.1
+  - @paprika/button@1.1.12-next.2
+  - @paprika/checkbox@1.0.22-next.2
+  - @paprika/icon@2.1.7-next.1
+  - @paprika/input@4.0.18-next.2
+  - @paprika/popover@2.0.4-next.2
+  - @paprika/raw-button@1.0.12-next.1
+  - @paprika/stylers@1.1.6-next.1
+  - @paprika/toast@1.1.20-next.2
+
 ## 4.0.6-next.1
 
 ### Patch Changes
