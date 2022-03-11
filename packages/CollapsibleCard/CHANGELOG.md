@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.0.21-next.2
+
+### Patch Changes
+
+- Updated dependencies [9ac6aca]
+  - @paprika/tokens@2.0.0-next.1
+  - @paprika/button@1.1.12-next.2
+  - @paprika/counter@1.1.5-next.2
+  - @paprika/heading@1.0.14-next.1
+  - @paprika/icon@2.1.7-next.1
+  - @paprika/stylers@1.1.6-next.1
+
 ## 2.0.21-next.1
 
 ### Patch Changes

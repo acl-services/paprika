@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.27-next.1
+
+### Patch Changes
+
+- Updated dependencies [9ac6aca]
+  - @paprika/tokens@2.0.0-next.1
+  - @paprika/button@1.1.12-next.2
+
 ## 1.0.27-next.0
 
 ### Patch Changes
