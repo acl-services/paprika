@@ -36,7 +36,7 @@ const TakeoverStory = ({ children }) => {
         <Takeover.Header
           className="storybook-takeover__header"
           hasCloseButton={boolean("Has close button", true, "Takeover.Header")}
-          headerTools={Tools}
+          tools={Tools}
         >
           Header
         </Takeover.Header>

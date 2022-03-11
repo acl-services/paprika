@@ -34,18 +34,23 @@ export const Heading = styled(OriginalHeading)`
 
 export const CloseButton = styled.div`
   border-left: 1px solid ${tokens.border.color};
-  padding: 16.5px ${spacer(2)} ${spacer(2)} 15.5px;
+  padding: ${spacer(2)};
 `;
 
 export const HeaderRightContainer = styled.div`
-  align-items: center;
+  align-items: stretch;
   display: flex;
+  height: 100%;
+  > div {
+    align-items: center;
+    display: flex;
+  }
 `;
 
 export const ToolContainer = styled.div(
   () => css`
     padding-right: ${spacer(2)};
-    button {
+    [data-pka-anchor="button"] {
       margin-left: ${spacer(1)};
       margin-right: ${spacer(1)};
       &:last-of-type {

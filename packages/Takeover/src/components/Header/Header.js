@@ -6,7 +6,7 @@ import * as types from "../../types";
 import * as sc from "./Header.styles";
 
 const Header = React.forwardRef((props, ref) => {
-  const { children, level, hasCloseButton, kind, onClose, refHeading, headerTools, ...moreProps } = props;
+  const { children, level, hasCloseButton, kind, onClose, refHeading, tools, ...moreProps } = props;
 
   return (
     <sc.Header ref={ref} kind={kind} {...moreProps}>
@@ -14,7 +14,7 @@ const Header = React.forwardRef((props, ref) => {
         {children}
       </sc.Heading>
       <sc.HeaderRightContainer>
-        {headerTools && <sc.ToolContainer>{headerTools}</sc.ToolContainer>}
+        {tools && <sc.ToolContainer data-pka-anchor="takeover.header.tools">{tools}</sc.ToolContainer>}
         {hasCloseButton && (
           <sc.CloseButton>
             <Button.Close
@@ -42,7 +42,7 @@ const propTypes = {
   onClose: PropTypes.func,
   refHeading: RefOf(),
   /** Add node object to the right side of heading next to the close button */
-  headerTools: PropTypes.node,
+  tools: PropTypes.node,
 };
 
 const defaultProps = {
@@ -51,7 +51,7 @@ const defaultProps = {
   kind: Header.types.kind.DEFAULT,
   onClose: () => {},
   refHeading: null,
-  headerTools: null,
+  tools: null,
 };
 
 Header.displayName = "Takeover.Header";

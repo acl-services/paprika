@@ -35,15 +35,15 @@ npm install @paprika/takeover
 
 ### Takeover.Header
 
-| Prop           | Type                                                    | required | default                   | Description                                                           |
-| -------------- | ------------------------------------------------------- | -------- | ------------------------- | --------------------------------------------------------------------- |
-| children       | node                                                    | true     | -                         |                                                                       |
-| hasCloseButton | bool                                                    | false    | true                      |                                                                       |
-| kind           | [ Header.types.kind.DEFAULT, Header.types.kind.PRIMARY] | false    | Header.types.kind.DEFAULT |                                                                       |
-| level          | [ 1, 2, 3, 4, 5, 6]                                     | false    | 2                         |                                                                       |
-| onClose        | func                                                    | false    | () => {}                  |                                                                       |
-| refHeading     | custom                                                  | false    | null                      |                                                                       |
-| headerTools    | node                                                    | false    | null                      | Add node object to the right side of heading next to the close button |
+| Prop           | Type                                                    | required | default                   | Description                                                                                                                                            |
+| -------------- | ------------------------------------------------------- | -------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| children       | node                                                    | true     | -                         |                                                                                                                                                        |
+| hasCloseButton | bool                                                    | false    | true                      |                                                                                                                                                        |
+| kind           | [ Header.types.kind.DEFAULT, Header.types.kind.PRIMARY] | false    | Header.types.kind.DEFAULT |                                                                                                                                                        |
+| level          | [ 1, 2, 3, 4, 5, 6]                                     | false    | 2                         |                                                                                                                                                        |
+| onClose        | func                                                    | false    | () => {}                  |                                                                                                                                                        |
+| refHeading     | custom                                                  | false    | null                      |                                                                                                                                                        |
+| tools          | node                                                    | false    | null                      | Add node object to the right side of heading next to the close button. If buttons are used, the button size needs to be set as Button.types.size.LARGE |
 
 ### Takeover.FocusLock
 
