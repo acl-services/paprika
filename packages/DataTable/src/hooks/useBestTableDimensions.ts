@@ -3,6 +3,7 @@ import debounce from "lodash.debounce";
 import convertSizeStringToNumber, { Direction } from "../helpers/convertSizeStringToNumber";
 
 const DEBOUNCE_DELAY = 300;
+const BORDER_WIDTH = 2;
 
 type Dimensions = {
   width: number;
@@ -43,12 +44,20 @@ export default function useBestTableDimensions({
       const realHeight = theadEl.clientHeight + tbodyEl.clientHeight;
       const maxWidthInNumber = convertSizeStringToNumber(maxWidth, Direction.width);
       const maxHeightInNumber = convertSizeStringToNumber(maxHeight, Direction.height);
-      const scrollbarWidth = variableList[0].offsetWidth - variableList[0].clientWidth + 2;
-      const realWidthPlusScrollbarWidth = realWidth + scrollbarWidth;
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      const scrollbarWidth = variableList[0].offsetWidth - variableList[0].clientWidth;
+      const shouldHaveHorizontalScroll = maxWidthInNumber < realWidth;
+      const shouldHaveVerticalScroll = maxHeightInNumber < realHeight;
 
       return {
-        width: Math.min(maxWidthInNumber, realWidthPlusScrollbarWidth),
-        height: Math.min(maxHeightInNumber, realHeight),
+        width: Math.min(
+          maxWidthInNumber,
+          !shouldHaveHorizontalScroll && !shouldHaveVerticalScroll
+            ? realWidth + BORDER_WIDTH
+            : realWidth + scrollbarWidth + BORDER_WIDTH
+        ),
+        height: Math.min(maxHeightInNumber, realHeight + BORDER_WIDTH),
       };
     });
   }, [maxHeight, maxWidth, tableRef]);
