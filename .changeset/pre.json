@@ -74,8 +74,10 @@
     "@paprika/seducer": "2.0.3"
   },
   "changesets": [
+    "gentle-suits-scream",
     "nine-ants-ring",
     "red-squids-rhyme",
-    "six-vans-shake"
+    "six-vans-shake",
+    "violet-poets-tease"
   ]
 }

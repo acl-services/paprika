@@ -1,5 +1,13 @@
 # @paprika/data-table
 
+## 1.1.1-next.2
+
+### Patch Changes
+
+- Updated dependencies [9ac6aca]
+  - @paprika/tokens@2.0.0-next.1
+  - @paprika/stylers@1.1.6-next.1
+
 ## 1.1.1-next.1
 
 ### Patch Changes
