@@ -1,6 +1,6 @@
 {
   "name": "@paprika/time-picker",
-  "version": "2.0.6-next.2",
+  "version": "2.0.6",
   "description": "The TimePicker component gives users the ability to select a specific time from a popover.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -16,13 +16,13 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/helpers": "^2.3.0-next.0",
-    "@paprika/icon": "^2.1.7-next.1",
-    "@paprika/input": "^4.0.18-next.2",
-    "@paprika/popover": "^2.0.4-next.2",
-    "@paprika/raw-button": "^1.0.12-next.1",
-    "@paprika/stylers": "^1.1.6-next.1",
-    "@paprika/tokens": "^2.0.0-next.1",
+    "@paprika/helpers": "^2.3.0",
+    "@paprika/icon": "^2.1.7",
+    "@paprika/input": "^4.0.18",
+    "@paprika/popover": "^2.0.4",
+    "@paprika/raw-button": "^1.0.12",
+    "@paprika/stylers": "^1.1.6",
+    "@paprika/tokens": "^2.0.0",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

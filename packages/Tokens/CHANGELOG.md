@@ -1,5 +1,23 @@
 # @paprika/tokens
 
+## 2.0.0
+
+### Major Changes
+
+- 9ac6aca: Removed `Pill` related tokens
+
+  #### why the change was made:
+
+  Removing the tokens related to `Pill` as the component was deprecated.
+
+  #### 👷 Moving from 1.x.x to 2.x.x:
+
+  `$pill--small-radius` and `$pill--medium-radius` are removed.
+
+### Patch Changes
+
+- 0bf34d9: panel and modal footer background color changes to #f0f0f0
+
 ## 2.0.0-next.1
 
 ### Major Changes
