@@ -140,7 +140,6 @@ function DataTable(
           innerElementType={InnerElement}
           getRowHeight={getRowHeight}
           resetDimension={resetDimension}
-          shouldHaveHorizontalScroll={bestDimensions.shouldHaveHorizontalScroll}
           {...infiniteLoaderPublicProps}
         />
       );
