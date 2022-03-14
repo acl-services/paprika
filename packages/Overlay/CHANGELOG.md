@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.14
+
+### Patch Changes
+
+- Updated dependencies [0dcf307]
+- Updated dependencies [0bf34d9]
+- Updated dependencies [0dcf307]
+- Updated dependencies [9ac6aca]
+  - @paprika/helpers@2.3.0
+  - @paprika/tokens@2.0.0
+
 ## 1.0.14-next.2
 
 ### Patch Changes

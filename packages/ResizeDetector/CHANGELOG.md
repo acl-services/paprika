@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.2
+
+### Patch Changes
+
+- Updated dependencies [0dcf307]
+- Updated dependencies [0dcf307]
+  - @paprika/helpers@2.3.0
+
 ## 2.0.2-next.0
 
 ### Patch Changes
