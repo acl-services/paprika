@@ -1,11 +1,5 @@
 # Changelog
 
-## 1.0.15
-
-### Patch Changes
-
-- add option to disable the click events on backdrop
-
 ## 1.0.14
 
 ### Patch Changes

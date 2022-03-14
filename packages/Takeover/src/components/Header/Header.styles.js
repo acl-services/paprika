@@ -51,7 +51,6 @@ export const ToolContainer = styled.div(
   () => css`
     padding-right: ${spacer(2)};
     [data-pka-anchor="button"] {
-      margin-left: ${spacer(1)};
       margin-right: ${spacer(1)};
       &:last-of-type {
         margin-left: 0;
