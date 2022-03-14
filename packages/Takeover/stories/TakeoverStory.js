@@ -15,6 +15,18 @@ const TakeoverStory = ({ children }) => {
     setIsOpen(state => !state);
   };
 
+  const Tools = (
+    <>
+      you have unsaved changes
+      <Button kind={Button.types.kind.PRIMARY} size={Button.types.size.LARGE}>
+        primary
+      </Button>
+      <Button kind={Button.types.kind.DEFAULT} size={Button.types.size.LARGE}>
+        default
+      </Button>
+    </>
+  );
+
   return (
     <LongBlock>
       <Button onClick={toggle}>Open</Button>
@@ -24,6 +36,7 @@ const TakeoverStory = ({ children }) => {
         <Takeover.Header
           className="storybook-takeover__header"
           hasCloseButton={boolean("Has close button", true, "Takeover.Header")}
+          headerTools={Tools}
         >
           Header
         </Takeover.Header>
