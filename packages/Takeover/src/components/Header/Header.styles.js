@@ -14,6 +14,7 @@ export const Header = styled.div(
     box-shadow: ${tokens.shadow};
     box-sizing: border-box;
     display: flex;
+    height: 64px;
     justify-content: space-between;
     min-height: ${spacer(6)};
     width: 100%;
@@ -28,8 +29,12 @@ export const Header = styled.div(
 );
 
 export const Heading = styled(OriginalHeading)`
+  flex: 1;
   margin: 0;
-  padding: 18px 0 17px ${spacer(3)};
+  overflow: hidden;
+  padding-left: ${spacer(3)};
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const CloseButton = styled.div`
