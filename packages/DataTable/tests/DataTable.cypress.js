@@ -84,7 +84,7 @@ describe("<DataTable />", () => {
       .should("be.equal", 198);
     cy.findByTestId("dataTable")
       .invoke("width")
-      .should("be.equal", 1798);
+      .should("be.equal", 1815);
 
     cy.viewport(1280, 800);
   });

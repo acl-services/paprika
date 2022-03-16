@@ -1,5 +1,11 @@
 # @paprika/data-table
 
+## 1.2.0-next.0
+
+### Minor Changes
+
+- e38b557: Fix horizontal toolbar calculations
+
 ## 1.1.1
 
 ### Patch Changes
