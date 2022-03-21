@@ -14,12 +14,10 @@ export const Header = styled.div(
     box-shadow: ${tokens.shadow};
     box-sizing: border-box;
     display: flex;
-    height: 64px;
     justify-content: space-between;
-    min-height: ${spacer(6)};
+    min-height: ${spacer(8)};
     width: 100%;
     z-index: 1;
-
     &:focus {
       outline: 0;
     }
@@ -42,16 +40,6 @@ export const CloseButton = styled.div`
   padding: ${spacer(2)};
 `;
 
-export const HeaderRightContainer = styled.div`
-  align-items: stretch;
-  display: flex;
-  height: 100%;
-  > div {
-    align-items: center;
-    display: flex;
-  }
-`;
-
 export const ToolContainer = styled.div(
   () => css`
     padding-right: ${spacer(2)};
@@ -66,3 +54,13 @@ export const ToolContainer = styled.div(
     }
   `
 );
+
+export const HeaderRightContainer = styled.div`
+  align-items: stretch;
+  display: flex;
+  height: 100%;
+  ${CloseButton}, ${ToolContainer} {
+    align-items: center;
+    display: flex;
+  }
+`;

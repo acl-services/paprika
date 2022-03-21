@@ -25,8 +25,22 @@ export const basic = () => (
   <ExampleStory component="Takeover" storyName="Basic">
     <TakeoverStory>
       <Takeover.Content className="storybook-takeover__content">
-        {repeat(100, key => (
-          <p key={key}>Some content here</p>
+        {repeat(10, key => (
+          <p key={key}>
+            Quis labore velit sunt anim velit ad nisi ad aliquip ipsum mollit minim proident. Exercitation in cillum
+            sint id dolor ea ut laboris minim. Ea ea veniam aliqua occaecat. Eiusmod dolor minim Lorem consequat labore
+            nulla irure minim irure sit. Adipisicing proident officia velit id culpa exercitation ex velit et minim sit
+            Lorem exercitation. Est tempor occaecat qui consectetur pariatur amet cupidatat commodo aliquip anim sit
+            commodo quis. Et aliquip consectetur tempor et dolor ea. Id consectetur non velit laboris elit cillum. Sint
+            proident consectetur duis enim. Id commodo sint mollit in tempor pariatur sit. Laborum Lorem excepteur
+            excepteur officia ex proident deserunt consectetur mollit esse velit adipisicing nulla. Proident nulla magna
+            quis veniam qui ex dolor sunt officia excepteur labore. Minim magna sit cupidatat consectetur consequat amet
+            sint ipsum cillum. Laboris et adipisicing proident ut sunt irure anim dolore. Cillum magna quis aliquip ad
+            laborum. Fugiat sit veniam Lorem deserunt cillum occaecat sint labore consequat veniam. Consequat nisi in
+            aliqua eiusmod aute proident deserunt magna. Labore non velit tempor anim anim minim voluptate cupidatat
+            fugiat. Commodo aliquip consectetur nostrud et. Culpa esse commodo proident ullamco sunt enim eu. Dolor
+            aliqua minim mollit exercitation ipsum ullamco amet id est mollit commodo adipisicing fugiat ullamco.
+          </p>
         ))}
       </Takeover.Content>
     </TakeoverStory>

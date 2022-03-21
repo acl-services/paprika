@@ -7,10 +7,15 @@ import * as sc from "./Header.styles";
 
 const Header = React.forwardRef((props, ref) => {
   const { children, level, hasCloseButton, kind, onClose, refHeading, tools, ...moreProps } = props;
-  const isString = typeof children === "string";
   return (
     <sc.Header ref={ref} kind={kind} {...moreProps}>
-      <sc.Heading level={level} displayLevel={3} isLight ref={refHeading} title={isString ? children : null}>
+      <sc.Heading
+        level={level}
+        displayLevel={3}
+        isLight
+        ref={refHeading}
+        title={typeof children === "string" ? children : null}
+      >
         {children}
       </sc.Heading>
       <sc.HeaderRightContainer>

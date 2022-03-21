@@ -38,7 +38,7 @@ const TakeoverStory = ({ children }) => {
           hasCloseButton={boolean("Has close button", true, "Takeover.Header")}
           tools={Tools}
         >
-          This is suuuuuperrrr longggggg header examppppple which will trigger truncate design
+          Labore amet ex cillum esse nisi aliqua Lorem occaecat sint occaecat duis elit irure aute.
         </Takeover.Header>
         {children}
       </Takeover>
