@@ -15,7 +15,7 @@ export default function EverythingExample() {
   const [value2, setValue2] = React.useState();
   const [errorText, setErrorText] = React.useState();
 
-  const helpContent = (
+  const tooltip = (
     <>
       Help yourself{" "}
       <a href="https://youtu.be/D-Zy2P26gVM" target="_blank" rel="noopener noreferrer">
@@ -30,7 +30,7 @@ export default function EverythingExample() {
       <Fieldset>
         <Layout>
           <LeftCol width={140}>
-            <Label help={helpContent} helpA11yText="help me">
+            <Label help={tooltip} helpAlign="right" helpA11yText="help me">
               Fieldset Label
             </Label>
           </LeftCol>
@@ -40,7 +40,7 @@ export default function EverythingExample() {
               <FormElement isRequired id="field-01">
                 <Layout>
                   <LeftCol width={120}>
-                    <Label help={helpContent} helpA11yText="help me">
+                    <Label help={tooltip} helpAlign="right" helpA11yText="help me">
                       Field 1 Label
                     </Label>
                   </LeftCol>
@@ -65,7 +65,7 @@ export default function EverythingExample() {
               <FormElement isOptional>
                 <Layout>
                   <LeftCol width={120}>
-                    <Label help={helpContent} helpA11yText="help me">
+                    <Label help={tooltip} helpAlign="right" helpA11yText="help me">
                       Field 2 Label
                     </Label>
                   </LeftCol>
@@ -97,7 +97,7 @@ export default function EverythingExample() {
               <FormElement isDisabled>
                 <Layout>
                   <LeftCol width={120}>
-                    <Label help={helpContent} helpA11yText="help me">
+                    <Label help={tooltip} helpAlign="right" helpA11yText="help me">
                       Field 3 Label
                     </Label>
                   </LeftCol>
