@@ -8,7 +8,7 @@ import { FormElementContext } from "../../FormElement";
 import * as sc from "./Label.styles";
 
 const Label = props => {
-  const { help, tooltipAlignment, helpA11yText, children, isDisabled: isDisabledProp, ...moreProps } = props;
+  const { help, helpAlign, helpA11yText, children, isDisabled: isDisabledProp, ...moreProps } = props;
   const { hasFieldSet, isOptional, isRequired, isDisabled: isDisabledContext, labelId, refLabel } = React.useContext(
     FormElementContext
   );
@@ -45,7 +45,7 @@ const Label = props => {
       {help ? (
         <>
           <Spacer />
-          <Help align={tooltipAlignment} a11yText={helpA11yText} isDisabled={isDisabled}>
+          <Help align={helpAlign} a11yText={helpA11yText} isDisabled={isDisabled}>
             {help}
           </Help>
         </>
@@ -71,7 +71,7 @@ const propTypes = {
   isVisuallyHidden: PropTypes.bool,
 
   /** change tooltip  alignment */
-  tooltipAlignment: PropTypes.oneOf([
+  helpAlign: PropTypes.oneOf([
     Popover.types.align.TOP,
     Popover.types.align.RIGHT,
     Popover.types.align.BOTTOM,
@@ -84,7 +84,7 @@ const defaultProps = {
   helpA11yText: null,
   isDisabled: null,
   isVisuallyHidden: false,
-  tooltipAlignment: Popover.types.align.TOP,
+  helpAlign: Popover.types.align.TOP,
 };
 
 Label.displayName = "FormElement.Label";
