@@ -38,7 +38,7 @@ declare namespace Takeover {
 
     refHeading?: custom;
     /** Add node object to the right side of heading next to the close button */
-    headerTools?: React.ReactNode;
+    tools?: React.ReactNode;
   }
 }
 declare namespace Takeover {

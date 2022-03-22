@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.3.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [3a068d6]
+  - @paprika/overlay@1.0.15-next.0
+
 ## 2.3.1
 
 ### Patch Changes
