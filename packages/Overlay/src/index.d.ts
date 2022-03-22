@@ -21,6 +21,8 @@ interface OverlayProps {
   onAfterOpen?: (...args: any[]) => any;
 
   onAfterClose?: (...args: any[]) => any;
+
+  isBackdropClickDisabled?: boolean;
   /** z-index of the Overlay wrapper */
   zIndex?: number;
 }
