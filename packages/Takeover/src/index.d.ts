@@ -17,6 +17,8 @@ interface TakeoverProps {
   onClose?: (...args: any[]) => any;
   /** The z-index of the Takeover content */
   zIndex?: number;
+  /** Set Takeover to full width without any margins and max-width */
+  isFullWidth?: custom;
 }
 
 declare namespace Takeover {
@@ -35,6 +37,8 @@ declare namespace Takeover {
     onClose?: (...args: any[]) => any;
 
     refHeading?: custom;
+    /** Add node object to the right side of heading next to the close button */
+    tools?: React.ReactNode;
   }
 }
 declare namespace Takeover {

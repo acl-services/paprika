@@ -73,5 +73,7 @@
     "@paprika/helpers": "2.3.0",
     "@paprika/seducer": "2.0.3"
   },
-  "changesets": []
+  "changesets": [
+    "fresh-oranges-pull"
+  ]
 }

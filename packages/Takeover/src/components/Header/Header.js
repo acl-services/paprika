@@ -6,23 +6,31 @@ import * as types from "../../types";
 import * as sc from "./Header.styles";
 
 const Header = React.forwardRef((props, ref) => {
-  const { children, level, hasCloseButton, kind, onClose, refHeading, ...moreProps } = props;
-
+  const { children, level, hasCloseButton, kind, onClose, refHeading, tools, ...moreProps } = props;
   return (
     <sc.Header ref={ref} kind={kind} {...moreProps}>
-      <sc.Heading level={level} displayLevel={3} isLight ref={refHeading}>
+      <sc.Heading
+        level={level}
+        displayLevel={3}
+        isLight
+        ref={refHeading}
+        title={typeof children === "string" ? children : null}
+      >
         {children}
       </sc.Heading>
-      {hasCloseButton && (
-        <sc.CloseButton>
-          <Button.Close
-            data-pka-anchor="takeover.header.close-button"
-            onClick={onClose}
-            isDark={kind === "primary" || null}
-            size="medium"
-          />
-        </sc.CloseButton>
-      )}
+      <sc.HeaderRightContainer>
+        {tools && <sc.ToolContainer data-pka-anchor="takeover.header.tools">{tools}</sc.ToolContainer>}
+        {hasCloseButton && (
+          <sc.CloseButton>
+            <Button.Close
+              data-pka-anchor="takeover.header.close-button"
+              onClick={onClose}
+              isDark={kind === "primary" || null}
+              size="medium"
+            />
+          </sc.CloseButton>
+        )}
+      </sc.HeaderRightContainer>
     </sc.Header>
   );
 });
@@ -38,14 +46,17 @@ const propTypes = {
   level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   onClose: PropTypes.func,
   refHeading: RefOf(),
+  /** Add node object to the right side of heading next to the close button */
+  tools: PropTypes.node,
 };
 
 const defaultProps = {
   hasCloseButton: true,
-  level: 3,
+  level: 2,
   kind: Header.types.kind.DEFAULT,
   onClose: () => {},
   refHeading: null,
+  tools: null,
 };
 
 Header.displayName = "Takeover.Header";
