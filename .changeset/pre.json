@@ -22,7 +22,7 @@
     "@paprika/data-field": "1.0.34",
     "@paprika/data-grid": "1.0.30",
     "@paprika/data-header": "1.0.40",
-    "@paprika/data-table": "1.1.1",
+    "@paprika/data-table": "1.2.0",
     "@paprika/date-input": "1.0.28",
     "@paprika/date-picker": "2.0.6",
     "@paprika/date-range-picker": "1.0.33",
@@ -73,7 +73,5 @@
     "@paprika/helpers": "2.3.0",
     "@paprika/seducer": "2.0.3"
   },
-  "changesets": [
-    "stupid-kangaroos-remain"
-  ]
+  "changesets": []
 }
