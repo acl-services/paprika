@@ -62,13 +62,14 @@ refLabel is a React ref for the `<FormElement.Label />`|
 
 ### FormElement.Label
 
-| Prop             | Type   | required | default | Description                                                 |
-| ---------------- | ------ | -------- | ------- | ----------------------------------------------------------- |
-| children         | node   | true     | -       | content for the label                                       |
-| help             | node   | false    | null    | Help indicator                                              |
-| helpA11yText     | string | false    | null    | Aria label for icon button that triggers help popover       |
-| isDisabled       | bool   | false    | null    | If the label should be dimmed and the help popover disabled |
-| isVisuallyHidden | bool   | false    | false   | Should label be hidden                                      |
+| Prop             | Type                                                                                                       | required | default                 | Description                                                 |
+| ---------------- | ---------------------------------------------------------------------------------------------------------- | -------- | ----------------------- | ----------------------------------------------------------- |
+| children         | node                                                                                                       | true     | -                       | content for the label                                       |
+| help             | node                                                                                                       | false    | null                    | Help indicator                                              |
+| helpA11yText     | string                                                                                                     | false    | null                    | Aria label for icon button that triggers help popover       |
+| isDisabled       | bool                                                                                                       | false    | null                    | If the label should be dimmed and the help popover disabled |
+| isVisuallyHidden | bool                                                                                                       | false    | false                   | Should label be hidden                                      |
+| tooltipAlignment | [Popover.types.align.TOP, Popover.types.align.RIGHT, Popover.types.align.BOTTOM, Popover.types.align.LEFT] | false    | Popover.types.align.TOP | Designated location for tooltip popover                     |
 
 ### FormElement.Layout
 

@@ -2,17 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import tokens from "@paprika/tokens";
+import Popover from "@paprika/popover";
 import Help from "../Help/Help";
 import { FormElementContext } from "../../FormElement";
 import * as sc from "./Label.styles";
 
 const Label = props => {
-  const { help, helpA11yText, children, isDisabled: isDisabledProp, ...moreProps } = props;
+  const { help, tooltipAlignment, helpA11yText, children, isDisabled: isDisabledProp, ...moreProps } = props;
   const { hasFieldSet, isOptional, isRequired, isDisabled: isDisabledContext, labelId, refLabel } = React.useContext(
     FormElementContext
   );
   const I18n = useI18n();
-
   const isDisabled = isDisabledProp === null ? isDisabledContext : isDisabledProp;
   const labelProps = hasFieldSet ? { as: "legend" } : { as: "label" };
   const a11yProps = hasFieldSet ? { ref: refLabel } : { htmlFor: labelId, ref: refLabel };
@@ -45,7 +45,7 @@ const Label = props => {
       {help ? (
         <>
           <Spacer />
-          <Help a11yText={helpA11yText} isDisabled={isDisabled}>
+          <Help align={tooltipAlignment} a11yText={helpA11yText} isDisabled={isDisabled}>
             {help}
           </Help>
         </>
@@ -69,6 +69,14 @@ const propTypes = {
 
   /** Should label be hidden */
   isVisuallyHidden: PropTypes.bool,
+
+  /** change tooltip  alignment */
+  tooltipAlignment: PropTypes.oneOf([
+    Popover.types.align.TOP,
+    Popover.types.align.RIGHT,
+    Popover.types.align.BOTTOM,
+    Popover.types.align.LEFT,
+  ]),
 };
 
 const defaultProps = {
@@ -76,6 +84,7 @@ const defaultProps = {
   helpA11yText: null,
   isDisabled: null,
   isVisuallyHidden: false,
+  tooltipAlignment: Popover.types.align.TOP,
 };
 
 Label.displayName = "FormElement.Label";

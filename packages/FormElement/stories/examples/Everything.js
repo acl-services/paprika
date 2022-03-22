@@ -15,14 +15,22 @@ export default function EverythingExample() {
   const [value2, setValue2] = React.useState();
   const [errorText, setErrorText] = React.useState();
 
-  const helpContent = (
-    <>
-      Help yourself{" "}
-      <a href="https://youtu.be/D-Zy2P26gVM" target="_blank" rel="noopener noreferrer">
-        learn more
-      </a>
-      .
-    </>
+  const LabelWithToolTip = ({ children }) => (
+    <Label
+      help={
+        <>
+          Help yourself{" "}
+          <a href="https://youtu.be/D-Zy2P26gVM" target="_blank" rel="noopener noreferrer">
+            learn more
+          </a>
+          .
+        </>
+      }
+      tooltipAlignment="right"
+      helpA11yText="help me"
+    >
+      {children}
+    </Label>
   );
 
   return (
@@ -30,9 +38,7 @@ export default function EverythingExample() {
       <Fieldset>
         <Layout>
           <LeftCol width={140}>
-            <Label help={helpContent} helpA11yText="help me">
-              Fieldset Label
-            </Label>
+            <LabelWithToolTip>Fieldset Label</LabelWithToolTip>
           </LeftCol>
           <RightCol>
             <Instructions>These are some fieldset instructions.</Instructions>
@@ -40,9 +46,7 @@ export default function EverythingExample() {
               <FormElement isRequired id="field-01">
                 <Layout>
                   <LeftCol width={120}>
-                    <Label help={helpContent} helpA11yText="help me">
-                      Field 1 Label
-                    </Label>
+                    <LabelWithToolTip>Field 1 Label</LabelWithToolTip>
                   </LeftCol>
                   <RightCol>
                     <Instructions>These are some field instructions.</Instructions>
@@ -65,9 +69,7 @@ export default function EverythingExample() {
               <FormElement isOptional>
                 <Layout>
                   <LeftCol width={120}>
-                    <Label help={helpContent} helpA11yText="help me">
-                      Field 2 Label
-                    </Label>
+                    <LabelWithToolTip>Field 2 Label</LabelWithToolTip>
                   </LeftCol>
                   <RightCol>
                     <Instructions>This are some field instructions.</Instructions>
@@ -97,9 +99,7 @@ export default function EverythingExample() {
               <FormElement isDisabled>
                 <Layout>
                   <LeftCol width={120}>
-                    <Label help={helpContent} helpA11yText="help me">
-                      Field 3 Label
-                    </Label>
+                    <LabelWithToolTip>Field 3 Label</LabelWithToolTip>
                   </LeftCol>
                   <RightCol>
                     <Instructions>This are some field instructions.</Instructions>
