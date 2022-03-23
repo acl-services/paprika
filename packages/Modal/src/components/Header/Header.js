@@ -9,22 +9,25 @@ import { ModalContext } from "../../Modal";
 const propTypes = {
   children: PropTypes.node.isRequired,
   hasCloseButton: PropTypes.bool,
-  level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
-  refHeading: RefOf(),
+  isCloseButtonSemantic: PropTypes.bool,
 
   /** If the header should truncate text so that only appears on one line */
   isSingleLine: PropTypes.bool,
+
+  level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
+  refHeading: RefOf(),
 };
 
 const defaultProps = {
   hasCloseButton: true,
+  isCloseButtonSemantic: true,
+  isSingleLine: false,
   level: 3,
   refHeading: null,
-  isSingleLine: false,
 };
 
 const Header = React.forwardRef((props, ref) => {
-  const { children, level, hasCloseButton, refHeading, isSingleLine, ...moreProps } = props;
+  const { children, level, hasCloseButton, refHeading, isSingleLine, isCloseButtonSemantic, ...moreProps } = props;
   const { a11yText, updateAriaLabel, onClose } = React.useContext(ModalContext);
 
   React.useEffect(() => {
@@ -47,7 +50,7 @@ const Header = React.forwardRef((props, ref) => {
         <Button.Close
           data-qa-anchor="paprika.modal.header.close-button"
           data-pka-anchor="modal.header.close-button"
-          isSemantic={false}
+          isSemantic={isCloseButtonSemantic}
           onClick={onClose}
           size={constants.size.MEDIUM}
         />
