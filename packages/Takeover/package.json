@@ -24,7 +24,7 @@
     "@paprika/stylers": "^1.1.6",
     "@paprika/tokens": "^2.0.0",
     "prop-types": "^15.7.2",
-    "react-focus-lock": "^2.2.1",
+    "react-focus-lock": "^2.8.1",
     "react-transition-group": "^4.3.0"
   },
   "peerDependencies": {
