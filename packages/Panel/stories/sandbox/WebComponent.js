@@ -9,29 +9,42 @@ const noop = () => {};
 
 function PanelExample({ container }) {
   const refHeading = React.useRef(null);
+  const refTrigger = React.useRef(null);
   const [isOpen, setOpen] = React.useState(false);
+
   const handleToggle = () => {
     setOpen(!isOpen);
   };
+
   const handleClose = () => {
     setOpen(false);
   };
 
+  // Recommended practice for optimal accessibility
+  const handleAfterOpen = () => {
+    if (refHeading.current) {
+      refHeading.current.tabIndex = "-1";
+      refHeading.current.focus();
+    }
+  };
+
+  // Required practice for accessibility
+  // Needs to be handled manually when used within a web component
+  const handleAfterClose = () => {
+    if (refTrigger.current) refTrigger.current.focus();
+  };
+
   return (
     <>
-      <button type="button" onClick={handleToggle}>
+      <button type="button" onClick={handleToggle} ref={refTrigger}>
         {isOpen ? "Close" : "Open"} Panel
       </button>
       <Panel
         container={container}
         isOpen={isOpen}
         onClose={handleClose}
-        onAfterOpen={() => {
-          if (refHeading.current) {
-            refHeading.current.tabIndex = "-1";
-            refHeading.current.focus();
-          }
-        }}
+        onAfterOpen={handleAfterOpen}
+        onAfterClose={handleAfterClose}
       >
         <Panel.Overlay onClose={handleClose} />
         <Panel.Header>
