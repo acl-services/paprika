@@ -69,6 +69,12 @@ declare namespace FormElement {
     isDisabled?: boolean;
     /** Should label be hidden */
     isVisuallyHidden?: boolean;
+    /** change tooltip  alignment */
+    helpAlign?:
+      | Popover.types.align.TOP
+      | Popover.types.align.RIGHT
+      | Popover.types.align.BOTTOM
+      | Popover.types.align.LEFT;
   }
 }
 declare namespace FormElement {
@@ -86,6 +92,16 @@ declare namespace FormElement {
       const SMALL: any;
       const MEDIUM: any;
       const LARGE: any;
+    }
+  }
+}
+declare namespace Popover {
+  namespace types {
+    namespace align {
+      const TOP: any;
+      const RIGHT: any;
+      const BOTTOM: any;
+      const LEFT: any;
     }
   }
 }

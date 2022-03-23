@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.0.30-next.0
+
+### Patch Changes
+
+- 7f6da83: Enable tooltip aligment as a prop and set default to top
+
 ## 4.0.29
 
 ### Patch Changes
