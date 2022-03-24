@@ -24,8 +24,7 @@
     "@paprika/stylers": "^1.1.6",
     "@paprika/tokens": "^2.0.0",
     "lodash.debounce": "^4.0.8",
-    "prop-types": "^15.7.2",
-    "react-focus-lock": "^2.2.1"
+    "prop-types": "^15.7.2"
   },
   "peerDependencies": {
     "@paprika/l10n": "^1.1.15",
