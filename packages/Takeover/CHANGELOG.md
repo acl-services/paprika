@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.1.0-next.1
+
+### Minor Changes
+
+- 70cac61: - Update `react-focus-lock` package to support wrapping in a web component
+
+### Patch Changes
+
+- Updated dependencies [70cac61]
+  - @paprika/overlay@1.0.15-next.1
+
 ## 1.0.24-next.0
 
 ### Patch Changes

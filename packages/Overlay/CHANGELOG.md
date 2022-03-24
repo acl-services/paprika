@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.15-next.1
+
+### Patch Changes
+
+- 70cac61: - Update `react-focus-lock` package to support wrapping in a web component
+
 ## 1.0.15-next.0
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.7-next.0
+
+### Patch Changes
+
+- e39d814: fix period select issue when hour is 12
+
 ## 2.0.6
 
 ### Patch Changes

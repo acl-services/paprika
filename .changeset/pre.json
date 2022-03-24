@@ -74,7 +74,12 @@
     "@paprika/seducer": "2.0.3"
   },
   "changesets": [
+    "early-shrimps-unite",
     "fresh-oranges-pull",
-    "many-buses-own"
+    "many-buses-own",
+    "smart-bugs-reflect",
+    "spotty-cherries-love",
+    "sweet-buttons-work",
+    "tiny-dingos-hammer"
   ]
 }

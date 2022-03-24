@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.31-next.1
+
+### Patch Changes
+
+- Updated dependencies [70cac61]
+  - @paprika/panel@2.4.0-next.1
+
 ## 1.0.31-next.0
 
 ### Patch Changes
