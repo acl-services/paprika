@@ -9,10 +9,17 @@ function getValidFormatMomentValue(time) {
   const momentValue = moment(time, possibleFormats);
 
   // Add extra am/pm logic to help handle period cases
-  if (momentValue.isValid() && momentValue.hours() < 12) {
+  if (momentValue.isValid()) {
     const lowerCaseTime = time.toLowerCase();
-    if (lowerCaseTime.endsWith("pm") || lowerCaseTime.endsWith("p")) {
-      momentValue.add(12, "hours");
+    if (momentValue.hours() === 12) {
+      if (lowerCaseTime.endsWith("am") || lowerCaseTime.endsWith("a")) {
+        momentValue.add(12, "hours");
+      }
+    }
+    if (momentValue.hours() < 12) {
+      if (lowerCaseTime.endsWith("pm") || lowerCaseTime.endsWith("p")) {
+        momentValue.add(12, "hours");
+      }
     }
   }
 
