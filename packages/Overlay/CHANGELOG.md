@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.15
+
+### Patch Changes
+
+- 3a068d6: add option to disable the click event on backdrop
+- 70cac61: - Update `react-focus-lock` package to support wrapping in a web component
+
 ## 1.0.15-next.1
 
 ### Patch Changes

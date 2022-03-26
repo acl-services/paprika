@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.4.0
+
+### Minor Changes
+
+- 70cac61: - Add `isCloseButtonSemantic` prop to `<Panel.Header>`
+  - Change default value of `isSemantic` to `true` for `<Button.Close>` in `<Panel.Header>`
+  - Remove _unused_ `refHeading` prop from `<Panel.Header>`
+
+### Patch Changes
+
+- Updated dependencies [3a068d6]
+- Updated dependencies [70cac61]
+  - @paprika/overlay@1.0.15
+
 ## 2.4.0-next.1
 
 ### Minor Changes

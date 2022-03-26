@@ -1,6 +1,6 @@
 {
   "name": "@paprika/time-picker",
-  "version": "2.0.7-next.0",
+  "version": "2.0.7",
   "description": "The TimePicker component gives users the ability to select a specific time from a popover.",
   "author": "@paprika",
   "main": "lib/index.js",
