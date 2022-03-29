@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.7-next.0
+
+### Patch Changes
+
+- e1c225f: Fix an import of `@paprika/button` in Trigger subcomponent
+
 ## 2.0.6
 
 ### Patch Changes
