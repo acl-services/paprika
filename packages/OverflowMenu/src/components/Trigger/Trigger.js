@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
-// import Button from "@paprika/button";
-import Button from "../../../../Button";
+import Button from "@paprika/button";
 import * as types from "../../types";
 
 const ButtonComponentMap = {
