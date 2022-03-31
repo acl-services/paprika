@@ -74,6 +74,7 @@
     "@paprika/seducer": "2.0.3"
   },
   "changesets": [
-    "quick-boxes-relate"
+    "quick-boxes-relate",
+    "spicy-dots-press"
   ]
 }

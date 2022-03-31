@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.1.0-next.0
+
+### Minor Changes
+
+- cd31bcc: Fixed onError callback being called unnecessarily
+
 ## 4.0.0
 
 ### Major Changes
