@@ -15,6 +15,9 @@ const props = {
   onChange: files => {
     console.log("Selected files:", files);
   },
+  onError: error => {
+    console.log("There was an error", error);
+  },
 };
 
 const fileProps = {
