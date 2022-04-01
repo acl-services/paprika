@@ -96,11 +96,16 @@ function File(props) {
     }
   }
 
+  function getErrorMessage() {
+    return typeof onError === "function" ? onError(error) : error;
+  }
+
   function getProgressText(showA11yProgress) {
-    const errorMessage = typeof onError === "function" ? onError(error) : error;
     switch (status) {
       case types.status.ERROR:
-        return showA11yProgress ? I18n.t("uploader.progress.error", { name, error: errorMessage }) : errorMessage;
+        return showA11yProgress
+          ? I18n.t("uploader.progress.error", { name, error: getErrorMessage() })
+          : getErrorMessage();
       case types.status.SUCCESS:
         return showA11yProgress
           ? I18n.t("uploader.progress.file_progress", { name, progress: I18n.t("uploader.progress.complete") })

@@ -1,13 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { RefOf } from "@paprika/helpers";
 import Button from "@paprika/button";
 import PanelContext from "../../PanelContext";
 import * as sc from "./Header.styles";
 
 const Header = React.forwardRef((props, ref) => {
   const size = React.useContext(PanelContext).size;
-  const { children, hasCloseButton, getPushContentElement, hasAccent, onClose, refHeading, ...moreProps } = props;
+  const {
+    children,
+    getPushContentElement,
+    hasAccent,
+    hasCloseButton,
+    isCloseButtonSemantic,
+    onClose,
+    ...moreProps
+  } = props;
 
   return (
     <sc.Header
@@ -22,7 +29,7 @@ const Header = React.forwardRef((props, ref) => {
       {hasCloseButton && (
         <Button.Close
           data-pka-anchor="panel.header.close"
-          isSemantic={false}
+          isSemantic={isCloseButtonSemantic}
           onClick={onClose}
           size={Button.types.size.MEDIUM}
         />
@@ -34,20 +41,20 @@ const Header = React.forwardRef((props, ref) => {
 const propTypes = {
   children: PropTypes.node.isRequired,
   getPushContentElement: PropTypes.func,
-  hasCloseButton: PropTypes.bool,
-  isHeaderSticky: PropTypes.bool,
   hasAccent: PropTypes.bool,
+  hasCloseButton: PropTypes.bool,
+  isCloseButtonSemantic: PropTypes.bool,
+  isHeaderSticky: PropTypes.bool,
   onClose: PropTypes.func,
-  refHeading: RefOf(),
 };
 
 const defaultProps = {
-  hasCloseButton: true,
   getPushContentElement: () => {},
+  hasCloseButton: true,
+  hasAccent: false,
+  isCloseButtonSemantic: true,
   isHeaderSticky: false,
   onClose: () => {},
-  refHeading: null,
-  hasAccent: false,
 };
 
 Header.displayName = "Panel.Header";

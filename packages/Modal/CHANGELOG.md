@@ -1,5 +1,48 @@
 # Changelog
 
+## 1.0.24
+
+### Patch Changes
+
+- 70cac61: - Update `react-focus-lock` package to support wrapping in a web component
+  - Add `isCloseButtonSemantic` prop to `<Modal.Header>`
+  - Change default value of `isSemantic` to `true` for `<Button.Close>` in `<Modal.Header>`
+- Updated dependencies [3a068d6]
+- Updated dependencies [70cac61]
+  - @paprika/overlay@1.0.15
+
+## 1.0.24-next.1
+
+### Patch Changes
+
+- 70cac61: - Update `react-focus-lock` package to support wrapping in a web component
+  - Add `isCloseButtonSemantic` prop to `<Modal.Header>`
+  - Change default value of `isSemantic` to `true` for `<Button.Close>` in `<Modal.Header>`
+- Updated dependencies [70cac61]
+  - @paprika/overlay@1.0.15-next.1
+
+## 1.0.24-next.0
+
+### Patch Changes
+
+- Updated dependencies [3a068d6]
+  - @paprika/overlay@1.0.15-next.0
+
+## 1.0.23
+
+### Patch Changes
+
+- Updated dependencies [0dcf307]
+- Updated dependencies [0bf34d9]
+- Updated dependencies [0dcf307]
+- Updated dependencies [9ac6aca]
+  - @paprika/helpers@2.3.0
+  - @paprika/tokens@2.0.0
+  - @paprika/button@1.1.12
+  - @paprika/heading@1.0.14
+  - @paprika/overlay@1.0.14
+  - @paprika/stylers@1.1.6
+
 ## 1.0.23-next.2
 
 ### Patch Changes

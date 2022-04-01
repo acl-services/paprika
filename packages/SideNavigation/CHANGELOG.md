@@ -1,5 +1,42 @@
 # Changelog
 
+## 3.0.19
+
+### Patch Changes
+
+- Updated dependencies [70cac61]
+  - @paprika/panel@2.4.0
+
+## 3.0.19-next.1
+
+### Patch Changes
+
+- Updated dependencies [70cac61]
+  - @paprika/panel@2.4.0-next.1
+
+## 3.0.19-next.0
+
+### Patch Changes
+
+- @paprika/panel@2.3.2-next.0
+
+## 3.0.18
+
+### Patch Changes
+
+- Updated dependencies [0dcf307]
+- Updated dependencies [0bf34d9]
+- Updated dependencies [0dcf307]
+- Updated dependencies [9ac6aca]
+  - @paprika/popover@2.0.4
+  - @paprika/helpers@2.3.0
+  - @paprika/panel@2.3.1
+  - @paprika/tokens@2.0.0
+  - @paprika/button@1.1.12
+  - @paprika/icon@2.1.7
+  - @paprika/raw-button@1.0.12
+  - @paprika/stylers@1.1.6
+
 ## 3.0.18-next.2
 
 ### Patch Changes

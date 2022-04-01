@@ -5,11 +5,11 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 import * as sc from "./Help.styles";
 
 function Help(props) {
-  const { children, isDisabled, a11yText } = props;
+  const { children, isDisabled, a11yText, align } = props;
   const I18n = useI18n();
 
   return (
-    <sc.Help align="bottom" data-pka-anchor="form-element.help">
+    <sc.Help align={align} data-pka-anchor="form-element.help">
       {isDisabled ? (
         <sc.HelpIcon aria-hidden />
       ) : (
@@ -36,11 +36,20 @@ const propTypes = {
 
   /** If the Popover should be disabled */
   isDisabled: PropTypes.bool,
+
+  /** Change tooltip alignment */
+  align: PropTypes.oneOf([
+    Popover.types.align.TOP,
+    Popover.types.align.RIGHT,
+    Popover.types.align.BOTTOM,
+    Popover.types.align.LEFT,
+  ]),
 };
 
 const defaultProps = {
   a11yText: null,
   isDisabled: false,
+  align: Popover.types.align.TOP,
 };
 
 Help.displayName = "FormElement.Help";

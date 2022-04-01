@@ -1,5 +1,29 @@
 # Changelog
 
+## 2.0.7-next.0
+
+### Patch Changes
+
+- e1c225f: Fix an import of `@paprika/button` in Trigger subcomponent
+
+## 2.0.6
+
+### Patch Changes
+
+- 0dcf307: Refactored to use `getActiveElement` from `@paprika/helpers` to support web components.
+- Updated dependencies [0dcf307]
+- Updated dependencies [0bf34d9]
+- Updated dependencies [0dcf307]
+- Updated dependencies [9ac6aca]
+  - @paprika/popover@2.0.4
+  - @paprika/helpers@2.3.0
+  - @paprika/tokens@2.0.0
+  - @paprika/button@1.1.12
+  - @paprika/confirmation@1.1.20
+  - @paprika/icon@2.1.7
+  - @paprika/raw-button@1.0.12
+  - @paprika/stylers@1.1.6
+
 ## 2.0.6-next.2
 
 ### Patch Changes

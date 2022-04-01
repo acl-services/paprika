@@ -1,5 +1,55 @@
 # Changelog
 
+## 2.4.0
+
+### Minor Changes
+
+- 70cac61: - Add `isCloseButtonSemantic` prop to `<Panel.Header>`
+  - Change default value of `isSemantic` to `true` for `<Button.Close>` in `<Panel.Header>`
+  - Remove _unused_ `refHeading` prop from `<Panel.Header>`
+
+### Patch Changes
+
+- Updated dependencies [3a068d6]
+- Updated dependencies [70cac61]
+  - @paprika/overlay@1.0.15
+
+## 2.4.0-next.1
+
+### Minor Changes
+
+- 70cac61: - Add `isCloseButtonSemantic` prop to `<Panel.Header>`
+  - Change default value of `isSemantic` to `true` for `<Button.Close>` in `<Panel.Header>`
+  - Remove _unused_ `refHeading` prop from `<Panel.Header>`
+
+### Patch Changes
+
+- Updated dependencies [70cac61]
+  - @paprika/overlay@1.0.15-next.1
+
+## 2.3.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [3a068d6]
+  - @paprika/overlay@1.0.15-next.0
+
+## 2.3.1
+
+### Patch Changes
+
+- 0bf34d9: panel and modal footer background color changes to #f0f0f0
+- Updated dependencies [0dcf307]
+- Updated dependencies [0bf34d9]
+- Updated dependencies [0dcf307]
+- Updated dependencies [9ac6aca]
+  - @paprika/helpers@2.3.0
+  - @paprika/tokens@2.0.0
+  - @paprika/button@1.1.12
+  - @paprika/icon@2.1.7
+  - @paprika/overlay@1.0.14
+  - @paprika/stylers@1.1.6
+
 ## 2.3.1-next.2
 
 ### Patch Changes

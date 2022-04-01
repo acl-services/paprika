@@ -13,6 +13,7 @@ const getRootKnobs = () => ({
 
 const getLabelKnobs = () => ({
   labelText: text("label", "Field label"),
+  helpAlign: select("helpAlign", ["top", "bottom", "left", "right"], "top"),
   help: text("help text", "Some help text for this field."),
   helpA11yText: text("helpA11yText", "information"),
   isVisuallyHidden: boolean("isVisuallyHidden", false),

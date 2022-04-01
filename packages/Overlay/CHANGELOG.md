@@ -1,5 +1,35 @@
 # Changelog
 
+## 1.0.15
+
+### Patch Changes
+
+- 3a068d6: add option to disable the click event on backdrop
+- 70cac61: - Update `react-focus-lock` package to support wrapping in a web component
+
+## 1.0.15-next.1
+
+### Patch Changes
+
+- 70cac61: - Update `react-focus-lock` package to support wrapping in a web component
+
+## 1.0.15-next.0
+
+### Patch Changes
+
+- 3a068d6: add option to disable the click event on backdrop
+
+## 1.0.14
+
+### Patch Changes
+
+- Updated dependencies [0dcf307]
+- Updated dependencies [0bf34d9]
+- Updated dependencies [0dcf307]
+- Updated dependencies [9ac6aca]
+  - @paprika/helpers@2.3.0
+  - @paprika/tokens@2.0.0
+
 ## 1.0.14-next.2
 
 ### Patch Changes
