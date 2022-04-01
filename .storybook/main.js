@@ -44,6 +44,10 @@ module.exports = {
       globalObject: "self",
     };
 
+    if (process.env.DISABLE_HMR === "true") {
+      config.entry = config.entry.filter(singleEntry => !singleEntry.includes("/webpack-hot-middleware/"));
+    }
+
     return config;
   },
 };
