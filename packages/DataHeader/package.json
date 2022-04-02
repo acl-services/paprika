@@ -1,6 +1,6 @@
 {
   "name": "@paprika/data-header",
-  "version": "1.0.42-next.0",
+  "version": "1.0.42",
   "description": "Data header package is a set of components that help the Table and DataGrid to enhance the cell property to display different header types in a ease manner",
   "author": "@paprika",
   "license": "MIT",
@@ -21,7 +21,7 @@
     "@paprika/data-field": "^1.0.35",
     "@paprika/data-grid": "^1.0.31",
     "@paprika/icon": "^2.1.7",
-    "@paprika/overflow-menu": "^2.0.7-next.0",
+    "@paprika/overflow-menu": "^2.0.7",
     "@paprika/popover": "^2.0.4",
     "@paprika/raw-button": "^1.0.12",
     "@paprika/stylers": "1.1.6",
