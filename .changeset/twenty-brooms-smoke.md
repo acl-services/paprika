@@ -2,4 +2,4 @@
 "@paprika/card": patch
 ---
 
-Added 'level' prop to Card.Title: allow changing the semantic level of headings
+Use paprika's heading component so Card.Title supports different semantic levels of headings
