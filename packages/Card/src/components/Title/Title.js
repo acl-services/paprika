@@ -11,7 +11,7 @@ const propTypes = {
 
 const defaultProps = {
   children: null,
-  level: 1,
+  level: 2,
 };
 
 const safeValue = n => (n === undefined || n < 1 || Number.isNaN(n) ? 6 : Math.min(n, 6));

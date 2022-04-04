@@ -12,7 +12,7 @@ export default () => (
         </Avatar>
       </Card.Header>
       <Card.Content>
-        <Card.Title level={2}>Card</Card.Title>
+        <Card.Title level={1}>Card</Card.Title>
         <Card.Metadata>100,000 total</Card.Metadata>
         <Card.Text>
           Cards are used to group similar concepts and tasks together to make the platform easier for user to scan,
