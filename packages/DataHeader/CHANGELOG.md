@@ -1,5 +1,16 @@
 <!-- content -->
 
+## 1.0.43-next.0
+
+### Patch Changes
+
+- @paprika/button@1.1.13-next.0
+- @paprika/data-grid@1.0.32-next.0
+- @paprika/overflow-menu@2.0.8-next.0
+- @paprika/popover@2.0.5-next.0
+- @paprika/toast@1.1.21-next.0
+- @paprika/data-field@1.0.36-next.0
+
 ## 1.0.42
 
 ### Patch Changes
