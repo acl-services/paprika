@@ -14,15 +14,12 @@ const defaultProps = {
   level: 2,
 };
 
-const safeValue = n => (n === undefined || n < 1 || Number.isNaN(n) ? 6 : Math.min(n, 6));
-
 const Title = props => {
   const { children, level } = props;
-  const safeLevel = safeValue(level);
   return (
-    <sc.titleStyles data-pka-anchor="card.title" as={`h${safeLevel}`} {...props}>
+    <sc.Title data-pka-anchor="card.title" level={level}>
       {children}
-    </sc.titleStyles>
+    </sc.Title>
   );
 };
 

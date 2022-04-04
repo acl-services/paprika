@@ -52,6 +52,8 @@ interface TitleProps {
   [x: string]: any;
   /** Body content of the Title. */
   children?: React.ReactNode;
+  /** Semantic level of Heading for the title */
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
 declare namespace Card {
