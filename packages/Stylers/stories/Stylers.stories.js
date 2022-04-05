@@ -26,21 +26,22 @@ export default {
 export const includes = () => (
   <Story>
     <h1>Include Examples</h1>
-
+    <h4>
+      <code>&lt;stylers.WebComponentGlobalStyle /&gt;:</code>&nbsp;
+    </h4>
+    By adding the following tag within `StyleSheetManager`, it resets global styles in web component.
+    <Rule />
     <h4>
       <code>stylers.truncateText()</code>
     </h4>
     <TruncatedBox>Lorem ipsum tumeric direct trade snackwave locavore taxidermy live-edge wolf mixtape.</TruncatedBox>
-
     <h4>
       <code>stylers.noTruncateText()</code>
     </h4>
     <UntruncatedBox>
       Lorem ipsum tumeric direct trade snackwave locavore taxidermy live-edge wolf mixtape.
     </UntruncatedBox>
-
     <Rule />
-
     <h4>
       <code>stylers.visuallyHidden</code>
     </h4>
@@ -49,9 +50,7 @@ export const includes = () => (
         👻
       </span>
     </InvisibleBox>
-
     <Rule />
-
     <h4>
       <code>stylers.placeholders()</code>
     </h4>
@@ -60,9 +59,7 @@ export const includes = () => (
       <br />
       <InputWithPlaceholder placeholder="placeholder" disabled />
     </Box>
-
     <Rule />
-
     <h3>Focus Indicators</h3>
     <h4>
       <code>stylers.focusRing()</code>

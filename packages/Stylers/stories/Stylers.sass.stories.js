@@ -16,7 +16,11 @@ export default {
 export const mixins = () => (
   <Story className="story--stylers">
     <h1>Mixin Examples</h1>
-
+    <h4>
+      <code>@globalStyle</code>;
+    </h4>
+    A global style reset helper which is suggested to include in root style when create new service.
+    <Rule />
     <h4>
       <code>@truncate-text</code>
     </h4>
@@ -29,9 +33,7 @@ export const mixins = () => (
     <Box className="truncated-box untruncated-box">
       Lorem ipsum hexagon street art paleo selfies locavore ethical single-origin vaporware mixtape.
     </Box>
-
     <Rule />
-
     <h4>
       <code>@is-visually-hidden</code>
     </h4>
@@ -40,9 +42,7 @@ export const mixins = () => (
         👻
       </span>
     </Box>
-
     <Rule />
-
     <h4>
       <code>@placeholders</code>
     </h4>
@@ -51,9 +51,7 @@ export const mixins = () => (
       <br />
       <input placeholder="placeholder" disabled />
     </Box>
-
     <Rule />
-
     <h3>Focus Indicators</h3>
     <h4>
       <code>@focus-ring()</code>

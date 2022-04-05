@@ -1,5 +1,6 @@
-import { css } from "styled-components";
+import { css, createGlobalStyle } from "styled-components";
 import tokens from "@paprika/tokens";
+import { lineHeight } from "./helpers";
 
 /* Layout */
 
@@ -141,5 +142,32 @@ export const placeholders = css`
   &[disabled]:-moz-placeholder {
     ${disabledPlaceholder};
     opacity: 1;
+  }
+`;
+
+export const WebComponentGlobalStyle = createGlobalStyle`
+  :host {
+    & > div {
+      -moz-osx-font-smoothing: grayscale;
+      ${lineHeight()};
+      -webkit-font-smoothing: antialiased;
+      color: ${tokens.color.black};
+      font-family: ${tokens.fontFamily.default};
+      font-size: ${tokens.fontSize.default};
+    }
+    * {
+      box-sizing: border-box;
+      & :before,
+      & :after {
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
   }
 `;
