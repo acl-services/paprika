@@ -89,10 +89,10 @@ Option.propTypes = {
   value: PropTypes.any, // eslint-disable-line
 
   /** Internal prop, which shouldn't be documented */
-  internalHandleOnClick: PropTypes.func.isRequired,
+  internalHandleOnClick: PropTypes.func,
 
   /** Internal prop, which shouldn't be documented */
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
 
   /** Internal prop, which shouldn't be documented */
   preventDefaultOnSelect: PropTypes.bool,
@@ -102,6 +102,8 @@ Option.defaultProps = {
   hasNoIcon: false,
   isDisabled: false,
   isHidden: false,
+  id: "",
+  internalHandleOnClick: () => null,
   preventDefaultOnSelect: false,
   isSelected: null,
   defaultIsSelected: null,
