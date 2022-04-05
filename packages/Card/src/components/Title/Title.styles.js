@@ -8,7 +8,7 @@ export const Title = styled(Heading)`
   color: ${tokens.color.black};
   font-weight: bold;
   ${stylers.fontSize(0)};
-  line-height: 1.4;
-  margin: ${tokens.spaceSm} 0;
+  ${stylers.lineHeight()};;
+  margin: 0 0 ${tokens.spaceSm} 0;
   ${stylers.truncateText};
 `;
