@@ -13,6 +13,24 @@ export const boxSizingStyles = css`
   }
 `;
 
+export const bodyStyles = css`
+  ${lineHeight()};
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: ${tokens.color.black};
+  font-family: ${tokens.fontFamily.default};
+  font-size: ${tokens.fontSize.default};
+`;
+
+export const inheritStyleReset = css`
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+`;
+
 export const alignMiddle = css`
   align-items: center;
   display: flex;
@@ -148,26 +166,17 @@ export const placeholders = css`
 export const WebComponentGlobalStyle = createGlobalStyle`
   :host {
     & > div {
-      -moz-osx-font-smoothing: grayscale;
-      ${lineHeight()};
-      -webkit-font-smoothing: antialiased;
-      color: ${tokens.color.black};
-      font-family: ${tokens.fontFamily.default};
-      font-size: ${tokens.fontSize.default};
+      ${bodyStyles}
     }
-    * {
-      box-sizing: border-box;
-      & :before,
-      & :after {
-        box-sizing: border-box;
-      }
-    }
+   ${boxSizingStyles}
   }
+  ${inheritStyleReset}
+`;
 
-  button,
-  input,
-  select,
-  textarea {
-    font: inherit;
+export const GlobalStyle = createGlobalStyle`
+  body {
+    ${bodyStyles}
+    ${boxSizingStyles}
   }
+  ${inheritStyleReset}
 `;

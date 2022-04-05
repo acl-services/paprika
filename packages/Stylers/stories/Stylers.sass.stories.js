@@ -19,7 +19,11 @@ export const mixins = () => (
     <h4>
       <code>@globalStyle</code>;
     </h4>
-    A global style reset helper which is suggested to include in root style when create new service.
+    A global style reset helper which is suggested to include in root style when creates new service.
+    <h4>
+      <code>@webComponentGlobalStyle</code>;
+    </h4>
+    A global style reset helper which targets :host in web component.
     <Rule />
     <h4>
       <code>@truncate-text</code>

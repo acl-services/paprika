@@ -27,9 +27,14 @@ export const includes = () => (
   <Story>
     <h1>Include Examples</h1>
     <h4>
-      <code>&lt;stylers.WebComponentGlobalStyle /&gt;:</code>&nbsp;
+      <code>&lt;stylers.WebComponentGlobalStyle /&gt; </code>
     </h4>
-    By adding the following tag within `StyleSheetManager`, it resets global styles in web component.
+    Adding the above tag within <code>&lt;StyleSheetManager&gt;</code> resets global styles in a web component.
+    <Rule />
+    <h4>
+      <code>&lt;stylers.GlobalStyle /&gt;:</code>
+    </h4>
+    Adding the above tags resets global styles in an app component.
     <Rule />
     <h4>
       <code>stylers.truncateText()</code>
