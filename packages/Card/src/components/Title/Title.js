@@ -14,7 +14,7 @@ const defaultProps = {
 const Title = props => {
   const { children, ...moreProps } = props;
   return (
-    <sc.Title data-pka-anchor="card.title" level={2} {...moreProps}>
+    <sc.Title data-pka-anchor="card.title" level={2} {...moreProps} displayLevel={5}>
       {children}
     </sc.Title>
   );
