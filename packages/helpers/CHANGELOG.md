@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.4.0-next.0
+
+### Minor Changes
+
+- 49aa7f9: Fix ShadowRoot not defined error triggered in application unit tests
+
 ## 2.3.0
 
 ### Minor Changes

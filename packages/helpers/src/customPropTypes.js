@@ -58,4 +58,7 @@ export const FocusPropTypes = {
 export const RefOf = (propType = PropTypes.object) =>
   PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: propType })]);
 
-export const DOMElementType = PropTypes.oneOfType([PropTypes.instanceOf(Element), PropTypes.instanceOf(ShadowRoot)]);
+export const DOMElementType = PropTypes.oneOfType([
+  PropTypes.instanceOf(Element),
+  PropTypes.instanceOf(window.ShadowRoot),
+]);

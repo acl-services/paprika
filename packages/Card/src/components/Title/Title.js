@@ -12,12 +12,11 @@ const defaultProps = {
 };
 
 const Title = props => {
-  const { children } = props;
-
+  const { children, ...moreProps } = props;
   return (
-    <sc.titleStyles data-pka-anchor="card.title" {...props}>
+    <sc.Title data-pka-anchor="card.title" level={2} {...moreProps} displayLevel={5}>
       {children}
-    </sc.titleStyles>
+    </sc.Title>
   );
 };
 
