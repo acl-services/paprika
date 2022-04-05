@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.22-next.0
+
+### Patch Changes
+
+- Updated dependencies [49aa7f9]
+  - @paprika/helpers@2.4.0-next.0
+
 ## 0.0.21
 
 ### Patch Changes

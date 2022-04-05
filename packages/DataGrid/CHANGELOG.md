@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.32-next.0
+
+### Patch Changes
+
+- Updated dependencies [49aa7f9]
+  - @paprika/helpers@2.4.0-next.0
+  - @paprika/button@1.1.13-next.0
+  - @paprika/checkbox@1.0.23-next.0
+  - @paprika/panel@2.4.1-next.0
+  - @paprika/spinner@1.0.17-next.0
+
 ## 1.0.31
 
 ### Patch Changes
