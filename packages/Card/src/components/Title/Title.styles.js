@@ -5,6 +5,6 @@ import Heading from "@paprika/heading";
 
 export const Title = styled(Heading)`
   ${stylers.lineHeight()};
-  margin-bottom: 0 0 ${tokens.spaceSm} 0;
+  margin: 0 0 ${tokens.spaceSm} 0;
   ${stylers.truncateText};
 `;
