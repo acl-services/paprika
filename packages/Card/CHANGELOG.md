@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.3-next.1
+
+### Patch Changes
+
+- 176801f: Use paprika's heading component so Card.Title supports different semantic levels of headings
+
 ## 2.0.3-next.0
 
 ### Patch Changes
