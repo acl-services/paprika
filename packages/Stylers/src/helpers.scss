@@ -241,3 +241,50 @@ $leading-scale-ratio: 1.125;
     opacity: 1;
   }
 }
+
+/* Layout */
+@mixin boxSizingStyles() {
+  &,
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+}
+
+@mixin bodyStyles() {
+  font-size: $font-size--default;
+  line-height: line-height-scale();
+  color: $color--black;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: $font-family--default;
+}
+
+@mixin inheritStyleReset() {
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+}
+
+// Global Reset
+@mixin globalStyle() {
+  body {
+    @include bodyStyles();
+    @include boxSizingStyles();
+  }
+  @include inheritStyleReset();
+}
+
+@mixin webComponentGlobalStyle() {
+  :host {
+    & > div {
+      @include bodyStyles();
+    }
+    @include boxSizingStyles();
+  }
+  @include inheritStyleReset();
+}

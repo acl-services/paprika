@@ -1,5 +1,6 @@
-import { css } from "styled-components";
+import { css, createGlobalStyle } from "styled-components";
 import tokens from "@paprika/tokens";
+import { lineHeight } from "./helpers";
 
 /* Layout */
 
@@ -9,6 +10,24 @@ export const boxSizingStyles = css`
   *::before,
   *::after {
     box-sizing: border-box;
+  }
+`;
+
+export const bodyStyles = css`
+  ${lineHeight()};
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: ${tokens.color.black};
+  font-family: ${tokens.fontFamily.default};
+  font-size: ${tokens.fontSize.default};
+`;
+
+export const inheritStyleReset = css`
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
   }
 `;
 
@@ -142,4 +161,22 @@ export const placeholders = css`
     ${disabledPlaceholder};
     opacity: 1;
   }
+`;
+
+export const WebComponentGlobalStyle = createGlobalStyle`
+  :host {
+    & > div {
+      ${bodyStyles}
+    }
+   ${boxSizingStyles}
+  }
+  ${inheritStyleReset}
+`;
+
+export const GlobalStyle = createGlobalStyle`
+  body {
+    ${bodyStyles}
+    ${boxSizingStyles}
+  }
+  ${inheritStyleReset}
 `;
