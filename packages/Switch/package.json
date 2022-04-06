@@ -1,6 +1,6 @@
 {
   "name": "@paprika/switch",
-  "version": "1.0.18-next.0",
+  "version": "1.0.18-next.1",
   "description": "Switch component for turning a setting on or off.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -18,8 +18,8 @@
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/constants": "^1.0.0",
     "@paprika/helpers": "^2.4.0-next.0",
-    "@paprika/raw-button": "^1.0.12",
-    "@paprika/stylers": "^1.1.6",
+    "@paprika/raw-button": "^1.0.13-next.0",
+    "@paprika/stylers": "^1.1.7-next.0",
     "@paprika/tokens": "^2.0.0",
     "prop-types": "^15.7.2"
   },

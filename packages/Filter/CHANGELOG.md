@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.1.4-next.1
+
+### Patch Changes
+
+- Updated dependencies [dae4008]
+  - @paprika/stylers@1.1.7-next.0
+  - @paprika/button@1.1.13-next.1
+  - @paprika/date-picker@2.0.7-next.1
+  - @paprika/input@4.0.19-next.1
+  - @paprika/list-box@4.0.7-next.1
+  - @paprika/panel@2.4.1-next.1
+  - @paprika/radio@1.0.25-next.1
+  - @paprika/select@2.0.13-next.1
+
 ## 2.1.4-next.0
 
 ### Patch Changes

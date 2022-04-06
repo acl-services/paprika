@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.3-next.2
+
+### Patch Changes
+
+- Updated dependencies [dae4008]
+  - @paprika/stylers@1.1.7-next.0
+  - @paprika/heading@1.0.15-next.0
+
 ## 2.0.3-next.1
 
 ### Patch Changes

@@ -1,5 +1,20 @@
 # @paprika/inline-editors
 
+## 1.0.9-next.1
+
+### Patch Changes
+
+- Updated dependencies [dae4008]
+  - @paprika/stylers@1.1.7-next.0
+  - @paprika/input@4.0.19-next.1
+  - @paprika/list-box@4.0.7-next.1
+  - @paprika/popover@2.0.5-next.1
+  - @paprika/raw-button@1.0.13-next.0
+  - @paprika/spinner@1.0.17-next.1
+  - @paprika/table@1.2.23-next.1
+  - @paprika/tag@0.0.22-next.1
+  - @paprika/textarea@3.0.9-next.1
+
 ## 1.0.9-next.0
 
 ### Patch Changes

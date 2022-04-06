@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.0.22-next.1
+
+### Patch Changes
+
+- Updated dependencies [dae4008]
+  - @paprika/stylers@1.1.7-next.0
+  - @paprika/button@1.1.13-next.1
+  - @paprika/counter@1.1.6-next.1
+  - @paprika/heading@1.0.15-next.0
+
 ## 2.0.22-next.0
 
 ### Patch Changes

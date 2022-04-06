@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.13-next.1
+
+### Patch Changes
+
+- Updated dependencies [dae4008]
+  - @paprika/stylers@1.1.7-next.0
+  - @paprika/raw-button@1.0.13-next.0
+
 ## 1.1.13-next.0
 
 ### Patch Changes
