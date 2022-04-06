@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.0.7-next.1
+
+### Patch Changes
+
+- Updated dependencies [dae4008]
+  - @paprika/stylers@1.1.7-next.0
+  - @paprika/button@1.1.13-next.1
+  - @paprika/checkbox@1.0.23-next.1
+  - @paprika/input@4.0.19-next.1
+  - @paprika/popover@2.0.5-next.1
+  - @paprika/raw-button@1.0.13-next.0
+  - @paprika/toast@1.1.21-next.1
+
 ## 4.0.7-next.0
 
 ### Patch Changes

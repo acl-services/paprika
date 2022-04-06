@@ -1,5 +1,11 @@
 # @paprika/stylers
 
+## 1.1.7-next.0
+
+### Patch Changes
+
+- dae4008: Add global style reset helper
+
 ## 1.1.6
 
 ### Patch Changes

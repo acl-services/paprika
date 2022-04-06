@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.21-next.0
+
+### Patch Changes
+
+- Updated dependencies [dae4008]
+  - @paprika/stylers@1.1.7-next.0
+  - @paprika/collapsible@1.2.2-next.0
+
 ## 1.1.20
 
 ### Patch Changes

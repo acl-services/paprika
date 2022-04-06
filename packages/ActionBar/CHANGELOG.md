@@ -1,5 +1,18 @@
 # Changelog
 
+## 5.0.5-next.1
+
+### Patch Changes
+
+- Updated dependencies [dae4008]
+  - @paprika/stylers@1.1.7-next.0
+  - @paprika/button@1.1.13-next.1
+  - @paprika/input@4.0.19-next.1
+  - @paprika/popover@2.0.5-next.1
+  - @paprika/select@2.0.13-next.1
+  - @paprika/sortable@1.2.13-next.1
+  - @paprika/switch@1.0.18-next.1
+
 ## 5.0.5-next.0
 
 ### Patch Changes

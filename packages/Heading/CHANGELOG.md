@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.15-next.0
+
+### Patch Changes
+
+- Updated dependencies [dae4008]
+  - @paprika/stylers@1.1.7-next.0
+
 ## 1.0.14
 
 ### Patch Changes

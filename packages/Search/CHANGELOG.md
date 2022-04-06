@@ -1,5 +1,15 @@
 # @paprika/search
 
+## 2.0.7-next.1
+
+### Patch Changes
+
+- Updated dependencies [dae4008]
+  - @paprika/stylers@1.1.7-next.0
+  - @paprika/input@4.0.19-next.1
+  - @paprika/list-box@4.0.7-next.1
+  - @paprika/raw-button@1.0.13-next.0
+
 ## 2.0.7-next.0
 
 ### Patch Changes
