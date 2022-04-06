@@ -161,12 +161,7 @@ const Uploader = React.forwardRef((props, ref) => {
       if (isDisabled || isBusy) return;
 
       const files = getFiles({ event, maxFileSize, supportedMimeTypes, endpoint });
-      setFiles(() => {
-        if (refInput.current) {
-          refInput.current.value = "";
-        }
-        return canChooseMultiple ? files : [files[0]]; // in case only allow one file per upload
-      });
+      setFiles(() => (canChooseMultiple ? files : [files[0]])); // in case only allow one file per upload
       onChange(files);
     },
     [canChooseMultiple, endpoint, isDisabled, isBusy, maxFileSize, setFiles, supportedMimeTypes, onChange]
