@@ -74,6 +74,7 @@
     "@paprika/seducer": "2.0.3"
   },
   "changesets": [
+    "famous-queens-switch",
     "forty-trainers-check",
     "hip-jokes-care",
     "stupid-garlics-hammer",

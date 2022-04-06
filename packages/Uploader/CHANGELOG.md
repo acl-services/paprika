@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.1.1-next.2
+
+### Patch Changes
+
+- 29c9db7: Stop reseting input value
+
 ## 4.1.1-next.1
 
 ### Patch Changes
