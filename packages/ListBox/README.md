@@ -100,20 +100,20 @@ see: options/helpers/options.js|
 
 ### ListBox.Option
 
-| Prop                   | Type        | required | default | Description                                                                            |
-| ---------------------- | ----------- | -------- | ------- | -------------------------------------------------------------------------------------- |
-| children               | [node,func] | true     | -       | String, number or JSX content                                                          |
-| isSelected             | bool        | false    | null    |                                                                                        |
-| defaultIsSelected      | bool        | false    | null    | Describe if the option started as selected or not                                      |
-| hasNoIcon              | bool        | false    | false   | When no PlusIcon or CheckBox are needed                                                |
-| isDisabled             | bool        | false    | false   | Describe if the option is enable or not                                                |
-| isHidden               | bool        | false    | false   | Describe if the option is hidden or not                                                |
-| label                  | string      | false    | null    | When the children are not a String, label should need to be add so the filter can work |
-| onClick                | func        | false    | null    | Callback for the clicking event                                                        |
-| value                  | any         | false    | null    | Value of your option this can be any data structure                                    |
-| internalHandleOnClick  | func        | true     | -       | Internal prop, which shouldn't be documented                                           |
-| id                     | string      | true     | -       | Internal prop, which shouldn't be documented                                           |
-| preventDefaultOnSelect | bool        | false    | false   | Internal prop, which shouldn't be documented                                           |
+| Prop                   | Type        | required | default    | Description                                                                            |
+| ---------------------- | ----------- | -------- | ---------- | -------------------------------------------------------------------------------------- |
+| children               | [node,func] | true     | -          | String, number or JSX content                                                          |
+| isSelected             | bool        | false    | null       |                                                                                        |
+| defaultIsSelected      | bool        | false    | null       | Describe if the option started as selected or not                                      |
+| hasNoIcon              | bool        | false    | false      | When no PlusIcon or CheckBox are needed                                                |
+| isDisabled             | bool        | false    | false      | Describe if the option is enable or not                                                |
+| isHidden               | bool        | false    | false      | Describe if the option is hidden or not                                                |
+| label                  | string      | false    | null       | When the children are not a String, label should need to be add so the filter can work |
+| onClick                | func        | false    | null       | Callback for the clicking event                                                        |
+| value                  | any         | false    | null       | Value of your option this can be any data structure                                    |
+| internalHandleOnClick  | func        | false    | () => null | Internal prop, which shouldn't be documented                                           |
+| id                     | string      | false    | ""         | Internal prop, which shouldn't be documented                                           |
+| preventDefaultOnSelect | bool        | false    | false      | Internal prop, which shouldn't be documented                                           |
 
 ### ListBox.Popover
 
