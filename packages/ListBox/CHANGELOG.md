@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.0.7-next.2
+
+### Patch Changes
+
+- 05b1757: Make `internalHandleOnClick` and `id` props optional
+
 ## 4.0.7-next.1
 
 ### Patch Changes
