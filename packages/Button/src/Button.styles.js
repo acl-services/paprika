@@ -52,7 +52,11 @@ const borderStyles = ({ kind, isDisabled, isActive }) => css`
 
 const focusStyles = css`
   &:focus {
-    outline: none;
+    ${stylers.focusRing()}
+
+    &:not(:focus-visible) {
+      box-shadow: none;
+    }
   }
 
   &:focus-visible,
@@ -96,7 +100,9 @@ const disabledTextStyles = css`
 `;
 
 export const activeStyles = css`
-  ${stylers.focusRing.bordered()}
+  &&& {
+    ${stylers.focusRing.bordered()}
+  }
 `;
 
 // Common
