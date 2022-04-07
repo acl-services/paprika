@@ -11,10 +11,6 @@ export const PanelHeaderWrapper = styled.span`
   }
 `;
 
-export const FilterPanel = styled.div`
-  padding: ${spacer(2)};
-`;
-
 export const Footer = styled.div`
   display: flex;
   flex-grow: 1;

@@ -82,7 +82,7 @@ export default function Filter(props) {
         >
           {getLabelText(numberApplied, I18n)}
         </Panel.Trigger>
-        <sc.FilterPanel ref={filterRef}>
+        <Panel.Content ref={filterRef}>
           {React.Children.count(children) === 0 ? (
             <sc.GenericNoAppliedPlaceholder>{I18n.t("filter.no_filters_applied")}</sc.GenericNoAppliedPlaceholder>
           ) : (
@@ -93,7 +93,7 @@ export default function Filter(props) {
               {I18n.t("filter.actions.add")}
             </Button>
           )}
-        </sc.FilterPanel>
+        </Panel.Content>
         <Panel.Footer isSticky>
           <sc.Footer>
             <Button data-pka-anchor="filter.applyButton" onClick={handleApply} kind="primary">
