@@ -6,6 +6,7 @@ import OriginalOverlay from "@paprika/overlay";
 import Overlay from "./components/Overlay";
 import FocusLock from "./components/FocusLock";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer";
 import Content from "./components/Content/Content";
 import * as sc from "./Takeover.styles";
 
@@ -51,12 +52,14 @@ export default function Takeover(props) {
     "Takeover.Content": contentExtracted,
     "Takeover.FocusLock": focusLockExtracted,
     "Takeover.Header": headerExtracted,
+    "Takeover.Footer": footerExtracted,
     "Takeover.Overlay": overlayExtracted,
     children,
   } = extractChildren(moreProps.children, [
     "Takeover.Content",
     "Takeover.FocusLock",
     "Takeover.Header",
+    "Takeover.Footer",
     "Takeover.Overlay",
   ]);
 
@@ -111,6 +114,7 @@ export default function Takeover(props) {
             </sc.Content>
           )}
           {children}
+          {footerExtracted}
         </sc.Takeover>
       )}
     </OriginalOverlay>
@@ -122,6 +126,7 @@ Takeover.propTypes = propTypes;
 Takeover.defaultProps = defaultProps;
 
 Takeover.Header = Header;
+Takeover.Footer = Footer;
 Takeover.Content = Content;
 Takeover.FocusLock = FocusLock;
 Takeover.Overlay = Overlay;

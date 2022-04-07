@@ -28,6 +28,7 @@ export const showcase = () => (
           </p>
         ))}
       </Takeover.Content>
+      <Takeover.Footer>I am footer here</Takeover.Footer>
     </TakeoverStory>
   </ExampleStory>
 );
