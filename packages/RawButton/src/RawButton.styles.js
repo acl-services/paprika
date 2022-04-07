@@ -6,9 +6,15 @@ const focusStyles = isInset => css`
     outline: none;
   }
 
-  html:not([data-whatinput="mouse"]) &:focus,
+  &:focus-visible,
   &[data-has-forced-focus]:focus {
     ${stylers.focusRing(isInset)}
+  }
+
+  &[aria-disabled="true"]:focus-visible {
+    ${stylers.focusRing.subtle(isInset)}
+    border-color: transparent;
+    box-shadow: none;
   }
 `;
 

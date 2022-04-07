@@ -55,15 +55,9 @@ const focusStyles = css`
     outline: none;
   }
 
-  html:not([data-whatinput="mouse"]) &:focus,
+  &:focus-visible,
   &[data-has-forced-focus]:focus {
     ${stylers.focusRing.bordered()}
-  }
-
-  html:not([data-whatinput="mouse"]) &[aria-disabled="true"]:focus {
-    ${stylers.focusRing.subtle()}
-    border-color: transparent;
-    box-shadow: none;
   }
 `;
 
