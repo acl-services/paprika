@@ -21,7 +21,7 @@ function Trigger(props) {
       aria-expanded={isOpen}
       aria-haspopup
       onClick={e => {
-        onOpenMenu();
+        onOpenMenu(e);
         onClick(e);
       }}
       isSemantic={false}
