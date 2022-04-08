@@ -9,6 +9,26 @@ const LongBlock = styled.div`
   padding-bottom: 200vh;
 `;
 
+const FooterButtonGroup = styled.div`
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: space-between;
+`;
+
+export const CustomFooterLayout = () => (
+  <FooterButtonGroup>
+    <Button kind={Button.types.kind.MINOR} size="medium">
+      Cancel
+    </Button>
+    <div>
+      <Button size="medium">Go Back</Button>
+      <Button kind={Button.types.kind.PRIMARY} size="medium">
+        Continue
+      </Button>
+    </div>
+  </FooterButtonGroup>
+);
+
 const TakeoverStory = ({ children }) => {
   const [isOpen, setIsOpen] = React.useState(true);
   const toggle = () => {
