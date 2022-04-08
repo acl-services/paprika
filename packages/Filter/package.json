@@ -1,6 +1,6 @@
 {
   "name": "@paprika/filter",
-  "version": "2.1.4-next.1",
+  "version": "2.1.4-next.2",
   "description": "Filter",
   "author": "@paprika",
   "license": "MIT",
@@ -25,7 +25,7 @@
     "@paprika/panel": "^2.4.1-next.1",
     "@paprika/radio": "^1.0.25-next.1",
     "@paprika/select": "^2.0.13-next.1",
-    "@paprika/stylers": "^1.1.7-next.0",
+    "@paprika/stylers": "^1.1.7-next.1",
     "@paprika/tokens": "^2.0.0",
     "immer": "^9.0.12",
     "prop-types": "^15.7.2",

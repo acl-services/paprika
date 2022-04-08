@@ -1,5 +1,12 @@
 <!-- content -->
 
+## 1.0.43-next.2
+
+### Patch Changes
+
+- Updated dependencies [9f10d8c]
+  - @paprika/stylers@1.1.7-next.1
+
 ## 1.0.43-next.1
 
 ### Patch Changes
