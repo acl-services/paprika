@@ -74,9 +74,11 @@
     "@paprika/seducer": "2.0.3"
   },
   "changesets": [
+    "famous-bulldogs-sip",
     "famous-queens-switch",
     "forty-trainers-check",
     "hip-jokes-care",
+    "sour-boats-suffer",
     "stupid-garlics-hammer",
     "twenty-brooms-smoke"
   ]

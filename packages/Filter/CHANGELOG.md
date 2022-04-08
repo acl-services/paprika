@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.1.4-next.2
+
+### Patch Changes
+
+- 97c999a: ### Changed
+
+  - Add padding around filter panel.
+  - change data-pka-anchor for Dialog from "panel.content" to "panel.dialog-content" to differentiate it from <Panel.Content>
+
+- Updated dependencies [9f10d8c]
+  - @paprika/stylers@1.1.7-next.1
+
 ## 2.1.4-next.1
 
 ### Patch Changes

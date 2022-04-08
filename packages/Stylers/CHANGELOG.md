@@ -1,5 +1,11 @@
 # @paprika/stylers
 
+## 1.1.7-next.1
+
+### Patch Changes
+
+- 9f10d8c: add margin and padding zero in reset css
+
 ## 1.1.7-next.0
 
 ### Patch Changes
