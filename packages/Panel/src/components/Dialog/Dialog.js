@@ -33,7 +33,7 @@ function Dialog(props) {
   const dialogMain = (
     <>
       <sc.DialogContent
-        data-pka-anchor="panel.content"
+        data-pka-anchor="panel.dialog-content"
         hasPushedElement={!!getPushContentElement}
         isOpen={isOpen}
         ref={refPanelContent}

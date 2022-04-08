@@ -20,6 +20,8 @@ export const bodyStyles = css`
   color: ${tokens.color.black};
   font-family: ${tokens.fontFamily.default};
   font-size: ${tokens.fontSize.default};
+  margin: 0;
+  padding: 0;
 `;
 
 export const inheritStyleReset = css`
