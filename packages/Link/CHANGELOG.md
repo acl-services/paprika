@@ -1,5 +1,13 @@
 # @paprika/link
 
+## 1.0.7
+
+### Patch Changes
+
+- Updated dependencies [9f10d8c]
+- Updated dependencies [dae4008]
+  - @paprika/stylers@1.1.7
+
 ## 1.0.7-next.0
 
 ### Patch Changes
