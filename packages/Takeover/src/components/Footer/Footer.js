@@ -3,11 +3,12 @@ import styled from "styled-components";
 import Button from "@paprika/button";
 import PropTypes from "prop-types";
 import tokens from "@paprika/tokens";
+import useI18n from "@paprika/l10n/lib/useI18n";
+import { spacer } from "@paprika/stylers/lib/helpers";
 
 const StyledFooter = styled.div`
-  margin: ${tokens.space};
-  padding: ${tokens.space};
-  padding-top: 0;
+  background: ${tokens.color.blackLighten70};
+  padding: ${spacer(2)};
   [data-pka-anchor="button"] {
     &:nth-child(2) {
       margin-left: ${tokens.space};
@@ -16,15 +17,16 @@ const StyledFooter = styled.div`
 `;
 
 export default function Footer({ children, onSaveClick, onCancelClick, ...moreProps }) {
+  const I18n = useI18n();
   return (
     <StyledFooter ata-pka-anchor="takeover.footer" {...moreProps}>
       {children || (
         <>
-          <Button kind={Button.types.kind.PRIMARY} size="medium" onClick={onSaveClick}>
-            Save
+          <Button kind={Button.types.kind.PRIMARY} size="large" onClick={onSaveClick}>
+            {I18n.t("actions.confirm")}
           </Button>
-          <Button kind={Button.types.kind.MINOR} size="medium" onClick={onCancelClick}>
-            Cancel
+          <Button kind={Button.types.kind.MINOR} size="large" onClick={onCancelClick}>
+            {I18n.t("actions.cancel")}
           </Button>
         </>
       )}
