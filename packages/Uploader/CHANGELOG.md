@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.1.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [16c9b8d]
+  - @paprika/button@1.1.14-next.0
+  - @paprika/raw-button@1.0.14-next.0
+  - @paprika/popover@2.0.6-next.0
+
 ## 4.1.1
 
 ### Patch Changes

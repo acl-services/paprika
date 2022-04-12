@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.0.9-next.0
+
+### Patch Changes
+
+- Updated dependencies [16c9b8d]
+- Updated dependencies [16c9b8d]
+  - @paprika/button@1.1.14-next.0
+  - @paprika/raw-button@1.0.14-next.0
+  - @paprika/overflow-menu@2.0.9-next.0
+  - @paprika/popover@2.0.6-next.0
+
 ## 2.0.8
 
 ### Patch Changes

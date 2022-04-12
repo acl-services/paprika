@@ -1,6 +1,6 @@
 {
   "name": "@paprika/link",
-  "version": "1.0.7",
+  "version": "1.0.8-next.0",
   "description": "The Link component produces a standard anchor tag that navigates to another URL.",
   "author": "@paprika",
   "license": "MIT",

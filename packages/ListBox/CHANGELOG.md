@@ -1,5 +1,16 @@
 # Changelog
 
+## 4.0.8-next.0
+
+### Patch Changes
+
+- Updated dependencies [16c9b8d]
+  - @paprika/button@1.1.14-next.0
+  - @paprika/raw-button@1.0.14-next.0
+  - @paprika/input@4.0.20-next.0
+  - @paprika/toast@1.1.22-next.0
+  - @paprika/popover@2.0.6-next.0
+
 ## 4.0.7
 
 ### Patch Changes

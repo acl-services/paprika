@@ -1,5 +1,11 @@
 # @paprika/dynamic-hyperlink-transformer
 
+## 1.1.28-next.0
+
+### Patch Changes
+
+- @paprika/tabs@2.3.7-next.0
+
 ## 1.1.27
 
 ### Patch Changes

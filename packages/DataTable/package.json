@@ -34,8 +34,8 @@
     "react-window-infinite-loader": "^1.0.7"
   },
   "devDependencies": {
-    "@paprika/input": "^4.0.19",
-    "@paprika/button": "^1.1.13",
+    "@paprika/input": "^4.0.20-next.0",
+    "@paprika/button": "^1.1.14-next.0",
     "@types/lodash.debounce": "^4.0.6",
     "@types/lodash.isequal": "^4.5.5",
     "@types/react-table": "^7.7.7",

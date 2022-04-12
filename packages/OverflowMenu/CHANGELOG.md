@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.0.9-next.0
+
+### Patch Changes
+
+- 16c9b8d: ### Changed
+
+  - Replaced `what-input` package with plain JavaScript to support using in a web component.
+
+- Updated dependencies [16c9b8d]
+  - @paprika/button@1.1.14-next.0
+  - @paprika/raw-button@1.0.14-next.0
+  - @paprika/confirmation@1.1.22-next.0
+  - @paprika/popover@2.0.6-next.0
+
 ## 2.0.8
 
 ### Patch Changes
