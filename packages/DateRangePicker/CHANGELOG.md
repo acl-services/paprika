@@ -1,5 +1,18 @@
 # @paprika/date-range-picker
 
+## 1.0.34
+
+### Patch Changes
+
+- Updated dependencies [49aa7f9]
+- Updated dependencies [9f10d8c]
+- Updated dependencies [dae4008]
+  - @paprika/helpers@2.4.0
+  - @paprika/stylers@1.1.7
+  - @paprika/calendar@2.0.7
+  - @paprika/date-input@1.0.29
+  - @paprika/popover@2.0.5
+
 ## 1.0.34-next.1
 
 ### Patch Changes

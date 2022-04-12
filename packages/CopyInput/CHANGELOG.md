@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.3.16
+
+### Patch Changes
+
+- Updated dependencies [49aa7f9]
+  - @paprika/helpers@2.4.0
+  - @paprika/button@1.1.13
+  - @paprika/input@4.0.19
+  - @paprika/popover@2.0.5
+  - @paprika/toast@1.1.21
+
 ## 1.3.16-next.0
 
 ### Patch Changes
