@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
-import "what-input";
 import Popover from "@paprika/popover";
 import { extractChildren } from "@paprika/helpers";
 import { zValue } from "@paprika/stylers/lib/helpers";
@@ -51,6 +50,8 @@ const defaultProps = {
 
 const popoverOffset = 4;
 
+const focusDelay = 250;
+
 const OverflowMenu = React.forwardRef((props, ref) => {
   const { align, children, edge, isOpen: controlledIsOpen, onClose, zIndex, maxHeight, ...moreProps } = props;
 
@@ -99,13 +100,14 @@ const OverflowMenu = React.forwardRef((props, ref) => {
     }
   };
 
-  const handleOpenMenu = () => {
+  const handleOpenMenu = event => {
+    const isKeyboardEvent = event.nativeEvent instanceof KeyboardEvent;
     setIsOpenValue(true);
 
-    if (document.querySelector("html").getAttribute("data-whatinput") === "keyboard") {
+    if (isKeyboardEvent) {
       setTimeout(() => {
         focusAndSetIndex(0);
-      }, 250);
+      }, focusDelay);
     }
   };
 

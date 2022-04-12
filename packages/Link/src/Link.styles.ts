@@ -58,7 +58,7 @@ export const LinkContent = styled.span<{ hasTruncation: boolean }>(
 export const ExternalLinkIcon = styled(NewTabIcon)`
   color: ${tokens.textColor.icon};
   display: inline-block;
-  font-size: 20px; // TO-DO: replace with tokens
+  font-size: ${tokens.icon.sizeSm};
   min-width: 20px;
   &[data-pka-anchor="icon"] {
     margin-right: 0;
@@ -85,11 +85,14 @@ export const Link = styled.a<{
 
       &:focus {
         outline: none;
+        ${!isMenu && `border-radius: ${tokens.border.radius};`}
+        ${isMenu ? stylers.focusRing(true) : stylers.focusRing()}
+               &:not(:focus-visible) {
+          box-shadow: none;
+        }
       }
-
-      html:not([data-whatinput="mouse"]) &:focus,
+      &:focus-visible,
       &[data-has-forced-focus]:focus {
-        ${isMenu ? "" : `border-radius: ${tokens.border.radius};`}
         ${isMenu ? stylers.focusRing(true) : stylers.focusRing()}
       }
 

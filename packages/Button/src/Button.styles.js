@@ -52,18 +52,16 @@ const borderStyles = ({ kind, isDisabled, isActive }) => css`
 
 const focusStyles = css`
   &:focus {
-    outline: none;
+    ${stylers.focusRing()}
+
+    &:not(:focus-visible) {
+      box-shadow: none;
+    }
   }
 
-  html:not([data-whatinput="mouse"]) &:focus,
+  &:focus-visible,
   &[data-has-forced-focus]:focus {
     ${stylers.focusRing.bordered()}
-  }
-
-  html:not([data-whatinput="mouse"]) &[aria-disabled="true"]:focus {
-    ${stylers.focusRing.subtle()}
-    border-color: transparent;
-    box-shadow: none;
   }
 `;
 
@@ -102,7 +100,9 @@ const disabledTextStyles = css`
 `;
 
 export const activeStyles = css`
-  ${stylers.focusRing.bordered()}
+  &&& {
+    ${stylers.focusRing.bordered()}
+  }
 `;
 
 // Common
