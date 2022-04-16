@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.0.21
+
+### Patch Changes
+
+- Updated dependencies [16c9b8d]
+  - @paprika/button@1.1.14
+  - @paprika/raw-button@1.0.14
+  - @paprika/panel@2.4.2
+  - @paprika/popover@2.0.6
+
 ## 3.0.21-next.0
 
 ### Patch Changes

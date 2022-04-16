@@ -1,5 +1,13 @@
 # @paprika/link
 
+## 1.0.8
+
+### Patch Changes
+
+- 16c9b8d: ### Changed
+
+  - Replaced `what-input` package with `:focus-visible` styling to support using in a web component.
+
 ## 1.0.8-next.0
 
 ### Patch Changes

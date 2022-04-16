@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.23
+
+### Patch Changes
+
+- Updated dependencies [16c9b8d]
+  - @paprika/raw-button@1.0.14
+
 ## 0.0.23-next.0
 
 ### Patch Changes

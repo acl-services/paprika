@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.1.14
+
+### Patch Changes
+
+- 16c9b8d: ### Changed
+
+  - Replaced `what-input` package with `:focus-visible` styling to support using in a web component.
+
+- Updated dependencies [16c9b8d]
+  - @paprika/raw-button@1.0.14
+
 ## 1.1.14-next.0
 
 ### Patch Changes

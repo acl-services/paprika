@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.30
+
+### Patch Changes
+
+- @paprika/input@4.0.20
+
 ## 1.0.30-next.0
 
 ### Patch Changes

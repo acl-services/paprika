@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.2.24
+
+### Patch Changes
+
+- Updated dependencies [16c9b8d]
+- Updated dependencies [16c9b8d]
+  - @paprika/button@1.1.14
+  - @paprika/overflow-menu@2.0.9
+
 ## 1.2.24-next.0
 
 ### Patch Changes

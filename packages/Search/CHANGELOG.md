@@ -1,5 +1,14 @@
 # @paprika/search
 
+## 2.0.8
+
+### Patch Changes
+
+- Updated dependencies [16c9b8d]
+  - @paprika/raw-button@1.0.14
+  - @paprika/input@4.0.20
+  - @paprika/list-box@4.0.8
+
 ## 2.0.8-next.0
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.44
+
+### Patch Changes
+
+- Updated dependencies [16c9b8d]
+  - @paprika/raw-button@1.0.14
+  - @paprika/list-box@4.0.8
+
 ## 1.0.44-next.0
 
 ### Patch Changes
