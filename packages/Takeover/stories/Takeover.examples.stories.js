@@ -6,7 +6,7 @@ import { repeat } from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
 import stylers from "@paprika/stylers";
 import Button from "@paprika/button";
-import TakeoverStory from "./TakeoverStory";
+import TakeoverStory, { CustomFooterLayout } from "./TakeoverStory";
 import Takeover from "../src";
 
 const DemoFullWidthContent = styled.div`
@@ -43,6 +43,7 @@ export const basic = () => (
           </p>
         ))}
       </Takeover.Content>
+      <Takeover.Footer />
     </TakeoverStory>
   </ExampleStory>
 );
@@ -66,6 +67,9 @@ export const autoFocusDisable = () => (
       <Takeover.Content>
         <input type="text" data-autofocus />
       </Takeover.Content>
+      <Takeover.Footer>
+        <CustomFooterLayout />
+      </Takeover.Footer>
     </TakeoverStory>
   </ExampleStory>
 );

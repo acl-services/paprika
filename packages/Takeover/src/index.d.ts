@@ -42,6 +42,18 @@ declare namespace Takeover {
   }
 }
 declare namespace Takeover {
+  function Footer(props: FooterProps): JSX.Element;
+  interface FooterProps {
+    [x: string]: any;
+    /** The footer for the Takeover. Button size needs to be LARGE as per design guideline */
+    children?: React.ReactNode;
+    /** Save Callback triggered when want to use default layout of the footer */
+    onSaveClick?: (...args: any[]) => any;
+    /** Cancel Callback triggered when want to use default layout of the footer */
+    onCancelClick?: (...args: any[]) => any;
+  }
+}
+declare namespace Takeover {
   function FocusLock(props: FocusLockProps): JSX.Element;
   interface FocusLockProps {
     [x: string]: any;

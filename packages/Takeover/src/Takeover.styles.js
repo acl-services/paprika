@@ -65,8 +65,9 @@ export const Header = styled(OriginalHeader)`
 
 export const Content = styled.div`
   flex-grow: 1;
+  height: 100%;
   overflow-y: auto;
-
+  position: relative;
   &:focus {
     ${stylers.focusRing.subtle(true)};
   }

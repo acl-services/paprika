@@ -8,6 +8,8 @@ const kinds = {
   PRIMARY: `background: ${tokens.color.purple}; color: ${tokens.color.white};`,
 };
 
+export const headerHeight = `${spacer(8)}`;
+
 export const Header = styled.div(
   ({ kind }) => css`
     align-items: center;
@@ -15,13 +17,13 @@ export const Header = styled.div(
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
-    min-height: ${spacer(8)};
+    min-height: ${headerHeight};
+    overflow: auto;
     width: 100%;
-    z-index: 1;
     &:focus {
       outline: 0;
     }
-
+    z-index: 1;
     ${kinds[kind]}
   `
 );

@@ -30,11 +30,13 @@
   "peerDependencies": {
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "styled-components": "^4.2.0"
+    "styled-components": "^4.2.0",
+    "@paprika/l10n": "^1.1.15"
   },
   "paprikaDocs": {
     "subComponents": [
       "Header",
+      "Footer",
       "Content",
       "FocusLock",
       "Overlay"

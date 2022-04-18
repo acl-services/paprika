@@ -7,7 +7,7 @@ import Button from "@paprika/button";
 import Panel from "@paprika/panel";
 import Popover from "@paprika/popover";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
-import TakeoverStory from "./TakeoverStory";
+import TakeoverStory, { CustomFooterLayout } from "./TakeoverStory";
 import Takeover from "../src";
 
 const storyName = getStoryName("Takeover");
@@ -33,6 +33,9 @@ export const nestedPanel = () =>
             <Panel.Header>Header</Panel.Header>
           </Panel>
         </Takeover.Content>
+        <Takeover.Footer>
+          <CustomFooterLayout />
+        </Takeover.Footer>
       </TakeoverStory>
     );
   });
@@ -63,6 +66,7 @@ export const withPopOver = () => (
         <Popover.Tip />
       </Popover>
     </Takeover.Content>
+    <Takeover.Footer />
   </TakeoverStory>
 );
 

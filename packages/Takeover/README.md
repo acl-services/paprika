@@ -45,6 +45,14 @@ npm install @paprika/takeover
 | refHeading     | custom                                                  | false    | null                      |                                                                       |
 | tools          | node                                                    | false    | null                      | Add node object to the right side of heading next to the close button |
 
+### Takeover.Footer
+
+| Prop          | Type | required | default  | Description                                                                        |
+| ------------- | ---- | -------- | -------- | ---------------------------------------------------------------------------------- |
+| children      | node | false    | null     | The footer for the Takeover. Button size needs to be LARGE as per design guideline |
+| onSaveClick   | func | false    | () => {} | Save Callback triggered when want to use default layout of the footer              |
+| onCancelClick | func | false    | () => {} | Cancel Callback triggered when want to use default layout of the footer            |
+
 ### Takeover.FocusLock
 
 | Prop        | Type | required | default | Description |
@@ -61,6 +69,7 @@ You can use any of the following components to compose the Takeover:
 ```jsx
 <Takeover.Header />
 <Takeover.Content />
+<Takeover.Footer />
 <Takeover.FocusLock />
 ```
 
@@ -70,6 +79,7 @@ Basic Example
 <Takeover isOpen={isOpen} onClose={toggle}>
   <Takeover.Header>Header</Takeover.Header>
   <Takeover.Content>My content</Takeover.Content>
+  <Takeover.Footer onSaveClick={toggle} onCancelClick={toggle} />
 </Takeover>
 ```
 
