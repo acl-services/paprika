@@ -157,8 +157,13 @@ const Uploader = React.forwardRef((props, ref) => {
   });
 
   const handleChange = React.useCallback(
-    event => {
+    (event, fromDrop) => {
       if (isDisabled || isBusy) return;
+
+      if (fromDrop && refInput.current) {
+        // eslint-disable-next-line no-param-reassign
+        refInput.current.files = canChooseMultiple ? event.dataTransfer.files : event.dataTransfer.files[0];
+      }
 
       const files = getFiles({ event, maxFileSize, supportedMimeTypes, endpoint });
       setFiles(() => (canChooseMultiple ? files : [files[0]])); // in case only allow one file per upload
