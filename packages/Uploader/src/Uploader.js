@@ -161,7 +161,6 @@ const Uploader = React.forwardRef((props, ref) => {
       if (isDisabled || isBusy) return;
 
       if (fromDrop && refInput.current) {
-        // eslint-disable-next-line no-param-reassign
         refInput.current.files = canChooseMultiple ? event.dataTransfer.files : event.dataTransfer.files[0];
       }
 
