@@ -18,11 +18,12 @@ export default function useDragAndDropZoneEvents({ dropArea = () => document.bod
     }
 
     function onDrop(event) {
+      const fromDrop = true;
       // this prevent images from rendering on the browser
       setisDraggingOver(() => false);
       setIsDragLeave(() => true);
       event.preventDefault();
-      handleChange(event);
+      handleChange(event, fromDrop);
     }
 
     const element = dropArea();
