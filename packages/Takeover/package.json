@@ -36,6 +36,7 @@
   "paprikaDocs": {
     "subComponents": [
       "Header",
+      "Footer",
       "Content",
       "FocusLock",
       "Overlay"

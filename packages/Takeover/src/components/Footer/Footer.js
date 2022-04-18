@@ -35,9 +35,11 @@ export default function Footer({ children, onSaveClick, onCancelClick, ...morePr
 }
 
 const propTypes = {
-  /** The content for the Footer */
+  /** The footer for the Takeover. Button size needs to be LARGE as per design guideline  */
   children: PropTypes.node,
+  /** Save Callback triggered when want to use default layout of the footer   */
   onSaveClick: PropTypes.func,
+  /** Cancel Callback triggered when want to use default layout of the footer   */
   onCancelClick: PropTypes.func,
 };
 
