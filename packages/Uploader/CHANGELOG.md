@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.1.3-next.0
+
+### Patch Changes
+
+- a032f9b: Assign files to the html input when using drag&drop
+
 ## 4.1.2
 
 ### Patch Changes

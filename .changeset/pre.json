@@ -73,5 +73,8 @@
     "@paprika/helpers": "2.4.0",
     "@paprika/seducer": "2.0.3"
   },
-  "changesets": []
+  "changesets": [
+    "chilled-peas-sniff",
+    "wise-cows-repair"
+  ]
 }
