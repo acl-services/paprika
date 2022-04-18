@@ -1,5 +1,35 @@
 # Changelog
 
+## 1.0.44
+
+### Patch Changes
+
+- Updated dependencies [16c9b8d]
+  - @paprika/raw-button@1.0.14
+  - @paprika/list-box@4.0.8
+
+## 1.0.44-next.0
+
+### Patch Changes
+
+- Updated dependencies [16c9b8d]
+  - @paprika/raw-button@1.0.14-next.0
+  - @paprika/list-box@4.0.8-next.0
+
+## 1.0.43
+
+### Patch Changes
+
+- Updated dependencies [49aa7f9]
+- Updated dependencies [05b1757]
+- Updated dependencies [9f10d8c]
+- Updated dependencies [dae4008]
+  - @paprika/helpers@2.4.0
+  - @paprika/list-box@4.0.7
+  - @paprika/stylers@1.1.7
+  - @paprika/raw-button@1.0.13
+  - @paprika/spinner@1.0.17
+
 ## 1.0.43-next.1
 
 ### Patch Changes

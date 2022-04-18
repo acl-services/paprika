@@ -1,5 +1,40 @@
 # Changelog
 
+## 2.0.23
+
+### Patch Changes
+
+- 16c9b8d: ### Changed
+
+  - Replaced `what-input` package with `:focus-visible` styling to support using in a web component.
+
+- Updated dependencies [16c9b8d]
+  - @paprika/button@1.1.14
+
+## 2.0.23-next.0
+
+### Patch Changes
+
+- 16c9b8d: ### Changed
+
+  - Replaced `what-input` package with `:focus-visible` styling to support using in a web component.
+
+- Updated dependencies [16c9b8d]
+  - @paprika/button@1.1.14-next.0
+
+## 2.0.22
+
+### Patch Changes
+
+- Updated dependencies [49aa7f9]
+- Updated dependencies [9f10d8c]
+- Updated dependencies [dae4008]
+  - @paprika/helpers@2.4.0
+  - @paprika/stylers@1.1.7
+  - @paprika/button@1.1.13
+  - @paprika/counter@1.1.6
+  - @paprika/heading@1.0.15
+
 ## 2.0.22-next.1
 
 ### Patch Changes

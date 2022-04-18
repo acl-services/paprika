@@ -1,5 +1,28 @@
 # Changelog
 
+## 1.2.3
+
+### Patch Changes
+
+- Updated dependencies [16c9b8d]
+  - @paprika/raw-button@1.0.14
+
+## 1.2.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [16c9b8d]
+  - @paprika/raw-button@1.0.14-next.0
+
+## 1.2.2
+
+### Patch Changes
+
+- Updated dependencies [9f10d8c]
+- Updated dependencies [dae4008]
+  - @paprika/stylers@1.1.7
+  - @paprika/raw-button@1.0.13
+
 ## 1.2.2-next.0
 
 ### Patch Changes

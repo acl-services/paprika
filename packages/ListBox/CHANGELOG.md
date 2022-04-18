@@ -1,5 +1,44 @@
 # Changelog
 
+## 4.0.8
+
+### Patch Changes
+
+- Updated dependencies [16c9b8d]
+  - @paprika/button@1.1.14
+  - @paprika/raw-button@1.0.14
+  - @paprika/input@4.0.20
+  - @paprika/popover@2.0.6
+  - @paprika/toast@1.1.22
+
+## 4.0.8-next.0
+
+### Patch Changes
+
+- Updated dependencies [16c9b8d]
+  - @paprika/button@1.1.14-next.0
+  - @paprika/raw-button@1.0.14-next.0
+  - @paprika/input@4.0.20-next.0
+  - @paprika/toast@1.1.22-next.0
+  - @paprika/popover@2.0.6-next.0
+
+## 4.0.7
+
+### Patch Changes
+
+- 05b1757: Make `internalHandleOnClick` and `id` props optional
+- Updated dependencies [49aa7f9]
+- Updated dependencies [9f10d8c]
+- Updated dependencies [dae4008]
+  - @paprika/helpers@2.4.0
+  - @paprika/stylers@1.1.7
+  - @paprika/button@1.1.13
+  - @paprika/checkbox@1.0.23
+  - @paprika/input@4.0.19
+  - @paprika/popover@2.0.5
+  - @paprika/raw-button@1.0.13
+  - @paprika/toast@1.1.21
+
 ## 4.0.7-next.2
 
 ### Patch Changes

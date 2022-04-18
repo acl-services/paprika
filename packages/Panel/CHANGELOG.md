@@ -1,5 +1,31 @@
 # Changelog
 
+## 2.4.2
+
+### Patch Changes
+
+- Updated dependencies [16c9b8d]
+  - @paprika/button@1.1.14
+
+## 2.4.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [16c9b8d]
+  - @paprika/button@1.1.14-next.0
+
+## 2.4.1
+
+### Patch Changes
+
+- Updated dependencies [49aa7f9]
+- Updated dependencies [9f10d8c]
+- Updated dependencies [dae4008]
+  - @paprika/helpers@2.4.0
+  - @paprika/stylers@1.1.7
+  - @paprika/button@1.1.13
+  - @paprika/overlay@1.0.16
+
 ## 2.4.1-next.1
 
 ### Patch Changes

@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.0.14
+
+### Patch Changes
+
+- 16c9b8d: ### Changed
+
+  - Replaced `what-input` package with `:focus-visible` styling to support using in a web component.
+
+## 1.0.14-next.0
+
+### Patch Changes
+
+- 16c9b8d: ### Changed
+
+  - Replaced `what-input` package with `:focus-visible` styling to support using in a web component.
+
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies [9f10d8c]
+- Updated dependencies [dae4008]
+  - @paprika/stylers@1.1.7
+
 ## 1.0.13-next.0
 
 ### Patch Changes

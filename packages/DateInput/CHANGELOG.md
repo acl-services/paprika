@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.0.30
+
+### Patch Changes
+
+- @paprika/input@4.0.20
+
+## 1.0.30-next.0
+
+### Patch Changes
+
+- @paprika/input@4.0.20-next.0
+
+## 1.0.29
+
+### Patch Changes
+
+- Updated dependencies [49aa7f9]
+  - @paprika/helpers@2.4.0
+  - @paprika/input@4.0.19
+
 ## 1.0.29-next.0
 
 ### Patch Changes

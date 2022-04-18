@@ -1,8 +1,10 @@
 import styled, { css } from "styled-components";
-import { spacer } from "@paprika/stylers/lib/helpers";
 import tokens from "@paprika/tokens";
+import stylers from "@paprika/stylers";
 import getBorderRadius from "../../helper.styles";
 import { POSITIONS } from "../../CollapsibleCard";
+
+const { spacer } = stylers;
 
 export const Header = styled.div(
   ({ isEditing, isCollapsed, position }) => css`
@@ -12,7 +14,7 @@ export const Header = styled.div(
     display: flex;
     padding: 14px;
 
-    :hover {
+    &:hover {
       background-color: ${tokens.color.blackLighten70};
 
       ${position !== POSITIONS.LAST &&
@@ -21,7 +23,7 @@ export const Header = styled.div(
           box-shadow: inset 0px -1px 0px ${tokens.color.blackLighten60};
         `}
 
-      margin: 0px;
+      margin: 0;
       position: relative;
     }
 
@@ -29,19 +31,19 @@ export const Header = styled.div(
       css`
         background-color: ${tokens.color.yellowLighten30};
 
-        :hover {
+        &:hover {
           background-color: #ffebc2;
         }
       `}
 
     &:focus {
-      outline: none;
-      position: relative;
+      ${stylers.focusRing()}
+      &:not(:focus-visible) {
+        box-shadow: none;
+      }
     }
-
-    [data-whatinput="keyboard"] &:focus {
+    &:focus-visible {
       box-shadow: ${tokens.highlight.active.withBorder.boxShadow};
-      margin: 0px;
     }
   `
 );
@@ -54,20 +56,14 @@ export const HeaderContent = styled.div(
     flex-wrap: nowrap;
     margin-right: ${spacer(2)};
 
-    ${isBroken &&
-      css`
-        display: block;
-      `}
+    ${isBroken && `display: block;`}
   `
 );
 
 export const ExpandToggle = styled.div(
   ({ isCollapsed }) => css`
-    flex: 0 0 32px;
+    flex: 0 0 ${spacer(4)};
 
-    ${isCollapsed &&
-      css`
-        transform: rotate(180deg);
-      `}
+    ${isCollapsed && `transform: rotate(180deg);`}
   `
 );

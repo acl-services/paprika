@@ -1,5 +1,60 @@
 # Changelog
 
+## 2.1.5
+
+### Patch Changes
+
+- Updated dependencies [16c9b8d]
+  - @paprika/button@1.1.14
+  - @paprika/date-picker@2.0.8
+  - @paprika/input@4.0.20
+  - @paprika/list-box@4.0.8
+  - @paprika/panel@2.4.2
+
+## 2.1.5-next.0
+
+### Patch Changes
+
+- Updated dependencies [16c9b8d]
+  - @paprika/button@1.1.14-next.0
+  - @paprika/input@4.0.20-next.0
+  - @paprika/list-box@4.0.8-next.0
+  - @paprika/panel@2.4.2-next.0
+  - @paprika/date-picker@2.0.8-next.0
+
+## 2.1.4
+
+### Patch Changes
+
+- 97c999a: ### Changed
+
+  - Add padding around filter panel.
+  - change data-pka-anchor for Dialog from "panel.content" to "panel.dialog-content" to differentiate it from <Panel.Content>
+
+- Updated dependencies [05b1757]
+- Updated dependencies [9f10d8c]
+- Updated dependencies [dae4008]
+  - @paprika/list-box@4.0.7
+  - @paprika/stylers@1.1.7
+  - @paprika/button@1.1.13
+  - @paprika/date-picker@2.0.7
+  - @paprika/input@4.0.19
+  - @paprika/panel@2.4.1
+  - @paprika/radio@1.0.25
+  - @paprika/select@2.0.13
+
+## 2.1.4-next.2
+
+### Patch Changes
+
+- 97c999a: ### Changed
+
+  - Add padding around filter panel.
+  - change data-pka-anchor for Dialog from "panel.content" to "panel.dialog-content" to differentiate it from <Panel.Content>
+
+- Updated dependencies [9f10d8c]
+  - @paprika/stylers@1.1.7-next.1
+
 ## 2.1.4-next.1
 
 ### Patch Changes
