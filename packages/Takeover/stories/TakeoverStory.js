@@ -17,12 +17,12 @@ const FooterButtonGroup = styled.div`
 
 export const CustomFooterLayout = () => (
   <FooterButtonGroup>
-    <Button kind={Button.types.kind.MINOR} size="medium">
+    <Button kind={Button.types.kind.MINOR} size="large">
       Cancel
     </Button>
     <div>
-      <Button size="medium">Go Back</Button>
-      <Button kind={Button.types.kind.PRIMARY} size="medium">
+      <Button size="large">Go Back</Button>
+      <Button kind={Button.types.kind.PRIMARY} size="large">
         Continue
       </Button>
     </div>
