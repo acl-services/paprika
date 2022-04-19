@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.1.3-next.1
+
+### Patch Changes
+
+- 10f840a: Fixed drag&drop issue when canChooseMultiple is false
+
 ## 4.1.3-next.0
 
 ### Patch Changes

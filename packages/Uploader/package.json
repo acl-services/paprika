@@ -1,6 +1,6 @@
 {
   "name": "@paprika/uploader",
-  "version": "4.1.3-next.0",
+  "version": "4.1.3-next.1",
   "description": "The Uploader component lets you upload files and see progress.",
   "author": "@paprika",
   "main": "lib/index.js",

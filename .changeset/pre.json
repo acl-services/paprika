@@ -75,6 +75,7 @@
   },
   "changesets": [
     "chilled-peas-sniff",
+    "plenty-fans-draw",
     "wise-cows-repair"
   ]
 }
