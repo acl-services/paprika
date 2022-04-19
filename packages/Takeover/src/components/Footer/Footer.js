@@ -22,10 +22,10 @@ export default function Footer({ children, onSaveClick, onCancelClick, ...morePr
     <StyledFooter ata-pka-anchor="takeover.footer" {...moreProps}>
       {children || (
         <>
-          <Button kind={Button.types.kind.PRIMARY} size="large" onClick={onSaveClick}>
+          <Button kind={Button.types.kind.PRIMARY} size={Button.types.size.LARGE} onClick={onSaveClick}>
             {I18n.t("actions.confirm")}
           </Button>
-          <Button kind={Button.types.kind.MINOR} size="large" onClick={onCancelClick}>
+          <Button kind={Button.types.kind.MINOR} size={Button.types.size.LARGE} onClick={onCancelClick}>
             {I18n.t("actions.cancel")}
           </Button>
         </>
