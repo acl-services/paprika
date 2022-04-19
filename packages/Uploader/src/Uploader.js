@@ -161,7 +161,14 @@ const Uploader = React.forwardRef((props, ref) => {
       if (isDisabled || isBusy) return;
 
       if (fromDrop && refInput.current) {
-        refInput.current.files = canChooseMultiple ? event.dataTransfer.files : event.dataTransfer.files[0];
+        if (canChooseMultiple) {
+          refInput.current.files = event.dataTransfer.files;
+        } else {
+          const dataTransfer = new DataTransfer();
+
+          dataTransfer.items.add(event.dataTransfer.files[0]);
+          refInput.current.files = dataTransfer.files;
+        }
       }
 
       const files = getFiles({ event, maxFileSize, supportedMimeTypes, endpoint });
