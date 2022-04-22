@@ -7,11 +7,19 @@ export const filter = ({ state, textSearchValue }) => {
   const { options } = state;
   const keys = Object.keys(options);
 
+  const isDivider = key => {
+    const { displayName = null } = options[key].content.type.type || options[key].content.type;
+    return displayName === "ListBox.Divider";
+  };
+
   if (keys.length) {
-    const filteredOptions = keys.filter(key => {
+    const filteredContent = keys.filter(key => {
       const hasLabel = typeof options[key].content === "string" || options[key].label || null;
 
       if (hasLabel) {
+        if (isDivider(key)) {
+          return true;
+        }
         const label = options[key].content === "string" || options[key].label;
 
         const filterRegExp = new RegExp(escapeRegExp(textSearchValue), "gi");
@@ -19,6 +27,15 @@ export const filter = ({ state, textSearchValue }) => {
       }
 
       return false;
+    });
+
+    const filteredOptions = filteredContent.filter((key, index) => {
+      const nextKey = filteredContent[index + 1];
+      if (isDivider(key)) {
+        if (!nextKey) return false;
+        return !isDivider(nextKey);
+      }
+      return true;
     });
 
     if (!filteredOptions.length) {
