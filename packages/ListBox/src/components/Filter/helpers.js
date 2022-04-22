@@ -32,7 +32,9 @@ export const filter = ({ state, textSearchValue }) => {
     const filteredOptions = filteredContent.filter((key, index) => {
       const nextKey = filteredContent[index + 1];
       if (isDivider(key)) {
-        if (!nextKey) return false;
+        if (!nextKey) {
+          return false;
+        }
         return !isDivider(nextKey);
       }
       return true;
