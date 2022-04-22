@@ -24,8 +24,8 @@ export default function useBestTableDimensions({
   shouldResizeWithViewport: boolean;
 }): { dimensions: Dimensions; resetDimension: () => void } {
   const [dimensions, setDimensions] = React.useState<Dimensions>(() => ({
-    width: convertSizeStringToNumber(maxWidth, Direction.width),
-    height: convertSizeStringToNumber(maxHeight, Direction.height),
+    width: convertSizeStringToNumber(maxWidth, Direction.width, tableRef),
+    height: convertSizeStringToNumber(maxHeight, Direction.height, tableRef),
   }));
 
   const resetDimension = React.useCallback(() => {
@@ -42,8 +42,8 @@ export default function useBestTableDimensions({
     setDimensions(() => {
       const realWidth = theadEl.clientWidth;
       const realHeight = theadEl.clientHeight + tbodyEl.clientHeight;
-      const maxWidthInNumber = convertSizeStringToNumber(maxWidth, Direction.width);
-      const maxHeightInNumber = convertSizeStringToNumber(maxHeight, Direction.height);
+      const maxWidthInNumber = convertSizeStringToNumber(maxWidth, Direction.width, tableRef);
+      const maxHeightInNumber = convertSizeStringToNumber(maxHeight, Direction.height, tableRef);
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       const scrollbarWidth = variableList[0].offsetWidth - variableList[0].clientWidth;
