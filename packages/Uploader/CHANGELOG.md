@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.1.3
+
+### Patch Changes
+
+- 10f840a: Fixed drag&drop issue when canChooseMultiple is false
+- a032f9b: Assign files to the html input when using drag&drop
+
 ## 4.1.3-next.1
 
 ### Patch Changes

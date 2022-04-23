@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.3
+
+### Patch Changes
+
+- be2176f: Update takeover style base on approved design proposal
+
 ## 1.1.3-next.0
 
 ### Patch Changes

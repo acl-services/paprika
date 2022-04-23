@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.0.9
+
+### Patch Changes
+
+- 3d85075: Display header with results on filter
+
 ## 4.0.9-next.0
 
 ### Patch Changes
