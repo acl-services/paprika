@@ -35,6 +35,8 @@ interface InputProps {
     | Input.types.type.URL;
   /** The value inside of the input */
   value?: string;
+  /** If true `all: unset;` will be applied */
+  hasCSSReset?: boolean;
 }
 
 declare namespace Input {

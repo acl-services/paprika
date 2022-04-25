@@ -158,6 +158,9 @@ Input.propTypes = {
 
   /** The value inside of the input */
   value: PropTypes.string,
+
+  /** If true `all: unset;` will be applied */
+  hasCSSReset: PropTypes.bool,
 };
 
 Input.defaultProps = {
@@ -174,6 +177,7 @@ Input.defaultProps = {
   size: Input.types.size.MEDIUM,
   type: Input.types.type.TEXT,
   value: undefined,
+  hasCSSReset: false,
 };
 
 Input.displayName = "Input";

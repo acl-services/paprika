@@ -21,6 +21,7 @@ const getKnobs = () => ({
   icon: iconSelections[select("icon", Object.keys(iconSelections), null)],
   type: select("type", Object.values(Input.types.type), Input.types.type.TEXT),
   a11yText: text("a11yText", null),
+  hasCSSReset: boolean("hasCSSReset", false),
 });
 
 export default function Showcase() {
