@@ -21,7 +21,7 @@ const Metadata = props => {
   );
 };
 
-Metadata.displayName = "Metadata";
+Metadata.displayName = "Card.Metadata";
 Metadata.propTypes = propTypes;
 Metadata.defaultProps = defaultProps;
 

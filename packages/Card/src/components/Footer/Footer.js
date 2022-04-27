@@ -21,7 +21,7 @@ const Footer = props => {
   );
 };
 
-Footer.displayName = "Footer";
+Footer.displayName = "Card.Footer";
 Footer.propTypes = propTypes;
 Footer.defaultProps = defaultProps;
 
