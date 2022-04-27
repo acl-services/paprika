@@ -39,7 +39,7 @@ const Text = props => {
   );
 };
 
-Text.displayName = "Text";
+Text.displayName = "Card.Text";
 Text.propTypes = propTypes;
 Text.defaultProps = defaultProps;
 

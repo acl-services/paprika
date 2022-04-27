@@ -17,7 +17,7 @@ function Content(props) {
   return <sc.Content data-pka-anchor="card.content">{children}</sc.Content>;
 }
 
-Content.displayName = "Content";
+Content.displayName = "Card.Content";
 Content.propTypes = propTypes;
 Content.defaultProps = defaultProps;
 
