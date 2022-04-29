@@ -1,6 +1,6 @@
 {
   "name": "@paprika/action-bar",
-  "version": "5.0.6",
+  "version": "5.0.7-next.0",
   "description": "ActionBar",
   "author": "@paprika",
   "license": "MIT",
@@ -19,7 +19,7 @@
     "@paprika/button": "^1.1.14",
     "@paprika/helpers": "^2.4.0",
     "@paprika/icon": "^2.1.7",
-    "@paprika/input": "^4.0.20",
+    "@paprika/input": "^4.1.0-next.0",
     "@paprika/popover": "^2.0.6",
     "@paprika/select": "^2.0.13",
     "@paprika/sortable": "^1.2.14",

@@ -29,13 +29,13 @@ npm install @paprika/card
 | isActive    | bool                                                                                          | false    | false                | If the card is in an "active" or "selected" state.                 |
 | size        | [ Card.types.size.AUTO, Card.types.size.SMALL, Card.types.size.MEDIUM, Card.types.size.LARGE] | false    | Card.types.size.AUTO | Size of the card (font size, min-height, padding, etc).            |
 
-### Content
+### Card.Content
 
 | Prop     | Type | required | default | Description      |
 | -------- | ---- | -------- | ------- | ---------------- |
 | children | node | false    | null    | Primary content. |
 
-### Footer
+### Card.Footer
 
 | Prop     | Type | required | default | Description                |
 | -------- | ---- | -------- | ------- | -------------------------- |
@@ -47,20 +47,20 @@ npm install @paprika/card
 | -------- | ---- | -------- | ------- | ---------------- |
 | children | node | false    | null    | Primary content. |
 
-### Metadata
+### Card.Metadata
 
 | Prop     | Type | required | default | Description      |
 | -------- | ---- | -------- | ------- | ---------------- |
 | children | node | false    | null    | Primary content. |
 
-### Text
+### Card.Text
 
 | Prop          | Type   | required | default | Description                                      |
 | ------------- | ------ | -------- | ------- | ------------------------------------------------ |
 | children      | node   | false    | null    | Body content of the Text.                        |
 | maxTextLength | number | false    | 95      | Sets the maximum text length visible on the card |
 
-### Title
+### Card.Title
 
 | Prop     | Type | required | default | Description                |
 | -------- | ---- | -------- | ------- | -------------------------- |
