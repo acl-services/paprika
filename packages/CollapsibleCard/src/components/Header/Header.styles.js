@@ -45,7 +45,6 @@ export const Header = styled.div(
     &:focus-visible {
       ${stylers.focusRing(true)}
       ${stylers.zValue(1)}
-      box-shadow: ${tokens.highlight.active.withBorder.boxShadow};
     }
   `
 );
