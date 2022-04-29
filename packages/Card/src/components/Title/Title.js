@@ -20,7 +20,7 @@ const Title = props => {
   );
 };
 
-Title.displayName = "Title";
+Title.displayName = "Card.Title";
 Title.propTypes = propTypes;
 Title.defaultProps = defaultProps;
 

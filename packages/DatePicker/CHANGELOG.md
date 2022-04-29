@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.9-next.0
+
+### Patch Changes
+
+- @paprika/date-input@1.0.31-next.0
+
 ## 2.0.8
 
 ### Patch Changes

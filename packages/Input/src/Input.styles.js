@@ -36,35 +36,45 @@ export const InputContainer = styled.div`
   }
 `;
 
-export const Input = styled.input(
-  ({ hasError, hasIcon, isDisabled, isReadOnly, shouldShowClearButton, size }) => css`
-    background-color: ${tokens.color.white};
-    border: 1px solid ${tokens.border.color};
-    border-radius: ${tokens.border.radius};
-    box-shadow: none;
-    box-sizing: border-box;
-    color: ${tokens.color.black};
-    display: block;
-    margin: 0;
-    padding: 0 ${tokens.space};
-    transition: box-shadow 0.2s, color 0.2s;
-    width: 100%;
-    ${stylers.placeholders}
-    ${sizeStyles[size]}
-    ${hasIcon && hasIconStyles}
-    ${shouldShowClearButton && shouldShowClearButtonStyles}
-    ${hasError && stylers.errorFormStyles}
-    ${isDisabled && stylers.disabledFormStyles}
-    ${isReadOnly && stylers.readOnlyFormStyles}
+const getInputCss = ({ hasError, hasIcon, isDisabled, isReadOnly, shouldShowClearButton, size }) => css`
+  background-color: ${tokens.color.white};
+  border: 1px solid ${tokens.border.color};
+  border-radius: ${tokens.border.radius};
+  box-shadow: none;
+  box-sizing: border-box;
+  color: ${tokens.color.black};
+  display: block;
+  margin: 0;
+  padding: 0 ${tokens.space};
+  transition: box-shadow 0.2s, color 0.2s;
+  width: 100%;
+  ${stylers.placeholders}
+  ${sizeStyles[size]}
+  ${hasIcon && hasIconStyles}
+  ${shouldShowClearButton && shouldShowClearButtonStyles}
+  ${hasError && stylers.errorFormStyles}
+  ${isDisabled && stylers.disabledFormStyles}
+  ${isReadOnly && stylers.readOnlyFormStyles}
 
-    &:focus {
-      ${isReadOnly ? stylers.focusRing.subtle() : stylers.focusRing.bordered()}
-    }
+  &:focus {
+    ${isReadOnly ? stylers.focusRing.subtle() : stylers.focusRing.bordered()}
+  }
 
-    &::-ms-clear {
-      display: none;
-    }
-`
+  &::-ms-clear {
+    display: none;
+  }
+`;
+
+const withResetCss = styles => css`
+  && {
+    all: unset;
+
+    ${styles}
+  }
+`;
+
+export const Input = styled.input(({ hasCSSReset, ...restProps }) =>
+  hasCSSReset ? withResetCss(getInputCss(restProps)) : getInputCss(restProps)
 );
 
 /* Icons */
