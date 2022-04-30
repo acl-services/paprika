@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.10
+
+### Patch Changes
+
+- Updated dependencies [ad15a93]
+  - @paprika/input@4.1.0
+
 ## 2.0.10-next.0
 
 ### Patch Changes

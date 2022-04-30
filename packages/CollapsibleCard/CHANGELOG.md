@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.24
+
+### Patch Changes
+
+- 75be42c: Make focus ring inner so the header doesn't get overlaied when grouped
+
 ## 2.0.24-next.0
 
 ### Patch Changes

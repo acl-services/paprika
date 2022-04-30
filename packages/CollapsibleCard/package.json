@@ -1,6 +1,6 @@
 {
   "name": "@paprika/collapsible-card",
-  "version": "2.0.24-next.0",
+  "version": "2.0.24",
   "description": "Styled collapsible card component.",
   "author": "@paprika",
   "license": "MIT",

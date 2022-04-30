@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.1.0
+
+### Minor Changes
+
+- ad15a93: Introduce `hasCSSReset` prop: reset global styles for Input
+
 ## 4.1.0-next.0
 
 ### Minor Changes

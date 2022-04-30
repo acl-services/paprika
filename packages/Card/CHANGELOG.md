@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.4
+
+### Patch Changes
+
+- 98ecc55: Fix subcomponent `displayName` properties and update typings to include subcomponents in the `Card` namespace.
+
 ## 2.0.4-next.0
 
 ### Patch Changes

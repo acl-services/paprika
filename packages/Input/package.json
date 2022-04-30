@@ -1,6 +1,6 @@
 {
   "name": "@paprika/input",
-  "version": "4.1.0-next.0",
+  "version": "4.1.0",
   "description": "The Input component is a standard text input with some enhancements that can be used as a controlled or uncontrolled component.",
   "author": "@paprika",
   "license": "MIT",

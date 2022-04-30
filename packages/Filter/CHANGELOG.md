@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.1.7
+
+### Patch Changes
+
+- Updated dependencies [ad15a93]
+  - @paprika/input@4.1.0
+  - @paprika/date-picker@2.0.9
+  - @paprika/list-box@4.0.10
+
 ## 2.1.7-next.0
 
 ### Patch Changes
