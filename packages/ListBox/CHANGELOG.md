@@ -1,5 +1,14 @@
 # Changelog
 
+## 5.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies [d484734]
+  - @paprika/l10n@1.2.0-next.0
+  - @paprika/input@5.0.0-next.1
+  - @paprika/toast@2.0.0-next.0
+
 ## 4.0.10-next.0
 
 ### Patch Changes

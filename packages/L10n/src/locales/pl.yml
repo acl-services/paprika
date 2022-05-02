@@ -1,0 +1,12 @@
+pl:
+  translation:
+    formElement:
+      optional: (opcjonalny)
+      required: (wymagane)
+    calendar:
+      header_format: MMMM YYYY
+      month: Miesiąc
+      year: Rok
+    actions:
+      apply: Zastosuj
+      cancel: Anuluj

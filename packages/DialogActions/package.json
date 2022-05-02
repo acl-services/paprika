@@ -1,6 +1,6 @@
 {
   "name": "@paprika/dialog-actions",
-  "version": "1.0.29",
+  "version": "2.0.0-next.0",
   "description": "The DialogActions component renders three buttons, Save (hasConfirm), Don't Save (hasDecline) and Cancel.",
   "author": "@paprika",
   "license": "MIT",
@@ -20,7 +20,7 @@
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "@paprika/l10n": "^1.1.15",
+    "@paprika/l10n": "^1.2.0-next.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "styled-components": "^4.2.0"

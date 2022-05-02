@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.3-next.0
+
+### Patch Changes
+
+- 794703f: Fixed the runtime-corejs2 version inside the package.
+
 ## 0.1.2
 
 ### Patch Changes

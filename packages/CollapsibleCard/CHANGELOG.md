@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies [d484734]
+  - @paprika/l10n@1.2.0-next.0
+
+## 2.0.24-next.0
+
+### Patch Changes
+
+- 75be42c: Make focus ring inner so the header doesn't get overlaied when grouped
+
 ## 2.0.23
 
 ### Patch Changes

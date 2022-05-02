@@ -1,0 +1,12 @@
+uk:
+  translation:
+    formElement:
+      optional: (за бажанням)
+      required: (обов’язково)
+    calendar:
+      header_format: MMMM YYYY
+      month: Місяць
+      year: Рік
+    actions:
+      apply: Застосувати
+      cancel: Скасувати

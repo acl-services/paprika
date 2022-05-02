@@ -1,5 +1,14 @@
 # Changelog
 
+## 6.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies [d484734]
+  - @paprika/l10n@1.2.0-next.0
+  - @paprika/input@5.0.0-next.1
+  - @paprika/sortable@2.0.0-next.0
+
 ## 5.0.7-next.0
 
 ### Patch Changes

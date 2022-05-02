@@ -5,6 +5,12 @@ import es from "../locales-js/es";
 import pt from "../locales-js/pt";
 import ja from "../locales-js/ja";
 import zh from "../locales-js/zh";
+import el from "../locales-js/el";
+import it from "../locales-js/it";
+import pl from "../locales-js/pl";
+import ro from "../locales-js/ro";
+import ru from "../locales-js/ru";
+import uk from "../locales-js/uk";
 
 const locales = {
   en: en.en,
@@ -13,7 +19,13 @@ const locales = {
   es: es.es,
   pt: pt.pt,
   ja: ja.ja,
-  zh: zh.zh
+  zh: zh.zh,
+  el: el.el,
+  it: it.it,
+  pl: pl.pl,
+  ro: ro.ro,
+  ru: ru.ru,
+  uk: uk.uk
 };
 
 export default locales;

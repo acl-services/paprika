@@ -74,6 +74,9 @@
     "@paprika/seducer": "2.0.3"
   },
   "changesets": [
+    "curvy-rice-hope",
+    "metal-walls-wave",
+    "sharp-bees-carry",
     "six-ants-study",
     "tall-turkeys-dance"
   ]

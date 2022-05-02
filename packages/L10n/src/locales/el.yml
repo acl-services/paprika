@@ -1,0 +1,12 @@
+el:
+  translation:
+    formElement:
+      optional: (προαιρετικό)
+      required: (απαιτείται)
+    calendar:
+      header_format: MMMM YYYY
+      month: Μήνας
+      year: Έτος
+    actions:
+      apply: Εφαρμογή
+      cancel: Ακύρωση
