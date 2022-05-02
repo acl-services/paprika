@@ -1,0 +1,12 @@
+it:
+  translation:
+    formElement:
+      optional: (facoltativo)
+      required: (obbligatorio)
+    calendar:
+      header_format: MMMM YYYY
+      month: Mese
+      year: Anno
+    actions:
+      apply: Applica
+      cancel: Cancella

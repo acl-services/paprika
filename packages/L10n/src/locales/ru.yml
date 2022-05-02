@@ -1,0 +1,12 @@
+ru:
+  translation:
+    formElement:
+      optional: (опционально)
+      required: (обязательно)
+    calendar:
+      header_format: MMMM YYYY
+      month: Месяц
+      year: Год
+    actions:
+      apply: Применить
+      cancel: Отмена
