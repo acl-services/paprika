@@ -1,0 +1,12 @@
+ro:
+  translation:
+    formElement:
+      optional: (opțional)
+      required: (obligatoriu)
+    calendar:
+      header_format: MMMM YYYY
+      month: Lună
+      year: An
+    actions:
+      apply: Aplică
+      cancel: Anulare
