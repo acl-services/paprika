@@ -1,6 +1,6 @@
 {
   "name": "@paprika/status-tracker",
-  "version": "2.0.9",
+  "version": "3.0.0-next.0",
   "description": "Move items through a customized status workflow and view metadata for the previous and current statuses.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -18,7 +18,7 @@
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/button": "^1.1.14",
     "@paprika/helpers": "^2.4.0",
-    "@paprika/overflow-menu": "^2.0.9",
+    "@paprika/overflow-menu": "^3.0.0-next.0",
     "@paprika/popover": "^2.0.6",
     "@paprika/raw-button": "^1.0.14",
     "@paprika/stylers": "^1.1.7",
@@ -26,7 +26,7 @@
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "@paprika/l10n": "^1.1.15",
+    "@paprika/l10n": "^1.2.0-next.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"
