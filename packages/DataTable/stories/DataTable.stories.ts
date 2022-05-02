@@ -9,6 +9,7 @@ import RenderRow from "./examples/RenderRow";
 import Showcase from "./examples/Showcase";
 import WithCollapsible from "./examples/WithCollapsible";
 import DataChange from "./examples/DataChange";
+import UsingPercent from "./examples/UsingPercent";
 
 export default {
   title: getStoryName("DataTable"),
@@ -32,3 +33,5 @@ export const performance = Performance;
 export const withCollapsible = WithCollapsible;
 
 export const dataChange = DataChange;
+
+export const usingPercent = UsingPercent;
