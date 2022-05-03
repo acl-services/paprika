@@ -1,5 +1,11 @@
 # @paprika/data-table
 
+## 1.2.2-next.0
+
+### Patch Changes
+
+- 5217917: Support %(pct) unit in `maxHeight` and `maxWidth` props
+
 ## 1.2.1
 
 ### Patch Changes
