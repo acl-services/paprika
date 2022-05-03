@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.0.0
+
+### Patch Changes
+
+- Updated dependencies [d484734]
+- Updated dependencies [ad15a93]
+  - @paprika/l10n@1.2.0
+  - @paprika/input@5.0.0
+  - @paprika/date-picker@3.0.0
+  - @paprika/list-box@5.0.0
+  - @paprika/panel@3.0.0
+
 ## 3.0.0-next.1
 
 ### Patch Changes

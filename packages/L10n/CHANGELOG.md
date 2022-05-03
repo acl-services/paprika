@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0
+
+### Minor Changes
+
+- d484734: Added new extra locales with partial translation.
+
 ## 1.2.0-next.0
 
 ### Minor Changes

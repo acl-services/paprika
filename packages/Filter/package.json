@@ -1,6 +1,6 @@
 {
   "name": "@paprika/filter",
-  "version": "3.0.0-next.1",
+  "version": "3.0.0",
   "description": "Filter",
   "author": "@paprika",
   "license": "MIT",
@@ -18,11 +18,11 @@
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/button": "^1.1.14",
     "@paprika/constants": "^1.0.0",
-    "@paprika/date-picker": "^3.0.0-next.1",
+    "@paprika/date-picker": "^3.0.0",
     "@paprika/icon": "^2.1.7",
-    "@paprika/input": "^5.0.0-next.1",
-    "@paprika/list-box": "^5.0.0-next.1",
-    "@paprika/panel": "^3.0.0-next.0",
+    "@paprika/input": "^5.0.0",
+    "@paprika/list-box": "^5.0.0",
+    "@paprika/panel": "^3.0.0",
     "@paprika/radio": "^1.0.25",
     "@paprika/select": "^2.0.13",
     "@paprika/stylers": "^1.1.7",
@@ -32,7 +32,7 @@
     "uuid": "^3.3.2"
   },
   "peerDependencies": {
-    "@paprika/l10n": "^1.2.0-next.0",
+    "@paprika/l10n": "^1.2.0",
     "moment": "^2.18.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",

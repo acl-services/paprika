@@ -1,6 +1,6 @@
 {
   "name": "@paprika/input",
-  "version": "5.0.0-next.1",
+  "version": "5.0.0",
   "description": "The Input component is a standard text input with some enhancements that can be used as a controlled or uncontrolled component.",
   "author": "@paprika",
   "license": "MIT",
@@ -25,7 +25,7 @@
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "@paprika/l10n": "^1.2.0-next.0",
+    "@paprika/l10n": "^1.2.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "styled-components": "^4.2.0"

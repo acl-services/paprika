@@ -1,5 +1,16 @@
 # Changelog
 
+## 5.0.0
+
+### Minor Changes
+
+- ad15a93: Introduce `hasCSSReset` prop: reset global styles for Input
+
+### Patch Changes
+
+- Updated dependencies [d484734]
+  - @paprika/l10n@1.2.0
+
 ## 5.0.0-next.1
 
 ### Patch Changes
