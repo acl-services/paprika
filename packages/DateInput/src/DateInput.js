@@ -138,6 +138,12 @@ const DateInput = React.forwardRef((props, ref) => {
   }
 
   function handleInputChange(e) {
+    // this handler is called with null when input cleared (when hasClearButton is true)
+    if (!e) {
+      handleReset();
+      return;
+    }
+
     setInputtedString(e.target.value);
   }
 
