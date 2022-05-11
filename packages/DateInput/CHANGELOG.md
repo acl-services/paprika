@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.1-next.0
+
+### Patch Changes
+
+- b3253ec: Support of `hasClearButton`
+
 ## 2.0.0
 
 ### Patch Changes

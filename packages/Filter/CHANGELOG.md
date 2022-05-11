@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.1-next.0
+
+### Patch Changes
+
+- @paprika/date-picker@3.0.1-next.0
+
 ## 3.0.0
 
 ### Patch Changes
