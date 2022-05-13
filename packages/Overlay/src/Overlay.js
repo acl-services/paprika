@@ -95,6 +95,15 @@ const Overlay = props => {
     }
   }
 
+  // ignore any focusable elements in pendo container
+  function whiteList(node) {
+    const pendoContainer = document.getElementById("pendo-base");
+
+    if (!pendoContainer) return true;
+
+    return !pendoContainer.contains(node);
+  }
+
   const _focusLockOptions = {
     returnFocus: true,
     ...focusLockOptions,
@@ -123,7 +132,11 @@ const Overlay = props => {
                   data-pka-anchor="overlay.backdrop"
                 />
               )}
-              <FocusLock disabled={state === "exiting" || state === "exited"} {..._focusLockOptions}>
+              <FocusLock
+                disabled={state === "exiting" || state === "exited"}
+                whiteList={whiteList}
+                {..._focusLockOptions}
+              >
                 {children && children(state)}
               </FocusLock>
             </sc.Overlay>

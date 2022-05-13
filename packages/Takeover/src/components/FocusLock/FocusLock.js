@@ -8,7 +8,18 @@ const defaultProps = {
   returnFocus: true,
 };
 
-const FocusLock = props => <FocusLockLibrary {...props} />;
+const FocusLock = props => {
+  // ignore any focusable elements in pendo container
+  function whiteList(node) {
+    const pendoContainer = document.getElementById("pendo-base");
+
+    if (!pendoContainer) return true;
+
+    return !pendoContainer.contains(node);
+  }
+
+  return <FocusLockLibrary whiteList={whiteList} {...props} />;
+};
 
 FocusLock.propTypes = propTypes;
 FocusLock.defaultProps = defaultProps;
