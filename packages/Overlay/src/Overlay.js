@@ -97,11 +97,13 @@ const Overlay = props => {
 
   // ignore any focusable elements in pendo container
   function whiteList(node) {
+    const { whiteList: whiteListProp } = focusLockOptions;
     const pendoContainer = document.getElementById("pendo-base");
+    const whiteListPropResult = whiteListProp ? whiteListProp(node) : true;
 
-    if (!pendoContainer) return true;
+    if (!pendoContainer) return whiteListPropResult;
 
-    return !pendoContainer.contains(node);
+    return !pendoContainer.contains(node) && whiteListPropResult;
   }
 
   const _focusLockOptions = {
