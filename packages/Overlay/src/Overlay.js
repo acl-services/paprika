@@ -95,6 +95,18 @@ const Overlay = props => {
     }
   }
 
+  // ignore any focusable elements in pendo container, react-focus-lock expects false to be able to ignore them
+  // https://github.com/theKashey/react-focus-lock#focus-fighting
+  function whiteList(node) {
+    const { whiteList: whiteListProp } = focusLockOptions;
+    const pendoContainer = document.getElementById("pendo-base");
+    const whiteListPropResult = whiteListProp ? whiteListProp(node) : true;
+
+    if (!pendoContainer) return whiteListPropResult;
+
+    return !pendoContainer.contains(node) && whiteListPropResult;
+  }
+
   const _focusLockOptions = {
     returnFocus: true,
     ...focusLockOptions,
@@ -123,7 +135,11 @@ const Overlay = props => {
                   data-pka-anchor="overlay.backdrop"
                 />
               )}
-              <FocusLock disabled={state === "exiting" || state === "exited"} {..._focusLockOptions}>
+              <FocusLock
+                disabled={state === "exiting" || state === "exited"}
+                whiteList={whiteList}
+                {..._focusLockOptions}
+              >
                 {children && children(state)}
               </FocusLock>
             </sc.Overlay>
