@@ -95,7 +95,8 @@ const Overlay = props => {
     }
   }
 
-  // ignore any focusable elements in pendo container
+  // ignore any focusable elements in pendo container, react-focus-lock expects false to be able to ignore them
+  // https://github.com/theKashey/react-focus-lock#focus-fighting
   function whiteList(node) {
     const { whiteList: whiteListProp } = focusLockOptions;
     const pendoContainer = document.getElementById("pendo-base");
