@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.27
+
+### Patch Changes
+
+- fd0f43a: Allow pendo elements to steal focus from react-focus-lock.
+- Updated dependencies [fd0f43a]
+  - @paprika/overlay@1.0.17
+
 ## 1.0.27-next.0
 
 ### Patch Changes

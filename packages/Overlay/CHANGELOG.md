@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.17
+
+### Patch Changes
+
+- fd0f43a: Allow pendo elements to steal focus from react-focus-lock.
+
 ## 1.0.17-next.0
 
 ### Patch Changes
