@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.1-next.1
+
+### Patch Changes
+
+- @paprika/panel@3.0.1-next.0
+
 ## 3.0.1-next.0
 
 ### Patch Changes
