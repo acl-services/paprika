@@ -1,6 +1,6 @@
 {
   "name": "@paprika/list-box-with-tags",
-  "version": "4.0.0",
+  "version": "4.0.1-next.0",
   "description": "Allowed the consumer to display a ListBox that show the selected option in a shape of pills",
   "main": "lib/index.js",
   "module": "lib/esm/index.js",

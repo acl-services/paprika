@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.0.1-next.0
+
+### Patch Changes
+
+- 90cd180: Fix focus after select
+
 ## 4.0.0
 
 ### Patch Changes
