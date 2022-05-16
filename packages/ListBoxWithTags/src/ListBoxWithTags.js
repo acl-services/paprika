@@ -125,7 +125,7 @@ export default function ListBoxWithTags(props) {
         refListBox.current.setFocusOptionByIndex(lastSelectedOption);
       }
     }
-  });
+  }, [lastSelectedOption]);
 
   return (
     <div ref={refDivRoot}>
