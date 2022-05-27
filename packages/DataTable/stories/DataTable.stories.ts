@@ -10,6 +10,7 @@ import Showcase from "./examples/Showcase";
 import WithCollapsible from "./examples/WithCollapsible";
 import DataChange from "./examples/DataChange";
 import UsingPercent from "./examples/UsingPercent";
+import UsingCalc from "./examples/UsingCalc";
 
 export default {
   title: getStoryName("DataTable"),
@@ -35,3 +36,5 @@ export const withCollapsible = WithCollapsible;
 export const dataChange = DataChange;
 
 export const usingPercent = UsingPercent;
+
+export const usingCalc = UsingCalc;
