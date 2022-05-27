@@ -302,17 +302,23 @@ const columns = React.useMemo(() => [
 
 For a real world example, please see this [storybook link](https://paprika.highbond.com/?path=/story/table-datatable--real-world)
 
-### Table height calculation
+### Table height and width calculation
 
-There are few ways to set the `height` of the `DataTable`
+DataTable uses the value of `maxHeight` and `maxWidth` to calculate table height and width. The default value of `maxHeight` is `100vh` and default for `maxWidth` is `100vw`.
+We support these formats and their use case:
 
-One, is to set the prop like this `<DataTable height={200} {...otherProps}>`
+- `500px` : Usually used when you have multiple tables in the view. For example, if the page has 5 data tables and each data table has 100 rows, you probably want to set each `DataTable`'s height to `500px` something like that, so they won't be too long.
+- `100%` : Usually used when you have a container which has defined boundaries.
+- `100vh` or `100vw` : Usually used when you want the data table to occupy the entire viewport or base on the viewport size.
+- `calc(100%+10px)` or `calc(100%-10px)` : Usually used when the page has some fixed elements on the top/bottom or left/right. For example, if there's a sidebar on the left of the page, and the data table should take the entire space of the viewport if it can, we can set `maxWidth="calc(100%-{{sidebarWidth}}px)"`.
+- `calc(100vh+10px)` or `calc(100vh-10px)` and applies to `vw` similarly : Similar to the use case above, but using `vh` and `vw` as the base instead. See the example [here](https://paprika.highbond.com/iframe.html?id=table-datatable--using-calc&viewMode=story).
 
-A more flexible option is to use a resizer that will automatically adapt to the viewport size:
+Note: these formats can be mixed when using, for example `maxHeight="500px" maxWidth="100%"`.
 
-```jsx
-// In this case the `height` prop will be ignored
-<DataTable {...otherProps}>
-  <DataTable.ResizeContainer style={{ height: "calc(100vh)" }} />
-</DataTable>
-```
+The calculation is made by the following rules:
+
+1. We'll convert the `maxHeight` and `maxWidth` values to `px` values when rendering, this will be the `maxValue`.
+2. If `maxValue` less than the real space the data table need, we'll use the real value. For example, if the `maxValue` is `1000px` but the real table div width is just `600px` we'll set the table width to `600px`.
+3. If `maxValue` larger than the real space the data table need, we'll use the `maxValue` which is provided from the props. For example, if the `maxValue` is `1000px` but the real table div height is `2000px`, we'll set the table height to `2000px` and there'll be a vertical scrollbar.
+
+If you need more details, please see the source code from [here](https://github.com/acl-services/paprika/blob/master/packages/DataTable/src/hooks/useBestTableDimensions.ts).
