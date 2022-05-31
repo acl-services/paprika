@@ -24,8 +24,11 @@ export default function CollapsibleCard(props) {
   }, [props.isCollapsed, initialIsCollapsed]);
 
   function handleToggleIsCollapsed() {
-    onToggleIsCollapsed(!isCollapsed);
-    setIsCollapsed(oldValue => !oldValue);
+    const shouldStay = onToggleIsCollapsed(!isCollapsed);
+
+    if (!shouldStay) {
+      setIsCollapsed(oldValue => !oldValue);
+    }
   }
 
   const thingsToShare = {
@@ -65,6 +68,8 @@ const defaultProps = {
   initialIsCollapsed: true,
   isCollapsed: null,
   isEditing: false,
+
+  /** Callback to be executed when the card is being toggled. If you don't want the card to be toggled, return `true` from the callback. */
   onToggleIsCollapsed: () => {},
   position: null,
 };
