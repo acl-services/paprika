@@ -5,6 +5,7 @@ import CollapsibleCard from "../../src";
 
 const ControlledAndUncontrolledStory = () => {
   const [isCollapsed, setIsCollapsed] = React.useState(true);
+  const [isLocked, setIsLocked] = React.useState(false);
 
   return (
     <Story>
@@ -33,15 +34,27 @@ const ControlledAndUncontrolledStory = () => {
       <button
         type="button"
         onClick={() => {
-          setIsCollapsed(oldVal => !oldVal);
+          if (isLocked) return;
+          setIsCollapsed(oldIsCollapsed => !oldIsCollapsed);
         }}
       >
         {isCollapsed ? "open" : "close"}
       </button>
+      <button
+        type="button"
+        onClick={() => {
+          setIsLocked(oldIsLocked => !oldIsLocked);
+        }}
+      >
+        Lock the toggle
+      </button>
+      Toggle function is {!isLocked && "not"} locked
       <CollapsibleCard
         isCollapsed={isCollapsed}
         onToggleIsCollapsed={newStateIsCollapsed => {
-          console.log(newStateIsCollapsed ? "collapsed it" : "expanded it");
+          if (isLocked) {
+            return true;
+          }
           setIsCollapsed(newStateIsCollapsed);
         }}
       >
