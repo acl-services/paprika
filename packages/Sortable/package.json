@@ -1,6 +1,6 @@
 {
   "name": "@paprika/sortable",
-  "version": "2.0.0",
+  "version": "2.0.1-next.0",
   "description": "Sortable component creates a vertical list of items, that can be re-ordered with a mouse via dragging and dropping, or with the keyboard",
   "author": "@paprika",
   "license": "MIT",
@@ -16,8 +16,8 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^1.1.14",
-    "@paprika/helpers": "^2.4.0",
+    "@paprika/button": "^1.1.15-next.0",
+    "@paprika/helpers": "^2.4.1-next.0",
     "@paprika/icon": "^2.1.7",
     "@paprika/stylers": "^1.1.7",
     "@paprika/tokens": "^2.0.0",

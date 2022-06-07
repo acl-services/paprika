@@ -1,5 +1,12 @@
 # @paprika/search
 
+## 3.0.1-next.0
+
+### Patch Changes
+
+- @paprika/input@5.0.1-next.0
+- @paprika/list-box@5.0.1-next.0
+
 ## 3.0.0
 
 ### Patch Changes

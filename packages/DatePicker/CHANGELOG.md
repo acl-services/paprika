@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.0.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [7fbad8a]
+  - @paprika/helpers@2.4.1-next.0
+  - @paprika/calendar@3.0.1-next.0
+  - @paprika/date-input@2.0.2-next.0
+  - @paprika/popover@2.0.7-next.0
+
 ## 3.0.1
 
 ### Patch Changes

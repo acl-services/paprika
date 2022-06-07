@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.0.2-next.0
+
+### Patch Changes
+
+- @paprika/button@1.1.15-next.0
+- @paprika/date-picker@3.0.2-next.0
+- @paprika/input@5.0.1-next.0
+- @paprika/list-box@5.0.1-next.0
+- @paprika/panel@3.0.2-next.0
+- @paprika/radio@1.0.26-next.0
+- @paprika/select@2.0.14-next.0
+
 ## 3.0.1
 
 ### Patch Changes

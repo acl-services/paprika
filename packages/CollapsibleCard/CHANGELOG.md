@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.1.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [7fbad8a]
+  - @paprika/helpers@2.4.1-next.0
+  - @paprika/button@1.1.15-next.0
+  - @paprika/counter@1.1.7-next.0
+
 ## 3.1.0
 
 ### Minor Changes

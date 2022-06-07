@@ -1,5 +1,18 @@
 # Changelog
 
+## 6.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [7fbad8a]
+  - @paprika/helpers@2.4.1-next.0
+  - @paprika/button@1.1.15-next.0
+  - @paprika/input@5.0.1-next.0
+  - @paprika/popover@2.0.7-next.0
+  - @paprika/select@2.0.14-next.0
+  - @paprika/sortable@2.0.1-next.0
+  - @paprika/switch@1.0.20-next.0
+
 ## 6.0.0
 
 ### Patch Changes
