@@ -89,4 +89,14 @@ describe("<Panel />", () => {
       });
     });
   });
+
+  it("should ignore pendo containers when lock the focus inside", () => {
+    cy.visitStorybook("messaging-panel-backyard-sandbox--with-pendo-popover-story");
+
+    cy.findByTestId("pendo-input").type("Hello");
+    cy.focused().should("have.value", "Hello");
+
+    cy.findByTestId("not-pendo-input").type("World");
+    cy.findByTestId("not-pendo-input").should("not.have.value", "World");
+  });
 });

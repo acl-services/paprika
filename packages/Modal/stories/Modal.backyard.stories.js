@@ -144,3 +144,20 @@ wrappingModal.story = {
   name: "with form wrapping modal components",
   parameters: testStoryParameters,
 };
+
+export const withPendo = () =>
+  React.createElement(() => (
+    <>
+      <div id="pendo-base" style={{ position: "absolute", zIndex: 10, background: "lightgray", top: "300px" }}>
+        <h1>Pendo popover</h1>
+        <input />
+      </div>
+      <ModalStory>
+        <Modal.Content>Modal content</Modal.Content>
+      </ModalStory>
+    </>
+  ));
+withPendo.story = {
+  name: "with pendo popover",
+  parameters: testStoryParameters,
+};
