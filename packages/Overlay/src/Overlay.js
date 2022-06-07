@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Transition } from "react-transition-group";
 import FocusLock from "react-focus-lock";
-import { LockBodyScroll, Portal, DOMElementType } from "@paprika/helpers";
+import { LockBodyScroll, Portal, DOMElementType, focusLockWhiteList } from "@paprika/helpers";
 import tokens from "@paprika/tokens";
 import * as sc from "./Overlay.styles";
 
@@ -95,22 +95,12 @@ const Overlay = props => {
     }
   }
 
-  // ignore any focusable elements in pendo container, react-focus-lock expects false to be able to ignore them
-  // https://github.com/theKashey/react-focus-lock#focus-fighting
-  function whiteList(node) {
-    const { whiteList: whiteListProp } = focusLockOptions;
-    const pendoContainer = document.getElementById("pendo-base");
-    const whiteListPropResult = whiteListProp ? whiteListProp(node) : true;
-
-    if (!pendoContainer) return whiteListPropResult;
-
-    return !pendoContainer.contains(node) && whiteListPropResult;
-  }
-
   const _focusLockOptions = {
     returnFocus: true,
     ...focusLockOptions,
   };
+
+  const whiteList = React.useMemo(() => focusLockWhiteList(focusLockOptions.whiteList), [focusLockOptions.whiteList]);
 
   return (
     <>

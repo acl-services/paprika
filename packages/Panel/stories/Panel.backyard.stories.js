@@ -4,6 +4,7 @@ import { testStoryParameters } from "storybook/assets/storyParameters";
 import ExampleStory from "storybook/components/ExampleStory";
 import WithSortable from "./sandbox/WithSortable";
 import WebComponent from "./sandbox/WebComponent";
+import WithPendoPopover from "./sandbox/WithPendoPopover";
 import Panel from "../src";
 
 const storyName = getStoryName("Panel");
@@ -30,5 +31,15 @@ export const WebComponentStory = () => (
 );
 WebComponentStory.story = {
   name: "Web Component",
+  parameters: testStoryParameters,
+};
+
+export const WithPendoPopoverStory = () => (
+  <ExampleStory storyName="Pendo overlay whitelist test" component="Panel" fileName="sandbox/WithPendoPopover.js">
+    <WithPendoPopover />
+  </ExampleStory>
+);
+WithPendoPopoverStory.story = {
+  name: "Pendo overlay whitelist test",
   parameters: testStoryParameters,
 };

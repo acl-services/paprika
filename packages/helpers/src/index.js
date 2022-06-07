@@ -3,6 +3,7 @@ export { default as callAll } from "./callAll";
 export { default as extractChildren } from "./extractChildren";
 export { default as extractChildrenProps } from "./extractChildrenProps";
 export { default as isDevEnv } from "./isDevEnv";
+export { default as focusLockWhiteList } from "./focusLockWhiteList";
 
 // dom
 export { default as getActiveElement } from "./dom/getActiveElement";

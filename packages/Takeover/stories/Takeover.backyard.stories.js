@@ -129,3 +129,24 @@ ZIndex.story = {
   name: "Z Index",
   parameters: testStoryParameters,
 };
+
+export const withPendo = () => (
+  <>
+    <div id="pendo-base" style={{ position: "absolute", zIndex: 10, background: "lightgray", top: "300px" }}>
+      <h1>Pendo popover</h1>
+      <input />
+    </div>
+
+    <TakeoverStory>
+      <Takeover.Content>
+        <p>This example demonstrates how the pendo popovers can be ignored by the whitelist</p>
+      </Takeover.Content>
+      <Takeover.Footer />
+    </TakeoverStory>
+  </>
+);
+
+withPendo.story = {
+  name: "with pendo popover",
+  parameters: testStoryParameters,
+};
