@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.0.1
+
+### Patch Changes
+
+- Updated dependencies [7fbad8a]
+  - @paprika/helpers@2.4.1
+  - @paprika/button@1.1.15
+  - @paprika/confirmation@2.0.1
+  - @paprika/popover@2.0.7
+
 ## 3.0.1-next.0
 
 ### Patch Changes

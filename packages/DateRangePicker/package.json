@@ -1,6 +1,6 @@
 {
   "name": "@paprika/date-range-picker",
-  "version": "2.0.2-next.0",
+  "version": "2.0.2",
   "description": "DateRangePicker component allows user to view and specify a date range through an entry fields or a calendar widgets.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -16,11 +16,11 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/calendar": "^3.0.1-next.0",
-    "@paprika/date-input": "^2.0.2-next.0",
-    "@paprika/helpers": "^2.4.1-next.0",
+    "@paprika/calendar": "^3.0.1",
+    "@paprika/date-input": "^2.0.2",
+    "@paprika/helpers": "^2.4.1",
     "@paprika/icon": "^2.1.7",
-    "@paprika/popover": "^2.0.7-next.0",
+    "@paprika/popover": "^2.0.7",
     "@paprika/stylers": "^1.1.7",
     "@paprika/tokens": "^2.0.0",
     "prop-types": "^15.7.2"

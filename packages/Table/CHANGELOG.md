@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.2.26
+
+### Patch Changes
+
+- Updated dependencies [7fbad8a]
+  - @paprika/helpers@2.4.1
+  - @paprika/button@1.1.15
+  - @paprika/overflow-menu@3.0.1
+
 ## 1.2.26-next.0
 
 ### Patch Changes

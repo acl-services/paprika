@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies [7fbad8a]
+  - @paprika/helpers@2.4.1
+  - @paprika/list-box@5.0.1
+  - @paprika/spinner@1.0.18
+
 ## 2.0.1-next.0
 
 ### Patch Changes

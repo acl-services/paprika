@@ -1,6 +1,6 @@
 {
   "name": "@paprika/button-group",
-  "version": "1.0.28-next.0",
+  "version": "1.0.28",
   "description": "ButtonGroup component is a segmented group of toggle buttons.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -15,9 +15,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@paprika/button": "^1.1.15-next.0",
+    "@paprika/button": "^1.1.15",
     "@paprika/constants": "^1.0.0",
-    "@paprika/helpers": "^2.4.1-next.0",
+    "@paprika/helpers": "^2.4.1",
     "@paprika/icon": "^2.1.7",
     "@paprika/stylers": "^1.1.7",
     "@paprika/tokens": "^2.0.0",

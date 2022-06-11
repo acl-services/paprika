@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.4.1
+
+### Patch Changes
+
+- 7fbad8a: Adding `pendo-designer-container` into the focus lock whitelist
+
 ## 2.4.1-next.0
 
 ### Patch Changes

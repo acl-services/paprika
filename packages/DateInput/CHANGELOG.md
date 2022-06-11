@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.2
+
+### Patch Changes
+
+- Updated dependencies [7fbad8a]
+  - @paprika/helpers@2.4.1
+  - @paprika/input@5.0.1
+
 ## 2.0.2-next.0
 
 ### Patch Changes

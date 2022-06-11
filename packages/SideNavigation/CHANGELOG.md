@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.0.2
+
+### Patch Changes
+
+- Updated dependencies [7fbad8a]
+  - @paprika/helpers@2.4.1
+  - @paprika/button@1.1.15
+  - @paprika/panel@3.0.2
+  - @paprika/popover@2.0.7
+
 ## 4.0.2-next.0
 
 ### Patch Changes

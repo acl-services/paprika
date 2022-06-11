@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.0.2
+
+### Patch Changes
+
+- Updated dependencies [7fbad8a]
+  - @paprika/helpers@2.4.1
+  - @paprika/button@1.1.15
+  - @paprika/overlay@1.0.18
+
 ## 2.0.2-next.0
 
 ### Patch Changes

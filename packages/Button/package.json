@@ -1,6 +1,6 @@
 {
   "name": "@paprika/button",
-  "version": "1.1.15-next.0",
+  "version": "1.1.15",
   "description": "Button component, for performing an action on the page you’re viewing.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -17,7 +17,7 @@
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/constants": "^1.0.0",
-    "@paprika/helpers": "^2.4.1-next.0",
+    "@paprika/helpers": "^2.4.1",
     "@paprika/icon": "^2.1.7",
     "@paprika/raw-button": "^1.0.14",
     "@paprika/stylers": "^1.1.7",

@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.0.2
+
+### Patch Changes
+
+- Updated dependencies [7fbad8a]
+  - @paprika/helpers@2.4.1
+  - @paprika/list-box@5.0.1
+  - @paprika/tag@1.0.1
+
 ## 4.0.2-next.0
 
 ### Patch Changes
