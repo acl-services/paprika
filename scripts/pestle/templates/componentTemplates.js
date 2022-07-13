@@ -25,8 +25,8 @@ function renderPackageJSONTemplate(view) {
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
+    "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
+    "react-dom": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "styled-components": "^4.2.0"
   }
 }

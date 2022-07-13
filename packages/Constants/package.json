@@ -18,7 +18,7 @@
     "@babel/runtime-corejs2": "^7.3.1"
   },
   "peerDependencies": {
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
+    "react-dom": "^16.8.4 || ^17.0.2 || ^18.0.0"
   }
 }
