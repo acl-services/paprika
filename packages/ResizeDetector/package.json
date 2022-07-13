@@ -23,8 +23,8 @@
     "use-resize-observer": "^8.0.0"
   },
   "peerDependencies": {
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
+    "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
+    "react-dom": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "styled-components": "^4.3.1"
   }
 }
