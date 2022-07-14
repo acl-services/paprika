@@ -1,5 +1,16 @@
 # @paprika/dynamic-hyperlink-transformer
 
+## 2.0.2-next.0
+
+### Patch Changes
+
+- d60fb99: peerDependencies now include react@17 and react@18
+- Updated dependencies [d60fb99]
+  - @paprika/l10n@1.2.1-next.0
+  - @paprika/tabs@2.3.9-next.0
+  - @paprika/tokens@2.0.1-next.0
+  - @paprika/stylers@1.1.8-next.0
+
 ## 2.0.1
 
 ### Patch Changes

@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.21-next.0
+
+### Patch Changes
+
+- d60fb99: peerDependencies now include react@17 and react@18
+- Updated dependencies [d60fb99]
+  - @paprika/constants@1.0.1-next.0
+  - @paprika/raw-button@1.0.15-next.0
+  - @paprika/tokens@2.0.1-next.0
+  - @paprika/helpers@2.4.2-next.0
+  - @paprika/stylers@1.1.8-next.0
+
 ## 1.0.20
 
 ### Patch Changes

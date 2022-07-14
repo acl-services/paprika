@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.31-next.0
+
+### Patch Changes
+
+- d60fb99: peerDependencies now include react@17 and react@18
+- Updated dependencies [d60fb99]
+  - @paprika/checkbox@1.0.25-next.0
+  - @paprika/collapsible@2.0.1-next.0
+  - @paprika/tokens@2.0.1-next.0
+  - @paprika/stylers@1.1.8-next.0
+
 ## 1.0.30
 
 ### Patch Changes

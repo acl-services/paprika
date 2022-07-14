@@ -73,5 +73,7 @@
     "@paprika/helpers": "2.4.1",
     "@paprika/seducer": "2.0.3"
   },
-  "changesets": []
+  "changesets": [
+    "giant-glasses-turn"
+  ]
 }

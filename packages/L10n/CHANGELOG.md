@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.1-next.0
+
+### Patch Changes
+
+- d60fb99: peerDependencies now include react@17 and react@18
+
 ## 1.2.0
 
 ### Minor Changes
