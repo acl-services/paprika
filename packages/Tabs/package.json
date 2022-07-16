@@ -1,6 +1,6 @@
 {
   "name": "@paprika/tabs",
-  "version": "2.3.9-next.0",
+  "version": "2.3.9",
   "description": "Tabs component displays tabs with panels associated with each tab",
   "author": "@paprika",
   "license": "MIT",
@@ -16,11 +16,11 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/constants": "^1.0.1-next.0",
-    "@paprika/helpers": "^2.4.2-next.0",
-    "@paprika/raw-button": "^1.0.15-next.0",
-    "@paprika/stylers": "^1.1.8-next.0",
-    "@paprika/tokens": "^2.0.1-next.0",
+    "@paprika/constants": "^1.0.1",
+    "@paprika/helpers": "^2.4.2",
+    "@paprika/raw-button": "^1.0.15",
+    "@paprika/stylers": "^1.1.8",
+    "@paprika/tokens": "^2.0.1",
     "classnames": "^2.2.6",
     "prop-types": "^15.7.2",
     "uuid": "^8.3.2"

@@ -1,5 +1,24 @@
 <!-- content -->
 
+## 2.0.3
+
+### Patch Changes
+
+- d60fb99: peerDependencies now include react@17 and react@18
+- Updated dependencies [d60fb99]
+  - @paprika/button@1.1.16
+  - @paprika/constants@1.0.1
+  - @paprika/data-field@2.0.3
+  - @paprika/data-grid@2.0.3
+  - @paprika/icon@2.1.8
+  - @paprika/l10n@1.2.1
+  - @paprika/overflow-menu@3.0.2
+  - @paprika/popover@2.0.8
+  - @paprika/raw-button@1.0.15
+  - @paprika/toast@2.0.2
+  - @paprika/tokens@2.0.1
+  - @paprika/stylers@1.1.8
+
 ## 2.0.3-next.0
 
 ### Patch Changes

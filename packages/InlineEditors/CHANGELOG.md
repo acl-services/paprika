@@ -1,5 +1,27 @@
 # @paprika/inline-editors
 
+## 1.0.14
+
+### Patch Changes
+
+- d60fb99: peerDependencies now include react@17 and react@18
+- Updated dependencies [d60fb99]
+  - @paprika/collapsible-text@2.0.2
+  - @paprika/constants@1.0.1
+  - @paprika/icon@2.1.8
+  - @paprika/input@5.0.2
+  - @paprika/list-box@5.0.2
+  - @paprika/popover@2.0.8
+  - @paprika/raw-button@1.0.15
+  - @paprika/spinner@1.0.19
+  - @paprika/table@1.2.27
+  - @paprika/tag@1.0.2
+  - @paprika/textarea@3.0.11
+  - @paprika/tokens@2.0.1
+  - @paprika/helpers@2.4.2
+  - @paprika/seducer@2.0.4
+  - @paprika/stylers@1.1.8
+
 ## 1.0.14-next.0
 
 ### Patch Changes

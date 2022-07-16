@@ -1,6 +1,6 @@
 {
   "name": "@paprika/overlay",
-  "version": "1.0.19-next.0",
+  "version": "1.0.19",
   "description": "Overlay component",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -24,8 +24,8 @@
     "styled-components": "^4.4.1"
   },
   "dependencies": {
-    "@paprika/helpers": "^2.4.2-next.0",
-    "@paprika/tokens": "^2.0.1-next.0",
+    "@paprika/helpers": "^2.4.2",
+    "@paprika/tokens": "^2.0.1",
     "prop-types": "^15.7.2",
     "react-focus-lock": "^2.8.1",
     "react-transition-group": "^4.3.0"

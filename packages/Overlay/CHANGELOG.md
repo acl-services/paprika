@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.19
+
+### Patch Changes
+
+- d60fb99: peerDependencies now include react@17 and react@18
+- Updated dependencies [d60fb99]
+  - @paprika/tokens@2.0.1
+  - @paprika/helpers@2.4.2
+
 ## 1.0.19-next.0
 
 ### Patch Changes

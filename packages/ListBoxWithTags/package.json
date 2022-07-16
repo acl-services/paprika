@@ -1,6 +1,6 @@
 {
   "name": "@paprika/list-box-with-tags",
-  "version": "4.0.3-next.0",
+  "version": "4.0.3",
   "description": "Allowed the consumer to display a ListBox that show the selected option in a shape of pills",
   "main": "lib/index.js",
   "module": "lib/esm/index.js",
@@ -17,20 +17,20 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/constants": "^1.0.1-next.0",
-    "@paprika/helpers": "^2.4.2-next.0",
-    "@paprika/icon": "^2.1.8-next.0",
-    "@paprika/list-box": "^5.0.2-next.0",
-    "@paprika/raw-button": "^1.0.15-next.0",
-    "@paprika/stylers": "^1.1.8-next.0",
-    "@paprika/tag": "^1.0.2-next.0",
-    "@paprika/tokens": "^2.0.1-next.0",
+    "@paprika/constants": "^1.0.1",
+    "@paprika/helpers": "^2.4.2",
+    "@paprika/icon": "^2.1.8",
+    "@paprika/list-box": "^5.0.2",
+    "@paprika/raw-button": "^1.0.15",
+    "@paprika/stylers": "^1.1.8",
+    "@paprika/tag": "^1.0.2",
+    "@paprika/tokens": "^2.0.1",
     "icons": "^1.0.0",
     "prop-types": "^15.7.2",
     "uuid": "^8.3.2"
   },
   "peerDependencies": {
-    "@paprika/l10n": "^1.2.1-next.0",
+    "@paprika/l10n": "^1.2.1",
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "react-dom": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "styled-components": "^4.2.0"

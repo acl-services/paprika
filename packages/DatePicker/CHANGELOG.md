@@ -1,5 +1,20 @@
 # Changelog
 
+## 3.0.3
+
+### Patch Changes
+
+- d60fb99: peerDependencies now include react@17 and react@18
+- Updated dependencies [d60fb99]
+  - @paprika/calendar@3.0.2
+  - @paprika/constants@1.0.1
+  - @paprika/date-input@2.0.3
+  - @paprika/l10n@1.2.1
+  - @paprika/popover@2.0.8
+  - @paprika/tokens@2.0.1
+  - @paprika/helpers@2.4.2
+  - @paprika/stylers@1.1.8
+
 ## 3.0.3-next.0
 
 ### Patch Changes

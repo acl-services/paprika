@@ -1,5 +1,15 @@
 # @paprika/progress-bar
 
+## 1.1.11
+
+### Patch Changes
+
+- d60fb99: peerDependencies now include react@17 and react@18
+- Updated dependencies [d60fb99]
+  - @paprika/heading@1.0.16
+  - @paprika/tokens@2.0.1
+  - @paprika/stylers@1.1.8
+
 ## 1.1.11-next.0
 
 ### Patch Changes

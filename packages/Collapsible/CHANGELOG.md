@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.0.1
+
+### Patch Changes
+
+- d60fb99: peerDependencies now include react@17 and react@18
+- Updated dependencies [d60fb99]
+  - @paprika/icon@2.1.8
+  - @paprika/l10n@1.2.1
+  - @paprika/raw-button@1.0.15
+  - @paprika/tokens@2.0.1
+  - @paprika/stylers@1.1.8
+
 ## 2.0.1-next.0
 
 ### Patch Changes
