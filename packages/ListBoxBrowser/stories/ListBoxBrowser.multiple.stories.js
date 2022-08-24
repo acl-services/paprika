@@ -92,37 +92,7 @@ storiesOf(`${storyName}/Examples/Multi`, module)
       </ListBoxBrowser>
     </Story>
   ))
-  .add("With lazy loading", () => (
-    <Lazy
-      defaultData={[
-        {
-          key: "0",
-          label: "Marvel Universe",
-          options: [],
-        },
-        {
-          key: "2",
-          label: "DC Universe",
-          options: [],
-        },
-        {
-          key: "3",
-          label: "Starcraft Universe",
-          options: [],
-        },
-        {
-          key: "4",
-          label: "Cartoon Network",
-          options: [],
-        },
-        {
-          key: "5",
-          label: "Dragon Ball",
-          options: [],
-        },
-      ]}
-    />
-  ));
+  .add("With lazy loading", () => <Lazy />);
 
 storiesOf(`${storyName}/Backyard/Tests`, module).add("Cypress", () => (
   <Story>
