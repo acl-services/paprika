@@ -58,7 +58,9 @@ export default function Lazy() {
       defaultSelectedView={() => false}
       defaultSelectedOptions={() => false}
       hasLeftColumn={false}
-      // onChange={() => {}}
+      onChange={selectedOptions => {
+        console.log("selected options:", selectedOptions);
+      }}
       onFetch={handleFetch}
     >
       <ListBoxBrowser.Browser isLoading={isBrowserLoading} />
