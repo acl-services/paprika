@@ -31,9 +31,11 @@
     "react-table": "^7.7.0",
     "react-window": "^1.8.6",
     "lodash.isequal": "^4.5.0",
-    "react-window-infinite-loader": "^1.0.7"
+    "react-window-infinite-loader": "^1.0.7",
+    "dompurify": "^2.4.0"
   },
   "devDependencies": {
+    "@types/dompurify": "^2.3.3",
     "@paprika/input": "^5.0.2",
     "@paprika/button": "^1.1.16",
     "@types/lodash.debounce": "^4.0.6",
