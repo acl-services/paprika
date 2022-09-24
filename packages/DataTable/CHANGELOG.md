@@ -1,5 +1,11 @@
 # @paprika/data-table
 
+## 1.3.0
+
+### Minor Changes
+
+- 03d144a: Sanitizize html in DataTable VariableList component
+
 ## 1.3.0-next.0
 
 ### Minor Changes
