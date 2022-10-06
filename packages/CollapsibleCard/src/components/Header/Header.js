@@ -34,7 +34,9 @@ export default function Header(props) {
   }, []);
 
   React.useEffect(() => {
-    setIsBroken(collapsibleCardWidth < breakpoint);
+    if (collapsibleCardWidth !== null) {
+      setIsBroken(collapsibleCardWidth < breakpoint);
+    }
   }, [collapsibleCardWidth, breakpoint, setIsBroken]);
 
   React.useEffect(() => {
