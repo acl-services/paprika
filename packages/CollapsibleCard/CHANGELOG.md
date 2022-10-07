@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.2.0-next.0
+
+### Minor Changes
+
+- 98e037d: Fix collapsible header bug causing unrequired re-render leading to cypress test errors
+
 ## 3.1.2
 
 ### Patch Changes
