@@ -8,43 +8,14 @@ const getLabelLeftPadding = (radioSize, hasLabel) => {
   return hasLabel ? `${toInt(radioSize) + toInt(tokens.space)}px` : radioSize;
 };
 
-const smallRadioSize = tokens.radio.sizeSm;
 const mediumRadioSize = tokens.radio.sizeMd;
 const largeRadioSize = tokens.radio.sizeLg;
 
 const getHalfSizeCss = sizeCss => `${toInt(sizeCss) / 2}px`;
-const smallRadioHalfSize = getHalfSizeCss(smallRadioSize);
 const mediumRadioHalfSize = getHalfSizeCss(mediumRadioSize);
 const largeRadioHalfSize = getHalfSizeCss(largeRadioSize);
 
 const styles = {
-  [ShirtSizes.SMALL]: {
-    baseFontSize: {
-      fontSize: `${fontSizeValue(-1)}px`,
-    },
-    radioStyles: {
-      height: smallRadioSize,
-      width: smallRadioSize,
-      borderRadius: smallRadioHalfSize,
-    },
-    radioIconBackgroundStyles: {
-      borderRadius: "4px",
-      height: "8px",
-      top: "4px",
-      width: "8px",
-    },
-    radioIconStyles: {
-      fontSize: `${fontSizeValue(-4)}px`,
-      height: smallRadioSize,
-      left: smallRadioHalfSize,
-    },
-    labelStyles: hasLabel => {
-      return {
-        minHeight: smallRadioSize,
-        padding: `0 0 0 ${getLabelLeftPadding(smallRadioSize, hasLabel)}`,
-      };
-    },
-  },
   [ShirtSizes.MEDIUM]: {
     baseFontSize: {
       fontSize: `${fontSizeValue()}px`,

@@ -160,7 +160,6 @@ checkbox:
   size-md: 20px
   size-lg: 24px
 radio:
-  size-sm: 16px
   size-md: 20px
   size-lg: 24px
 popover:

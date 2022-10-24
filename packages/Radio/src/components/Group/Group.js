@@ -7,9 +7,6 @@ const propTypes = {
   /** aria-labelledby prop on the containing group element */
   a11yText: PropTypes.string,
 
-  /** Can deselect any radio */
-  canDeselect: PropTypes.bool,
-
   /** The individual radio items. */
   children: PropTypes.node,
 
@@ -25,14 +22,13 @@ const propTypes = {
 
 const defaultProps = {
   a11yText: "",
-  canDeselect: false,
   children: null,
   isDisabled: false,
   size: ShirtSizes.MEDIUM,
 };
 
 function Group(props) {
-  const { a11yText, canDeselect, children, isDisabled, onChange, ...moreGroupProps } = props;
+  const { a11yText, children, isDisabled, onChange, ...moreGroupProps } = props;
   const defaultCheckedIndex = React.Children.toArray(children).findIndex(child => child.props.defaultIsChecked);
   const selectedIndex = React.Children.toArray(children).findIndex(child => child.props.isChecked);
 
@@ -45,7 +41,7 @@ function Group(props) {
   const name = nanoid();
   const handleRadioClick = index => {
     onChange(index);
-    setCheckedIndex(canDeselect ? getDeselectableIndex(index) : index);
+    setCheckedIndex(getDeselectableIndex(index));
   };
 
   return (
@@ -57,7 +53,6 @@ function Group(props) {
             onClick: () => handleRadioClick(index),
             isChecked: checkedIndex === index,
             isDisabled: isDisabled || child.props.isDisabled,
-            canDeselect,
             name,
             ...childKey,
             ...moreGroupProps,

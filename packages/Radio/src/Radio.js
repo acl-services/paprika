@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import nanoid from "nanoid";
 import CheckIcon from "@paprika/icon/lib/Check";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import radioStyles from "./Radio.styles";
@@ -9,8 +8,6 @@ import Group from "./components/Group";
 const propTypes = {
   /** Used for aria-label on the radio input  */
   a11yText: PropTypes.string,
-  /** Describe if the radio started as selected or not */
-  canDeselect: PropTypes.bool,
   /** Used for label contents */
   children: PropTypes.node,
   /* Controls if the radio is checked or not, never combine it with defaultIsChecked */
@@ -29,7 +26,6 @@ const propTypes = {
 
 const defaultProps = {
   a11yText: null,
-  canDeselect: false,
   children: null,
   defaultIsChecked: false,
   isChecked: false,
@@ -40,8 +36,7 @@ const defaultProps = {
 };
 
 function Radio(props) {
-  const { a11yText, children, isChecked, isDisabled, name, canDeselect, onClick, size, ...moreProps } = props;
-  const radioId = React.useRef(nanoid()).current;
+  const { a11yText, children, isChecked, isDisabled, name, onClick, size, ...moreProps } = props;
   const inputRef = React.useRef(null);
 
   const handleKeyDown = event => {
@@ -72,7 +67,6 @@ function Radio(props) {
     onClick,
     checked: isChecked,
     disabled: isDisabled,
-    id: radioId,
     name,
     onKeyDown: handleKeyDown,
     onKeyUp: handleKeyUp,
@@ -83,14 +77,10 @@ function Radio(props) {
   return (
     <div data-pka-anchor="radio" css={radioStyles} {...styleProps} {...moreProps}>
       <input {...inputProps} />
-      <label onKeyUp={handleKeyUp} className={canDeselect ? "deselectable" : ""} htmlFor={radioId}>
+      <label onKeyUp={handleKeyUp}>
         {children}
 
-        {canDeselect ? (
-          <CheckIcon className="radio-icon" aria-hidden data-pka-anchor="radio.icon.check" />
-        ) : (
-          <div className="radio-icon radio-solid-background" data-pka-anchor="radio.icon.check" />
-        )}
+        <CheckIcon className="radio-icon" aria-hidden data-pka-anchor="radio.icon.check" />
       </label>
     </div>
   );

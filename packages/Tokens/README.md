@@ -7,7 +7,7 @@ or
 # How to use it
 
 Run
-`> yarn pretranspile`
+`> yarn start`
 to generate the following
 tokens.js
 tokens.json
