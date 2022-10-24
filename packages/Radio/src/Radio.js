@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import nanoid from "nanoid";
 import CheckIcon from "@paprika/icon/lib/Check";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import radioStyles from "./Radio.styles";
@@ -72,12 +73,13 @@ function Radio(props) {
     onKeyUp: handleKeyUp,
     ref: inputRef,
     type: "radio",
+    id: nanoid(),
   };
   if (a11yText) inputProps["aria-label"] = a11yText;
   return (
     <div data-pka-anchor="radio" css={radioStyles} {...styleProps} {...moreProps}>
       <input {...inputProps} />
-      <label onKeyUp={handleKeyUp}>
+      <label onKeyUp={handleKeyUp} htmlFor={inputProps.id}>
         {children}
 
         <CheckIcon className="radio-icon" aria-hidden data-pka-anchor="radio.icon.check" />

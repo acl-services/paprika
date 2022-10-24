@@ -2,7 +2,6 @@ import React from "react";
 import { action } from "@storybook/addon-actions";
 import { Rule } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
-import { RadioStory } from "../Radio.stories.styles";
 import Radio from "../../src/Radio";
 
 export const radioItems = ["Radio 1", "Radio 2 label", "Radio 3 option"];
@@ -13,7 +12,7 @@ const ExampleStory = props => {
     setCheckedIndex(Number(e.target.value));
   };
   return (
-    <RadioStory>
+    <>
       <Heading level={2} displayLevel={3} isLight>
         Setting a item as default checked
       </Heading>
@@ -62,7 +61,7 @@ const ExampleStory = props => {
           </option>
         ))}
       </select>
-    </RadioStory>
+    </>
   );
 };
 
