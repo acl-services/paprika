@@ -1,6 +1,6 @@
 {
   "name": "@paprika/collapsible",
-  "version": "0.1.16",
+  "version": "0.2.2",
   "description": "Collapsible component",
   "author": "@paprika",
   "license": "MIT",
@@ -14,15 +14,15 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/icon": "^0.2.2",
-    "@paprika/l10n": "^0.2.5",
-    "@paprika/raw-button": "^0.1.9",
-    "@paprika/stylers": "^0.1.7",
-    "@paprika/tokens": "^0.1.6",
+    "@paprika/icon": "^0.2.5",
+    "@paprika/raw-button": "^0.2.2",
+    "@paprika/stylers": "^0.2.2",
+    "@paprika/tokens": "^0.1.9",
     "class-names": "^1.0.0",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
+    "@paprika/l10n": "^0.2.5",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "styled-components": "^4.2.0"

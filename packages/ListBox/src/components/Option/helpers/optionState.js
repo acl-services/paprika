@@ -32,7 +32,7 @@ export function getDataOptions(children) {
   let index = 0;
 
   React.Children.toArray(children).forEach(child => {
-    if (child.type && isWhiteListed(child.type.componentType)) {
+    if (child.type && isWhiteListed(child.type.displayName)) {
       options[index] = createOption({ index, child, groupId: child.props.groupId });
       index += 1;
     }

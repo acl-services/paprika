@@ -45,10 +45,14 @@ function Trigger(props) {
     }
   }
 
-  const { children, a11yText } = props;
+  const { children, a11yText, ...moreProps } = props;
 
   if (typeof children === "function") {
-    return <React.Fragment>{children(handleTriggerEvent, { "aria-describedby": content.ariaId })}</React.Fragment>;
+    return (
+      <React.Fragment>
+        {React.cloneElement(children(handleTriggerEvent, { "aria-describedby": content.ariaId }), { ...moreProps })}
+      </React.Fragment>
+    );
   }
 
   if (isEager) {
@@ -61,6 +65,7 @@ function Trigger(props) {
         onFocus={handleTriggerEvent}
         onBlur={handleTriggerEvent}
         aria-describedby={content.ariaId}
+        {...moreProps}
       >
         {children}
       </RawButton>
@@ -73,6 +78,7 @@ function Trigger(props) {
       data-pka-anchor="popover.trigger"
       onClick={handleTriggerEvent}
       onBlur={shouldKeepFocus ? handleTriggerEvent : null}
+      {...moreProps}
     >
       {children}
     </RawButton>

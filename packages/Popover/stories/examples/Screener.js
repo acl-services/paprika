@@ -15,7 +15,7 @@ const ExampleStory = () => (
       </Popover.Content>
       <Popover.Tip />
     </Popover>
-    <Gap />
+    <Gap.Large />
     <Popover isOpen isDark>
       <Popover.Trigger>Open Popover</Popover.Trigger>
       <Popover.Content>
@@ -31,7 +31,7 @@ const ExampleStory = () => (
         </Popover.Content>
         <Popover.Tip />
       </Popover>
-      <Gap />
+      <Gap.Large />
       <Popover isOpen isDark>
         <Popover.Trigger>Open Popover</Popover.Trigger>
         <Popover.Content>

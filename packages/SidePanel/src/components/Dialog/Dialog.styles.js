@@ -1,12 +1,18 @@
 import stylers from "@paprika/stylers";
+import tokens from "@paprika/tokens";
 import { css, keyframes } from "styled-components";
-import tokens from "@paprika/tokens/lib/tokens";
 
 const childPanel = css`
-  border-bottom-left-radius: ${stylers.spaceSm};
-  border-top-left-radius: ${stylers.spaceSm};
-  height: calc(100% - ${stylers.spacer(7) + 80}px);
-  margin-top: ${stylers.spacer(7)}px;
+  ${props => {
+    const totalOffset = props.isCompact ? 48 : 64;
+    const childBottomOffsetY = totalOffset + props.groupOffsetY + props.offsetY;
+    return css`
+      border-bottom-left-radius: ${tokens.spaceSm};
+      border-top-left-radius: ${tokens.spaceSm};
+      height: calc(100% - ${childBottomOffsetY}px);
+      margin-top: ${props.isCompact ? `${stylers.spacer(3)}` : `${stylers.spacer(4)}`};
+    `;
+  }}
 `;
 
 function slideIn() {
@@ -35,6 +41,10 @@ function slideOut() {
   `;
 }
 
+const compactStyles = css`
+  padding: ${stylers.spacer(2)};
+`;
+
 export const dialogStyles = css`
   background: ${tokens.color.white};
   box-shadow: ${tokens.modal.shadow};
@@ -62,6 +72,7 @@ export const dialogStyles = css`
       top: ${props.offsetY}px;
       width: ${width};
       z-index: ${props.zIndex};
+      ${props => (props.offsetY ? `height: calc(100% - ${props.offsetY}px);` : "")}
       ${props.isInline ? "position: relative;" : "position: fixed;"}
       ${props.isOpen ? "opacity: 1" : "opacity: 0"};
       ${childSidePanel}
@@ -70,7 +81,9 @@ export const dialogStyles = css`
 `;
 
 export const dialogContentStyles = css`
-  padding: ${stylers.spacer(2)};
+  padding: ${stylers.spacer(3)};
+
+  ${props => (props.isCompact || props.kind === "child" ? compactStyles : "")}
   ${props => {
     return props.isSticky ? `margin-bottom: ${props.footerHeight}px;` : "";
   }}

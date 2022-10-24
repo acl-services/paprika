@@ -8,31 +8,14 @@ const getLabelLeftPadding = (radioSize, hasLabel) => {
   return hasLabel ? `${toInt(radioSize) + toInt(tokens.space)}px` : radioSize;
 };
 
-const smallRadioSize = tokens.radio.sizeSm;
 const mediumRadioSize = tokens.radio.sizeMd;
 const largeRadioSize = tokens.radio.sizeLg;
 
+const getHalfSizeCss = sizeCss => `${toInt(sizeCss) / 2}px`;
+const mediumRadioHalfSize = getHalfSizeCss(mediumRadioSize);
+const largeRadioHalfSize = getHalfSizeCss(largeRadioSize);
+
 const styles = {
-  [ShirtSizes.SMALL]: {
-    baseFontSize: {
-      fontSize: `${fontSizeValue(-1)}px`,
-    },
-    radioStyles: {
-      height: smallRadioSize,
-      width: smallRadioSize,
-    },
-    radioIconStyles: {
-      fontSize: `${fontSizeValue(-3)}px`,
-      height: smallRadioSize,
-      left: `${toInt(smallRadioSize) / 2}px`,
-    },
-    labelStyles: hasLabel => {
-      return {
-        minHeight: smallRadioSize,
-        padding: `0 0 0 ${getLabelLeftPadding(smallRadioSize, hasLabel)}`,
-      };
-    },
-  },
   [ShirtSizes.MEDIUM]: {
     baseFontSize: {
       fontSize: `${fontSizeValue()}px`,
@@ -40,11 +23,18 @@ const styles = {
     radioStyles: {
       height: mediumRadioSize,
       width: mediumRadioSize,
+      borderRadius: mediumRadioHalfSize,
+    },
+    radioIconBackgroundStyles: {
+      borderRadius: "6px",
+      height: "10px",
+      top: "5px",
+      width: "10px",
     },
     radioIconStyles: {
-      fontSize: `${fontSizeValue(-1)}px`,
+      fontSize: `${fontSizeValue(-2)}px`,
       height: mediumRadioSize,
-      left: `${toInt(mediumRadioSize) / 2}px`,
+      left: mediumRadioHalfSize,
     },
     labelStyles: hasLabel => {
       return {
@@ -60,11 +50,18 @@ const styles = {
     radioStyles: {
       height: largeRadioSize,
       width: largeRadioSize,
+      borderRadius: largeRadioHalfSize,
+    },
+    radioIconBackgroundStyles: {
+      borderRadius: "6px",
+      height: "12px",
+      top: "6px",
+      width: "12px",
     },
     radioIconStyles: {
       fontSize: `${fontSizeValue()}px`,
       height: largeRadioSize,
-      left: `${toInt(largeRadioSize) / 2}px`,
+      left: largeRadioHalfSize,
     },
     labelStyles: hasLabel => {
       return {
@@ -79,15 +76,11 @@ const radioStyles = css`
   ${boxSizingStyles};
   ${({ size }) => styles[size].baseFontSize};
   line-height: ${({ hasLabel }) => (hasLabel ? lineHeightValue(-1) : "0")};
+  margin: ${tokens.space} 0;
   position: relative;
 
   input[type="radio"] {
     ${visuallyHidden};
-
-    &:focus + label::before {
-      box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
-      border-color: ${tokens.highlight.active.noBorder.borderColor};
-    }
 
     & + label {
       cursor: pointer;
@@ -106,7 +99,6 @@ const radioStyles = css`
     & + label::before {
       background: ${tokens.color.white};
       border: 2px solid ${tokens.border.color};
-      border-radius: ${tokens.border.radius};
       content: "";
       left: 0;
       ${z(1)};
@@ -118,7 +110,7 @@ const radioStyles = css`
     }
 
     & + label > .radio-icon {
-      color: ${tokens.color.white};
+      color: ${tokens.color.black};
       ${({ size }) => styles[size].radioIconStyles};
       opacity: 0;
       pointer-events: none;
@@ -127,26 +119,21 @@ const radioStyles = css`
       ${z(2)};
     }
 
-    &:checked,
-    &:indeterminate {
-      & + label::before {
-        background: ${tokens.color.black};
-        border: none;
+    & + label > .radio-solid-background {
+      background-color: ${tokens.color.black};
+      ${({ size }) => styles[size].radioIconBackgroundStyles};
+    }
+
+    &:checked {
+      & + label.deselectable:hover:before {
+        background: ${tokens.color.blackLighten60};
       }
-      & + label:hover::before {
-        background: ${tokens.color.blackLighten30};
+      & + label::before {
+        border: 2px solid ${tokens.color.black};
       }
     }
 
     &:checked + label > [data-pka-anchor="radio.icon.check"] {
-      opacity: 1;
-    }
-
-    &:indeterminate + label > [data-pka-anchor="radio.icon.check"] {
-      opacity: 0;
-    }
-
-    &:indeterminate + label > [data-pka-anchor="radio.icon.indeterminate"] {
       opacity: 1;
     }
 
@@ -157,18 +144,22 @@ const radioStyles = css`
         opacity: 0.5;
         transition: none;
       }
-      &:checked,
-      &:indeterminate {
-        & + label::before {
-          background-color: ${tokens.color.blackLighten40};
-        }
+      &:checked {
         & + label:hover::before {
-          border: none;
+          border: 2px solid ${tokens.color.black};
+        }
+        & + label.deselectable:hover:before {
+          background-color: inherit;
         }
       }
       & + label:hover::before {
-        border: 2px solid ${tokens.border.color};
+        border: 2px solid ${tokens.color.blackLighten60};
       }
+    }
+
+    &:focus + label::before {
+      border-color: ${tokens.highlight.active.noBorder.borderColor};
+      box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
     }
   }
 `;

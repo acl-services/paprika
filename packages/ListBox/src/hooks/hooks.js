@@ -77,7 +77,9 @@ export function useAdjustWidth() {
     }
 
     const handleResize = () => {
-      dispatch({ type: useListBox.types.setTriggerWidth, payload: $triggerContainer.offsetWidth });
+      if ($triggerContainer) {
+        dispatch({ type: useListBox.types.setTriggerWidth, payload: $triggerContainer.offsetWidth });
+      }
     };
 
     window.addEventListener("resize", handleResize);

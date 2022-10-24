@@ -72,7 +72,7 @@ function setIsIndeterminate(children, checkboxRef, isCheckedByDefault, isIndeter
 }
 
 function Group(props) {
-  const { children, isCheckedByDefault, isDisabled, isIndeterminateByDefault, onExpand, title } = props;
+  const { children, isCheckedByDefault, isDisabled, isIndeterminateByDefault, onExpand, title, ...moreProps } = props;
   const onChange = React.useContext(CollapsibleChecklistsContext);
   const [isCollapsed, setIsCollapsed] = React.useState(true);
   const checkboxRef = React.useRef({});
@@ -168,6 +168,7 @@ function Group(props) {
         }
         setIsCollapsed(!isCollapsed);
       }}
+      {...moreProps}
     >
       {modifiedChildren}
     </Collapsible>

@@ -201,3 +201,24 @@ export const DefaultIsSelected = () => {
     </ListBox>
   );
 };
+
+export const TriggerIsHidden = () => {
+  return (
+    <ListBox
+      isInline
+      isMulti
+      onChange={selectedOptions => {
+        console.log(selectedOptions);
+      }}
+    >
+      <ListBox.Trigger isHidden />
+      {characters.antiHeroesRaw.map((item, index) => {
+        return (
+          <ListBox.Option key={item.label} defaultIsSelected={Boolean(index % 2)}>
+            {item.label}
+          </ListBox.Option>
+        );
+      })}
+    </ListBox>
+  );
+};

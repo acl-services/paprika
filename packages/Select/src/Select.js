@@ -7,7 +7,7 @@ import selectStyles from "./Select.styles";
 const propTypes = {
   a11yText: PropTypes.string,
   className: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   hasError: PropTypes.bool,
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.instanceOf(Element) })]),
   isDisabled: PropTypes.bool,
@@ -20,6 +20,7 @@ const propTypes = {
 const defaultProps = {
   a11yText: null,
   className: null,
+  children: null,
   hasError: false,
   inputRef: () => {},
   isDisabled: false,

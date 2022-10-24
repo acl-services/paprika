@@ -1,25 +1,60 @@
 import React from "react";
-import { Story, Rule } from "storybook/assets/styles/common.styles";
+import { Story, Tagline, Gap } from "storybook/assets/styles/common.styles";
+import Heading from "@paprika/heading";
+
 import CollapsibleText from "../../src";
 
 const ExampleStory = () => {
   return (
-    <Story>
+    <Story
+      css={`
+        h2 {
+          margin-top: 32px;
+          color: #999;
+        }
+      `}
+    >
+      <Heading level={1} displayLevel={2} isLight>
+        CollapsibleText
+      </Heading>
+      <Tagline>
+        <big>
+          <strong>Variations</strong>
+        </big>{" "}
+        – Browse use cases + recipes
+      </Tagline>
+
+      <Gap />
+
+      <Heading level={2} displayLevel={4} isLight hasDivider>
+        Short
+      </Heading>
       <CollapsibleText>Lorem hipsum raw denim listicle mixtape.</CollapsibleText>
-      <Rule />
+
+      <Heading level={2} displayLevel={4} isLight hasDivider>
+        Threshold
+      </Heading>
       <CollapsibleText>
         Lorem hipsum roof party disrupt post-ironic, photo booth marfa hot chicken iceland readymade. Small batch
         succulents unicorn direct trade, truffaut fanny pack man bun poke vexillologist copper mug master cleanse
         iceland chillwave stumptown. Bespoke adaptogen hexagon.
       </CollapsibleText>
-      <Rule />
+
+      <Heading level={2} displayLevel={4} isLight hasDivider>
+        Long
+      </Heading>
       <CollapsibleText>
         Lorem hipsum lomo cronut meggings hella tattooed affogato. Pug cred plaid, neutra lyft typewriter locavore beard
         vice art party glossier woke kinfolk. Craft beer keytar poke man bun. Yr polaroid flannel air plant. Brunch tote
         bag seitan meditation ennui, adaptogen yr health goth. Hashtag disrupt echo park wayfarers, air plant tofu 8-bit
         green juice tilde umami kickstarter waistcoat.
       </CollapsibleText>
-      <Rule />
+
+      <Gap />
+
+      <Heading level={2} displayLevel={4} isLight hasDivider>
+        <code>collapsedLength = 64</code>
+      </Heading>
       <CollapsibleText collapsedLength={64} a11yText="meditation cardigans">
         Lorem hipsum meditation cardigan +1, plaid brunch street cred cloud bread art party pickled, VHS fingerstache la
         croix paleo single-origin coffee. Pinterest normcore wayfarers gentrify marfa helvetica street art vegan.
@@ -27,7 +62,12 @@ const ExampleStory = () => {
         ennui whatever williamsburg. Chia offal slow-carb, kickstarter gastropub letterpress echo park mustache irony
         90s.
       </CollapsibleText>
-      <Rule />
+
+      <Gap />
+
+      <Heading level={2} displayLevel={4} isLight hasDivider>
+        <code>{"<p>"} </code>&nbsp;x 2
+      </Heading>
       <CollapsibleText>
         <p>
           Lorem hipsum cronut meggings hella tattooed affogato. Pug cred plaid, neutra lyft typewriter locavore beard
@@ -42,7 +82,10 @@ const ExampleStory = () => {
           flannel lyft cronut mumblecore. Swag palo santo ennui plaid shoreditch lyft celiac poke pop-up.
         </p>
       </CollapsibleText>
-      <Rule />
+
+      <Heading level={2} displayLevel={4} isLight hasDivider>
+        <code>{"<ul>"}</code>&nbsp;List
+      </Heading>
       <CollapsibleText>
         <ul>
           <li>Lorem hipsum next level typewriter vape forage.</li>

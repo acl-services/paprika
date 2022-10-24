@@ -1,5 +1,4 @@
 import React from "react";
-import RawButton from "@paprika/raw-button";
 import Add from "@paprika/icon/lib/Add";
 import DropdownMenu from "../../src";
 
@@ -11,14 +10,10 @@ const DropdownMenuTriggerExample = () => {
       </small>
       <div>
         <br />
-        <DropdownMenu
-          align="bottom"
-          renderTrigger={({ handleOpenMenu }) => (
-            <RawButton onClick={handleOpenMenu}>
-              <p>I am a paragraph tag</p>
-            </RawButton>
-          )}
-        >
+        <DropdownMenu align="bottom">
+          <DropdownMenu.Trigger buttonType="raw">
+            <p>I am a paragraph tag</p>
+          </DropdownMenu.Trigger>
           <DropdownMenu.Item onClick={() => {}}>First Item</DropdownMenu.Item>
           <DropdownMenu.Item onClick={() => {}}>Second Item</DropdownMenu.Item>
         </DropdownMenu>
@@ -29,12 +24,10 @@ const DropdownMenuTriggerExample = () => {
       </small>
       <div>
         <br />
-        <DropdownMenu
-          align="bottom"
-          renderTrigger={({ isOpen, handleOpenMenu }) => (
-            <DropdownMenu.Trigger icon={<Add />} isOpen={isOpen} onOpenMenu={handleOpenMenu} />
-          )}
-        >
+        <DropdownMenu align="bottom">
+          <DropdownMenu.Trigger buttonType="icon">
+            <Add />
+          </DropdownMenu.Trigger>
           <DropdownMenu.Item onClick={() => {}}>First Item</DropdownMenu.Item>
           <DropdownMenu.Item onClick={() => {}}>Second Item</DropdownMenu.Item>
         </DropdownMenu>
@@ -45,14 +38,8 @@ const DropdownMenuTriggerExample = () => {
       </small>
       <div>
         <br />
-        <DropdownMenu
-          align="bottom"
-          renderTrigger={({ isOpen, handleOpenMenu }) => (
-            <DropdownMenu.Trigger size="small" isOpen={isOpen} onOpenMenu={handleOpenMenu}>
-              Trigger
-            </DropdownMenu.Trigger>
-          )}
-        >
+        <DropdownMenu align="bottom">
+          <DropdownMenu.Trigger size="small">Trigger</DropdownMenu.Trigger>
           <DropdownMenu.Item onClick={() => {}}>First Item</DropdownMenu.Item>
           <DropdownMenu.Item onClick={() => {}}>Second Item</DropdownMenu.Item>
         </DropdownMenu>

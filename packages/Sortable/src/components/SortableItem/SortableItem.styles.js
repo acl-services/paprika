@@ -41,9 +41,9 @@ export const itemHandleStyles = css`
 export const itemIndexStyles = css`
   ${stylers.fontSize()};
   align-self: center;
-  background: ${tokens.color.blackLighten40};
+  background: ${tokens.color.blackLighten60};
   border-radius: ${tokens.border.radius};
-  color: ${tokens.color.white};
+  color: ${tokens.color.black};
   flex-shrink: 0;
   height: ${stylers.spacer(4)};
   line-height: ${stylers.spacer(4)};

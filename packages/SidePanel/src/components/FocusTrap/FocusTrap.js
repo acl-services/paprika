@@ -40,4 +40,4 @@ export default function FocusTrap(props) {
 
 FocusTrap.propTypes = propTypes;
 FocusTrap.defaultProps = defaultProps;
-FocusTrap.componentType = "SidePanel.FocusTrap";
+FocusTrap.displayName = "SidePanel.FocusTrap";

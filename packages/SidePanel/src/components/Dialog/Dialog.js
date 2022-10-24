@@ -5,7 +5,10 @@ import { dialogStyles, dialogContentStyles } from "./Dialog.styles";
 const propTypes = {
   children: PropTypes.node.isRequired,
   footer: PropTypes.node,
+  groupOffsetY: PropTypes.number,
   header: PropTypes.node,
+  kind: PropTypes.oneOf(["default", "child"]),
+  isCompact: PropTypes.bool,
   isInline: PropTypes.bool,
   offsetY: PropTypes.number,
   onAnimationEnd: PropTypes.func.isRequired,
@@ -18,7 +21,10 @@ const propTypes = {
 
 const defaultProps = {
   footer: null,
+  groupOffsetY: 0,
   header: null,
+  kind: "default",
+  isCompact: false,
   isInline: false,
   offsetY: 0,
   onClose: () => {},
@@ -30,8 +36,11 @@ function Dialog(props) {
   const {
     children,
     footer,
+    groupOffsetY,
     onAnimationEnd,
     header,
+    kind,
+    isCompact,
     isInline,
     offsetY,
     onClose,
@@ -46,9 +55,12 @@ function Dialog(props) {
     <div
       aria-modal={isInline ? null : "true"}
       css={dialogStyles}
+      groupOffsetY={groupOffsetY}
+      kind={kind}
+      isCompact={isCompact}
       isInline={isInline}
       isOpen={isOpen}
-      offsetY={props.offsetY}
+      offsetY={offsetY}
       onAnimationEnd={onAnimationEnd}
       ref={refSidePanel}
       role="dialog"
@@ -56,18 +68,21 @@ function Dialog(props) {
       width={width}
       {...moreProps}
     >
-      {header ? React.cloneElement(header, { ref: refHeader, onClose }) : null}
+      {header ? React.cloneElement(header, { ref: refHeader, isCompact, onClose }) : null}
       <div
+        data-pka-anchor="sidepanel.content"
         css={dialogContentStyles}
+        isCompact={isCompact}
         isOpen={isOpen}
         isSticky={footer ? footer.props.isSticky : undefined}
         footerHeight={footer ? footer.props.height : undefined}
+        kind={kind}
         tabIndex="-1"
         ref={refSidePanelContent}
       >
         {children}
       </div>
-      {footer ? React.cloneElement(footer, { refSidePanel, width }) : null}
+      {footer ? React.cloneElement(footer, { refSidePanel, isCompact, width }) : null}
     </div>
   );
 }

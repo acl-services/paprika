@@ -1,6 +1,6 @@
 ## Radio
 
-The `<Radio>` component displays a radio input and label text beside it. When clicked it selects the input and deselects any other radio input in its group. It can also have an indeterminate state which can be used to group checkboxes.
+The `<Radio>` component displays a radio input and label text beside it. When clicked it selects the input and deselects any other radio input in its group.
 
 ### Installation
 
@@ -13,18 +13,38 @@ or
 ```js
 import Radio from "@paprika/radio";
 
-<Radio onChange={handleChange} checkState={checkedStateValue>
-  Radio 1
-</Radio>;
+<Radio.Group
+  onChange={activeIndex => {
+    // get values from the data using index
+  }}
+>
+  <Radio>Radio 1</Radio>
+  <Radio>Radio 2</Radio>
+  <Radio>Radio 3</Radio>
+  <Radio>Radio 4</Radio>
+</Radio.Group>;
 ```
 
 ### Props
 
-- a11yText
-- children
-- isDisabled
-- checkedState ("checked", "unchecked", "indeterminate")
-- onChange
-- size ("small, "medium", "large")
+#### Radio.Group
 
-[More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Checkbox/src/Radio.js)
+-a11yText
+-canDeselect
+-children
+-isDisabled
+-onChange
+-size
+
+[More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Radio/src/components/Group/Group.js)
+
+#### Radio
+
+-a11yText
+-canDeselect
+-children
+-isChecked
+-isDisabled
+-defaultIsChecked
+
+[More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Radio/src/Radio.js)

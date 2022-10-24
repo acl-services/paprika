@@ -72,7 +72,10 @@
     },
     {
       "files": ["packages/**/*.spec.js"],
-      "rules": { "import/no-extraneous-dependencies": "off" }
+      "rules": { "import/no-extraneous-dependencies": "off" },
+      "globals": {
+        "given": true
+      }
     },
     {
       "files": ["packages/helpers/**/*.js"],

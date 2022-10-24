@@ -7,10 +7,10 @@ import tokens from "@paprika/tokens";
 export const ButtonStory = styled(Story)`
   a,
   button,
-  [role="button"][role="a"] {
+  [role="button"] {
     & + button,
     & + a,
-    & + [role="button"][role="a"] {
+    & + [role="button"] {
       margin-left: ${tokens.space};
     }
   }

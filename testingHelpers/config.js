@@ -19,3 +19,5 @@ global.renderWithL10n = (reactElement, ...otherArgs) => {
     rerender,
   };
 };
+
+global.context = describe;

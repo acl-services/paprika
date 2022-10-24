@@ -10,6 +10,13 @@ storiesOf("SidePanel / Footer", module).add("SidePanel.Footer", () => (
   </SidePanel>
 ));
 
+storiesOf("SidePanel / Footer", module).add("SidePanel.Footer isCompact", () => (
+  <SidePanel isOpen isCompact>
+    <TextLine repeat={50} />
+    <SidePanel.Footer>Footer</SidePanel.Footer>
+  </SidePanel>
+));
+
 storiesOf("SidePanel / Footer", module).add("SidePanel.Footer isSticky", () => (
   <SidePanel isOpen>
     <SidePanel.Header>Header</SidePanel.Header>

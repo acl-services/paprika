@@ -1,6 +1,6 @@
 import React from "react";
 
-export function extractChildren(children, types) {
+export default function extractChildren(children, types) {
   const _children = [];
   const components = {};
   if (Array.isArray(types)) {

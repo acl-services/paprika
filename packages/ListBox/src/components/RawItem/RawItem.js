@@ -21,5 +21,5 @@ export default function RawItem(props) {
   return <Option {...props} />;
 }
 
-RawItem.componentType = "ListBox.RawItem";
+RawItem.displayName = "ListBox.RawItem";
 RawItem.defaultProps = defaultProps;

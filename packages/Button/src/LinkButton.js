@@ -9,7 +9,7 @@ const LinkPropTypes = {
   href: PropTypes.string.isRequired,
   isOpenNewTab: PropTypes.bool,
   kind: PropTypes.oneOf(Button.Kinds.ALL),
-  size: PropTypes.oneOf(ShirtSizes.MEDIUM),
+  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 };
 
 const LinkDefaultProps = {

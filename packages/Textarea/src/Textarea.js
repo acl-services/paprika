@@ -14,7 +14,7 @@ const propTypes = {
   isReadOnly: PropTypes.bool,
   maxHeight: PropTypes.string,
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
 };
 
 const defaultProps = {
@@ -27,6 +27,7 @@ const defaultProps = {
   isReadOnly: false,
   maxHeight: "300px",
   size: ShirtSizes.MEDIUM,
+  value: "",
 };
 
 class Textarea extends React.Component {

@@ -267,8 +267,10 @@ function getIconColor(props) {
 }
 
 export const iconStyles = props => css`
+  align-items: center;
   color: ${getIconColor(props)};
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
   margin: 0 ${tokens.spaceSm} 0 0;
 
   svg {

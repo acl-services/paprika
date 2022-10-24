@@ -136,6 +136,6 @@ Footer.defaultProps = defaultProps;
 FooterComponent.propTypes = propTypes;
 FooterComponent.defaultProps = defaultProps;
 
-Footer.componentType = "ListBox.Footer";
+Footer.displayName = "ListBox.Footer";
 
 export default Footer;

@@ -5,15 +5,15 @@ export default function extractChildren(children, types) {
   const components = {};
   if (Array.isArray(types)) {
     React.Children.toArray(children).forEach(child => {
-      if (child.type && types.includes(child.type.componentType)) {
-        if (Object.prototype.hasOwnProperty.call(components, child.type.componentType)) {
-          const childs = Array.isArray(components[child.type.componentType])
-            ? [child, ...components[child.type.componentType]]
-            : [child, components[child.type.componentType]];
+      if (child.type && types.includes(child.type.displayName)) {
+        if (Object.prototype.hasOwnProperty.call(components, child.type.displayName)) {
+          const childs = Array.isArray(components[child.type.displayName])
+            ? [child, ...components[child.type.displayName]]
+            : [child, components[child.type.displayName]];
 
-          components[child.type.componentType] = childs;
+          components[child.type.displayName] = childs;
         } else {
-          components[child.type.componentType] = child;
+          components[child.type.displayName] = child;
         }
       } else {
         _children.push(child);

@@ -40,7 +40,7 @@ const propTypes = {
   isFixed: PropTypes.bool,
 
   /** Determines the styling of the Toast */
-  kind: PropTypes.oneOf([Kinds.SUCCESS, Kinds.WARNING, Kinds.ERROR, Kinds.INFO, Kinds.LOCKED, Kinds.VISUALLY_HIDDEN]),
+  kind: PropTypes.oneOf(Kinds.ALL),
 
   /** The z-index of the Toast */
   zIndex: PropTypes.number,

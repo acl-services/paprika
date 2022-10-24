@@ -1,9 +1,7 @@
 import React from "react";
 import moment from "moment";
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
-
 import { storiesOf } from "@storybook/react";
-
 import Example from "./DatePickerExample";
 import DatePicker from "../src/DatePicker";
 
@@ -25,7 +23,7 @@ storiesOf("DatePicker", module)
     return (
       <Example locale="en" {...datePickerProps()}>
         <DatePicker.Input {...inputProps()} />
-        <DatePicker.Popover style={{ marginTop: "270px" }}></DatePicker.Popover>
+        <DatePicker.Popover style={{ marginTop: "270px" }} />
       </Example>
     );
   })

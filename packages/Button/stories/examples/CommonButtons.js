@@ -1,15 +1,14 @@
 import React from "react";
-import { Story } from "storybook/assets/styles/common.styles";
+import { ButtonStory } from "../Button.stories.styles";
 import Button from "../../src";
 
 const ExampleStory = () => {
   return (
-    <Story>
+    <ButtonStory>
       <div>
         <Button kind="primary">Primary</Button>
         <Button>Default</Button>
         <Button kind="minor">Minor</Button>
-        <Button kind="link">Link</Button>
       </div>
       <br />
       <div>
@@ -31,7 +30,7 @@ const ExampleStory = () => {
           Small minor
         </Button>
       </div>
-    </Story>
+    </ButtonStory>
   );
 };
 

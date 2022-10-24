@@ -2,6 +2,8 @@
 const locales = {
   "en": {
     "translation": {
+      "back": "back",
+      "remove": "remove",
       "moreInformation": "more information",
       "close": "Close",
       "uploader": {
@@ -48,6 +50,9 @@ const locales = {
         "start_date": "Start Date",
         "end_date": "End Date"
       },
+      "dropdownMenu": {
+        "isExternal": "{{link}} opens in a new tab."
+      },
       "comment": {
         "delete": "Delete comment"
       },
@@ -68,7 +73,7 @@ const locales = {
         "arrowdown": "down",
         "escape": "escape"
       },
-      "externalLink": {
+      "externaLink": {
         "view": "view"
       },
       "collapsible": {
@@ -93,6 +98,11 @@ const locales = {
         "less": "Show less",
         "more_about": "show more about {{topic}}",
         "less_about": "show less about {{topic}}"
+      },
+      "listBoxBrowser": {
+        "explore": "Explore more options",
+        "selected": "selected options",
+        "selectOne": "Select one or more items..."
       }
     }
   }

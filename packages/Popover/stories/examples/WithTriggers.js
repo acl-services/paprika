@@ -1,13 +1,8 @@
 import React from "react";
-import styled from "styled-components";
-import { CenteredStory } from "storybook/assets/styles/common.styles";
+import { CenteredStory, Gap } from "storybook/assets/styles/common.styles";
 import Icon from "@paprika/icon/lib/InfoCircle";
 import Button from "@paprika/button";
 import Popover from "../../src";
-
-const Gap = styled.div`
-  height: 50px;
-`;
 
 const ExampleStory = () => (
   <CenteredStory>
@@ -16,17 +11,19 @@ const ExampleStory = () => (
         Render prop: <code>&lt;Button&gt;</code>
       </h5>
       <Popover>
-        <Popover.Trigger>
+        <Popover.Trigger data-test-attr="propagated">
           {handler => (
             <Button onClick={handler} icon={<Icon />}>
               More info
             </Button>
           )}
         </Popover.Trigger>
-        <Popover.Content>
-          <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+        <Popover.Content data-test-attr="propagated">
+          <Popover.Card data-test-attr="propagated">
+            Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.
+          </Popover.Card>
         </Popover.Content>
-        <Popover.Tip />
+        <Popover.Tip data-test-attr="propagated" />
       </Popover>
       <Gap />
       <h5>
@@ -151,7 +148,7 @@ const ExampleStory = () => (
         Node: <code>isEager isDark</code>
       </h5>
       <Popover isEager isDark>
-        <Popover.Trigger>
+        <Popover.Trigger data-test-attr="propagated">
           <span role="img" aria-label="bulb light">
             💡
           </span>
@@ -166,7 +163,7 @@ const ExampleStory = () => (
         Node: <code>shouldKeepFocus</code>
       </h5>
       <Popover shouldKeepFocus>
-        <Popover.Trigger>
+        <Popover.Trigger data-test-attr="propagated">
           <input />
         </Popover.Trigger>
         <Popover.Content>

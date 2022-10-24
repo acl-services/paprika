@@ -7,9 +7,7 @@ import tokens from "@paprika/tokens";
 import { AlignTypes } from "@paprika/helpers/lib/customPropTypes";
 import isInsideBoundaries from "./helpers/isInsideBoundaries";
 import { getContentCoordinates, getTipCoordinates } from "./helpers/getPosition";
-import { isActiveElementPopover } from "./helpers/isActiveElementPopover";
 import getBoundingClientRect from "./helpers/getBoundingClientRect";
-
 import PopoverContext, { ThemeContext } from "./PopoverContext";
 import Content from "./components/Content/Content";
 import Card from "./components/Card/Card";
@@ -18,20 +16,14 @@ import Tip from "./components/Tip/Tip";
 
 import PopoverStyled from "./Popover.styles";
 
-// ACCESSIBILITY
-// NOTE: When closing the popover seems to be better to focus the trigger button
-//       only when the close method is the ESC key, when clicking outside doesn't feel a fluid action
-//       assigning the focus to the button again
-
 const openDelay = 350;
 const closeDelay = 150;
 const throttleDelay = 20;
+const focusableElementSelector =
+  'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), [role="button"]';
 
 // TODO: To handle cases where there are multiple scrolling containers, we need to implement
 //       getScrollContainer as oneOfType([func, arrayOf(func)])
-
-// TODO: To accommodate cases like a popover menu, we need two additional alignment options:
-//       leftEdge and rightEdge.
 
 const propTypes = {
   /** Where the popover content is positioned relative to the trigger or getPositioningElement. */
@@ -55,8 +47,11 @@ const propTypes = {
   /** Where the edge of the popover content is based on the trigger or getPositioningElement */
   edge: PropTypes.oneOf([AlignTypes.LEFT, AlignTypes.RIGHT, null]),
 
-  /** Maximum width of popover content. Use of a number will imply px units and is recommended. */
+  /** Maximum width of popover content. Using a number is recommended and implies px units. */
   maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+  /** Minimumn width of popover content. Using a number is recommended and implies px units. */
+  minWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
   /** Callback to fire when user closes popover. */
   onClose: PropTypes.func,
@@ -85,6 +80,7 @@ const defaultProps = {
   defaultIsOpen: null,
   edge: null,
   maxWidth: 320,
+  minWidth: 0,
   onClose: null,
   offset: parseInt(tokens.spaceLg, 10),
   getPositioningElement: null,
@@ -104,6 +100,9 @@ class Popover extends React.Component {
 
     const portalNode = document.createElement("div");
     this.$portal = document.body.appendChild(portalNode);
+
+    this.focusableElements = [];
+    this.triggerFocusIndex = null;
 
     this.state = {
       isOpen: this.props.defaultIsOpen || false,
@@ -135,6 +134,7 @@ class Popover extends React.Component {
     (
       content,
       maxWidth,
+      minWidth,
       width,
       isEager,
       isOpen,
@@ -148,7 +148,8 @@ class Popover extends React.Component {
     ) => ({
       content: {
         ...content,
-        maxWidth, // maybe we should code a minimum maxWidth?
+        maxWidth,
+        minWidth,
         width,
         zIndex,
         ariaId: ariaIdForContent,
@@ -178,8 +179,21 @@ class Popover extends React.Component {
     }
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (!prevState.isOpen && nextProps.isOpen) {
+      return { isOpen: true };
+    }
+
+    return null;
+  }
+
   componentDidUpdate(prevProps) {
+    if (!prevProps.isOpen && this.props.isOpen) {
+      this.open();
+    }
+
     if (this.isOpen() && !this.hasListeners) {
+      this.focusableElements = document.querySelectorAll(focusableElementSelector);
       this.addListeners();
     }
 
@@ -204,6 +218,7 @@ class Popover extends React.Component {
     $shadowContent.style.left = 0;
     $shadowContent.style.width = "auto";
     $shadowContent.style.maxWidth = this.props.maxWidth;
+    $shadowContent.style.minWidth = this.props.minWidth;
 
     document.body.appendChild($shadowContent);
     const contentWidth = getBoundingClientRect($shadowContent).width;
@@ -213,7 +228,7 @@ class Popover extends React.Component {
   }
 
   setVisibilityAndPosition(isOpening = false) {
-    if (this.$popover.current) {
+    if (this.$content) {
       // dynamically setting a fixed width before positioning avoids issues at the
       // right edge of the screen
       if (isOpening && [AlignTypes.TOP, AlignTypes.BOTTOM].includes(this.props.align)) {
@@ -292,11 +307,53 @@ class Popover extends React.Component {
     }
   };
 
+  handleKeyDown = event => {
+    if (event.key === "Tab" && this.isOpen() && this.$trigger) {
+      const isFocusOnFirst = this.focusIsOnCertainElementInPopover("first") || document.activeElement === this.$content;
+      const isFocusOnLast = this.focusIsOnCertainElementInPopover("last");
+
+      if (event.shiftKey && isFocusOnFirst) {
+        event.preventDefault();
+        this.focusableElements[this.triggerFocusIndex].focus();
+      } else if (!event.shiftKey && isFocusOnLast) {
+        event.preventDefault();
+        this.focusableElements[this.triggerFocusIndex + 1].focus();
+      }
+    }
+  };
+
+  focusIsOnCertainElementInPopover = which => {
+    const focusableElementsInPopover = this.$content.querySelectorAll(focusableElementSelector);
+    const index = which === "first" ? 0 : focusableElementsInPopover.length - 1;
+
+    return document.activeElement === focusableElementsInPopover[index];
+  };
+
+  elementIsDescendentOfPopover = elem => {
+    let elementsParent = elem.parentNode;
+    while (elementsParent !== null) {
+      if (elementsParent.getAttribute && elementsParent.getAttribute("data-pka-anchor") === "popover.content") {
+        return true;
+      }
+      elementsParent = elementsParent.parentNode;
+    }
+    return false;
+  };
+
+  getPopoverTriggerFocusIndex = () => {
+    this.focusableElements.forEach((focusableElement, index) => {
+      if (focusableElement === this.$trigger) {
+        this.triggerFocusIndex = index;
+      }
+    });
+  };
+
   handleTransitionEnd = event => {
     // NOTE: do this should make more that only focus the content div? should as well
     //       find the first focusable element like button, input, etc?
     //       can focus automatically
     if (!this.props.shouldKeepFocus && !this.props.isEager && this.isOpen() && event.propertyName === "visibility") {
+      this.getPopoverTriggerFocusIndex();
       event.target.focus();
     }
   };
@@ -345,21 +402,18 @@ class Popover extends React.Component {
 
   close() {
     // NOTE: Even if uncontrolled, the app may want to be notified when closed via the onClose callback
-    if (this.props.onClose !== null) this.props.onClose();
+    if (this.props.onClose !== null) {
+      this.props.onClose();
+    }
 
     if (this.props.isOpen === null) {
       this.setState({ isOpen: false });
-
-      // NOTE: If we don't prevent the focusing back to the trigger while using focus and mouseover prop
-      //       will created a bug looping over opening and closing constantly.
-      if (!this.props.shouldKeepFocus && !this.props.isEager && this.$trigger && !isActiveElementPopover()) {
-        this.$trigger.focus();
-      }
       this.removeListeners();
     }
   }
 
   isOpen() {
+    this.focusableElements = document.querySelectorAll(focusableElementSelector);
     return this.props.isOpen !== null ? this.props.isOpen : this.state.isOpen;
   }
 
@@ -379,6 +433,7 @@ class Popover extends React.Component {
   addListeners() {
     if (this.$content) {
       document.addEventListener("keyup", this.handleKeyUp, false);
+      document.addEventListener("keydown", this.handleKeyDown, false);
       document.addEventListener("resize", this.handleReposition, false);
       document.addEventListener("scroll", this.handleReposition, false);
 
@@ -403,6 +458,7 @@ class Popover extends React.Component {
       }
 
       document.removeEventListener("keyup", this.handleKeyUp);
+      document.removeEventListener("keydown", this.handleKeyDown);
 
       this.$content.removeEventListener("transitionend", this.handleTransitionEnd);
       this.hasListeners = false;
@@ -418,6 +474,7 @@ class Popover extends React.Component {
       isOpen,
       defaultIsOpen,
       maxWidth,
+      minWidth,
       onClose,
       offset,
       getPositioningElement,
@@ -429,6 +486,7 @@ class Popover extends React.Component {
     const contextValue = this.getContextValues(
       this.state.content,
       maxWidth,
+      minWidth,
       this.state.width,
       isEager,
       this.isOpen(),
@@ -455,10 +513,13 @@ class Popover extends React.Component {
 
 // Todo Refactor this when we convert popover component to use hooks
 function PopoverChildren(props) {
+  const { children, onChildChange } = props;
+
   React.useLayoutEffect(() => {
-    if (props.children) props.onChildChange();
-  }, [props.children]);
-  return props.children;
+    if (children) onChildChange();
+  }, [children, onChildChange]);
+
+  return children;
 }
 
 Popover.displayName = "Popover";

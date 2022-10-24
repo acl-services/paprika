@@ -1,79 +1,93 @@
 import React from "react";
 import PropTypes from "prop-types";
-import uuid from "uuid/v4";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import CheckIcon from "@paprika/icon/lib/Check";
-import DashIcon from "@paprika/icon/lib/Dash";
 import radioStyles from "./Radio.styles";
-
-export const radioStates = {
-  CHECKED: "checked",
-  UNCHECKED: "unchecked",
-  INDETERMINATE: "indeterminate",
-};
+import Group from "./components/Group";
 
 const propTypes = {
+  /** Used for aria-label on the radio input  */
   a11yText: PropTypes.string,
-  checkedState: PropTypes.oneOf(Object.values(radioStates)),
+  /** Used for label contents */
   children: PropTypes.node,
+  /* Controls if the radio is checked or not, never combine it with defaultIsChecked */
+  isChecked: PropTypes.bool,
+  /** Describe if the radio is disabled or not */
   isDisabled: PropTypes.bool,
-  onChange: PropTypes.func.isRequired,
+  /** Describe if the radio started as checked or not */
+  defaultIsChecked: PropTypes.bool,
+  /* Name provided for accessibility */
+  name: PropTypes.string,
+  /* onClick provided by parent Group component */
+  onClick: () => {},
+  /* Size provided by parent Group component */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 };
 
 const defaultProps = {
   a11yText: null,
-  checkedState: radioStates.UNCHECKED,
   children: null,
+  defaultIsChecked: false,
+  isChecked: false,
   isDisabled: false,
+  name: "",
+  onClick: () => {},
   size: ShirtSizes.MEDIUM,
 };
 
-const Radio = props => {
-  const { a11yText, children, isDisabled, checkedState, size, ...moreProps } = props;
-  const { CHECKED, INDETERMINATE } = radioStates;
-
-  const radioId = React.useRef(uuid()).current;
+function Radio(props) {
+  const { a11yText, children, isChecked, isDisabled, name, onClick, size, ...moreProps } = props;
   const inputRef = React.useRef(null);
 
-  React.useEffect(() => {
-    if (!inputRef.current) return;
-    if (checkedState === INDETERMINATE) {
-      inputRef.current.indeterminate = INDETERMINATE;
-    } else {
-      inputRef.current.indeterminate = false;
+  const handleKeyDown = event => {
+    if (
+      // Prevent scrolling the page with a spacerbar keypress
+      event.key === " " ||
+      // Prevent submitting forms in IE/Edge with and enter keypress
+      event.key === "Enter"
+    ) {
+      event.preventDefault();
     }
-  }, [checkedState]);
+  };
+
+  const handleKeyUp = event => {
+    const isTriggerKey = event.key === " "; // space key
+    if (!isDisabled && isTriggerKey) {
+      onClick();
+    }
+  };
 
   const styleProps = {
     hasLabel: !!children,
     size,
   };
 
-  const inputProps = {};
+  const inputProps = {
+    readOnly: true,
+    onClick,
+    checked: isChecked,
+    disabled: isDisabled,
+    name,
+    onKeyDown: handleKeyDown,
+    onKeyUp: handleKeyUp,
+    ref: inputRef,
+    type: "radio",
+  };
   if (a11yText) inputProps["aria-label"] = a11yText;
-
   return (
     <div data-pka-anchor="radio" css={radioStyles} {...styleProps} {...moreProps}>
-      <input
-        checked={checkedState === CHECKED}
-        disabled={isDisabled}
-        id={radioId}
-        ref={inputRef}
-        type="radio"
-        {...inputProps}
-      />
-      <label htmlFor={radioId}>
+      <input {...inputProps} />
+
+      <label onKeyUp={handleKeyUp}>
         {children}
-        <CheckIcon className="radio-icon" aria-hidden data-pka-anchor="radio.icon.check" />
-        <DashIcon aria-hidden className="radio-icon" data-pka-anchor="radio.icon.indeterminate" />
+        <div className="radio-icon radio-solid-background" data-pka-anchor="radio.icon.check" />
       </label>
     </div>
   );
-};
+}
 
-Radio.displayName = "radio";
+Radio.displayName = "Radio";
 Radio.propTypes = propTypes;
 Radio.defaultProps = defaultProps;
+Radio.Group = Group;
 
 export default Radio;

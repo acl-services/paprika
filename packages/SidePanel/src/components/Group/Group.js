@@ -19,7 +19,7 @@ const defaultProps = {
 };
 
 export default function Group(props) {
-  const { children, ...moreProps } = props;
+  const { children, offsetY, ...moreProps } = props;
   const { SidePanel: sidePanels, "SidePanel.Overlay": OverlayExtracted } = extractChildren(children, [
     "SidePanel",
     "SidePanel.Overlay",
@@ -28,7 +28,7 @@ export default function Group(props) {
     throw new Error("<SidePanel.Group /> is intented to be use with two or more SidePanels");
   }
 
-  const offsetScroll = useOffsetScroll(props.offsetY);
+  const offsetScroll = useOffsetScroll(offsetY);
 
   if (sidePanels.filter(sidePanel => !sidePanel.props.isOpen).length === sidePanels.length) {
     return null;
@@ -38,7 +38,7 @@ export default function Group(props) {
     <React.Fragment>
       {OverlayExtracted}
       <div css={groupCSS} {...moreProps} offsetY={offsetScroll}>
-        {sidePanels.map(sidePanel => React.cloneElement(sidePanel, { isInline: true }))}
+        {sidePanels.map(sidePanel => React.cloneElement(sidePanel, { isInline: true, groupOffsetY: offsetY }))}
       </div>
     </React.Fragment>,
     document.body

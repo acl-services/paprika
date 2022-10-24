@@ -1,6 +1,5 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import Heading from "@paprika/heading";
 import SidePanel from "../src";
 import { Nav, TextLine } from "./helpers";
 
@@ -11,23 +10,15 @@ function onClose() {
 storiesOf("SidePanel / SidePanel.Group", module).add("SidePanel.Group", () => (
   <SidePanel.Group>
     <SidePanel onClose={onClose} isOpen width={350}>
-      <SidePanel.Header>
-        <Heading level={2}>With Header</Heading>
-      </SidePanel.Header>
+      <SidePanel.Header>With Header</SidePanel.Header>
       <SidePanel.Overlay />
     </SidePanel>
     <SidePanel onClose={onClose} isOpen width={350}>
-      <SidePanel.Header>
-        <Heading level={2}>With Header</Heading>
-      </SidePanel.Header>
+      <SidePanel.Header>With Header</SidePanel.Header>
       <SidePanel.Overlay />
     </SidePanel>
     <SidePanel onClose={onClose} isOpen width={350}>
-      <SidePanel.Header>
-        <Heading kind="primary" level={2}>
-          With Header
-        </Heading>
-      </SidePanel.Header>
+      <SidePanel.Header kind="primary">With Header</SidePanel.Header>
       <SidePanel.Overlay />
     </SidePanel>
   </SidePanel.Group>
@@ -38,15 +29,11 @@ storiesOf("SidePanel / SidePanel.Group", module).add("SidePanel.Group has offset
     <Nav />
     <TextLine repeat={100} />
     <SidePanel onClose={onClose} isOpen width={400}>
-      <SidePanel.Header>
-        <Heading level={2}>With Header</Heading>
-      </SidePanel.Header>
+      <SidePanel.Header>With Header</SidePanel.Header>
       <SidePanel.Overlay />
     </SidePanel>
     <SidePanel kind="child" onClose={onClose} isOpen width={400}>
-      <SidePanel.Header>
-        <Heading level={2}>With Header</Heading>
-      </SidePanel.Header>
+      <SidePanel.Header>With Header</SidePanel.Header>
       <SidePanel.Overlay />
     </SidePanel>
   </SidePanel.Group>
@@ -59,21 +46,15 @@ storiesOf("SidePanel / SidePanel.Group", module).add("SidePanel.Group has offset
     <SidePanel.Group offsetY={40}>
       <SidePanel.Group.Overlay onClose={onClose} />
       <SidePanel onClose={onClose} isOpen width="50%">
-        <SidePanel.Header>
-          <Heading level={2}>With Header</Heading>
-        </SidePanel.Header>
+        <SidePanel.Header>With Header</SidePanel.Header>
         <SidePanel.Overlay />
       </SidePanel>
       <SidePanel onClose={onClose} isOpen width={300}>
-        <SidePanel.Header>
-          <Heading level={2}>With Header</Heading>
-        </SidePanel.Header>
+        <SidePanel.Header>With Header</SidePanel.Header>
         <SidePanel.Overlay />
       </SidePanel>
       <SidePanel kind="child" onClose={onClose} isOpen width={300}>
-        <SidePanel.Header>
-          <Heading level={2}>With Header</Heading>
-        </SidePanel.Header>
+        <SidePanel.Header>With Header</SidePanel.Header>
         <SidePanel.Overlay />
       </SidePanel>
     </SidePanel.Group>

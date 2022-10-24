@@ -41,6 +41,8 @@ const Tabs = props => {
     setActiveIndex(index);
   };
 
+  // https://github.com/acl-services/paprika/issues/310
+  // Todo Disabled tab items should also get focus on keyboard interaction
   const onKeyDown = (event, currentIndex) => {
     const tabList = React.Children.toArray(props.children)[0];
     const enabledIndexes = tabList.props.children

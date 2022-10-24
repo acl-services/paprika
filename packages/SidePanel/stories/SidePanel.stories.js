@@ -1,6 +1,5 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import Heading from "@paprika/heading";
 import Button from "@paprika/button";
 import SidePanel from "../src";
 import { Nav, TextLine } from "./helpers";
@@ -20,9 +19,34 @@ const SidePanelStory = props => {
         <SidePanel.Trigger kind="primary" onClick={toggle}>
           {isOpen ? "close" : "open"}
         </SidePanel.Trigger>
-        <SidePanel.Header>
-          <Heading level={2}>Header</Heading>
-        </SidePanel.Header>
+        <SidePanel.Header kind="primary">Header</SidePanel.Header>
+        <TextLine repeat={100} />
+        <SidePanel.Footer>
+          <Button>Default action</Button>
+          <Button kind="minor">Cancel</Button>
+        </SidePanel.Footer>
+      </SidePanel>
+      <TextLine repeat={100} />
+    </React.Fragment>
+  );
+};
+
+const SidePanelCompactStory = props => {
+  const { disableBodyOverflow, hasOverlay } = props;
+  const [isOpen, setIsOpen] = React.useState(true);
+  const toggle = () => {
+    setIsOpen(state => !state);
+  };
+
+  return (
+    <React.Fragment>
+      <Nav />
+      <SidePanel disableBodyOverflow={disableBodyOverflow} isOpen={isOpen} onClose={toggle} offsetY={40} isCompact>
+        {hasOverlay ? <SidePanel.Overlay /> : null}
+        <SidePanel.Trigger kind="primary" onClick={toggle}>
+          {isOpen ? "close" : "open"}
+        </SidePanel.Trigger>
+        <SidePanel.Header>Header</SidePanel.Header>
         <TextLine repeat={100} />
       </SidePanel>
       <TextLine repeat={100} />
@@ -87,15 +111,12 @@ const SidePanelStoryGroup = () => {
       </div>
       <SidePanel.Group offsetY={40}>
         <SidePanel data-pka-anchor="sidepanel1" width={400} onClose={handleParent1} isOpen={spParent1}>
-          <SidePanel.Header kind="primary">
-            <Heading level={2}>Parent 1</Heading>
-          </SidePanel.Header>
+          <SidePanel.Header kind="primary">Parent 1</SidePanel.Header>
           <TextLine repeat={100} />
+          <Button>Test button</Button>
         </SidePanel>
         <SidePanel data-pka-anchor="sidepanel2" onClose={handleParent2} width={400} isOpen={spParent2}>
-          <SidePanel.Header kind="primary">
-            <Heading level={2}>Parent 2</Heading>
-          </SidePanel.Header>
+          <SidePanel.Header kind="primary">Parent 2</SidePanel.Header>
           <Button
             onClick={() => {
               setSpChild(state => !state);
@@ -111,12 +132,14 @@ const SidePanelStoryGroup = () => {
           }}
           kind="child"
           width={400}
+          isCompact
           isOpen={spChild}
         >
-          <SidePanel.Header>
-            <Heading level={2}>Child of Parent 2</Heading>
-          </SidePanel.Header>
+          <SidePanel.Header>Child of Parent 2</SidePanel.Header>
           <TextLine repeat={100} />
+          <SidePanel.Footer>
+            <Button>Test button</Button>
+          </SidePanel.Footer>
         </SidePanel>
       </SidePanel.Group>
     </React.Fragment>
@@ -124,6 +147,7 @@ const SidePanelStoryGroup = () => {
 };
 
 storiesOf("SidePanel", module).add("Basic", () => <SidePanelStory />);
+storiesOf("SidePanel", module).add("Basic isCompact", () => <SidePanelCompactStory hasOverlay />);
 storiesOf("SidePanel", module).add("Basic without overlay", () => (
   <SidePanelStory disableBodyOverflow={false} hasOverlay={false} />
 ));
@@ -132,9 +156,7 @@ storiesOf("SidePanel", module).add("Basic with body scrollable", () => (
   <React.Fragment>
     <TextLine repeat={100} />
     <SidePanel disableBodyOverflow={false} onClose={() => {}} isOpen>
-      <SidePanel.Header>
-        <Heading level={2}>Child of Parent 2</Heading>
-      </SidePanel.Header>
+      <SidePanel.Header>Child of Parent 2</SidePanel.Header>
     </SidePanel>
   </React.Fragment>
 ));

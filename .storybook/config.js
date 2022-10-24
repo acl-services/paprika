@@ -15,9 +15,16 @@ addParameters({
 
 addDecorator(withA11y);
 
-require("./welcome.story");
+const stories = [
+  // Welcome
+  require.context("./", false, /welcome.story.js/),
 
-const req = require.context("../packages", true, /\.stories\.js$/);
-configure(() => {
-  req.keys().forEach(filename => req(filename));
-}, module);
+  // CollapsibleText
+  require.context("../packages/CollapsibleText", true, /CollapsibleText.stories.(js|mdx)$/),
+  require.context("../packages/CollapsibleText", true, /CollapsibleText.Tests.stories.(js|mdx)$/),
+
+  // Remaining
+  require.context("../packages", true, /\.stories\.js$/),
+];
+
+configure(stories, module);

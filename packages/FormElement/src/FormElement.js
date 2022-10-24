@@ -2,17 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import extractChildren from "@paprika/helpers/lib/extractChildren";
 import isNil from "lodash/isNil";
-import isString from "lodash/isString";
 import uuidv4 from "uuid/v4";
+import isString from "lodash/isString";
 
-import { extractChildren } from "./helpers/extractChildren";
 import Description from "./components/Description";
+import Instructions from "./components/Instructions";
 import ErrorMessage from "./components/ErrorMessage";
 import Help from "./components/Help";
 import Label from "./components/Label";
 
-import formElementStyles, { inlineContainerStyles } from "./FormElement.styles";
+import formElementStyles, { inlineContainerStyles, formElementChildStyle } from "./FormElement.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -71,85 +72,99 @@ function FormElement(props) {
     ...moreProps
   } = props;
 
-  const extratedChildren = extractChildren(children, [
+  const extractedChildren = extractChildren(children, [
     "FormElement.Description",
     "FormElement.Error",
     "FormElement.Help",
+    "FormElement.Instructions",
   ]);
   const ariaDescriptionId = React.useRef(uuidv4()).current;
-  const hasError = !!extratedChildren["FormElement.Error"] && !!extratedChildren["FormElement.Error"].props.children;
+  const ariaErrorId = React.useRef(uuidv4()).current;
+  const ariaInstructionsId = React.useRef(uuidv4()).current;
+  const hasError = !!extractedChildren["FormElement.Error"] && !!extractedChildren["FormElement.Error"].props.children;
   const uniqueInputId = React.useRef(uuidv4()).current;
   const inputId = isNil(id) || id === "" ? uniqueInputId : id;
-  let isFooterInserted = false;
 
   function renderFooter() {
-    if (isFooterInserted) return;
-
-    isFooterInserted = true;
-
     if (hasError) {
-      return extratedChildren["FormElement.Error"];
+      return (
+        <div role="alert">
+          {React.cloneElement(extractedChildren["FormElement.Error"], {
+            id: ariaErrorId,
+          })}
+        </div>
+      );
     }
 
-    if (extratedChildren["FormElement.Description"]) {
-      return React.cloneElement(extratedChildren["FormElement.Description"], {
-        ariaDescriptionId,
+    if (extractedChildren["FormElement.Description"]) {
+      return React.cloneElement(extractedChildren["FormElement.Description"], {
+        id: ariaDescriptionId,
       });
     }
 
     return null;
   }
 
+  function renderInstructions() {
+    if (extractedChildren["FormElement.Instructions"]) {
+      return React.cloneElement(extractedChildren["FormElement.Instructions"], {
+        id: ariaInstructionsId,
+      });
+    }
+    return null;
+  }
+
+  const nativeChildTypes = ["input", "textarea", "select"];
+
+  const renderFormElementChild = child => (
+    <div data-pka-anchor="form-element.child" key={child.key} css={formElementChildStyle}>
+      {child}
+    </div>
+  );
+
+  const isNativeElement = child => isString(child.type) && nativeChildTypes.includes(child.type);
+
+  const childExtendedProps = {
+    "aria-describedby": `${ariaErrorId} ${ariaInstructionsId} ${ariaDescriptionId}`,
+    id: inputId,
+    "aria-required": hasRequiredLabel,
+    "aria-invalid": hasError,
+  };
+
   return (
     <div css={formElementStyles} isInline={isInline} size={size} isDisabled={isDisabled} {...moreProps}>
       <Label
         hasOptionalLabel={hasOptionalLabel}
         hasRequiredLabel={hasRequiredLabel}
-        help={extratedChildren["FormElement.Help"]}
+        help={extractedChildren["FormElement.Help"]}
         id={inputId}
         isInline={isInline}
         isVisuallyHidden={isLabelVisuallyHidden}
         label={label}
       />
-
-      {extratedChildren.children.map(child => {
-        if (React.isValidElement(child)) {
-          const extendedProps = isString(child.type)
+      <div css={isInline ? inlineContainerStyles : null}>
+        {renderInstructions()}
+        {extractedChildren.children.map(child => {
+          const extendedProps = isNativeElement(child)
             ? {
-                "aria-describedby": ariaDescriptionId,
-                id: inputId,
+                ...childExtendedProps,
                 disabled: isDisabled,
                 readOnly: isReadOnly,
               }
             : {
-                "aria-describedby": ariaDescriptionId,
+                ...childExtendedProps,
                 hasError,
-                id: inputId,
                 isDisabled,
                 isReadOnly,
                 size,
+                "aria-disabled": isDisabled,
+                "aria-readonly": isReadOnly,
               };
-          const clonedChild = React.cloneElement(child, extendedProps);
 
-          return (
-            <React.Fragment key={child.key}>
-              {isInline ? (
-                <div css={inlineContainerStyles}>
-                  {clonedChild}
-                  {renderFooter()}
-                </div>
-              ) : (
-                <React.Fragment>
-                  {clonedChild}
-                  {renderFooter()}
-                </React.Fragment>
-              )}
-            </React.Fragment>
-          );
-        }
-
-        return child;
-      })}
+          return renderFormElementChild(React.cloneElement(child, extendedProps));
+        })}
+        {renderFooter()}
+      </div>
     </div>
   );
 }
@@ -159,6 +174,7 @@ FormElement.displayName = "FormElement";
 FormElement.propTypes = propTypes;
 FormElement.defaultProps = defaultProps;
 
+FormElement.Instructions = Instructions;
 FormElement.Description = Description;
 FormElement.Error = ErrorMessage;
 FormElement.Help = Help;
