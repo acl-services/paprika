@@ -31,7 +31,7 @@ npm install @paprika/takeover
 | onAfterOpen  | func   | false    | () => {}  | Callback once the Takeover has been opened event             |
 | onClose      | func   | false    | () => {}  | Callback triggered when the takeover needs to be close       |
 | zIndex       | number | false    | zValue(5) | The z-index of the Takeover content                          |
-| isFullWidth  | custom | false    | false     | Set Takeover to full width without any margins and max-width |
+| isFullWidth  | bool   | false    | false     | Set Takeover to full width without any margins and max-width |
 
 ### Takeover.Header
 

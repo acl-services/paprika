@@ -18,7 +18,7 @@ interface TakeoverProps {
   /** The z-index of the Takeover content */
   zIndex?: number;
   /** Set Takeover to full width without any margins and max-width */
-  isFullWidth?: custom;
+  isFullWidth?: boolean;
 }
 
 declare namespace Takeover {
