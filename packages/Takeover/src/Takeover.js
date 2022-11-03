@@ -33,7 +33,7 @@ const propTypes = {
   zIndex: PropTypes.number,
 
   /** Set Takeover to full width without any margins and max-width */
-  isFullWidth: PropTypes.boolean,
+  isFullWidth: PropTypes.bool,
 };
 
 const defaultProps = {
