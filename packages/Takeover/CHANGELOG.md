@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.4
+
+### Patch Changes
+
+- 2a9e76d: fix(takeover): FIX-takeover fix wrong proptype
+
 ## 2.0.4-next.0
 
 ### Patch Changes
