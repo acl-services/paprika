@@ -2,7 +2,7 @@ de:
   translation:
     timePicker:
       am: AM
-      custom: Angepasst
+      custom: Benutzerdefiniert
       hours: Stunden
       minutes: Minuten
       period: Zeitraum
@@ -65,7 +65,7 @@ de:
       last_30_days: Letzte 30 Tage
       this_month: Diesen Monat
       last_month: Letzten Monat
-      start_date: Anfangsdatum
+      start_date: Startdatum
       end_date: Enddatum
     dropdownMenu:
       isExternal: "{{link}} wird auf einer neuen Registerkarte geöffnet."
@@ -108,7 +108,7 @@ de:
       less_about: Weniger über {{topic}} anzeigen
     listBox:
       trigger:
-        clear_selection: Auswahl entfernen
+        clear_selection: Auswahl aufheben
         placeholder: Auswählen...
       filter:
         a11y_text: Suchen
