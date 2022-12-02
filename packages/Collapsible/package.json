@@ -1,6 +1,6 @@
 {
   "name": "@paprika/collapsible",
-  "version": "2.0.1",
+  "version": "2.0.2-next.0",
   "description": "Collapsible component, allows the user to expand and collapse some enclosed content.",
   "author": "@paprika",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "@paprika/l10n": "^1.2.1",
+    "@paprika/l10n": "^1.2.2-next.0",
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "react-dom": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "styled-components": "^4.2.0"
