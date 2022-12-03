@@ -1,6 +1,6 @@
 {
   "name": "@paprika/progress-accordion",
-  "version": "2.0.2-next.0",
+  "version": "2.0.2",
   "description": "The ProgressAccordion component is a progress bar in a collapsible accordion format.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -16,14 +16,14 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/collapsible": "^2.0.2-next.0",
+    "@paprika/collapsible": "^2.0.2",
     "@paprika/icon": "^2.1.8",
     "@paprika/stylers": "^1.1.8",
     "@paprika/tokens": "^2.0.1",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "@paprika/l10n": "^1.2.2-next.0",
+    "@paprika/l10n": "^1.2.2",
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "react-dom": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "styled-components": "^4.2.0"

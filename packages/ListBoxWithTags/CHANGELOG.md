@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.0.4
+
+### Patch Changes
+
+- Updated dependencies [7414a8f]
+  - @paprika/l10n@1.2.2
+  - @paprika/list-box@5.0.3
+  - @paprika/tag@1.0.3
+
 ## 4.0.4-next.0
 
 ### Patch Changes

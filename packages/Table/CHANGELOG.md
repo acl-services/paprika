@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.28
+
+### Patch Changes
+
+- @paprika/overflow-menu@3.0.3
+
 ## 1.2.28-next.0
 
 ### Patch Changes
