@@ -19,6 +19,7 @@ const Confirmation = props => {
     children,
     confirmButtonType,
     confirmLabel,
+    cancelLabel,
     defaultIsOpen,
     heading,
     isPending,
@@ -124,7 +125,7 @@ const Confirmation = props => {
               onClick={handleCloseConfirm}
               size={buttonSize}
             >
-              {I18n.t("actions.cancel")}
+              {cancelLabel ?? I18n.t("actions.cancel")}
             </Button>
           </div>
         </div>
@@ -166,6 +167,8 @@ const propTypes = {
   confirmButtonType: PropTypes.oneOf([Confirmation.types.kind.PRIMARY, Confirmation.types.kind.DESTRUCTIVE]),
   /** Label for the confirm button  */
   confirmLabel: PropTypes.string.isRequired,
+  /** Label for the cancel button  */
+  cancelLabel: PropTypes.string,
   /** If the popover is open by default */
   defaultIsOpen: PropTypes.bool,
   /** Heading for the popover confirmation */
@@ -183,6 +186,7 @@ const defaultProps = {
   buttonSize: Confirmation.types.size.MEDIUM,
   children: null,
   confirmButtonType: Confirmation.types.kind.DESTRUCTIVE,
+  cancelLabel: null,
   defaultIsOpen: false,
   heading: null,
   isPending: false,
