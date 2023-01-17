@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import nanoid from "nanoid";
 import CheckIcon from "@paprika/icon/lib/Check";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import radioStyles from "./Radio.styles";
@@ -40,17 +39,6 @@ function Radio(props) {
   const { a11yText, children, isChecked, isDisabled, name, onClick, size, ...moreProps } = props;
   const inputRef = React.useRef(null);
 
-  const handleKeyDown = event => {
-    if (
-      // Prevent scrolling the page with a spacerbar keypress
-      event.key === " " ||
-      // Prevent submitting forms in IE/Edge with and enter keypress
-      event.key === "Enter"
-    ) {
-      event.preventDefault();
-    }
-  };
-
   const handleKeyUp = event => {
     const isTriggerKey = event.key === " "; // space key
     if (!isDisabled && isTriggerKey) {
@@ -64,22 +52,19 @@ function Radio(props) {
   };
 
   const inputProps = {
-    readOnly: true,
     onClick,
     checked: isChecked,
     disabled: isDisabled,
     name,
-    onKeyDown: handleKeyDown,
     onKeyUp: handleKeyUp,
     ref: inputRef,
     type: "radio",
-    id: nanoid(),
   };
   if (a11yText) inputProps["aria-label"] = a11yText;
   return (
     <div data-pka-anchor="radio" css={radioStyles} {...styleProps} {...moreProps}>
       <input {...inputProps} />
-      <label onKeyUp={handleKeyUp} htmlFor={inputProps.id}>
+      <label onKeyUp={handleKeyUp}>
         {children}
 
         <CheckIcon className="radio-icon" aria-hidden data-pka-anchor="radio.icon.check" />
