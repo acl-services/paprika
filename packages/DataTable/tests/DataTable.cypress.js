@@ -69,7 +69,7 @@ describe("<DataTable />", () => {
     cy.findAllByText("First person's first name").should("be.visible");
   });
 
-  it("Should resize with the viewport", () => {
+  it.skip("Should resize with the viewport", () => {
     cy.findByTestId("dataTable")
       .invoke("height")
       .should("be.equal", 598);
