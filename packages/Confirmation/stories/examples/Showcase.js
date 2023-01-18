@@ -17,7 +17,7 @@ const confirmationProps = () => ({
   align: select("Alignment", ["bottom", "right", "left", "top"], "bottom"),
   buttonSize: select("Confirmation and Cancel Button Size", ["x-small", "small", "medium", "large"], "medium"),
   confirmLabel: text("Confirm button text", "Delete filter"),
-  cancelLabel: text("Cancel button text", "Cancel"),
+  customCancelLabel: text("Cancel button text", "Cancel"),
   body: text(
     "Description text",
     "Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
