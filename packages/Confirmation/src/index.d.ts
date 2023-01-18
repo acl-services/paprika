@@ -13,8 +13,8 @@ interface ConfirmationProps {
   confirmButtonType?: Confirmation.types.kind.PRIMARY | Confirmation.types.kind.DESTRUCTIVE;
   /** Label for the confirm button */
   confirmLabel: string;
-  /** Label for the cancel button */
-  cancelLabel?: string;
+  /** Custom label for the cancel button */
+  customCancelLabel?: string;
   /** If the popover is open by default */
   defaultIsOpen?: boolean;
   /** Heading for the popover confirmation */

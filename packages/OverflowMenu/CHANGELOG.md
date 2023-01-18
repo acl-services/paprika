@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.0.4-next.0
+
+### Patch Changes
+
+- Updated dependencies [c05c89e]
+  - @paprika/confirmation@2.1.0-next.0
+
 ## 3.0.3
 
 ### Patch Changes

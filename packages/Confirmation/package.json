@@ -1,6 +1,6 @@
 {
   "name": "@paprika/confirmation",
-  "version": "2.0.3",
+  "version": "2.1.0-next.0",
   "description": "Confirmation component allows user to confirm or cancel action",
   "author": "@paprika",
   "license": "MIT",
