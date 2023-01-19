@@ -69,22 +69,24 @@ describe("<DataTable />", () => {
     cy.findAllByText("First person's first name").should("be.visible");
   });
 
-  it.skip("Should resize with the viewport", () => {
+  it("Should resize with the viewport", () => {
+    cy.viewport(1280, 800);
+
     cy.findByTestId("dataTable")
       .invoke("height")
-      .should("be.equal", 598);
+      .should("be.within", 500, 600);
     cy.findByTestId("dataTable")
       .invoke("width")
-      .should("be.equal", 1263);
+      .should("be.within", 1200, 1300);
 
     cy.viewport(1920, 400);
 
     cy.findByTestId("dataTable")
       .invoke("height")
-      .should("be.equal", 198);
+      .should("be.within", 150, 250);
     cy.findByTestId("dataTable")
       .invoke("width")
-      .should("be.equal", 1815);
+      .should("be.within", 1750, 1850);
 
     cy.viewport(1280, 800);
   });
