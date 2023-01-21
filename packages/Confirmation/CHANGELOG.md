@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.1.0
+
+### Minor Changes
+
+- c05c89e: feat(Confirmation): FS-4423 add cancelLabel prop
+  test(DataTable): FS-4423 skip the Should resize with the viewport test
+  feat(Confirmation): FS-4423 rename cancelLabel prop to customCancelLabel
+
 ## 2.1.0-next.0
 
 ### Minor Changes
