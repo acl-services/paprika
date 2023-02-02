@@ -13,11 +13,24 @@ import CopyInputPopoverPropsCollector from "./components/Popover/Popover";
 import * as sc from "./CopyInput.styles";
 
 function CopyInput(props) {
-  const { children, isReadOnly, hasInputContainer, hasValueContainer, value, ...moreProps } = props;
+  const {
+    alterCopiedText,
+    children,
+    clickedText,
+    hoverText,
+    isReadOnly,
+    hasInputContainer,
+    hasValueContainer,
+    value,
+    ...moreProps
+  } = props;
   const extendedInputProps = extractChildrenProps(children, CopyInputInputPropsCollector);
   const extendedButtonProps = extractChildrenProps(children, CopyInputButtonPropsCollector);
   const extendedPopoverProps = extractChildrenProps(children, CopyInputPopoverPropsCollector);
   const I18n = useI18n();
+  const _hoverText = hoverText ?? I18n.t("copyInput.hover_tooltip");
+  const _clickedText = clickedText ?? I18n.t("copyInput.clicked_tooltip");
+
   const inputRef = React.createRef();
   const buttonRef = React.createRef();
   const [isClickedTooltipOpen, setIsClickedTooltipOpen] = React.useState(false);
@@ -35,7 +48,12 @@ function CopyInput(props) {
   }, [isClickedTooltipOpen]);
 
   function handleButtonClick() {
-    const textToCopy = inputRef.current.value;
+    let textToCopy = inputRef.current.value;
+
+    if (alterCopiedText) {
+      textToCopy = alterCopiedText(textToCopy);
+    }
+
     if (navigator.clipboard) {
       navigator.clipboard.writeText(textToCopy);
     } else {
@@ -63,7 +81,7 @@ function CopyInput(props) {
       )}
       <div ref={buttonRef} data-pka-anchor="copy-input.button">
         <Button.Icon
-          a11yText={I18n.t("copyInput.hover_tooltip")}
+          a11yText={_hoverText}
           kind="primary"
           {...extendedButtonProps}
           onClick={handleButtonClick}
@@ -84,7 +102,7 @@ function CopyInput(props) {
         {...extendedPopoverProps}
       >
         <Popover.Content>
-          <Popover.Card>{I18n.t("copyInput.hover_tooltip")}</Popover.Card>
+          <Popover.Card>{_hoverText}</Popover.Card>
         </Popover.Content>
         <Popover.Tip />
       </Popover>
@@ -96,13 +114,13 @@ function CopyInput(props) {
         {...extendedPopoverProps}
       >
         <Popover.Content>
-          <Popover.Card>{I18n.t("copyInput.clicked_tooltip")}</Popover.Card>
+          <Popover.Card>{_clickedText}</Popover.Card>
         </Popover.Content>
         <Popover.Tip />
       </Popover>
       {isClickedTooltipOpen && (
         <Toast kind={Toast.types.kind.VISUALLY_HIDDEN} aria-hidden isPolite>
-          {I18n.t("copyInput.clicked_tooltip")}
+          {_clickedText}
         </Toast>
       )}
     </sc.CopyInput>
@@ -110,8 +128,14 @@ function CopyInput(props) {
 }
 
 const propTypes = {
+  /** Called after the button is clicked, and the copied value is passed in */
+  alterCopiedText: PropTypes.func,
   /** Used for CopyInput.Input */
   children: PropTypes.node,
+  /** The text to show in the tooltip when the user presses the "copy" button */
+  clickedText: PropTypes.string,
+  /** The text to show in the tooltip when the user hovers over the "copy" button */
+  hoverText: PropTypes.string,
   /** Is the input read-only. */
   isReadOnly: PropTypes.bool,
   /** If the value will be rendered in an Input component or hidden */
@@ -123,7 +147,10 @@ const propTypes = {
 };
 
 const defaultProps = {
+  alterCopiedText: null,
   children: null,
+  clickedText: null,
+  hoverText: null,
   isReadOnly: true,
   hasInputContainer: true,
   hasValueContainer: false,

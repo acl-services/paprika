@@ -2,6 +2,7 @@ import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import ExampleStory from "storybook/components/ExampleStory";
 import { exampleStoryParameters } from "storybook/assets/storyParameters";
+import AlterCopiedTextExample from "./examples/AlterCopiedText";
 import ControlledExample from "./examples/Controlled";
 import UncontrolledExample from "./examples/Uncontrolled";
 
@@ -28,5 +29,15 @@ export const ControlledStory = () => (
 );
 ControlledStory.story = {
   name: "Controlled",
+  parameters: exampleStoryParameters,
+};
+
+export const AlterCopiedTextStory = () => (
+  <ExampleStory component="CopyInput" storyName="Alter copied text" fileName="examples/AlterCopiedText.js">
+    <AlterCopiedTextExample />
+  </ExampleStory>
+);
+AlterCopiedTextStory.story = {
+  name: "Alter copied text",
   parameters: exampleStoryParameters,
 };
