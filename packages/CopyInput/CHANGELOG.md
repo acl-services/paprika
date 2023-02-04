@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.0
+
+### Minor Changes
+
+- 7c18b1a: Add new props that allow: manipulating copied data, overriding tooltip text
+
 ## 2.1.0-next.0
 
 ### Minor Changes
