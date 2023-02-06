@@ -22,12 +22,12 @@
     "@paprika/stylers": "^1.1.8",
     "@paprika/tokens": "^2.0.1",
     "prop-types": "^15.7.2",
-    "react-dates": "^20.1.0",
+    "react-dates": "^21.8.0",
     "uuid": "^8.3.2"
   },
   "peerDependencies": {
     "@paprika/l10n": "^1.2.2",
-    "moment": "^2.18.1",
+    "moment": "^2.29.4",
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "react-dom": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "styled-components": "^4.2.0"
