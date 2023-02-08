@@ -21,7 +21,7 @@ blocks:
       jobs:
         - name: "Start paprika-status script"
           commands:
-            - nvm use
+            - nvm install
             - yarn
             - yarn paprika-status
             - git add . && git commit -m "[Bot] Paprika Status" --no-verify && git push origin master --follow-tags --no-verify;

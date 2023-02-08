@@ -22,7 +22,7 @@ blocks:
       jobs:
         - name: "Publish to NPM"
           commands:
-            - nvm use
+            - nvm install
             - yarn
             - yarn prepare:esm
             - test -f .changeset/pre.json || yarn changeset pre enter next
