@@ -9,7 +9,7 @@ describe("Filter with server", () => {
     cy.findByText("Add filter").click();
 
     clickListBoxTrigger("filter.item.columnSelector");
-    cy.findByText("Name").click();
+    cy.findAllByText("Name").click({ multiple: true, force: true });
     clickListBoxTrigger("filter.item.columnSelector");
     cy.findByText("Status").click();
     clickListBoxTrigger("filter.item.columnSelector");

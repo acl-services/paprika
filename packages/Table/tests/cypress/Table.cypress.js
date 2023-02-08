@@ -29,10 +29,13 @@ describe("Table", () => {
       cy.findByText(name).should("be.visible");
     });
 
-    cy.findByText("Name").should("be.visible");
+    cy.get("#root")
+      .findByText("Name")
+      .should("be.visible");
     cy.findByText("LastName").should("be.visible");
 
-    cy.findByText("Name")
+    cy.get("#root")
+      .findByText("Name")
       .should("have.css", "font-weight")
       .should("eq", "700");
     cy.findByText("LastName")
