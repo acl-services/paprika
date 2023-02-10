@@ -17,7 +17,6 @@ blocks:
           - checkout
           - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
           - nvm install
-          - nvm use
           - yarn install --frozen-lockfile
           - npx lerna bootstrap
           - cache store client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock) node_modules
@@ -48,7 +47,6 @@ blocks:
         - name: Lint && prettier
           commands:
             - nvm install
-            - nvm use
             - yarn add eslint-plugin-react-hooks -D -W
             - yarn lint && yarn prettier -- --list-different
 
@@ -72,7 +70,6 @@ blocks:
           - checkout
           - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
           - nvm install
-          - nvm use
           - yarn
       jobs:
         - name: JEST
@@ -93,7 +90,6 @@ blocks:
         - name: Cypress
           commands:
             - nvm install
-            - nvm use
             - npx lerna bootstrap
             - yarn
             - yarn cypress:ci
@@ -109,7 +105,6 @@ blocks:
         - name: Screener
           commands:
             - nvm install
-            - nvm use
             - npx lerna bootstrap
             - yarn storybook:build
             - BRANCH_NAME=$SEMAPHORE_GIT_BRANCH REVISION=$SEMAPHORE_GIT_SHA SEMAPHORE_BUILD_NUMBER=$SEMAPHORE_WORKFLOW_ID yarn storybook:screener
