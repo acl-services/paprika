@@ -65,7 +65,7 @@ const createPropsTable = ({ info }) => {
     let type = "-";
     if (typeKey in v) {
       if (v[typeKey].name === "union") {
-        type = `[${v[typeKey]["tsType" in v ? "elements" : "value"].map(i => i.name)}]`;
+        type = `[${v[typeKey]["tsType" in v ? "elements" : "value"]?.map(i => i.name)}]`;
       } else {
         type =
           // eslint-disable-next-line no-nested-ternary

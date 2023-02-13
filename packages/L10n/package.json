@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "i18next": "^15.0.4",
+    "i18next": "^19.8.5",
     "js-yaml": "^3.13.1",
     "prop-types": "^15.7.2"
   },

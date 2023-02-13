@@ -238,7 +238,7 @@ const propTypes = {
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
   /** Control the size of the Panel */
-  size: PropTypes.oneOfType([types.sizes.MEDIUM, types.sizes.LARGE]),
+  size: PropTypes.oneOf([types.sizes.MEDIUM, types.sizes.LARGE]),
 
   /** Render the panel inline */
   isInline: PropTypes.bool,

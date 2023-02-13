@@ -9,7 +9,9 @@ describe("<DataTable />", () => {
     cy.findByText("Age").should("be.visible");
     cy.findByText("Visits").should("be.visible");
     cy.findByText("Status").should("be.visible");
-    cy.findByText("Description").should("be.visible");
+    cy.get("#root")
+      .findByText("Description")
+      .should("be.visible");
     cy.findByText("More description").should("be.visible");
     cy.findByText("Progress")
       .scrollIntoView()

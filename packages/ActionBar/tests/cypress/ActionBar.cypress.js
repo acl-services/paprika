@@ -71,7 +71,7 @@ describe("ActionBar Sort", () => {
   });
 
   it("should sort according to the selected column and order", () => {
-    cy.get("tr")
+    cy.get("#root tr")
       .eq(1)
       .should("contain", "805")
       .should("not.contain", "772");
@@ -89,7 +89,7 @@ describe("ActionBar Sort", () => {
       .should("have.value", "DESCEND");
     cy.findByTestId("sort.sort-field").should("have.length", 1);
     cy.findByText("Apply").click();
-    cy.get("tr")
+    cy.get("#root tr")
       .eq(1)
       .should("contain", "772")
       .should("not.contain", "805");
@@ -116,14 +116,12 @@ describe("ActionBar Arrange Columns", () => {
   });
 
   it("should render all columns by clicking 'Show all'", () => {
-    cy.get("table")
-      .get("th")
-      .should("have.length", 9);
+    cy.get("#root table th").should("have.length", 9);
     cy.findByText("Arrange").click();
     cy.findByText("Hide all").click();
-    cy.get("th").should("have.length", 2);
+    cy.get("#root th").should("have.length", 2);
     cy.findByText("Show all").click();
-    cy.get("th").should("have.length", 9);
+    cy.get("#root th").should("have.length", 9);
   });
 
   it("should filter columns while typing in an input", () => {
@@ -136,14 +134,14 @@ describe("ActionBar Arrange Columns", () => {
   });
 
   it("should hide column(s) by clicking on its switch", () => {
-    cy.get("tr")
+    cy.get("#root tr")
       .eq(0)
       .should("contain", "goals");
     cy.findByText("Arrange").click();
     cy.findAllByTestId("switch")
       .eq(0)
       .click();
-    cy.get("tr")
+    cy.get("#root tr")
       .eq(0)
       .should("not.contain", "goals");
   });
@@ -151,7 +149,7 @@ describe("ActionBar Arrange Columns", () => {
   it("Should hide all columns except the disabled ones", () => {
     cy.findByText("Arrange").click();
     cy.findByText("Hide all").click();
-    cy.get("table")
+    cy.get("#root table")
       .should("not.contain", "goals")
       .should("contain", "name")
       .should("not.contain", "status")

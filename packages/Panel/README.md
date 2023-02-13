@@ -30,29 +30,29 @@ npm install @paprika/panel
 | getPushContentElement | func                                                                                        | false    | null                          | Function that provides the container DOM element to be pushed.                                                                                  |
 | groupOffsetY          | number                                                                                      | false    | 0                             | Y offset that is passed down from <Panel.Group>                                                                                                 |
 | height                | [string,number]                                                                             | false    | "33%"                         | The height of the open Panel (when slide in from bottom)                                                                                        |
-| isCompact             | bool                                                                                        | false    | false                         | Control the compactness of the Panel                                                                                                            |
+| size                  | [ Panel.types.sizes.MEDIUM, Panel.types.sizes.LARGE]                                        | false    | Panel.types.sizes.MEDIUM      | Control the size of the Panel                                                                                                                   |
 | isInline              | bool                                                                                        | false    | false                         | Render the panel inline                                                                                                                         |
 | isOpen                | bool                                                                                        | false    | false                         | Control the visibility of the Panel. This prop makes the Panel appear.                                                                          |
-| size                  | [ Panel.types.sizes.MEDIUM, Panel.types.sizes.LARGE]                                        | false    | Panel.types.sizes.MEDIUM      | Control the size of the Panel                                                                                                                   |
 | offset                | shape                                                                                       | false    | { top: 0, left: 0, right: 0 } | Control offset of the Panel. Only use 'top' when sliding in from the left or right. Only use 'left' or 'right' when sliding in from the bottom. |
 | onAfterClose          | func                                                                                        | false    | () => {}                      | Callback once the Panel has been closed event                                                                                                   |
 | onAfterOpen           | func                                                                                        | false    | () => {}                      | Callback once the Panel has been opened event                                                                                                   |
 | onClose               | func                                                                                        | false    | null                          | Callback triggered when the Panel needs to be close                                                                                             |
 | slideFrom             | [ Panel.types.slideFroms.RIGHT, Panel.types.slideFroms.LEFT, Panel.types.slideFroms.BOTTOM] | false    | Panel.types.slideFroms.RIGHT  | Control where the Panel slides in from                                                                                                          |
-| width                 | [string,number]                                                                             | false    | "33%"                         | The width of the open Panel (when slide in from left or right)                                                                                  |
+| width                 | [string,number,custom,custom,custom]                                                        | false    | "33%"                         | The width of the open Panel (when slide in from left or right)                                                                                  |
 | zIndex                | number                                                                                      | false    | zValue(7)                     | Control the z-index of the Panel                                                                                                                |
+| hasAccent             | bool                                                                                        | false    | false                         | Differentiate between similar coloured UI elements                                                                                              |
 
 ### Panel.Header
 
-| Prop                  | Type   | required | default  | Description |
-| --------------------- | ------ | -------- | -------- | ----------- |
-| children              | node   | true     | -        |             |
-| getPushContentElement | func   | false    | () => {} |             |
-| hasCloseButton        | bool   | false    | true     |             |
-| isCompact             | bool   | false    | false    |             |
-| isHeaderSticky        | bool   | false    | false    |             |
-| onClose               | func   | false    | () => {} |             |
-| refHeading            | custom | false    | null     |             |
+| Prop                  | Type | required | default  | Description |
+| --------------------- | ---- | -------- | -------- | ----------- |
+| children              | node | true     | -        |             |
+| getPushContentElement | func | false    | () => {} |             |
+| hasAccent             | bool | false    | false    |             |
+| hasCloseButton        | bool | false    | true     |             |
+| isCloseButtonSemantic | bool | false    | true     |             |
+| isHeaderSticky        | bool | false    | false    |             |
+| onClose               | func | false    | () => {} |             |
 
 ### Panel.Content
 
