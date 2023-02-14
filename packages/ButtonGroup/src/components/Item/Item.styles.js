@@ -7,7 +7,12 @@ import Button from "@paprika/button";
 
 const activeStyles = ({ isDisabled }) => css`
   ${stylers.z(1)}
-  box-shadow: none;
+  box-shadow: none !important;
+
+  &:active,
+  &:focus {
+    box-shadow: ${tokens.highlight.active.noBorder.boxShadow} !important;
+  }
 
   &,
   &:hover {
