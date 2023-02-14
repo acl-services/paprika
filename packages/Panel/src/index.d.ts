@@ -15,12 +15,12 @@ interface PanelProps {
   groupOffsetY?: number;
   /** The height of the open Panel (when slide in from bottom) */
   height?: string | number;
+  /** Control the size of the Panel */
+  size?: Panel.types.sizes.MEDIUM | Panel.types.sizes.LARGE;
   /** Render the panel inline */
   isInline?: boolean;
   /** Control the visibility of the Panel. This prop makes the Panel appear. */
   isOpen?: boolean;
-  /** Control the size of the Panel */
-  size?: Panel.types.sizes.MEDIUM | Panel.types.sizes.LARGE;
   /** Control offset of the Panel. Only use 'top' when sliding in from the left or right. Only use 'left' or 'right' when sliding in from the bottom. */
   offset?: shape;
   /** Callback once the Panel has been closed event */
@@ -32,9 +32,11 @@ interface PanelProps {
   /** Control where the Panel slides in from */
   slideFrom?: Panel.types.slideFroms.RIGHT | Panel.types.slideFroms.LEFT | Panel.types.slideFroms.BOTTOM;
   /** The width of the open Panel (when slide in from left or right) */
-  width?: string | number;
+  width?: string | number | custom | custom | custom;
   /** Control the z-index of the Panel */
   zIndex?: number;
+  /** Differentiate between similar coloured UI elements */
+  hasAccent?: boolean;
 }
 
 declare namespace Panel {
@@ -46,15 +48,15 @@ declare namespace Panel {
 
     getPushContentElement?: (...args: any[]) => any;
 
+    hasAccent?: boolean;
+
     hasCloseButton?: boolean;
+
+    isCloseButtonSemantic?: boolean;
 
     isHeaderSticky?: boolean;
 
-    hasAccent?: boolean;
-
     onClose?: (...args: any[]) => any;
-
-    refHeading?: custom;
   }
 }
 declare namespace Panel {
@@ -112,29 +114,18 @@ declare namespace Panel {
 
 declare namespace Panel {
   namespace types {
+    namespace sizes {
+      const MEDIUM: any;
+      const LARGE: any;
+    }
+  }
+}
+declare namespace Panel {
+  namespace types {
     namespace slideFroms {
       const RIGHT: any;
       const LEFT: any;
       const BOTTOM: any;
-    }
-  }
-}
-
-declare namespace Panel {
-  namespace types {
-    namespace widthTypes {
-      const SMALL: any;
-      const MEDIUM: any;
-      const LARGE: any;
-    }
-  }
-}
-
-declare namespace Panel {
-  namespace types {
-    namespace size {
-      const MEDIUM: any;
-      const LARGE: any;
     }
   }
 }

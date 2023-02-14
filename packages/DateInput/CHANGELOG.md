@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.0.0-next.0
+
+### Minor Changes
+
+- 5b6eb9d: Fix CVE vulnerabilities. Upgrade to Node 16.
+
+### Patch Changes
+
+- Updated dependencies [5b6eb9d]
+  - @paprika/icon@3.0.0-next.0
+  - @paprika/l10n@2.0.0-next.0
+  - @paprika/input@6.0.0-next.0
+
 ## 2.0.4
 
 ### Patch Changes

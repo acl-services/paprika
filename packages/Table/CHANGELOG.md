@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2.30-next.0
+
+### Patch Changes
+
+- 5b6eb9d: Fix CVE vulnerabilities. Upgrade to Node 16.
+- Updated dependencies [5b6eb9d]
+  - @paprika/tokens@3.0.0-next.0
+  - @paprika/button@1.1.17-next.0
+  - @paprika/overflow-menu@4.0.0-next.0
+  - @paprika/stylers@1.1.9-next.0
+
 ## 1.2.29
 
 ### Patch Changes

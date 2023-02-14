@@ -1,5 +1,18 @@
 # @paprika/search
 
+## 4.0.0-next.0
+
+### Patch Changes
+
+- Updated dependencies [5b6eb9d]
+  - @paprika/tokens@3.0.0-next.0
+  - @paprika/icon@3.0.0-next.0
+  - @paprika/l10n@2.0.0-next.0
+  - @paprika/input@6.0.0-next.0
+  - @paprika/list-box@6.0.0-next.0
+  - @paprika/raw-button@1.0.16-next.0
+  - @paprika/stylers@1.1.9-next.0
+
 ## 3.0.3
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@paprika/stylers",
-  "version": "1.1.8",
+  "version": "1.1.9-next.0",
   "description": "Helpers and includes for styled-components",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -19,7 +19,7 @@
     "transpile:esm:types": "tsc -p tsconfig.build.esm.json"
   },
   "dependencies": {
-    "@paprika/tokens": "^2.0.1"
+    "@paprika/tokens": "^3.0.0-next.0"
   },
   "peerDependencies": {
     "styled-components": "^4.2.0"

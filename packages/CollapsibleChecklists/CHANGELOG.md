@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.33-next.0
+
+### Patch Changes
+
+- Updated dependencies [5b6eb9d]
+  - @paprika/tokens@3.0.0-next.0
+  - @paprika/checkbox@1.0.26-next.0
+  - @paprika/collapsible@3.0.0-next.0
+  - @paprika/stylers@1.1.9-next.0
+
 ## 1.0.32
 
 ### Patch Changes
