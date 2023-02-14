@@ -38,7 +38,7 @@
     "getA11yStatus": "wait-on http://localhost:9009/iframe.html && node --max-old-space-size=8192 scripts/status/paprika-status--a11y"
   },
   "engines": {
-    "node": ">=12.13.0",
+    "node": ">=14.15.0",
     "yarn": ">=1.12.3"
   },
   "private": true,
