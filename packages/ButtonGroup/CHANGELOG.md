@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.30-next.1
+
+### Patch Changes
+
+- 01768bc: Dont have focus ring when active (and not focused)
+
 ## 1.0.30-next.0
 
 ### Patch Changes

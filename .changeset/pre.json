@@ -74,6 +74,7 @@
     "@paprika/seducer": "2.0.4"
   },
   "changesets": [
+    "green-taxis-exercise",
     "tender-pandas-tell"
   ]
 }
