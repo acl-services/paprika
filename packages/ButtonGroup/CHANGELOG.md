@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.30
+
+### Patch Changes
+
+- 01768bc: Dont have focus ring when active (and not focused)
+- Updated dependencies [5b6eb9d]
+  - @paprika/tokens@3.0.0
+  - @paprika/icon@3.0.0
+  - @paprika/button@1.1.17
+  - @paprika/stylers@1.1.9
+
 ## 1.0.30-next.1
 
 ### Patch Changes

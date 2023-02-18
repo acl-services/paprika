@@ -1,5 +1,25 @@
 # Changelog
 
+## 7.0.0
+
+### Minor Changes
+
+- 5b6eb9d: Fix CVE vulnerabilities. Upgrade to Node 16.
+
+### Patch Changes
+
+- Updated dependencies [5b6eb9d]
+  - @paprika/tokens@3.0.0
+  - @paprika/icon@3.0.0
+  - @paprika/l10n@2.0.0
+  - @paprika/input@6.0.0
+  - @paprika/sortable@3.0.0
+  - @paprika/button@1.1.17
+  - @paprika/popover@2.0.9
+  - @paprika/select@2.0.16
+  - @paprika/stylers@1.1.9
+  - @paprika/switch@1.0.22
+
 ## 7.0.0-next.0
 
 ### Minor Changes

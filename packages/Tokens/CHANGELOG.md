@@ -1,5 +1,11 @@
 # @paprika/tokens
 
+## 3.0.0
+
+### Major Changes
+
+- 5b6eb9d: Fix CVE vulnerabilities. Upgrade to Node 16.
+
 ## 3.0.0-next.0
 
 ### Major Changes

@@ -1,5 +1,22 @@
 <!-- content -->
 
+## 3.0.0
+
+### Patch Changes
+
+- Updated dependencies [5b6eb9d]
+  - @paprika/tokens@3.0.0
+  - @paprika/icon@3.0.0
+  - @paprika/l10n@2.0.0
+  - @paprika/data-field@3.0.0
+  - @paprika/data-grid@3.0.0
+  - @paprika/overflow-menu@4.0.0
+  - @paprika/toast@3.0.0
+  - @paprika/button@1.1.17
+  - @paprika/popover@2.0.9
+  - @paprika/raw-button@1.0.16
+  - @paprika/stylers@1.1.9
+
 ## 3.0.0-next.0
 
 ### Patch Changes

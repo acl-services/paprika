@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.0.7
+
+### Patch Changes
+
+- Updated dependencies [5b6eb9d]
+  - @paprika/tokens@3.0.0
+  - @paprika/heading@1.0.17
+  - @paprika/stylers@1.1.9
+
 ## 2.0.7-next.0
 
 ### Patch Changes

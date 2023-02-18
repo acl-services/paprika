@@ -1,5 +1,14 @@
 # @paprika/link
 
+## 1.0.10
+
+### Patch Changes
+
+- Updated dependencies [5b6eb9d]
+  - @paprika/tokens@3.0.0
+  - @paprika/icon@3.0.0
+  - @paprika/stylers@1.1.9
+
 ## 1.0.10-next.0
 
 ### Patch Changes

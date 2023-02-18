@@ -1,5 +1,14 @@
 # @paprika/data-table
 
+## 1.3.2
+
+### Patch Changes
+
+- 5b6eb9d: Fix CVE vulnerabilities. Upgrade to Node 16.
+- Updated dependencies [5b6eb9d]
+  - @paprika/tokens@3.0.0
+  - @paprika/stylers@1.1.9
+
 ## 1.3.2-next.0
 
 ### Patch Changes
