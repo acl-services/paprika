@@ -41,7 +41,7 @@ const defaultProps = {
 function File(props) {
   const { error, fileKey, name, progress, size, status, onError, onCancel } = props;
 
-  const { cancelFile, zIndex } = React.useContext(UploaderContext);
+  const { cancelFile, removeFile, zIndex } = React.useContext(UploaderContext);
   const I18n = useI18n();
   const sizeWithUnits = getNumberWithUnits(I18n, size);
   const progressWithUnits = getNumberWithUnits(I18n, (size * progress) / 100);
@@ -79,7 +79,11 @@ function File(props) {
                   aria-label={I18n.t("uploader.cancel_upload", { name })}
                   kind={Button.Icon.types.kind.MINOR}
                   onClick={() => {
-                    cancelFile(fileKey, onCancel);
+                    if (status === types.status.IDLE) {
+                      removeFile(fileKey);
+                    } else {
+                      cancelFile(fileKey, onCancel);
+                    }
                   }}
                   size={Button.Icon.types.size.SMALL}
                   {...a11yAttributes}
