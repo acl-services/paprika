@@ -151,6 +151,7 @@ const Uploader = React.forwardRef((props, ref) => {
     endpoint,
     hasAutoUpload,
     headers,
+    onChange,
     onCompleted,
     onProcessed,
     onRequest,

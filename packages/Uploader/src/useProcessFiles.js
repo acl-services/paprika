@@ -35,7 +35,15 @@ const setFile = (file, callback) => files => {
   return cloneFiles;
 };
 
-export default function useProcessFiles({ hasAutoUpload, onProcessed, onCompleted, endpoint, headers, onRequest }) {
+export default function useProcessFiles({
+  hasAutoUpload,
+  onChange,
+  onProcessed,
+  onCompleted,
+  endpoint,
+  headers,
+  onRequest,
+}) {
   const [uploadingFileList, setUploadingFileList] = React.useState([]);
   const [isBusy, setIsBusy] = React.useState(false);
   const [isCompleted, setisCompleted] = React.useState(null);
@@ -84,6 +92,7 @@ export default function useProcessFiles({ hasAutoUpload, onProcessed, onComplete
 
         setFiles(() => fileClones);
         setUploadingFileList(() => uploadingFileListClone);
+        onChange(fileClones);
       }
     }
   }

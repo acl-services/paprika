@@ -94,7 +94,13 @@ storiesOf(`${storyName}/Examples`, module)
   ))
   .add("No auto-upload", () => (
     <Story>
-      <Uploader {...props} hasAutoUpload={false}>
+      <Uploader
+        {...props}
+        hasAutoUpload={false}
+        onChange={files => {
+          console.log("Files is now:", files);
+        }}
+      >
         <Uploader.DropZone />
         <Uploader.FileList />
         <StartUploadButton />
