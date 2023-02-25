@@ -1,5 +1,11 @@
 # Changelog
 
+## 6.1.0
+
+### Minor Changes
+
+- 48106c9: Remove file when click 'cancel' button and status is 'idle'
+
 ## 6.1.0-next.0
 
 ### Minor Changes
