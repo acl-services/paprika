@@ -14,6 +14,7 @@ On the Paprika wiki pages, you can [read more about using design tokens](https:/
 <summary>View All Paprika Design Tokens 👀</summary>
 
 ![paprika-tokens](https://user-images.githubusercontent.com/14944896/222009355-5dca239b-9f18-4c6b-8ee5-8f924f446204.png)
+
 </details>
 
 Source file: [tokens.yaml](src/tokens.yaml)
@@ -72,7 +73,6 @@ Which will generate the following:
 - tokens.json
 - tokens.scss
 - tokens.md
-
 
 ## Links
 
