@@ -10,6 +10,7 @@ import Error from "./components/Error";
 import Instructions from "./components/Instructions";
 import Label from "./components/Label";
 import Layout from "./components/Layout";
+import Help from "./components/Help";
 import * as sc from "./FormElement.styles";
 
 export const FormElementContext = React.createContext({});
@@ -96,5 +97,5 @@ FormElement.Error = Error;
 FormElement.Instructions = Instructions;
 FormElement.Label = Label;
 FormElement.Layout = Layout;
-
+FormElement.Help = Help;
 export default FormElement;

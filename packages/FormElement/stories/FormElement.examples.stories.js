@@ -13,6 +13,7 @@ import FieldsetExample from "./examples/Fieldset";
 import InlineExample from "./examples/Inline";
 import EverythingExample from "./examples/Everything";
 import FormElement from "../src/FormElement";
+import LabelWithHelpInsidePanel from "./examples/LabelWithHelpInsidePanel";
 
 const storyName = getStoryName("FormElement");
 
@@ -108,4 +109,18 @@ export const everythingStory = () => (
 everythingStory.story = {
   name: "Everything Bagel",
   parameters: exampleStoryParameters,
+};
+
+export const labelWithHelpInsidePanel = () => (
+  <ExampleStory
+    storyName="Label with Help inside Panel"
+    component="FormElement"
+    fileName="examples/LabelWithHelpInsidePanel.js"
+  >
+    <LabelWithHelpInsidePanel />
+  </ExampleStory>
+);
+
+labelWithHelpInsidePanel.story = {
+  name: "Label with Help inside Panel",
 };
