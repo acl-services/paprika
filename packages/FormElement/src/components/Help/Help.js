@@ -27,7 +27,7 @@ function Help({ children, isDisabled, a11yText, align, zIndex }) {
 }
 
 const propTypes = {
-  /** zIndex when component using in modals */
+  /** Change tooltip zIndex */
   zIndex: PropTypes.number,
 
   /** Aria label for icon button that triggers help popover */
@@ -52,7 +52,7 @@ const defaultProps = {
   a11yText: null,
   isDisabled: false,
   align: Popover.types.align.TOP,
-  zIndex: undefined,
+  zIndex: null,
 };
 
 Help.displayName = "FormElement.Help";
