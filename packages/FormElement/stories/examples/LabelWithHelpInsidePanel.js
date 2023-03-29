@@ -33,7 +33,7 @@ export default function LabelWithHelpInsidePanel() {
   return (
     <SpecificPanel onTriggerClick={toggle} onPanelClose={toggle} isOpen={isOpen}>
       <FormElement>
-        <FormElement.Label help={<HelpContent />} zIndex={11}>
+        <FormElement.Label help={<HelpContent />} helpZIndex={11}>
           Test label
         </FormElement.Label>
       </FormElement>
