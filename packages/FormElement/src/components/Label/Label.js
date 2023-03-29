@@ -88,7 +88,7 @@ const defaultProps = {
   isDisabled: null,
   isVisuallyHidden: false,
   helpAlign: Popover.types.align.TOP,
-  zIndex: undefined,
+  zIndex: null,
 };
 
 Label.displayName = "FormElement.Label";
