@@ -96,5 +96,4 @@ FormElement.Error = Error;
 FormElement.Instructions = Instructions;
 FormElement.Label = Label;
 FormElement.Layout = Layout;
-
 export default FormElement;

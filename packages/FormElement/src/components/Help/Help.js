@@ -4,12 +4,11 @@ import Popover from "@paprika/popover";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import * as sc from "./Help.styles";
 
-function Help(props) {
-  const { children, isDisabled, a11yText, align } = props;
+function Help({ children, isDisabled, a11yText, align, zIndex }) {
   const I18n = useI18n();
 
   return (
-    <sc.Help align={align} data-pka-anchor="form-element.help">
+    <sc.Help align={align} data-pka-anchor="form-element.help" zIndex={zIndex}>
       {isDisabled ? (
         <sc.HelpIcon aria-hidden />
       ) : (
@@ -28,6 +27,9 @@ function Help(props) {
 }
 
 const propTypes = {
+  /** Change tooltip zIndex */
+  zIndex: PropTypes.number,
+
   /** Aria label for icon button that triggers help popover */
   a11yText: PropTypes.string,
 
@@ -50,6 +52,7 @@ const defaultProps = {
   a11yText: null,
   isDisabled: false,
   align: Popover.types.align.TOP,
+  zIndex: null,
 };
 
 Help.displayName = "FormElement.Help";

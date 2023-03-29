@@ -70,6 +70,7 @@ refLabel is a React ref for the `<FormElement.Label />`|
 | isDisabled       | bool                                                                                                        | false    | null                    | If the label should be dimmed and the help popover disabled |
 | isVisuallyHidden | bool                                                                                                        | false    | false                   | Should label be hidden                                      |
 | helpAlign        | [ Popover.types.align.TOP, Popover.types.align.RIGHT, Popover.types.align.BOTTOM, Popover.types.align.LEFT] | false    | Popover.types.align.TOP | change tooltip alignment                                    |
+| helpZIndex       | number                                                                                                      | false    | null                    | zIndex for help tooltip                                     |
 
 ### FormElement.Layout
 

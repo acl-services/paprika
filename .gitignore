@@ -40,3 +40,6 @@ storybook-dist
 
 # in case you run the license
 license.xls
+
+# exlude JetBrains IDE releted files
+.idea

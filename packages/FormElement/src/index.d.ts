@@ -75,6 +75,8 @@ declare namespace FormElement {
       | Popover.types.align.RIGHT
       | Popover.types.align.BOTTOM
       | Popover.types.align.LEFT;
+    /** zIndex for help tooltip */
+    helpZIndex?: number;
   }
 }
 declare namespace FormElement {
