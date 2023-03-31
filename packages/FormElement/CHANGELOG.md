@@ -1,5 +1,11 @@
 # Changelog
 
+## 6.1.0-next.0
+
+### Minor Changes
+
+- 80f6485: Added: `helpZIndex` prop to `<FormElement.Help>` to control `z-index` of help tooltip in the form label
+
 ## 6.0.0
 
 ### Patch Changes
