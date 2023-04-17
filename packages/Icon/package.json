@@ -31,7 +31,7 @@
   "peerDependencies": {
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "react-dom": "^16.8.4 || ^17.0.2 || ^18.0.0",
-    "styled-components": "^5.3.3"
+    "styled-components": "^4.3.1 || ^5.3.3"
   },
   "gitHead": "494ce26cb0a6c24a8f6abf2b154d97ddd4d7e343",
   "sideEffects": false

@@ -124,7 +124,7 @@
     "sinon": "^7.2.4",
     "storybook-a11y-report": "^0.0.19",
     "style-loader": "^0.23.1",
-    "styled-components": "^5.3.3",
+    "styled-components": "^4.3.1 || ^5.3.3",
     "stylelint": "^13.1.0",
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-config-styled-components": "^0.1.1",

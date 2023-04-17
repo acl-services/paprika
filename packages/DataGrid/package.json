@@ -36,7 +36,7 @@
     "@paprika/l10n": "^2.0.0",
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "react-dom": "^16.8.4 || ^17.0.2 || ^18.0.0",
-    "styled-components": "^5.3.3"
+    "styled-components": "^4.3.1 || ^5.3.3"
   },
   "paprikaDocs": {
     "subComponents": [
