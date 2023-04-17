@@ -22,7 +22,7 @@
     "@paprika/tokens": "^3.0.0"
   },
   "peerDependencies": {
-    "styled-components": "^4.2.0"
+    "styled-components": "^5.3.3"
   },
   "sideEffects": [
     "*.scss"

@@ -30,7 +30,7 @@
     "moment": "^2.29.4",
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "react-dom": "^16.8.4 || ^17.0.2 || ^18.0.0",
-    "styled-components": "^4.2.0"
+    "styled-components": "^5.3.3"
   },
   "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
 }
