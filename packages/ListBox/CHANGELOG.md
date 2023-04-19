@@ -1,5 +1,20 @@
 # Changelog
 
+## 6.0.1-next.0
+
+### Patch Changes
+
+- a7fc447: updated peer dependencies for styled-components
+- Updated dependencies [a7fc447]
+  - @paprika/raw-button@1.0.17-next.0
+  - @paprika/checkbox@1.0.27-next.0
+  - @paprika/popover@2.0.10-next.0
+  - @paprika/stylers@1.1.10-next.0
+  - @paprika/button@1.1.18-next.0
+  - @paprika/input@6.0.1-next.0
+  - @paprika/toast@3.0.1-next.0
+  - @paprika/icon@3.0.1-next.0
+
 ## 6.0.0
 
 ### Patch Changes

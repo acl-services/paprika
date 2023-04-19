@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.0.1-next.0
+
+### Patch Changes
+
+- a7fc447: updated peer dependencies for styled-components
+- Updated dependencies [a7fc447]
+  - @paprika/heading@1.0.18-next.0
+  - @paprika/overlay@1.0.21-next.0
+  - @paprika/stylers@1.1.10-next.0
+  - @paprika/button@1.1.18-next.0
+
 ## 3.0.0
 
 ### Patch Changes

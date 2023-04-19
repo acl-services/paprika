@@ -1,6 +1,6 @@
 {
   "name": "@paprika/table",
-  "version": "1.2.30",
+  "version": "1.2.31-next.0",
   "description": "The Table component is a simple wrap for the html table, for more advanced features see the DataGrid component.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -17,17 +17,17 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^1.1.17",
+    "@paprika/button": "^1.1.18-next.0",
     "@paprika/constants": "^1.0.1",
     "@paprika/helpers": "^2.4.2",
-    "@paprika/overflow-menu": "^4.0.0",
-    "@paprika/stylers": "^1.1.9",
+    "@paprika/overflow-menu": "^4.0.1-next.0",
+    "@paprika/stylers": "^1.1.10-next.0",
     "@paprika/tokens": "^3.0.0",
     "prop-types": "^15.7.2",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@paprika/tag": "^2.0.0"
+    "@paprika/tag": "^2.0.1-next.0"
   },
   "peerDependencies": {
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",

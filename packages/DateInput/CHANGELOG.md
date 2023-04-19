@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [a7fc447]
+  - @paprika/input@6.0.1-next.0
+  - @paprika/icon@3.0.1-next.0
+
 ## 3.0.0
 
 ### Minor Changes
