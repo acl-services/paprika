@@ -1,5 +1,17 @@
 # @paprika/date-range-picker
 
+## 3.0.1
+
+### Patch Changes
+
+- a7fc447: updated peer dependencies for styled-components
+- Updated dependencies [a7fc447]
+  - @paprika/calendar@4.0.1
+  - @paprika/popover@2.0.10
+  - @paprika/stylers@1.1.10
+  - @paprika/icon@3.0.1
+  - @paprika/date-input@3.0.1
+
 ## 3.0.1-next.0
 
 ### Patch Changes

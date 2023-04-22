@@ -1,5 +1,11 @@
 # @paprika/stylers
 
+## 1.1.10
+
+### Patch Changes
+
+- a7fc447: updated peer dependencies for styled-components
+
 ## 1.1.10-next.0
 
 ### Patch Changes

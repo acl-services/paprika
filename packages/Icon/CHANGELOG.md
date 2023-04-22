@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.1
+
+### Patch Changes
+
+- a7fc447: updated peer dependencies for styled-components
+
 ## 3.0.1-next.0
 
 ### Patch Changes

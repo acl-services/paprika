@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.0.1
+
+### Patch Changes
+
+- a7fc447: updated peer dependencies for styled-components
+- Updated dependencies [a7fc447]
+  - @paprika/confirmation@3.0.1
+  - @paprika/raw-button@1.0.17
+  - @paprika/popover@2.0.10
+  - @paprika/stylers@1.1.10
+  - @paprika/button@1.1.18
+  - @paprika/icon@3.0.1
+
 ## 4.0.1-next.0
 
 ### Patch Changes

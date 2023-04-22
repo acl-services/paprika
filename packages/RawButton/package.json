@@ -1,6 +1,6 @@
 {
   "name": "@paprika/raw-button",
-  "version": "1.0.17-next.0",
+  "version": "1.0.17",
   "description": "Raw button component, for performing an action on the page you’re viewing.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/stylers": "^1.1.10-next.0",
+    "@paprika/stylers": "^1.1.10",
     "@paprika/tokens": "^3.0.0",
     "prop-types": "^15.7.2"
   },

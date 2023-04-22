@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.34
+
+### Patch Changes
+
+- a7fc447: updated peer dependencies for styled-components
+- Updated dependencies [a7fc447]
+  - @paprika/collapsible@3.0.1
+  - @paprika/checkbox@1.0.27
+  - @paprika/stylers@1.1.10
+
 ## 1.0.34-next.0
 
 ### Patch Changes

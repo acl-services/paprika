@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.17
+
+### Patch Changes
+
+- a7fc447: updated peer dependencies for styled-components
+- Updated dependencies [a7fc447]
+  - @paprika/stylers@1.1.10
+
 ## 1.0.17-next.0
 
 ### Patch Changes

@@ -1,5 +1,20 @@
 # Changelog
 
+## 7.0.1
+
+### Patch Changes
+
+- a7fc447: updated peer dependencies for styled-components
+- Updated dependencies [a7fc447]
+  - @paprika/sortable@3.0.1
+  - @paprika/popover@2.0.10
+  - @paprika/stylers@1.1.10
+  - @paprika/button@1.1.18
+  - @paprika/select@2.0.17
+  - @paprika/switch@1.0.23
+  - @paprika/input@6.0.1
+  - @paprika/icon@3.0.1
+
 ## 7.0.1-next.0
 
 ### Patch Changes

@@ -1,5 +1,21 @@
 # Changelog
 
+## 4.0.1
+
+### Patch Changes
+
+- a7fc447: updated peer dependencies for styled-components
+- Updated dependencies [a7fc447]
+  - @paprika/date-picker@4.0.1
+  - @paprika/list-box@6.0.1
+  - @paprika/stylers@1.1.10
+  - @paprika/button@1.1.18
+  - @paprika/select@2.0.17
+  - @paprika/input@6.0.1
+  - @paprika/panel@4.0.1
+  - @paprika/radio@1.0.29
+  - @paprika/icon@3.0.1
+
 ## 4.0.1-next.0
 
 ### Patch Changes

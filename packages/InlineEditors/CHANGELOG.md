@@ -1,5 +1,23 @@
 # @paprika/inline-editors
 
+## 1.0.18
+
+### Patch Changes
+
+- a7fc447: updated peer dependencies for styled-components
+- Updated dependencies [a7fc447]
+  - @paprika/collapsible-text@3.0.1
+  - @paprika/raw-button@1.0.17
+  - @paprika/textarea@3.0.13
+  - @paprika/list-box@6.0.1
+  - @paprika/popover@2.0.10
+  - @paprika/spinner@1.0.21
+  - @paprika/stylers@1.1.10
+  - @paprika/input@6.0.1
+  - @paprika/table@1.2.31
+  - @paprika/icon@3.0.1
+  - @paprika/tag@2.0.1
+
 ## 1.0.18-next.0
 
 ### Patch Changes

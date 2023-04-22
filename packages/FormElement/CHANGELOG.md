@@ -1,5 +1,15 @@
 # Changelog
 
+## 6.1.1
+
+### Patch Changes
+
+- a7fc447: updated peer dependencies for styled-components
+- Updated dependencies [a7fc447]
+  - @paprika/popover@2.0.10
+  - @paprika/stylers@1.1.10
+  - @paprika/icon@3.0.1
+
 ## 6.1.1-next.0
 
 ### Patch Changes
