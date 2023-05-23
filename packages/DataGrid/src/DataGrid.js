@@ -342,7 +342,7 @@ const DataGrid = React.forwardRef((props, ref) => {
         });
       }
     });
-  }, [gridId, data]);
+  }, [refScrollGrid.current, gridId, data]);
 
   React.useEffect(() => {
     if (!refContainer.current) return;
