@@ -215,7 +215,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     refScrollHeader.current = refContainer.current.querySelector(`.${gridId}-header`);
     refScrollStickyColumns.current = refContainer.current.querySelector(`.${gridId}-sticky-columns`);
     refScrollGrid.current = refContainer.current.querySelector(`.grid-${gridId}`);
-  }, [gridId]);
+  }, [refContainer.current, gridId]);
 
   React.useLayoutEffect(() => {
     const scrollContainer =
@@ -328,21 +328,26 @@ const DataGrid = React.forwardRef((props, ref) => {
     import("mouse-wheel").then(module => {
       if (Array.isArray(data) && data.length) {
         const { default: mouseWheel } = module;
-        mouseWheel(refScrollGrid.current, (dx, dy, dz, event) => {
-          event.preventDefault();
-          refScrollGrid.current.scrollTo(refScrollGrid.current.scrollLeft + dx, refScrollGrid.current.scrollTop + dy);
-        });
 
-        mouseWheel(refScrollStickyColumns.current, (dx, dy, dz, event) => {
-          event.preventDefault();
-          refScrollStickyColumns.current.scrollTo(
-            refScrollStickyColumns.current.scrollLeft + dx,
-            refScrollStickyColumns.current.scrollTop + dy
-          );
-        });
+        if (refScrollGrid.current !== null) {
+          mouseWheel(refScrollGrid.current, (dx, dy, dz, event) => {
+            event.preventDefault();
+            refScrollGrid.current.scrollTo(refScrollGrid.current.scrollLeft + dx, refScrollGrid.current.scrollTop + dy);
+          });
+        }
+
+        if (refScrollStickyColumns.current !== null) {
+          mouseWheel(refScrollStickyColumns.current, (dx, dy, dz, event) => {
+            event.preventDefault();
+            refScrollStickyColumns.current.scrollTo(
+              refScrollStickyColumns.current.scrollLeft + dx,
+              refScrollStickyColumns.current.scrollTop + dy
+            );
+          });
+        }
       }
     });
-  }, [gridId, data]);
+  }, [refScrollGrid.current, refScrollStickyColumns.current, gridId, data]);
 
   React.useEffect(() => {
     if (!refContainer.current) return;
