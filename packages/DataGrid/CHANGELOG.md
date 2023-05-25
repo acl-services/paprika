@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.2-next.0
+
+### Patch Changes
+
+- 54366b9: Fix header scrolling after data re-appear
+
 ## 3.0.1
 
 ### Patch Changes
