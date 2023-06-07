@@ -1,5 +1,13 @@
 <!-- content -->
 
+## 3.0.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [92cf6b0]
+  - @paprika/data-grid@3.0.3-next.0
+  - @paprika/data-field@3.0.3-next.0
+
 ## 3.0.2
 
 ### Patch Changes
