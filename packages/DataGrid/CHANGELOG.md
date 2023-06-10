@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.3
+
+### Patch Changes
+
+- 92cf6b0: Revert "FS-4985: Fix DataGrid scroll"
+
 ## 3.0.3-next.0
 
 ### Patch Changes
