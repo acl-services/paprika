@@ -1,0 +1,212 @@
+nl:
+  translation:
+    timePicker:
+      am: am
+      custom: Aangepast
+      hours: Uur
+      minutes: Minuten
+      period: Periode
+      pm: pm
+    back: Terug
+    remove: verwijderen
+    remove_a11y: "{{value}} verwijderen"
+    moreInformation: meer informatie
+    close: Sluiten
+    dataGrid:
+      a11yTextMessage: "{{value}}. U bevindt zich op rij {{rowIndex}}, kolom {{columnIndex}}. Negeer de volgende informatie:"
+      rows: "Rijen: {{rowCount}}"
+      columns: "Kolommen: {{columnCount}}"
+    uploader:
+      drop_files: Zet bestanden neer om te uploaden
+      drop_files_here_or: Zet bestanden hier neer om te uploaden of
+      choose_from_computer: kies vanaf uw computer
+      choose_from_computer_a11y: Kies bestanden van uw computer
+      cancel_upload: Upload annuleren voor {{name}}
+      restart_upload: Selecteer nogmaals {{name}} om het opnieuw te proberen
+      file_list: Lijst met bestanden
+      errors:
+        size: Bestand moet kleiner zijn dan {{maxFileSize}}
+        type: "Bestand moet een van de volgende typen zijn: {{- supportedTypes}}"
+      status:
+        idle: Inactief
+        processing: Bezig met het verwerken
+        uploading: Bezig met uploaden
+        success: Succes
+        cancel: Annuleren
+        error: Fout
+      progress:
+        cancelled: Geannuleerd
+        complete: Voltooid
+        error: "Er is een fout opgetreden voor {{name}}: {{error}}"
+        idle: Inactief
+        file_progress: "{{name}} is {{progress}}"
+        uploading_percent: Aan het uploaden, {{a11yProgress}}%
+        uploading: '{{progressWithUnits}} van {{sizeWithUnits}} aan het uploaden'
+      size_abbreviations:
+        byte: B
+        kibibyte: KiB
+        mebibyte: MiB
+        gibibyte: GiB
+        tebibyte: TiB
+    actions:
+      delete: Verwijderen
+      apply: Toepassen
+      cancel: Annuleren
+      confirm: Opslaan
+      decline: Afwijzen
+    datePicker:
+      confirmation_format: D MMMM YYYY
+    calendar:
+      header_format: MMMM YYYY
+      month: Maand
+      year: Jaar
+    daterange:
+      last_7_days: Laatste 7 dagen
+      last_30_days: Laatste 30 dagen
+      this_month: Deze maand
+      last_month: Vorige maand
+      start_date: Startdatum
+      end_date: Einddatum
+    dropdownMenu:
+      isExternal: "{{link}} wordt geopend in een nieuw tabblad."
+    comment:
+      delete: Opmerking verwijderen
+    pagination:
+      intro: Paginering, momenteel op pagina {{currentPage}}
+      page: Pagina {{pageNumber}}
+      ellipsis: Meer pagina's
+      prev: Vorige pagina
+      next: Volgende pagina
+    formElement:
+      optional: (optioneel)
+      required: (vereist)
+      aria_info_circle: Informatie
+    prevNextArrowButton:
+      arrowup: boven
+      arrowdown: beneden
+      escape: escape
+    collapsible:
+      ariaText: Samen te vouwen gedeelte
+      collapse: Samenvouwen
+      expand: Uitvouwen
+    sortable:
+      aria_description: Versleepbaar item. Druk op de spatiebalk om op te tillen.
+      aria_lift: U hebt een item op positie {{source}} getild. Gebruik de pijltjestoetsen om te verplaatsen, de spatiebalk om neer te zetten en escape om te annuleren.
+      aria_moving: U hebt het item verplaatst van positie {{source}} naar positie {{destination}}.
+      aria_moving_outside: U sleept momenteel niet over een neerzetbaar gebied.
+      aria_cancelled: Verplaatsing geannuleerd. Het item is teruggekeerd naar de startpositie van {{source}}.
+      aria_dropped: U hebt het item neergezet. Het is verplaatst van positie {{source}} naar {{destination}}.
+      aria_dropped_outside: Het item is neergezet terwijl het nog niet boven de lijst stond. Het item is teruggekeerd naar de startpositie van {{source}}.
+      aria_remove: Verwijderen
+    progressAccordion:
+      active: actief
+      no_response: Geen
+    collapsibleText:
+      more: Meer tonen
+      less: Minder tonen
+      more_about: meer tonen over {{topic}}
+      less_about: minder tonen over {{topic}}
+    listBox:
+      trigger:
+        clear_selection: Selectie wissen
+        placeholder: Selecteren...
+      filter:
+        a11y_text: Zoeken
+        no_results_message: Geen resultaten gevonden
+        placeholder: Zoeken...
+      footer:
+        accept: Toepassen
+        cancel: Annuleren
+        clear: Wissen
+    listBoxBrowser:
+      explore: Meer opties verkennen
+      selected: geselecteerde opties
+      selectOne: Selecteer een of meerdere items...
+    listBoxWithTags:
+      placeholder: Selecteren...
+      no_results_found: Geen resultaten gevonden
+      all_items_have_been_selected: "Alle items zijn geselecteerd"
+      a11y_text_trigger: "Multi-select-optie: {{options}}"
+    search:
+      searchTerm: Term zoeken...
+    actionBar:
+      columns_arrangement:
+        hide_all: Alles verbergen
+        show_all: Alles weergeven
+        label: Herstellen
+        singular_label: 1 kolom verborgen
+        plural_label: "{{numberOfHiddenColumn}} kolommen verborgen"
+        search_placeholder: Zoeken...
+      no_results: Geen resultaten
+      search_placeholder: Zoeken...
+      search_a11y_text: Doorzoek de gegevens
+      sort:
+        no_sorts_applied: Er zijn geen sorteringen toegepast op deze weergave
+        label: Sorteren
+        singular_label: 1 kolom gesorteerd
+        plural_label: "{{numberOfFields}} kolommen gesorteerd"
+        add_field: Voeg een veld toe waarop u wilt sorteren
+        sort_by: Sorteren op
+        then_by: vervolgens op
+        rules:
+          ascending:
+            boolean: Oplopend sorteren (waar → niet waar)
+            number: Oplopend sorteren (1 → 9)
+            text: Oplopend sorteren (A → Z)
+            date: Oplopend sorteren (1 → 9)
+            single_select: Oplopend sorteren (A → Z)
+          descending:
+            boolean: Aflopend sorteren (niet waar → waar)
+            number: Aflopend sorteren (9 → 1)
+            text: Aflopend sorteren (Z → A)
+            date: Aflopend sorteren (9 → 1)
+            single_select: Aflopend sorteren (Z → A)
+    breadcrumbs:
+      aria_label: Breadcrumbs
+      aria_expand: Toon alle breadcrumbitems.
+      aria_back_to: Terug naar
+    sideNavigation:
+      aria_label: Zijnavigatie
+      trigger_aria_label: Navigatie openen
+    copyInput:
+      clicked_tooltip: Gekopieerd
+      hover_tooltip: Kopiëren naar klembord
+    dynamicHyperlinkTransformer:
+      access_denied: "Toegang geweigerd"
+      invalid_url: "Ongeldige URL"
+      exceeded_max_links_rendered: "Kon niet renderen"
+      loading: Bezig met laden...
+    filter:
+      actions:
+        add: Filter toevoegen
+        clear: Wissen
+        delete: Verwijderen
+      no_filters_applied: Er zijn geen filters toegepast op deze weergave
+      label: Filter
+      label_with_count: "{{count}} gefilterd"
+      and: En
+      or: Of
+      rules:
+        is: is
+        is_not: is niet
+        contains: bevat
+        does_not_contain: bevat niet
+        is_blank: is leeg
+        is_not_blank: is niet leeg
+        equals: is gelijk aan
+        not_equal_to: is niet gelijk aan
+        greater_than: ">"
+        less_than: "<"
+        greater_than_or_equal_to: "≥"
+        less_than_or_equal_to: "≤"
+        is_empty: is leeg
+        is_not_empty: is niet leeg
+        is_before: is voor
+        is_after: is na
+        is_one_of: is een van
+        is_not_one_of: is niet een van
+        true: "waar"
+        false: "niet waar"
+    input:
+      clear_button:
+        aria_label: Invoer wissen
