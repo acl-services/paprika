@@ -3,10 +3,11 @@ import L10nContext from "./L10nContext";
 import { i18n } from "./i18n";
 import PaprikaLocales from "./locales";
 
-function mergeTranslation(customLocales, paprikaLocales) {
+export function mergeTranslation(customLocales, paprikaLocales) {
   const result = {};
+  const allLocales = new Set([...Object.keys(paprikaLocales), ...Object.keys(customLocales)]);
 
-  Object.keys(paprikaLocales).forEach(lang => {
+  allLocales.forEach(lang => {
     result[lang] = {
       translation: {
         ...(paprikaLocales[lang] ? paprikaLocales[lang].translation : {}),
