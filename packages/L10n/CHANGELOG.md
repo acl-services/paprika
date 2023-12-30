@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.0
+
+### Minor Changes
+
+- 1ec4f6b: Release new locale support 'it' and 'nl'
+
 ## 2.1.0-next.0
 
 ### Minor Changes

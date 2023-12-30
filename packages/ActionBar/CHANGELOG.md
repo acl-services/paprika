@@ -1,5 +1,14 @@
 # Changelog
 
+## 8.0.0
+
+### Patch Changes
+
+- Updated dependencies [1ec4f6b]
+  - @paprika/l10n@2.1.0
+  - @paprika/input@7.0.0
+  - @paprika/sortable@4.0.0
+
 ## 8.0.0-next.0
 
 ### Patch Changes
