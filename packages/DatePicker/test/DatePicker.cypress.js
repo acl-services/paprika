@@ -54,7 +54,7 @@ describe("<DatePicker />", () => {
     cy.get('label[for$="-2024"]').click();
     cy.findByTestId("calendar.apply").click();
     cy.findAllByTestId("calendar.header")
-      .contains("January 2018")
+      .contains("January 2024")
       .should("be.visible");
   });
 
