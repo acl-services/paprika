@@ -3,7 +3,7 @@ import L10nContext from "./L10nContext";
 import { i18n } from "./i18n";
 import PaprikaLocales from "./locales";
 
-export function mergeTranslation(customLocales, paprikaLocales) {
+export function mergeTranslation(customLocales = {}, paprikaLocales = {}) {
   const result = {};
   const allLocales = new Set([...Object.keys(paprikaLocales), ...Object.keys(customLocales)]);
 
