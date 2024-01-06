@@ -1,5 +1,14 @@
 # Changelog
 
+## 7.0.1
+
+### Patch Changes
+
+- Updated dependencies [48a369d]
+  - @paprika/l10n@2.1.1
+  - @paprika/input@7.0.1
+  - @paprika/toast@4.0.1
+
 ## 7.0.1-next.0
 
 ### Patch Changes

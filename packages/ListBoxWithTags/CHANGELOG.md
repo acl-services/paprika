@@ -1,5 +1,14 @@
 # Changelog
 
+## 6.0.1
+
+### Patch Changes
+
+- Updated dependencies [48a369d]
+  - @paprika/l10n@2.1.1
+  - @paprika/list-box@7.0.1
+  - @paprika/tag@3.0.1
+
 ## 6.0.1-next.0
 
 ### Patch Changes
