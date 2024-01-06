@@ -1,6 +1,6 @@
 {
   "name": "@paprika/action-bar",
-  "version": "8.0.0",
+  "version": "8.0.1-next.0",
   "description": "ActionBar",
   "author": "@paprika",
   "license": "MIT",
@@ -19,10 +19,10 @@
     "@paprika/button": "^1.1.18",
     "@paprika/helpers": "^2.4.2",
     "@paprika/icon": "^3.0.1",
-    "@paprika/input": "^7.0.0",
+    "@paprika/input": "^7.0.1-next.0",
     "@paprika/popover": "^2.0.10",
     "@paprika/select": "^2.0.17",
-    "@paprika/sortable": "^4.0.0",
+    "@paprika/sortable": "^4.0.1-next.0",
     "@paprika/stylers": "^1.1.10",
     "@paprika/switch": "^1.0.23",
     "@paprika/tokens": "^3.0.0",
@@ -31,7 +31,7 @@
     "uuid": "^8.3.2"
   },
   "peerDependencies": {
-    "@paprika/l10n": "^2.1.0",
+    "@paprika/l10n": "^2.1.1-next.0",
     "moment": "^2.29.4",
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "react-dom": "^16.8.4 || ^17.0.2 || ^18.0.0",

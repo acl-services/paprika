@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [48a369d]
+  - @paprika/l10n@2.1.1-next.0
+  - @paprika/collapsible@4.0.1-next.0
+
 ## 4.0.0
 
 ### Patch Changes
