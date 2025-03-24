@@ -3,7 +3,7 @@ name: Paprika Semaphore 2.0 CI
 agent:
   machine:
     type: e1-standard-4
-    os_image: ubuntu1804
+    os_image: ubuntu2004
 auto_cancel:
   running:
     when: branch != 'master'
@@ -82,7 +82,8 @@ blocks:
       prologue:
         commands:
           - checkout
-          - sudo apt-get -y install xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
+          - sudo apt-get update
+          - sudo apt-get -y install xvfb libgtk-3-dev libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb
           - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
           - cache restore cypress-$SEMAPHORE_GIT_BRANCH
           - sudo sysctl fs.inotify.max_user_watches=1048576
