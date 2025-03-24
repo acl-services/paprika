@@ -23,7 +23,7 @@
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "node-sass": "^8.0.0",
+    "sass": "^1.86.0",
     "yamljs": "^0.3.0"
   },
   "peerDependencies": {

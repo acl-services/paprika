@@ -1,6 +1,6 @@
 const YAML = require("yamljs"); /* eslint-disable-line import/no-extraneous-dependencies */
 const fs = require("fs");
-const sass = require("node-sass"); /* eslint-disable-line import/no-extraneous-dependencies */
+const sass = require("sass"); /* eslint-disable-line import/no-extraneous-dependencies */
 
 class DesignTokenBuilder {
   constructor() {
@@ -136,18 +136,18 @@ import TokenSquare from "./TokenSquare"
   processSassString(str) {
     let output = "";
     try {
-      output = sass.renderSync({
+      output = sass.compileString({
         data: `.x {color:${str}}`,
         outputStyle: "compressed",
       });
 
       output = output.css.toString();
-      output = output.substr(9, output.length - 11);
+      output = output.substring(9, output.length - 11);
 
       // Some of the Asian characters are causing string length to be off by one, and leaving the
       // leading colon. Remove it.
       if (output.charAt(0) === ":") {
-        output = output.substr(1, output.length);
+        output = output.substring(1, output.length);
       }
     } catch (e) {
       // One of the font family rules comes in here
