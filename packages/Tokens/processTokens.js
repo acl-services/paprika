@@ -10,7 +10,8 @@ class DesignTokenBuilder {
     this.SCSS_FILE = "./src/tokens.scss";
     this.MARKDOWN_FILE = "./src/tokens.mdx";
     this.yamlObject = this.loadYamlFile();
-    this.yamlVariables = [];
+    this.yamlVariables = {};
+    this.externalVariables = ["$lightness", "$saturation", "$space"];
   }
 
   outputError(str) {
@@ -123,6 +124,10 @@ import TokenSquare from "./TokenSquare"
       matches.forEach(match => {
         const re = new RegExp(match.replace("$", "\\$"), "i");
 
+        if (this.externalVariables.includes(match) && !this.yamlVariables[match]) {
+          this.yamlVariables[match] = match;
+        }
+
         if (!this.yamlVariables[match]) {
           this.outputError(`The variable [${match}] was referenced in the YAML file before it was defined`);
         }
@@ -136,19 +141,18 @@ import TokenSquare from "./TokenSquare"
   processSassString(str) {
     let output = "";
     try {
-      output = sass.compileString({
-        data: `.x {color:${str}}`,
-        outputStyle: "compressed",
+      output = sass.compileString(`@use "sass:color";.x{color:${str}}`, {
+        style: "compressed",
       });
 
-      output = output.css.toString();
-      output = output.substring(9, output.length - 11);
-
-      // Some of the Asian characters are causing string length to be off by one, and leaving the
-      // leading colon. Remove it.
-      if (output.charAt(0) === ":") {
-        output = output.substring(1, output.length);
-      }
+      // Extract the actual color value by:
+      // 1. Remove the wrapper ".x{color:" from the start (^) of the string
+      // 2. Some Asian characters result in an extra character at the start hence (^.?) in regex
+      // 3. Remove the closing "}" from the end ($) of the string
+      output = output.css
+        .toString()
+        .replace(/^.?\.x\{color:/, "")
+        .replace(/\}$/, "");
     } catch (e) {
       // One of the font family rules comes in here
       output = str;
