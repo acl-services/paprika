@@ -108,6 +108,7 @@ blocks:
             - nvm install
             - npx lerna bootstrap
             - yarn storybook:build
-            - BRANCH_NAME=$SEMAPHORE_GIT_BRANCH REVISION=$SEMAPHORE_GIT_SHA SEMAPHORE_BUILD_NUMBER=$SEMAPHORE_WORKFLOW_ID yarn storybook:screener
+            - echo "screener visual testing is discontinued from May 31st 2024 https://docs.saucelabs.com/visual/faq/"
+            # - BRANCH_NAME=$SEMAPHORE_GIT_BRANCH REVISION=$SEMAPHORE_GIT_SHA SEMAPHORE_BUILD_NUMBER=$SEMAPHORE_WORKFLOW_ID yarn storybook:screener
       secrets:
         - name: screener-api-key
