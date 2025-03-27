@@ -1,5 +1,17 @@
 # Changelog
 
+## 5.0.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [80fb5c0]
+  - @paprika/tokens@3.1.0-next.0
+  - @paprika/button@1.1.19-next.0
+  - @paprika/overflow-menu@5.0.2-next.0
+  - @paprika/popover@2.0.11-next.0
+  - @paprika/raw-button@1.0.18-next.0
+  - @paprika/stylers@1.1.11-next.0
+
 ## 5.0.1
 
 ### Patch Changes

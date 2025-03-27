@@ -1,5 +1,20 @@
 # Changelog
 
+## 7.0.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [80fb5c0]
+  - @paprika/tokens@3.1.0-next.0
+  - @paprika/button@1.1.19-next.0
+  - @paprika/checkbox@1.0.28-next.0
+  - @paprika/icon@3.0.2-next.0
+  - @paprika/input@7.0.2-next.0
+  - @paprika/popover@2.0.11-next.0
+  - @paprika/raw-button@1.0.18-next.0
+  - @paprika/stylers@1.1.11-next.0
+  - @paprika/toast@4.0.2-next.0
+
 ## 7.0.1
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.24-next.0
+
+### Patch Changes
+
+- Updated dependencies [80fb5c0]
+  - @paprika/tokens@3.1.0-next.0
+  - @paprika/raw-button@1.0.18-next.0
+  - @paprika/stylers@1.1.11-next.0
+
 ## 1.0.23
 
 ### Patch Changes

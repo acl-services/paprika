@@ -1,5 +1,11 @@
 # @paprika/tokens
 
+## 3.1.0-next.0
+
+### Minor Changes
+
+- 80fb5c0: migrate to sass and remove deprecated node-sass
+
 ## 3.0.0
 
 ### Major Changes
