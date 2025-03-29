@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.0.2
+
+### Patch Changes
+
+- @paprika/icon@3.0.2
+- @paprika/input@7.0.2
+
 ## 4.0.2-next.0
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # Changelog
 
+## 5.0.2
+
+### Patch Changes
+
+- Updated dependencies [80fb5c0]
+  - @paprika/tokens@3.1.0
+  - @paprika/calendar@5.0.2
+  - @paprika/date-input@4.0.2
+  - @paprika/popover@2.0.11
+  - @paprika/stylers@1.1.11
+
 ## 5.0.2-next.0
 
 ### Patch Changes

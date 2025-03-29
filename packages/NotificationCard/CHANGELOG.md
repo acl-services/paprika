@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.23
+
+### Patch Changes
+
+- Updated dependencies [80fb5c0]
+  - @paprika/tokens@3.1.0
+  - @paprika/heading@1.0.19
+  - @paprika/stylers@1.1.11
+
 ## 1.0.23-next.0
 
 ### Patch Changes

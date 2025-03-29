@@ -1,6 +1,6 @@
 {
   "name": "@paprika/takeover",
-  "version": "4.0.2-next.0",
+  "version": "4.0.2",
   "description": "The Takeover component can toggle a full-screen view to help the user focus on complex UI tasks.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -16,13 +16,13 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^1.1.19-next.0",
+    "@paprika/button": "^1.1.19",
     "@paprika/constants": "^1.0.1",
-    "@paprika/heading": "^1.0.19-next.0",
+    "@paprika/heading": "^1.0.19",
     "@paprika/helpers": "^2.4.2",
-    "@paprika/overlay": "^1.0.22-next.0",
-    "@paprika/stylers": "^1.1.11-next.0",
-    "@paprika/tokens": "^3.1.0-next.0",
+    "@paprika/overlay": "^1.0.22",
+    "@paprika/stylers": "^1.1.11",
+    "@paprika/tokens": "^3.1.0",
     "prop-types": "^15.7.2",
     "react-focus-lock": "^2.8.1",
     "react-transition-group": "^4.3.0"
