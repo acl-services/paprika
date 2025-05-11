@@ -19,6 +19,7 @@ const storyTree = [
       "DataHeader",
       "DataTable",
       "Filter",
+      "Sort",
       "Table"
     ],
   },
