@@ -47,8 +47,6 @@ blocks:
         - name: Lint && prettier
           commands:
             - nvm install
-            # v5.2.0 is the latest one that supports node 16. v6+ requires node 18+ and that kicks off more and more updates
-            - yarn add eslint-plugin-react-hooks@5.2.0 -D -W
             - yarn lint && yarn prettier -- --list-different
 
   - name: "♿️ Accessibility"
