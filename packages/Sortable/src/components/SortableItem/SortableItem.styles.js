@@ -63,5 +63,5 @@ export const itemBodyStyles = css`
 export const itemCloseStyles = css`
   align-items: center;
   display: flex;
-  margin-left: ${tokens.space};
+  margin-inline-start: ${tokens.space};
 `;

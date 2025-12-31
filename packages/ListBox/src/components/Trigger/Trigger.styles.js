@@ -36,7 +36,7 @@ const triggerStyles = ({ hasError, isDisabled, isInline, isReadOnly, size }) => 
   display: block;
   padding: 0 50px 0 ${tokens.space};
   position: relative;
-  text-align: left;
+  text-align: start;
   transition: border-color 0.2s;
   width: 100%;
   ${triggerSizes[size]};
@@ -62,8 +62,8 @@ const triggerStylesProps = ({ isHidden, isInline, isReadOnly }) => {
         ${triggerStyles}
         ${isInline
           ? css`
-              border-bottom-left-radius: 0;
-              border-bottom-right-radius: 0;
+              border-end-start-radius: 0;
+              border-end-end-radius: 0;
             `
           : ""}
       `
@@ -85,7 +85,7 @@ export const iconStyles = ({ isDisabled }) => css`
   height: 100%;
   pointer-events: none;
   position: absolute;
-  right: ${tokens.space};
+  inset-inline-end: ${tokens.space};
   top: 0;
 `;
 
@@ -104,9 +104,9 @@ export const ClearIcon = styled(TimesCircleIcon)`
 export const ClearButton = styled(Button.Icon)(
   ({ shouldHideCaret, isDisabled }) => css`
     height: 100%;
-    margin-right: 2px;
+    margin-inline-end: 2px;
     position: absolute;
-    right: ${shouldHideCaret ? 0 : "22px"};
+    inset-inline-end: ${shouldHideCaret ? 0 : "22px"};
     top: 0;
 
     &:hover,

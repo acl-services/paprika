@@ -20,11 +20,11 @@ const sizeStyles = {
 };
 
 const hasIconStyles = ({ size }) => css`
-  padding-left: ${size === types.SMALL ? stylers.spacer(3) : stylers.spacer(3.5)};
+  padding-inline-start: ${size === types.SMALL ? stylers.spacer(3) : stylers.spacer(3.5)};
 `;
 
 const shouldShowClearButtonStyles = ({ size }) => css`
-  padding-right: ${size === types.LARGE ? stylers.spacer(4) : stylers.spacer(3)};
+  padding-inline-end: ${size === types.LARGE ? stylers.spacer(4) : stylers.spacer(3)};
 `;
 
 export const InputContainer = styled.div`
@@ -82,18 +82,18 @@ export const Input = styled.input(({ hasCSSReset, ...restProps }) =>
 const iconSizeStyles = {
   [types.SMALL]: css`
     ${stylers.fontSize(-2)}
-    margin-left: 3px;
+    margin-inline-start: 3px;
     padding: 0 ${tokens.spaceSm};
   `,
   [types.MEDIUM]: css`
     ${stylers.fontSize(2)}
-    margin-left: ${tokens.spaceSm};
-    margin-right: ${tokens.spaceSm};
+    margin-inline-start: ${tokens.spaceSm};
+    margin-inline-end: ${tokens.spaceSm};
   `,
   [types.LARGE]: css`
     ${stylers.fontSize(2)}
-    margin-left: ${tokens.spaceSm};
-    margin-right: ${tokens.spaceSm};
+    margin-inline-start: ${tokens.spaceSm};
+    margin-inline-end: ${tokens.spaceSm};
   `,
 };
 
@@ -125,7 +125,7 @@ export const ClearButton = styled(Button.Icon)`
   ${iconStyles}
   border-radius: ${tokens.border.radius};
   color: ${tokens.color.blackLighten30};
-  right: ${tokens.spaceSm};
+  inset-inline-end: ${tokens.spaceSm};
   transition: color 0.2s ease-out;
 
   &:hover {

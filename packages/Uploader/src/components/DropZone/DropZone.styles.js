@@ -32,7 +32,7 @@ export const DropZoneButton = styled(Button)`
 
 export const Body = styled.div`
   display: inline;
-  margin-left: ${tokens.space};
+  margin-inline-start: ${tokens.space};
 `;
 
 export const DropZoneIcon = styled.span`

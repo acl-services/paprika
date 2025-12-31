@@ -6,7 +6,7 @@ import { spacer, fontSize } from "@paprika/stylers/lib/helpers";
 
 export const SideNavigationCollapsedWrapper = styled.div`
   background: ${tokens.color.white};
-  border-right: ${tokens.color.blackLighten60} solid 1px;
+  border-inline-end: ${tokens.color.blackLighten60} solid 1px;
   padding: ${tokens.spaceSm};
   width: ${spacer(5)};
 `;

@@ -4,8 +4,8 @@ import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
 export const Content = styled.div`
-  margin-left: -${tokens.spaceLg};
-  margin-right: -${tokens.spaceLg};
+  margin-inline-start: -${tokens.spaceLg};
+  margin-inline-end: -${tokens.spaceLg};
 
   [role="menuitem"] {
     ${stylers.lineHeight(-1)}

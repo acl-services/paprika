@@ -55,16 +55,16 @@ const horizontalStyles = ({ tabHeight }) => css`
   border-radius: ${tokens.border.radius} ${tokens.border.radius} 0 0;
   display: inline-flex;
   height: ${getHeightValue(tabHeight)};
-  margin-right: ${tokens.space};
+  margin-inline-end: ${tokens.space};
   padding: ${tokens.spaceSm} ${tokens.space} 0 ${tokens.space};
 
   &:last-child {
-    margin-right: 0;
+    margin-inline-end: 0;
   }
 `;
 
 const verticalStyles = ({ hasTruncation }) => css`
-  border-left: ${tokens.spaceSm} solid transparent;
+  border-inline-start: ${tokens.spaceSm} solid transparent;
   padding: ${tokens.spaceLg};
 
   ${hasTruncation
