@@ -30,7 +30,7 @@ const closeButtonColors = {
 };
 
 const fixedStyles = css`
-  left: 50%;
+  inset-inline-start: 50%;
   max-width: 675px;
   position: fixed;
   top: ${stylers.spacer(2)};
@@ -50,10 +50,10 @@ export const CloseButtonStyled = styled(Button.Close)(
   ({ kind }) => css`
     flex-grow: 0;
     flex-shrink: 0;
-    margin-bottom: -6px;
-    margin-left: ${tokens.space};
-    margin-right: -7px;
-    margin-top: -6px;
+    margin-block-end: -6px;
+    margin-inline-start: ${tokens.space};
+    margin-inline-end: -7px;
+    margin-block-start: -6px;
     min-height: 0;
 
     ${closeButtonColors[kind] && `color: ${closeButtonColors[kind]};`}
@@ -65,7 +65,10 @@ export const IconStyled = styled.div(
     color: ${iconColors[kind]};
     flex-grow: 0;
     flex-shrink: 0;
-    margin: 1px ${tokens.space} 0 0;
+    margin-block-start: 1px;
+    margin-inline-end: ${tokens.space};
+    margin-block-end: 0;
+    margin-inline-start: 0;
 
     ${stylers.fontSize(2)}
   `
@@ -87,11 +90,14 @@ export const Toast = styled.div(
     color: ${tokens.color.black};
     display: flex;
     font-weight: normal;
-    margin-bottom: ${stylers.spacer(2)};
+    margin-block-end: ${stylers.spacer(2)};
     min-height: ${stylers.spacer(3)};
-    padding: ${tokens.spaceLg} ${tokens.spaceLg} 10px ${tokens.spaceLg};
+    padding-block-start: ${tokens.spaceLg};
+    padding-inline-end: ${tokens.spaceLg};
+    padding-block-end: 10px;
+    padding-inline-start: ${tokens.spaceLg};
     position: relative;
-    text-align: left;
+    text-align: start;
     transition: opacity 0.3s ease-out;
     word-break: break-word;
     z-index: ${zIndex};

@@ -62,14 +62,17 @@
       color: $color--white;
       height: $space * 6;
       line-height: $space * 6;
-      margin: $space 0 0 $space;
+      margin-block-start: $space;
+      margin-block-end: 0;
+      margin-inline-start: $space;
+      margin-inline-end: 0;
       position: absolute;
       text-align: center;
       width: $space * 6;
 
       @for $i from 0 through 7 {
         &:nth-child(#{$i + 1}) {
-          left: $offset * $i;
+          inset-inline-start: $offset * $i;
           top: $offset * 0.25 * $i;
           z-index: z($i);
         }

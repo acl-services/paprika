@@ -57,7 +57,7 @@ export const LeadingStep = styled(Box)`
 const zOffset = 30;
 
 const zStyles = props => `
-  left: ${zOffset * props.level}px;
+  inset-inline-start: ${zOffset * props.level}px;
   top: ${(zOffset / 4) * props.level}px;
   ${stylers.z(props.level)};
 `;
@@ -73,7 +73,10 @@ export const ZStep = styled.span`
   color: ${tokens.color.white};
   height: ${stylers.spacer(6)};
   line-height: ${stylers.spacer(6)};
-  margin: ${tokens.space} 0 0 ${tokens.space};
+  margin-block-end: 0;
+  margin-block-start: ${tokens.space};
+  margin-inline-end: 0;
+  margin-inline-start: ${tokens.space};
   position: absolute;
   text-align: center;
   width: ${stylers.spacer(6)};
