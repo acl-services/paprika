@@ -95,9 +95,9 @@ const iconStyles = ({ isDisabled }) => css`
   color: ${isDisabled ? tokens.color.blackLighten60 : tokens.textColor.icon};
   font-size: 20px;
   height: 100%;
+  inset-inline-end: ${tokens.space};
   pointer-events: none;
   position: absolute;
-  inset-inline-end: ${tokens.space};
   top: 0;
 `;
 

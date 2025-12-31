@@ -20,10 +20,10 @@ export const CollapsibleLabel = styled(RawButton)(
   ({ iconAlign, isToggleIconOnly }) => css`
     border-radius: ${tokens.border.radius};
     display: inline-block;
-    margin-inline-start: -${tokens.spaceSm};
     margin-inline-end: -${tokens.spaceSm};
-    padding-inline-start: ${tokens.spaceSm};
+    margin-inline-start: -${tokens.spaceSm};
     padding-inline-end: ${tokens.spaceSm};
+    padding-inline-start: ${tokens.spaceSm};
     width: calc(100% + ${tokens.space});
 
     ${isToggleIconOnly && `margin: 0; width: auto;`}
@@ -36,7 +36,8 @@ export const CollapsibleLabel = styled(RawButton)(
 export const CollapsibleIcon = styled.span(
   ({ iconAlign }) => css`
     ${iconAlign === "left" && `margin-inline-end: ${tokens.spaceSm};`}
-    ${iconAlign === "right" && `float: inline-end; margin-inline-start: ${tokens.spaceSm};`}
+    ${iconAlign === "right" &&
+      `float: inline-end; margin-inline-start: ${tokens.spaceSm};`}
 
     [data-pka-anchor="icon"] {
       color: ${tokens.textColor.icon};

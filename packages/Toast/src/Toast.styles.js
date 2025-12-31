@@ -51,9 +51,9 @@ export const CloseButtonStyled = styled(Button.Close)(
     flex-grow: 0;
     flex-shrink: 0;
     margin-block-end: -6px;
-    margin-inline-start: ${tokens.space};
-    margin-inline-end: -7px;
     margin-block-start: -6px;
+    margin-inline-end: -7px;
+    margin-inline-start: ${tokens.space};
     min-height: 0;
 
     ${closeButtonColors[kind] && `color: ${closeButtonColors[kind]};`}
@@ -65,9 +65,9 @@ export const IconStyled = styled.div(
     color: ${iconColors[kind]};
     flex-grow: 0;
     flex-shrink: 0;
+    margin-block-end: 0;
     margin-block-start: 1px;
     margin-inline-end: ${tokens.space};
-    margin-block-end: 0;
     margin-inline-start: 0;
 
     ${stylers.fontSize(2)}
@@ -92,9 +92,9 @@ export const Toast = styled.div(
     font-weight: normal;
     margin-block-end: ${stylers.spacer(2)};
     min-height: ${stylers.spacer(3)};
+    padding-block-end: 10px;
     padding-block-start: ${tokens.spaceLg};
     padding-inline-end: ${tokens.spaceLg};
-    padding-block-end: 10px;
     padding-inline-start: ${tokens.spaceLg};
     position: relative;
     text-align: start;

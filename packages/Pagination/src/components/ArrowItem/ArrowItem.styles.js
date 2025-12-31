@@ -30,8 +30,8 @@ export const ArrowItem = styled(RawButton)`
     height: ${stylers.spacer(3)};
     justify-content: center;
     line-height: ${stylers.spacer(3)};
-    margin-inline-start: ${tokens.spaceSm + 1};
     margin-inline-end: ${tokens.spaceSm};
+    margin-inline-start: ${tokens.spaceSm + 1};
     min-width: ${stylers.spacer(3)};
     padding: 0 ${tokens.spaceSm};
     position: relative;

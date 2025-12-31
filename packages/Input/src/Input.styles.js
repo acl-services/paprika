@@ -87,13 +87,13 @@ const iconSizeStyles = {
   `,
   [types.MEDIUM]: css`
     ${stylers.fontSize(2)}
-    margin-inline-start: ${tokens.spaceSm};
     margin-inline-end: ${tokens.spaceSm};
+    margin-inline-start: ${tokens.spaceSm};
   `,
   [types.LARGE]: css`
     ${stylers.fontSize(2)}
-    margin-inline-start: ${tokens.spaceSm};
     margin-inline-end: ${tokens.spaceSm};
+    margin-inline-start: ${tokens.spaceSm};
   `,
 };
 

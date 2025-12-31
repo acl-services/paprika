@@ -16,8 +16,8 @@ export const SpinnerVisual = styled.div`
   border-color: rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   border-style: solid;
-  margin-inline-start: auto;
   margin-inline-end: auto;
+  margin-inline-start: auto;
   overflow: hidden;
 `;
 
