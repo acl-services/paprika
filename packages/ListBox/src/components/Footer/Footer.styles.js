@@ -14,11 +14,11 @@ export const Footer = styled.div`
   & > div {
     width: calc(50% - 8px);
     [role="button"] {
-      margin-right: 20px;
+      margin-inline-end: 20px;
     }
   }
 
   & > div + div {
-    text-align: right;
+    text-align: end;
   }
 `;

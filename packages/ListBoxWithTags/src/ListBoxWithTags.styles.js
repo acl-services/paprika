@@ -35,11 +35,11 @@ export const Trigger = styled(RawButton)(
     display: block;
     padding: 3px ${stylers.spacer(4)} 1px ${tokens.spaceSm};
     position: relative;
-    text-align: left;
+    text-align: start;
     transition: border-color 0.2s;
     width: 100%;
     ${fontSize[size]}
-    ${allOptionsAreSelected ? `padding-left: 0;` : ""}
+    ${allOptionsAreSelected ? `padding-inline-start: 0;` : ""}
     ${isReadOnly ? stylers.readOnlyFormStyles : ""}
     ${hasError ? stylers.errorFormStyles : ""}
 
@@ -68,7 +68,7 @@ export const Placeholder = styled.div(
   ({ isDisabled, size }) => css`
     height: ${placeholderHeight[size]};
     line-height: ${placeholderHeight[size]};
-    margin-left: ${tokens.spaceSm};
+    margin-inline-start: ${tokens.spaceSm};
     ${stylers.placeholder};
     ${isDisabled && `color: ${tokens.color.blackLighten60}`}
   `
@@ -95,9 +95,9 @@ const iconStyles = ({ isDisabled }) => css`
   color: ${isDisabled ? tokens.color.blackLighten60 : tokens.textColor.icon};
   font-size: 20px;
   height: 100%;
+  inset-inline-end: ${tokens.space};
   pointer-events: none;
   position: absolute;
-  right: ${tokens.space};
   top: 0;
 `;
 

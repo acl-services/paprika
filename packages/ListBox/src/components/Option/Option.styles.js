@@ -37,7 +37,7 @@ export const Option = styled.li(
     display: flex;
     max-height: ${stylers.spacer(6)};
     min-height: ${stylers.spacer(4)};
-    padding-left: ${tokens.spaceLg};
+    padding-inline-start: ${tokens.spaceLg};
     ${stylers.fontSize(-1)}
 
     &:hover {
@@ -52,5 +52,5 @@ export const Option = styled.li(
 export const PlusIcon = styled(PaprikaAddIcon)`
   color: ${tokens.color.blackLighten20};
   font-size: 20px;
-  padding-right: ${tokens.space};
+  padding-inline-end: ${tokens.space};
 `;

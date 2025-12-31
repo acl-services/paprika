@@ -18,7 +18,7 @@ export const timeInputPickerOption = styled.div`
 
   &:last-child {
     .timeinput-picker__columns {
-      border-right: 0;
+      border-inline-end: 0;
     }
   }
 `;
@@ -33,7 +33,7 @@ export const timeInputPickerTitle = styled.div`
 
 export const timeInputPickerColumns = styled.div`
   align-items: flex-start;
-  border-right: 1px solid ${tokens.border.color};
+  border-inline-end: 1px solid ${tokens.border.color};
   display: flex;
   height: calc(100% - 30px);
   width: 100%;

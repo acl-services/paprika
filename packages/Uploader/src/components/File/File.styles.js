@@ -60,7 +60,7 @@ export const ProgressText = styled.div(
     flex-shrink: 1;
 
     ${stylers.fontSize(-3)}
-    text-align: right;
+    text-align: end;
 
     ${status === types.status.SUCCESS ? `color: ${tokens.color.green};` : ""};
 

@@ -36,7 +36,7 @@ const tagStyles = ({ theme, size }) => css`
   height: ${widthAndHeight[size]};
   line-height: 1;
   margin-bottom: 2px;
-  margin-right: ${tokens.spaceSm};
+  margin-inline-end: ${tokens.spaceSm};
   max-width: 100%;
   padding: 2px;
   ${themeStyles[theme]}

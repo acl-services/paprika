@@ -47,7 +47,6 @@ blocks:
         - name: Lint && prettier
           commands:
             - nvm install
-            - yarn add eslint-plugin-react-hooks -D -W
             - yarn lint && yarn prettier -- --list-different
 
   - name: "♿️ Accessibility"

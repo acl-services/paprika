@@ -10,7 +10,7 @@ export const Item = styled(Button.Link)`
   margin-bottom: ${tokens.space};
   min-height: ${spacer(5)};
   padding: ${tokens.space};
-  text-align: left;
+  text-align: start;
   text-decoration: none;
   width: 100%;
 

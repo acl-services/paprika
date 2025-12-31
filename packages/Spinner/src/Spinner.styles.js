@@ -16,8 +16,8 @@ export const SpinnerVisual = styled.div`
   border-color: rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   border-style: solid;
-  margin-left: auto;
-  margin-right: auto;
+  margin-inline-end: auto;
+  margin-inline-start: auto;
   overflow: hidden;
 `;
 
@@ -71,7 +71,7 @@ const CaptionStyles = {
 export const Spinner = styled.div(
   ({ size, isDark }) => css`
     ${SpinnerVisual} {
-      border-left-color: ${isDark ? tokens.color.white : tokens.color.purple};
+      border-inline-start-color: ${isDark ? tokens.color.white : tokens.color.purple};
       ${SpinnerVisualStyles[size]}
     }
     ${Caption} {

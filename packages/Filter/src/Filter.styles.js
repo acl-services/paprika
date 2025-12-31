@@ -7,7 +7,7 @@ export const PanelHeaderWrapper = styled.span`
 
   > [data-pka-anchor="icon"] {
     ${fontSize(3)}
-    margin-right: ${tokens.spaceSm};
+    margin-inline-end: ${tokens.spaceSm};
   }
 `;
 
@@ -16,7 +16,7 @@ export const Footer = styled.div`
   flex-grow: 1;
 
   [data-pka-anchor="filter.clearButton"] {
-    margin-left: auto;
+    margin-inline-start: auto;
   }
 `;
 
