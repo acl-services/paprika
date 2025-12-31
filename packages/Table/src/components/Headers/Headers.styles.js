@@ -7,7 +7,7 @@ import { borderTypesStyles } from "../../Table.styles";
 export const Thead = styled.thead`
   background: ${tokens.table.header.backgroundColor};
   position: relative;
-  text-align: left;
+  text-align: start;
 `;
 
 export const TH = styled.th(
@@ -18,12 +18,12 @@ export const TH = styled.th(
     font-weight: bold;
     padding: ${tokens.space};
     position: sticky;
-    text-align: left;
+    text-align: start;
     /** [Sticky] This will work only when the header is made of one TR more work will be need to do
     in order to support complex headers with multiple TH
     */
     top: -1px;
     z-index: 2;
-    ${typeof sticky !== "undefined" ? `z-index: 3; left: ${!Number.isNaN(sticky) ? sticky : 0}px;` : ""};
+    ${typeof sticky !== "undefined" ? `z-index: 3; inset-inline-start: ${!Number.isNaN(sticky) ? sticky : 0}px;` : ""};
   `
 );

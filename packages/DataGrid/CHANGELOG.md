@@ -1,5 +1,65 @@
 # Changelog
 
+## 4.0.2
+
+### Patch Changes
+
+- Updated dependencies [80fb5c0]
+  - @paprika/tokens@3.1.0
+  - @paprika/button@1.1.19
+  - @paprika/checkbox@1.0.28
+  - @paprika/icon@3.0.2
+  - @paprika/panel@5.0.2
+  - @paprika/raw-button@1.0.18
+  - @paprika/spinner@1.0.22
+  - @paprika/stylers@1.1.11
+
+## 4.0.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [80fb5c0]
+  - @paprika/tokens@3.1.0-next.0
+  - @paprika/button@1.1.19-next.0
+  - @paprika/checkbox@1.0.28-next.0
+  - @paprika/icon@3.0.2-next.0
+  - @paprika/panel@5.0.2-next.0
+  - @paprika/raw-button@1.0.18-next.0
+  - @paprika/spinner@1.0.22-next.0
+  - @paprika/stylers@1.1.11-next.0
+
+## 4.0.1
+
+### Patch Changes
+
+- Updated dependencies [48a369d]
+  - @paprika/l10n@2.1.1
+  - @paprika/panel@5.0.1
+
+## 4.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [48a369d]
+  - @paprika/l10n@2.1.1-next.0
+  - @paprika/panel@5.0.1-next.0
+
+## 4.0.0
+
+### Patch Changes
+
+- Updated dependencies [1ec4f6b]
+  - @paprika/l10n@2.1.0
+  - @paprika/panel@5.0.0
+
+## 4.0.0-next.0
+
+### Patch Changes
+
+- Updated dependencies [1ec4f6b]
+  - @paprika/l10n@2.1.0-next.0
+  - @paprika/panel@5.0.0-next.0
+
 ## 3.0.3
 
 ### Patch Changes

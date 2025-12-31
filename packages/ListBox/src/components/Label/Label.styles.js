@@ -10,7 +10,7 @@ const placeholderStyles = ({ isDisabled }) => css`
 export const labelStyles = css`
   display: inline-block;
   overflow: hidden;
-  padding-right: 48px;
+  padding-inline-end: 48px;
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 100%;

@@ -26,13 +26,13 @@ export const RowWrapper = styled.div`
 
 export const ColumnSelect = styled.div`
   height: ${spacer(4)};
-  margin-right: ${tokens.spaceLg};
+  margin-inline-end: ${tokens.spaceLg};
   width: calc(50% - 6px);
 
   @media (max-width: 1200px) {
     flex-basis: 100%;
     margin-bottom: ${tokens.space};
-    margin-right: 0;
+    margin-inline-end: 0;
     width: auto;
   }
 `;
@@ -56,5 +56,5 @@ export const ValueInput = styled.div`
 `;
 
 export const DeleteButton = styled(Button.Icon)`
-  margin-left: ${tokens.space};
+  margin-inline-start: ${tokens.space};
 `;

@@ -15,7 +15,7 @@ a[data-dynamic-hyperlink] {
   text-decoration: none;
 
   .dynamic-hyperlink--label {
-    margin-right: 2px;
+    margin-inline-end: 2px;
   }
 
   &:hover .dynamic-hyperlink--label {
@@ -34,6 +34,6 @@ a[data-dynamic-hyperlink] {
 
   .dynamic-hyperlink--invalid {
     color: $color--black-lighten-20;
-    padding-right: $space-sm;
+    padding-inline-end: $space-sm;
   }
 }

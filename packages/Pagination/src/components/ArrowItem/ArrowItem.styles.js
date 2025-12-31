@@ -30,8 +30,8 @@ export const ArrowItem = styled(RawButton)`
     height: ${stylers.spacer(3)};
     justify-content: center;
     line-height: ${stylers.spacer(3)};
-    margin-left: ${tokens.spaceSm + 1};
-    margin-right: ${tokens.spaceSm};
+    margin-inline-end: ${tokens.spaceSm};
+    margin-inline-start: ${tokens.spaceSm + 1};
     min-width: ${stylers.spacer(3)};
     padding: 0 ${tokens.spaceSm};
     position: relative;
@@ -45,8 +45,8 @@ export const ArrowItem = styled(RawButton)`
 `;
 
 export const ArrowItemWrapper = styled.span`
-  border-right: 1px solid ${tokens.border.color};
-  margin-right: ${tokens.spaceSm};
+  border-inline-end: 1px solid ${tokens.border.color};
+  margin-inline-end: ${tokens.spaceSm};
   position: relative;
   &:last-child {
     border: none;

@@ -42,14 +42,16 @@ export const TBody = styled.tbody(({ hasZebraStripes }) => {
 export const borderTypesStyles = {
   [types.NONE]: "",
   [types.VERTICAL]: css`
+    border-block-width: 0px;
     border-color: ${tokens.border.color};
+    border-inline-width: 1px;
     border-style: solid;
-    border-width: 0px 1px 0px 1px;
   `,
   [types.HORIZONTAL]: css`
+    border-block-width: 1px;
     border-color: ${tokens.border.color};
+    border-inline-width: 0px;
     border-style: solid;
-    border-width: 1px 0px 1px 0px;
   `,
   [types.GRID]: css`
     border: 1px solid ${tokens.border.color};
@@ -59,11 +61,13 @@ export const borderTypesStyles = {
 export const TD = styled.td(({ borderType, cellPropsResetCSS, width = null, sticky }) => {
   const px = Number.isNaN(width) ? "" : "px";
   return css`
-    ${typeof sticky !== "undefined" ? `position: sticky; left: ${!Number.isNaN(sticky) ? sticky : 0}px;` : ""};
+    ${typeof sticky !== "undefined"
+      ? `position: sticky; inset-inline-start: ${!Number.isNaN(sticky) ? sticky : 0}px;`
+      : ""};
     ${borderType in borderTypesStyles ? borderTypesStyles[borderType] : ""};
     ${cellPropsResetCSS ? "" : `padding: ${tokens.space};`};
     ${width ? `width: ${width}${px}; max-width: ${width}${px};` : ""};
-    text-align: left;
+    text-align: start;
     z-index: 1;
   `;
 });

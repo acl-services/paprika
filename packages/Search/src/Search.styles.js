@@ -27,7 +27,7 @@ export const Trigger = styled(RawButton)(
     display: block;
     padding: 0;
     position: relative;
-    text-align: left;
+    text-align: start;
     transition: border-color 0.2s;
     width: 100%;
     [data-pka-anchor="raw-input"] {

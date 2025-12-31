@@ -1,5 +1,29 @@
 # Changelog
 
+## 2.1.1
+
+### Patch Changes
+
+- 48a369d: Fix merging of paprikaLocales and customLocales so that paprikaLocales does not act as a filter for final languages
+
+## 2.1.1-next.0
+
+### Patch Changes
+
+- 48a369d: Fix merging of paprikaLocales and customLocales so that paprikaLocales does not act as a filter for final languages
+
+## 2.1.0
+
+### Minor Changes
+
+- 1ec4f6b: Release new locale support 'it' and 'nl'
+
+## 2.1.0-next.0
+
+### Minor Changes
+
+- 1ec4f6b: Release new locale support 'it' and 'nl'
+
 ## 2.0.0
 
 ### Major Changes

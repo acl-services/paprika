@@ -1,5 +1,81 @@
 # Changelog
 
+## 5.0.2
+
+### Patch Changes
+
+- Updated dependencies [80fb5c0]
+  - @paprika/tokens@3.1.0
+  - @paprika/button@1.1.19
+  - @paprika/date-picker@5.0.2
+  - @paprika/icon@3.0.2
+  - @paprika/input@7.0.2
+  - @paprika/list-box@7.0.2
+  - @paprika/panel@5.0.2
+  - @paprika/radio@1.0.30
+  - @paprika/select@2.0.18
+  - @paprika/stylers@1.1.11
+
+## 5.0.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [80fb5c0]
+  - @paprika/tokens@3.1.0-next.0
+  - @paprika/button@1.1.19-next.0
+  - @paprika/date-picker@5.0.2-next.0
+  - @paprika/icon@3.0.2-next.0
+  - @paprika/input@7.0.2-next.0
+  - @paprika/list-box@7.0.2-next.0
+  - @paprika/panel@5.0.2-next.0
+  - @paprika/radio@1.0.30-next.0
+  - @paprika/select@2.0.18-next.0
+  - @paprika/stylers@1.1.11-next.0
+
+## 5.0.1
+
+### Patch Changes
+
+- Updated dependencies [48a369d]
+  - @paprika/l10n@2.1.1
+  - @paprika/date-picker@5.0.1
+  - @paprika/input@7.0.1
+  - @paprika/list-box@7.0.1
+  - @paprika/panel@5.0.1
+
+## 5.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [48a369d]
+  - @paprika/l10n@2.1.1-next.0
+  - @paprika/date-picker@5.0.1-next.0
+  - @paprika/input@7.0.1-next.0
+  - @paprika/list-box@7.0.1-next.0
+  - @paprika/panel@5.0.1-next.0
+
+## 5.0.0
+
+### Patch Changes
+
+- Updated dependencies [1ec4f6b]
+  - @paprika/l10n@2.1.0
+  - @paprika/date-picker@5.0.0
+  - @paprika/input@7.0.0
+  - @paprika/list-box@7.0.0
+  - @paprika/panel@5.0.0
+
+## 5.0.0-next.0
+
+### Patch Changes
+
+- Updated dependencies [1ec4f6b]
+  - @paprika/l10n@2.1.0-next.0
+  - @paprika/date-picker@5.0.0-next.0
+  - @paprika/input@7.0.0-next.0
+  - @paprika/list-box@7.0.0-next.0
+  - @paprika/panel@5.0.0-next.0
+
 ## 4.0.1
 
 ### Patch Changes

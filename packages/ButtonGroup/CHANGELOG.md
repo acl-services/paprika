@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.0.32
+
+### Patch Changes
+
+- Updated dependencies [80fb5c0]
+  - @paprika/tokens@3.1.0
+  - @paprika/button@1.1.19
+  - @paprika/icon@3.0.2
+  - @paprika/stylers@1.1.11
+
+## 1.0.32-next.0
+
+### Patch Changes
+
+- Updated dependencies [80fb5c0]
+  - @paprika/tokens@3.1.0-next.0
+  - @paprika/button@1.1.19-next.0
+  - @paprika/icon@3.0.2-next.0
+  - @paprika/stylers@1.1.11-next.0
+
 ## 1.0.31
 
 ### Patch Changes

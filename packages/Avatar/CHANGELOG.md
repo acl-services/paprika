@@ -1,5 +1,21 @@
 # Changelog
 
+## 2.2.19
+
+### Patch Changes
+
+- Updated dependencies [80fb5c0]
+  - @paprika/tokens@3.1.0
+  - @paprika/stylers@1.1.11
+
+## 2.2.19-next.0
+
+### Patch Changes
+
+- Updated dependencies [80fb5c0]
+  - @paprika/tokens@3.1.0-next.0
+  - @paprika/stylers@1.1.11-next.0
+
 ## 2.2.18
 
 ### Patch Changes
