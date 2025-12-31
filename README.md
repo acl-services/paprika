@@ -163,6 +163,36 @@ If you are experiencing difficulty, you may need to:
 1. overwrite your existing commit-msg file with the husky one: `cp ~/src/paprika/.git/hooks/applypatch-msg ~/src/paprika/.git/hooks/commit-msg`
 2. update the commit-msg file permissions: `chmod 755 ~/src/paprika/.git/hooks/commit-msg`
 
+#### Releases and Publishing
+
+Paprika uses [Changesets](https://github.com/changesets/changesets) to manage versioning and publishing. When you make changes that should be released, you need to create a changeset file describing your changes.
+
+**Creating a Changeset:**
+
+1. Run `yarn changeset` in the root directory
+2. Select the packages that have changed
+3. Choose the version bump type (patch, minor, or major)
+4. Write a summary of your changes
+
+**Automatic Publishing:**
+
+Packages are automatically published via scheduled Semaphore workflows:
+
+- **Pre-releases**: Published automatically every 6 hours (at :00 past the hour, between 03:00 AM and 09:59 PM UTC, daily). These are pre-release versions (e.g., `1.0.0-next.0`) available for testing.
+- **Stable releases**: Published automatically every **Saturday at 9:00 PM UTC**. All changesets merged to `master` will be versioned and published as stable releases.
+
+**Release Process:**
+
+1. Create a changeset file describing your changes
+2. Merge your PR to `master` (the changeset file will be included)
+3. Pre-release versions will be available within 6 hours for testing
+4. Stable versions will be published on the next Saturday at 9 PM UTC
+
+The release workflow will:
+- Bump package versions based on merged changesets
+- Publish packages to NPM
+- Push version tags back to the repository
+
 #### More Information
 
 For more information please check out our [Contributing Guidelines](https://github.com/acl-services/paprika/wiki/Contributing-Guidelines). You may want to start with the [Getting Started Guide](https://github.com/acl-services/paprika/wiki/Getting-Started)

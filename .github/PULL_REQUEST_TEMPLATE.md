@@ -9,6 +9,11 @@ If you have changed a component's source code (not stories, specs, or docs), bef
 - indicate if changes were patch/minor/major for each modified package
 - enter a release message
 
+**Publishing Schedule:**
+- Pre-release versions are published automatically every 6 hours (available for testing)
+- Stable versions are published automatically every **Saturday at 9:00 PM UTC**
+- Your changes will be included in the next scheduled release after merging to `master`
+
 
 ### Storybook 📕
 http://storybooks.highbond-s3.com/paprika/your-branch-name
