@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.33-next.0
+
+### Patch Changes
+
+- Updated dependencies [ac538bf]
+- Updated dependencies [4c5c420]
+  - @paprika/stylers@1.1.12-next.0
+  - @paprika/button@1.1.20-next.0
+
 ## 1.0.32
 
 ### Patch Changes

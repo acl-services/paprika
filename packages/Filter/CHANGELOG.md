@@ -1,5 +1,21 @@
 # Changelog
 
+## 5.0.3-next.0
+
+### Patch Changes
+
+- ac538bf: Add RTL (Right-to-Left) language support by converting physical CSS properties to logical properties
+- Updated dependencies [ac538bf]
+- Updated dependencies [4c5c420]
+  - @paprika/list-box@7.0.3-next.0
+  - @paprika/stylers@1.1.12-next.0
+  - @paprika/input@7.0.3-next.0
+  - @paprika/button@1.1.20-next.0
+  - @paprika/date-picker@5.0.3-next.0
+  - @paprika/panel@5.0.3-next.0
+  - @paprika/radio@1.0.31-next.0
+  - @paprika/select@2.0.19-next.0
+
 ## 5.0.2
 
 ### Patch Changes

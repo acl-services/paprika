@@ -1,6 +1,6 @@
 {
   "name": "@paprika/panel",
-  "version": "5.0.2",
+  "version": "5.0.3-next.0",
   "description": "The Panel component provides a view that slides in from one side so the user can maintain context of their main task while they work on a sub task.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -16,12 +16,12 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^1.1.19",
+    "@paprika/button": "^1.1.20-next.0",
     "@paprika/constants": "^1.0.1",
     "@paprika/helpers": "^2.4.2",
     "@paprika/icon": "^3.0.2",
     "@paprika/overlay": "^1.0.22",
-    "@paprika/stylers": "^1.1.11",
+    "@paprika/stylers": "^1.1.12-next.0",
     "@paprika/tokens": "^3.1.0",
     "lodash.debounce": "^4.0.8",
     "prop-types": "^15.7.2"

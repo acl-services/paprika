@@ -189,6 +189,7 @@ Packages are automatically published via scheduled Semaphore workflows:
 4. Stable versions will be published on the next Saturday at 9 PM UTC
 
 The release workflow will:
+
 - Bump package versions based on merged changesets
 - Publish packages to NPM
 - Push version tags back to the repository

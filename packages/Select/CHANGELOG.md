@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.19-next.0
+
+### Patch Changes
+
+- Updated dependencies [ac538bf]
+- Updated dependencies [4c5c420]
+  - @paprika/stylers@1.1.12-next.0
+
 ## 2.0.18
 
 ### Patch Changes

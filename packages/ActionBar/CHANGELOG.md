@@ -1,5 +1,19 @@
 # Changelog
 
+## 8.0.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [ac538bf]
+- Updated dependencies [4c5c420]
+  - @paprika/sortable@4.0.3-next.0
+  - @paprika/stylers@1.1.12-next.0
+  - @paprika/input@7.0.3-next.0
+  - @paprika/button@1.1.20-next.0
+  - @paprika/popover@2.0.12-next.0
+  - @paprika/select@2.0.19-next.0
+  - @paprika/switch@1.0.25-next.0
+
 ## 8.0.2
 
 ### Patch Changes

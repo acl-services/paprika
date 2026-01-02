@@ -1,5 +1,20 @@
 # Changelog
 
+## 7.0.3-next.0
+
+### Patch Changes
+
+- ac538bf: Add RTL (Right-to-Left) language support by converting physical CSS properties to logical properties
+- Updated dependencies [ac538bf]
+- Updated dependencies [4c5c420]
+  - @paprika/stylers@1.1.12-next.0
+  - @paprika/input@7.0.3-next.0
+  - @paprika/toast@4.0.3-next.0
+  - @paprika/button@1.1.20-next.0
+  - @paprika/checkbox@1.0.29-next.0
+  - @paprika/popover@2.0.12-next.0
+  - @paprika/raw-button@1.0.19-next.0
+
 ## 7.0.2
 
 ### Patch Changes

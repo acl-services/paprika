@@ -1,5 +1,20 @@
 <!-- content -->
 
+## 4.0.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [ac538bf]
+- Updated dependencies [4c5c420]
+  - @paprika/overflow-menu@5.0.3-next.0
+  - @paprika/stylers@1.1.12-next.0
+  - @paprika/toast@4.0.3-next.0
+  - @paprika/data-grid@4.0.3-next.0
+  - @paprika/button@1.1.20-next.0
+  - @paprika/popover@2.0.12-next.0
+  - @paprika/raw-button@1.0.19-next.0
+  - @paprika/data-field@4.0.3-next.0
+
 ## 4.0.2
 
 ### Patch Changes
