@@ -1,0 +1,101 @@
+name: Automatic Publish Packages
+
+on:
+  schedule:
+    # Pre-release: Every 6 hours at :00 past the hour, between 03:00 AM and 09:59 PM UTC
+    - cron: "0 3,9,15,21 * * *"
+    # Stable release: Every Saturday at 9:00 PM UTC
+    - cron: "0 21 * * 6"
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: "Type of release (pre-release or stable)"
+        required: true
+        type: choice
+        options:
+          - pre-release
+          - stable
+
+permissions:
+  contents: write # Needed to push commits and tags
+  id-token: write # Required for npm Trusted Publishing (OIDC)
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Determine release type
+        id: release-type
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "type=${{ github.event.inputs.release_type }}" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event.schedule }}" == "0 21 * * 6" ]; then
+            echo "type=stable" >> $GITHUB_OUTPUT
+          else
+            echo "type=pre-release" >> $GITHUB_OUTPUT
+          fi
+          echo "Release type: $(cat $GITHUB_OUTPUT | grep type | cut -d'=' -f2)"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          # Node 20 required for npm 11.5.1+ (needed for Trusted Publishing)
+          node-version: "20"
+          registry-url: "https://registry.npmjs.org"
+          scope: "@paprika"
+
+      - name: Install npm 11.5.1
+        run: |
+          # Trusted Publishing requires npm 11.5.1+
+          npm install -g npm@11.5.1
+
+      - name: Configure Git
+        run: |
+          git config user.name "Paprika GitHub Actions"
+          git config user.email "paprika-ci@diligent.com"
+
+      - name: Setup Yarn
+        run: corepack enable
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Bootstrap Lerna
+        run: npx lerna bootstrap
+
+      - name: Prepare ESM builds
+        run: yarn prepare:esm
+
+      - name: Enter pre-release mode
+        if: steps.release-type.outputs.type == 'pre-release'
+        run: |
+          test -f .changeset/pre.json || yarn changeset pre enter next
+
+      - name: Exit pre-release mode
+        if: steps.release-type.outputs.type == 'stable'
+        run: |
+          test -f .changeset/pre.json && yarn changeset pre exit
+
+      - name: Version packages
+        run: yarn changeset version
+
+      - name: Publish packages and push changes
+        run: |
+          if [ -z "`git status --porcelain`" ]; then
+            echo "No changes."
+          else
+            git add .
+            if [ "${{ steps.release-type.outputs.type }}" == "stable" ]; then
+              git commit -m "[Bot] Paprika Release" --no-verify
+            else
+              git commit -m "[Bot] Paprika Pre-Release" --no-verify
+            fi
+            yarn changeset publish
+            git push origin master --follow-tags --no-verify
+          fi
