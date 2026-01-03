@@ -1,6 +1,6 @@
 {
   "name": "@paprika/collapsible-card",
-  "version": "5.0.3-next.0",
+  "version": "5.0.3",
   "description": "Styled collapsible card component.",
   "author": "@paprika",
   "license": "MIT",
@@ -16,12 +16,12 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^1.1.20-next.0",
-    "@paprika/counter": "^1.1.12-next.0",
-    "@paprika/heading": "^1.0.20-next.0",
+    "@paprika/button": "^1.1.20",
+    "@paprika/counter": "^1.1.12",
+    "@paprika/heading": "^1.0.20",
     "@paprika/helpers": "^2.4.2",
     "@paprika/icon": "^3.0.2",
-    "@paprika/stylers": "^1.1.12-next.0",
+    "@paprika/stylers": "^1.1.12",
     "@paprika/tokens": "^3.1.0",
     "prop-types": "^15.7.2",
     "uuid": "^8.3.2"

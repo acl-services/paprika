@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.23
+
+### Patch Changes
+
+- ac538bf: Add RTL (Right-to-Left) language support by converting physical CSS properties to logical properties
+- Updated dependencies [ac538bf]
+- Updated dependencies [4c5c420]
+  - @paprika/stylers@1.1.12
+
 ## 1.0.23-next.0
 
 ### Patch Changes

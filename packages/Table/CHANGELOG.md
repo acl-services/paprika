@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.2.35
+
+### Patch Changes
+
+- ac538bf: Add RTL (Right-to-Left) language support by converting physical CSS properties to logical properties
+- 4c5c420: Add RTL (Right-to-Left) language support by converting physical CSS properties to logical properties
+- Updated dependencies [ac538bf]
+- Updated dependencies [4c5c420]
+  - @paprika/overflow-menu@5.0.3
+  - @paprika/stylers@1.1.12
+  - @paprika/button@1.1.20
+
 ## 1.2.35-next.0
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.0.3
+
+### Patch Changes
+
+- Updated dependencies [ac538bf]
+  - @paprika/input@7.0.3
+
 ## 4.0.3-next.0
 
 ### Patch Changes

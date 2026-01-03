@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.0.3
+
+### Patch Changes
+
+- Updated dependencies [ac538bf]
+- Updated dependencies [4c5c420]
+  - @paprika/spinner@1.0.23
+  - @paprika/stylers@1.1.12
+  - @paprika/button@1.1.20
+  - @paprika/checkbox@1.0.29
+  - @paprika/panel@5.0.3
+  - @paprika/raw-button@1.0.19
+
 ## 4.0.3-next.0
 
 ### Patch Changes

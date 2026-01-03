@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.0.3
+
+### Patch Changes
+
+- Updated dependencies [ac538bf]
+- Updated dependencies [4c5c420]
+  - @paprika/collapsible@4.0.3
+  - @paprika/stylers@1.1.12
+
 ## 4.0.3-next.0
 
 ### Patch Changes

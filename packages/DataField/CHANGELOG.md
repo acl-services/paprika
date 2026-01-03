@@ -1,5 +1,13 @@
 <!-- content -->
 
+## 4.0.3
+
+### Patch Changes
+
+- @paprika/button@1.1.20
+- @paprika/data-grid@4.0.3
+- @paprika/popover@2.0.12
+
 ## 4.0.3-next.0
 
 ### Patch Changes

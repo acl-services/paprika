@@ -1,5 +1,15 @@
 # @paprika/dynamic-hyperlink-transformer
 
+## 4.0.3
+
+### Patch Changes
+
+- ac538bf: Add RTL (Right-to-Left) language support by converting physical CSS properties to logical properties
+- Updated dependencies [ac538bf]
+- Updated dependencies [4c5c420]
+  - @paprika/stylers@1.1.12
+  - @paprika/tabs@2.3.13
+
 ## 4.0.3-next.0
 
 ### Patch Changes
