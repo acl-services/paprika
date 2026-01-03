@@ -43,7 +43,7 @@ jobs:
           echo "Release type: $(cat $GITHUB_OUTPUT | grep type | cut -d'=' -f2)"
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           # Node 20 required for npm 11.5.1+ (needed for Trusted Publishing)
           node-version: "20"
