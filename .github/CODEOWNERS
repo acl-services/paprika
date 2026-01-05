@@ -1,0 +1,6 @@
+# Order is important; the last matching pattern will be the one applied
+
+# We want to protect the publish flows from being modified by a public actor
+.github/workflows/publish.yml   @acl-services/paprika-admins
+.github/CODEOWNERS              @acl-services/paprika-admins
+
