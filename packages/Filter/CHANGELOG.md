@@ -1,5 +1,24 @@
 # Changelog
 
+## 5.0.4-next.0
+
+### Patch Changes
+
+- 1cfbed3: Update dependencies from dependabot and test new publish hooks
+- Updated dependencies [1cfbed3]
+  - @paprika/button@1.1.21-next.0
+  - @paprika/constants@1.0.2-next.0
+  - @paprika/date-picker@5.0.4-next.0
+  - @paprika/icon@3.0.3-next.0
+  - @paprika/input@7.0.4-next.0
+  - @paprika/l10n@2.1.2-next.0
+  - @paprika/list-box@7.0.4-next.0
+  - @paprika/panel@5.0.4-next.0
+  - @paprika/radio@1.0.32-next.0
+  - @paprika/select@2.0.20-next.0
+  - @paprika/stylers@1.1.13-next.0
+  - @paprika/tokens@3.1.1-next.0
+
 ## 5.0.3
 
 ### Patch Changes

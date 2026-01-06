@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.4-next.0
+
+### Patch Changes
+
+- 1cfbed3: Update dependencies from dependabot and test new publish hooks
+
 ## 0.1.3
 
 ### Patch Changes

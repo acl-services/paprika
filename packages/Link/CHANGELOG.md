@@ -1,5 +1,15 @@
 # @paprika/link
 
+## 1.0.14-next.0
+
+### Patch Changes
+
+- 1cfbed3: Update dependencies from dependabot and test new publish hooks
+- Updated dependencies [1cfbed3]
+  - @paprika/icon@3.0.3-next.0
+  - @paprika/stylers@1.1.13-next.0
+  - @paprika/tokens@3.1.1-next.0
+
 ## 1.0.13
 
 ### Patch Changes

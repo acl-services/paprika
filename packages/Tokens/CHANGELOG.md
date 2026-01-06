@@ -1,5 +1,11 @@
 # @paprika/tokens
 
+## 3.1.1-next.0
+
+### Patch Changes
+
+- 1cfbed3: Update dependencies from dependabot and test new publish hooks
+
 ## 3.1.0
 
 ### Minor Changes

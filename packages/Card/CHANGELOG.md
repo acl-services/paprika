@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.0.11-next.0
+
+### Patch Changes
+
+- 1cfbed3: Update dependencies from dependabot and test new publish hooks
+- Updated dependencies [1cfbed3]
+  - @paprika/constants@1.0.2-next.0
+  - @paprika/heading@1.0.21-next.0
+  - @paprika/stylers@1.1.13-next.0
+  - @paprika/tokens@3.1.1-next.0
+  - @paprika/helpers@2.4.3-next.0
+
 ## 2.0.10
 
 ### Patch Changes
