@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.4.3-next.0
+
+### Patch Changes
+
+- 1cfbed3c3: Update dependencies from dependabot and test new publish hooks
+
 ## 2.4.2
 
 ### Patch Changes

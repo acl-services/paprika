@@ -1,5 +1,16 @@
 # Changelog
 
+## 4.0.4-next.0
+
+### Patch Changes
+
+- 1cfbed3c3: Update dependencies from dependabot and test new publish hooks
+- Updated dependencies [1cfbed3c3]
+  - @paprika/icon@3.0.3-next.0
+  - @paprika/input@7.0.4-next.0
+  - @paprika/l10n@2.1.2-next.0
+  - @paprika/helpers@2.4.3-next.0
+
 ## 4.0.3
 
 ### Patch Changes

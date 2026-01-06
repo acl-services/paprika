@@ -1,5 +1,23 @@
 # Changelog
 
+## 8.0.4-next.0
+
+### Patch Changes
+
+- 1cfbed3c3: Update dependencies from dependabot and test new publish hooks
+- Updated dependencies [1cfbed3c3]
+  - @paprika/button@1.1.21-next.0
+  - @paprika/icon@3.0.3-next.0
+  - @paprika/input@7.0.4-next.0
+  - @paprika/l10n@2.1.2-next.0
+  - @paprika/popover@2.0.13-next.0
+  - @paprika/select@2.0.20-next.0
+  - @paprika/sortable@4.0.4-next.0
+  - @paprika/stylers@1.1.13-next.0
+  - @paprika/switch@1.0.26-next.0
+  - @paprika/tokens@3.1.1-next.0
+  - @paprika/helpers@2.4.3-next.0
+
 ## 8.0.3
 
 ### Patch Changes

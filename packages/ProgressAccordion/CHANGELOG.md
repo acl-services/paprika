@@ -1,5 +1,17 @@
 # Changelog
 
+## 4.0.4-next.0
+
+### Patch Changes
+
+- 1cfbed3c3: Update dependencies from dependabot and test new publish hooks
+- Updated dependencies [1cfbed3c3]
+  - @paprika/collapsible@4.0.4-next.0
+  - @paprika/icon@3.0.3-next.0
+  - @paprika/l10n@2.1.2-next.0
+  - @paprika/stylers@1.1.13-next.0
+  - @paprika/tokens@3.1.1-next.0
+
 ## 4.0.3
 
 ### Patch Changes

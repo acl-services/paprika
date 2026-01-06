@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.7-next.0
+
+### Patch Changes
+
+- 1cfbed3c3: Update dependencies from dependabot and test new publish hooks
+- Updated dependencies [1cfbed3c3]
+  - @paprika/helpers@2.4.3-next.0
+
 ## 2.0.6
 
 ### Patch Changes

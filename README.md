@@ -189,12 +189,14 @@ Packages are automatically published via scheduled GitHub Actions workflows:
 4. Stable versions will be published on the next Saturday at 9 PM UTC
 
 The GitHub Actions release workflow (`.github/workflows/publish.yml`) will:
+
 - Bump package versions based on merged changesets
 - Publish packages to NPM using npm Trusted Publishing (OIDC) for secure, token-less authentication
 - Push version tags back to the repository
 
 **Manual Release:**
 You can also trigger a release manually via GitHub Actions:
+
 1. Go to the "Actions" tab in the repository
 2. Select "Automatic Publish Packages" workflow
 3. Click "Run workflow" and choose either "pre-release" or "stable"
