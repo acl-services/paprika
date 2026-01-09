@@ -24,21 +24,14 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup SSH Deploy Key
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
-        continue-on-error: true
-
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          # Use SSH deploy key if available (doesn't expire, repo-scoped)
-          # Machine user account with SSH key can bypass branch protection when added to bypass list
-          # Falls back to GITHUB_TOKEN if DEPLOY_KEY is not set
-          ssh-key: ${{ secrets.DEPLOY_KEY }}
-          persist-credentials: false
+          # Use PAT from machine user account (paprika-ci@diligent.com)
+          # Machine user must be added to branch protection bypass list for master branch
+          token: ${{ secrets.PAPRIKA_DEPLOY_KEY }}
+          persist-credentials: true
 
       - name: Determine release type
         id: release-type
@@ -69,6 +62,9 @@ jobs:
         run: |
           git config user.name "Paprika GitHub Actions"
           git config user.email "paprika-ci@diligent.com"
+          # Configure git remote to use PAT token for authentication
+          # This allows the machine user to bypass branch protection when added to bypass list
+          git remote set-url origin https://x-access-token:${{ secrets.PAPRIKA_DEPLOY_KEY }}@github.com/${{ github.repository }}.git
 
       - name: Setup Yarn
         run: corepack enable
@@ -109,7 +105,7 @@ jobs:
             git commit -m "$COMMIT_MSG" --no-verify
             yarn changeset publish
             
-            # Direct push to master using SSH key (machine user account)
-            # This bypasses branch protection when the machine user is added to bypass list
+            # Direct push to master using PAT from machine user account
+            # Machine user (paprika-ci@diligent.com) must be added to branch protection bypass list
             git push origin master --follow-tags --no-verify
           fi
