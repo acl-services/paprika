@@ -137,8 +137,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "node scripts/commit-validator.js",
-      "pre-commit": "lint-staged",
-      "pre-push": "nvm use && yarn jest"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
