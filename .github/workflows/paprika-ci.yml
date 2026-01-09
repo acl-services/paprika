@@ -1,0 +1,297 @@
+name: Paprika CI Workflow
+
+on:
+  pull_request:
+  push:
+
+# Cancel in-progress runs for the same workflow and branch (except master)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+
+permissions:
+  contents: read
+  pull-requests: write # Needed to update PR body with Storybook link
+
+jobs:
+  setup:
+    name: 🎩 Yarn & caching
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Setup Yarn
+        run: corepack enable
+
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            **/node_modules
+          # Match Semaphore cache strategy: branch-specific with yarn.lock hash, then branch-specific, then master
+          key: ${{ runner.os }}-node-modules-${{ github.ref_name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-${{ github.ref_name }}-
+            ${{ runner.os }}-node-modules-master-
+            ${{ runner.os }}-node-modules-
+
+      - name: Cache Cypress
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/Cypress
+          # Match Semaphore: branch-specific cache
+          key: ${{ runner.os }}-cypress-${{ github.ref_name }}
+          restore-keys: |
+            ${{ runner.os }}-cypress-master
+            ${{ runner.os }}-cypress-
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Bootstrap Lerna
+        run: npx lerna bootstrap
+
+  storybook-link:
+    name: 🔗 Storybook link
+    needs: setup
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Setup Yarn
+        run: corepack enable
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Insert Storybook link into PR Body Message
+        env:
+          GITHUB_PAPRIKA_TOKEN: ${{ secrets.GITHUB_PAPRIKA_TOKEN }}
+          # Match Semaphore: SEMAPHORE_GIT_BRANCH is the branch name
+          # For PRs, use head_ref (source branch); for pushes, use ref_name
+          SEMAPHORE_GIT_BRANCH: ${{ github.head_ref || github.ref_name }}
+        run: node scripts/storybookLink.js
+
+  format:
+    name: 💅 Format
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Setup Yarn
+        run: corepack enable
+
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            **/node_modules
+          # Match Semaphore cache strategy: branch-specific with yarn.lock hash, then branch-specific, then master
+          key: ${{ runner.os }}-node-modules-${{ github.ref_name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-${{ github.ref_name }}-
+            ${{ runner.os }}-node-modules-master-
+            ${{ runner.os }}-node-modules-
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Lint && Prettier
+        run: |
+          yarn lint && yarn prettier -- --list-different
+
+  accessibility:
+    name: ♿️ Accessibility
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Setup Yarn
+        run: corepack enable
+
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            **/node_modules
+          # Match Semaphore cache strategy: branch-specific with yarn.lock hash, then branch-specific, then master
+          key: ${{ runner.os }}-node-modules-${{ github.ref_name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-${{ github.ref_name }}-
+            ${{ runner.os }}-node-modules-master-
+            ${{ runner.os }}-node-modules-
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Bootstrap Lerna
+        run: npx lerna bootstrap
+
+      - name: Axe test
+        run: yarn test:a11y
+
+  test:
+    name: ⚡️ Integration/Unit
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Setup Yarn
+        run: corepack enable
+
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            **/node_modules
+          # Match Semaphore cache strategy: branch-specific with yarn.lock hash, then branch-specific, then master
+          key: ${{ runner.os }}-node-modules-${{ github.ref_name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-${{ github.ref_name }}-
+            ${{ runner.os }}-node-modules-master-
+            ${{ runner.os }}-node-modules-
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Bootstrap Lerna
+        run: npx lerna bootstrap
+
+      - name: JEST
+        run: yarn test
+
+  e2e:
+    name: ⛰ E2E
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Setup Yarn
+        run: corepack enable
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install xvfb libgtk-3-dev libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+
+      - name: Increase file watcher limit
+        run: sudo sysctl fs.inotify.max_user_watches=1048576
+
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            **/node_modules
+          # Match Semaphore cache strategy: branch-specific with yarn.lock hash, then branch-specific, then master
+          key: ${{ runner.os }}-node-modules-${{ github.ref_name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-${{ github.ref_name }}-
+            ${{ runner.os }}-node-modules-master-
+            ${{ runner.os }}-node-modules-
+
+      - name: Cache Cypress
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/Cypress
+          # Match Semaphore: branch-specific cache
+          key: ${{ runner.os }}-cypress-${{ github.ref_name }}
+          restore-keys: |
+            ${{ runner.os }}-cypress-master
+            ${{ runner.os }}-cypress-
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Bootstrap Lerna
+        run: npx lerna bootstrap
+
+      - name: Cypress
+        run: yarn cypress:ci
+
+  visual-regression:
+    name: 🔎 Visual Regression
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Setup Yarn
+        run: corepack enable
+
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            **/node_modules
+          # Match Semaphore cache strategy: branch-specific with yarn.lock hash, then branch-specific, then master
+          key: ${{ runner.os }}-node-modules-${{ github.ref_name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-${{ github.ref_name }}-
+            ${{ runner.os }}-node-modules-master-
+            ${{ runner.os }}-node-modules-
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Bootstrap Lerna
+        run: npx lerna bootstrap
+
+      - name: Build Storybook
+        run: yarn storybook:build
+
+      - name: Screener (discontinued)
+        run: |
+          echo "screener visual testing is discontinued from May 31st 2024 https://docs.saucelabs.com/visual/faq/"
