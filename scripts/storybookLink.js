@@ -56,9 +56,10 @@ async function main() {
     if (prBody.includes(placeholderUrl)) {
       updatedBody = prBody.replace(placeholderUrl, targetUrl);
     } else {
-      // Escape baseUrl for regex (escape special regex characters including dots)
-      const escapedBaseUrl = baseUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      const storybookUrlPattern = new RegExp(`${escapedBaseUrl}[^\\s<>"']+`, 'g');
+      // Use explicit regex pattern with properly escaped hostname
+      // Escape dots in hostname to match exact domain, not any character
+      const escapedHostname = 'storybooks\\.highbond-s3\\.com';
+      const storybookUrlPattern = new RegExp(`http://${escapedHostname}/paprika/[^\\s<>"']+`, 'g');
       if (storybookUrlPattern.test(prBody)) {
         updatedBody = prBody.replace(storybookUrlPattern, targetUrl);
       } else {
