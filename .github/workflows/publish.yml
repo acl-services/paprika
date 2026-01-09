@@ -24,14 +24,19 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
+      - name: Setup SSH Deploy Key
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.PAPRIKA_DEPLOY_KEY }}
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          # Use PAT from machine user account (paprika-ci@diligent.com)
-          # Machine user must be added to branch protection bypass list for master branch
-          token: ${{ secrets.PAPRIKA_DEPLOY_KEY }}
-          persist-credentials: true
+          # Use SSH deploy key (doesn't expire, repo-scoped)
+          # Machine user account (paprika-ci@diligent.com) must be added to branch protection bypass list
+          ssh-key: ${{ secrets.PAPRIKA_DEPLOY_KEY }}
+          persist-credentials: false
 
       - name: Determine release type
         id: release-type
@@ -62,9 +67,8 @@ jobs:
         run: |
           git config user.name "Paprika GitHub Actions"
           git config user.email "paprika-ci@diligent.com"
-          # Configure git remote to use PAT token for authentication
-          # This allows the machine user to bypass branch protection when added to bypass list
-          git remote set-url origin https://x-access-token:${{ secrets.PAPRIKA_DEPLOY_KEY }}@github.com/${{ github.repository }}.git
+          # SSH deploy key is already configured via ssh-agent
+          # Machine user account must be added to branch protection bypass list for master branch
 
       - name: Setup Yarn
         run: corepack enable
@@ -105,7 +109,7 @@ jobs:
             git commit -m "$COMMIT_MSG" --no-verify
             yarn changeset publish
             
-            # Direct push to master using PAT from machine user account
-            # Machine user (paprika-ci@diligent.com) must be added to branch protection bypass list
+            # Direct push to master using SSH deploy key (doesn't expire)
+            # Machine user account (paprika-ci@diligent.com) must be added to branch protection bypass list
             git push origin master --follow-tags --no-verify
           fi
