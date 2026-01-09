@@ -217,7 +217,7 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get -y install xvfb libgtk-3-dev libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+          sudo apt-get -y install xvfb libgtk-3-dev libgbm-dev libnotify-dev libnss3 libxss1 libasound2t64 libxtst6 xauth
 
       - name: Increase file watcher limit
         run: sudo sysctl fs.inotify.max_user_watches=1048576
