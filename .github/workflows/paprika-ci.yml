@@ -3,6 +3,8 @@ name: Paprika CI Workflow
 on:
   pull_request:
   push:
+    branches:
+      - master
 
 # Cancel in-progress runs for the same workflow and branch (except master)
 concurrency:
