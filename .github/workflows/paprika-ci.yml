@@ -149,7 +149,7 @@ jobs:
       - name: Install @octokit/rest
         run: |
           # Only install @octokit/rest which is needed for the script
-          yarn add -W --no-lockfile --non-interactive @octokit/rest
+          yarn add -W --no-lockfile --non-interactive --ignore-scripts @octokit/rest
 
       - name: Insert Storybook link into PR Body Message
         env:
