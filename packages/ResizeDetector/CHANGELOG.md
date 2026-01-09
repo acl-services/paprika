@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.0.7-next.1
+
+### Patch Changes
+
+- 7a1f8db7b: Updated dependencies
+- 659839d35: Test new publish
+- Updated dependencies [7a1f8db7b]
+- Updated dependencies [659839d35]
+  - @paprika/helpers@2.4.3-next.1
+
 ## 2.0.7-next.0
 
 ### Patch Changes

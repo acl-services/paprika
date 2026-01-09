@@ -1,6 +1,6 @@
 {
   "name": "@paprika/build-translations",
-  "version": "0.1.4-next.0",
+  "version": "0.1.4-next.1",
   "description": "An utility tool to convert translation yml files to js.",
   "author": "@paprika",
   "main": "lib/index.js",

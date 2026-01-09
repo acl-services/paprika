@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.1.2-next.1
+
+### Patch Changes
+
+- 7a1f8db7b: Updated dependencies
+- 659839d35: Test new publish
+
 ## 2.1.2-next.0
 
 ### Patch Changes

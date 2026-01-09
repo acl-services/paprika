@@ -1,5 +1,26 @@
 # Changelog
 
+## 5.0.4-next.1
+
+### Patch Changes
+
+- 7a1f8db7b: Updated dependencies
+- 659839d35: Test new publish
+- Updated dependencies [7a1f8db7b]
+- Updated dependencies [659839d35]
+  - @paprika/button@1.1.21-next.1
+  - @paprika/constants@1.0.2-next.1
+  - @paprika/date-picker@5.0.4-next.1
+  - @paprika/icon@3.0.3-next.1
+  - @paprika/input@7.0.4-next.1
+  - @paprika/l10n@2.1.2-next.1
+  - @paprika/list-box@7.0.4-next.1
+  - @paprika/panel@5.0.4-next.1
+  - @paprika/radio@1.0.32-next.1
+  - @paprika/select@2.0.20-next.1
+  - @paprika/stylers@1.1.13-next.1
+  - @paprika/tokens@3.1.1-next.1
+
 ## 5.0.4-next.0
 
 ### Patch Changes

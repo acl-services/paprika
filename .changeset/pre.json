@@ -74,6 +74,8 @@
     "@paprika/seducer": "2.0.4"
   },
   "changesets": [
+    "mean-years-ring",
+    "ninety-clouds-guess",
     "red-bags-battle"
   ]
 }

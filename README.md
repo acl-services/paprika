@@ -210,6 +210,7 @@ For more information please check out our [Contributing Guidelines](https://gith
 Common yarn commands for development:
 
 **Code Quality:**
+
 - `yarn lint` - Run ESLint to check code quality
 - `yarn lint:fix` - Automatically fix ESLint issues
 - `yarn lint:jss` - Lint styled-components files
@@ -218,6 +219,7 @@ Common yarn commands for development:
 - `yarn validate:ts` - Validate TypeScript types
 
 **Testing:**
+
 - `yarn test` - Run Jest unit tests
 - `yarn jest:watch` - Run tests in watch mode
 - `yarn test:debug` - Run tests with Node.js debugger
@@ -228,12 +230,14 @@ Common yarn commands for development:
 - `yarn cypress:dev` - Start Storybook and open Cypress (development mode)
 
 **Storybook:**
+
 - `yarn storybook` - Start Storybook development server
 - `yarn storybook:build` - Build static Storybook for deployment
 - `yarn storybook:start` - Start Storybook without upload server
 - `yarn storybook:startWithoutHMR` - Start Storybook without hot module reload
 
 **Build & Transpilation:**
+
 - `yarn prepare` - Full build: cleanup, transpile, generate types and READMEs
 - `yarn prepare:esm` - Build ESM versions of packages
 - `yarn transpile` - Transpile packages to CommonJS
@@ -241,19 +245,23 @@ Common yarn commands for development:
 - `yarn cleanup` - Remove compiled `lib` directories
 
 **Code Generation:**
+
 - `yarn generateReadMe` - Generate README files for packages
 - `yarn generateTypeDefinitionsForJS` - Generate TypeScript definitions for JS packages
 - `yarn generateDocStories` - Generate Storybook stories from documentation
 - `yarn build:translations` - Build translation files
 
 **Component Creation:**
+
 - `yarn pestle` - Interactive CLI tool for creating new components
 
 **Status & Metrics:**
+
 - `yarn paprika-status` - Generate component health metrics (test coverage, commit stats, versions) and save to `status.json`
 - `yarn paprika-status:a11y` - Generate accessibility status metrics and save to `status-a11y.json` (requires Storybook to be running)
 
 **Other:**
+
 - `yarn license` - Generate `license.xls` file with all dependency licenses
 
 ### Testing

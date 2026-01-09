@@ -1,6 +1,6 @@
 {
   "name": "@paprika/constants",
-  "version": "1.0.2-next.0",
+  "version": "1.0.2-next.1",
   "description": "Constants for components, for library internal use only",
   "author": "@paprika",
   "license": "MIT",

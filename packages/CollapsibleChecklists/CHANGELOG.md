@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.0.39-next.1
+
+### Patch Changes
+
+- 7a1f8db7b: Updated dependencies
+- 659839d35: Test new publish
+- Updated dependencies [7a1f8db7b]
+- Updated dependencies [659839d35]
+  - @paprika/checkbox@1.0.30-next.1
+  - @paprika/collapsible@4.0.4-next.1
+  - @paprika/stylers@1.1.13-next.1
+  - @paprika/tokens@3.1.1-next.1
+
 ## 1.0.39-next.0
 
 ### Patch Changes

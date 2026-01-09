@@ -1,5 +1,22 @@
 # Changelog
 
+## 4.0.4-next.1
+
+### Patch Changes
+
+- 7a1f8db7b: Updated dependencies
+- 659839d35: Test new publish
+- Updated dependencies [7a1f8db7b]
+- Updated dependencies [659839d35]
+  - @paprika/icon@3.0.3-next.1
+  - @paprika/l10n@2.1.2-next.1
+  - @paprika/list-box@7.0.4-next.1
+  - @paprika/raw-button@1.0.20-next.1
+  - @paprika/spinner@1.0.24-next.1
+  - @paprika/stylers@1.1.13-next.1
+  - @paprika/tokens@3.1.1-next.1
+  - @paprika/helpers@2.4.3-next.1
+
 ## 4.0.4-next.0
 
 ### Patch Changes

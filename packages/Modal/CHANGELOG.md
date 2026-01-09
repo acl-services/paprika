@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.0.34-next.1
+
+### Patch Changes
+
+- 7a1f8db7b: Updated dependencies
+- 659839d35: Test new publish
+- Updated dependencies [7a1f8db7b]
+- Updated dependencies [659839d35]
+  - @paprika/button@1.1.21-next.1
+  - @paprika/constants@1.0.2-next.1
+  - @paprika/heading@1.0.21-next.1
+  - @paprika/overlay@1.0.23-next.1
+  - @paprika/stylers@1.1.13-next.1
+  - @paprika/tokens@3.1.1-next.1
+  - @paprika/helpers@2.4.3-next.1
+
 ## 1.0.34-next.0
 
 ### Patch Changes
