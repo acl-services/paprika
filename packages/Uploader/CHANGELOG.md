@@ -1,5 +1,24 @@
 # Changelog
 
+## 7.0.4
+
+### Patch Changes
+
+- 7a1f8db7b: Updated dependencies
+- 659839d35: Test new publish
+- 1cfbed3c3: Update dependencies from dependabot and test new publish hooks
+- Updated dependencies [7a1f8db7b]
+- Updated dependencies [659839d35]
+- Updated dependencies [1cfbed3c3]
+  - @paprika/button@1.1.21
+  - @paprika/icon@3.0.3
+  - @paprika/l10n@2.1.2
+  - @paprika/popover@2.0.13
+  - @paprika/raw-button@1.0.20
+  - @paprika/stylers@1.1.13
+  - @paprika/tokens@3.1.1
+  - @paprika/helpers@2.4.3
+
 ## 7.0.4-next.1
 
 ### Patch Changes

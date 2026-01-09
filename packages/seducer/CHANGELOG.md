@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.5
+
+### Patch Changes
+
+- 7a1f8db7b: Updated dependencies
+- 659839d35: Test new publish
+- 1cfbed3c3: Update dependencies from dependabot and test new publish hooks
+
 ## 2.0.5-next.1
 
 ### Patch Changes

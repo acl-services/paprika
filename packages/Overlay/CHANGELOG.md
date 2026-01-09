@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.0.23
+
+### Patch Changes
+
+- 7a1f8db7b: Updated dependencies
+- 659839d35: Test new publish
+- 1cfbed3c3: Update dependencies from dependabot and test new publish hooks
+- Updated dependencies [7a1f8db7b]
+- Updated dependencies [659839d35]
+- Updated dependencies [1cfbed3c3]
+  - @paprika/tokens@3.1.1
+  - @paprika/helpers@2.4.3
+
 ## 1.0.23-next.1
 
 ### Patch Changes

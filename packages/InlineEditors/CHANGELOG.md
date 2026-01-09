@@ -1,5 +1,31 @@
 # @paprika/inline-editors
 
+## 1.0.23
+
+### Patch Changes
+
+- 7a1f8db7b: Updated dependencies
+- 659839d35: Test new publish
+- 1cfbed3c3: Update dependencies from dependabot and test new publish hooks
+- Updated dependencies [7a1f8db7b]
+- Updated dependencies [659839d35]
+- Updated dependencies [1cfbed3c3]
+  - @paprika/collapsible-text@4.0.4
+  - @paprika/constants@1.0.2
+  - @paprika/icon@3.0.3
+  - @paprika/input@7.0.4
+  - @paprika/list-box@7.0.4
+  - @paprika/popover@2.0.13
+  - @paprika/raw-button@1.0.20
+  - @paprika/spinner@1.0.24
+  - @paprika/stylers@1.1.13
+  - @paprika/table@1.2.36
+  - @paprika/tag@3.0.4
+  - @paprika/textarea@3.0.16
+  - @paprika/tokens@3.1.1
+  - @paprika/helpers@2.4.3
+  - @paprika/seducer@2.0.5
+
 ## 1.0.23-next.1
 
 ### Patch Changes
