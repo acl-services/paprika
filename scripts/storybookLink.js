@@ -1,71 +1,85 @@
 #!/usr/bin/env node
 
 /* eslint-disable import/no-extraneous-dependencies */
-const Octokit = require("@octokit/rest");
+const { Octokit } = require("@octokit/rest");
 
 if (!process.env.CI) {
   require("dotenv").config(); // eslint-disable-line
 }
+
 const owner = "acl-services";
 const repo = "paprika";
-
-const { SEMAPHORE_GIT_BRANCH, GITHUB_PAPRIKA_TOKEN = process.env.GITHUB_PAPRIKA_LOCAL_TOKEN } = process.env;
-
-const octokit = new Octokit({
-  auth: GITHUB_PAPRIKA_TOKEN,
-});
-
 const baseUrl = "http://storybooks.highbond-s3.com/paprika/";
 
-async function updateIssueBodyWithLink(issueNumber, body) {
+// Use GITHUB_TOKEN (automatically provided in GitHub Actions, doesn't expire)
+const { GITHUB_BRANCH_NAME, GITHUB_TOKEN } = process.env;
+
+if (!GITHUB_BRANCH_NAME) {
+  console.error("GITHUB_BRANCH_NAME is required but not set");
+  process.exit(1);
+}
+
+if (!GITHUB_TOKEN) {
+  console.error("GITHUB_TOKEN is required but not set");
+  process.exit(1);
+}
+
+const octokit = new Octokit({
+  auth: GITHUB_TOKEN,
+});
+
+async function main() {
   try {
-    const url = `${baseUrl}${SEMAPHORE_GIT_BRANCH}`;
-    if (!body.includes(baseUrl)) {
-      const newBody = `${body} \n ### 📙 Storybook \n <a href='${url}' target="_blank" rel="noopener">${url}</a>`;
+    const branchName = GITHUB_BRANCH_NAME;
+    const targetUrl = `${baseUrl}${branchName}`;
+    const placeholderUrl = `${baseUrl}your-branch-name`;
+    
+    const searchResult = await octokit.search.issuesAndPullRequests({
+      q: `head:${branchName} repo:${owner}/${repo} type:pr`,
+    });
 
-      const updatedIssue = await octokit.issues.update({
-        owner,
-        repo,
-        issue_number: issueNumber,
-        body: newBody,
-      });
-
-      if (updatedIssue.status === 200) {
-        console.log("📙 Awesome storybook url has been published!");
-        return url;
-      }
-
-      return console.log(`Couldn't updated ${SEMAPHORE_GIT_BRANCH} branch, \n sorry ...`);
+    if (!searchResult.data.items || searchResult.data.items.length === 0) {
+      console.error(`No PR found for branch: ${branchName}`);
+      process.exit(1);
     }
 
-    console.log(`This has been already updated ✌️`);
-    return url;
-  } catch (e) {
-    console.log(`Couldn't updated ${SEMAPHORE_GIT_BRANCH} branch \n error: ${e}`);
-    process.exit(0); // don't want to stop the build
-  }
-}
+    const pr = searchResult.data.items[0];
+    const prNumber = pr.number;
+    const prBody = pr.body || "";
+    
+    if (prBody.includes(targetUrl)) {
+      console.log(`✅ Storybook URL is already correct: ${targetUrl}`);
+      process.exit(0);
+    }
 
-async function getIssueNumberAndBody() {
-  try {
-    const issueFetched = await octokit.search.issuesAndPullRequests({
-      q: `head:${SEMAPHORE_GIT_BRANCH} repo:${owner}/${repo}`,
+    let updatedBody = prBody;
+    if (prBody.includes(placeholderUrl)) {
+      updatedBody = prBody.replace(placeholderUrl, targetUrl);
+    } else {
+      // Escape baseUrl for regex (escape special regex characters including dots)
+      const escapedBaseUrl = baseUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const storybookUrlPattern = new RegExp(`${escapedBaseUrl}[^\\s<>"']+`, 'g');
+      if (storybookUrlPattern.test(prBody)) {
+        updatedBody = prBody.replace(storybookUrlPattern, targetUrl);
+      } else {
+        console.error(`No Storybook URL or placeholder found in PR description`);
+        process.exit(1);
+      }
+    }
+
+    await octokit.issues.update({
+      owner,
+      repo,
+      issue_number: prNumber,
+      body: updatedBody,
     });
-    const { number, body } = issueFetched.data.items[0];
 
-    return { number, body };
-  } catch (e) {
-    console.log(`Couldn't found ${SEMAPHORE_GIT_BRANCH} branch \n error: ${e}`);
-    process.exit(0); // don't want to stop the build
+    console.log(`📙 Storybook URL updated: ${targetUrl}`);
+    process.exit(0);
+  } catch (error) {
+    console.error(`Error updating Storybook link: ${error.message || error}`);
+    process.exit(1);
   }
 }
 
-async function run() {
-  const { number, body } = await getIssueNumberAndBody();
-  const url = await updateIssueBodyWithLink(number, body);
-
-  console.log(`url: ${url}`);
-  process.exit(0);
-}
-
-run();
+main();

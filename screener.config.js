@@ -1,7 +1,7 @@
 module.exports = {
   apiKey: process.env.SCREENER_API_KEY,
   baseBranch: "master",
-  branch: process.env.SEMAPHORE_GIT_BRANCH,
+  branch: process.env.GITHUB_BRANCH_NAME,
   initialBaselineBranch: "master",
   projectRepo: "acl-services/paprika",
   resolution: "1280x1024",
