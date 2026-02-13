@@ -422,6 +422,10 @@ jobs:
         if: needs.check-packages.outputs.packages-changed == 'true'
         run: npx lerna bootstrap
 
+      - name: Install Cypress binary
+        if: needs.check-packages.outputs.packages-changed == 'true' && steps.cypress-cache.outputs.cache-hit != 'true'
+        run: npx cypress install
+
       - name: Cypress
         if: needs.check-packages.outputs.packages-changed == 'true'
         run: yarn cypress:ci
