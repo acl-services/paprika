@@ -133,6 +133,36 @@ describe("ActionBar Arrange Columns", () => {
     cy.findAllByTestId("sortable.item").should("have.length", 1);
   });
 
+  it("should preserve filter input value when popup is closed and reopened", () => {
+    const filterValue = "Goals";
+    cy.findByText("Arrange").click();
+    cy.findByTestId("popover.content").should("be.visible");
+    cy.findByTestId("actionBar.columnsArrangement.filter")
+      .clear()
+      .focus()
+      .type(filterValue, { delay: 0 });
+    cy.findByTestId("actionBar.columnsArrangement.filter").should("have.value", filterValue);
+    cy.findByText("Arrange").click();
+    cy.findByTestId("popover.content").should("not.exist");
+    cy.findByText("Arrange").click();
+    cy.findByTestId("popover.content").should("be.visible");
+    cy.findByTestId("actionBar.columnsArrangement.filter").should("have.value", filterValue);
+  });
+
+  it("should keep popup open when clearing the filter input", () => {
+    cy.findByText("Arrange").click();
+    cy.findByTestId("popover.content").should("be.visible");
+    cy.findByTestId("actionBar.columnsArrangement.filter")
+      .focus()
+      .type("1");
+    cy.findByTestId("actionBar.columnsArrangement.filter").should("have.value", "1");
+    cy.findByTestId("popover.content").within(() => {
+      cy.get('[data-pka-anchor="input.clear-button"]').click();
+    });
+    cy.findByTestId("actionBar.columnsArrangement.filter").should("have.value", "");
+    cy.findByTestId("popover.content").should("be.visible");
+  });
+
   it("should hide column(s) by clicking on its switch", () => {
     cy.get("#root tr")
       .eq(0)

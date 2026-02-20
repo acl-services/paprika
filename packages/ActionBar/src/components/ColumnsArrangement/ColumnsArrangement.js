@@ -87,6 +87,14 @@ export default function ColumnsArrangement(props) {
     setSearchTerm(e === null ? "" : e.target.value);
   }
 
+  function handleInputWrapperMouseDown(e) {
+    // Prevent blur when clicking the clear button, this is to avoid closing the
+    // entire popup when the clear button is clicked
+    if (e.target.closest('[data-pka-anchor="input.clear-button"]')) {
+      e.preventDefault();
+    }
+  }
+
   return (
     <Popover align="bottom" edge="left" minWidth={230} offset={parseInt(tokens.spaceSm, 10)} {...moreProps}>
       {typeof renderTriggerButton === "function" ? (
@@ -111,13 +119,15 @@ export default function ColumnsArrangement(props) {
       )}
       <Popover.Content {...popoverContentProps}>
         <Popover.Card>
-          <Input
-            data-pka-anchor="actionBar.columnsArrangement.filter"
-            defaultValue=""
-            onChange={handleSearch}
-            placeholder={I18n.t("actionBar.columns_arrangement.search_placeholder")}
-            hasClearButton
-          />
+          <div onMouseDown={handleInputWrapperMouseDown} role="button" tabIndex="0">
+            <Input
+              data-pka-anchor="actionBar.columnsArrangement.filter"
+              defaultValue={searchTerm}
+              onChange={handleSearch}
+              placeholder={I18n.t("actionBar.columns_arrangement.search_placeholder")}
+              hasClearButton
+            />
+          </div>
           {filteredColumnIds.length === 0 ? (
             I18n.t("actionBar.no_results")
           ) : (
