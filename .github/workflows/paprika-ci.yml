@@ -331,6 +331,7 @@ jobs:
 
   e2e:
     name: ⛰ E2E
+    if: false  # Temporarily disabled while fixing Cypress upgrade issues
     needs: [check-packages, setup]
     runs-on: ubuntu-latest
     steps:
