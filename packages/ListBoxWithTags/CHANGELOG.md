@@ -1,5 +1,11 @@
 # Changelog
 
+## 6.0.5-next.0
+
+### Patch Changes
+
+- @paprika/list-box@7.0.5-next.0
+
 ## 6.0.4
 
 ### Patch Changes
