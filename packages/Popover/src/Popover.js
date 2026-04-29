@@ -377,7 +377,6 @@ class Popover extends React.Component {
   }
 
   isOpen() {
-    this.focusableElements = document.querySelectorAll(focusableElementSelector);
     return this.props.isOpen !== null ? this.props.isOpen : this.state.isOpen;
   }
 
