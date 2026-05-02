@@ -1,5 +1,12 @@
 # Changelog
 
+## 5.0.5
+
+### Patch Changes
+
+- Updated dependencies [fb308aedd]
+  - @paprika/popover@2.0.14
+
 ## 5.0.5-next.0
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 <!-- content -->
 
+## 4.0.5
+
+### Patch Changes
+
+- Updated dependencies [fb308aedd]
+  - @paprika/popover@2.0.14
+  - @paprika/data-field@4.0.5
+  - @paprika/overflow-menu@5.0.5
+
 ## 4.0.5-next.0
 
 ### Patch Changes

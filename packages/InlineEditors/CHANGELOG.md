@@ -1,5 +1,14 @@
 # @paprika/inline-editors
 
+## 1.0.24
+
+### Patch Changes
+
+- Updated dependencies [fb308aedd]
+  - @paprika/popover@2.0.14
+  - @paprika/list-box@7.0.5
+  - @paprika/table@1.2.37
+
 ## 1.0.24-next.0
 
 ### Patch Changes
