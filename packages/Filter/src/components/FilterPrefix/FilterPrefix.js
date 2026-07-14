@@ -32,8 +32,8 @@ function Prefix(props) {
       if (onChangeOperator) {
         return (
           <sc.RadioGroup onChange={handleChangeOperator}>
-            <Radio defaultIsChecked={isAnd}>{I18n.t("filter.and")}</Radio>
-            <Radio defaultIsChecked={!isAnd}>{I18n.t("filter.or")}</Radio>
+            <Radio isChecked={isAnd}>{I18n.t("filter.and")}</Radio>
+            <Radio isChecked={!isAnd}>{I18n.t("filter.or")}</Radio>
           </sc.RadioGroup>
         );
       }

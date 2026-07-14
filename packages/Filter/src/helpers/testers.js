@@ -1,5 +1,5 @@
 import moment from "moment";
-import Filter from "../Filter";
+import rules from "../rules";
 
 const is = (value, testValue) => (testValue === "" ? true : value === testValue);
 const isNot = (value, testValue) => (testValue === "" ? true : value !== testValue);
@@ -23,29 +23,37 @@ const isOneOf = (rowValue, multiSelectSelectedValues) =>
 const isNotOneOf = (rowValue, multiSelectSelectedValues) =>
   multiSelectSelectedValues.length === 0 || !multiSelectSelectedValues.includes(rowValue);
 
+const regExpCache = new Map();
+const getCaseInsensitiveRegExp = testValue => {
+  if (!regExpCache.has(testValue)) {
+    regExpCache.set(testValue, new RegExp(testValue, "i"));
+  }
+  return regExpCache.get(testValue);
+};
+
 const testers = {
-  [Filter.rules.IS]: is,
-  [Filter.rules.IS_NOT]: isNot,
-  [Filter.rules.CONTAINS]: (value, testValue) =>
-    testValue === "" ? true : `${value}`.match(new RegExp(testValue, "i")),
-  [Filter.rules.DOES_NOT_CONTAIN]: (value, testValue) =>
-    testValue === "" ? true : !value.match(new RegExp(testValue, "i")),
-  [Filter.rules.IS_BLANK]: isBlank,
-  [Filter.rules.IS_NOT_BLANK]: isNotBlank,
-  [Filter.rules.EQUALS]: (value, testValue) => processNumber(value, testValue, is),
-  [Filter.rules.NOT_EQUAL_TO]: (value, testValue) => processNumber(value, testValue, isNot),
-  [Filter.rules.GREATER_THAN]: (value, testValue) => processNumber(value, testValue, (a, b) => a > b),
-  [Filter.rules.GREATER_THAN_OR_EQUAL_TO]: (value, testValue) => processNumber(value, testValue, (a, b) => a >= b),
-  [Filter.rules.LESS_THAN]: (value, testValue) => processNumber(value, testValue, (a, b) => a < b),
-  [Filter.rules.LESS_THAN_OR_EQUAL_TO]: (value, testValue) => processNumber(value, testValue, (a, b) => a <= b),
-  [Filter.rules.IS_EMPTY]: isBlank,
-  [Filter.rules.IS_NOT_EMPTY]: isNotBlank,
-  [Filter.rules.IS_BEFORE]: (value, testValue, { momentParsingFormat }) =>
+  [rules.IS]: is,
+  [rules.IS_NOT]: isNot,
+  [rules.CONTAINS]: (value, testValue) =>
+    testValue === "" ? true : `${value}`.match(getCaseInsensitiveRegExp(testValue)),
+  [rules.DOES_NOT_CONTAIN]: (value, testValue) =>
+    testValue === "" ? true : !value.match(getCaseInsensitiveRegExp(testValue)),
+  [rules.IS_BLANK]: isBlank,
+  [rules.IS_NOT_BLANK]: isNotBlank,
+  [rules.EQUALS]: (value, testValue) => processNumber(value, testValue, is),
+  [rules.NOT_EQUAL_TO]: (value, testValue) => processNumber(value, testValue, isNot),
+  [rules.GREATER_THAN]: (value, testValue) => processNumber(value, testValue, (a, b) => a > b),
+  [rules.GREATER_THAN_OR_EQUAL_TO]: (value, testValue) => processNumber(value, testValue, (a, b) => a >= b),
+  [rules.LESS_THAN]: (value, testValue) => processNumber(value, testValue, (a, b) => a < b),
+  [rules.LESS_THAN_OR_EQUAL_TO]: (value, testValue) => processNumber(value, testValue, (a, b) => a <= b),
+  [rules.IS_EMPTY]: isBlank,
+  [rules.IS_NOT_EMPTY]: isNotBlank,
+  [rules.IS_BEFORE]: (value, testValue, { momentParsingFormat }) =>
     processDate(momentParsingFormat, value, testValue, (a, b) => a.isBefore(b)),
-  [Filter.rules.IS_AFTER]: (value, testValue, { momentParsingFormat }) =>
+  [rules.IS_AFTER]: (value, testValue, { momentParsingFormat }) =>
     processDate(momentParsingFormat, value, testValue, (a, b) => a.isAfter(b)),
-  [Filter.rules.IS_ONE_OF]: isOneOf,
-  [Filter.rules.IS_NOT_ONE_OF]: isNotOneOf,
+  [rules.IS_ONE_OF]: isOneOf,
+  [rules.IS_NOT_ONE_OF]: isNotOneOf,
 };
 
 export default testers;

@@ -21,6 +21,7 @@ node_modules/.bin/lerna bootstrap
 ```
 
 Notes:
+
 - Use `node_modules/.bin/lerna` directly — `npx lerna` can silently fail under corepack in some shells.
 - `lerna bootstrap` runs `pretranspile` for packages that need it (e.g. `@paprika/l10n` builds translation files), then transpiles `src/` → `lib/` for every package.
 - Re-run this after pulling changes that touch translations or any package's public build output.
@@ -33,6 +34,7 @@ node_modules/.bin/jest packages/<PackageName>/tests/spec
 ```
 
 Example:
+
 ```bash
 node_modules/.bin/jest packages/Filter/tests/spec
 ```

@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-import { logicalFilterOperators } from "../rules";
 import * as types from "../types";
 import filterData from "../helpers/filterData";
 import getInitialValueByType from "../helpers/getInitialValueByType";
@@ -14,84 +12,77 @@ export const actionTypes = {
   updateData: "updateData",
 };
 
-export default function defaultReducer(draft, action) {
+function changeFilterItem(filterItem, payload, data) {
+  const { changedFilterItem } = payload;
+  if (filterItem.id !== changedFilterItem.id) return filterItem;
+
+  switch (payload.type) {
+    case types.changeTypes.COLUMN: {
+      const columnType = payload.columns.find(column => column.id === changedFilterItem.columnId).type;
+      return {
+        ...filterItem,
+        columnId: changedFilterItem.columnId,
+        rule: payload.rulesByType[columnType][0],
+        value: getInitialValueByType(columnType, changedFilterItem.columnId, data),
+        renderValueField: null,
+      };
+    }
+    case types.changeTypes.RULE:
+      return { ...filterItem, rule: changedFilterItem.rule };
+    case types.changeTypes.FILTER_VALUE:
+      return { ...filterItem, value: changedFilterItem.value };
+    default:
+      return filterItem;
+  }
+}
+
+export default function defaultReducer(state, action) {
   switch (action.type) {
     case actionTypes.addFilter:
-      draft.filters.push(action.payload);
-      break;
+      return { ...state, filters: [...state.filters, action.payload] };
     case actionTypes.updateData: {
-      draft.data = action.payload.newData;
-      draft.filteredData = filterData({
-        filters: draft.filters,
-        operator: draft.operator,
-        columns: action.payload.columns,
-        data: action.payload.newData,
-      });
-      break;
+      const { columns, newData } = action.payload;
+      return {
+        ...state,
+        data: newData,
+        filteredData: filterData({ filters: state.filters, operator: state.operator, columns, data: newData }),
+      };
     }
     case actionTypes.apply: {
-      draft.numberApplied = draft.filters.length;
-      if (!draft.isResultControlled) {
-        draft.filteredData = filterData({
-          filters: draft.filters,
-          operator: draft.operator,
+      const nextState = { ...state, numberApplied: state.filters.length };
+      if (!state.isResultControlled) {
+        nextState.filteredData = filterData({
+          filters: state.filters,
+          operator: state.operator,
           columns: action.payload.columns,
-          data: draft.data,
+          data: state.data,
         });
       }
-      break;
+      return nextState;
     }
     case actionTypes.changeFilter: {
       const { payload } = action;
-      const { changedFilterItem } = payload;
-
-      draft.filters.forEach(filterItem => {
-        if (filterItem.id !== changedFilterItem.id) return;
-
-        switch (payload.type) {
-          case types.changeTypes.COLUMN: {
-            const columnType = payload.columns.find(column => column.id === changedFilterItem.columnId).type;
-            filterItem.columnId = changedFilterItem.columnId;
-            filterItem.rule = payload.rulesByType[columnType][0];
-            filterItem.value = getInitialValueByType(columnType, changedFilterItem.columnId, draft.data);
-            filterItem.renderValueField = null;
-            break;
-          }
-          case types.changeTypes.RULE: {
-            filterItem.rule = changedFilterItem.rule;
-            break;
-          }
-          case types.changeTypes.FILTER_VALUE: {
-            filterItem.value = changedFilterItem.value;
-            break;
-          }
-          default:
-            break;
-        }
-      });
-      break;
+      return {
+        ...state,
+        filters: state.filters.map(filterItem => changeFilterItem(filterItem, payload, state.data)),
+      };
     }
-    case actionTypes.changeOperator: {
-      draft.operator =
-        draft.operator === logicalFilterOperators.AND ? logicalFilterOperators.OR : logicalFilterOperators.AND;
-      break;
-    }
+    case actionTypes.changeOperator:
+      return { ...state, operator: action.payload };
     case actionTypes.clear: {
-      draft.numberApplied = 0;
-      draft.filters = [];
-      if (!draft.isResultControlled) {
-        draft.filteredData = filterData({
+      const nextState = { ...state, numberApplied: 0, filters: [] };
+      if (!state.isResultControlled) {
+        nextState.filteredData = filterData({
           filters: [],
-          operator: draft.operator,
+          operator: state.operator,
           columns: action.payload.columns,
-          data: draft.data,
+          data: state.data,
         });
       }
-      break;
+      return nextState;
     }
     case actionTypes.delete:
-      draft.filters = draft.filters.filter(filter => filter.id !== action.payload);
-      break;
+      return { ...state, filters: state.filters.filter(filter => filter.id !== action.payload) };
     default: {
       throw new Error(`Unsupported type: ${action.type}`);
     }
