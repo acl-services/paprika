@@ -2,20 +2,18 @@
 
 ## Node version
 
-This repo requires **Node 16**. The `BuildTranslations` package depends on the `esm` package, which is incompatible with modern Node versions (e.g. v25) and fails with a cryptic syntax error inside `node_modules/esm/esm.js`.
+This repo pins its Node version in `.nvmrc`. Use that version before any install/build/test command below:
 
 ```bash
-nvm use 16
+nvm use
 ```
-
-Run this before any install/build/test command below.
 
 ## Initial setup (build internal packages)
 
 Internal `@paprika/*` packages (e.g. `@paprika/l10n`) are symlinked via yarn workspaces but ship no `lib/` output until built. Without this step, tests fail with `Cannot find module '@paprika/l10n'` (or any other `@paprika/*` package).
 
 ```bash
-nvm use 16
+nvm use
 yarn install
 node_modules/.bin/lerna bootstrap
 ```
@@ -29,7 +27,7 @@ Notes:
 ## Running tests
 
 ```bash
-nvm use 16
+nvm use
 node_modules/.bin/jest packages/<PackageName>/tests/spec
 ```
 
