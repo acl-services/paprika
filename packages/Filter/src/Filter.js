@@ -52,12 +52,16 @@ export default function Filter(props) {
     onCancel();
   }
 
-  function handleClear() {
-    onClear();
-  }
+  const contextValue = React.useMemo(() => ({ filterRef, columns, data, operator, onChangeOperator, rulesByType }), [
+    columns,
+    data,
+    operator,
+    onChangeOperator,
+    rulesByType,
+  ]);
 
   return (
-    <FilterContext.Provider value={{ filterRef, columns, data, operator, onChangeOperator, rulesByType }}>
+    <FilterContext.Provider value={contextValue}>
       <Panel
         a11yText={I18n.t("filter.label")}
         data-pka-anchor="filter.panel"
@@ -102,7 +106,7 @@ export default function Filter(props) {
             <Button data-pka-anchor="filter.cancelButton" onClick={handleCancel} kind="minor">
               {I18n.t("actions.cancel")}
             </Button>
-            <Button data-pka-anchor="filter.clearButton" onClick={handleClear} kind="minor">
+            <Button data-pka-anchor="filter.clearButton" onClick={onClear} kind="minor">
               {I18n.t("filter.actions.clear")}
             </Button>
           </sc.Footer>
@@ -139,7 +143,7 @@ const propTypes = {
 const defaultProps = {
   children: null,
   data: null,
-  maxFiltersAllowed: 9999,
+  maxFiltersAllowed: Infinity,
   numberApplied: 0,
   onCancel: () => {},
   onChangeOperator: null,

@@ -27,9 +27,7 @@
     "@paprika/select": "^2.0.20",
     "@paprika/stylers": "^1.1.13",
     "@paprika/tokens": "^3.1.1",
-    "immer": "^9.0.12",
-    "prop-types": "^15.7.2",
-    "uuid": "^3.3.2"
+    "prop-types": "^15.7.2"
   },
   "peerDependencies": {
     "@paprika/l10n": "^2.1.2",

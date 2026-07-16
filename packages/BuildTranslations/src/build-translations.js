@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
-// eslint-disable-next-line no-global-assign
-require = require("esm")(module);
+require("@babel/register")({
+  extends: require.resolve("../../../babel.config.js"),
+  only: [__dirname],
+});
 require("./cli").cli(process.argv);

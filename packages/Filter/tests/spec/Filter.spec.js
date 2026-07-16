@@ -207,6 +207,70 @@ describe("ActionBar Filter", () => {
     expect(screen.queryByTestId("list-filter")).not.toBeInTheDocument();
   });
 
+  it("should render ListBox.Filter when single_select column has more than 15 options", async () => {
+    const selectOptions = [...Array(16)].map((_, index) => ({
+      id: `opt-${index}`,
+      label: `Option ${index}`,
+    }));
+    const selectData = selectOptions.map(opt => ({ category: opt }));
+
+    renderComponent({
+      columns: [{ id: "category", type: Filter.types.columnTypes.SINGLE_SELECT, label: "Category" }],
+      data: selectData,
+      children: (
+        <Filter.Item
+          columnId="category"
+          id="1"
+          index={0}
+          rule="IS"
+          value=""
+          onChangeFilter={noop}
+          onDeleteFilter={noop}
+        />
+      ),
+    });
+
+    fireEvent.click(screen.getByText("Filter"));
+    await waitFor(() => {
+      within(screen.getByTestId("filter.item.valueInput")).getByTestId("list-box-trigger");
+    });
+    fireEvent.click(within(screen.getByTestId("filter.item.valueInput")).getByTestId("list-box-trigger"));
+
+    expect(screen.getByTestId("list-filter")).toBeInTheDocument();
+  });
+
+  it("should not render ListBox.Filter when single_select column has fewer than 15 options", async () => {
+    const selectOptions = [...Array(5)].map((_, index) => ({
+      id: `opt-${index}`,
+      label: `Option ${index}`,
+    }));
+    const selectData = selectOptions.map(opt => ({ category: opt }));
+
+    renderComponent({
+      columns: [{ id: "category", type: Filter.types.columnTypes.SINGLE_SELECT, label: "Category" }],
+      data: selectData,
+      children: (
+        <Filter.Item
+          columnId="category"
+          id="1"
+          index={0}
+          rule="IS"
+          value=""
+          onChangeFilter={noop}
+          onDeleteFilter={noop}
+        />
+      ),
+    });
+
+    fireEvent.click(screen.getByText("Filter"));
+    await waitFor(() => {
+      within(screen.getByTestId("filter.item.valueInput")).getByTestId("list-box-trigger");
+    });
+    fireEvent.click(within(screen.getByTestId("filter.item.valueInput")).getByTestId("list-box-trigger"));
+
+    expect(screen.queryByTestId("list-filter")).not.toBeInTheDocument();
+  });
+
   it("should not fail any accessibility tests", async () => {
     const { container } = renderComponent();
     expect(await axe(container)).toHaveNoViolations();

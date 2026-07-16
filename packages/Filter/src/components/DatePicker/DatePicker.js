@@ -16,12 +16,11 @@ export default function DatePickerWrapper(props) {
     return dateStr === "" ? null : moment(dateStr, parsingFormat);
   }
 
-  const memorizedGetMomentDate = React.useCallback(getMomentDate, [parsingFormat]);
-  const [date, setDate] = React.useState(memorizedGetMomentDate(initialDate));
+  const [date, setDate] = React.useState(() => getMomentDate(initialDate));
 
   React.useEffect(() => {
-    setDate(memorizedGetMomentDate(initialDate));
-  }, [initialDate, parsingFormat, memorizedGetMomentDate]);
+    setDate(getMomentDate(initialDate));
+  }, [initialDate, parsingFormat]);
 
   function handleChange(newDate) {
     setDate(newDate);

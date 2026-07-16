@@ -1,10 +1,14 @@
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
-import produce from "immer";
 import Filter from "../Filter";
 import defaultReducer, { actionTypes } from "./defaultReducer";
 import { logicalFilterOperators } from "../rules";
 import getInitialValueByType from "../helpers/getInitialValueByType";
+
+let nextFilterId = Date.now();
+function getUniqueFilterId() {
+  nextFilterId += 1;
+  return `filter-${nextFilterId}`;
+}
 
 function getDefaultFilter(columns, rulesByType, data) {
   const firstColumnId = columns[0].id;
@@ -14,7 +18,7 @@ function getDefaultFilter(columns, rulesByType, data) {
     columnId: firstColumnId,
     rule: rulesByType[firstColumnType][0],
     value: getInitialValueByType(firstColumnType, firstColumnId, data),
-    id: uuidv4(),
+    id: getUniqueFilterId(),
   };
 }
 
@@ -33,7 +37,7 @@ export default function useFilter({
   columns,
   data = null,
   initialState = {},
-  reducer = produce(defaultReducer),
+  reducer = defaultReducer,
   rulesByType = Filter.defaultRulesByType,
 }) {
   const [state, dispatch] = React.useReducer(reducer, { ...initialState, data }, initState);
@@ -42,9 +46,10 @@ export default function useFilter({
     dispatch({ type: actionTypes.addFilter, payload: getDefaultFilter(columns, rulesByType, data) });
   }
 
-  function onChangeOperator() {
+  function onChangeOperator(operator) {
     dispatch({
       type: actionTypes.changeOperator,
+      payload: operator,
     });
   }
 

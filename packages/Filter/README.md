@@ -28,7 +28,7 @@ npm install @paprika/filter
 | children          | node                                       | false    | null                      |             |
 | columns           | arrayOf                                    | true     | -                         |             |
 | data              | arrayOf                                    | false    | null                      |             |
-| maxFiltersAllowed | number                                     | false    | 9999                      |             |
+| maxFiltersAllowed | number                                     | false    | Infinity                  |             |
 | onAddFilter       | func                                       | true     | -                         |             |
 | onApply           | func                                       | true     | -                         |             |
 | onCancel          | func                                       | false    | () => {}                  |             |

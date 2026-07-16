@@ -44,21 +44,23 @@ function Item(props) {
   const { columns, data, filterRef, onChangeOperator, operator, rulesByType } = React.useContext(FilterContext);
   const I18n = useI18n();
 
-  const selectedColumnType = columns.find(({ id }) => id === selectedColumnId).type;
+  const selectedColumn = columns.find(({ id }) => id === selectedColumnId);
+  const { type: selectedColumnType, momentParsingFormat } = selectedColumn;
 
   const uniqueSelectOptions = React.useMemo(() => {
     switch (selectedColumnType) {
       case types.columnTypes.SINGLE_SELECT:
-      case types.columnTypes.MULTI_SELECT:
-        return data.filter((row, index, dataOriginal) => {
-          const selectedColumnValues = dataOriginal.map(datum => datum[selectedColumnId]); // [{id, label}, {id, label}, ...]
-          const position = selectedColumnValues.findIndex(
-            selectedColumnValue =>
-              selectedColumnValue.id === row[selectedColumnId].id &&
-              selectedColumnValue.label === row[selectedColumnId].label
-          );
-          return position === index;
+      case types.columnTypes.MULTI_SELECT: {
+        if (!data) return [];
+
+        const seenIds = new Set();
+        return data.filter(row => {
+          const { id: optionId } = row[selectedColumnId];
+          if (seenIds.has(optionId)) return false;
+          seenIds.add(optionId);
+          return true;
         });
+      }
       default:
         return null;
     }
@@ -85,11 +87,8 @@ function Item(props) {
   function handleChangeDatePicker(momentDate) {
     filterRef.current.focus();
 
-    if (momentDate === null) {
-      handleChangeValue("");
-    } else {
-      handleChangeValue(momentDate.format(columns.find(({ id }) => id === selectedColumnId).momentParsingFormat));
-    }
+    const newValue = momentDate === null ? "" : momentDate.format(momentParsingFormat);
+    onChangeFilter(types.changeTypes.FILTER_VALUE, { id, value: newValue });
   }
 
   function handleChangeBooleanFilterValue(index, options) {
@@ -104,11 +103,7 @@ function Item(props) {
   }
 
   function handleChangeMultiSelectFilterValue(indices, options) {
-    const values = [];
-    indices.forEach(index => {
-      values.push(options[index].value);
-    });
-
+    const values = indices.map(index => options[index].value);
     onChangeFilter(types.changeTypes.FILTER_VALUE, { id, value: values });
   }
 
@@ -163,7 +158,7 @@ function Item(props) {
             as={DatePicker}
             initialDate={value}
             onChange={handleChangeDatePicker}
-            parsingFormat={columns.find(({ id }) => id === selectedColumnId).momentParsingFormat}
+            parsingFormat={momentParsingFormat}
             data-pka-anchor="filter.item.valueInput"
           />
         );
@@ -176,7 +171,7 @@ function Item(props) {
                   handleChangeSingleSelectFilterValue(0, [{ value: "", label: "" }]);
                 }}
               />
-              {uniqueSelectOptions >= MAX_OPTIONS ? <ListBox.Filter /> : null}
+              {uniqueSelectOptions.length >= MAX_OPTIONS ? <ListBox.Filter /> : null}
               {uniqueSelectOptions.map(selectOption => (
                 <ListBox.Option
                   key={selectOption[selectedColumnId].id}
@@ -198,7 +193,7 @@ function Item(props) {
                   handleChangeMultiSelectFilterValue([], {});
                 }}
               />
-              {uniqueSelectOptions >= MAX_OPTIONS ? <ListBox.Filter /> : null}
+              {uniqueSelectOptions.length >= MAX_OPTIONS ? <ListBox.Filter /> : null}
               {uniqueSelectOptions.map(selectOption => (
                 <ListBox.Option
                   key={selectOption[selectedColumnId].id}
