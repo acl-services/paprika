@@ -46,3 +46,34 @@ This repo's `@testing-library/react` version (10.x) does **not** include `render
 ```js
 import { renderHook, act } from "@testing-library/react-hooks";
 ```
+
+## Creating a pull request
+
+### PR description template
+
+Use the existing PRs (e.g. #1344) as a style reference. Required sections:
+
+```
+### Purpose 🚀
+### Notes ✏️
+### Updates 📦
+### Storybook 📕
+### References 🔗
+```
+
+### Storybook URL placeholder
+
+The `storybook-link` CI job runs `scripts/storybookLink.js` on every PR open/update. It looks for a Storybook URL or placeholder in the PR body and replaces it with the real branch URL. **Always include this placeholder in the Storybook section**, even for CI-only or docs PRs:
+
+```
+http://storybooks.highbond-s3.com/paprika/your-branch-name
+```
+
+If this placeholder (or an existing Storybook URL) is missing, the job fails with:
+```
+No Storybook URL or placeholder found in PR description
+```
+
+### Local composite actions and checkout
+
+`.github/actions/setup-paprika` is a local composite action. GitHub Actions must have the repo checked out **before** calling any local action — the runner cannot resolve `uses: ./.github/actions/...` without the files present. Always add an explicit `actions/checkout` step in the job **before** `uses: ./.github/actions/setup-paprika`.
