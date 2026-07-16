@@ -1,0 +1,73 @@
+name: "Setup Paprika"
+description: "Install Node.js, enable Yarn, cache dependencies, and optionally bootstrap Lerna. Requires actions/checkout to have already run."
+
+inputs:
+  with-cypress-cache:
+    description: "Whether to cache Cypress binary"
+    required: false
+    default: "false"
+  with-lerna:
+    description: "Whether to cache Lerna artifacts and run lerna bootstrap"
+    required: false
+    default: "true"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v7
+      with:
+        node-version-file: .nvmrc
+        cache: "yarn"
+
+    - name: Setup Yarn
+      shell: bash
+      run: corepack enable
+
+    - name: Cache node_modules
+      uses: actions/cache@v6
+      id: node-modules-cache
+      with:
+        path: |
+          node_modules
+          **/node_modules
+        key: ${{ runner.os }}-node-modules-${{ github.ref_name }}-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-node-modules-${{ github.ref_name }}-
+          ${{ runner.os }}-node-modules-master-
+          ${{ runner.os }}-node-modules-
+
+    - name: Cache Cypress
+      if: inputs.with-cypress-cache == 'true'
+      uses: actions/cache@v6
+      id: cypress-cache
+      with:
+        path: ~/.cache/Cypress
+        key: ${{ runner.os }}-cypress-${{ github.ref_name }}
+        restore-keys: |
+          ${{ runner.os }}-cypress-master
+          ${{ runner.os }}-cypress-
+
+    - name: Cache Lerna
+      if: inputs.with-lerna == 'true'
+      uses: actions/cache@v6
+      id: lerna-cache
+      with:
+        path: |
+          .lerna
+          **/.lerna
+        key: ${{ runner.os }}-lerna-${{ github.ref_name }}-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-lerna-${{ github.ref_name }}-
+          ${{ runner.os }}-lerna-master-
+          ${{ runner.os }}-lerna-
+
+    - name: Install dependencies
+      if: steps.node-modules-cache.outputs.cache-hit != 'true'
+      shell: bash
+      run: yarn install --frozen-lockfile
+
+    - name: Bootstrap Lerna
+      if: inputs.with-lerna == 'true'
+      shell: bash
+      run: npx lerna bootstrap
