@@ -83,6 +83,9 @@ jobs:
     name: 💅 Format
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
       - name: Setup Paprika
         uses: ./.github/actions/setup-paprika
         with:
@@ -103,6 +106,10 @@ jobs:
           echo "✅ No package changes detected, skipping accessibility tests"
           exit 0
 
+      - name: Checkout repository
+        if: needs.check-packages.outputs.packages-changed == 'true'
+        uses: actions/checkout@v7
+
       - name: Setup Paprika
         if: needs.check-packages.outputs.packages-changed == 'true'
         uses: ./.github/actions/setup-paprika
@@ -121,6 +128,10 @@ jobs:
         run: |
           echo "✅ No package changes detected, skipping unit/integration tests"
           exit 0
+
+      - name: Checkout repository
+        if: needs.check-packages.outputs.packages-changed == 'true'
+        uses: actions/checkout@v7
 
       - name: Setup Paprika
         if: needs.check-packages.outputs.packages-changed == 'true'
@@ -141,6 +152,10 @@ jobs:
         run: |
           echo "✅ No package changes detected, skipping E2E tests"
           exit 0
+
+      - name: Checkout repository
+        if: needs.check-packages.outputs.packages-changed == 'true'
+        uses: actions/checkout@v7
 
       - name: Install system dependencies
         if: needs.check-packages.outputs.packages-changed == 'true'

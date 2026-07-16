@@ -1,5 +1,5 @@
 name: "Setup Paprika"
-description: "Checkout, install Node.js, enable Yarn, cache dependencies, and optionally bootstrap Lerna"
+description: "Install Node.js, enable Yarn, cache dependencies, and optionally bootstrap Lerna. Requires actions/checkout to have already run."
 
 inputs:
   with-cypress-cache:
@@ -14,9 +14,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Checkout repository
-      uses: actions/checkout@v7
-
     - name: Setup Node.js
       uses: actions/setup-node@v7
       with:
