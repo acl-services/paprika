@@ -25,12 +25,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup SSH Deploy Key
-        uses: webfactory/ssh-agent@v0.9.0
+        uses: webfactory/ssh-agent@v0.10.0
         with:
           ssh-private-key: ${{ secrets.PAPRIKA_DEPLOY_KEY }}
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
           # Use SSH deploy key (doesn't expire, repo-scoped)
@@ -51,10 +51,9 @@ jobs:
           echo "Release type: $(cat $GITHUB_OUTPUT | grep type | cut -d'=' -f2)"
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
-          # Node 20 required for npm 11.5.1+ (needed for Trusted Publishing)
-          node-version: "20"
+          node-version-file: .nvmrc
           registry-url: "https://registry.npmjs.org"
           scope: "@paprika"
 

@@ -23,16 +23,14 @@ jobs:
       packages-changed: ${{ steps.check-packages.outputs.changed }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
-          # Only fetch enough history for path filtering (2 commits for push, base+head for PR)
           fetch-depth: ${{ github.event_name == 'pull_request' && '0' || '2' }}
 
       - name: Check for changes in packages
         id: check-packages
         run: |
           if [ "${{ github.event_name }}" == "pull_request" ]; then
-            # For PRs, fetch base branch and compare
             BASE_REF="${{ github.event.pull_request.base.ref }}"
             git fetch --depth=1 origin "$BASE_REF"
             BASE_SHA="origin/$BASE_REF"
@@ -43,7 +41,6 @@ jobs:
               echo "changed=true" >> $GITHUB_OUTPUT
             fi
           else
-            # For pushes, compare against previous commit
             if git rev-parse --verify HEAD~1 >/dev/null 2>&1; then
               if git diff --name-only HEAD~1 HEAD --quiet -- packages/; then
                 echo "changed=false" >> $GITHUB_OUTPUT
@@ -51,83 +48,9 @@ jobs:
                 echo "changed=true" >> $GITHUB_OUTPUT
               fi
             else
-              # First commit on branch, assume packages changed
               echo "changed=true" >> $GITHUB_OUTPUT
             fi
           fi
-
-  setup:
-    name: 🎩 Yarn & caching
-    needs: check-packages
-    runs-on: ubuntu-latest
-    steps:
-      - name: Skip if no package changes
-        if: needs.check-packages.outputs.packages-changed != 'true'
-        run: |
-          echo "✅ No package changes detected, skipping setup"
-          exit 0
-
-      - name: Checkout repository
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: .nvmrc
-          cache: "yarn"
-
-      - name: Setup Yarn
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        run: corepack enable
-
-      - name: Cache node_modules
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        uses: actions/cache@v4
-        id: node-modules-cache
-        with:
-          path: |
-            node_modules
-            **/node_modules
-          # Match Semaphore cache strategy: branch-specific with yarn.lock hash, then branch-specific, then master
-          key: ${{ runner.os }}-node-modules-${{ github.ref_name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-${{ github.ref_name }}-
-            ${{ runner.os }}-node-modules-master-
-            ${{ runner.os }}-node-modules-
-
-      - name: Cache Cypress
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/Cypress
-          # Match Semaphore: branch-specific cache
-          key: ${{ runner.os }}-cypress-${{ github.ref_name }}
-          restore-keys: |
-            ${{ runner.os }}-cypress-master
-            ${{ runner.os }}-cypress-
-
-      - name: Cache Lerna
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        uses: actions/cache@v4
-        with:
-          path: |
-            .lerna
-            **/.lerna
-          key: ${{ runner.os }}-lerna-${{ github.ref_name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-lerna-${{ github.ref_name }}-
-            ${{ runner.os }}-lerna-master-
-            ${{ runner.os }}-lerna-
-
-      - name: Install dependencies
-        if: needs.check-packages.outputs.packages-changed == 'true' && steps.node-modules-cache.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile
-
-      - name: Bootstrap Lerna
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        run: npx lerna bootstrap
 
   storybook-link:
     name: 🔗 Storybook link
@@ -135,12 +58,12 @@ jobs:
     if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'synchronize')
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version-file: .nvmrc
+          node-version: "20"
           cache: "yarn"
 
       - name: Setup Yarn
@@ -148,15 +71,11 @@ jobs:
 
       - name: Install @octokit/rest
         run: |
-          # Only install @octokit/rest which is needed for the script
           yarn add -W --no-lockfile --non-interactive --ignore-scripts @octokit/rest
 
       - name: Insert Storybook link into PR Body Message
         env:
-          # Use built-in GITHUB_TOKEN (automatically provided, doesn't expire)
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Branch name for Storybook URL
-          # For PRs, use head_ref (source branch); for pushes, use ref_name
           GITHUB_BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
         run: node scripts/storybookLink.js
 
@@ -164,35 +83,10 @@ jobs:
     name: 💅 Format
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Paprika
+        uses: ./.github/actions/setup-paprika
         with:
-          node-version-file: .nvmrc
-          cache: "yarn"
-
-      - name: Setup Yarn
-        run: corepack enable
-
-      - name: Cache node_modules
-        uses: actions/cache@v4
-        id: node-modules-cache
-        with:
-          path: |
-            node_modules
-            **/node_modules
-          # Match Semaphore cache strategy: branch-specific with yarn.lock hash, then branch-specific, then master
-          key: ${{ runner.os }}-node-modules-${{ github.ref_name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-${{ github.ref_name }}-
-            ${{ runner.os }}-node-modules-master-
-            ${{ runner.os }}-node-modules-
-
-      - name: Install dependencies
-        if: steps.node-modules-cache.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile
+          with-lerna: "false"
 
       - name: Lint && Prettier
         run: |
@@ -200,7 +94,7 @@ jobs:
 
   accessibility:
     name: ♿️ Accessibility
-    needs: [check-packages, setup]
+    needs: check-packages
     runs-on: ubuntu-latest
     steps:
       - name: Skip if no package changes
@@ -208,57 +102,10 @@ jobs:
         run: |
           echo "✅ No package changes detected, skipping accessibility tests"
           exit 0
-      - name: Checkout repository
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Paprika
         if: needs.check-packages.outputs.packages-changed == 'true'
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: .nvmrc
-          cache: "yarn"
-
-      - name: Setup Yarn
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        run: corepack enable
-
-      - name: Cache node_modules
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        uses: actions/cache@v4
-        id: node-modules-cache
-        with:
-          path: |
-            node_modules
-            **/node_modules
-          # Match Semaphore cache strategy: branch-specific with yarn.lock hash, then branch-specific, then master
-          key: ${{ runner.os }}-node-modules-${{ github.ref_name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-${{ github.ref_name }}-
-            ${{ runner.os }}-node-modules-master-
-            ${{ runner.os }}-node-modules-
-
-      - name: Cache Lerna
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        uses: actions/cache@v4
-        id: lerna-cache
-        with:
-          path: |
-            .lerna
-            **/.lerna
-          key: ${{ runner.os }}-lerna-${{ github.ref_name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-lerna-${{ github.ref_name }}-
-            ${{ runner.os }}-lerna-master-
-            ${{ runner.os }}-lerna-
-
-      - name: Install dependencies
-        if: needs.check-packages.outputs.packages-changed == 'true' && (steps.node-modules-cache.outputs.cache-hit != 'true' || steps.lerna-cache.outputs.cache-hit != 'true')
-        run: yarn install --frozen-lockfile
-
-      - name: Bootstrap Lerna
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        run: npx lerna bootstrap
+        uses: ./.github/actions/setup-paprika
 
       - name: Axe test
         if: needs.check-packages.outputs.packages-changed == 'true'
@@ -266,7 +113,7 @@ jobs:
 
   test:
     name: ⚡️ Integration/Unit
-    needs: [check-packages, setup]
+    needs: check-packages
     runs-on: ubuntu-latest
     steps:
       - name: Skip if no package changes
@@ -274,56 +121,10 @@ jobs:
         run: |
           echo "✅ No package changes detected, skipping unit/integration tests"
           exit 0
-      - name: Checkout repository
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Paprika
         if: needs.check-packages.outputs.packages-changed == 'true'
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: .nvmrc
-          cache: "yarn"
-
-      - name: Setup Yarn
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        run: corepack enable
-
-      - name: Cache node_modules
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        uses: actions/cache@v4
-        id: node-modules-cache
-        with:
-          path: |
-            node_modules
-            **/node_modules
-          # Match Semaphore cache strategy: branch-specific with yarn.lock hash, then branch-specific, then master
-          key: ${{ runner.os }}-node-modules-${{ github.ref_name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-${{ github.ref_name }}-
-            ${{ runner.os }}-node-modules-master-
-            ${{ runner.os }}-node-modules-
-
-      - name: Cache Lerna
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        uses: actions/cache@v4
-        with:
-          path: |
-            .lerna
-            **/.lerna
-          key: ${{ runner.os }}-lerna-${{ github.ref_name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-lerna-${{ github.ref_name }}-
-            ${{ runner.os }}-lerna-master-
-            ${{ runner.os }}-lerna-
-
-      - name: Install dependencies
-        if: needs.check-packages.outputs.packages-changed == 'true' && steps.node-modules-cache.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile
-
-      - name: Bootstrap Lerna
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        run: npx lerna bootstrap
+        uses: ./.github/actions/setup-paprika
 
       - name: JEST
         if: needs.check-packages.outputs.packages-changed == 'true'
@@ -331,8 +132,8 @@ jobs:
 
   e2e:
     name: ⛰ E2E
-    if: false  # Temporarily disabled while fixing Cypress upgrade issues
-    needs: [check-packages, setup]
+    if: false # Temporarily disabled while fixing Cypress upgrade issues
+    needs: check-packages
     runs-on: ubuntu-latest
     steps:
       - name: Skip if no package changes
@@ -340,29 +141,6 @@ jobs:
         run: |
           echo "✅ No package changes detected, skipping E2E tests"
           exit 0
-      - name: Checkout repository
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: .nvmrc
-          cache: "yarn"
-
-      - name: Setup Yarn
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        run: corepack enable
-
-      - name: Cache apt packages
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        uses: actions/cache@v4
-        with:
-          path: /var/cache/apt
-          key: ${{ runner.os }}-apt-packages
-          restore-keys: |
-            ${{ runner.os }}-apt-
 
       - name: Install system dependencies
         if: needs.check-packages.outputs.packages-changed == 'true'
@@ -374,57 +152,14 @@ jobs:
         if: needs.check-packages.outputs.packages-changed == 'true'
         run: sudo sysctl fs.inotify.max_user_watches=1048576
 
-      - name: Cache node_modules
+      - name: Setup Paprika
         if: needs.check-packages.outputs.packages-changed == 'true'
-        uses: actions/cache@v4
-        id: node-modules-cache
+        uses: ./.github/actions/setup-paprika
         with:
-          path: |
-            node_modules
-            **/node_modules
-          # Match Semaphore cache strategy: branch-specific with yarn.lock hash, then branch-specific, then master
-          key: ${{ runner.os }}-node-modules-${{ github.ref_name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-${{ github.ref_name }}-
-            ${{ runner.os }}-node-modules-master-
-            ${{ runner.os }}-node-modules-
-
-      - name: Cache Cypress
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        uses: actions/cache@v4
-        id: cypress-cache
-        with:
-          path: ~/.cache/Cypress
-          # Match Semaphore: branch-specific cache
-          key: ${{ runner.os }}-cypress-${{ github.ref_name }}
-          restore-keys: |
-            ${{ runner.os }}-cypress-master
-            ${{ runner.os }}-cypress-
-
-      - name: Cache Lerna
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        uses: actions/cache@v4
-        id: lerna-cache
-        with:
-          path: |
-            .lerna
-            **/.lerna
-          key: ${{ runner.os }}-lerna-${{ github.ref_name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-lerna-${{ github.ref_name }}-
-            ${{ runner.os }}-lerna-master-
-            ${{ runner.os }}-lerna-
-
-      - name: Install dependencies
-        if: needs.check-packages.outputs.packages-changed == 'true' && (steps.node-modules-cache.outputs.cache-hit != 'true' || steps.cypress-cache.outputs.cache-hit != 'true' || steps.lerna-cache.outputs.cache-hit != 'true')
-        run: yarn install --frozen-lockfile
-
-      - name: Bootstrap Lerna
-        if: needs.check-packages.outputs.packages-changed == 'true'
-        run: npx lerna bootstrap
+          with-cypress-cache: "true"
 
       - name: Install Cypress binary
-        if: needs.check-packages.outputs.packages-changed == 'true' && steps.cypress-cache.outputs.cache-hit != 'true'
+        if: needs.check-packages.outputs.packages-changed == 'true'
         run: npx cypress install
 
       - name: Cypress
