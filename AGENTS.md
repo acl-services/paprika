@@ -70,6 +70,7 @@ http://storybooks.highbond-s3.com/paprika/your-branch-name
 ```
 
 If this placeholder (or an existing Storybook URL) is missing, the job fails with:
+
 ```
 No Storybook URL or placeholder found in PR description
 ```
@@ -85,6 +86,7 @@ type(AffectedComponent): <project (ex RCP, LCP )>-XXXXX short description
 Supported types: `feat`, `fix`, `style`, `test`, `docs`, `build`, `chore`, `ci`, `perf`, `refactor`, `revert`
 
 Examples:
+
 ```
 chore(CI): RCP-43291 extract composite action and modernize pipeline
 fix(Filter): RCP-42687 removes immer dependency and fixes related bugs
