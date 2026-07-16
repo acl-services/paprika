@@ -54,8 +54,6 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
-          registry-url: "https://registry.npmjs.org"
-          scope: "@paprika"
 
       - name: Install npm 11.5.1
         run: |
@@ -93,6 +91,13 @@ jobs:
 
       - name: Version packages
         run: yarn changeset version
+
+      - name: Setup Node.js for publish
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          registry-url: "https://registry.npmjs.org"
+          scope: "@paprika"
 
       - name: Publish packages and push changes
         run: |
