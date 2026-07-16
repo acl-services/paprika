@@ -79,7 +79,7 @@ No Storybook URL or placeholder found in PR description
 This repo enforces [Conventional Commits](https://www.conventionalcommits.org/) via a commit-msg hook. The format is:
 
 ```
-type(AffectedComponent): RCP-XXXXX short description
+type(AffectedComponent): <project (ex RCP, LCP )>-XXXXX short description
 ```
 
 Supported types: `feat`, `fix`, `style`, `test`, `docs`, `build`, `chore`, `ci`, `perf`, `refactor`, `revert`
