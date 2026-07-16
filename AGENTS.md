@@ -74,6 +74,24 @@ If this placeholder (or an existing Storybook URL) is missing, the job fails wit
 No Storybook URL or placeholder found in PR description
 ```
 
+### Commit message format
+
+This repo enforces [Conventional Commits](https://www.conventionalcommits.org/) via a commit-msg hook. The format is:
+
+```
+type(AffectedComponent): RCP-XXXXX short description
+```
+
+Supported types: `feat`, `fix`, `style`, `test`, `docs`, `build`, `chore`, `ci`, `perf`, `refactor`, `revert`
+
+Examples:
+```
+chore(CI): RCP-43291 extract composite action and modernize pipeline
+fix(Filter): RCP-42687 removes immer dependency and fixes related bugs
+```
+
+Commits without a valid type will be rejected by the pre-commit hook.
+
 ### Local composite actions and checkout
 
 `.github/actions/setup-paprika` is a local composite action. GitHub Actions must have the repo checked out **before** calling any local action — the runner cannot resolve `uses: ./.github/actions/...` without the files present. Always add an explicit `actions/checkout` step in the job **before** `uses: ./.github/actions/setup-paprika`.
