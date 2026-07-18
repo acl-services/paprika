@@ -19,6 +19,9 @@ stories.push("./components/**/*.stor(y|ies).(js|ts|tsx)");
 
 module.exports = {
   stories,
+  core: {
+    builder: "webpack5",
+  },
   addons: [
     "@storybook/addon-docs/preset",
     "@storybook/addon-knobs",
@@ -26,26 +29,46 @@ module.exports = {
     "@storybook/addon-a11y",
     "@storybook/addon-cssresources",
   ],
+  managerWebpack: async config => {
+    config.module.rules.unshift({
+      test: /\.m?js$/,
+      type: "javascript/auto",
+      resolve: { fullySpecified: false },
+    });
+    return config;
+  },
   webpackFinal: async config => {
-    config.module.rules = [
-      ...config.module.rules,
-      {
-        test: /\.scss$/,
-        loaders: ["style-loader", "css-loader", "sass-loader"],
-        include: path.resolve(__dirname, "../"),
-      },
-    ];
+    config.module.rules.unshift({
+      test: /\.m?js$/,
+      type: "javascript/auto",
+      resolve: { fullySpecified: false },
+    });
+    config.module.rules.push({
+      test: /\.scss$/,
+      use: [
+        "style-loader",
+        "css-loader",
+        {
+          loader: "sass-loader",
+          options: {
+            sassOptions: { quietDeps: true, silenceDeprecations: ["import", "global-builtin", "legacy-js-api"] },
+          },
+        },
+      ],
+      include: path.resolve(__dirname, "../"),
+    });
     config.resolve.alias = {
       ...config.resolve.alias,
       storybook: path.resolve("./.storybook/"),
     };
-    config.output = {
-      ...config.output,
-      globalObject: "self",
-    };
 
     if (process.env.DISABLE_HMR === "true") {
-      config.entry = config.entry.filter(singleEntry => !singleEntry.includes("/webpack-hot-middleware/"));
+      config.entry = Object.fromEntries(
+        Object.entries(config.entry).map(([key, value]) => [
+          key,
+          Array.isArray(value) ? value.filter(v => !v.includes("webpack-hot-middleware")) : value,
+        ])
+      );
     }
 
     return config;

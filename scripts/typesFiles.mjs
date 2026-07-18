@@ -1,14 +1,16 @@
-#!/usr/bin/env node
-const fs = require("fs");
-// eslint-disable-next-line import/no-extraneous-dependencies
-const shell = require("shelljs");
-const parseFileToReactDoc = require("./parseFileToReactDoc");
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import { execSync } from "child_process";
+import parseFileToReactDoc from "./parseFileToReactDoc.mjs";
 
-const skipPackages = ["Guard", "Icon", "Stylers", "helpers", "Calendar", "BuildTranslations", "Tokens", "Constants"];
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const skipPackages = ["Guard", "Icon", "Stylers", "helpers", "Calendar", "BuildTranslations", "Tokens", "Constants", "seducer", "InlineEditors"];
 
 const fileName = "index.d.ts";
 
-const shouldSkipPackage = folderName =>
+const shouldSkipPackage = (folderName) =>
   skipPackages.includes(folderName) || fs.existsSync(`./packages/${folderName}/tsconfig.build.json`);
 
 const renderDeclarationTemplate = ({ displayName = "", props = "", typeConstants = "" }) => {
@@ -41,13 +43,7 @@ const createPropsList = ({ info }) => {
     `,
   ];
 
-  /**
-   * [x:string]:any; to support typechecking for additional props
-   * autocomplete suggestions will display existing props first
-   * compared to using React.HTMLAttributes which suggest multiple html attributes
-   */
-
-  Object.keys(info.props).map(key => {
+  Object.keys(info.props).map((key) => {
     const v = info.props[key] || {};
     let type = "any";
 
@@ -70,22 +66,24 @@ const createPropsList = ({ info }) => {
           break;
         }
         case "union": {
-          type = `${v.type.value.map(i => i.name)}`.replace(/,/g, "|");
+          type = `${v.type.value.map((i) => i.name)}`.replace(/,/g, "|");
           break;
         }
         default: {
-          type =
-            // eslint-disable-next-line no-nested-ternary
-            v.type.name !== "enum"
-              ? v.type.name
-              : Array.isArray(v.type.value)
-              ? `${v.type.value.map(i => i.value)}`.replace(/,/g, "|")
-              : v.type.value;
+          if (v.type.name !== "enum") {
+            type = v.type.name;
+          } else if (Array.isArray(v.type.value) && v.type.value.length > 0) {
+            type = `${v.type.value.map((i) => i.value)}`.replace(/,/g, "|");
+          } else if (v.type.value) {
+            type = v.type.value;
+          } else {
+            type = "any";
+          }
         }
       }
     }
 
-    const req = v.required.toString() === "false" ? "?:" : ":";
+    const req = v.required === false || v.required?.toString() === "false" ? "?:" : ":";
     const description = v.description ? `/** ${v.description} */` : "";
 
     return list.push(` ${description}
@@ -97,12 +95,12 @@ const createPropsList = ({ info }) => {
 };
 
 const extractCorrectComponentDefinition = ({ desireDefinition, arrayOfComponentsDefinitions }) => {
-  const definition = arrayOfComponentsDefinitions.filter(def => def.displayName === desireDefinition);
+  const definition = arrayOfComponentsDefinitions.filter((def) => def.displayName === desireDefinition);
 
   if (!definition.length) {
     console.log(
       `sub-component with displayName === ${desireDefinition}, more found: ${JSON.stringify(
-        arrayOfComponentsDefinitions.map(i => i.displayName)
+        arrayOfComponentsDefinitions.map((i) => i.displayName)
       )}`
     );
   }
@@ -110,7 +108,7 @@ const extractCorrectComponentDefinition = ({ desireDefinition, arrayOfComponents
   return definition[0];
 };
 
-const processPropsList = ({ info, folder, path, paprikaDocs = null }) => {
+const processPropsList = ({ info, folder, folderPath, paprikaDocs = null }) => {
   console.log("Generating .d.ts files...", folder);
   const propsList = [];
 
@@ -119,12 +117,10 @@ const processPropsList = ({ info, folder, path, paprikaDocs = null }) => {
   }
 
   if (paprikaDocs && "subComponents" in paprikaDocs) {
-    paprikaDocs.subComponents.forEach(subComponent => {
-      const subComponentContent = fs.readFileSync(`${path}/src/components/${subComponent}/${subComponent}.js`, "utf8");
-      const arrayOfComponentsDefinitions = parseFileToReactDoc(
-        subComponentContent,
-        `${path}/src/components/${subComponent}/${subComponent}.js`
-      );
+    paprikaDocs.subComponents.forEach((subComponent) => {
+      const subComponentPath = `${folderPath}/src/components/${subComponent}/${subComponent}.js`;
+      const subComponentContent = fs.readFileSync(subComponentPath, "utf8");
+      const arrayOfComponentsDefinitions = parseFileToReactDoc(subComponentContent, subComponentPath);
       let _info = extractCorrectComponentDefinition({
         desireDefinition: subComponent,
         arrayOfComponentsDefinitions,
@@ -146,40 +142,40 @@ const processPropsList = ({ info, folder, path, paprikaDocs = null }) => {
   return propsList;
 };
 
-shell.ls("packages").forEach(folder => {
-  if (shouldSkipPackage(folder)) return;
+const packages = fs.readdirSync("packages");
 
-  const path = `./packages/${folder}`;
+for (const folder of packages) {
+  if (shouldSkipPackage(folder)) continue;
+
+  const folderPath = `./packages/${folder}`;
   try {
-    const { paprikaDocs = null } = JSON.parse(fs.readFileSync(`${path}/package.json`, "utf8"));
-    const componentContent = fs.readFileSync(`${path}/src/${folder}.js`, "utf8");
-    const arrayOfComponentsDefinitions = parseFileToReactDoc(componentContent, `${path}/src/${folder}.js`);
+    const { paprikaDocs = null } = JSON.parse(fs.readFileSync(`${folderPath}/package.json`, "utf8"));
+    const componentContent = fs.readFileSync(`${folderPath}/src/${folder}.js`, "utf8");
+    const arrayOfComponentsDefinitions = parseFileToReactDoc(componentContent, `${folderPath}/src/${folder}.js`);
 
     const info = extractCorrectComponentDefinition({
       desireDefinition: folder,
       arrayOfComponentsDefinitions,
     });
 
-    if (!info) return;
+    if (!info) continue;
 
     const propsList = processPropsList({
       info,
       componentContent,
-      path,
+      folderPath,
       paprikaDocs,
       folder,
     });
 
     // Constants
     const regex = /\.types\./;
-    const constants = propsList // return an array, [constants.type]
+    const constants = propsList
       .toString()
       .split(" ")
-      .filter(e => {
-        return regex.test(e);
-      });
+      .filter((e) => regex.test(e));
 
-    const typesConst = constants.map(e =>
+    const typesConst = constants.map((e) =>
       e
         .toString()
         .replace(";", "")
@@ -190,13 +186,13 @@ shell.ls("packages").forEach(folder => {
 
     const typesTemp = typesConst
       .map(
-        e => `
+        (e) => `
 declare namespace ${e[0]}{
   namespace ${e[1]}{
     namespace ${e[2]}{
       ${e
         .splice(3)
-        .map(i => (/null/.test(i) ? "" : `const ${i}: any;`))
+        .map((i) => (/null/.test(i) ? "" : `const ${i}: any;`))
         .join("")}
     }
   }
@@ -210,13 +206,22 @@ declare namespace ${e[0]}{
       typeConstants: typesTemp,
     });
 
-    fs.writeFileSync(`${path}/src/${fileName}`, template, {
+    const libDir = `${folderPath}/lib`;
+    if (!fs.existsSync(libDir)) fs.mkdirSync(libDir, { recursive: true });
+    fs.writeFileSync(`${libDir}/${fileName}`, template, {
       encoding: "utf8",
       flag: "w",
     });
   } catch (e) {
-    console.warn(e);
+    if (e.code === "ERR_REACTDOCGEN_MISSING_DEFINITION") {
+      console.warn(`  Skipping ${folder}: no component definition found`);
+    } else if (e.code === "ENOENT") {
+      console.warn(`  Skipping ${folder}: ${e.path} not found`);
+    } else {
+      console.warn(e);
+    }
   }
-});
+}
 
-shell.exec(`prettier "**/${fileName}" --write`);
+const prettier = path.join(__dirname, "..", "node_modules", ".bin", "prettier");
+execSync(`"${prettier}" "packages/*/lib/${fileName}" --write`, { stdio: "inherit" });

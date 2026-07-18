@@ -5,7 +5,6 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/button": "^1.1.21",
     "@paprika/constants": "^1.0.2",
     "@paprika/checkbox": "^1.0.30",

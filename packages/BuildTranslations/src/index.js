@@ -1,10 +1,10 @@
-import fs from "fs";
-import path from "path";
-import jsYaml from "js-yaml";
+const fs = require("fs");
+const path = require("path");
+const jsYaml = require("js-yaml");
 
-const buildPath = output => path.resolve(process.cwd(), output);
+const buildPath = (output) => path.resolve(process.cwd(), output);
 const isYamlFile = (fileName, yamlFileExtension) => fileName.split(".")[1] === yamlFileExtension;
-const isJsTranslationFile = fileName => fileName.split(".")[1] === "js" && fileName.split(".")[0] !== "index";
+const isJsTranslationFile = (fileName) => fileName.split(".")[1] === "js" && fileName.split(".")[0] !== "index";
 
 async function removeTranslationFiles(outputPath) {
   let files = [];
@@ -17,10 +17,10 @@ async function removeTranslationFiles(outputPath) {
     process.exit(1);
   }
 
-  console.log(`🦁  - cleaning up old files`);
+  console.log("  - cleaning up old files");
 
   await Promise.all(
-    files.map(fileName => {
+    files.map((fileName) => {
       if (fileName !== ".gitkeep" && isJsTranslationFile(fileName)) {
         return fs.promises.unlink(buildPath(`${outputPath}/${fileName}`));
       }
@@ -38,9 +38,9 @@ async function createTranslationFile({ sourcePath, outputPath, yamlFileName, yam
   const locales = ${JSON.stringify(yamlAsJsonObject, null, 2)};
   export default locales;`;
 
-  console.log(`🦁  - creating ${outputPath}/${outputFileName}`);
+  console.log(`  - creating ${outputPath}/${outputFileName}`);
 
-  await fs.promises.writeFile(buildPath(`${outputPath}/${outputFileName}`), outputFileContents, () => {});
+  await fs.promises.writeFile(buildPath(`${outputPath}/${outputFileName}`), outputFileContents);
 }
 
 async function generateTranslationFiles({ sourcePath, outputPath, yamlFileExtension }) {
@@ -48,7 +48,7 @@ async function generateTranslationFiles({ sourcePath, outputPath, yamlFileExtens
     const yamlFiles = await fs.promises.readdir(buildPath(sourcePath));
 
     await Promise.all(
-      yamlFiles.map(yamlFileName => {
+      yamlFiles.map((yamlFileName) => {
         if (isYamlFile(yamlFileName, yamlFileExtension)) {
           return createTranslationFile({ sourcePath, outputPath, yamlFileName, yamlFileExtension });
         }
@@ -62,7 +62,7 @@ async function generateTranslationFiles({ sourcePath, outputPath, yamlFileExtens
   }
 }
 
-export default async function buildTranslations({
+async function buildTranslations({
   sourcePath = process.cwd(),
   outputPath = sourcePath,
   yamlFileExtension = "yml",
@@ -74,3 +74,5 @@ export default async function buildTranslations({
     console.error(e);
   }
 }
+
+module.exports = buildTranslations;

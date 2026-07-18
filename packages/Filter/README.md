@@ -22,21 +22,38 @@ npm install @paprika/filter
 
 ### Filter
 
-| Prop              | Type                                       | required | default                   | Description |
-| ----------------- | ------------------------------------------ | -------- | ------------------------- | ----------- |
-| numberApplied     | number                                     | false    | 0                         |             |
-| children          | node                                       | false    | null                      |             |
-| columns           | arrayOf                                    | true     | -                         |             |
-| data              | arrayOf                                    | false    | null                      |             |
-| maxFiltersAllowed | number                                     | false    | Infinity                  |             |
-| onAddFilter       | func                                       | true     | -                         |             |
-| onApply           | func                                       | true     | -                         |             |
-| onCancel          | func                                       | false    | () => {}                  |             |
-| onChangeOperator  | func                                       | false    | null                      |             |
-| onClear           | func                                       | false    | () => {}                  |             |
-| operator          | [ Filter.operator.AND, Filter.operator.OR] | false    | Filter.operator.AND       |             |
-| rulesByType       | objectOf                                   | false    | Filter.defaultRulesByType |             |
-| zIndex            | number                                     | false    | undefined                 |             |
+| Prop              | Type                                       | required | default             | Description |
+| ----------------- | ------------------------------------------ | -------- | ------------------- | ----------- |
+| numberApplied     | number                                     | false    | 0                   |             |
+| children          | node                                       | false    | null                |             |
+| columns           | arrayOf                                    | true     | -                   |             |
+| data              | arrayOf                                    | false    | null                |             |
+| maxFiltersAllowed | number                                     | false    | Infinity            |             |
+| onAddFilter       | func                                       | true     | -                   |             |
+| onApply           | func                                       | true     | -                   |             |
+| onCancel          | func                                       | false    | () => {}            |             |
+| onChangeOperator  | func                                       | false    | null                |             |
+| onClear           | func                                       | false    | () => {}            |             |
+| operator          | [ Filter.operator.AND, Filter.operator.OR] | false    | Filter.operator.AND |             |
+| rulesByType       | objectOf                                   | false    | {                   |
+
+DATE: [rules.IS, rules.IS_NOT, rules.IS_BEFORE, rules.IS_AFTER],
+NUMBER: [
+rules.EQUALS,
+rules.NOT_EQUAL_TO,
+rules.GREATER_THAN,
+rules.GREATER_THAN_OR_EQUAL_TO,
+rules.LESS_THAN,
+rules.LESS_THAN_OR_EQUAL_TO,
+rules.IS_EMPTY,
+rules.IS_NOT_EMPTY,
+],
+TEXT: [rules.IS, rules.IS_NOT, rules.CONTAINS, rules.DOES_NOT_CONTAIN, rules.IS_BLANK, rules.IS_NOT_BLANK],
+BOOLEAN: [rules.IS],
+SINGLE_SELECT: [rules.IS, rules.IS_NOT, rules.IS_BLANK, rules.IS_NOT_BLANK],
+MULTI_SELECT: [rules.IS_ONE_OF, rules.IS_NOT_ONE_OF],
+}| |
+|zIndex|number|false|undefined| |
 
 ### Item
 

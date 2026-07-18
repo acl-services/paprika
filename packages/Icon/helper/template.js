@@ -1,13 +1,11 @@
-module.exports = ({ template }, opts, { imports, interfaces, componentName, jsx, exports }) => {
-  const plugins = ["jsx"];
-  const typeScriptTpl = template.smart({ plugins });
-
-  return typeScriptTpl.ast`
-    ${imports}
-    ${interfaces}
-    function ${componentName}({title=null, ...props}) {
-      return ${jsx};
+module.exports = (variables, { tpl }) => {
+  return tpl`
+    ${variables.imports};
+    ${variables.interfaces};
+    function ${variables.componentName}({title=null, color=undefined, size=undefined, style: styleProp, ...props}) {
+      const style = {color, width: size, height: size, fontSize: size, verticalAlign: 'text-top', ...styleProp};
+      return ${variables.jsx};
     }
-    ${exports}
+    ${variables.exports};
   `;
 };

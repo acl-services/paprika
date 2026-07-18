@@ -18,7 +18,7 @@ declare namespace StatusTracker {
     /** The description of current status point will be shown in the tooltip. */
     description?: React.ReactNode;
     /** Kind of current status point. */
-    kind?: kinds.CURRENT | kinds.FUTURE | kinds.PAST;
+    kind?: "current" | "future" | "past";
     /** The name of current status point will be shown in the tooltip. */
     name?: React.ReactNode;
   }

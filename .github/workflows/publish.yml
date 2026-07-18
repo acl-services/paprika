@@ -76,6 +76,9 @@ jobs:
       - name: Bootstrap Lerna
         run: npx lerna bootstrap
 
+      - name: Build repository
+        run: yarn build:repo
+
       - name: Prepare ESM builds
         run: yarn prepare:esm
 

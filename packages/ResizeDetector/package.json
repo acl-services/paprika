@@ -18,7 +18,6 @@
     "transpile:types": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/helpers": "^2.4.3",
     "use-resize-observer": "^8.0.0"
   },

@@ -49,10 +49,10 @@ refLabel is a React ref for the `<FormElement.Label />`|
 
 ### FormElement.Error
 
-| Prop     | Type   | required | default                 | Description                  |
-| -------- | ------ | -------- | ----------------------- | ---------------------------- |
-| children | node   | false    | null                    | Content of the error message |
-| size     | custom | false    | Error.types.size.MEDIUM |                              |
+| Prop     | Type | required | default                 | Description                  |
+| -------- | ---- | -------- | ----------------------- | ---------------------------- |
+| children | node | false    | null                    | Content of the error message |
+| size     |      | false    | Error.types.size.MEDIUM |                              |
 
 ### FormElement.Instructions
 
@@ -71,6 +71,18 @@ refLabel is a React ref for the `<FormElement.Label />`|
 | isVisuallyHidden | bool                                                                                                        | false    | false                   | Should label be hidden                                      |
 | helpAlign        | [ Popover.types.align.TOP, Popover.types.align.RIGHT, Popover.types.align.BOTTOM, Popover.types.align.LEFT] | false    | Popover.types.align.TOP | change tooltip alignment                                    |
 | helpZIndex       | number                                                                                                      | false    | null                    | zIndex for help tooltip                                     |
+
+### Fieldset
+
+| Prop        | Type                                                                                         | required | default                       | Description                                                                            |
+| ----------- | -------------------------------------------------------------------------------------------- | -------- | ----------------------------- | -------------------------------------------------------------------------------------- |
+| children    | node                                                                                         | true     | -                             | FormElement sub components and layout elements.                                        |
+| hasFieldSet | bool                                                                                         | false    | false                         | FormElement contains multiple children so Renders a legend element instead of label.   |
+| id          | string                                                                                       | false    | ""                            | id attribute for the input field DOM element (will be auto-generated if not supplied). |
+| isDisabled  | bool                                                                                         | false    | false                         | Should be disabled or not, default is false.                                           |
+| isOptional  | bool                                                                                         | false    | false                         | If input is an optional field and should be indicated.                                 |
+| isRequired  | bool                                                                                         | false    | false                         | If input is a required field.                                                          |
+| size        | [ FormElement.types.size.SMALL, FormElement.types.size.MEDIUM, FormElement.types.size.LARGE] | false    | FormElement.types.size.MEDIUM | Size of the label, error, help and description (font size, min-height, padding, etc).  |
 
 ### FormElement.Layout
 

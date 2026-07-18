@@ -16,7 +16,7 @@ interface PanelProps {
   /** The height of the open Panel (when slide in from bottom) */
   height?: string | number;
   /** Control the size of the Panel */
-  size?: Panel.types.sizes.MEDIUM | Panel.types.sizes.LARGE;
+  size?: constants.size.MEDIUM | types.sizes.LARGE;
   /** Render the panel inline */
   isInline?: boolean;
   /** Control the visibility of the Panel. This prop makes the Panel appear. */
@@ -112,14 +112,6 @@ declare namespace Panel {
   }
 }
 
-declare namespace Panel {
-  namespace types {
-    namespace sizes {
-      const MEDIUM: any;
-      const LARGE: any;
-    }
-  }
-}
 declare namespace Panel {
   namespace types {
     namespace slideFroms {

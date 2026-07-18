@@ -1,9 +1,8 @@
 {
-  "include": ["./packages"],
-  "exclude": ["node_modules", "**/node_modules", "**/stories/**", "**/tests/**", "**/*.stories.*", "**/*.test.*"],
   "compilerOptions": {
     "allowJs": true,
-    "noEmit": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
     "strict": true,
     "target": "ESNext",
     "module": "ESNext",

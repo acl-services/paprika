@@ -22,7 +22,6 @@
     ]
   },
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/constants": "^1.0.2",
     "@paprika/helpers": "^2.4.3",
     "@paprika/stylers": "^1.1.13",

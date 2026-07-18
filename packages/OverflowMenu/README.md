@@ -34,15 +34,15 @@ npm install @paprika/overflow-menu
 
 ### OverflowMenu.Item
 
-| Prop               | Type | required | default  | Description                                                   |
-| ------------------ | ---- | -------- | -------- | ------------------------------------------------------------- |
-| children           | node | true     | -        | HTML for each item                                            |
-| isDestructive      | bool | false    | false    | If the item is destructive.                                   |
-| onClick            | func | false    | () => {} | Callback to be executed when button is clicked                |
-| onKeyDown          | func | false    | () => {} | Callback to be executed when key is pressed                   |
-| onClose            | func | false    | () => {} | Callback to be executed when overflow menu needs to be closed |
-| onShowConfirmation | func | false    | () => {} | Callback to be executed when delete item is clicked           |
-| renderConfirmation | func | false    | null     | Render prop to render the replacement node                    |
+| Prop               | Type   | required | default  | Description                                                   |
+| ------------------ | ------ | -------- | -------- | ------------------------------------------------------------- |
+| children           | node   | true     | -        | HTML for each item                                            |
+| isDestructive      | custom | false    | false    | If the item is destructive.                                   |
+| onClick            | custom | false    | () => {} | Callback to be executed when button is clicked                |
+| onKeyDown          | custom | false    | () => {} | Callback to be executed when key is pressed                   |
+| onClose            | custom | false    | () => {} | Callback to be executed when overflow menu needs to be closed |
+| onShowConfirmation | custom | false    | () => {} | Callback to be executed when delete item is clicked           |
+| renderConfirmation | custom | false    | null     | Render prop to render the replacement node                    |
 
 ### OverflowMenu.LinkItem
 
@@ -50,8 +50,8 @@ npm install @paprika/overflow-menu
 | ---------- | ------ | -------- | -------- | ------------------------------------------- |
 | children   | node   | true     | -        | HTML for each LinkItem                      |
 | link       | string | true     | -        | The url for the href                        |
-| onKeyDown  | func   | false    | () => {} | Callback to be executed when key is pressed |
-| isExternal | bool   | false    | false    | Should the link open content in a new tab   |
+| onKeyDown  | custom | false    | () => {} | Callback to be executed when key is pressed |
+| isExternal | custom | false    | false    | Should the link open content in a new tab   |
 
 ### OverflowMenu.Trigger
 

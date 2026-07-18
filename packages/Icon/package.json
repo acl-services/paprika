@@ -15,23 +15,16 @@
     "access": "public"
   },
   "scripts": {
-    "svgr": "svgr -d . ./src/svg --out-dir src/",
-    "build-declaration": "npx tsc src/*.js --declaration --allowJs --emitDeclarationOnly --outDir src",
-    "pretranspile": "yarn rimraf \"src/!(index).js\" && yarn rimraf src/*.d.ts && yarn svgr && yarn build-declaration"
-  },
-  "dependencies": {
-    "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/tokens": "^3.1.1",
-    "prop-types": "^15.7.2"
+    "svgr": "svgr --out-dir src ./src/svg",
+    "build:dts": "tsc -p tsconfig.build.json",
+    "pretranspile": "yarn rimraf \"src/!(index).js\" && yarn svgr && yarn build:dts"
   },
   "devDependencies": {
-    "@svgr/cli": "^4.1.0",
-    "rimraf": "3.0.2"
+    "@svgr/cli": "^8.1.0",
+    "rimraf": "^6.1.3"
   },
   "peerDependencies": {
-    "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
-    "react-dom": "^16.8.4 || ^17.0.2 || ^18.0.0",
-    "styled-components": "^4.2.0 || >=5.0.0 <6.0.0"
+    "react": "^16.8.4 || ^17.0.2 || ^18.0.0"
   },
   "gitHead": "494ce26cb0a6c24a8f6abf2b154d97ddd4d7e343",
   "sideEffects": false

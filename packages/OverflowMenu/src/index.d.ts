@@ -26,17 +26,17 @@ declare namespace OverflowMenu {
     /** HTML for each item */
     children: React.ReactNode;
     /** If the item is destructive. */
-    isDestructive?: boolean;
+    isDestructive?: custom;
     /** Callback to be executed when button is clicked */
-    onClick?: (...args: any[]) => any;
+    onClick?: custom;
     /** Callback to be executed when key is pressed */
-    onKeyDown?: (...args: any[]) => any;
+    onKeyDown?: custom;
     /** Callback to be executed when overflow menu needs to be closed */
-    onClose?: (...args: any[]) => any;
+    onClose?: custom;
     /** Callback to be executed when delete item is clicked */
-    onShowConfirmation?: (...args: any[]) => any;
+    onShowConfirmation?: custom;
     /** Render prop to render the replacement node */
-    renderConfirmation?: (...args: any[]) => any;
+    renderConfirmation?: custom;
   }
 }
 declare namespace OverflowMenu {
@@ -48,9 +48,9 @@ declare namespace OverflowMenu {
     /** The url for the href */
     link: string;
     /** Callback to be executed when key is pressed */
-    onKeyDown?: (...args: any[]) => any;
+    onKeyDown?: custom;
     /** Should the link open content in a new tab */
-    isExternal?: boolean;
+    isExternal?: custom;
   }
 }
 declare namespace OverflowMenu {

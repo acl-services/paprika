@@ -14,7 +14,7 @@ declare namespace DataField {
     /** The value to be localize */
     value: string | number;
     /** Text alignment for the number default is right */
-    align?: DataField.types.align.LEFT | DataField.types.align.RIGHT | DataField.types.align.CENTER;
+    align?: align.LEFT | align.RIGHT | align.CENTER;
     /** The window.Intl.numberFormat option object https://mzl.la/3iW0ioQ */
     intl?: object;
     /** When passing a currency string as 'EUR' or 'JPY' will display the correct currency symbol, is a short version instead of using the intl prop. */
@@ -23,15 +23,5 @@ declare namespace DataField {
     color?: string;
     /** Controls if the number should be display with full delimiter or only the decimal separators */
     hasOnlyRadixSeparator?: boolean;
-  }
-}
-
-declare namespace DataField {
-  namespace types {
-    namespace align {
-      const LEFT: any;
-      const RIGHT: any;
-      const CENTER: any;
-    }
   }
 }
