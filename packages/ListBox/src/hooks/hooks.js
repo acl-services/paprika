@@ -33,15 +33,8 @@ export function useChildrenChange(children) {
 
 export function useIsPopOverOpen(shouldKeepTriggerFocus) {
   const [state, dispatch] = useListBox();
-  const {
-    hasFilter,
-    hasPopupOpened,
-    isOpen,
-    refFilterInput,
-    refListBoxContainer,
-    refTrigger,
-    refTriggerContainer,
-  } = state;
+  const { hasFilter, hasPopupOpened, isOpen, refFilterInput, refListBoxContainer, refTrigger, refTriggerContainer } =
+    state;
   const { isInline } = React.useContext(PropsContext);
 
   React.useLayoutEffect(() => {

@@ -8,18 +8,8 @@ import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
 import * as sc from "./Option.styles";
 
 const Option = props => {
-  const {
-    index,
-    groupId,
-    label,
-    id,
-    internalHandleOnClick,
-    isSelected,
-    hasNoIcon,
-    isMulti,
-    hasTag,
-    ...moreProps
-  } = props;
+  const { index, groupId, label, id, internalHandleOnClick, isSelected, hasNoIcon, isMulti, hasTag, ...moreProps } =
+    props;
   const providedProps = React.useContext(PropsContext);
   const { isReadOnly, size } = providedProps;
   const isDisabled = providedProps.isDisabled || props.isDisabled || isReadOnly;

@@ -118,16 +118,17 @@ export function App() {
   const headerStyle = React.useCallback(() => ({ style: { display: "flex", justifyContent: "center" } }), []);
 
   const cellA11yText = React.useCallback(
-    key => ({ row }) => {
-      if (row[key][0] === row[key][1]) {
-        return `All tasks has been checked`;
-      }
-      if (row[key][0] === 0) {
-        return `idle: ${row[key][0]} of ${row[key][1]} tasks`;
-      }
+    key =>
+      ({ row }) => {
+        if (row[key][0] === row[key][1]) {
+          return `All tasks has been checked`;
+        }
+        if (row[key][0] === 0) {
+          return `idle: ${row[key][0]} of ${row[key][1]} tasks`;
+        }
 
-      return `in progress: ${row[key][0]} of ${row[key][1]} tasks`;
-    },
+        return `in progress: ${row[key][0]} of ${row[key][1]} tasks`;
+      },
     []
   );
 

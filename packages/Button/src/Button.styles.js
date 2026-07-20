@@ -39,13 +39,13 @@ const disabledBorderColors = {
 
 const borderStyles = ({ kind, isDisabled, isActive }) => css`
   ${!isDisabled &&
-    !isActive &&
-    css`
-      border-color: ${borderColors[kind]};
-      &:hover {
-        border-color: ${borderHoverColors[kind]};
-      }
-    `}
+  !isActive &&
+  css`
+    border-color: ${borderColors[kind]};
+    &:hover {
+      border-color: ${borderHoverColors[kind]};
+    }
+  `}
 `;
 
 // States
@@ -94,7 +94,8 @@ const disabledStyles = ({ kind }) => css`
 const disabledTextStyles = css`
   ${disabledStyles}
 
-  &, &:hover {
+  &,
+  &:hover {
     background: none;
   }
 `;
@@ -284,12 +285,12 @@ export const fullWidthStyles = css`
 
 export const Button = styled.span(
   ({ kind, size, isFullWidth, isActive, isDisabled }) => css`
-  ${commonStyles}
-  ${sizeStyles[size]}
-  ${kindStyles[kind]}
-  ${isFullWidth && fullWidthStyles}
-  ${isActive && !isDisabled && activeStyles}
-`
+    ${commonStyles}
+    ${sizeStyles[size]}
+    ${kindStyles[kind]}
+    ${isFullWidth && fullWidthStyles}
+    ${isActive && !isDisabled && activeStyles}
+  `
 );
 
 //
@@ -328,13 +329,13 @@ export const ButtonIcon = styled.span(
     }
 
     ${isPending &&
-      css`
-        animation: ${spinKeyframes} 2s infinite linear;
-      `}
+    css`
+      animation: ${spinKeyframes} 2s infinite linear;
+    `}
 
     ${isSuffixIcon &&
-      css`
-        margin: 0 0 0 ${tokens.spaceSm};
-      `}
+    css`
+      margin: 0 0 0 ${tokens.spaceSm};
+    `}
   `
 );

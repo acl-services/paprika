@@ -94,7 +94,9 @@ const calendarStyles = css`
 
     &:active {
       > span {
-        box-shadow: ${tokens.highlight.active.noBorder.boxShadow}, inset 0 1px 1px 0 rgba(0, 0, 0, 0.1),
+        box-shadow:
+          ${tokens.highlight.active.noBorder.boxShadow},
+          inset 0 1px 1px 0 rgba(0, 0, 0, 0.1),
           inset 0 1px ${tokens.spaceSm} 0 rgba(0, 0, 0, 0.3);
         transform: scale(0.98);
       }

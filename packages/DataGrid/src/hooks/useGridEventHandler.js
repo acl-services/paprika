@@ -319,24 +319,25 @@ export default function useGridEventHandler({
 
   // This in charge of highlight the cell but will not scroll the table in case there is overflow
   const handleKeyDown = React.useCallback(
-    ({ data, ColumnDefinitions }) => event => {
-      onKeyDown(event);
-      if (event.key in keyboardDownKeys) {
-        document.body.style.pointerEvents = "none";
-        event.preventDefault();
-        if (!cell || !cell.current) {
-          return;
-        }
+    ({ data, ColumnDefinitions }) =>
+      event => {
+        onKeyDown(event);
+        if (event.key in keyboardDownKeys) {
+          document.body.style.pointerEvents = "none";
+          event.preventDefault();
+          if (!cell || !cell.current) {
+            return;
+          }
 
-        keyboardDownKeys[event.key]({
-          ColumnDefinitions,
-          columnIndex: cell.current.columnIndex,
-          data,
-          event,
-          rowIndex: cell.current.rowIndex,
-        });
-      }
-    },
+          keyboardDownKeys[event.key]({
+            ColumnDefinitions,
+            columnIndex: cell.current.columnIndex,
+            data,
+            event,
+            rowIndex: cell.current.rowIndex,
+          });
+        }
+      },
     [keyboardDownKeys, onKeyDown]
   );
 
@@ -373,67 +374,69 @@ export default function useGridEventHandler({
   };
 
   const handleKeyUp = React.useCallback(
-    ({ data, ColumnDefinitions }) => event => {
-      if (event.key in keyboardUpKeys) {
-        event.preventDefault();
-        if (!cell || !cell.current) {
-          return;
-        }
+    ({ data, ColumnDefinitions }) =>
+      event => {
+        if (event.key in keyboardUpKeys) {
+          event.preventDefault();
+          if (!cell || !cell.current) {
+            return;
+          }
 
-        if (event.shiftKey && event.key === " ") {
-          keyboardUpKeys["space+shift"]({
+          if (event.shiftKey && event.key === " ") {
+            keyboardUpKeys["space+shift"]({
+              ColumnDefinitions,
+              columnIndex: cell.current.columnIndex,
+              data,
+              event,
+              rowIndex: cell.current.rowIndex,
+            });
+            return;
+          }
+
+          keyboardUpKeys[event.key]({
             ColumnDefinitions,
             columnIndex: cell.current.columnIndex,
             data,
             event,
             rowIndex: cell.current.rowIndex,
           });
-          return;
         }
-
-        keyboardUpKeys[event.key]({
-          ColumnDefinitions,
-          columnIndex: cell.current.columnIndex,
-          data,
-          event,
-          rowIndex: cell.current.rowIndex,
-        });
-      }
-    },
+      },
     [keyboardUpKeys]
   );
 
   const handleClick = React.useCallback(
-    ({ data, ColumnDefinitions }) => event => {
-      const dataCell = getDataCell(event);
+    ({ data, ColumnDefinitions }) =>
+      event => {
+        const dataCell = getDataCell(event);
 
-      const headerCell = event.target.closest("[data-pka-anchor='data-grid.header']");
-      if (headerCell && headerCell.contains(event.target)) {
-        // header doesn't requires to handle the click event
-        return;
-      }
+        const headerCell = event.target.closest("[data-pka-anchor='data-grid.header']");
+        if (headerCell && headerCell.contains(event.target)) {
+          // header doesn't requires to handle the click event
+          return;
+        }
 
-      if (!dataCell) {
-        console.warn("dataCell value not found on getDataCell(event)", event);
-        return;
-      }
+        if (!dataCell) {
+          console.warn("dataCell value not found on getDataCell(event)", event);
+          return;
+        }
 
-      const [, columnIndex, rowIndex] = dataCell.split(".");
+        const [, columnIndex, rowIndex] = dataCell.split(".");
 
-      cell.current = toCellState(columnIndex, rowIndex);
-      setHighlight({ columnIndex, rowIndex });
+        cell.current = toCellState(columnIndex, rowIndex);
+        setHighlight({ columnIndex, rowIndex });
 
-      const $cell = event.target.hasAttribute("data-pka-cell-key") ? event.target : event.target.parentElement;
-      focus($cell);
+        const $cell = event.target.hasAttribute("data-pka-cell-key") ? event.target : event.target.parentElement;
+        focus($cell);
 
-      const column = ColumnDefinitions[columnIndex].props;
-      const options = { row: data[rowIndex], column, rowIndex: toInt(rowIndex), columnIndex, event };
-      if (column.onClick !== null) {
-        column.onClick(options);
-      } else {
-        onClick(options);
-      }
-    },
+        const column = ColumnDefinitions[columnIndex].props;
+        const options = { row: data[rowIndex], column, rowIndex: toInt(rowIndex), columnIndex, event };
+        if (column.onClick !== null) {
+          column.onClick(options);
+        } else {
+          onClick(options);
+        }
+      },
     [onClick, setHighlight, toCellState]
   );
 

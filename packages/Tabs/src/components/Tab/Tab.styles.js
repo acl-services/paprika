@@ -26,9 +26,9 @@ const activeStyles = ({ isVertical, kind }) => css`
   }
 
   ${isVertical &&
-    css`
-      background-color: ${tokens.color.blackLighten70};
-    `}
+  css`
+    background-color: ${tokens.color.blackLighten70};
+  `}
 `;
 
 const disabledStyles = ({ hasInsetFocusStyle }) => css`
@@ -87,12 +87,15 @@ const baseStyles = ({ isDisabled, isSelected, isVertical, size }) => css`
   color: ${tokens.color.black};
   margin: 0;
   position: relative;
-  transition: border-color 0.3s ease, background-color 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease;
   ${fontSize[size]}
   ${stylers.lineHeight(-2)}
   ${isVertical ? verticalStyles : horizontalStyles}
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     border-color: ${tokens.border.color};
   }
 

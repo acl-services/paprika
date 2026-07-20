@@ -39,9 +39,9 @@ const minorStyles = ({ isDisabled, isActive }) => css`
       `
     : css`
         ${isActive &&
-          css`
-            background-color: ${tokens.color.blackLighten60};
-          `}
+        css`
+          background-color: ${tokens.color.blackLighten60};
+        `}
         &:hover {
           background-color: ${stylers.alpha(tokens.color.black, 0.1)};
         }

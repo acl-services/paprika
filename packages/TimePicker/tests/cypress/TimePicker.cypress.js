@@ -32,89 +32,44 @@ describe("TimePicker", () => {
   });
   it("Should update highlighted time selection by typing", () => {
     cy.findByTestId("timePicker-Input").type("3:15pm");
-    cy.findAllByRole("button")
-      .contains("3")
-      .should("have.css", "background-color")
-      .should("eq", "rgb(204, 229, 253)");
-    cy.findAllByRole("button")
-      .contains("15")
-      .should("have.css", "background-color")
-      .should("eq", "rgb(204, 229, 253)");
-    cy.findAllByRole("button")
-      .contains("pm")
-      .should("have.css", "background-color")
-      .should("eq", "rgb(204, 229, 253)");
+    cy.findAllByRole("button").contains("3").should("have.css", "background-color").should("eq", "rgb(204, 229, 253)");
+    cy.findAllByRole("button").contains("15").should("have.css", "background-color").should("eq", "rgb(204, 229, 253)");
+    cy.findAllByRole("button").contains("pm").should("have.css", "background-color").should("eq", "rgb(204, 229, 253)");
 
     cy.findByTestId("timePicker-Input").clear();
     cy.findByTestId("timePicker-Input").type("11:52am");
-    cy.findAllByRole("button")
-      .contains("11")
-      .should("have.css", "background-color")
-      .should("eq", "rgb(204, 229, 253)");
+    cy.findAllByRole("button").contains("11").should("have.css", "background-color").should("eq", "rgb(204, 229, 253)");
     cy.findAllByRole("button")
       .contains("Custom")
       .should("have.css", "background-color")
       .should("eq", "rgb(204, 229, 253)");
-    cy.findAllByRole("button")
-      .contains("am")
-      .should("have.css", "background-color")
-      .should("eq", "rgb(204, 229, 253)");
+    cy.findAllByRole("button").contains("am").should("have.css", "background-color").should("eq", "rgb(204, 229, 253)");
   });
   it("Should update highlighted time selection by selecting", () => {
     cy.findByTestId("timePicker-Input").click();
-    cy.findAllByRole("button")
-      .contains("3")
-      .click();
+    cy.findAllByRole("button").contains("3").click();
 
-    cy.findAllByRole("button")
-      .contains("15")
-      .click();
+    cy.findAllByRole("button").contains("15").click();
 
-    cy.findAllByRole("button")
-      .contains("pm")
-      .click();
+    cy.findAllByRole("button").contains("pm").click();
 
     cy.findByTestId("timePicker-Input").should("have.value", "3:15pm");
-    cy.findAllByRole("button")
-      .contains("3")
-      .should("have.css", "background-color")
-      .should("eq", "rgb(204, 229, 253)");
-    cy.findAllByRole("button")
-      .contains("15")
-      .should("have.css", "background-color")
-      .should("eq", "rgb(204, 229, 253)");
-    cy.findAllByRole("button")
-      .contains("pm")
-      .should("have.css", "background-color")
-      .should("eq", "rgb(204, 229, 253)");
+    cy.findAllByRole("button").contains("3").should("have.css", "background-color").should("eq", "rgb(204, 229, 253)");
+    cy.findAllByRole("button").contains("15").should("have.css", "background-color").should("eq", "rgb(204, 229, 253)");
+    cy.findAllByRole("button").contains("pm").should("have.css", "background-color").should("eq", "rgb(204, 229, 253)");
 
     cy.findByTestId("timePicker-Input").clear();
     cy.findByTestId("timePicker-Input").click();
-    cy.findAllByRole("button")
-      .contains("11")
-      .click();
+    cy.findAllByRole("button").contains("11").click();
 
-    cy.findAllByRole("button")
-      .contains("30")
-      .click();
+    cy.findAllByRole("button").contains("30").click();
 
-    cy.findAllByRole("button")
-      .contains("am")
-      .click();
+    cy.findAllByRole("button").contains("am").click();
 
     cy.findByTestId("timePicker-Input").should("have.value", "11:30am");
-    cy.findAllByRole("button")
-      .contains("11")
-      .should("have.css", "background-color")
-      .should("eq", "rgb(204, 229, 253)");
-    cy.findAllByRole("button")
-      .contains("30")
-      .should("have.css", "background-color")
-      .should("eq", "rgb(204, 229, 253)");
-    cy.findAllByRole("button")
-      .contains("am")
-      .should("have.css", "background-color")
-      .should("eq", "rgb(204, 229, 253)");
+    cy.findAllByRole("button").contains("11").should("have.css", "background-color").should("eq", "rgb(204, 229, 253)");
+    cy.findAllByRole("button").contains("30").should("have.css", "background-color").should("eq", "rgb(204, 229, 253)");
+    cy.findAllByRole("button").contains("am").should("have.css", "background-color").should("eq", "rgb(204, 229, 253)");
   });
   it("Should not open popover with isReadOnly", () => {
     cy.visitStorybook(`${getStoryUrlPrefix("TimePicker")}--read-only`);

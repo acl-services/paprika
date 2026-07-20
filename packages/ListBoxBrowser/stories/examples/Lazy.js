@@ -20,8 +20,8 @@ const defaultData = [
 ];
 
 const fakeDB = {
-  "0": [{ label: "Deadpool" }, { label: "Wolverine" }, { label: "The Hulk" }],
-  "1": [{ label: "Batman" }, { label: "Wonderwoman" }, { label: "Superman" }],
+  0: [{ label: "Deadpool" }, { label: "Wolverine" }, { label: "The Hulk" }],
+  1: [{ label: "Batman" }, { label: "Wonderwoman" }, { label: "Superman" }],
 };
 
 function fakeFetch({ ms = 1000, key }) {

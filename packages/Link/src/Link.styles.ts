@@ -87,7 +87,7 @@ export const Link = styled.a<{
         outline: none;
         ${!isMenu && `border-radius: ${tokens.border.radius};`}
         ${isMenu ? stylers.focusRing(true) : stylers.focusRing()}
-               &:not(:focus-visible) {
+        &:not(:focus-visible) {
           box-shadow: none;
         }
       }

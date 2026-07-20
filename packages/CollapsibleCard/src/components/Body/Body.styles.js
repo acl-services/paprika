@@ -8,8 +8,8 @@ export const Body = styled.div(
       padding: ${spacer(2)} ${spacer(2)} ${spacer(3)};
 
       ${isCollapsed &&
-        css`
-          display: none;
-        `}
+      css`
+        display: none;
+      `}
     `
 );

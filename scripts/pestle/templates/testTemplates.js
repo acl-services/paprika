@@ -38,4 +38,4 @@ describe("TEST_SUITE", () => {
 module.exports = {
   renderSpecTemplate,
   renderCypressTemplate,
-}
+};

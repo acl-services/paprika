@@ -9,9 +9,7 @@ import Nav from "./examples/Nav";
 
 const storyName = getStoryName("ProgressAccordion");
 
-storiesOf(storyName, module)
-  .addDecorator(withKnobs)
-  .add("Showcase", ShowcaseStory);
+storiesOf(storyName, module).addDecorator(withKnobs).add("Showcase", ShowcaseStory);
 
 storiesOf(`${storyName}/Examples`, module)
   .add("Responses", () => <Responses />)

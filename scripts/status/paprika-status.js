@@ -17,8 +17,9 @@ function getTestStatistics(subDir) {
     const jestSummary = [];
     const output = child_process
       .execSync(
-        `yarn jest --passWithNoTests --testPathPattern=${PACKAGES_PATH +
-          subDir} --coverage --coverageReporters="json-summary" --detectOpenHandles --silent --forceExit`
+        `yarn jest --passWithNoTests --testPathPattern=${
+          PACKAGES_PATH + subDir
+        } --coverage --coverageReporters="json-summary" --detectOpenHandles --silent --forceExit`
       )
       .toString();
     if (output.toUpperCase().includes("NO TESTS FOUND")) return;

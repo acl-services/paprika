@@ -15,11 +15,11 @@ export const DropZone = styled.div(
     padding: ${tokens.space};
     text-align: center;
     ${isDraggingOver &&
-      css`
-        background-color: ${tokens.color.blackLighten80};
-        border: 2px solid ${tokens.color.purpleDarken10};
-        color: ${tokens.color.purpleDarken10};
-      `}
+    css`
+      background-color: ${tokens.color.blackLighten80};
+      border: 2px solid ${tokens.color.purpleDarken10};
+      color: ${tokens.color.purpleDarken10};
+    `}
   `
 );
 

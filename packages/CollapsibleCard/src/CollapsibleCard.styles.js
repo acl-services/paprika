@@ -49,9 +49,9 @@ export const CollapsibleCard = styled.div(
     box-shadow: ${getBoxShadow(isEditing, position)};
 
     ${isEditing &&
-      css`
-        position: relative;
-        z-index: 1;
-      `}
+    css`
+      position: relative;
+      z-index: 1;
+    `}
   `
 );

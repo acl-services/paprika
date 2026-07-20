@@ -140,8 +140,9 @@ function SingleDateCalendar(props) {
     return <span css={dayTriggerStyles}>{day.format("D")}</span>;
   }
 
-  const CalendarKey = `${currentMonth && currentMonth.format("YYYY-MM")}/${possibleDate &&
-    possibleDate.format("YYYY-MM")}/${date && date.format("YYYY-MM")}`;
+  const CalendarKey = `${currentMonth && currentMonth.format("YYYY-MM")}/${
+    possibleDate && possibleDate.format("YYYY-MM")
+  }/${date && date.format("YYYY-MM")}`;
 
   return (
     <div css={calendarWrapperStyles} tabIndex={-1} ref={calendarRef}>

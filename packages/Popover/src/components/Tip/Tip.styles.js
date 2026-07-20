@@ -10,7 +10,9 @@ export const TipStyled = styled.div`
   pointer-events: none;
   position: fixed;
   transform: rotate(${props => props.rotate || "0"}deg);
-  transition: opacity ${consts.transition} ease, visibility ${consts.transition} ease;
+  transition:
+    opacity ${consts.transition} ease,
+    visibility ${consts.transition} ease;
   visibility: ${props => (props.isOpen ? "visible" : "hidden")};
   width: ${stylers.spacer(2)};
   z-index: ${props => props.zIndex};

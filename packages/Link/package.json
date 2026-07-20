@@ -2,14 +2,14 @@
   "name": "@paprika/link",
   "version": "1.0.14",
   "description": "The Link component produces a standard anchor tag that navigates to another URL.",
-  "author": "@paprika",
   "license": "MIT",
-  "main": "lib/index.js",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/Link"
   },
+  "main": "lib/index.js",
   "publishConfig": {
     "access": "public"
   },
@@ -18,10 +18,10 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/icon": "^3.0.3",
     "@paprika/stylers": "^1.1.13",
     "@paprika/tokens": "^3.1.1",
-    "prop-types": "^15.7.2",
-    "@paprika/icon": "^3.0.3"
+    "prop-types": "^15.7.2"
   },
   "peerDependencies": {
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",

@@ -347,43 +347,44 @@ To do this you can make use of `setOptimisticValue` which will give you access t
 Let's to put everything together and you can see the output in the incoming example.
 
 ```jsx
-({ setData }) => props => {
-  const { setStatus, setOptimisticValue, statusType } = useTable({
-    rowIndex: props.rowIndex,
-    columnIndex: props.columnIndex,
-  });
+({ setData }) =>
+  props => {
+    const { setStatus, setOptimisticValue, statusType } = useTable({
+      rowIndex: props.rowIndex,
+      columnIndex: props.columnIndex,
+    });
 
-  const subscriptionTypes = ["Professional", "Oversight", "Contributor", "Results Lite Contributor", "None"];
+    const subscriptionTypes = ["Professional", "Oversight", "Contributor", "Results Lite Contributor", "None"];
 
-  return (
-    <ListBox
-      {...props}
-      value={props.row.subscription}
-      onChange={value => {
-        console.log("onChange", value);
-      }}
-      onSubmit={(index, options, _, { rowIndex }) => {
-        const nextValue = options[index].value;
-        if (nextValue !== props.row.subscription) {
-          setOptimisticValue(nextValue);
-          setStatus(statusType.LOADING);
-          setData(prevData => {
-            const nextData = prevData.slice(0);
-            nextData[rowIndex].subscription = nextValue;
-            setStatus(statusType.SUCCEED);
-            return nextData;
-          });
-        }
-      }}
-    >
-      {subscriptionTypes.map(subscription => (
-        <ListBox.Option value={subscription} isSelected={subscription === props.row.subscription} key={subscription}>
-          {subscription}
-        </ListBox.Option>
-      ))}
-    </ListBox>
-  );
-};
+    return (
+      <ListBox
+        {...props}
+        value={props.row.subscription}
+        onChange={value => {
+          console.log("onChange", value);
+        }}
+        onSubmit={(index, options, _, { rowIndex }) => {
+          const nextValue = options[index].value;
+          if (nextValue !== props.row.subscription) {
+            setOptimisticValue(nextValue);
+            setStatus(statusType.LOADING);
+            setData(prevData => {
+              const nextData = prevData.slice(0);
+              nextData[rowIndex].subscription = nextValue;
+              setStatus(statusType.SUCCEED);
+              return nextData;
+            });
+          }
+        }}
+      >
+        {subscriptionTypes.map(subscription => (
+          <ListBox.Option value={subscription} isSelected={subscription === props.row.subscription} key={subscription}>
+            {subscription}
+          </ListBox.Option>
+        ))}
+      </ListBox>
+    );
+  };
 ```
 
 <TableStory />

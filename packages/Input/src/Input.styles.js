@@ -46,7 +46,9 @@ const getInputCss = ({ hasError, hasIcon, isDisabled, isReadOnly, shouldShowClea
   display: block;
   margin: 0;
   padding: 0 ${tokens.space};
-  transition: box-shadow 0.2s, color 0.2s;
+  transition:
+    box-shadow 0.2s,
+    color 0.2s;
   width: 100%;
   ${stylers.placeholders}
   ${sizeStyles[size]}
@@ -114,7 +116,7 @@ export const Icon = styled.span(
   ({ size }) => css`
     ${iconStyles}
     ${iconSizeStyles[size]}
-    
+
     svg {
       vertical-align: middle;
     }

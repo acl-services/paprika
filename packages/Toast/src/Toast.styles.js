@@ -102,8 +102,8 @@ export const Toast = styled.div(
     word-break: break-word;
     z-index: ${zIndex};
 
-    ${stylers.fontSize()} 
-    ${stylers.lineHeight()} 
+    ${stylers.fontSize()}
+    ${stylers.lineHeight()}
     ${isFixed ? fixedStyles : null}
     ${!shouldRender || kind === types.toastKinds.VISUALLY_HIDDEN ? visuallyHidden : null};
   `

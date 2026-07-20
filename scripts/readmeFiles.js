@@ -72,8 +72,8 @@ const createPropsTable = ({ info }) => {
           v[typeKey].name !== "enum"
             ? v[typeKey].name
             : Array.isArray(v[typeKey].value)
-            ? `[${v[typeKey].value.map(i => ` ${i.value}`)}]`
-            : v[typeKey].value;
+              ? `[${v[typeKey].value.map(i => ` ${i.value}`)}]`
+              : v[typeKey].value;
       }
     }
 
@@ -135,9 +135,11 @@ shell.ls("packages").forEach(folder => {
 
     try {
       // data from package.json
-      const { paprikaDocs = null, name, description = "required description" } = JSON.parse(
-        fs.readFileSync(`${folderPath}/package.json`, "utf8")
-      );
+      const {
+        paprikaDocs = null,
+        name,
+        description = "required description",
+      } = JSON.parse(fs.readFileSync(`${folderPath}/package.json`, "utf8"));
 
       const readmeContent = fs.readFileSync(`${folderPath}/README.md`, "utf8");
       const filePath = getFilePath(`${folderPath}/src`, folder);
@@ -177,4 +179,4 @@ shell.ls("packages").forEach(folder => {
   }
 });
 
-shell.exec('prettier "**/*.+(md)" --write --loglevel silent');
+shell.exec('oxfmt "**/*.md" --write');

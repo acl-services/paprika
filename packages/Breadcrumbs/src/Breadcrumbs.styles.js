@@ -19,16 +19,16 @@ export const List = styled.ol(
     padding: 0;
 
     ${isCollapsed &&
-      css`
-        li[data-pka-anchor="breadcrumbs.list-item"] {
-          display: none;
+    css`
+      li[data-pka-anchor="breadcrumbs.list-item"] {
+        display: none;
 
-          &:first-child,
-          &:nth-last-child(1),
-          &:nth-last-child(2) {
-            display: inline;
-          }
+        &:first-child,
+        &:nth-last-child(1),
+        &:nth-last-child(2) {
+          display: inline;
         }
-      `}
+      }
+    `}
   `
 );

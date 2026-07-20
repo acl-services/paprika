@@ -174,10 +174,7 @@ storiesOf(`${storyName}/Examples`, module)
           console.log("Selected files:", files);
         }}
         onRequest={({ file, onProgress, onEnd, formData }) => {
-          file.request
-            .send(formData)
-            .on("progress", onProgress)
-            .end(onEnd);
+          file.request.send(formData).on("progress", onProgress).end(onEnd);
 
           /**
            * With this approach you could use you own process to upload

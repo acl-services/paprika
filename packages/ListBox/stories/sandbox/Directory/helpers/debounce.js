@@ -1,11 +1,11 @@
 /* eslint-disable */
 // from lodash
-const debounce = function(func, wait, immediate) {
+const debounce = function (func, wait, immediate) {
   var timeout;
-  return function() {
+  return function () {
     var context = this,
       args = arguments;
-    var later = function() {
+    var later = function () {
       timeout = null;
       if (!immediate) func.apply(context, args);
     };

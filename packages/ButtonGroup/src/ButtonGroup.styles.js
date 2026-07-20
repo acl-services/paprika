@@ -35,11 +35,11 @@ export const ButtonGroup = styled.div(
       }
 
       ${hasSingleChild &&
-        css`
-          &:last-child {
-            border-radius: ${tokens.button.borderRadius};
-          }
-        `}
+      css`
+        &:last-child {
+          border-radius: ${tokens.button.borderRadius};
+        }
+      `}
     }
   `
 );

@@ -33,20 +33,14 @@ describe("Uploader", () => {
     cy.findByText("Idle").should("be.visible");
 
     cy.findByText("Uploading 4.4MiB of 11.8MiB").should("be.visible");
-    cy.findAllByTestId("uploader-file-progressBar")
-      .eq(1)
-      .should("have.css", "background-color", "rgb(120, 92, 186)");
+    cy.findAllByTestId("uploader-file-progressBar").eq(1).should("have.css", "background-color", "rgb(120, 92, 186)");
 
     cy.findByText("Complete").should("be.visible");
-    cy.findAllByTestId("uploader-file-progressBar")
-      .eq(2)
-      .should("have.css", "background-color", "rgb(66, 153, 109)");
+    cy.findAllByTestId("uploader-file-progressBar").eq(2).should("have.css", "background-color", "rgb(66, 153, 109)");
 
     cy.findByText("Cancelled").should("be.visible");
 
     cy.findByText("Something went wrong").should("be.visible");
-    cy.findAllByTestId("uploader-file-progressBar")
-      .eq(4)
-      .should("have.css", "background-color", "rgb(222, 77, 51)");
+    cy.findAllByTestId("uploader-file-progressBar").eq(4).should("have.css", "background-color", "rgb(222, 77, 51)");
   });
 });

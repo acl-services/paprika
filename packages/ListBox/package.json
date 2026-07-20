@@ -1,14 +1,25 @@
 {
   "name": "@paprika/list-box",
   "version": "7.0.5",
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
   "description": "The ListBox component allows users to select one or more options from a list contained within the component",
+  "license": "MIT",
+  "author": "@paprika",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/ListBox"
+  },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/button": "^1.1.21",
-    "@paprika/constants": "^1.0.2",
     "@paprika/checkbox": "^1.0.30",
+    "@paprika/constants": "^1.0.2",
     "@paprika/helpers": "^2.4.3",
     "@paprika/icon": "^3.0.3",
     "@paprika/input": "^7.0.4",
@@ -20,6 +31,16 @@
     "lodash.isequal": "^4.5.0",
     "prop-types": "15.7.2",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "react-json-tree": "^0.11.2",
+    "unique-names-generator": "^4.6.0"
+  },
+  "peerDependencies": {
+    "@paprika/l10n": "^2.1.2",
+    "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
+    "react-dom": "^16.8.4 || ^17.0.2 || ^18.0.0",
+    "styled-components": "^4.2.0 || >=5.0.0 <6.0.0"
   },
   "paprikaDocs": {
     "subComponents": [
@@ -33,26 +54,5 @@
       "RawItem",
       "Trigger"
     ]
-  },
-  "devDependencies": {
-    "react-json-tree": "^0.11.2",
-    "unique-names-generator": "^4.6.0"
-  },
-  "peerDependencies": {
-    "@paprika/l10n": "^2.1.2",
-    "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
-    "react-dom": "^16.8.4 || ^17.0.2 || ^18.0.0",
-    "styled-components": "^4.2.0 || >=5.0.0 <6.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/acl-services/paprika.git",
-    "directory": "packages/ListBox"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "author": "@paprika",
-  "license": "MIT",
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
+  }
 }

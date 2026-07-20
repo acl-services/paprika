@@ -31,10 +31,7 @@ function getBrowser() {
 }
 
 function navigateBrowser(label) {
-  return getBrowser()
-    .get("li")
-    .contains(label)
-    .click();
+  return getBrowser().get("li").contains(label).click();
 }
 
 describe("ListBoxBrowser basic", () => {
@@ -43,13 +40,9 @@ describe("ListBoxBrowser basic", () => {
   });
 
   it("should have correct number of options", () => {
-    getRoot()
-      .children()
-      .should("have.length", 4);
+    getRoot().children().should("have.length", 4);
 
-    getBrowser()
-      .children()
-      .should("have.length", 7);
+    getBrowser().children().should("have.length", 7);
   });
 
   it("should navigate to risk control matrix", () => {
@@ -80,9 +73,7 @@ describe("ListBoxBrowser basic", () => {
         expect(includesAllOptions(browser, expectedOptions)).equals(true);
         cy.log("expected clicking back button works");
         backButtonClick().then(() => {
-          getBrowser()
-            .children()
-            .should("have.length", 7);
+          getBrowser().children().should("have.length", 7);
         });
       });
     });

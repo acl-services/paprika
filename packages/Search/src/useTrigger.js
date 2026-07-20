@@ -7,9 +7,11 @@ export default function useTrigger() {
   const [value, setValue] = React.useState("");
   const [nextKey, setNextKey] = React.useState(0);
 
-  const handleBlur = ({ dispatch, types }) => () => {
-    dispatch({ type: types.closePopover });
-  };
+  const handleBlur =
+    ({ dispatch, types }) =>
+    () => {
+      dispatch({ type: types.closePopover });
+    };
 
   const handleKeyDownTrigger = () => () => {
     refInput.current.focus();
@@ -20,29 +22,31 @@ export default function useTrigger() {
     setNextKey(prev => prev + 1);
   }
 
-  const handleChangeInput = ({ dispatch, types, onChangeContext, onChangeSearch }) => event => {
-    setValue(event.target.value);
-    dispatch({ type: types.setActiveOption, payload: { activeOptionIndex: 0 } });
+  const handleChangeInput =
+    ({ dispatch, types, onChangeContext, onChangeSearch }) =>
+    event => {
+      setValue(event.target.value);
+      dispatch({ type: types.setActiveOption, payload: { activeOptionIndex: 0 } });
 
-    event.persist();
-    window.requestAnimationFrame(() => {
-      dispatch({
-        type: types.selectSingleOption,
-        payload: {
-          isOpen: true,
-          activeOptionIndex: 0,
-          onChangeFn: invokeOnChange(onChangeContext, "list-box:option-selected"),
-        },
+      event.persist();
+      window.requestAnimationFrame(() => {
+        dispatch({
+          type: types.selectSingleOption,
+          payload: {
+            isOpen: true,
+            activeOptionIndex: 0,
+            onChangeFn: invokeOnChange(onChangeContext, "list-box:option-selected"),
+          },
+        });
+
+        dispatch({ type: types.openPopover });
+        if (event.target.value === "") {
+          dispatch({ type: types.closePopover });
+        }
+
+        onChangeSearch(event.target.value);
       });
-
-      dispatch({ type: types.openPopover });
-      if (event.target.value === "") {
-        dispatch({ type: types.closePopover });
-      }
-
-      onChangeSearch(event.target.value);
-    });
-  };
+    };
 
   return {
     inputValue: value,

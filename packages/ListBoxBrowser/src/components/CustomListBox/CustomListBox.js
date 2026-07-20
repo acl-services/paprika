@@ -40,9 +40,8 @@ const defaultProps = {
 
 export default function CustomListBox(props) {
   const i18n = useI18n();
-  const { browserKey, height, isMulti, isParentSelectable, rootKey, selectedOptions } = React.useContext(
-    ListBoxBrowserContext
-  );
+  const { browserKey, height, isMulti, isParentSelectable, rootKey, selectedOptions } =
+    React.useContext(ListBoxBrowserContext);
 
   const { id, onChange, options, onClickNavigate, onUp, hasOnUp, isLoading } = props;
   const isRootListBox = id === "root";

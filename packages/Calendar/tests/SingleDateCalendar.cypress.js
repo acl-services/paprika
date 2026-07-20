@@ -3,9 +3,7 @@ import { getStoryUrlPrefix } from "../../../.storybook/storyTree";
 
 describe("<SingleDateCalendar />", () => {
   const today = moment();
-  const targetDate = moment(today)
-    .add(1, "month")
-    .date(1);
+  const targetDate = moment(today).add(1, "month").date(1);
 
   beforeEach(() => {
     cy.visitStorybook(`${getStoryUrlPrefix("Calendar")}-backyard-tests-cypress--singledatecalendar-test`);
@@ -23,9 +21,7 @@ describe("<SingleDateCalendar />", () => {
   };
 
   const openShortcut = () => {
-    cy.findAllByTestId("calendar.header")
-      .contains(today.format("MMMM YYYY"))
-      .click();
+    cy.findAllByTestId("calendar.header").contains(today.format("MMMM YYYY")).click();
   };
 
   it("should be able to select date", () => {
@@ -39,8 +35,6 @@ describe("<SingleDateCalendar />", () => {
     cy.get('label[for$="-0"]').click();
     cy.get('label[for$="-2024"]').click();
     cy.findByTestId("calendar.apply").click();
-    cy.findAllByTestId("calendar.header")
-      .contains("January 2024")
-      .should("be.visible");
+    cy.findAllByTestId("calendar.header").contains("January 2024").should("be.visible");
   });
 });
