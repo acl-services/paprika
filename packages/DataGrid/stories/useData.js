@@ -1,5 +1,5 @@
 import React from "react";
-import worker from "workerize-loader!./helpers/data.worker"; // eslint-disable-line import/no-webpack-loader-syntax
+import { getDataFromWorker } from './helpers/data.worker';
 
 export default function useData(numberOfRows, numberOfColumns) {
   const [data, setData] = React.useState([]);
@@ -7,8 +7,7 @@ export default function useData(numberOfRows, numberOfColumns) {
 
   React.useEffect(() => {
     async function loadData() {
-      const w = worker();
-      const data = await w.getDataFromWorker(numberOfRows, numberOfColumns);
+      const data = getDataFromWorker(numberOfRows, numberOfColumns);
       setData(() => data);
       setIsIdle(() => false);
     }

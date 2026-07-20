@@ -17,7 +17,8 @@
   "scripts": {
     "svgr": "svgr --out-dir src ./src/svg",
     "build:dts": "tsc -p tsconfig.build.json",
-    "pretranspile": "yarn rimraf \"src/!(index).js\" && yarn svgr && yarn build:dts"
+    "pretranspile": "yarn rimraf \"src/!(index).js\" && yarn svgr && yarn build:dts",
+    "transpile": "swc src -d lib --strip-leading-paths --source-maps --copy-files --extensions .js,.jsx,.ts,.tsx --config-file ../../.swcrc"
   },
   "devDependencies": {
     "@svgr/cli": "^8.1.0",

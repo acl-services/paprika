@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import * as Sbook from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
 import tokens from "@paprika/tokens";
-import worker from "workerize-loader!./helpers/data.worker"; // eslint-disable-line import/no-webpack-loader-syntax
+import { getDataFromWorker } from './helpers/data.worker';
 import Spinner from "@paprika/spinner";
 import DataGrid from "../src";
 
@@ -16,8 +16,7 @@ export function App() {
 
   React.useEffect(() => {
     async function loadData() {
-      const w = worker();
-      const data = await w.getDataFromWorker(100, 4);
+      const data = getDataFromWorker(100, 4);
       setData(() => data);
       setIsLoading(() => false);
     }
@@ -44,40 +43,40 @@ export function App() {
         <DataGrid ref={refDataGrid} data={data} keygen="id" onHighlighted={handleHighlighted}>
           {data.length
             ? Object.keys(data[0]).map((key, index) => {
-                if (index === 3) {
-                  return (
-                    <DataGrid.ColumnDefinition
-                      key={key}
-                      header={key}
-                      cellPropsResetCSS
-                      width={260}
-                      cellProps={() => ({
-                        style: {
-                          background: tokens.color.yellowLighten20,
-                        },
-                      })}
-                      cell={({ row, defaultCssCellStyle, isHighlighted }) => {
-                        const cssStyle = isHighlighted
-                          ? {
-                              overflow: "hidden",
-                              background: "white",
-                              maxHeight: "88px",
-                              position: "absolute",
-                              top: "-2px",
-                              padding: "8px",
-                              lineHeight: "1.3",
-                              borderRadius: "4px",
-                              boxShadow: `0 0 0 2px ${tokens.color.blue}`,
-                            }
-                          : { ...defaultCssCellStyle };
+              if (index === 3) {
+                return (
+                  <DataGrid.ColumnDefinition
+                    key={key}
+                    header={key}
+                    cellPropsResetCSS
+                    width={260}
+                    cellProps={() => ({
+                      style: {
+                        background: tokens.color.yellowLighten20,
+                      },
+                    })}
+                    cell={({ row, defaultCssCellStyle, isHighlighted }) => {
+                      const cssStyle = isHighlighted
+                        ? {
+                          overflow: "hidden",
+                          background: "white",
+                          maxHeight: "88px",
+                          position: "absolute",
+                          top: "-2px",
+                          padding: "8px",
+                          lineHeight: "1.3",
+                          borderRadius: "4px",
+                          boxShadow: `0 0 0 2px ${tokens.color.blue}`,
+                        }
+                        : { ...defaultCssCellStyle };
 
-                        return <div style={cssStyle}>{row[key]}</div>;
-                      }}
-                    />
-                  );
-                }
-                return <DataGrid.ColumnDefinition key={key} header={key} cell={key} />;
-              })
+                      return <div style={cssStyle}>{row[key]}</div>;
+                    }}
+                  />
+                );
+              }
+              return <DataGrid.ColumnDefinition key={key} header={key} cell={key} />;
+            })
             : null}
         </DataGrid>
       )}
