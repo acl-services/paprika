@@ -244,6 +244,8 @@ export default function useGridEventHandler({
     }
   }
 
+  // The key handlers intentionally capture the current grid callbacks and dimensions.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const keyboardDownKeys = {
     ArrowUp: () => {
       const columnIndex = cell.current.columnIndex;
@@ -341,6 +343,8 @@ export default function useGridEventHandler({
     [keyboardDownKeys, onKeyDown]
   );
 
+  // The key handlers intentionally capture the current grid callbacks.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const keyboardUpKeys = {
     // space bar
     " ": ({ data, ColumnDefinitions, columnIndex, rowIndex, event }) => {

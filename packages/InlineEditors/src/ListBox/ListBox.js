@@ -86,13 +86,13 @@ export default function InlineListBox(props) {
         window.cancelAnimationFrame(id);
       };
     }
-  }, [value]);
+  }, [value]); // eslint-disable-line react-hooks/exhaustive-deps -- run only when the value changes
 
   React.useEffect(() => {
     if (!isEditing && nextValue !== null) {
       onSubmit(...nextValue, { rowIndex, columnIndex });
     }
-  }, [isEditing, nextValue, rowIndex, columnIndex]);
+  }, [isEditing, nextValue, rowIndex, columnIndex]); // eslint-disable-line react-hooks/exhaustive-deps -- submit only after editing closes
 
   React.useEffect(() => {
     if (isEditing && refListBox.current) {

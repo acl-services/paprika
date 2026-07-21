@@ -24,9 +24,9 @@ function FormElement(props) {
   const generateLabelId = id => (isNil(id) || id === "" ? uniqueInputId : id);
   const labelId = generateLabelId(id);
 
-  const addIdToAriaDescribedBy = idObject => {
+  const addIdToAriaDescribedBy = React.useCallback(idObject => {
     setAriaDescribedBy(ariaDescribedBy => ({ ...idObject, ...ariaDescribedBy }));
-  };
+  }, []);
 
   if (!ariaDescribedBy.fieldsetAriaDescribedBy && fieldsetAriaDescribedBy) {
     addIdToAriaDescribedBy({ fieldsetAriaDescribedBy });

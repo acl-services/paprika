@@ -127,8 +127,6 @@ export function InfiniteLoaderImpl({
   );
 }
 
-export const InfiniteLoader: React.FC<InfiniteLoaderPublicProps> = (props: InfiniteLoaderPublicProps) => {
-  return <></>;
-};
+export const InfiniteLoader: React.FC<InfiniteLoaderPublicProps> = (props: InfiniteLoaderPublicProps) => <></>;
 
 InfiniteLoader.displayName = "DataTable.InfiniteLoader";

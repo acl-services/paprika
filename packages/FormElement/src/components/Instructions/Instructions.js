@@ -11,7 +11,7 @@ function Instructions(props) {
 
   React.useEffect(() => {
     if (addIdToAriaDescribedBy) addIdToAriaDescribedBy({ ariaInstructionsId });
-  }, []);
+  }, [addIdToAriaDescribedBy, ariaInstructionsId]);
 
   if (!children) return null;
 

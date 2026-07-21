@@ -32,13 +32,13 @@ function getStickyProps(column: Column) {
 }
 
 function useSticky(hooks: Hooks): void {
-  hooks.getHeaderProps.push((props: Partial<TableHeaderProps>, { column }: { column: Column }) => {
-    return isColumnSticky(column) ? [props, getStickyProps(column)] : props;
-  });
+  hooks.getHeaderProps.push((props: Partial<TableHeaderProps>, { column }: { column: Column }) =>
+    isColumnSticky(column) ? [props, getStickyProps(column)] : props
+  );
 
-  hooks.getCellProps.push((props: Partial<TableCellProps>, { cell }: { cell: Cell }) => {
-    return isColumnSticky(cell.column) ? [props, getStickyProps(cell.column)] : props;
-  });
+  hooks.getCellProps.push((props: Partial<TableCellProps>, { cell }: { cell: Cell }) =>
+    isColumnSticky(cell.column) ? [props, getStickyProps(cell.column)] : props
+  );
 }
 
 export default useSticky;

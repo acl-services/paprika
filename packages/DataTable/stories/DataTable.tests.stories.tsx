@@ -23,7 +23,7 @@ const screenerScript = new Steps()
   .snapshot("borderType='vertical'")
   .end();
 
-export const screener = () => (
+export const screener = (): JSX.Element => (
   <Screener steps={screenerScript}>
     <RealWorldStory isForTesting />
   </Screener>

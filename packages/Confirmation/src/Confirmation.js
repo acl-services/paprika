@@ -33,28 +33,28 @@ const Confirmation = props => {
   const triggerRef = React.useRef(null);
   const [titleId] = React.useState(() => `confirmation-title_${uuidv4()}`);
   const [descriptionId] = React.useState(() => `confirmation-desc_${uuidv4()}`);
+  const [popoverKey, setPopoverKey] = React.useState(() => uuidv4());
   const I18n = useI18n();
 
   const popoverOffset = 4;
-  let popoverKey = uuidv4();
 
-  const focusConfirmButton = () => {
+  const focusConfirmButton = React.useCallback(() => {
     if (confirmButtonRef.current) confirmButtonRef.current.focus();
-  };
+  }, []);
 
-  const handleOpenConfirm = () => {
+  const handleOpenConfirm = React.useCallback(() => {
     setIsConfirmOpen(true);
     setTimeout(focusConfirmButton, 250);
-  };
+  }, [focusConfirmButton]);
 
   React.useEffect(() => {
     if (defaultIsOpen && !isConfirmOpen) {
       handleOpenConfirm();
     }
-  }, [confirmButtonRef, defaultIsOpen]);
+  }, [defaultIsOpen, handleOpenConfirm, isConfirmOpen]);
 
   React.useEffect(() => {
-    popoverKey = uuidv4();
+    setPopoverKey(uuidv4());
   }, [isPending]);
 
   React.useEffect(() => {
@@ -62,7 +62,7 @@ const Confirmation = props => {
       if (triggerRef.current) triggerRef.current.focus();
       setTimeout(onClose, 250);
     }
-  }, [isConfirmOpen]);
+  }, [isConfirmOpen, onClose]);
 
   const handleCloseConfirm = () => {
     setIsConfirmOpen(false);

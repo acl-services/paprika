@@ -2,7 +2,7 @@ import React from "react";
 import * as sc from "./Link.styles";
 
 export interface LinkProps {
-  [x: string]: any;
+  [x: string]: unknown;
 
   /** Text for aria-label. */
   a11yText?: string | null;

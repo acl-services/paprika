@@ -85,7 +85,7 @@ export default function InlineTextarea(props) {
         window.cancelAnimationFrame(id);
       };
     }
-  }, [value]);
+  }, [value]); // eslint-disable-line react-hooks/exhaustive-deps -- run only when the value changes
 
   React.useEffect(() => {
     if (isEditing && refTextarea.current) {
