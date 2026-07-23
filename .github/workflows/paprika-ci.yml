@@ -91,9 +91,9 @@ jobs:
         with:
           with-lerna: "false"
 
-      - name: Lint && Prettier
+      - name: Lint && Oxfmt
         run: |
-          yarn lint && yarn prettier -- --list-different
+          yarn lint && yarn format:check
 
   accessibility:
     name: ♿️ Accessibility

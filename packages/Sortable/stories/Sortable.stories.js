@@ -13,9 +13,7 @@ import DisabledItemExample from "./examples/DisabledItem";
 
 const storyName = getStoryName("Sortable");
 
-storiesOf(storyName, module)
-  .addDecorator(withKnobs)
-  .add("Showcase", Showcase);
+storiesOf(storyName, module).addDecorator(withKnobs).add("Showcase", Showcase);
 
 storiesOf(`${storyName}/Examples`, module)
   .add("Basic", () => <BasicExample />)

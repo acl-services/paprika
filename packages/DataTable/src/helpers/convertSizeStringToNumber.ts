@@ -47,9 +47,7 @@ function calculatePctSizeToPx(pct: number, direction: Direction, tableRef: React
   }
 
   const parentSize = Number.parseInt(
-    getComputedStyle(parentElement, null)
-      .getPropertyValue(direction)
-      .replace("px", ""),
+    getComputedStyle(parentElement, null).getPropertyValue(direction).replace("px", ""),
     10
   );
   return (parentSize / 100) * pct;

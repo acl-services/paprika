@@ -1,17 +1,19 @@
 {
   "name": "@paprika/table",
   "version": "1.2.37",
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
   "description": "The Table component is a simple wrap for the html table, for more advanced features see the DataGrid component.",
-  "author": "@paprika",
-  "main": "lib/index.js",
-  "module": "lib/esm/index.js",
-  "types": "lib/index.d.ts",
   "license": "MIT",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/Table"
   },
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "lib/esm/index.js",
+  "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -38,7 +40,5 @@
     "subComponents": [
       "ColumnDefinition"
     ]
-  },
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
-  "sideEffects": false
+  }
 }

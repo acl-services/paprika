@@ -39,19 +39,8 @@ const propTypes = {
 };
 
 function Picker(props) {
-  const {
-    hh,
-    isOpen,
-    labelCustom,
-    labelHours,
-    labelMinutes,
-    labelPeriod,
-    labelAM,
-    labelPM,
-    mm,
-    onClick,
-    period,
-  } = props;
+  const { hh, isOpen, labelCustom, labelHours, labelMinutes, labelPeriod, labelAM, labelPM, mm, onClick, period } =
+    props;
 
   const isMinutesActive = item => {
     if (mm > 59) return false;

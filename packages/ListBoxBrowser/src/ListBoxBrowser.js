@@ -72,7 +72,7 @@ const propTypes = {
     A function that sets the initial view for the right columns (Browser) of the ListBoxBrowser the option selected to be the initial view should have options to be valid, by default the ListBoxBrowser picked the first option which has options to be the initial value.
   */
   defaultSelectedView: PropTypes.func,
-  /** 
+  /**
     In the case you want to use the ListBoxBrowser with one column you can hide the root column
    */
   hasLeftColumn: PropTypes.bool,
@@ -168,26 +168,28 @@ export default function ListBoxBrowser(props) {
   };
 
   const handleClickRoot = React.useCallback(
-    ({ $$key, hasOptions, isClickFromButton = false }) => event => {
-      if ((hasOptions && isParentSelectable === null) || isClickFromButton) {
-        setRootKey($$key);
-        setBrowserKey($$key);
-        focusListBoxBrowser(refRootElement.current, hasLeftColumn);
-        if (event) event.stopPropagation();
-      }
-    },
+    ({ $$key, hasOptions, isClickFromButton = false }) =>
+      event => {
+        if ((hasOptions && isParentSelectable === null) || isClickFromButton) {
+          setRootKey($$key);
+          setBrowserKey($$key);
+          focusListBoxBrowser(refRootElement.current, hasLeftColumn);
+          if (event) event.stopPropagation();
+        }
+      },
     [isParentSelectable, hasLeftColumn]
   );
 
   const handleClickBrowser = React.useCallback(
-    ({ $$key, isClickFromButton = false }) => event => {
-      const option = getOptionByKey(localData, $$key);
-      if ((option.hasOptions && isParentSelectable === null) || isClickFromButton) {
-        setBrowserKey($$key);
-        focusListBoxBrowser(refRootElement.current);
-        if (event) event.stopPropagation();
-      }
-    },
+    ({ $$key, isClickFromButton = false }) =>
+      event => {
+        const option = getOptionByKey(localData, $$key);
+        if ((option.hasOptions && isParentSelectable === null) || isClickFromButton) {
+          setBrowserKey($$key);
+          focusListBoxBrowser(refRootElement.current);
+          if (event) event.stopPropagation();
+        }
+      },
     [isParentSelectable, localData]
   );
 

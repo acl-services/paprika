@@ -37,18 +37,20 @@ const FilterColor = React.forwardRef((props, ref) => (
   </ListBox>
 ));
 
-const filterItems = ({ price, colors, qty }) => item => {
-  // eslint-disable-next-line
-  const priceRule = price === null ? true : price.label === "greater than 500" ? item.price > 500 : item.price < 500;
-  // eslint-disable-next-line
-  const qtyRule = qty === null ? true : qty.label === "greater than 100" ? item.qty > 100 : item.qty < 100;
+const filterItems =
+  ({ price, colors, qty }) =>
+  item => {
+    // eslint-disable-next-line
+    const priceRule = price === null ? true : price.label === "greater than 500" ? item.price > 500 : item.price < 500;
+    // eslint-disable-next-line
+    const qtyRule = qty === null ? true : qty.label === "greater than 100" ? item.qty > 100 : item.qty < 100;
 
-  const colorsArray = colors === null ? [] : colors.map(color => color.label);
+    const colorsArray = colors === null ? [] : colors.map(color => color.label);
 
-  const colorRule = colors === null ? true : colorsArray.includes(item.color);
+    const colorRule = colors === null ? true : colorsArray.includes(item.color);
 
-  return priceRule && qtyRule && colorRule;
-};
+    return priceRule && qtyRule && colorRule;
+  };
 
 export default function FilterSelect() {
   const refFilterColor = React.useRef(null);

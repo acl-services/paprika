@@ -93,7 +93,7 @@ export const ShowcaseStory: (props: Partial<DataTableProps>) => JSX.Element = pr
   );
 };
 
-export default () => (
+export default (): JSX.Element => (
   <Story>
     <StoryHeading level={1}>DataTable</StoryHeading>
     <Tagline>DataTable component.</Tagline>

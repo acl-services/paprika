@@ -31,8 +31,8 @@ export default function Example() {
 
   React.useEffect(() => {
     fetchSomeLinks().then(data => {
-      setLinks([...links, ...data]);
-      setLinks2([...links2, ...data]);
+      setLinks(currentLinks => [...currentLinks, ...data]);
+      setLinks2(currentLinks => [...currentLinks, ...data]);
       setLoading(false);
     });
   }, []);

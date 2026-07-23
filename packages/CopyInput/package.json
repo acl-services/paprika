@@ -2,15 +2,15 @@
   "name": "@paprika/copy-input",
   "version": "4.0.5",
   "description": "The CopyInput component is an input with a button that copies the input's contents to user's clipboard.",
-  "author": "@paprika",
   "license": "MIT",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/CopyInput"
   },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
   },

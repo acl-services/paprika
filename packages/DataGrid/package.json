@@ -1,16 +1,18 @@
 {
   "name": "@paprika/data-grid",
   "version": "4.0.4",
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
   "description": "DataGrid is a wrapper of react-window",
-  "author": "@paprika",
   "license": "MIT",
-  "main": "lib/index.js",
-  "module": "lib/esm/index.js",
-  "types": "lib/index.d.ts",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika/tree/master/packages/DataGrid"
   },
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "lib/esm/index.js",
+  "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -43,7 +45,5 @@
       "ColumnDefinition",
       "InfiniteScroll"
     ]
-  },
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
-  "sideEffects": false
+  }
 }

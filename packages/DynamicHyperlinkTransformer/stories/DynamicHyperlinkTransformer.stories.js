@@ -5,6 +5,4 @@ import Screener from "./tests/Screener";
 
 const storyName = getStoryName("DynamicHyperlinkTransformer");
 
-storiesOf(storyName, module)
-  .add("Showcase", Showcase)
-  .add("Screener", Screener);
+storiesOf(storyName, module).add("Showcase", Showcase).add("Screener", Screener);

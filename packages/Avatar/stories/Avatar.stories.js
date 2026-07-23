@@ -8,9 +8,7 @@ import AvatarIcon from "./examples/AvatarIcon";
 
 const storyName = getStoryName("Avatar");
 
-storiesOf(storyName, module)
-  .addDecorator(withKnobs)
-  .add("Showcase", Showcase);
+storiesOf(storyName, module).addDecorator(withKnobs).add("Showcase", Showcase);
 
 storiesOf(`${storyName}/Examples`, module)
   .add("Colors, Sizes and Shapes", () => <SizesColorsExample />)

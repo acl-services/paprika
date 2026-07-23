@@ -16,18 +16,20 @@ const ButtonGroup = React.forwardRef((props, ref) => {
 
   const groupRef = React.useRef();
 
-  function getButtonRefs() {
-    return Array.from(groupRef.current.querySelectorAll("[data-pka-anchor='button-group.button']"));
-  }
+  const getButtonRefs = React.useCallback(
+    () => Array.from(groupRef.current.querySelectorAll("[data-pka-anchor='button-group.button']")),
+    []
+  );
 
-  function isItemDisabled(item) {
-    return item.getAttribute("aria-disabled") === "true" || item.hasAttribute("disabled");
-  }
+  const isItemDisabled = React.useCallback(
+    item => item.getAttribute("aria-disabled") === "true" || item.hasAttribute("disabled"),
+    []
+  );
 
-  function getEnabledIndexes() {
+  const getEnabledIndexes = React.useCallback(() => {
     const buttonRefs = getButtonRefs();
     return buttonRefs.map((item, index) => (isItemDisabled(item) ? null : index)).filter(index => index !== null);
-  }
+  }, [getButtonRefs, isItemDisabled]);
 
   React.useImperativeHandle(ref, () => ({
     focus: () => {
@@ -43,14 +45,14 @@ const ButtonGroup = React.forwardRef((props, ref) => {
     if (enabledIndexes.length > 0) {
       setFocusIndex(enabledIndexes[0]);
     }
-  }, []);
+  }, [getEnabledIndexes]);
 
   React.useEffect(() => {
     if (currentFocusIndex !== null) {
       const buttonRefs = getButtonRefs();
       setFocusValue(buttonRefs[currentFocusIndex].getAttribute("value"));
     }
-  }, [currentFocusIndex]);
+  }, [currentFocusIndex, getButtonRefs]);
 
   function focusButton(index) {
     getButtonRefs()[index].focus();

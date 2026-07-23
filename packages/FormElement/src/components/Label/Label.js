@@ -9,9 +9,14 @@ import * as sc from "./Label.styles";
 
 const Label = props => {
   const { help, helpAlign, helpA11yText, children, isDisabled: isDisabledProp, helpZIndex, ...moreProps } = props;
-  const { hasFieldSet, isOptional, isRequired, isDisabled: isDisabledContext, labelId, refLabel } = React.useContext(
-    FormElementContext
-  );
+  const {
+    hasFieldSet,
+    isOptional,
+    isRequired,
+    isDisabled: isDisabledContext,
+    labelId,
+    refLabel,
+  } = React.useContext(FormElementContext);
   const I18n = useI18n();
   const isDisabled = isDisabledProp === null ? isDisabledContext : isDisabledProp;
   const labelProps = hasFieldSet ? { as: "legend" } : { as: "label" };

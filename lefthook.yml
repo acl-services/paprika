@@ -1,0 +1,19 @@
+glob_matcher: doublestar
+
+commit-msg:
+  jobs:
+    - name: validate
+      run: node scripts/commit-validator.js
+
+pre-commit:
+  jobs:
+    - name: format
+      glob: "**/*.{js,jsx,ts,tsx,json,jsonc,json5,yml,yaml,css,scss,less,md,mdx,graphql,gql,toml}"
+      run: yarn oxfmt --write {staged_files}
+      stage_fixed: true
+    - name: lint
+      glob: "packages/**/*.{js,jsx,ts,tsx}"
+      run: yarn eslint --report-unused-disable-directives {staged_files}
+    - name: lint-jss
+      glob: "packages/**/src/**/*.styles.js"
+      run: yarn stylelint {staged_files}

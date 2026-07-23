@@ -17,7 +17,7 @@ export const HeaderHeading = styled(Heading)(
     margin: ${tokens.spaceLg} 0;
 
     ${isSingleLine &&
-      `
+    `
       ${stylers.truncateText};
       padding: ${spacer(2)} 0;
       ${hasCloseButton ? `margin: 0 ${tokens.spaceLg} 0 0; width: 95%;` : `margin: 0;`}

@@ -76,18 +76,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1013483/nakia_nakia?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1013483/nakia_nakia?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Malice_(Nakia)?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Malice_(Nakia)?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1013483/nakia_nakia?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1013483/nakia_nakia?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -301,18 +298,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1009466/namor?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009466/namor?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Sub-Mariner?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Sub-Mariner?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1009466/namor?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009466/namor?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -545,18 +539,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1009468/namora?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009468/namora?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Namora_%28Earth-2189%29?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Namora_%28Earth-2189%29?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1009468/namora?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009468/namora?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -798,18 +789,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1009469/namorita?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009469/namorita?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Namorita?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Namorita?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1009469/namorita?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009469/namorita?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -847,13 +835,11 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/characters/1565/naoko?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/characters/1565/naoko?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1014978/naoko?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1014978/naoko?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -1052,13 +1038,11 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1009547/natasha_romanoff?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009547/natasha_romanoff?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1009547/natasha_romanoff?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009547/natasha_romanoff?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -1287,18 +1271,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1010365/nebula?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1010365/nebula?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Nebula?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Nebula?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1010365/nebula?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1010365/nebula?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -1336,18 +1317,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/characters/1574/nehzno?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/characters/1574/nehzno?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Nehzno?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Nehzno?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1011302/nehzno?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011302/nehzno?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -1385,8 +1363,7 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/characters/1576/nekra?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/characters/1576/nekra?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
@@ -1394,8 +1371,7 @@ export default function fixture() {
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1011422/nekra?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011422/nekra?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -1562,8 +1538,7 @@ export default function fixture() {
                 },
                 {
                   resourceURI: "http://gateway.marvel.com/v1/public/stories/2936",
-                  name:
-                    '"WAXING POETIC" PART 1 (OF 2) Is the All-New, All-Different Alpha Flight really disbanding after only seven issues? Not if the r',
+                  name: '"WAXING POETIC" PART 1 (OF 2) Is the All-New, All-Different Alpha Flight really disbanding after only seven issues? Not if the r',
                   type: "interiorStory",
                 },
                 {
@@ -1573,8 +1548,7 @@ export default function fixture() {
                 },
                 {
                   resourceURI: "http://gateway.marvel.com/v1/public/stories/2938",
-                  name:
-                    '"WAXING POETIC" PART 2 (OF 2) Montreal faces its gravest hour as it falls under attack by…wax statues of the entire Marvel Unive',
+                  name: '"WAXING POETIC" PART 2 (OF 2) Montreal faces its gravest hour as it falls under attack by…wax statues of the entire Marvel Unive',
                   type: "interiorStory",
                 },
                 {
@@ -1599,18 +1573,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1011086/nemesis?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011086/nemesis?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Nemesis?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Nemesis?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1011086/nemesis?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011086/nemesis?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -1648,18 +1619,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/characters/1582/network?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/characters/1582/network?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Network?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Network?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1010831/network?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1010831/network?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -1697,13 +1665,11 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/characters/2836/new_goblin?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/characters/2836/new_goblin?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1010815/new_goblin?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1010815/new_goblin?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -1964,18 +1930,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1011336/new_mutants?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011336/new_mutants?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/New_Mutants?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/New_Mutants?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1011336/new_mutants?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011336/new_mutants?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -2210,18 +2173,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1010683/new_warriors?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1010683/new_warriors?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/New_Warriors?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/New_Warriors?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1010683/new_warriors?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1010683/new_warriors?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -2363,8 +2323,7 @@ export default function fixture() {
                 },
                 {
                   resourceURI: "http://gateway.marvel.com/v1/public/stories/3366",
-                  name:
-                    '"CHOOSING SIDES" PART 5 (OF 6) The school is divided over the fate of young Kevin Ford, the mutant whose very touch can kill. Wi',
+                  name: '"CHOOSING SIDES" PART 5 (OF 6) The school is divided over the fate of young Kevin Ford, the mutant whose very touch can kill. Wi',
                   type: "interiorStory",
                 },
               ],
@@ -2379,18 +2338,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1011271/new_x-men?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011271/new_x-men?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/New%20X-Men?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/New%20X-Men?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1011271/new_x-men?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011271/new_x-men?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -2458,18 +2414,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1011269/newton_destine?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011269/newton_destine?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Newton%20Destine?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Newton%20Destine?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1011269/newton_destine?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011269/newton_destine?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -2517,13 +2470,11 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1011303/next_avengers?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011303/next_avengers?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1011303/next_avengers?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011303/next_avengers?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -2684,18 +2635,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1010685/nextwave?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1010685/nextwave?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Nextwave?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Nextwave?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1010685/nextwave?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1010685/nextwave?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -2952,18 +2900,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1009471/nick_fury?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009471/nick_fury?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Fury%2C_Nick?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Fury%2C_Nick?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1009471/nick_fury?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009471/nick_fury?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -3001,13 +2946,11 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/characters/2782/nick_fury?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/characters/2782/nick_fury?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1017298/nick_fury_lego_marvel_super_heroes?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1017298/nick_fury_lego_marvel_super_heroes?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -3184,13 +3127,11 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1009738/zaladane?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009738/zaladane?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1009738/zaladane?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009738/zaladane?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -3359,13 +3300,11 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1010841/zaran?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1010841/zaran?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1010841/zaran?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1010841/zaran?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -3434,13 +3373,11 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1010716/zarda?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1010716/zarda?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1010716/zarda?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1010716/zarda?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -3479,8 +3416,7 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/characters/2659/zarek?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/characters/2659/zarek?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
@@ -3488,8 +3424,7 @@ export default function fixture() {
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1011163/zarek?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011163/zarek?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -3527,13 +3462,11 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/characters/2664/zeigeist?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/characters/2664/zeigeist?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1009739/zeigeist?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009739/zeigeist?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -3681,13 +3614,11 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1010780/zemo?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1010780/zemo?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1010780/zemo?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1010780/zemo?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -3736,18 +3667,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1011127/zodiak?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011127/zodiak?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Zodiak?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Zodiak?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1011127/zodiak?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011127/zodiak?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -3788,18 +3716,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1009741/zombie_simon_garth?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009741/zombie_simon_garth?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Zombie_(Simon_Garth)?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Zombie_(Simon_Garth)?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1009741/zombie_simon_garth?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009741/zombie_simon_garth?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -3867,8 +3792,7 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1011183/zuras?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011183/zuras?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
@@ -3876,8 +3800,7 @@ export default function fixture() {
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1011183/zuras?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011183/zuras?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -3973,8 +3896,7 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1009742/zzzax?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009742/zzzax?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
@@ -3982,8 +3904,7 @@ export default function fixture() {
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1009742/zzzax?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009742/zzzax?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -4270,18 +4191,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1009552/shield.?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009552/shield.?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/S.H.I.E.L.D.?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/S.H.I.E.L.D.?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1009552/shield.?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009552/shield.?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -4488,8 +4406,7 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1009553/sabra?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009553/sabra?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
@@ -4497,8 +4414,7 @@ export default function fixture() {
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1009553/sabra?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009553/sabra?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -4680,14 +4596,12 @@ export default function fixture() {
                 },
                 {
                   resourceURI: "http://gateway.marvel.com/v1/public/stories/3668",
-                  name:
-                    "PART 1 (OF 5) The most brutal villain in the Marvel Universe returns!  But has he gone too far this time?  Did Sabretooth destro",
+                  name: "PART 1 (OF 5) The most brutal villain in the Marvel Universe returns!  But has he gone too far this time?  Did Sabretooth destro",
                   type: "interiorStory",
                 },
                 {
                   resourceURI: "http://gateway.marvel.com/v1/public/stories/3670",
-                  name:
-                    "PART 2 (OF 5) The most brutal villain in the Marvel Universe returns!  But has he gone too far this time?  Did Sabretooth destro",
+                  name: "PART 2 (OF 5) The most brutal villain in the Marvel Universe returns!  But has he gone too far this time?  Did Sabretooth destro",
                   type: "interiorStory",
                 },
                 {
@@ -4756,18 +4670,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1009554/sabretooth?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009554/sabretooth?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Sabretooth?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Sabretooth?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1009554/sabretooth?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009554/sabretooth?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -4977,18 +4888,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1010969/sabretooth_age_of_apocalypse?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1010969/sabretooth_age_of_apocalypse?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Sabretooth_%28Age_of_Apocalypse%29?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Sabretooth_%28Age_of_Apocalypse%29?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1010969/sabretooth_age_of_apocalypse?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1010969/sabretooth_age_of_apocalypse?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -5036,18 +4944,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1010970/sabretooth_house_of_m?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1010970/sabretooth_house_of_m?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Sabretooth_%28House_of_M%29?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Sabretooth_%28House_of_M%29?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1010970/sabretooth_house_of_m?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1010970/sabretooth_house_of_m?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -5248,18 +5153,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/characters/1975/sabretooth?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/characters/1975/sabretooth?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Sabretooth_%28Ultimate%29?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Sabretooth_%28Ultimate%29?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1010968/sabretooth_ultimate?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1010968/sabretooth_ultimate?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -5481,8 +5383,7 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1009555/sage?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009555/sage?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
@@ -5490,8 +5391,7 @@ export default function fixture() {
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1009555/sage?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009555/sage?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -5592,18 +5492,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1011325/salems_seven_ultimate?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011325/salems_seven_ultimate?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Salem%27s%20Seven%20(Ultimate)?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Salem%27s%20Seven%20(Ultimate)?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1011325/salems_seven_ultimate?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011325/salems_seven_ultimate?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -5696,18 +5593,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1011126/sally_floyd?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011126/sally_floyd?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Floyd,_Sally?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Floyd,_Sally?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1011126/sally_floyd?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011126/sally_floyd?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -5761,8 +5655,7 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1011156/salo?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011156/salo?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
@@ -5770,8 +5663,7 @@ export default function fixture() {
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1011156/salo?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011156/salo?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -6045,18 +5937,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1009558/sandman?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009558/sandman?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Sandman_%28William_Baker%29?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Sandman_%28William_Baker%29?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1009558/sandman?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009558/sandman?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -6120,13 +6009,11 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1010711/santa_claus?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1010711/santa_claus?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1010711/santa_claus?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1010711/santa_claus?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -6164,13 +6051,11 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/characters/1994/saracen?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/characters/1994/saracen?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1009559/saracen_muzzafar_lambert?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009559/saracen_muzzafar_lambert?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -6352,8 +6237,7 @@ export default function fixture() {
                 },
                 {
                   resourceURI: "http://gateway.marvel.com/v1/public/stories/2936",
-                  name:
-                    '"WAXING POETIC" PART 1 (OF 2) Is the All-New, All-Different Alpha Flight really disbanding after only seven issues? Not if the r',
+                  name: '"WAXING POETIC" PART 1 (OF 2) Is the All-New, All-Different Alpha Flight really disbanding after only seven issues? Not if the r',
                   type: "interiorStory",
                 },
                 {
@@ -6363,8 +6247,7 @@ export default function fixture() {
                 },
                 {
                   resourceURI: "http://gateway.marvel.com/v1/public/stories/2938",
-                  name:
-                    '"WAXING POETIC" PART 2 (OF 2) Montreal faces its gravest hour as it falls under attack by…wax statues of the entire Marvel Unive',
+                  name: '"WAXING POETIC" PART 2 (OF 2) Montreal faces its gravest hour as it falls under attack by…wax statues of the entire Marvel Unive',
                   type: "interiorStory",
                 },
                 {
@@ -6393,18 +6276,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1009560/sasquatch_walter_langkowski?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009560/sasquatch_walter_langkowski?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Sasquatch_%28Walter_Langkowski%29?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Sasquatch_%28Walter_Langkowski%29?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1009560/sasquatch_walter_langkowski?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009560/sasquatch_walter_langkowski?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -6622,18 +6502,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/characters/1997/satana?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/characters/1997/satana?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/satana?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/satana?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1011035/satana?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011035/satana?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -6850,18 +6727,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1009561/sauron?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009561/sauron?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Sauron?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Sauron?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1009561/sauron?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1009561/sauron?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -6992,18 +6866,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1011048/scalphunter?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011048/scalphunter?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Scalphunter?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Scalphunter?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1011048/scalphunter?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011048/scalphunter?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -7183,18 +7054,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1010861/scarecrow_ebenezer_laughton?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1010861/scarecrow_ebenezer_laughton?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Scarecrow_(Ebenezer_Laughton)?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Scarecrow_(Ebenezer_Laughton)?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1010861/scarecrow_ebenezer_laughton?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1010861/scarecrow_ebenezer_laughton?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -7492,18 +7360,15 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/characters/2014/scarlet_spider?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/characters/2014/scarlet_spider?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
-                url:
-                  "http://marvel.com/universe/Scarlet_Spider_(Ben_Reilly)?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/universe/Scarlet_Spider_(Ben_Reilly)?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1011197/scarlet_spider_ben_reilly?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011197/scarlet_spider_ben_reilly?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },
@@ -7803,8 +7668,7 @@ export default function fixture() {
             urls: [
               {
                 type: "detail",
-                url:
-                  "http://marvel.com/comics/characters/1011426/scarlet_spider_kaine?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011426/scarlet_spider_kaine?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
               {
                 type: "wiki",
@@ -7812,8 +7676,7 @@ export default function fixture() {
               },
               {
                 type: "comiclink",
-                url:
-                  "http://marvel.com/comics/characters/1011426/scarlet_spider_kaine?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
+                url: "http://marvel.com/comics/characters/1011426/scarlet_spider_kaine?utm_campaign=apiRef&utm_source=ac7726775d7f6e56add4f57ed5cd9a6b",
               },
             ],
           },

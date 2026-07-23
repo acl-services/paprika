@@ -6,9 +6,8 @@ export const FieldsetContext = React.createContext({});
 
 function Content(props) {
   const { children, ...moreProps } = props;
-  const { ariaDescribedBy, isRequired, isDisabled, refLabel, labelId, hasFieldSet } = React.useContext(
-    FormElementContext
-  );
+  const { ariaDescribedBy, isRequired, isDisabled, refLabel, labelId, hasFieldSet } =
+    React.useContext(FormElementContext);
 
   if (!children) {
     return null;

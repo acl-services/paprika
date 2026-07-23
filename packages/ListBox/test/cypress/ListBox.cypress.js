@@ -47,17 +47,13 @@ describe("ListBox single select", () => {
   it("should scroll in popover and select option", () => {
     const character = "Doctor Strange";
     cy.get(selectors.popoverList).scrollTo("bottom");
-    cy.contains(character)
-      .should("be.visible")
-      .click();
+    cy.contains(character).should("be.visible").click();
     cy.get(selectors.trigger).should("contain", character);
   });
 
   describe("ListBox single select filter", () => {
     it("should show correct amount of options and select one", () => {
-      cy.get(selectors.filterInput)
-        .focus()
-        .type("w", typingDelay);
+      cy.get(selectors.filterInput).focus().type("w", typingDelay);
       cy.get(selectors.popoverList)
         .children()
         .should("have.length", 4)
@@ -67,9 +63,7 @@ describe("ListBox single select", () => {
     });
 
     it("should be able to type spaces to filter options to select one", () => {
-      cy.get(selectors.filterInput)
-        .focus()
-        .type("Freddy Krueger", typingDelay);
+      cy.get(selectors.filterInput).focus().type("Freddy Krueger", typingDelay);
       cy.get(selectors.popoverList)
         .children()
         .should("have.length", 1)
@@ -79,23 +73,15 @@ describe("ListBox single select", () => {
     });
 
     it("should show all options after erasing filtered input", () => {
-      cy.get(selectors.filterInput)
-        .focus()
-        .type("wo{backspace}{backspace}", typingDelay);
-      cy.get(selectors.popoverList)
-        .children()
-        .should("have.length", 24);
+      cy.get(selectors.filterInput).focus().type("wo{backspace}{backspace}", typingDelay);
+      cy.get(selectors.popoverList).children().should("have.length", 24);
     });
   });
 
   describe("ListBox single select label filter", () => {
     it("should filter by option label", () => {
-      cy.get(selectors.filterInput)
-        .focus()
-        .type("spi", typingDelay);
-      cy.get(selectors.popoverList)
-        .children()
-        .should("have.length", 2);
+      cy.get(selectors.filterInput).focus().type("spi", typingDelay);
+      cy.get(selectors.popoverList).children().should("have.length", 2);
     });
   });
 });
@@ -118,19 +104,11 @@ describe("ListBox single select custom filter", () => {
   it("should filter with correct group options or show no results", () => {
     cy.visitStorybook(`${storyPrefix}-backyard-tests--custom-filter-story`);
     toggleDropdown();
-    cy.get(selectors.filterInput)
-      .focus()
-      .type("P", typingDelay);
-    cy.get(selectors.popoverList)
-      .children()
-      .should("have.length", 2);
+    cy.get(selectors.filterInput).focus().type("P", typingDelay);
+    cy.get(selectors.popoverList).children().should("have.length", 2);
     cy.get(selectors.filterInput).type("{backspace}");
-    cy.get(selectors.popoverList)
-      .children()
-      .should("have.length", 7);
-    cy.get(selectors.filterInput)
-      .focus()
-      .type("{backspace}ZZ", typingDelay);
+    cy.get(selectors.popoverList).children().should("have.length", 7);
+    cy.get(selectors.filterInput).focus().type("{backspace}ZZ", typingDelay);
     cy.get(selectors.popoverList).then($e => {
       expect($e.find("ul").children().length).to.be.equal(0);
     });
@@ -146,14 +124,8 @@ describe("ListBox multi select filter", () => {
   });
 
   it("should filter, select, deselect and close trigger", () => {
-    cy.get(selectors.filterInput)
-      .focus()
-      .type("w", typingDelay);
-    cy.get(selectors.popoverList)
-      .children()
-      .should("have.length", 4)
-      .contains(/spawn/i)
-      .click();
+    cy.get(selectors.filterInput).focus().type("w", typingDelay);
+    cy.get(selectors.popoverList).children().should("have.length", 4).contains(/spawn/i).click();
 
     cy.contains(/wolverine/i).click();
     cy.contains(/catwoman/i).click();
@@ -161,16 +133,12 @@ describe("ListBox multi select filter", () => {
 
     cy.get("body").click({ force: true });
 
-    cy.get(selectors.trigger)
-      .should("contain", "(2)")
-      .and("contain", "Wolverine, Catwoman");
+    cy.get(selectors.trigger).should("contain", "(2)").and("contain", "Wolverine, Catwoman");
   });
 
   // TODO: Flakey spec, works locally but fails on semaphore
   xit("should be able to use keys to select option", () => {
-    cy.get(selectors.filterInput)
-      .type("{downarrow}", typingDelay)
-      .type("{enter}");
+    cy.get(selectors.filterInput).type("{downarrow}", typingDelay).type("{enter}");
     cy.get("body").click({ force: true });
     cy.get(selectors.trigger).should("contain", "Punisher");
   });

@@ -20,7 +20,7 @@ const whiteFont = css`
 
   &:hover,
   &:focus {
-    color: ${(props: any) => (props.isSubtle ? tokens.color.white : tokens.color.blueLighten40)};
+    color: ${(props: { isSubtle: boolean }) => (props.isSubtle ? tokens.color.white : tokens.color.blueLighten40)};
   }
 `;
 
@@ -71,7 +71,7 @@ export const Link = styled.a<{
   isDark: boolean;
   isMenu: boolean;
   maxWidth: string | number;
-  [x: string]: any;
+  [x: string]: unknown;
 }>(
   ({ hasNoUnderline, isSubtle, isDark, isMenu, maxWidth }) => css`
     &[data-pka-anchor="link"] {
@@ -87,7 +87,7 @@ export const Link = styled.a<{
         outline: none;
         ${!isMenu && `border-radius: ${tokens.border.radius};`}
         ${isMenu ? stylers.focusRing(true) : stylers.focusRing()}
-               &:not(:focus-visible) {
+        &:not(:focus-visible) {
           box-shadow: none;
         }
       }

@@ -7,7 +7,11 @@ const columns = [
   { id: "age", type: columnTypes.NUMBER, label: "Age" },
 ];
 
-const data = [{ name: "Alice", age: 30 }, { name: "Bob", age: 25 }, { name: "Charlie", age: 35 }];
+const data = [
+  { name: "Alice", age: 30 },
+  { name: "Bob", age: 25 },
+  { name: "Charlie", age: 35 },
+];
 
 describe("filterData", () => {
   it("returns original data when filters array is empty", () => {

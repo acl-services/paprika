@@ -12,7 +12,7 @@ export const Sortable = styled.ul(
     padding: 0;
 
     ${hasZebraStripes &&
-      `
+    `
       li:nth-of-type(even) {
         background-color: ${tokens.table.rowEven.backgroundColor};
       }

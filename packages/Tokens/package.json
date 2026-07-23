@@ -2,15 +2,15 @@
   "name": "@paprika/tokens",
   "version": "3.1.1",
   "description": "Design tokens generated as scss + js",
-  "author": "@paprika",
-  "main": "lib/index.js",
-  "types": "lib/tokens.d.ts",
   "license": "MIT",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/Tokens"
   },
+  "main": "lib/index.js",
+  "types": "lib/tokens.d.ts",
   "publishConfig": {
     "access": "public"
   },

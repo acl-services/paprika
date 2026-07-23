@@ -1,16 +1,18 @@
 {
   "name": "@paprika/filter",
   "version": "5.0.6",
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
   "description": "Filter",
-  "author": "@paprika",
   "license": "MIT",
-  "main": "lib/index.js",
-  "module": "lib/esm/index.js",
-  "types": "lib/index.d.ts",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika/tree/master/packages/Filter"
   },
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "lib/esm/index.js",
+  "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -40,7 +42,5 @@
     "subComponents": [
       "Item"
     ]
-  },
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
-  "sideEffects": false
+  }
 }

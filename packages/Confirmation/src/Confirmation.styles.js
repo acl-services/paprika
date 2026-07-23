@@ -7,8 +7,8 @@ export const confirmStyles = css`
 `;
 
 export const confirmBodyStyles = css`
-    ${stylers.lineHeight()}
-    padding: ${tokens.spaceSm} 0 0 0;
+  ${stylers.lineHeight()}
+  padding: ${tokens.spaceSm} 0 0 0;
 `;
 
 export const confirmFooterStyles = css`

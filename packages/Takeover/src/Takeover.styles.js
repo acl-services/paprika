@@ -38,7 +38,9 @@ export const Takeover = styled.div(
     border: 1px ${tokens.border.color} solid;
     border-radius: ${tokens.card.borderRadius};
     bottom: 0;
-    box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.12), 0 0px 6px 0 rgba(0, 0, 0, 0.16);
+    box-shadow:
+      0 12px 24px 0 rgba(0, 0, 0, 0.12),
+      0 0px 6px 0 rgba(0, 0, 0, 0.16);
     display: flex;
     flex-direction: column;
     left: 0;
@@ -50,7 +52,7 @@ export const Takeover = styled.div(
     transition: all ${tokens.overlay.animationDuration}ms ease;
     z-index: ${zIndex};
     ${!isFullWidth &&
-      ` 
+    ` 
         max-width: 1248px;
         @media only screen and (min-width: 1280px) {
         margin: ${spacer(3)} auto;

@@ -65,6 +65,8 @@ function CollapsibleText(props) {
     <div data-pka-anchor="collapsible-text" {...moreProps}>
       {isCollapsed && isOverflowing ? (
         <span
+          /* The markup is produced locally by ReactDOMServer from the component's children. */
+          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: collapsedContent }}
           data-pka-anchor="collapsible-text.content"
           id={contentId}

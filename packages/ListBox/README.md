@@ -55,14 +55,13 @@ npm install @paprika/list-box
 
 ### ListBox.Divider
 
-| Prop       | Type | required | default | Description                                   |
-| ---------- | ---- | -------- | ------- | --------------------------------------------- |
-| isDisabled | bool | false    | true    | isDisable is use internally as a default prop |
-
-the prop is read by the option/helpers/optionState.js which is assigned in the store
-it helps to ignore the divider while using the keyboard.
-see: options/helpers/options.js|
-|children|node|false|null| |
+| Prop                                                                                 | Type | required | default | Description                                   |
+| ------------------------------------------------------------------------------------ | ---- | -------- | ------- | --------------------------------------------- |
+| isDisabled                                                                           | bool | false    | true    | isDisable is use internally as a default prop |
+| the prop is read by the option/helpers/optionState.js which is assigned in the store |
+| it helps to ignore the divider while using the keyboard.                             |
+| see: options/helpers/options.js                                                      |
+| children                                                                             | node | false    | null    |                                               |
 
 ### ListBox.Filter
 

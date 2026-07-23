@@ -6,9 +6,7 @@ import Variations from "./examples/Variations";
 
 const storyName = getStoryName("ButtonGroup");
 
-storiesOf(storyName, module)
-  .addDecorator(withKnobs)
-  .add("Sandbox", Sandbox);
+storiesOf(storyName, module).addDecorator(withKnobs).add("Sandbox", Sandbox);
 
 storiesOf(storyName, module).add("Variations", Variations);
 

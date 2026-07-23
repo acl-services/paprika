@@ -1,16 +1,17 @@
 {
   "name": "@paprika/panel",
   "version": "5.0.4",
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
   "description": "The Panel component provides a view that slides in from one side so the user can maintain context of their main task while they work on a sub task.",
-  "author": "@paprika",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
   "license": "MIT",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/Panel"
   },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -41,6 +42,5 @@
       "Overlay",
       "Trigger"
     ]
-  },
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
+  }
 }

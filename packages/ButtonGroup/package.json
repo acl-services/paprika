@@ -1,16 +1,17 @@
 {
   "name": "@paprika/button-group",
   "version": "1.0.34",
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
   "description": "ButtonGroup component is a segmented group of toggle buttons.",
-  "author": "@paprika",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
   "license": "MIT",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/ButtonGroup"
   },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -32,6 +33,5 @@
     "subComponents": [
       "Item"
     ]
-  },
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
+  }
 }

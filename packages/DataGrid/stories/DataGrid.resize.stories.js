@@ -88,14 +88,7 @@ function AppWithActionBar() {
         </ColumnsArrangement>
       </ActionBar>
       <div ref={dataGridContainerRef}>
-        <DataGrid
-          key={orderedColumnIds
-            .join("-")
-            .concat(dataGridWidth)
-            .concat(uuid)}
-          data={data}
-          width={dataGridWidth}
-        >
+        <DataGrid key={orderedColumnIds.join("-").concat(dataGridWidth).concat(uuid)} data={data} width={dataGridWidth}>
           {orderedColumnIds.map(
             columnKey =>
               !isColumnHidden(columnKey) && (

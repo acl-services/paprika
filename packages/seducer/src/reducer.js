@@ -18,41 +18,43 @@ import logger from "./logger";
  * @return {any} nextState
  */
 
-export const reducer = (actions, hasLogger, interceptors = {}) => (state, action) => {
-  const isAValidAction =
-    "type" in action && ([action.type] in actions || (interceptors && [action.type] in interceptors));
+export const reducer =
+  (actions, hasLogger, interceptors = {}) =>
+  (state, action) => {
+    const isAValidAction =
+      "type" in action && ([action.type] in actions || (interceptors && [action.type] in interceptors));
 
-  if (isAValidAction) {
-    const nextState = () => actions[action.type](state, action.payload);
+    if (isAValidAction) {
+      const nextState = () => actions[action.type](state, action.payload);
 
-    if (interceptors && [action.type] in interceptors) {
-      return handleInterceptors({
+      if (interceptors && [action.type] in interceptors) {
+        return handleInterceptors({
+          action,
+          actions,
+          hasLogger,
+          interceptors,
+          nextState,
+          state,
+        });
+      }
+
+      return handleRegularRegularReducerFlow({
         action,
-        actions,
         hasLogger,
-        interceptors,
         nextState,
         state,
       });
     }
 
-    return handleRegularRegularReducerFlow({
-      action,
-      hasLogger,
-      nextState,
-      state,
-    });
-  }
-
-  throw new Error(
-    `The type "${action.type}" lacks of an action implementation, did you forget to add it: 
+    throw new Error(
+      `The type "${action.type}" lacks of an action implementation, did you forget to add it: 
 ${action.type}(state, payload) { 
   return state;
 } 
 
 to your action object`
-  );
-};
+    );
+  };
 
 /**
  * Summary: Seducer permits to implement inversion of control without exposing the internal reducer and instead allowing the consumer to

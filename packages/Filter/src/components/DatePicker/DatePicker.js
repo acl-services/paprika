@@ -12,15 +12,16 @@ const propTypes = {
 export default function DatePickerWrapper(props) {
   const { initialDate, onChange, parsingFormat } = props;
 
-  function getMomentDate(dateStr) {
-    return dateStr === "" ? null : moment(dateStr, parsingFormat);
-  }
+  const getMomentDate = React.useCallback(
+    dateStr => (dateStr === "" ? null : moment(dateStr, parsingFormat)),
+    [parsingFormat]
+  );
 
   const [date, setDate] = React.useState(() => getMomentDate(initialDate));
 
   React.useEffect(() => {
     setDate(getMomentDate(initialDate));
-  }, [initialDate, parsingFormat]);
+  }, [getMomentDate, initialDate]);
 
   function handleChange(newDate) {
     setDate(newDate);

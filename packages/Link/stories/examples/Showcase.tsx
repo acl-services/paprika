@@ -15,7 +15,7 @@ const getKnobs = () => ({
   maxWidth: text("maxWidth", "120"),
 });
 
-export default function Showcase() {
+export default function Showcase(): JSX.Element {
   return (
     <CodeViewer>
       <Link {...getKnobs()} href="http://www.wegalvanize.com" />

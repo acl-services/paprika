@@ -33,7 +33,7 @@ const SimpleStory: () => JSX.Element = () => {
     []
   );
 
-  const [items, setItems] = React.useState(() => makeData(40));
+  const [items] = React.useState(() => makeData(40));
 
   return (
     <DataTable a11yText="A simple data table." maxHeight="500px" columns={columns} data={items}>

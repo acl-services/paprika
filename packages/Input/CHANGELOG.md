@@ -681,16 +681,13 @@
 - 45d341f: Refactoring API for consistency between Input, Select, Textarea
 
   #### Added
-
   - Added a props collector component, `<Input.Container>`, to apply attributes to root `<div>` element.
 
   #### Removed
-
   - Removed `className` prop.
   - Removed all classNames from DOM elements.
 
   #### Migration Guide
-
   - If a custom class name is required on the root element, it can be added like `<Input><Input.Container className="custom"></Input>`.
   - If `classNames` were used to target DOM elements or identify states of the `<Input>`, they will need to be updated to use attributes like `data-pka-anchor`, `aria-invalid`, etc.
 
@@ -703,16 +700,13 @@
 - 45d341f: Refactoring API for consistency between Input, Select, Textarea
 
   #### Added
-
   - Added a props collector component, `<Input.Container>`, to apply attributes to root `<div>` element.
 
   #### Removed
-
   - Removed `className` prop.
   - Removed all classNames from DOM elements.
 
   #### Migration Guide
-
   - If a custom class name is required on the root element, it can be added like `<Input><Input.Container className="custom"></Input>`.
   - If `classNames` were used to target DOM elements or identify states of the `<Input>`, they will need to be updated to use attributes like `data-pka-anchor`, `aria-invalid`, etc.
 

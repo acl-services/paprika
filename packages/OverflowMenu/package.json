@@ -1,16 +1,17 @@
 {
   "name": "@paprika/overflow-menu",
   "version": "5.0.5",
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
   "description": "OverflowMenu component displays a trigger button, which when clicked displays a list of items in a dropdown menu format. These items can be raw content, Links or actions such as Delete, which will prompt a confirmation panel to be displayed.",
-  "author": "@paprika",
   "license": "MIT",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/OverflowMenu"
   },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -41,6 +42,5 @@
       "LinkItem",
       "Trigger"
     ]
-  },
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
+  }
 }

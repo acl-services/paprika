@@ -33,7 +33,7 @@ async function main() {
     const branchName = GITHUB_BRANCH_NAME;
     const targetUrl = `${baseUrl}${branchName}`;
     const placeholderUrl = `${baseUrl}your-branch-name`;
-    
+
     const searchResult = await octokit.search.issuesAndPullRequests({
       q: `head:${branchName} repo:${owner}/${repo} type:pr`,
     });
@@ -46,7 +46,7 @@ async function main() {
     const pr = searchResult.data.items[0];
     const prNumber = pr.number;
     const prBody = pr.body || "";
-    
+
     if (prBody.includes(targetUrl)) {
       console.log(`✅ Storybook URL is already correct: ${targetUrl}`);
       process.exit(0);
@@ -58,8 +58,8 @@ async function main() {
     } else {
       // Use explicit regex pattern with properly escaped hostname
       // Escape dots in hostname to match exact domain, not any character
-      const escapedHostname = 'storybooks\\.highbond-s3\\.com';
-      const storybookUrlPattern = new RegExp(`http://${escapedHostname}/paprika/[^\\s<>"']+`, 'g');
+      const escapedHostname = "storybooks\\.highbond-s3\\.com";
+      const storybookUrlPattern = new RegExp(`http://${escapedHostname}/paprika/[^\\s<>"']+`, "g");
       if (storybookUrlPattern.test(prBody)) {
         updatedBody = prBody.replace(storybookUrlPattern, targetUrl);
       } else {

@@ -37,9 +37,7 @@ describe("Filter", () => {
     cy.findByText("Add filter").click();
     cy.findAllByTestId("filter.item").should("have.length", 2);
 
-    cy.findAllByTestId("filter.deleteFilterButton")
-      .eq(0)
-      .click();
+    cy.findAllByTestId("filter.deleteFilterButton").eq(0).click();
     cy.findAllByTestId("filter.item").should("have.length", 1);
   });
 
@@ -47,9 +45,7 @@ describe("Filter", () => {
     cy.visitStorybook(`${getStoryUrlPrefix("Filter")}--showcase`);
     cy.findByText("1 filtered").click();
     cy.findByText("Add filter").click();
-    cy.findAllByRole("radio")
-      .eq(0)
-      .should("be.checked");
+    cy.findAllByRole("radio").eq(0).should("be.checked");
     cy.findAllByTestId("filter.item")
       .eq(1)
       .within(() => {
@@ -60,9 +56,7 @@ describe("Filter", () => {
     cy.findAllByRole("row").should("have.length", 1);
     cy.findByText("2 filtered").click();
     cy.findByText("Or").click();
-    cy.findAllByRole("radio")
-      .eq(1)
-      .should("be.checked");
+    cy.findAllByRole("radio").eq(1).should("be.checked");
     cy.findByText("Apply").click();
     cy.findAllByRole("row").should("have.length", 2);
   });

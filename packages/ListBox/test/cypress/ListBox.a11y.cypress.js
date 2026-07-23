@@ -9,9 +9,7 @@ function pressKey(key) {
 }
 
 function optionHasFocus(optionName) {
-  cy.get(selectors.popoverList)
-    .findByText(optionName)
-    .should("have.focus");
+  cy.get(selectors.popoverList).findByText(optionName).should("have.focus");
 }
 
 describe("ListBox MultiSelect a11y", () => {

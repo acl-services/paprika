@@ -1,16 +1,18 @@
 {
   "name": "@paprika/collapsible-card",
   "version": "5.0.4",
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
   "description": "Styled collapsible card component.",
-  "author": "@paprika",
   "license": "MIT",
-  "main": "lib/index.js",
-  "module": "lib/esm/index.js",
-  "types": "lib/index.d.ts",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika/tree/master/packages/CollapsibleCard"
   },
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "lib/esm/index.js",
+  "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -40,7 +42,5 @@
       "HeaderLayout",
       "Segment"
     ]
-  },
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
-  "sideEffects": false
+  }
 }

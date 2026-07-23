@@ -21,9 +21,7 @@ export const WelcomeBody = styled.div`
   width: 100%;
 `;
 
-const headingShadow = Array(8)
-  .fill("0 0 12px #f5f5f5")
-  .join(",");
+const headingShadow = Array(8).fill("0 0 12px #f5f5f5").join(",");
 
 const headingStyles = `
   ${stylers.lineHeight(-2)};

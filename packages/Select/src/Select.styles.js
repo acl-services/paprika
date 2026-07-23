@@ -23,11 +23,11 @@ const placeholderStyles = ({ isDisabled }) => css`
   ${stylers.placeholder}
 
   ${!isDisabled &&
-    css`
-      &[disabled] {
-        color: inherit;
-      }
-    `}
+  css`
+    &[disabled] {
+      color: inherit;
+    }
+  `}
 
   option {
     color: ${tokens.color.black};

@@ -38,16 +38,8 @@ const defaultProps = {
 };
 
 const Item = props => {
-  const {
-    children,
-    isDestructive,
-    onClick,
-    onClose,
-    onShowConfirmation,
-    renderConfirmation,
-    onKeyDown,
-    ...moreProps
-  } = props;
+  const { children, isDestructive, onClick, onClose, onShowConfirmation, renderConfirmation, onKeyDown, ...moreProps } =
+    props;
 
   const handleClickItem = () => {
     onClick(children);

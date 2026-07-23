@@ -1,8 +1,7 @@
 export const images = [
   {
     label: "Iron Man",
-    src:
-      "https://vignette.wikia.nocookie.net/lego-marvelsuperheroes/images/6/67/Iron_Man.png/revision/latest/scale-to-width-down/350?cb=20180724193550",
+    src: "https://vignette.wikia.nocookie.net/lego-marvelsuperheroes/images/6/67/Iron_Man.png/revision/latest/scale-to-width-down/350?cb=20180724193550",
   },
   {
     label: "Spiderman",
@@ -10,8 +9,7 @@ export const images = [
   },
   {
     label: "Venom",
-    src:
-      "https://cdn11.bigcommerce.com/s-0kvv9/images/stencil/1280x1280/products/281623/395031/legovenom__65596.1545001912.jpg?c=2&imbypass=on",
+    src: "https://cdn11.bigcommerce.com/s-0kvv9/images/stencil/1280x1280/products/281623/395031/legovenom__65596.1545001912.jpg?c=2&imbypass=on",
   },
   {
     label: "Deadpool",
@@ -23,8 +21,7 @@ export const images = [
   },
   {
     label: "Ant-man",
-    src:
-      "https://vignette.wikia.nocookie.net/lego-marvelsuperheroes/images/4/4a/Ant-Man.png/revision/latest?cb=20131011194045",
+    src: "https://vignette.wikia.nocookie.net/lego-marvelsuperheroes/images/4/4a/Ant-Man.png/revision/latest?cb=20131011194045",
   },
 ];
 

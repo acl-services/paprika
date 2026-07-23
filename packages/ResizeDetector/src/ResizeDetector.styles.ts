@@ -9,13 +9,13 @@ export const ResizeDetector = styled.div<{
     display: inline-block;
 
     ${isFullWidth &&
-      css`
-        width: 100%;
-      `}
+    css`
+      width: 100%;
+    `}
 
     ${isFullHeight &&
-      css`
-        height: 100%;
-      `}
+    css`
+      height: 100%;
+    `}
   `
 );

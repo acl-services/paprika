@@ -20,10 +20,11 @@ const Modal = props => {
     setAriaLabel(ariaLabel);
   }, []);
 
-  const { "Modal.FocusLock": focusLockExtracted, "Modal.Overlay": overlayExtracted, children } = extractChildren(
-    moreProps.children,
-    ["Modal.FocusLock", "Modal.Overlay"]
-  );
+  const {
+    "Modal.FocusLock": focusLockExtracted,
+    "Modal.Overlay": overlayExtracted,
+    children,
+  } = extractChildren(moreProps.children, ["Modal.FocusLock", "Modal.Overlay"]);
 
   const focusLockProps = focusLockExtracted ? focusLockExtracted.props : {};
   const overlayProps = overlayExtracted ? overlayExtracted.props : {};

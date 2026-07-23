@@ -1,17 +1,19 @@
 {
   "name": "@paprika/form-element",
   "version": "7.0.5",
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
   "description": "FormElement component displays a user input field",
-  "main": "lib/index.js",
-  "module": "lib/esm/index.js",
-  "types": "lib/index.d.ts",
-  "author": "@paprika",
   "license": "MIT",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/FormElement"
   },
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "lib/esm/index.js",
+  "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -43,7 +45,5 @@
       "Fieldset",
       "Layout"
     ]
-  },
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
-  "sideEffects": false
+  }
 }

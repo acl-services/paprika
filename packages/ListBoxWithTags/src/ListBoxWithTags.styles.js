@@ -43,7 +43,7 @@ export const Trigger = styled(RawButton)(
     ${isReadOnly ? stylers.readOnlyFormStyles : ""}
     ${hasError ? stylers.errorFormStyles : ""}
 
-    [data-pka-anchor="tag"], 
+    [data-pka-anchor="tag"],
     [data-pka-anchor="tag.remove"] {
       ${isDisabled && !isReadOnly ? "opacity: 0.4;" : ""}
     }

@@ -2,15 +2,16 @@
   "name": "@paprika/guard",
   "version": "1.0.3",
   "description": "Guard component helps to prevent a user from losing unsaved data",
-  "author": "@paprika",
-  "main": "lib/index.js",
-  "module": "lib/esm/index.js",
   "license": "MIT",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/Guard"
   },
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "lib/esm/index.js",
   "publishConfig": {
     "access": "public"
   },
@@ -21,6 +22,5 @@
   "peerDependencies": {
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "react-dom": "^16.8.4 || ^17.0.2 || ^18.0.0"
-  },
-  "sideEffects": false
+  }
 }

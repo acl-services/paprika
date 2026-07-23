@@ -79,8 +79,8 @@ const createPropsList = ({ info }) => {
             v.type.name !== "enum"
               ? v.type.name
               : Array.isArray(v.type.value)
-              ? `${v.type.value.map(i => i.value)}`.replace(/,/g, "|")
-              : v.type.value;
+                ? `${v.type.value.map(i => i.value)}`.replace(/,/g, "|")
+                : v.type.value;
         }
       }
     }
@@ -219,4 +219,4 @@ declare namespace ${e[0]}{
   }
 });
 
-shell.exec(`prettier "**/${fileName}" --write`);
+shell.exec(`oxfmt "**/${fileName}" --write`);

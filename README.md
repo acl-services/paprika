@@ -14,7 +14,7 @@
   <img alt="yarn version" src="https://img.shields.io/badge/yarn-v1.12.3%2B-yellowgreen.svg">
   <img alt="lerna version" src="https://img.shields.io/badge/lerna-v3.13.0-blue.svg">
   <img alt="styled components version" src="https://img.shields.io/badge/styled--components-4.2.0-yellow">
-  <img alt="prettier" src="https://img.shields.io/badge/codestyle-prettier-%23ff69b4">
+  <img alt="oxfmt" src="https://img.shields.io/badge/codestyle-oxfmt-%23ff69b4">
   <br>
   <a href="https://github.com/acl-services/paprika/pulls"><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/acl-services/paprika"></a>
   <a href="https://github.com/acl-services/paprika/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/acl-services/paprika"></a>
@@ -158,10 +158,7 @@ git commit -m "added feature x"                  #invalid (missing type and scop
 
 The valid "types" are: `feat`, `fix`, `style`, `test`, `docs`, `build`, `chore`, `ci`, `perf`, `refactor`, `revert`
 
-If you are experiencing difficulty, you may need to:
-
-1. overwrite your existing commit-msg file with the husky one: `cp ~/src/paprika/.git/hooks/applypatch-msg ~/src/paprika/.git/hooks/commit-msg`
-2. update the commit-msg file permissions: `chmod 755 ~/src/paprika/.git/hooks/commit-msg`
+Git hooks are installed by Lefthook when dependencies are installed. To reinstall them manually, run `yarn lefthook install`.
 
 #### Releases and Publishing
 
@@ -214,8 +211,8 @@ Common yarn commands for development:
 - `yarn lint` - Run ESLint to check code quality
 - `yarn lint:fix` - Automatically fix ESLint issues
 - `yarn lint:jss` - Lint styled-components files
-- `yarn prettier` - Check code formatting
-- `yarn prettier:format` or `yarn prettier --write` - Format code with Prettier
+- `yarn format:check` - Check code formatting with Oxfmt
+- `yarn format` - Format the repository with Oxfmt
 - `yarn validate:ts` - Validate TypeScript types
 
 **Testing:**

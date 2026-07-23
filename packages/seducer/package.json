@@ -2,13 +2,6 @@
   "name": "@paprika/seducer",
   "version": "2.0.5",
   "description": "Seducer (simple reducer) is a wrapper on top of React.useReducer, making it easier to use",
-  "main": "lib/index.js",
-  "module": "lib/esm/index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/acl-services/paprika.git",
-    "directory": "packages/seducer"
-  },
   "keywords": [
     "Context",
     "React",
@@ -17,20 +10,27 @@
     "reducer",
     "useReducer"
   ],
+  "homepage": "https://github.com/acl-services/paprika/tree/master/packages/seducer",
   "bugs": {
     "url": "https://github.com/acl-services/paprika/issues"
   },
-  "homepage": "https://github.com/acl-services/paprika/tree/master/packages/seducer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/seducer"
+  },
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "lib/esm/index.js",
   "dependencies": {
     "prop-types": "^15.7.2"
+  },
+  "devDependencies": {
+    "react-dom-confetti": "^0.2.0"
   },
   "peerDependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "react-dom": "^16.8.4 || ^17.0.2 || ^18.0.0"
-  },
-  "devDependencies": {
-    "react-dom-confetti": "^0.2.0"
-  },
-  "sideEffects": false
+  }
 }

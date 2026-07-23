@@ -2,15 +2,15 @@
   "name": "@paprika/inline-editors",
   "version": "1.0.24",
   "description": "Great flexibility to present a pattern where the user has to interact with an output component in order to trigger an input component",
-  "author": "@paprika",
   "license": "MIT",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/InlineEditors"
   },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
   },

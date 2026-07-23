@@ -10,7 +10,7 @@ export default function Keyboard() {
       <Gap.Large />
       <Tabs defaultIndex={null} a11yText="Testing Tabs">
         <Tabs.List>
-          {true === false ? <Tabs.Tab>Impossible Tab</Tabs.Tab> : null}
+          {null}
           <div>
             <Tabs.Tab>Zero Tab</Tabs.Tab>
           </div>
@@ -25,11 +25,7 @@ export default function Keyboard() {
           <Tabs.Tab>Fifth Tab</Tabs.Tab>
         </Tabs.List>
         <Tabs.Panels>
-          {true === false ? (
-            <Tabs.Panel>
-              <p>Impossible panel.</p>
-            </Tabs.Panel>
-          ) : null}
+          {null}
           <div>
             <Tabs.Panel>
               <p>Zero panel.</p>

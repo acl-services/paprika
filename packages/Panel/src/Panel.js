@@ -57,6 +57,7 @@ export default function Panel(props) {
   const refTrigger = React.useRef(null);
   const refPanelContent = React.useRef(null);
   const refHeader = React.useRef(null);
+  const initialProps = React.useRef(props);
 
   // Extracts
   const {
@@ -95,7 +96,7 @@ export default function Panel(props) {
   }, [isOpen]);
 
   React.useEffect(() => {
-    warnOfPropErrors(props);
+    warnOfPropErrors(initialProps.current);
   }, []);
 
   React.useLayoutEffect(() => {

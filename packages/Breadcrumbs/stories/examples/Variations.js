@@ -34,7 +34,7 @@ const AllVariations = () => (
     </CodeHeading>
     <Breadcrumbs>
       <Breadcrumbs.Link href={URL}>Breadcrumb 1</Breadcrumbs.Link>
-      {true === false ? <Breadcrumbs.Link href={URL}>Breadcrumb 2</Breadcrumbs.Link> : null}
+      {null}
     </Breadcrumbs>
     <Gap.Small />
     <CodeHeading>

@@ -32,6 +32,9 @@ export default function Tabs(props) {
   const initIndex = defaultIndex === undefined ? 0 : defaultIndex;
   const [internalIndex, setInternalIndex] = React.useState(initIndex);
   const [focusIndex, setFocusIndex] = React.useState(isControlled ? index || 0 : initIndex || 0);
+  const initialDefaultIndex = React.useRef(defaultIndex);
+  const initialIndex = React.useRef(initIndex);
+  const isInitiallyControlled = React.useRef(isControlled);
   const activeIndex = isControlled ? index : internalIndex;
 
   if (isControlled && !onClickTab) {
@@ -41,10 +44,11 @@ export default function Tabs(props) {
   }
 
   React.useLayoutEffect(() => {
-    if (isControlled || defaultIndex === null) return;
+    if (isInitiallyControlled.current || initialDefaultIndex.current === null) return;
 
     const items = getItems(refList);
-    const isDefaultIndexInvalid = items.length > 0 && (initIndex >= items.length || isItemDisabled(items[initIndex]));
+    const isDefaultIndexInvalid =
+      items.length > 0 && (initialIndex.current >= items.length || isItemDisabled(items[initialIndex.current]));
 
     if (isDefaultIndexInvalid) {
       const itemIndexes = getItemIndexes(refList, { hasDisabledItems: false });

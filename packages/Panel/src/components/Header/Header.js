@@ -6,15 +6,8 @@ import * as sc from "./Header.styles";
 
 const Header = React.forwardRef((props, ref) => {
   const size = React.useContext(PanelContext).size;
-  const {
-    children,
-    getPushContentElement,
-    hasAccent,
-    hasCloseButton,
-    isCloseButtonSemantic,
-    onClose,
-    ...moreProps
-  } = props;
+  const { children, getPushContentElement, hasAccent, hasCloseButton, isCloseButtonSemantic, onClose, ...moreProps } =
+    props;
 
   return (
     <sc.Header

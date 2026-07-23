@@ -52,13 +52,10 @@ export default function Filter(props) {
     onCancel();
   }
 
-  const contextValue = React.useMemo(() => ({ filterRef, columns, data, operator, onChangeOperator, rulesByType }), [
-    columns,
-    data,
-    operator,
-    onChangeOperator,
-    rulesByType,
-  ]);
+  const contextValue = React.useMemo(
+    () => ({ filterRef, columns, data, operator, onChangeOperator, rulesByType }),
+    [columns, data, operator, onChangeOperator, rulesByType]
+  );
 
   return (
     <FilterContext.Provider value={contextValue}>
