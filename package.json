@@ -100,7 +100,7 @@
     "eslint-plugin-react-hooks": "5.2.0",
     "faker": "^4.1.0",
     "given2": "^2.1.7",
-    "inquirer": "^8.1.2",
+    "inquirer": "^8.2.7",
     "inquirer-search-list": "^1.2.6",
     "jest": "^26.0.1",
     "jest-axe": "^4.1.0",
