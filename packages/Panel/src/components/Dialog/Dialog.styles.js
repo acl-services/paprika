@@ -106,9 +106,9 @@ export const Dialog = styled.div(
 
     const animationStyle = isAnimating
       ? css`
-          animation: ${isOpen
-              ? slideIn(slideInTransform, slideOutTransform)
-              : slideOut(slideInTransform, slideOutTransform)}
+          animation: ${
+              isOpen ? slideIn(slideInTransform, slideOutTransform) : slideOut(slideInTransform, slideOutTransform)
+            }
             0.4s forwards;
         `
       : "";

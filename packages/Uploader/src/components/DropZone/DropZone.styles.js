@@ -14,12 +14,14 @@ export const DropZone = styled.div(
     justify-content: center;
     padding: ${tokens.space};
     text-align: center;
-    ${isDraggingOver &&
-    css`
-      background-color: ${tokens.color.blackLighten80};
-      border: 2px solid ${tokens.color.purpleDarken10};
-      color: ${tokens.color.purpleDarken10};
-    `}
+    ${
+      isDraggingOver &&
+      css`
+        background-color: ${tokens.color.blackLighten80};
+        border: 2px solid ${tokens.color.purpleDarken10};
+        color: ${tokens.color.purpleDarken10};
+      `
+    }
   `
 );
 

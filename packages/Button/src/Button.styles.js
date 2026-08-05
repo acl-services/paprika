@@ -38,14 +38,16 @@ const disabledBorderColors = {
 };
 
 const borderStyles = ({ kind, isDisabled, isActive }) => css`
-  ${!isDisabled &&
-  !isActive &&
-  css`
-    border-color: ${borderColors[kind]};
-    &:hover {
-      border-color: ${borderHoverColors[kind]};
-    }
-  `}
+  ${
+    !isDisabled &&
+    !isActive &&
+    css`
+      border-color: ${borderColors[kind]};
+      &:hover {
+        border-color: ${borderHoverColors[kind]};
+      }
+    `
+  }
 `;
 
 // States
@@ -328,14 +330,18 @@ export const ButtonIcon = styled.span(
       vertical-align: -${(stylers.lineHeightValue(-1) - 1) / 2}em;
     }
 
-    ${isPending &&
-    css`
-      animation: ${spinKeyframes} 2s infinite linear;
-    `}
+    ${
+      isPending &&
+      css`
+        animation: ${spinKeyframes} 2s infinite linear;
+      `
+    }
 
-    ${isSuffixIcon &&
-    css`
-      margin: 0 0 0 ${tokens.spaceSm};
-    `}
+    ${
+      isSuffixIcon &&
+      css`
+        margin: 0 0 0 ${tokens.spaceSm};
+      `
+    }
   `
 );

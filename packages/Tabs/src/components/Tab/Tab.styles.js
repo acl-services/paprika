@@ -25,10 +25,12 @@ const activeStyles = ({ isVertical, kind }) => css`
     border-color: ${kindColor[kind]};
   }
 
-  ${isVertical &&
-  css`
-    background-color: ${tokens.color.blackLighten70};
-  `}
+  ${
+    isVertical &&
+    css`
+      background-color: ${tokens.color.blackLighten70};
+    `
+  }
 `;
 
 const disabledStyles = ({ hasInsetFocusStyle }) => css`
@@ -67,14 +69,16 @@ const verticalStyles = ({ hasTruncation }) => css`
   border-inline-start: ${tokens.spaceSm} solid transparent;
   padding: ${tokens.spaceLg};
 
-  ${hasTruncation
-    ? css`
-        display: block;
-        ${stylers.truncateText};
-      `
-    : css`
-        display: flex;
-      `}
+  ${
+    hasTruncation
+      ? css`
+          display: block;
+          ${stylers.truncateText};
+        `
+      : css`
+          display: flex;
+        `
+  }
 
   &:hover {
     background-color: ${tokens.color.blackLighten70};
@@ -115,9 +119,11 @@ export const Link = styled.a(
     text-decoration: none;
 
     &:focus {
-      box-shadow: ${hasInsetFocusStyle
-        ? tokens.highlight.active.withBorder.insetBoxShadow
-        : tokens.highlight.active.withBorder.boxShadow};
+      box-shadow: ${
+        hasInsetFocusStyle
+          ? tokens.highlight.active.withBorder.insetBoxShadow
+          : tokens.highlight.active.withBorder.boxShadow
+      };
       outline: none;
     }
   `

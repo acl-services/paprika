@@ -21,9 +21,11 @@ export const Value = styled(RawButton)(
     display: flex;
     position: relative;
     width: 100%;
-    ${status === statusType.ERROR
-      ? `border: 1px solid ${tokens.color.orange}; border-radius: ${tokens.border.radius}; background: ${tokens.color.white};`
-      : ""}
+    ${
+      status === statusType.ERROR
+        ? `border: 1px solid ${tokens.color.orange}; border-radius: ${tokens.border.radius}; background: ${tokens.color.white};`
+        : ""
+    }
   `
 );
 

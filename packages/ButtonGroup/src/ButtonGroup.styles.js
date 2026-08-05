@@ -34,12 +34,14 @@ export const ButtonGroup = styled.div(
         margin-right: -1px;
       }
 
-      ${hasSingleChild &&
-      css`
-        &:last-child {
-          border-radius: ${tokens.button.borderRadius};
-        }
-      `}
+      ${
+        hasSingleChild &&
+        css`
+          &:last-child {
+            border-radius: ${tokens.button.borderRadius};
+          }
+        `
+      }
     }
   `
 );

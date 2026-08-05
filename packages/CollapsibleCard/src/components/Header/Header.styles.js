@@ -17,24 +17,28 @@ export const Header = styled.div(
     &:hover {
       background-color: ${tokens.color.blackLighten70};
 
-      ${position !== POSITIONS.LAST &&
-      isCollapsed &&
-      css`
-        box-shadow: inset 0px -1px 0px ${tokens.color.blackLighten60};
-      `}
+      ${
+        position !== POSITIONS.LAST &&
+        isCollapsed &&
+        css`
+          box-shadow: inset 0px -1px 0px ${tokens.color.blackLighten60};
+        `
+      }
 
       margin: 0;
       position: relative;
     }
 
-    ${isEditing &&
-    css`
-      background-color: ${tokens.color.yellowLighten30};
+    ${
+      isEditing &&
+      css`
+        background-color: ${tokens.color.yellowLighten30};
 
-      &:hover {
-        background-color: #ffebc2;
-      }
-    `}
+        &:hover {
+          background-color: #ffebc2;
+        }
+      `
+    }
 
     &:focus {
       ${stylers.focusRing()}

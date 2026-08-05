@@ -51,13 +51,15 @@ export const Takeover = styled.div(
     top: 0;
     transition: all ${tokens.overlay.animationDuration}ms ease;
     z-index: ${zIndex};
-    ${!isFullWidth &&
-    ` 
+    ${
+      !isFullWidth &&
+      ` 
         max-width: 1248px;
         @media only screen and (min-width: 1280px) {
         margin: ${spacer(3)} auto;
       }
-      `}
+      `
+    }
   `
 );
 

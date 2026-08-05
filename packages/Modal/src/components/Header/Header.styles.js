@@ -16,11 +16,13 @@ export const HeaderHeading = styled(Heading)(
   ({ isSingleLine, hasCloseButton }) => css`
     margin: ${tokens.spaceLg} 0;
 
-    ${isSingleLine &&
-    `
+    ${
+      isSingleLine &&
+      `
       ${stylers.truncateText};
       padding: ${spacer(2)} 0;
       ${hasCloseButton ? `margin: 0 ${tokens.spaceLg} 0 0; width: 95%;` : `margin: 0;`}
-    `}
+    `
+    }
   `
 );

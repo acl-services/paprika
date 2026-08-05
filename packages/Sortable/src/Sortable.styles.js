@@ -11,11 +11,13 @@ export const Sortable = styled.ul(
     margin: 0;
     padding: 0;
 
-    ${hasZebraStripes &&
-    `
+    ${
+      hasZebraStripes &&
+      `
       li:nth-of-type(even) {
         background-color: ${tokens.table.rowEven.backgroundColor};
       }
-    `}
+    `
+    }
   `
 );

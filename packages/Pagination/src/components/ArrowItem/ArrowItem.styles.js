@@ -36,11 +36,13 @@ export const ArrowItem = styled(RawButton)`
     padding: 0 ${tokens.spaceSm};
     position: relative;
 
-    ${!isDisabled
-      ? `&:hover {
+    ${
+      !isDisabled
+        ? `&:hover {
       background: ${tokens.color.blackLighten70};
     `
-      : ""}
+        : ""
+    }
   `}
 `;
 

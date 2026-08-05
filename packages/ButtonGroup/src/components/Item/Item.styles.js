@@ -19,17 +19,19 @@ const activeStyles = ({ isDisabled }) => css`
     background-color: ${tokens.color.blueLighten40};
   }
 
-  ${!isDisabled &&
-  css`
-    &,
-    &:focus {
-      border-color: ${tokens.color.blue};
-    }
+  ${
+    !isDisabled &&
+    css`
+      &,
+      &:focus {
+        border-color: ${tokens.color.blue};
+      }
 
-    &:hover {
-      background-color: ${tokens.color.blueLighten50};
-    }
-  `}
+      &:hover {
+        background-color: ${tokens.color.blueLighten50};
+      }
+    `
+  }
 `;
 
 const iconStyles = css`
@@ -63,11 +65,13 @@ export const Item = styled(Button)(
       ${iconStyles}
     }
 
-    ${isDisabled &&
-    css`
-      ${UnselectedIcon}, ${SelectedIcon} {
-        opacity: 0.5;
-      }
-    `}
+    ${
+      isDisabled &&
+      css`
+        ${UnselectedIcon}, ${SelectedIcon} {
+          opacity: 0.5;
+        }
+      `
+    }
   `
 );

@@ -27,29 +27,33 @@ const iconButtonSizes = {
 
 const minorStyles = ({ isDisabled, isActive }) => css`
   transition: background-color 0.2s ease-out;
-  ${isDisabled
-    ? css`
-        &,
-        &:hover,
-        &:active {
-          [data-pka-anchor="button.icon"] svg {
-            color: ${tokens.color.blackDisabled};
+  ${
+    isDisabled
+      ? css`
+          &,
+          &:hover,
+          &:active {
+            [data-pka-anchor="button.icon"] svg {
+              color: ${tokens.color.blackDisabled};
+            }
           }
-        }
-      `
-    : css`
-        ${isActive &&
-        css`
-          background-color: ${tokens.color.blackLighten60};
-        `}
-        &:hover {
-          background-color: ${stylers.alpha(tokens.color.black, 0.1)};
-        }
+        `
+      : css`
+          ${
+            isActive &&
+            css`
+              background-color: ${tokens.color.blackLighten60};
+            `
+          }
+          &:hover {
+            background-color: ${stylers.alpha(tokens.color.black, 0.1)};
+          }
 
-        &:active {
-          background-color: ${tokens.color.blackLighten60};
-        }
-      `}
+          &:active {
+            background-color: ${tokens.color.blackLighten60};
+          }
+        `
+  }
 `;
 
 const darkStyles = css`
