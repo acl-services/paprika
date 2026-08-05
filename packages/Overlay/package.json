@@ -21,9 +21,9 @@
   "dependencies": {
     "@paprika/helpers": "^2.4.3",
     "@paprika/tokens": "^3.1.1",
-    "prop-types": "^15.7.2",
-    "react-focus-lock": "^2.8.1",
-    "react-transition-group": "^4.3.0"
+    "prop-types": "^15.8.1",
+    "react-focus-lock": "^2.13.7",
+    "react-transition-group": "^4.4.5"
   },
   "peerDependencies": {
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",

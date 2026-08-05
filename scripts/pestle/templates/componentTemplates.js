@@ -17,12 +17,12 @@ function renderPackageJSONTemplate(view) {
     "access": "public"
   },
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.3.1",
+    "@babel/runtime-corejs2": "^7.29.7",
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",
     "class-names": "^1.0.0",
-    "classnames": "^2.2.6",
-    "prop-types": "^15.7.2"
+    "classnames": "^2.5.1",
+    "prop-types": "^15.8.1"
   },
   "peerDependencies": {
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",

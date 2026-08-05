@@ -88,7 +88,6 @@
     "cypress": "^6.3.0",
     "cypress-file-upload": "^5.0.2",
     "cypress-plugin-tab": "^1.0.5",
-    "dotenv": "^8.0.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
@@ -109,7 +108,7 @@
     "lefthook": "^2.1.6",
     "lerna": "^6.6.2",
     "npm-run-all": "^4.1.5",
-    "oxfmt": "^0.59.0",
+    "oxfmt": "0.62.0",
     "react": "^16.14.0",
     "react-docgen": "^5.4.3",
     "react-dom": "^16.14.0",
@@ -117,12 +116,11 @@
     "react-i18next": "^11.18.6",
     "react-is": "^16.13.1",
     "react-resizable": "^1.11.1",
-    "react-syntax-highlighter": "^15.2.1",
+    "react-syntax-highlighter": "^15.6.6",
     "react-test-renderer": "^16.14.0",
     "rimraf": "3.0.2",
     "sass-loader": "^10.5.2",
     "screener-storybook": "^1.0.0",
-    "sinon": "^7.5.0",
     "storybook-a11y-report": "^0.0.19",
     "style-loader": "^0.23.1",
     "styled-components": "^5.3.11",
@@ -131,11 +129,12 @@
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^1.9.0",
     "typescript": "^4.3.5",
-    "uuid": "^8.3.2",
+    "uuid": "^11.1.1",
     "wait-on": "^3.2.0",
-    "workerize-loader": "^1.1.0"
+    "workerize-loader": "^1.3.0"
   },
   "resolutions": {
+    "@types/react-redux": "7.1.31",
     "ansi-regex": "^3.0.1",
     "async": "^2.6.4",
     "browserslist": "^4.16.5",
@@ -154,7 +153,7 @@
     "lodash": "^4.17.20",
     "minimatch": "^3.0.5",
     "minimist": "^1.2.6",
-    "moment": "^2.29.4",
+    "moment": "^2.30.1",
     "node-fetch": "^2.6.7",
     "nth-check": "^2.0.1",
     "postcss": "^7.0.36",
@@ -174,7 +173,7 @@
     "y18n": "^4.0.1"
   },
   "engines": {
-    "node": ">=14",
+    "node": ">=22",
     "yarn": ">=1"
   }
 }

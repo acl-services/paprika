@@ -16,17 +16,17 @@
     "access": "public"
   },
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.3.1",
+    "@babel/runtime-corejs2": "^7.29.7",
     "@paprika/constants": "^1.0.2",
     "@paprika/helpers": "^2.4.3",
     "@paprika/raw-button": "^1.0.20",
     "@paprika/stylers": "^1.1.13",
     "@paprika/tokens": "^3.1.1",
     "lodash.throttle": "^4.1.1",
-    "memoize-one": "^5.0.0",
-    "prop-types": "^15.7.2",
-    "react-transition-group": "^4.3.0",
-    "uuid": "^8.3.2"
+    "memoize-one": "^5.2.1",
+    "prop-types": "^15.8.1",
+    "react-transition-group": "^4.4.5",
+    "uuid": "^11.1.1"
   },
   "peerDependencies": {
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",

@@ -15,7 +15,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.3.1",
+    "@babel/runtime-corejs2": "^7.29.7",
     "@paprika/collapsible-text": "^4.0.4",
     "@paprika/constants": "^1.0.2",
     "@paprika/helpers": "^2.4.3",
@@ -31,8 +31,8 @@
     "@paprika/tag": "^3.0.4",
     "@paprika/textarea": "^3.0.16",
     "@paprika/tokens": "^3.1.1",
-    "prop-types": "^15.7.2",
-    "react-icons": "^4.2.0"
+    "prop-types": "^15.8.1",
+    "react-icons": "^4.12.0"
   },
   "peerDependencies": {
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",

@@ -16,7 +16,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.3.1",
+    "@babel/runtime-corejs2": "^7.29.7",
     "@paprika/calendar": "^5.0.4",
     "@paprika/date-input": "^4.0.4",
     "@paprika/helpers": "^2.4.3",
@@ -24,11 +24,11 @@
     "@paprika/popover": "^2.0.14",
     "@paprika/stylers": "^1.1.13",
     "@paprika/tokens": "^3.1.1",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.8.1"
   },
   "peerDependencies": {
     "@paprika/l10n": "^2.1.2",
-    "moment": "^2.29.4",
+    "moment": "^2.30.1",
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "react-dom": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "styled-components": "^4.2.0 || >=5.0.0 <6.0.0"

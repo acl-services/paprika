@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
 /* eslint-disable import/no-extraneous-dependencies */
+const { existsSync } = require("fs");
 const { Octokit } = require("@octokit/rest");
 
-if (!process.env.CI) {
-  require("dotenv").config(); // eslint-disable-line
+if (!process.env.CI && existsSync(".env")) {
+  process.loadEnvFile();
 }
 
 const owner = "acl-services";
