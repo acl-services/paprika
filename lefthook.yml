@@ -3,12 +3,12 @@ glob_matcher: doublestar
 commit-msg:
   jobs:
     - name: validate
-      run: node scripts/commit-validator.js
+      run: yarn commitlint --edit {1}
 
 pre-commit:
   jobs:
     - name: format
-      glob: "**/*.{js,jsx,ts,tsx,json,jsonc,json5,yml,yaml,css,scss,less,md,mdx,graphql,gql,toml}"
+      glob: "**/*.{js,jsx,ts,tsx,json,jsonc,json5,yml,yaml,css,scss,less,graphql,gql,toml}"
       run: yarn oxfmt --write {staged_files}
       stage_fixed: true
     - name: lint

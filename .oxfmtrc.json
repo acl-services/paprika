@@ -27,8 +27,8 @@
     "packages/L10n/locales-js",
     "cypress/fixtures",
     "packages/Heading/stories/Heading.stories.mdx",
-    ".md",
-    ".mdx",
+    "*.md",
+    "*.mdx",
     ".claude",
     ".vscode"
   ]

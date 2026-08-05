@@ -698,6 +698,7 @@
   - `renderDelay` prop.
 
   #### Fixed
+
   - Render delay is always implemented, regardless of `isPolite` value.
 
   [@mikrotron](https://github.com/mikrotron)
@@ -711,6 +712,7 @@
   - `renderDelay` prop.
 
   #### Fixed
+
   - Render delay is always implemented, regardless of `isPolite` value.
 
   [@mikrotron](https://github.com/mikrotron)

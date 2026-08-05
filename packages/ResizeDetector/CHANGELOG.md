@@ -123,6 +123,7 @@
 - 9e15465: Mirgated to TS; perfomrance improvements;
 
   #### Migration Guide
+
   - `useDimensions()` and `useBreakpoints()` were merged into one hook `useResizeDetector()`
   - `size` was renamed to `breakpointSize`
 
@@ -188,6 +189,7 @@
 - 9e15465: Mirgated to TS; perfomrance improvements;
 
   #### Migration Guide
+
   - `useDimensions()` and `useBreakpoints()` were merged into one hook `useResizeDetector()`
   - `size` was renamed to `breakpointSize`
 

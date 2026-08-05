@@ -178,5 +178,3 @@ shell.ls("packages").forEach(folder => {
     }
   }
 });
-
-shell.exec('oxfmt "**/*.md" --write');
