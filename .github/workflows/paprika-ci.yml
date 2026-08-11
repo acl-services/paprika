@@ -88,8 +88,6 @@ jobs:
 
       - name: Setup Paprika
         uses: ./.github/actions/setup-paprika
-        with:
-          with-lerna: "false"
 
       - name: Lint && Oxfmt
         run: |

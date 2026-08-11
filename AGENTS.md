@@ -15,14 +15,15 @@ Internal `@paprika/*` packages (e.g. `@paprika/l10n`) are symlinked via yarn wor
 ```bash
 nvm use
 yarn install
-node_modules/.bin/lerna bootstrap
 ```
 
 Notes:
 
-- Use `node_modules/.bin/lerna` directly — `npx lerna` can silently fail under corepack in some shells.
-- `lerna bootstrap` runs `pretranspile` for packages that need it (e.g. `@paprika/l10n` builds translation files), then transpiles `src/` → `lib/` for every package.
-- Re-run this after pulling changes that touch translations or any package's public build output.
+- `yarn install` triggers the root `prepare` script, which runs `pretranspile` for the packages that need it (e.g. `@paprika/l10n` builds translation files, `@paprika/tokens`, `@paprika/icon`) and then transpiles `src/` → `lib/` for every package.
+- Yarn 1 skips that build when it decides the install is `Already up-to-date`. If `lib/` is missing, run the build explicitly: `yarn run prepare`.
+- Re-run the build after pulling changes that touch translations or any package's public build output.
+- `lerna bootstrap` is **not** what builds the packages: `lerna.json` sets `useWorkspaces: true`, so bootstrap only re-runs a root `yarn install` (`lerna info bootstrap root only`) and reports `Already up-to-date`.
+- Use `node_modules/.bin/lerna` directly for other lerna commands (`lerna run`, `lerna exec`) — `npx lerna` can silently fail under corepack in some shells.
 
 ## Running tests
 
