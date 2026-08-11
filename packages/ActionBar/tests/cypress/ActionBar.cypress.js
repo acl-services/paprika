@@ -20,12 +20,8 @@ afterEach(() => {
 
 describe("ActionBar", () => {
   it("Should render", () => {
-    cy.findByTestId("actionBar.sort.trigger")
-      .contains("Sort")
-      .should("be.visible");
-    cy.findByTestId("actionBar.columnsArrangement.trigger")
-      .contains("Arrange")
-      .should("be.visible");
+    cy.findByTestId("actionBar.sort.trigger").contains("Sort").should("be.visible");
+    cy.findByTestId("actionBar.columnsArrangement.trigger").contains("Arrange").should("be.visible");
   });
 });
 
@@ -45,9 +41,7 @@ describe("ActionBar Sort", () => {
     cy.findByTestId("popover.content").should("be.visible");
     cy.findByText("Add a field to sort by").should("be.visible");
     cy.findByText("Apply").should("be.visible");
-    cy.findByText("Cancel")
-      .should("be.visible")
-      .click();
+    cy.findByText("Cancel").should("be.visible").click();
 
     cy.findByTestId("popover.content").should("not.exist");
   });
@@ -63,36 +57,19 @@ describe("ActionBar Sort", () => {
     cy.findByTestId("sort.delete-button").should("have.length", 0);
     cy.findByText("Sort").click();
     cy.findByText("Add a field to sort by").click();
-    cy.findByTestId("sort.sort-field")
-      .should("have.length", 1)
-      .findByTestId("sort.delete-button")
-      .click();
+    cy.findByTestId("sort.sort-field").should("have.length", 1).findByTestId("sort.delete-button").click();
     cy.findByTestId("sort.delete-button").should("have.length", 0);
   });
 
   it("should sort according to the selected column and order", () => {
-    cy.get("#root tr")
-      .eq(1)
-      .should("contain", "805")
-      .should("not.contain", "772");
-    cy.findByText("Sort")
-      .click()
-      .wait(200);
+    cy.get("#root tr").eq(1).should("contain", "805").should("not.contain", "772");
+    cy.findByText("Sort").click().wait(200);
     cy.findByText("Add a field to sort by").click();
-    cy.get("select")
-      .eq(0)
-      .select("Country")
-      .should("have.value", "country");
-    cy.get("select")
-      .eq(1)
-      .select("Sort descending (Z → A)")
-      .should("have.value", "DESCEND");
+    cy.get("select").eq(0).select("Country").should("have.value", "country");
+    cy.get("select").eq(1).select("Sort descending (Z → A)").should("have.value", "DESCEND");
     cy.findByTestId("sort.sort-field").should("have.length", 1);
     cy.findByText("Apply").click();
-    cy.get("#root tr")
-      .eq(1)
-      .should("contain", "772")
-      .should("not.contain", "805");
+    cy.get("#root tr").eq(1).should("contain", "772").should("not.contain", "805");
   });
 });
 
@@ -100,17 +77,13 @@ describe("ActionBar Arrange Columns", () => {
   it("should render options within the Arrange columns button", () => {
     cy.findByText("Arrange").should("be.visible");
     cy.findByTestId("popover.content").should("not.exist");
-    cy.findAllByPlaceholderText("Search...")
-      .eq(1)
-      .should("not.exist");
+    cy.findAllByPlaceholderText("Search...").eq(1).should("not.exist");
     cy.findByText("Hide all").should("not.exist");
     cy.findByText("Show all").should("not.exist");
 
     cy.findByText("Arrange").click();
     cy.findByTestId("popover.content").should("be.visible");
-    cy.findAllByPlaceholderText("Search...")
-      .eq(1)
-      .should("be.visible");
+    cy.findAllByPlaceholderText("Search...").eq(1).should("be.visible");
     cy.findByText("Hide all").should("be.visible");
     cy.findByText("Show all").should("be.visible");
   });
@@ -127,9 +100,7 @@ describe("ActionBar Arrange Columns", () => {
   it("should filter columns while typing in an input", () => {
     cy.findByText("Arrange").click();
     cy.findAllByTestId("sortable.item").should("have.length", 8);
-    cy.findByTestId("actionBar.columnsArrangement.filter")
-      .focus()
-      .type("Goals");
+    cy.findByTestId("actionBar.columnsArrangement.filter").focus().type("Goals");
     cy.findAllByTestId("sortable.item").should("have.length", 1);
   });
 
@@ -137,10 +108,7 @@ describe("ActionBar Arrange Columns", () => {
     const filterValue = "Goals";
     cy.findByText("Arrange").click();
     cy.findByTestId("popover.content").should("be.visible");
-    cy.findByTestId("actionBar.columnsArrangement.filter")
-      .clear()
-      .focus()
-      .type(filterValue, { delay: 0 });
+    cy.findByTestId("actionBar.columnsArrangement.filter").clear().focus().type(filterValue, { delay: 0 });
     cy.findByTestId("actionBar.columnsArrangement.filter").should("have.value", filterValue);
     cy.findByText("Arrange").click();
     cy.findByTestId("popover.content").should("not.exist");
@@ -152,9 +120,7 @@ describe("ActionBar Arrange Columns", () => {
   it("should keep popup open when clearing the filter input", () => {
     cy.findByText("Arrange").click();
     cy.findByTestId("popover.content").should("be.visible");
-    cy.findByTestId("actionBar.columnsArrangement.filter")
-      .focus()
-      .type("1");
+    cy.findByTestId("actionBar.columnsArrangement.filter").focus().type("1");
     cy.findByTestId("actionBar.columnsArrangement.filter").should("have.value", "1");
     cy.findByTestId("popover.content").within(() => {
       cy.get('[data-pka-anchor="input.clear-button"]').click();
@@ -164,16 +130,10 @@ describe("ActionBar Arrange Columns", () => {
   });
 
   it("should hide column(s) by clicking on its switch", () => {
-    cy.get("#root tr")
-      .eq(0)
-      .should("contain", "goals");
+    cy.get("#root tr").eq(0).should("contain", "goals");
     cy.findByText("Arrange").click();
-    cy.findAllByTestId("switch")
-      .eq(0)
-      .click();
-    cy.get("#root tr")
-      .eq(0)
-      .should("not.contain", "goals");
+    cy.findAllByTestId("switch").eq(0).click();
+    cy.get("#root tr").eq(0).should("not.contain", "goals");
   });
 
   it("Should hide all columns except the disabled ones", () => {
@@ -191,10 +151,7 @@ describe("ActionBar Arrange Columns", () => {
 
   it("Should drag and drop to change column order", () => {
     cy.findByText("Arrange").click();
-    cy.findAllByTestId("sortable.item")
-      .eq(3)
-      .contains("Country")
-      .should("be.visible");
+    cy.findAllByTestId("sortable.item").eq(3).contains("Country").should("be.visible");
     cy.findAllByTestId("sortable.item")
       .eq(3)
       .trigger("mousedown", { button: 0 })
@@ -204,18 +161,12 @@ describe("ActionBar Arrange Columns", () => {
       .trigger("mousemove", { button: 0, clientX: 24, clientY: 100 })
       .trigger("mouseup")
       .wait(500);
-    cy.findAllByTestId("sortable.item")
-      .eq(3)
-      .contains("Joined by")
-      .should("be.visible");
+    cy.findAllByTestId("sortable.item").eq(3).contains("Joined by").should("be.visible");
   });
 
   it("Should not mess up disabled column order by drag and drop", () => {
     cy.findByText("Arrange").click();
-    cy.findAllByTestId("sortable.item")
-      .eq(0)
-      .contains("Goals")
-      .should("be.visible");
+    cy.findAllByTestId("sortable.item").eq(0).contains("Goals").should("be.visible");
     cy.findAllByTestId("sortable.item")
       .eq(0)
       .trigger("mousedown", { button: 0 })
@@ -225,10 +176,7 @@ describe("ActionBar Arrange Columns", () => {
       .trigger("mousemove", { button: 0, clientX: 24, clientY: 100 })
       .trigger("mouseup")
       .wait(500);
-    cy.findAllByTestId("sortable.item")
-      .eq(0)
-      .contains("Goals")
-      .should("be.visible");
+    cy.findAllByTestId("sortable.item").eq(0).contains("Goals").should("be.visible");
   });
 
   it("Should save user preferences for columns arrangement in localStorage", () => {
@@ -287,9 +235,6 @@ describe("ActionBar Arrange Columns", () => {
 
     cy.reload();
     cy.findByText("Arrange").click();
-    cy.findAllByTestId("sortable.item")
-      .eq(3)
-      .contains("Joined by")
-      .should("be.visible");
+    cy.findAllByTestId("sortable.item").eq(3).contains("Joined by").should("be.visible");
   });
 });

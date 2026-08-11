@@ -5,15 +5,15 @@ import { Story } from "storybook/assets/styles/common.styles";
 import DataTable from "../../src";
 
 function makeData(rows: string, columns: string) {
-  return [...Array(parseInt(rows, 10))].map((value, rowIndex) => {
-    return [...Array(parseInt(columns, 10))].reduce(
+  return [...Array(parseInt(rows, 10))].map((value, rowIndex) =>
+    [...Array(parseInt(columns, 10))].reduce(
       (res, value, columnIndex) => {
         res[`col${columnIndex}`] = `Cell ${rowIndex} ${columnIndex}`;
         return res;
       },
       {} as Record<string, string>
-    );
-  });
+    )
+  );
 }
 
 interface Settings {
@@ -77,4 +77,4 @@ const PerformanceStory: (settings: Settings) => JSX.Element = ({ rows, columns }
   );
 };
 
-export default () => <PerformanceStory {...settings()} />;
+export default (): JSX.Element => <PerformanceStory {...settings()} />;

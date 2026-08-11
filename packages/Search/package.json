@@ -2,27 +2,27 @@
   "name": "@paprika/search",
   "version": "5.0.5",
   "description": "The search components helps you to implemented in an easy way an autocomplete interaction.",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "author": "@paprika",
   "license": "MIT",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/Search"
   },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.3.1",
+    "@babel/runtime-corejs2": "^7.29.7",
     "@paprika/icon": "^3.0.3",
     "@paprika/input": "^7.0.4",
     "@paprika/list-box": "^7.0.5",
     "@paprika/raw-button": "^1.0.20",
     "@paprika/stylers": "^1.1.13",
     "@paprika/tokens": "^3.1.1",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.8.1"
   },
   "peerDependencies": {
     "@paprika/l10n": "^2.1.2",

@@ -92,7 +92,7 @@ export const ShowcaseStoryUsingPercent: (props: Partial<DataTableProps>) => JSX.
   );
 };
 
-export default () => (
+export default (): JSX.Element => (
   <Story>
     <StoryHeading level={1}>DataTable</StoryHeading>
     <Tagline>DataTable component using percent</Tagline>

@@ -4,8 +4,12 @@ import useResizeObserver from "use-resize-observer/polyfilled";
 import { useCallbackDebouncer, ShirtSizes } from "@paprika/helpers";
 import * as sc from "./ResizeDetector.styles";
 
-// TODO: remove this hack after @paprika/helpers is migrated to TS
-const ShirtSizes_: any = ShirtSizes;
+// TODO: remove this cast after @paprika/helpers is migrated to TS
+const ShirtSizes_ = ShirtSizes as unknown as {
+  LARGE: string;
+  MEDIUM: string;
+  SMALL: string;
+};
 
 export type Dimensions = { width: number; height: number };
 export type ResizeDetectorContextValue = { width: number; height: number; breakpointSize: string };

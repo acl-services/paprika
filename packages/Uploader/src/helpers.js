@@ -101,10 +101,7 @@ export function uploadToServer({ file, data = {}, onProgress, onSuccess, onError
     return;
   }
 
-  file.request
-    .send(formData)
-    .on("progress", onProgressFn)
-    .end(onEndFn);
+  file.request.send(formData).on("progress", onProgressFn).end(onEndFn);
 }
 
 export function getFiles({ event, maxFileSize, supportedMimeTypes, endpoint }) {

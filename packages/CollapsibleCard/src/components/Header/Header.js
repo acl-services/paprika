@@ -83,8 +83,11 @@ export default function Header(props) {
     >
       <sc.HeaderContent isBroken={isBroken}>{newChildren}</sc.HeaderContent>
       <sc.ExpandToggle isCollapsed={context.isCollapsed}>
+        {/* aria-expanded belongs on this button: the card wrapper is a generic div, which ARIA
+            does not allow the attribute on, so assistive technologies ignored it there */}
         <Button.Icon
           a11yText={context.isCollapsed ? I18n.t("collapsible.expand") : I18n.t("collapsible.collapse")}
+          aria-expanded={!context.isCollapsed}
           onClick={() => {}}
           kind="minor"
           tabIndex={-1}

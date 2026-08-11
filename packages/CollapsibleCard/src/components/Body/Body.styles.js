@@ -7,9 +7,11 @@ export const Body = styled.div(
       border-radius: 0 0 8px 8px;
       padding: ${spacer(2)} ${spacer(2)} ${spacer(3)};
 
-      ${isCollapsed &&
+      ${
+        isCollapsed &&
         css`
           display: none;
-        `}
+        `
+      }
     `
 );

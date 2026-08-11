@@ -48,10 +48,12 @@ export const CollapsibleCard = styled.div(
     border-radius: ${getBorderRadius(position, isCollapsed, false)};
     box-shadow: ${getBoxShadow(isEditing, position)};
 
-    ${isEditing &&
+    ${
+      isEditing &&
       css`
         position: relative;
         z-index: 1;
-      `}
+      `
+    }
   `
 );

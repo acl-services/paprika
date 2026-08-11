@@ -1,21 +1,22 @@
 {
   "name": "@paprika/breadcrumbs",
   "version": "4.0.5",
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
   "description": "Breadcrumbs are a type of navigation that also allows users to visualize their location.",
-  "author": "@paprika",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
   "license": "MIT",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/Breadcrumbs"
   },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.3.1",
+    "@babel/runtime-corejs2": "^7.29.7",
     "@paprika/button": "^1.1.21",
     "@paprika/constants": "^1.0.2",
     "@paprika/helpers": "^2.4.3",
@@ -23,7 +24,7 @@
     "@paprika/popover": "^2.0.14",
     "@paprika/stylers": "^1.1.13",
     "@paprika/tokens": "^3.1.1",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.8.1"
   },
   "peerDependencies": {
     "@paprika/l10n": "^2.1.2",
@@ -35,6 +36,5 @@
     "subComponents": [
       "Link"
     ]
-  },
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
+  }
 }

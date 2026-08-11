@@ -27,7 +27,11 @@ const Item = props => {
     if (defaultIsActive) {
       setSelectedItems(prevItems => (isMulti ? [...prevItems, value] : [value]));
     }
-  }, []);
+
+    return () => {
+      setItemRefs(prevItemRefs => prevItemRefs.filter(ref => ref !== itemRef));
+    };
+  }, [defaultIsActive, isMulti, setItemRefs, setSelectedItems, value]);
 
   const handleClick = () => {
     onClick(value);

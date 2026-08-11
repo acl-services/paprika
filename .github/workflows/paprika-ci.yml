@@ -69,15 +69,29 @@ jobs:
       - name: Setup Yarn
         run: corepack enable
 
-      - name: Install @octokit/rest
-        run: |
-          yarn add -W --no-lockfile --non-interactive --ignore-scripts @octokit/rest
+      # @octokit/rest is already a root devDependency; --ignore-scripts skips the
+      # root `prepare` build, which this job does not need.
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile --ignore-scripts
 
       - name: Insert Storybook link into PR Body Message
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
         run: node scripts/storybookLink.js
+
+  lint:
+    name: 🧹 Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup Paprika
+        uses: ./.github/actions/setup-paprika
+
+      - name: ESLint
+        run: yarn lint
 
   format:
     name: 💅 Format
@@ -88,12 +102,9 @@ jobs:
 
       - name: Setup Paprika
         uses: ./.github/actions/setup-paprika
-        with:
-          with-lerna: "false"
 
-      - name: Lint && Prettier
-        run: |
-          yarn lint && yarn prettier -- --list-different
+      - name: Format
+        run: yarn format:check
 
   accessibility:
     name: ♿️ Accessibility

@@ -28,6 +28,7 @@ const propTypes = {
   onChange: PropTypes.func.isRequired,
   onClickNavigate: PropTypes.func.isRequired,
   onUp: PropTypes.func,
+  // eslint-disable-next-line react/forbid-prop-types
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
@@ -40,9 +41,8 @@ const defaultProps = {
 
 export default function CustomListBox(props) {
   const i18n = useI18n();
-  const { browserKey, height, isMulti, isParentSelectable, rootKey, selectedOptions } = React.useContext(
-    ListBoxBrowserContext
-  );
+  const { browserKey, height, isMulti, isParentSelectable, rootKey, selectedOptions } =
+    React.useContext(ListBoxBrowserContext);
 
   const { id, onChange, options, onClickNavigate, onUp, hasOnUp, isLoading } = props;
   const isRootListBox = id === "root";

@@ -18,9 +18,7 @@ describe("<DateRangeCalendar />", () => {
     cy.findByTestId("calendar-next-month").click();
     cy.findByTestId("calendar-prev-month").click();
 
-    const firstDayOfExpectedMonth = moment(today)
-      .add(1, "month")
-      .date(1);
+    const firstDayOfExpectedMonth = moment(today).add(1, "month").date(1);
 
     cy.get(`[aria-label="${firstDayOfExpectedMonth.format("dddd, MMMM D, YYYY")}"]`).should("be.visible");
   });
@@ -41,16 +39,12 @@ describe("<DateRangeCalendar />", () => {
   });
 
   it("should open shortcut panel and be able to jump to target month", () => {
-    cy.findAllByTestId("calendar.header")
-      .contains(today.format("MMMM YYYY"))
-      .click();
+    cy.findAllByTestId("calendar.header").contains(today.format("MMMM YYYY")).click();
     cy.findByTestId("calendar.shortcut").should("be.visible");
 
     cy.get('label[for$="-0"]').click();
     cy.get('label[for$="-2024"]').click();
     cy.findByTestId("calendar.apply").click();
-    cy.findAllByTestId("calendar.header")
-      .contains("January 2024")
-      .should("be.visible");
+    cy.findAllByTestId("calendar.header").contains("January 2024").should("be.visible");
   });
 });

@@ -22,7 +22,7 @@ const RegexSets = {
 };
 
 function calculateViewportSizeToPx(viewportSize: number, direction: Direction) {
-  return (window.visualViewport[direction] / 100) * viewportSize;
+  return (window.visualViewport![direction] / 100) * viewportSize;
 }
 
 function calculateCalcToPx(left: number, right: number, operator: string) {
@@ -47,9 +47,7 @@ function calculatePctSizeToPx(pct: number, direction: Direction, tableRef: React
   }
 
   const parentSize = Number.parseInt(
-    getComputedStyle(parentElement, null)
-      .getPropertyValue(direction)
-      .replace("px", ""),
+    getComputedStyle(parentElement, null).getPropertyValue(direction).replace("px", ""),
     10
   );
   return (parentSize / 100) * pct;
@@ -83,7 +81,7 @@ export default function convertSizeStringToNumber(
         break;
       case 3:
         result = calculateCalcToPx(
-          (window.visualViewport[direction] / 100) *
+          (window.visualViewport![direction] / 100) *
             Number.parseInt(match.groups[DirectionToGroupSelector[direction]], 10),
           Number.parseInt(match.groups.numberInPx, 10),
           match.groups.operator
@@ -103,5 +101,5 @@ export default function convertSizeStringToNumber(
     return result;
   });
 
-  return result || window.visualViewport[direction];
+  return result || window.visualViewport![direction];
 }

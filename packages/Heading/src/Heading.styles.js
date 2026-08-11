@@ -37,7 +37,8 @@ const heading = {
 
   HEADING_LEVEL_5: css`
     ${stylers.fontSize()}
-    margin: ${tokens.space} 0;`,
+    margin: ${tokens.space} 0;
+  `,
 
   HEADING_LEVEL_6: css`
     ${stylers.fontSize(-1)}
@@ -65,11 +66,11 @@ export const Divider = styled.span`
 
 export const Heading = styled.div(
   ({ safeDisplayLevel, safeLevel, isHidden, hasUnderline, hasDivider, isLight }) => css`
-  ${defaultHeadingStyles}
-  ${heading[`HEADING_LEVEL_${safeDisplayLevel || safeLevel}`]}
-  ${isHidden ? stylers.visuallyHidden : ""}
-  ${hasUnderline ? underline(safeDisplayLevel || safeLevel) : ""}
-  ${hasDivider ? "display: flex;" : ""}
-  ${isLight ? "font-weight: 400;" : ""}
-`
+    ${defaultHeadingStyles}
+    ${heading[`HEADING_LEVEL_${safeDisplayLevel || safeLevel}`]}
+    ${isHidden ? stylers.visuallyHidden : ""}
+    ${hasUnderline ? underline(safeDisplayLevel || safeLevel) : ""}
+    ${hasDivider ? "display: flex;" : ""}
+    ${isLight ? "font-weight: 400;" : ""}
+  `
 );

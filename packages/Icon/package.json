@@ -1,38 +1,38 @@
 {
   "name": "@paprika/icon",
   "version": "3.0.3",
+  "gitHead": "494ce26cb0a6c24a8f6abf2b154d97ddd4d7e343",
   "description": "Icon component is a graphic to represent something else",
-  "author": "@paprika",
-  "main": "lib/index.js",
-  "module": "lib/esm/index.js",
   "license": "MIT",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/Icon"
   },
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "lib/esm/index.js",
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
     "svgr": "svgr -d . ./src/svg --out-dir src/",
-    "build-declaration": "npx tsc src/*.js --declaration --allowJs --emitDeclarationOnly --outDir src",
+    "build-declaration": "npx tsc src/*.js --declaration --allowJs --emitDeclarationOnly --skipLibCheck --outDir src",
     "pretranspile": "yarn rimraf \"src/!(index).js\" && yarn rimraf src/*.d.ts && yarn svgr && yarn build-declaration"
   },
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.3.1",
+    "@babel/runtime-corejs2": "^7.29.7",
     "@paprika/tokens": "^3.1.1",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@svgr/cli": "^4.1.0",
+    "@svgr/cli": "^4.3.3",
     "rimraf": "3.0.2"
   },
   "peerDependencies": {
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "react-dom": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "styled-components": "^4.2.0 || >=5.0.0 <6.0.0"
-  },
-  "gitHead": "494ce26cb0a6c24a8f6abf2b154d97ddd4d7e343",
-  "sideEffects": false
+  }
 }

@@ -3,9 +3,7 @@ import { getStoryUrlPrefix } from "../../../.storybook/storyTree";
 
 describe("<DateRangePicker />", () => {
   const targetStartDate = moment();
-  const targetEndDate = moment(targetStartDate)
-    .add(1, "month")
-    .date(1);
+  const targetEndDate = moment(targetStartDate).add(1, "month").date(1);
 
   beforeEach(() => {
     cy.visitStorybook(`${getStoryUrlPrefix("DateRangePicker")}-backyard-tests--cypress`);

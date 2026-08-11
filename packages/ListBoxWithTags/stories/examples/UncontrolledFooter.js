@@ -3,22 +3,19 @@ import ListBox, { useListBoxWithTags } from "../../src";
 import animals from "../mocks";
 
 const defaultFilteredData = animals.slice(0, 20);
-const emojiData = [{ label: "emoji-dog", emoji: "🐶" }, { label: "emoji-cat", emoji: "😸" }];
+const emojiData = [
+  { label: "emoji-dog", emoji: "🐶" },
+  { label: "emoji-cat", emoji: "😸" },
+];
 const defaultData = [...animals, ...emojiData];
 
 export default function App({ isOpen = false }) {
-  const {
-    isSelected,
-    filteredData,
-    getSelectedOptions,
-    snapshotSelectedKeys,
-    setSelectedKeys,
-    listBoxWithTagsProps,
-  } = useListBoxWithTags({
-    key: "label",
-    defaultData,
-    defaultFilteredData,
-  });
+  const { isSelected, filteredData, getSelectedOptions, snapshotSelectedKeys, setSelectedKeys, listBoxWithTagsProps } =
+    useListBoxWithTags({
+      key: "label",
+      defaultData,
+      defaultFilteredData,
+    });
 
   const [snapshot, setSnapshot] = React.useState(snapshotSelectedKeys());
 

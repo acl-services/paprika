@@ -8,9 +8,7 @@ import WithInlineTextExample from "./examples/WithInlineText";
 
 const storyName = getStoryName("Counter");
 
-storiesOf(storyName, module)
-  .addDecorator(withKnobs)
-  .add("Showcase", Showcase);
+storiesOf(storyName, module).addDecorator(withKnobs).add("Showcase", Showcase);
 
 storiesOf(`${storyName}/Examples`, module)
   .add("SizesTypesColors", () => <SizesTypesExample />)

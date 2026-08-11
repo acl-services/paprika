@@ -6,8 +6,7 @@ import CollapsibleText from "../../src";
 
 const exampleChildren = {
   Short: "Lorem hipsum raw denim listicle mixtape.",
-  Long:
-    "Lorem hipsum lomo cronut meggings hella tattooed affogato. Pug cred plaid, neutra lyft typewriter locavore beard vice art party glossier woke kinfolk. Craft beer keytar poke man bun. Yr polaroid flannel air plant. Brunch tote bag seitan meditation ennui, adaptogen yr health goth. Hashtag disrupt echo park wayfarers, air plant tofu 8-bit green juice tilde umami kickstarter waistcoat.",
+  Long: "Lorem hipsum lomo cronut meggings hella tattooed affogato. Pug cred plaid, neutra lyft typewriter locavore beard vice art party glossier woke kinfolk. Craft beer keytar poke man bun. Yr polaroid flannel air plant. Brunch tote bag seitan meditation ennui, adaptogen yr health goth. Hashtag disrupt echo park wayfarers, air plant tofu 8-bit green juice tilde umami kickstarter waistcoat.",
   "Rich-text node": (
     <>
       <p>

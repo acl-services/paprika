@@ -5,17 +5,17 @@ import ArrowLeftIcon from "@paprika/icon/lib/ArrowLeft";
 
 export const Link = styled.a(
   ({ isDark }) => css`
-  ${stylers.lineHeight()}
-  ${stylers.fontSize(-2)}
-  color: ${isDark ? tokens.color.white : tokens.textColor.subtle};
-  display: inline;
-  font-weight: normal;
-  margin: 0 ${tokens.spaceSm};
-  min-height: 0;
-  padding: 0 3px;
-  text-decoration: none;
-  vertical-align: top;
-`
+    ${stylers.lineHeight()}
+    ${stylers.fontSize(-2)}
+    color: ${isDark ? tokens.color.white : tokens.textColor.subtle};
+    display: inline;
+    font-weight: normal;
+    margin: 0 ${tokens.spaceSm};
+    min-height: 0;
+    padding: 0 3px;
+    text-decoration: none;
+    vertical-align: top;
+  `
 );
 
 export const ListItem = styled.li(

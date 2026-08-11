@@ -2,15 +2,18 @@
   "name": "@paprika/stylers",
   "version": "1.1.13",
   "description": "Helpers and includes for styled-components",
-  "author": "@paprika",
-  "main": "lib/index.js",
-  "module": "lib/esm/index.js",
   "license": "MIT",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/Stylers"
   },
+  "sideEffects": [
+    "*.scss"
+  ],
+  "main": "lib/index.js",
+  "module": "lib/esm/index.js",
   "publishConfig": {
     "access": "public"
   },
@@ -23,8 +26,5 @@
   },
   "peerDependencies": {
     "styled-components": "^4.2.0 || >=5.0.0 <6.0.0"
-  },
-  "sideEffects": [
-    "*.scss"
-  ]
+  }
 }

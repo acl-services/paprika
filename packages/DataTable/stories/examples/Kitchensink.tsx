@@ -13,7 +13,17 @@ const props = () => ({
   isHeaderSticky: boolean("isHeaderSticky", true),
 });
 
-function CustomCell(props: any) {
+interface CustomCellProps {
+  extraCellProps: {
+    onClick: (index: number) => void;
+  };
+  row: {
+    index: number;
+  };
+  value: unknown;
+}
+
+function CustomCell(props: CustomCellProps): JSX.Element {
   const { row, extraCellProps, value } = props;
 
   return (
@@ -188,7 +198,7 @@ export const KitchensinkStory: (props: Partial<DataTableProps>) => JSX.Element =
   );
 };
 
-export default () => (
+export default (): JSX.Element => (
   <Story>
     <StoryHeading level={1}>DataTable kitchensink</StoryHeading>
     <KitchensinkStory {...props()} />

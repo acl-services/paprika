@@ -17,17 +17,8 @@ const defaultProps = {
 };
 
 function Trigger(props) {
-  const {
-    content,
-    isEager,
-    isOpen,
-    onClick,
-    onClose,
-    onDelayedClose,
-    onDelayedOpen,
-    onOpen,
-    shouldKeepFocus,
-  } = React.useContext(PopoverContext);
+  const { content, isEager, isOpen, onClick, onClose, onDelayedClose, onDelayedOpen, onOpen, shouldKeepFocus } =
+    React.useContext(PopoverContext);
 
   function handleTriggerEvent(event) {
     if (isEager && (event.type === "mouseover" || event.type === "focus")) {

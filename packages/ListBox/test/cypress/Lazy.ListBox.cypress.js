@@ -13,12 +13,8 @@ describe("Lazy ListBox", () => {
   });
 
   it("should show correct amount when backspacing filter", () => {
-    cy.get(selectors.filterInput)
-      .type("o")
-      .type("{backspace}");
-    cy.get(selectors.popoverList)
-      .children()
-      .should("have.length", 55);
+    cy.get(selectors.filterInput).type("o").type("{backspace}");
+    cy.get(selectors.popoverList).children().should("have.length", 55);
   });
 
   it("should select options, and close popover while not show images when pressing cancel", () => {
@@ -26,9 +22,7 @@ describe("Lazy ListBox", () => {
     cy.contains("Nebula").click();
     cy.contains("Cancel").click();
     cy.get(selectors.popover).should("not.exist");
-    cy.get("#root")
-      .children()
-      .should("have.length", 1);
+    cy.get("#root").children().should("have.length", 1);
   });
 
   it("should select options and clear selections", () => {

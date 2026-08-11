@@ -1,21 +1,22 @@
 {
   "name": "@paprika/list-box-browser",
   "version": "4.0.5",
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
   "description": "ListBox Browser component is a two column layout that allows users to select one or multiple options. It is similar to the experience of browsing a file manager in any operating system.",
-  "author": "@paprika",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
   "license": "MIT",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/ListBoxBrowser"
   },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.3.1",
+    "@babel/runtime-corejs2": "^7.29.7",
     "@paprika/helpers": "^2.4.3",
     "@paprika/icon": "^3.0.3",
     "@paprika/list-box": "^7.0.5",
@@ -23,7 +24,7 @@
     "@paprika/spinner": "^1.0.24",
     "@paprika/stylers": "^1.1.13",
     "@paprika/tokens": "^3.1.1",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.8.1"
   },
   "peerDependencies": {
     "@paprika/l10n": "^2.1.2",
@@ -36,6 +37,5 @@
       "CustomListBox",
       "Title"
     ]
-  },
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
+  }
 }

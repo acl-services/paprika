@@ -2,16 +2,17 @@
   "name": "@paprika/mock-endpoints",
   "version": "1.0.3",
   "description": "A helper function that wraps of the 'fetch-mock' library, making it easy to mock API calls from your component.",
-  "main": "lib/index.js",
-  "module": "lib/esm/index.js",
-  "types": "lib/index.d.ts",
-  "author": "@paprika",
   "license": "MIT",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/MockEndpoints"
   },
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "lib/esm/index.js",
+  "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -22,6 +23,5 @@
   "peerDependencies": {
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "react-dom": "^16.8.4 || ^17.0.2 || ^18.0.0"
-  },
-  "sideEffects": false
+  }
 }

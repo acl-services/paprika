@@ -12,7 +12,7 @@ function Error(props) {
 
   React.useEffect(() => {
     if (addIdToAriaDescribedBy) addIdToAriaDescribedBy({ ariaErrorId });
-  }, []);
+  }, [addIdToAriaDescribedBy, ariaErrorId]);
 
   if (!children) return null;
 

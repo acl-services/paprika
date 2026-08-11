@@ -11,19 +11,8 @@ import types from "./types";
 const noop = () => {};
 
 function Radio(props) {
-  const {
-    a11yText,
-    children,
-    isChecked,
-    isDisabled,
-    name,
-    canDeselect,
-    onClick,
-    size,
-    tabIndex,
-    value,
-    ...moreProps
-  } = props;
+  const { a11yText, children, isChecked, isDisabled, name, canDeselect, onClick, size, tabIndex, value, ...moreProps } =
+    props;
   const [radioId] = React.useState(() => `radio_${uuidv4()}`);
   const inputRef = React.useRef(null);
   const extendedInputProps = extractChildrenProps(children, RadioInputPropsCollector);

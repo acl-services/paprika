@@ -86,16 +86,8 @@ const Filter = React.forwardRef((props, ref) => {
   }, [dispatch]);
 
   if (isInline || isOpen) {
-    const {
-      renderFilter,
-      placeholder,
-      value,
-      onChangeFilter,
-      filter,
-      hasSearchIcon,
-      noResultsMessage,
-      ...moreProps
-    } = props;
+    const { renderFilter, placeholder, value, onChangeFilter, filter, hasSearchIcon, noResultsMessage, ...moreProps } =
+      props;
     if (renderFilter) {
       return props.renderFilter(props);
     }

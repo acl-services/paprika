@@ -75,7 +75,7 @@ export const IndicatorDot = styled.span(
     ${stylers.fontSize()}
     ${stylers.z(2)}
 
-  align-items: center;
+    align-items: center;
     background-color: ${tokens.color.white};
     border: 2px solid ${tokens.color.blackLighten40};
     border-radius: 100%;

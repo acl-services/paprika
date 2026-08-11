@@ -26,7 +26,7 @@ export const ActiveItem = styled.div`
 
 export const ActiveLabel = styled.div`
   ${stylers.truncateText}
-  
+
   color: ${tokens.color.blue};
 `;
 

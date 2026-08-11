@@ -70,7 +70,7 @@ export default function InlineInput(props) {
         window.cancelAnimationFrame(id);
       };
     }
-  }, [value]); // we want to run it only when the value change
+  }, [value]); // eslint-disable-line react-hooks/exhaustive-deps -- run only when the value changes
 
   React.useEffect(() => {
     if (isEditing && refInput.current) {

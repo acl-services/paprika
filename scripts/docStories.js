@@ -1,4 +1,3 @@
-
 /**
  * This script runs and generates the corresponding documentation {Component}.stories.mdx files for each package if it doesn't already exist.
  */
@@ -6,18 +5,9 @@
 const fs = require("fs");
 const shell = require("shelljs");
 
-const skipPackages = [
-  "BuildTranslations",
-  "Calendar",
-  "Constants",
-  "helpers",
-  "Stylers",
-  "Overlay",
-];
+const skipPackages = ["BuildTranslations", "Calendar", "Constants", "helpers", "Stylers", "Overlay"];
 
-const renderMDXFileTemplate = ({
-  displayName = "",
-}) => {
+const renderMDXFileTemplate = ({ displayName = "" }) => {
   return `
 import { Meta, Description } from "@storybook/addon-docs/blocks";
 import { getStoryName } from "storybook/storyTree";
@@ -40,17 +30,16 @@ shell.ls("packages").forEach(folder => {
     try {
       if (!fs.existsSync(destinationFileName) && fs.existsSync(readMeFile)) {
         const template = renderMDXFileTemplate({
-          displayName: folder
+          displayName: folder,
         });
 
         fs.writeFileSync(`${destinationFileName}`, template, {
           encoding: "utf8",
           flag: "w",
-        })
+        });
       }
-    } catch(err) {
+    } catch (err) {
       console.warn(folder, err);
     }
   }
 });
-

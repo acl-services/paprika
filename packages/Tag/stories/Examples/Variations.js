@@ -19,7 +19,10 @@ export default function Variations() {
     <L10n locale="en">
       <div style={{ padding: "20px" }}>
         <StoryHeading>Variations</StoryHeading>
-        {[{ tagSize: "medium", avatarSize: "small" }, { tagSize: "large", avatarSize: "medium" }].map(permutation => (
+        {[
+          { tagSize: "medium", avatarSize: "small" },
+          { tagSize: "large", avatarSize: "medium" },
+        ].map(permutation => (
           <Tags key={permutation.avatarSize}>
             <li>
               <Tag

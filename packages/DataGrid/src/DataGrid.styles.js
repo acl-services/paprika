@@ -13,8 +13,11 @@ export const Grid = styled.div.attrs(({ $width }) => ({
     z-index: 1;
 
     [data-pka="cell"] {
-      box-shadow: inset -2px 0px 0px 0px ${tokens.color.blue}, inset 0px -2px 0px 0px ${tokens.color.blue},
-        inset 0px 2px 0px 0px ${tokens.color.blue}, inset 2px 0px 0px 0px ${tokens.color.blue};
+      box-shadow:
+        inset -2px 0px 0px 0px ${tokens.color.blue},
+        inset 0px -2px 0px 0px ${tokens.color.blue},
+        inset 0px 2px 0px 0px ${tokens.color.blue},
+        inset 2px 0px 0px 0px ${tokens.color.blue};
       border-radius: ${tokens.spaceSm};
     }
   }

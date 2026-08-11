@@ -35,12 +35,16 @@ const defaultProps = {
 
 function ProgressBar(props) {
   const { a11yText, bodyText, completed, header, headerLevel, isCompact, ...moreProps } = props;
-  const randomId = a11yText ? uuidv4() : null;
+  const [headerId, a11yTextId] = React.useMemo(() => [uuidv4(), uuidv4()], []);
+
+  // The progressbar role requires an accessible name: prefer the explicit a11yText, and
+  // fall back to the visible header, which is what describes the bar on screen.
+  const labelledBy = [header ? headerId : null, a11yText ? a11yTextId : null].filter(Boolean).join(" ") || null;
 
   return (
     <sc.ProgressBar {...moreProps}>
       {header ? (
-        <Heading displayLevel={3} level={headerLevel}>
+        <Heading displayLevel={3} level={headerLevel} id={headerId}>
           {header}
         </Heading>
       ) : null}
@@ -52,12 +56,12 @@ function ProgressBar(props) {
           completed={completed}
           data-pka-anchor="progress-bar"
           role="progressbar"
-          aria-labelledby={randomId}
+          aria-labelledby={labelledBy}
         />
       </sc.Bar>
       {bodyText ? <sc.Body>{bodyText}</sc.Body> : null}
       {a11yText ? (
-        <sc.A11yText aria-live="polite" id={randomId}>
+        <sc.A11yText aria-live="polite" id={a11yTextId}>
           {a11yText}
         </sc.A11yText>
       ) : null}

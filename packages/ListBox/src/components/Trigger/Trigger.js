@@ -251,7 +251,18 @@ export default function Trigger(props) {
       const [selected, options] = getSelectedOptionSingle(state);
       return children(selected, options, attributes);
     }
-  }, [children, dispatch, hasRenderTrigger, idListBox, isMulti, isOpen, onChangeContext, refTrigger, state]);
+  }, [
+    children,
+    dispatch,
+    hasRenderTrigger,
+    idListBox,
+    isMulti,
+    isOpen,
+    onChangeContext,
+    providedProps,
+    refTrigger,
+    state,
+  ]);
 
   if (isHidden && isInline) {
     return <sc.ListBoxTrigger data-pka-anchor="list-box-trigger" isHidden />;

@@ -30,10 +30,7 @@ describe("<Sortable />", () => {
       .trigger("mousemove", { button: 0, ...dragOffset, clientY: 100 })
       .trigger("mouseup")
       .wait(animationDelay * 2);
-    cy.get(selector.item)
-      .eq(1)
-      .contains("Lorem")
-      .should("be.visible");
+    cy.get(selector.item).eq(1).contains("Lorem").should("be.visible");
   });
 
   it("should ignore out-of-bounds drops", () => {
@@ -46,10 +43,7 @@ describe("<Sortable />", () => {
       .trigger("mousemove", { button: 0, ...dragOffset, clientY: 400 })
       .trigger("mouseup")
       .wait(animationDelay * 2);
-    cy.get(selector.item)
-      .first()
-      .contains("Lorem")
-      .should("be.visible");
+    cy.get(selector.item).first().contains("Lorem").should("be.visible");
   });
 
   it("should be re-orderable by keyboard", () => {
@@ -59,20 +53,11 @@ describe("<Sortable />", () => {
       .trigger("keydown", keyEvent.down)
       .wait(animationDelay)
       .trigger("keydown", keyEvent.space);
-    cy.get(selector.item)
-      .eq(1)
-      .contains("Lorem")
-      .should("be.visible");
+    cy.get(selector.item).eq(1).contains("Lorem").should("be.visible");
   });
 
   it("should allow items to be removed", () => {
-    cy.get(selector.item)
-      .first()
-      .find(selector.remove)
-      .click();
-    cy.get(selector.item)
-      .first()
-      .contains("Lorem")
-      .should("not.exist");
+    cy.get(selector.item).first().find(selector.remove).click();
+    cy.get(selector.item).first().contains("Lorem").should("not.exist");
   });
 });

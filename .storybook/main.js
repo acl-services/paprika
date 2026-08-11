@@ -34,11 +34,25 @@ module.exports = {
         loaders: ["style-loader", "css-loader", "sass-loader"],
         include: path.resolve(__dirname, "../"),
       },
+      {
+        test: /\.js$/,
+        include: /node_modules[\\/]uuid/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: [require.resolve("@babel/preset-env")],
+            babelrc: false,
+            configFile: false,
+          },
+        },
+      },
     ];
     config.resolve.alias = {
       ...config.resolve.alias,
       storybook: path.resolve("./.storybook/"),
+      uuid: require.resolve("uuid"),
     };
+    config.resolve.mainFields = ["main"];
     config.output = {
       ...config.output,
       globalObject: "self",

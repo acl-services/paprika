@@ -14,13 +14,10 @@ export default function useItemSizeCalculator(
 
   const columnsWidth = React.useMemo(
     () =>
-      allColumns.reduce(
-        (res, column) => {
-          res[column.id] = column.totalWidth;
-          return res;
-        },
-        {} as TableColumnsWidth
-      ),
+      allColumns.reduce((res, column) => {
+        res[column.id] = column.totalWidth;
+        return res;
+      }, {} as TableColumnsWidth),
     [allColumns]
   );
 

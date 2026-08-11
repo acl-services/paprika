@@ -68,8 +68,9 @@ export default class RowHeightHelper {
 
     for (let [key, value] of Object.entries(rowData)) {
       if (Object.prototype.hasOwnProperty.call(columnsWidth, key)) {
+        const sanitizedValue = value instanceof Node ? sanitize(value) : sanitize(String(value));
         innerElementsForTheRow.push(
-          `<div style="box-sizing:border-box;width:${columnsWidth[key]}px;${this.styles}">${sanitize(value)}</div>`
+          `<div style="box-sizing:border-box;width:${columnsWidth[key]}px;${this.styles}">${sanitizedValue}</div>`
         );
       }
     }

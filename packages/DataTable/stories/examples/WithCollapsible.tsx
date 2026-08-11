@@ -55,7 +55,7 @@ export const WithCollapsibleStory: () => JSX.Element = () => {
   );
 };
 
-export default () => {
+export default (): JSX.Element => {
   const [isCollapsed, setCollapsed] = React.useState(true);
 
   return (

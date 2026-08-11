@@ -35,9 +35,7 @@ describe("Filter with server", () => {
     cy.findByText("Filter").click();
     cy.findByText("Add filter").click();
     cy.findByText("Add filter").click();
-    cy.findAllByRole("radio")
-      .eq(0)
-      .should("be.checked");
+    cy.findAllByRole("radio").eq(0).should("be.checked");
     cy.findAllByTestId("filter.item")
       .eq(1)
       .within(() => {
@@ -48,9 +46,7 @@ describe("Filter with server", () => {
     cy.findAllByRole("row").should("have.length", 2);
     cy.findByText("2 filtered").click();
     cy.findByText("Or").click();
-    cy.findAllByRole("radio")
-      .eq(1)
-      .should("be.checked");
+    cy.findAllByRole("radio").eq(1).should("be.checked");
     cy.findByText("Apply").click();
   });
 

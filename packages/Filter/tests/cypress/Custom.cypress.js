@@ -12,12 +12,8 @@ describe("Filter with custom selector", () => {
     cy.findByText("Level (custom field)").click();
 
     clickListBoxTrigger("filter.item.ruleSelector");
-    cy.findAllByText("is")
-      .eq(0)
-      .click();
+    cy.findAllByText("is").eq(0).click();
 
-    cy.get("select")
-      .select("low")
-      .select("mid");
+    cy.get("select").select("low").select("mid");
   });
 });
