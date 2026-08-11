@@ -63,7 +63,6 @@ runs:
           ${{ runner.os }}-lerna-
 
     - name: Install dependencies
-      if: steps.node-modules-cache.outputs.cache-hit != 'true'
       shell: bash
       run: yarn install --frozen-lockfile
 
