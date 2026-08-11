@@ -25,19 +25,13 @@ describe("Select", () => {
   });
 
   it("should not fail any accessibility tests", async () => {
+    // The select is rendered in isolation, so it is named with a11yText instead of a <label>
     const { container } = render(
-      <Select value="Select value">
+      <Select a11yText="Pick a value" value="Select value">
         <option value="Select value">Select value</option>
         <option value="Another option">Another option</option>
       </Select>
     );
-    // Select component is isolated and is not associated with label
-    expect(
-      await axe(container, {
-        rules: {
-          label: { enabled: false },
-        },
-      })
-    ).toHaveNoViolations();
+    expect(await axe(container)).toHaveNoViolations();
   });
 });
