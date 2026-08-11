@@ -30,6 +30,7 @@ const propTypes = {
     className: PropTypes.string,
 
     whiteList: PropTypes.func,
+    // eslint-disable-next-line react/forbid-prop-types
     shards: PropTypes.arrayOf(PropTypes.any),
 
     as: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),

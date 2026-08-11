@@ -33,6 +33,9 @@ interface DataTableComposition {
   types: ConstantsTypes;
 }
 
+// Defaults for the optional props below live in the DataTable() parameter destructuring,
+// which react/require-default-props cannot see
+/* eslint-disable react/require-default-props */
 export interface DataTableProps {
   /** Accessible description of the table */
   a11yText: string;

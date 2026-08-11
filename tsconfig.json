@@ -1,11 +1,6 @@
 {
-  "include": [
-    "./packages",
-    "global.d.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ],
+  "include": ["./packages", "global.d.ts"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
     "allowJs": true,
     "declaration": true,
@@ -13,11 +8,7 @@
     "strict": true,
     "target": "ES5",
     "module": "ESNext",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",

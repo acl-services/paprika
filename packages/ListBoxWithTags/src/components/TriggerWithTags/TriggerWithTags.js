@@ -112,6 +112,7 @@ TriggerWithTags.propTypes = {
   onRemove: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   renderTag: PropTypes.func,
+  // eslint-disable-next-line react/forbid-prop-types
   selectedOptions: PropTypes.arrayOf(PropTypes.object),
   size: PropTypes.string.isRequired,
   tagLabelKey: PropTypes.string,
