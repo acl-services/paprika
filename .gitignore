@@ -23,6 +23,9 @@ node_modules/
 # Yarn Integrity file
 .yarn-integrity
 
+# npm lockfile, this repo is yarn 1 workspaces only
+package-lock.json
+
 # dotenv environment variables file
 .env
 
