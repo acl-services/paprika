@@ -35,7 +35,7 @@ interface DataTableComposition {
 
 // Defaults for the optional props below live in the DataTable() parameter destructuring,
 // which react/require-default-props cannot see
-/* eslint-disable react/require-default-props */
+
 export interface DataTableProps {
   /** Accessible description of the table */
   a11yText: string;
@@ -124,12 +124,12 @@ function DataTable(
     useSticky
   );
 
-  /* eslint-disable @typescript-eslint/ban-ts-comment */
+  /* oxlint-disable typescript/ban-ts-comment */
   const {
     // @ts-ignore
     "DataTable.InfiniteLoader": extractedInfiniteLoaderDefinition,
   } = extractChildren(children, ["DataTable.InfiniteLoader"]);
-  /* eslint-enable @typescript-eslint/ban-ts-comment */
+  /* oxlint-enable typescript/ban-ts-comment */
   const hasInfiniteLoader = Boolean(extractedInfiniteLoaderDefinition);
 
   function renderTableContent() {

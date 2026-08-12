@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unused-prop-types */
-
 /* A shell component to collect and distribute a11y related props and DOM
  * attributes to the appropriate (interactive) element
  */

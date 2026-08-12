@@ -5,7 +5,7 @@ import { labelStyles } from "./Label.styles";
 const propTypes = {
   selectedOptions: PropTypes.arrayOf(PropTypes.number).isRequired,
   // complex object not worth declaring the shape of the strcuture
-  options: PropTypes.object.isRequired, // eslint-disable-line
+  options: PropTypes.object.isRequired,
 };
 
 function getFormattedLabel(selectedOptions, options) {

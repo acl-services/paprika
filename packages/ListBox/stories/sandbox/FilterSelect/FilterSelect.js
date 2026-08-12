@@ -40,9 +40,8 @@ const FilterColor = React.forwardRef((props, ref) => (
 const filterItems =
   ({ price, colors, qty }) =>
   item => {
-    // eslint-disable-next-line
     const priceRule = price === null ? true : price.label === "greater than 500" ? item.price > 500 : item.price < 500;
-    // eslint-disable-next-line
+
     const qtyRule = qty === null ? true : qty.label === "greater than 100" ? item.qty > 100 : item.qty < 100;
 
     const colorsArray = colors === null ? [] : colors.map(color => color.label);

@@ -211,8 +211,8 @@ Common yarn commands for development:
 
 **Code Quality:**
 
-- `yarn lint` - Run ESLint to check code quality
-- `yarn lint:fix` - Automatically fix ESLint issues
+- `yarn lint` - Run Oxlint to check code quality
+- `yarn lint:fix` - Automatically fix Oxlint issues
 - `yarn lint:jss` - Lint styled-components files
 - `yarn prettier` - Check code formatting
 - `yarn prettier:format` or `yarn prettier --write` - Format code with Prettier
@@ -268,7 +268,7 @@ Common yarn commands for development:
 
 There are a few layers to the testing pyramid in Paprika.
 
-- Static analysis – [ESLint](https://eslint.org/) (with several plugins, namely [airbnb](https://www.npmjs.com/package/eslint-config-airbnb))
+- Static analysis – [Oxlint](https://oxc.rs/docs/guide/usage/linter)
 - Unit testing – [Jest](https://jestjs.io/)
 - Component testing – [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)
 - End-to-end testing – [Cypress](https://testing-library.com/docs/react-testing-library/intro)

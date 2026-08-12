@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-/* eslint-disable import/no-extraneous-dependencies */
 const { existsSync } = require("fs");
 const { Octokit } = require("@octokit/rest");
 

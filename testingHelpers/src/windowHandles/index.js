@@ -51,7 +51,6 @@ export class Input {
   }
 
   apply(wrapper, key) {
-    // eslint-disable-next-line
     wrapper.childProps[key] =
       wrapper.isPropUndefinedOrDefault(key) && typeof this.initialValue !== "undefined"
         ? this.initialValue
@@ -59,7 +58,7 @@ export class Input {
     Object.defineProperty(wrapper.windowProps, key, {
       get: () => wrapper.childProps[key],
       set: value => {
-        wrapper.childProps[key] = value; // eslint-disable-line
+        wrapper.childProps[key] = value;
         wrapper.windowProps.update();
       },
     });
@@ -68,7 +67,7 @@ export class Input {
 
 export class Action {
   apply(wrapper, key) {
-    wrapper.windowProps[key] = (...args) => wrapper.ref[key](...args); // eslint-disable-line
+    wrapper.windowProps[key] = (...args) => wrapper.ref[key](...args);
   }
 }
 

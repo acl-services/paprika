@@ -1,5 +1,3 @@
-/* eslint-disable func-names */
-
 // IE polyfill for Element.closest()
 // https://developer.mozilla.org/en-US/docs/Web/API/Element/closest
 

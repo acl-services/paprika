@@ -1,4 +1,3 @@
-/* eslint-disable guard-for-in */
 /**
  * Summary: From a given object with action functions declared returns a new object with the type names of those actions.
  *

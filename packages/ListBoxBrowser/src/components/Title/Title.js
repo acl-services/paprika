@@ -8,7 +8,7 @@ import { ListBoxBrowserContext } from "../../ListBoxBrowser";
 const propTypes = {
   rootTitle: PropTypes.node.isRequired,
   browserTitle: PropTypes.node.isRequired,
-  data: PropTypes.arrayOf(PropTypes.object), // eslint-disable-line
+  data: PropTypes.arrayOf(PropTypes.object),
   browserKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   onClickBreadcrumb: PropTypes.func.isRequired,
   hasLeftColumn: PropTypes.bool.isRequired,

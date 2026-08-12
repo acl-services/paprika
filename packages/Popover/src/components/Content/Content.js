@@ -75,7 +75,7 @@ const Content = React.forwardRef((props, ref) => {
     refContent(_ref);
     if (ref) {
       // https://github.com/reactjs/rfcs/blob/master/text/0017-new-create-ref.md#basic-example
-      ref.current = _ref; // eslint-disable-line
+      ref.current = _ref;
     }
   };
 
@@ -121,7 +121,6 @@ const Content = React.forwardRef((props, ref) => {
 
   return ContentStyledComponent;
 });
-/* eslint-enable jsx-a11y/mouse-events-have-key-events */
 
 Content.displayName = "Popover.Content";
 

@@ -64,7 +64,6 @@ export function getData({
     };
 
     if (defaultSelectedOptions(option.attributes)) {
-      /* eslint-disable no-param-reassign */
       if (isRoot(option.parent)) {
         newPath = "root";
       }

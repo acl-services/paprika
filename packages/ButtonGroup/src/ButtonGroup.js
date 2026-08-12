@@ -73,7 +73,7 @@ const ButtonGroup = React.forwardRef((props, ref) => {
       }
       setSelectedItems(newSelectedItems);
 
-      const domIndex = buttonRefs.findIndex(item => item.getAttribute("value") == clickedValue); // eslint-disable-line eqeqeq
+      const domIndex = buttonRefs.findIndex(item => item.getAttribute("value") == clickedValue);
       setFocusIndex(domIndex);
 
       if (typeof onChange === "function") onChange(newSelectedItems);

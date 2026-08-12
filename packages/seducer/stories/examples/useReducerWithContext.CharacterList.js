@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
 import Button from "@paprika/button";
 import Input from "@paprika/input";

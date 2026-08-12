@@ -13,10 +13,9 @@ export default function InlineInput(props) {
     onSubmit,
     value,
 
-    /* eslint-disable react/prop-types */
     rowIndex,
     columnIndex,
-    /* eslint-enable react/prop-types */
+
     ...moreProps
   } = props;
   const refInput = React.useRef(null);
@@ -70,7 +69,7 @@ export default function InlineInput(props) {
         window.cancelAnimationFrame(id);
       };
     }
-  }, [value]); // eslint-disable-line react-hooks/exhaustive-deps -- run only when the value changes
+  }, [value]); // oxlint-disable-line react/exhaustive-deps -- run only when the value changes
 
   React.useEffect(() => {
     if (isEditing && refInput.current) {

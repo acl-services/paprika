@@ -1,4 +1,3 @@
-/* eslint-disable react/require-default-props */
 import React from "react";
 import useResizeObserver from "use-resize-observer/polyfilled";
 import { useCallbackDebouncer, ShirtSizes } from "@paprika/helpers";

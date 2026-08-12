@@ -1,10 +1,9 @@
 #!/usr/bin/env node
-/* eslint-disable no-useless-catch */
 
 // Inquirer
-// eslint-disable-next-line import/no-extraneous-dependencies
+
 const inquirer = require("inquirer");
-// eslint-disable-next-line import/no-extraneous-dependencies
+
 const search_list = require("inquirer-search-list");
 const { pascalCase } = require("pascal-case");
 const file = require("fs");

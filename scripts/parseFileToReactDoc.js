@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 const reactDocs = require("react-docgen");
 
 function hasTypes(str) {

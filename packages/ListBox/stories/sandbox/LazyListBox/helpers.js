@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 export const actionTypes = {
   addSearchedCharacters: "addSearchedCharacters",
   addCharacters: "addCharacters",
@@ -62,7 +60,6 @@ export const debounce = function (func, wait, immediate) {
     if (callNow) func.apply(context, args);
   };
 };
-/* eslint-enable */
 
 export async function fetchAPI(term, offset = null, limit = 20) {
   const url = "https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=";

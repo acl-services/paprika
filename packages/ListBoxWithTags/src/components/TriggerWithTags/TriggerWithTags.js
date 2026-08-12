@@ -112,7 +112,7 @@ TriggerWithTags.propTypes = {
   onRemove: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   renderTag: PropTypes.func,
-  // eslint-disable-next-line react/forbid-prop-types
+
   selectedOptions: PropTypes.arrayOf(PropTypes.object),
   size: PropTypes.string.isRequired,
   tagLabelKey: PropTypes.string,
@@ -123,7 +123,7 @@ TriggerWithTags.propTypes = {
   isOpen: PropTypes.bool,
   propsForTrigger: PropTypes.func.isRequired,
   refTrigger: RefOf().isRequired,
-  types: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  types: PropTypes.object.isRequired,
 };
 
 TriggerWithTags.defaultProps = {

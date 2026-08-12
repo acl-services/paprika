@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import * as Sbook from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
-import worker from "workerize-loader!./helpers/data.worker"; // eslint-disable-line import/no-webpack-loader-syntax
+import worker from "workerize-loader!./helpers/data.worker";
 import Spinner from "@paprika/spinner";
 import DataGrid, { renderColumnIndicator, renderColumnExpand } from "../src";
 

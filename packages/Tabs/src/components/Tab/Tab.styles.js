@@ -47,7 +47,7 @@ const disabledStyles = ({ hasInsetFocusStyle }) => css`
 
 function getHeightValue(height) {
   if (!height) return "auto";
-  // eslint-disable-next-line no-restricted-globals
+
   return isNaN(height) ? height : `${height}px`;
 }
 

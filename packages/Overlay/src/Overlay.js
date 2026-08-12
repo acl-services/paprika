@@ -30,17 +30,16 @@ const propTypes = {
     className: PropTypes.string,
 
     whiteList: PropTypes.func,
-    // eslint-disable-next-line react/forbid-prop-types
+
     shards: PropTypes.arrayOf(PropTypes.any),
 
     as: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
-    // eslint-disable-next-line react/forbid-prop-types
+
     lockProps: PropTypes.object,
 
     onActivation: PropTypes.func,
     onDeactivation: PropTypes.func,
 
-    // eslint-disable-next-line react/forbid-prop-types
     sideCar: PropTypes.any,
   }),
   hasBackdrop: PropTypes.bool,
@@ -84,7 +83,7 @@ const Overlay = props => {
 
   function handleTransitionEnter(node) {
     // https://github.com/reactjs/react-transition-group/blob/6dbadb594c7c2a2f15bc47afc6b4374cfd73c7c0/src/CSSTransition.js#L44
-    // eslint-disable-next-line no-unused-expressions
+    // oxlint-disable-next-line no-unused-expressions
     node.scrollTop;
   }
 

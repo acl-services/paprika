@@ -1,5 +1,3 @@
-/* eslint-disable react/no-array-index-key */
-
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
 import { extractChildren } from "@paprika/helpers";
@@ -21,7 +19,7 @@ const Table = React.forwardRef((props, ref) => {
     onClick,
     onFocus,
     /** for internal use */
-    cellPropsResetCSS = false, // eslint-disable-line
+    cellPropsResetCSS = false,
     ...moreProps
   } = props;
   const [tableId] = React.useState(() => `table_${uuidv4()}`);

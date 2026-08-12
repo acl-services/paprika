@@ -35,7 +35,6 @@ const RenderRow: () => JSX.Element = () => {
 
   const data = React.useMemo(() => makeData(40), []);
 
-  // eslint-disable-next-line react/no-unused-prop-types
   function renderRow({ index }: { index: number }) {
     if (index === 0 || index % 4 !== 0) return;
 

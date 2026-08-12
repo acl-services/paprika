@@ -30,7 +30,7 @@ export default function DynamicHyperlinkTransformer({ onFetch }) {
         .forEach(dynamicHyperlink => {
           const originalLinkUrl = dynamicHyperlink.href;
           const attributeValue = dynamicHyperlink.getAttribute("data-dynamic-hyperlink");
-          dynamicHyperlink.innerHTML = I18n.t("dynamicHyperlinkTransformer.loading"); // eslint-disable-line no-param-reassign
+          dynamicHyperlink.innerHTML = I18n.t("dynamicHyperlinkTransformer.loading");
           dynamicHyperlink.setAttribute("data-dynamic-hyperlink--processed", "true");
 
           // the consumer does the fetching of data
@@ -41,7 +41,7 @@ export default function DynamicHyperlinkTransformer({ onFetch }) {
               .then(response => {
                 const { error, name, term } = response;
 
-                dynamicHyperlink.innerHTML = ""; // eslint-disable-line no-param-reassign
+                dynamicHyperlink.innerHTML = "";
 
                 const labelSpan = document.createElement("span");
                 labelSpan.className = "dynamic-hyperlink--label";

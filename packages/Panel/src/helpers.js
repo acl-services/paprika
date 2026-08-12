@@ -31,7 +31,7 @@ export function extractChildren(children, types) {
 export function warnOfPropErrors(props) {
   const wrongProps = [];
 
-  /* eslint-disable no-unused-expressions */
+  /* oxlint-disable no-unused-expressions */
   switch (props.slideFrom) {
     case types.slideFroms.LEFT:
     case types.slideFroms.RIGHT:
@@ -45,7 +45,7 @@ export function warnOfPropErrors(props) {
       break;
     default:
   }
-  /* eslint-enable no-unused-expressions */
+  /* oxlint-enable no-unused-expressions */
 
   wrongProps.forEach(wrongProp => {
     console.warn(

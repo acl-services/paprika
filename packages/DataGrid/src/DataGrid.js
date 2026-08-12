@@ -361,7 +361,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     });
 
     refRemainingSpace.current = refContainer.current.offsetWidth - refTotalColumnWidth.current - scrollBarWidth;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // oxlint-disable-next-line react/exhaustive-deps
   }, []);
 
   const handleCellHighlighted = React.useCallback(
@@ -370,8 +370,8 @@ const DataGrid = React.forwardRef((props, ref) => {
       const key = getGridRefId({ gridId, columnIndex: event.detail.columnIndex, rowIndex: event.detail.rowIndex });
       const prevKey = getGridRefId({ gridId, columnIndex: prevColumnIndex, rowIndex: prevRowIndex });
 
-      const nextRowIndex = event.detail.rowIndex | 0; // eslint-disable-line
-      const nextColumnIndex = event.detail.columnIndex | 0; // eslint-disable-line
+      const nextRowIndex = event.detail.rowIndex | 0;
+      const nextColumnIndex = event.detail.columnIndex | 0;
       const getElementFromDom = (gridId, columnIndex, rowIndex) => () =>
         document.querySelector(`[data-pka-cell-key="${gridId}.${columnIndex}.${rowIndex}"]`);
       const attributes = (columnIndex, rowIndex, gridId) => ({

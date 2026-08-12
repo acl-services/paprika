@@ -1,6 +1,5 @@
 let alphaSortCompareFunction;
 
-// eslint-disable-next-line no-nested-ternary
 const compareFunctionFallback = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
 
 function getCompareFunc(locale) {

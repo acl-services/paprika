@@ -1,5 +1,3 @@
-/* eslint-disable arrow-body-style */
-// eslint-disable-next-line import/no-extraneous-dependencies
 const inquirer = require("inquirer");
 const st = require("../../../.storybook/storyTree");
 const { createFile } = require("./createFile");
