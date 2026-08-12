@@ -148,6 +148,12 @@ jobs:
         if: needs.check-packages.outputs.packages-changed == 'true'
         uses: ./.github/actions/setup-paprika
 
+      # @paprika/* imports resolve to each package's "main" (lib/index.js), which is
+      # gitignored, so the packages have to be transpiled before Jest can run.
+      - name: Build packages
+        if: needs.check-packages.outputs.packages-changed == 'true'
+        run: yarn build:packages
+
       - name: JEST
         if: needs.check-packages.outputs.packages-changed == 'true'
         run: yarn test
@@ -183,6 +189,11 @@ jobs:
         uses: ./.github/actions/setup-paprika
         with:
           with-cypress-cache: "true"
+
+      # Stories import @paprika/* packages, so Storybook needs the transpiled lib/ too.
+      - name: Build packages
+        if: needs.check-packages.outputs.packages-changed == 'true'
+        run: yarn build:packages
 
       - name: Install Cypress binary
         if: needs.check-packages.outputs.packages-changed == 'true'
