@@ -18,6 +18,7 @@
   "exclude": [
     ".*\\.d\\.ts$",
     ".*\\.test\\.",
+    ".*\\.spec\\.",
     ".*\\.stories\\.",
     "node_modules"
   ]

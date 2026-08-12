@@ -15,5 +15,5 @@
   "module": {
     "type": "commonjs"
   },
-  "exclude": [".*\\.d\\.ts$", ".*\\.test\\.", ".*\\.stories\\.", "node_modules"]
+  "exclude": [".*\\.d\\.ts$", ".*\\.test\\.", ".*\\.spec\\.", ".*\\.stories\\.", "node_modules"]
 }
