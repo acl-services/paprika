@@ -1,0 +1,32 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["eslint", "typescript", "import", "react", "jsx-a11y"],
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "globals": {
+    "renderWithL10n": "readonly"
+  },
+  "ignorePatterns": [
+    "node_modules",
+    "**/node_modules",
+    "**/lib",
+    "storybook-dist",
+    "cypress/fixtures",
+    "packages/Icon/src/*.js",
+    "packages/Icon/src/*.ts",
+    "!packages/Icon/src/index.js",
+    "**/*.d.ts"
+  ],
+  "rules": {
+    "no-unused-vars": "off",
+    "react/jsx-key": "off",
+    "jsx-a11y/prefer-tag-over-role": "off",
+    "jsx-a11y/interactive-supports-focus": "off",
+    "jsx-a11y/role-supports-aria-props": "off",
+    "react/rules-of-hooks": "error",
+    "react/exhaustive-deps": "warn",
+    "typescript/ban-ts-comment": "warn"
+  }
+}

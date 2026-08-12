@@ -63,10 +63,8 @@ export function useTable({ rowIndex, columnIndex } = {}) {
 
 export function TableProvider(props) {
   return (
-    /* eslint-disable react/prop-types */
     <Provider initialState={initialState} actions={actions}>
       {props.children}
     </Provider>
-    /* eslint-enable react/prop-types */
   );
 }

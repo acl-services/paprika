@@ -76,7 +76,6 @@ function DateRangeCalendar(props) {
 
   function handleClickNavigation(buttonRef) {
     if (buttonRef.current.parentNode.tabIndex !== 0) {
-      // eslint-disable-next-line no-param-reassign
       buttonRef.current.parentNode.tabIndex = 0;
     }
     buttonRef.current.parentNode.focus();
@@ -111,7 +110,6 @@ function DateRangeCalendar(props) {
       </Button>
     );
   }
-  /* eslint-enable react/prop-types */
 
   function renderArrowLeft() {
     return (

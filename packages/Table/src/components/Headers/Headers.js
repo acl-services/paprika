@@ -1,6 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-array-index-key */
-
 import React from "react";
 import * as sc from "./Headers.styles";
 

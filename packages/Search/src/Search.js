@@ -38,12 +38,11 @@ export default function Search(props) {
   const [currentKey, setCurrentKey] = React.useState(nextKey);
 
   const refDivRoot = React.useRef(null);
-  /* eslint-disable react/prop-types */
+
   const size =
     typeof props.size !== "undefined" && Object.keys(ListBox.types.size).includes(props.size.toUpperCase())
       ? props.size
       : ListBox.types.size.MEDIUM;
-  /* eslint-enable react/prop-types */
 
   function processSelected(value) {
     const dispatch = refListBoxReducer.current.dispatch;
@@ -106,7 +105,7 @@ export default function Search(props) {
     } else {
       setCurrentKey(prev => prev + 1);
     }
-  }, [inputValue]); // eslint-disable-line
+  }, [inputValue]); // oxlint-disable-line
 
   React.useEffect(() => {
     // after the nextKey is change we focus on the listBox again

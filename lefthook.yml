@@ -13,7 +13,7 @@ pre-commit:
       stage_fixed: true
     - name: lint
       glob: "packages/**/*.{js,jsx,ts,tsx}"
-      run: yarn eslint --report-unused-disable-directives {staged_files}
+      run: yarn oxlint --report-unused-disable-directives {staged_files}
     - name: lint-jss
       glob: "packages/**/src/**/*.styles.js"
       run: yarn stylelint {staged_files}

@@ -16,7 +16,7 @@ const newPerson = () => {
     age: Math.floor(Math.random() * 30),
     visits: Math.floor(Math.random() * 100),
     progress: Math.floor(Math.random() * 100),
-    // eslint-disable-next-line no-nested-ternary
+
     status: statusChance > 0.66 ? "relationship" : statusChance > 0.33 ? "complicated" : "single",
     desc: faker.lorem.paragraph(),
     desc_more: faker.lorem.paragraph(),

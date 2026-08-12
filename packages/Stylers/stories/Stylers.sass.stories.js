@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
+/* oxlint-disable jsx-a11y/no-noninteractive-tabindex */
 
 import React from "react";
 import { Story, Rule } from "storybook/assets/styles/common.styles";

@@ -17,7 +17,7 @@
  */
 
 const fs = require("fs");
-// eslint-disable-next-line import/no-extraneous-dependencies
+
 const shell = require("shelljs");
 const parseFileToReactDoc = require("./parseFileToReactDoc");
 const getFilePath = require("./reactDocHelpers/getFilePath");
@@ -68,7 +68,6 @@ const createPropsTable = ({ info }) => {
         type = `[${v[typeKey]["tsType" in v ? "elements" : "value"]?.map(i => i.name)}]`;
       } else {
         type =
-          // eslint-disable-next-line no-nested-ternary
           v[typeKey].name !== "enum"
             ? v[typeKey].name
             : Array.isArray(v[typeKey].value)

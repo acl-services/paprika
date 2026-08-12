@@ -44,7 +44,7 @@ export default function useBestTableDimensions({
       const realHeight = theadEl.clientHeight + tbodyEl.clientHeight;
       const maxWidthInNumber = convertSizeStringToNumber(maxWidth, Direction.width, tableRef);
       const maxHeightInNumber = convertSizeStringToNumber(maxHeight, Direction.height, tableRef);
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // oxlint-disable-next-line typescript/ban-ts-comment
       // @ts-ignore
       const scrollbarWidth = variableList[0].offsetWidth - variableList[0].clientWidth;
       const shouldHaveHorizontalScroll = maxWidthInNumber < realWidth;

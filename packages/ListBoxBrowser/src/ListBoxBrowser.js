@@ -22,7 +22,7 @@ const propTypes = {
   /**
     An array of javascript objects holding the data structure for the ListBoxBrowser. The object shape must have at least a string label property and an array options property in one of the objects. Also can hold any other kind of data for your own use.
   */
-  data: PropTypes.any.isRequired, // eslint-disable-line
+  data: PropTypes.any.isRequired,
 
   /**
     Indicates if the user can select multiple options

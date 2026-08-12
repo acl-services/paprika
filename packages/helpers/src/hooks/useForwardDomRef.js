@@ -9,7 +9,6 @@ export default function useForwardDomRef(ref, parentRef) {
     if (typeof parentRef === "function") {
       parentRef(ref.current);
     } else if (isProperRef(parentRef)) {
-      // eslint-disable-next-line no-param-reassign
       parentRef.current = ref.current;
     }
   }, [parentRef, ref]);
@@ -18,7 +17,6 @@ export default function useForwardDomRef(ref, parentRef) {
     if (typeof parentRef === "function") {
       parentRef(null);
     } else if (isProperRef(parentRef)) {
-      // eslint-disable-next-line no-param-reassign
       parentRef.current = null;
     }
   };

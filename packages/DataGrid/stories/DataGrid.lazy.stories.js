@@ -65,7 +65,7 @@ export function App() {
   // ^ we don't want to track data dependency
 
   function renderSeries({ row }) {
-    return row.series.items.map((item, index) => <span key={index /* eslint-disable-line */}>{item.name}</span>);
+    return row.series.items.map((item, index) => <span key={index}>{item.name}</span>);
   }
 
   function renderThumbnail({ row }) {

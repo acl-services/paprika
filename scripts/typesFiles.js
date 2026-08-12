@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const fs = require("fs");
-// eslint-disable-next-line import/no-extraneous-dependencies
+
 const shell = require("shelljs");
 const parseFileToReactDoc = require("./parseFileToReactDoc");
 
@@ -75,7 +75,6 @@ const createPropsList = ({ info }) => {
         }
         default: {
           type =
-            // eslint-disable-next-line no-nested-ternary
             v.type.name !== "enum"
               ? v.type.name
               : Array.isArray(v.type.value)

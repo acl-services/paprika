@@ -1,5 +1,3 @@
-/* eslint-disable react/sort-comp */
-
 import React from "react";
 import memoizeOne from "memoize-one";
 import PropTypes from "prop-types";

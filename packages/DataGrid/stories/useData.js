@@ -1,5 +1,5 @@
 import React from "react";
-import worker from "workerize-loader!./helpers/data.worker"; // eslint-disable-line import/no-webpack-loader-syntax
+import worker from "workerize-loader!./helpers/data.worker";
 
 export default function useData(numberOfRows, numberOfColumns) {
   const [data, setData] = React.useState([]);

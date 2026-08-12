@@ -36,7 +36,7 @@ export default function GuardSupervisor({ alertMessageDefault, children }) {
         // SEE: https://developer.mozilla.org/en-US/docs/Web/API/Event/returnValue
         // SEE: https://stackoverflow.com/questions/38879742/is-it-possible-to-display-a-custom-message-in-the-beforeunload-popup
         event.preventDefault();
-        // eslint-disable-next-line no-param-reassign
+
         event.returnValue = "";
       }
     }
@@ -77,7 +77,6 @@ export default function GuardSupervisor({ alertMessageDefault, children }) {
   const canLeaveCallback = React.useCallback(
     ({ alertMessage, group } = {}) => {
       if (hasDirtyConnectors(group)) {
-        // eslint-disable-next-line no-restricted-globals, no-alert
         return confirm(alertMessage || alertMessageDefault);
       }
       return true;

@@ -5,7 +5,7 @@ import * as sc from "./Popover.styles";
 
 const propTypes = {
   /** Body content of the PopOver. */
-  children: PropTypes.node, // eslint-disable-line
+  children: PropTypes.node,
 
   /** Sets the z-index value of the PopOver */
   zIndex: PropTypes.number,

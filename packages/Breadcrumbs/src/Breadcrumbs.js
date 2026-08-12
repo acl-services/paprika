@@ -34,14 +34,13 @@ function Breadcrumbs(props) {
           {linkChildren.map((child, index) => {
             if (shouldShowExpandButton && index === 0) {
               return (
-                // eslint-disable-next-line react/no-array-index-key
                 <React.Fragment key={index}>
                   {child}
                   <ExpandButton onClick={handleExpand} isHidden={!isCollapsed} />
                 </React.Fragment>
               );
             }
-            // eslint-disable-next-line react/no-array-index-key
+
             return React.cloneElement(child, { hasOnlyOneChild, key: index });
           })}
         </sc.List>

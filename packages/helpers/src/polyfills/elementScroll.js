@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 // IE polyfill for Element.scroll(), Element.scrollTo(), Element.scrollBy()
 // https://github.com/idmadj/element-scroll-polyfill/blob/master/index.js
 

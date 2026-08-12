@@ -59,9 +59,9 @@ function Radio(props) {
   return (
     <sc.Radio data-pka-anchor="radio" {...styleProps} {...moreProps}>
       <input {...inputProps} onChange={noop} />
-      {/* eslint-disable */}
+      {/* oxlint-disable */}
       <label onKeyUp={handleKeyUp} className={canDeselect ? "deselectable" : ""} htmlFor={radioId}>
-        {/* eslint-enable */}
+        {/* oxlint-enable */}
         {children}
 
         {canDeselect ? (

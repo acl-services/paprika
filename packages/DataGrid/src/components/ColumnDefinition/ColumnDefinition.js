@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unused-prop-types */
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -38,12 +37,12 @@ function customA11yTextPropTypeValidation(props, propName) {
 
 const propTypes = {
   canGrow: PropTypes.bool,
-  // eslint-disable-next-line react/require-default-props
+
   cell: customA11yTextPropTypeValidation,
   cellA11yText: PropTypes.func,
   cellProps: PropTypes.func,
   cellPropsResetCSS: PropTypes.bool,
-  // eslint-disable-next-line react/require-default-props
+
   header: customA11yTextPropTypeValidation,
   headerA11yText: PropTypes.func,
   headerProps: PropTypes.func,

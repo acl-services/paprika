@@ -32,7 +32,6 @@ export const mockResponses = [
 
 export const generateItems = items =>
   items.map((item, index) => (
-    // eslint-disable-next-line react/no-array-index-key
     <ProgressAccordion.Responses.Item key={index} heading={item.heading}>
       {item.body}
     </ProgressAccordion.Responses.Item>

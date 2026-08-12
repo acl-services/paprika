@@ -23,9 +23,8 @@ const renderTrigger =
     const { dispatch, handleKeyDown, handleKeyUp, isOpen, onChangeContext, propsForTrigger, refTrigger, types } =
       attributes;
 
-    // eslint-disable-next-line
     refListBoxReducer.current.dispatch = dispatch;
-    // eslint-disable-next-line
+
     refListBoxReducer.current.types = types;
 
     function handleClickInput(event) {

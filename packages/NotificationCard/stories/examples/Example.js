@@ -34,7 +34,7 @@ export default function Example({ align, level, maxWidth, ...moreProps }) {
       <NotificationCard.Image align={align}>
         <svg
           style={{ width: "100%" }}
-          // eslint-disable-next-line react/no-danger
+
           dangerouslySetInnerHTML={{ __html: bubblieString }}
           version="1.1"
           viewBox="0 0 150 150"

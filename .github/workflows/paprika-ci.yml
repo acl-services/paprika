@@ -90,7 +90,7 @@ jobs:
       - name: Setup Paprika
         uses: ./.github/actions/setup-paprika
 
-      - name: ESLint
+      - name: Oxlint
         run: yarn lint
 
   format:

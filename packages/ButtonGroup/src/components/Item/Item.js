@@ -38,7 +38,7 @@ const Item = props => {
   };
 
   const isActive = selectedItems.includes(value);
-  const isFocused = currentFocusValue == value; // eslint-disable-line eqeqeq
+  const isFocused = currentFocusValue == value;
 
   const buttonProps = {
     isDisabled,

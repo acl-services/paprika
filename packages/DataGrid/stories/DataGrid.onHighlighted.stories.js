@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import * as Sbook from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
 import tokens from "@paprika/tokens";
-import worker from "workerize-loader!./helpers/data.worker"; // eslint-disable-line import/no-webpack-loader-syntax
+import worker from "workerize-loader!./helpers/data.worker";
 import Spinner from "@paprika/spinner";
 import DataGrid from "../src";
 

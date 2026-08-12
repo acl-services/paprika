@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import React from "react";
 import PropTypes from "prop-types";
 import reducer from "./reducer";
