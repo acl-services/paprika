@@ -1,16 +1,23 @@
 import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
 import { execSync } from "child_process";
 import parseFileToReactDoc from "./parseFileToReactDoc.mjs";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const skipPackages = ["Guard", "Icon", "Stylers", "helpers", "Calendar", "BuildTranslations", "Tokens", "Constants", "seducer", "InlineEditors"];
+const skipPackages = [
+  "Guard",
+  "Icon",
+  "Stylers",
+  "helpers",
+  "Calendar",
+  "BuildTranslations",
+  "Tokens",
+  "Constants",
+  "seducer",
+  "InlineEditors",
+];
 
 const fileName = "index.d.ts";
 
-const shouldSkipPackage = (folderName) =>
+const shouldSkipPackage = folderName =>
   skipPackages.includes(folderName) || fs.existsSync(`./packages/${folderName}/tsconfig.build.json`);
 
 const renderDeclarationTemplate = ({ displayName = "", props = "", typeConstants = "" }) => {
@@ -43,7 +50,7 @@ const createPropsList = ({ info }) => {
     `,
   ];
 
-  Object.keys(info.props).map((key) => {
+  Object.keys(info.props).map(key => {
     const v = info.props[key] || {};
     let type = "any";
 
@@ -66,14 +73,14 @@ const createPropsList = ({ info }) => {
           break;
         }
         case "union": {
-          type = `${v.type.value.map((i) => i.name)}`.replace(/,/g, "|");
+          type = `${v.type.value.map(i => i.name)}`.replace(/,/g, "|");
           break;
         }
         default: {
           if (v.type.name !== "enum") {
             type = v.type.name;
           } else if (Array.isArray(v.type.value) && v.type.value.length > 0) {
-            type = `${v.type.value.map((i) => i.value)}`.replace(/,/g, "|");
+            type = `${v.type.value.map(i => i.value)}`.replace(/,/g, "|");
           } else if (v.type.value) {
             type = v.type.value;
           } else {
@@ -95,12 +102,12 @@ const createPropsList = ({ info }) => {
 };
 
 const extractCorrectComponentDefinition = ({ desireDefinition, arrayOfComponentsDefinitions }) => {
-  const definition = arrayOfComponentsDefinitions.filter((def) => def.displayName === desireDefinition);
+  const definition = arrayOfComponentsDefinitions.filter(def => def.displayName === desireDefinition);
 
   if (!definition.length) {
     console.log(
       `sub-component with displayName === ${desireDefinition}, more found: ${JSON.stringify(
-        arrayOfComponentsDefinitions.map((i) => i.displayName)
+        arrayOfComponentsDefinitions.map(i => i.displayName)
       )}`
     );
   }
@@ -117,7 +124,7 @@ const processPropsList = ({ info, folder, folderPath, paprikaDocs = null }) => {
   }
 
   if (paprikaDocs && "subComponents" in paprikaDocs) {
-    paprikaDocs.subComponents.forEach((subComponent) => {
+    paprikaDocs.subComponents.forEach(subComponent => {
       const subComponentPath = `${folderPath}/src/components/${subComponent}/${subComponent}.js`;
       const subComponentContent = fs.readFileSync(subComponentPath, "utf8");
       const arrayOfComponentsDefinitions = parseFileToReactDoc(subComponentContent, subComponentPath);
@@ -173,9 +180,9 @@ for (const folder of packages) {
     const constants = propsList
       .toString()
       .split(" ")
-      .filter((e) => regex.test(e));
+      .filter(e => regex.test(e));
 
-    const typesConst = constants.map((e) =>
+    const typesConst = constants.map(e =>
       e
         .toString()
         .replace(";", "")
@@ -186,13 +193,13 @@ for (const folder of packages) {
 
     const typesTemp = typesConst
       .map(
-        (e) => `
+        e => `
 declare namespace ${e[0]}{
   namespace ${e[1]}{
     namespace ${e[2]}{
       ${e
         .splice(3)
-        .map((i) => (/null/.test(i) ? "" : `const ${i}: any;`))
+        .map(i => (/null/.test(i) ? "" : `const ${i}: any;`))
         .join("")}
     }
   }
@@ -223,5 +230,4 @@ declare namespace ${e[0]}{
   }
 }
 
-const prettier = path.join(__dirname, "..", "node_modules", ".bin", "prettier");
-execSync(`"${prettier}" "packages/*/lib/${fileName}" --write`, { stdio: "inherit" });
+execSync(`oxfmt "**/${fileName}" --write`, { stdio: "inherit" });

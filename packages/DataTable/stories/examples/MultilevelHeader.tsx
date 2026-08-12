@@ -118,7 +118,7 @@ export const MultilevelHeaderStory: (props: Partial<DataTableProps>) => JSX.Elem
   );
 };
 
-export default () => (
+export default (): JSX.Element => (
   <Story>
     <StoryHeading level={1}>DataTable with multi-level header.</StoryHeading>
     <MultilevelHeaderStory {...props()} />

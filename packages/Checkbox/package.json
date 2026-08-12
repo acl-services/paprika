@@ -1,16 +1,17 @@
 {
   "name": "@paprika/checkbox",
   "version": "1.0.30",
+  "gitHead": "494ce26cb0a6c24a8f6abf2b154d97ddd4d7e343",
   "description": "Checkbox component displays a checkbox and label text beside it. When clicked it displays a checkmark. It can also have an indeterminate state which can be used to group checkboxes.",
-  "author": "@paprika",
   "license": "MIT",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/Checkbox"
   },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -20,13 +21,12 @@
     "@paprika/icon": "^3.0.3",
     "@paprika/stylers": "^1.1.13",
     "@paprika/tokens": "^3.1.1",
-    "prop-types": "^15.7.2",
-    "uuid": "^8.3.2"
+    "prop-types": "^15.8.1",
+    "uuid": "^11.1.1"
   },
   "peerDependencies": {
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "react-dom": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "styled-components": "^4.2.0 || >=5.0.0 <6.0.0"
-  },
-  "gitHead": "494ce26cb0a6c24a8f6abf2b154d97ddd4d7e343"
+  }
 }

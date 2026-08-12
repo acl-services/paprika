@@ -22,12 +22,14 @@ const sizeStyles = {
 const placeholderStyles = ({ isDisabled }) => css`
   ${stylers.placeholder}
 
-  ${!isDisabled &&
+  ${
+    !isDisabled &&
     css`
       &[disabled] {
         color: inherit;
       }
-    `}
+    `
+  }
 
   option {
     color: ${tokens.color.black};

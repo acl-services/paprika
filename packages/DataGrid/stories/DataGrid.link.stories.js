@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import * as Sbook from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
-import { getDataFromWorker } from './helpers/data.worker';
+import { getDataFromWorker } from "./helpers/data.worker";
 import Spinner from "@paprika/spinner";
 import Panel from "@paprika/panel";
 import DataGrid, { LinkAction } from "../src";
@@ -49,57 +49,57 @@ export function App() {
         <DataGrid ref={refDataGrid} data={data} keygen="id" hasZebraStripes>
           {data.length
             ? Object.keys(data[0]).map((key, index) => {
-              if (index === 1) {
-                return (
-                  <DataGrid.ColumnDefinition
-                    key={key}
-                    header="Link with onClick"
-                    cell={({ row }) => (
-                      <LinkAction
-                        onClick={() => {
-                          setIsOpen(true);
-                        }}
-                      >
-                        {row[key]}
-                      </LinkAction>
-                    )}
-                    onPressEnter={() => setIsOpen(true)}
-                  />
-                );
-              }
+                if (index === 1) {
+                  return (
+                    <DataGrid.ColumnDefinition
+                      key={key}
+                      header="Link with onClick"
+                      cell={({ row }) => (
+                        <LinkAction
+                          onClick={() => {
+                            setIsOpen(true);
+                          }}
+                        >
+                          {row[key]}
+                        </LinkAction>
+                      )}
+                      onPressEnter={() => setIsOpen(true)}
+                    />
+                  );
+                }
 
-              if (index === 2) {
-                return (
-                  <DataGrid.ColumnDefinition
-                    key={key}
-                    header="Link default"
-                    cell={({ row }) => <LinkAction href="http://design.wegalvanize.com">{row[key]}</LinkAction>}
-                    onPressEnter={() => {
-                      LinkAction.href("http://design.wegalvanize.com");
-                    }}
-                  />
-                );
-              }
+                if (index === 2) {
+                  return (
+                    <DataGrid.ColumnDefinition
+                      key={key}
+                      header="Link default"
+                      cell={({ row }) => <LinkAction href="http://design.wegalvanize.com">{row[key]}</LinkAction>}
+                      onPressEnter={() => {
+                        LinkAction.href("http://design.wegalvanize.com");
+                      }}
+                    />
+                  );
+                }
 
-              if (index === 3) {
-                return (
-                  <DataGrid.ColumnDefinition
-                    key={key}
-                    header="Link with _blank"
-                    cell={({ row }) => (
-                      <LinkAction href="http://design.wegalvanize.com" target="_blank">
-                        {row[key]}
-                      </LinkAction>
-                    )}
-                    onPressEnter={() => {
-                      LinkAction.href("http://design.wegalvanize.com", "_blank");
-                    }}
-                  />
-                );
-              }
+                if (index === 3) {
+                  return (
+                    <DataGrid.ColumnDefinition
+                      key={key}
+                      header="Link with _blank"
+                      cell={({ row }) => (
+                        <LinkAction href="http://design.wegalvanize.com" target="_blank">
+                          {row[key]}
+                        </LinkAction>
+                      )}
+                      onPressEnter={() => {
+                        LinkAction.href("http://design.wegalvanize.com", "_blank");
+                      }}
+                    />
+                  );
+                }
 
-              return <DataGrid.ColumnDefinition key={key} header={key} cell={key} />;
-            })
+                return <DataGrid.ColumnDefinition key={key} header={key} cell={key} />;
+              })
             : null}
         </DataGrid>
       )}

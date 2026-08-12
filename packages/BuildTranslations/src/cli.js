@@ -7,9 +7,13 @@ function parseArgumentsIntoOptions(rawArgs) {
   let yamlFileExtension = null;
 
   for (let i = 0; i < argv.length; i++) {
-    if (argv[i] === "--out-dir") { outputPath = argv[++i]; }
-    else if (argv[i] === "--yaml-file-ext") { yamlFileExtension = argv[++i]; }
-    else if (!argv[i].startsWith("--")) { sourcePath = argv[i]; }
+    if (argv[i] === "--out-dir") {
+      outputPath = argv[++i];
+    } else if (argv[i] === "--yaml-file-ext") {
+      yamlFileExtension = argv[++i];
+    } else if (!argv[i].startsWith("--")) {
+      sourcePath = argv[i];
+    }
   }
 
   return { sourcePath, outputPath, ...(yamlFileExtension && { yamlFileExtension }) };

@@ -4,7 +4,9 @@ import stylers from "@paprika/stylers";
 
 const draggingStyles = css`
   background: ${tokens.color.white};
-  box-shadow: ${tokens.shadow}, 0 0 1px ${tokens.border.color};
+  box-shadow:
+    ${tokens.shadow},
+    0 0 1px ${tokens.border.color};
 
   &:focus {
     box-shadow: ${tokens.shadow}, ${tokens.highlight.active.withBorder.boxShadow};

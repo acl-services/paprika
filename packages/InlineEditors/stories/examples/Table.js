@@ -7,95 +7,107 @@ const users = getUsers(20);
 const cellTypes = ["an", "name", "status", "role", "subscription", "reportsRole", "activations", "signed"];
 
 const cellRenders = {
-  name: () => ({ row }) => (
-    <div>
-      <div>{row.name}</div>
+  name:
+    () =>
+    ({ row }) => (
       <div>
-        <a href="https://wegalvanize.com" rel="noreferrer" target="_blank">
-          Some link
-        </a>
+        <div>{row.name}</div>
+        <div>
+          <a href="https://wegalvanize.com" rel="noreferrer" target="_blank">
+            Some link
+          </a>
+        </div>
       </div>
-    </div>
-  ),
-  an: () => ({ row }) => <input type="checkbox" defaultChecked={row.an} />,
-  subscription: ({ setData }) => props => {
-    const { setStatus, setOptimisticValue, statusType } = useTable({
-      rowIndex: props.rowIndex,
-      columnIndex: props.columnIndex,
-    });
-    const subscriptionTypes = ["Professional", "Oversight", "Contributor", "Results Lite Contributor", "None"];
+    ),
+  an:
+    () =>
+    ({ row }) => <input type="checkbox" defaultChecked={row.an} />,
+  subscription:
+    ({ setData }) =>
+    props => {
+      const { setStatus, setOptimisticValue, statusType } = useTable({
+        rowIndex: props.rowIndex,
+        columnIndex: props.columnIndex,
+      });
+      const subscriptionTypes = ["Professional", "Oversight", "Contributor", "Results Lite Contributor", "None"];
 
-    return (
-      <ListBox
-        {...props}
-        value={props.row.subscription}
-        onChange={value => {
-          console.log("onChange", value);
-        }}
-        onSubmit={(index, options, _, { rowIndex }) => {
-          const nextValue = options[index].value;
-          if (nextValue !== props.row.subscription) {
-            setOptimisticValue(nextValue);
-            setStatus(statusType.LOADING);
+      return (
+        <ListBox
+          {...props}
+          value={props.row.subscription}
+          onChange={value => {
+            console.log("onChange", value);
+          }}
+          onSubmit={(index, options, _, { rowIndex }) => {
+            const nextValue = options[index].value;
+            if (nextValue !== props.row.subscription) {
+              setOptimisticValue(nextValue);
+              setStatus(statusType.LOADING);
 
-            setTimeout(() => {
-              setData(prevData => {
-                const nextData = prevData.slice(0);
-                nextData[rowIndex].subscription = nextValue;
-                setStatus(statusType.SUCCEED);
-                return nextData;
-              });
-            }, 1200);
-          }
-        }}
-      >
-        {subscriptionTypes.map(subscription => (
-          <ListBox.Option value={subscription} isSelected={subscription === props.row.subscription} key={subscription}>
-            {subscription}
-          </ListBox.Option>
-        ))}
-      </ListBox>
-    );
-  },
-  role: ({ setData }) => props => {
-    const { setStatus, setOptimisticValue, statusType } = useTable({
-      rowIndex: props.rowIndex,
-      columnIndex: props.columnIndex,
-    });
-    const roleTypes = ["Admin", "User", "Super Admin", "Guest", "None"];
+              setTimeout(() => {
+                setData(prevData => {
+                  const nextData = prevData.slice(0);
+                  nextData[rowIndex].subscription = nextValue;
+                  setStatus(statusType.SUCCEED);
+                  return nextData;
+                });
+              }, 1200);
+            }
+          }}
+        >
+          {subscriptionTypes.map(subscription => (
+            <ListBox.Option
+              value={subscription}
+              isSelected={subscription === props.row.subscription}
+              key={subscription}
+            >
+              {subscription}
+            </ListBox.Option>
+          ))}
+        </ListBox>
+      );
+    },
+  role:
+    ({ setData }) =>
+    props => {
+      const { setStatus, setOptimisticValue, statusType } = useTable({
+        rowIndex: props.rowIndex,
+        columnIndex: props.columnIndex,
+      });
+      const roleTypes = ["Admin", "User", "Super Admin", "Guest", "None"];
 
-    return (
-      <ListBox
-        {...props}
-        value={props.row.role}
-        onChange={value => {
-          console.log("onChange", value);
-        }}
-        onSubmit={(index, options, _, { rowIndex }) => {
-          const nextValue = options[index].value;
-          if (nextValue !== props.row.role) {
-            setOptimisticValue(nextValue);
-            setStatus(statusType.LOADING);
+      return (
+        <ListBox
+          {...props}
+          value={props.row.role}
+          onChange={value => {
+            console.log("onChange", value);
+          }}
+          onSubmit={(index, options, _, { rowIndex }) => {
+            const nextValue = options[index].value;
+            if (nextValue !== props.row.role) {
+              setOptimisticValue(nextValue);
+              setStatus(statusType.LOADING);
 
-            setTimeout(() => {
-              setData(prevData => {
-                const nextData = prevData.slice(0);
-                nextData[rowIndex].role = nextValue;
-                setStatus(statusType.SUCCEED);
-                return nextData;
-              });
-            }, 1200);
-          }
-        }}
-      >
-        {roleTypes.map(role => (
-          <ListBox.Option value={role} isSelected={role === props.row.role} key={role}>
-            {role}
-          </ListBox.Option>
-        ))}
-      </ListBox>
-    );
-  },
+              setTimeout(() => {
+                setData(prevData => {
+                  const nextData = prevData.slice(0);
+                  nextData[rowIndex].role = nextValue;
+                  setStatus(statusType.SUCCEED);
+                  return nextData;
+                });
+              }, 1200);
+            }
+          }}
+        >
+          {roleTypes.map(role => (
+            <ListBox.Option value={role} isSelected={role === props.row.role} key={role}>
+              {role}
+            </ListBox.Option>
+          ))}
+        </ListBox>
+      );
+    },
 };
 
 const columnDefinitionProps = {

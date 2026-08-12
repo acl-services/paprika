@@ -18,9 +18,7 @@ import Tabs from "../src/Tabs";
 
 const storyName = getStoryName("Tabs");
 
-storiesOf(storyName, module)
-  .addDecorator(withKnobs)
-  .add("Showcase", ShowcaseStory);
+storiesOf(storyName, module).addDecorator(withKnobs).add("Showcase", ShowcaseStory);
 
 storiesOf(`${storyName}/Examples`, module)
   .add("Controlled", ControlledStory)

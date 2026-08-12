@@ -1,5 +1,5 @@
 import React from "react";
-import { getDataFromWorker } from './helpers/data.worker';
+import { getDataFromWorker } from "./helpers/data.worker";
 
 export default function useData(numberOfRows, numberOfColumns) {
   const [data, setData] = React.useState([]);

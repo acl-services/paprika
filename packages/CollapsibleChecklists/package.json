@@ -1,16 +1,17 @@
 {
   "name": "@paprika/collapsible-checklists",
   "version": "1.0.39",
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
   "description": "A controlled component that has checkable groups of checkable items. Checking the parent checks all of the children.",
-  "author": "@paprika",
   "license": "MIT",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/CollapsibleChecklists"
   },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -19,7 +20,7 @@
     "@paprika/collapsible": "^4.0.4",
     "@paprika/stylers": "^1.1.13",
     "@paprika/tokens": "^3.1.1",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.8.1"
   },
   "peerDependencies": {
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
@@ -32,6 +33,5 @@
       "Heading",
       "Item"
     ]
-  },
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
+  }
 }

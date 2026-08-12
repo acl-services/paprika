@@ -72,6 +72,7 @@ export function ListBox(props) {
     hasOptions: !noResultsFound,
   };
 
+  // eslint-disable-next-line react/prop-types
   const trigger = _trigger ? React.cloneElement(_trigger, { ..._trigger.props }) : <Trigger {...propsForTrigger} />;
 
   const listBox = (

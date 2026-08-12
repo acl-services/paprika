@@ -62,6 +62,9 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
     "react/jsx-one-expression-per-line": "off",
     "react/no-multi-comp": "off",
+    // Emotion's `css` prop is compiled away by @emotion/babel-plugin, and styled
+    // components take custom props the rule cannot know about
+    "react/no-unknown-property": "off",
     "react/prefer-stateless-function": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
@@ -75,7 +78,7 @@
     {
       "files": "**/*.+(ts|tsx)",
       "parser": "@typescript-eslint/parser",
-      "extends": ["plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
+      "extends": ["plugin:@typescript-eslint/recommended"],
       "settings": {
         "import/resolver": {
           "node": {

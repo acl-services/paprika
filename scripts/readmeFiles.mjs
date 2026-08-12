@@ -1,13 +1,9 @@
 #!/usr/bin/env node
 
 import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
-import { execSync } from "child_process";
 import { createRequire } from "module";
 import parseFileToReactDoc from "./parseFileToReactDoc.mjs";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const require = createRequire(import.meta.url);
 const getFilePath = require("./reactDocHelpers/getFilePath");
 const readmeTemplate = require("./reactDocHelpers/readmeTemplate");
@@ -48,19 +44,19 @@ const createPropsTable = ({ info }) => {
     "|-------|-------| --------  | --------- | ----------- |\n",
   ];
 
-  Object.keys(info.props).map((key) => {
+  Object.keys(info.props).map(key => {
     const v = info.props[key] || {};
     const typeKey = "tsType" in v ? "tsType" : "type";
     let type = "-";
     if (typeKey in v) {
       if (v[typeKey].name === "union") {
-        type = `[${v[typeKey]["tsType" in v ? "elements" : "value"]?.map((i) => i.name)}]`;
+        type = `[${v[typeKey]["tsType" in v ? "elements" : "value"]?.map(i => i.name)}]`;
       } else {
         type =
           v[typeKey].name !== "enum"
             ? v[typeKey].name
             : Array.isArray(v[typeKey].value)
-              ? `[${v[typeKey].value.map((i) => ` ${i.value}`)}]`
+              ? `[${v[typeKey].value.map(i => ` ${i.value}`)}]`
               : v[typeKey].value;
       }
     }
@@ -76,7 +72,7 @@ const createPropsTable = ({ info }) => {
 };
 
 const extractCorrectComponentDefinition = ({ desireDefinition, arrayOfComponentsDefinitions }) => {
-  const definition = arrayOfComponentsDefinitions.filter((def) => def.displayName === desireDefinition);
+  const definition = arrayOfComponentsDefinitions.filter(def => def.displayName === desireDefinition);
   return definition[0];
 };
 
@@ -88,7 +84,7 @@ const processPropTables = ({ info, path, paprikaDocs = null }) => {
   }
 
   if (paprikaDocs && "subComponents" in paprikaDocs) {
-    paprikaDocs.subComponents.forEach((subComponent) => {
+    paprikaDocs.subComponents.forEach(subComponent => {
       const subComponentFilePath = getFilePath(`${path}/src/components/${subComponent}`, subComponent);
       const subComponentContent = fs.readFileSync(subComponentFilePath, "utf-8");
       const arrayOfComponentsDefinitions = parseFileToReactDoc(subComponentContent, subComponentFilePath);
@@ -122,9 +118,11 @@ for (const folder of packages) {
   const folderPath = `./packages/${folder}`;
 
   try {
-    const { paprikaDocs = null, name, description = "required description" } = JSON.parse(
-      fs.readFileSync(`${folderPath}/package.json`, "utf8")
-    );
+    const {
+      paprikaDocs = null,
+      name,
+      description = "required description",
+    } = JSON.parse(fs.readFileSync(`${folderPath}/package.json`, "utf8"));
 
     const readmeContent = fs.readFileSync(`${folderPath}/README.md`, "utf8");
     const filePath = getFilePath(`${folderPath}/src`, folder);
@@ -161,6 +159,3 @@ for (const folder of packages) {
     console.warn(folder, e);
   }
 }
-
-const prettier = path.join(__dirname, "..", "node_modules", ".bin", "prettier");
-execSync(`"${prettier}" "**/*.+(md)" --write --loglevel silent`, { stdio: "inherit" });

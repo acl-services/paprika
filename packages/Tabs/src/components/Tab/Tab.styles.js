@@ -25,10 +25,12 @@ const activeStyles = ({ isVertical, kind }) => css`
     border-color: ${kindColor[kind]};
   }
 
-  ${isVertical &&
+  ${
+    isVertical &&
     css`
       background-color: ${tokens.color.blackLighten70};
-    `}
+    `
+  }
 `;
 
 const disabledStyles = ({ hasInsetFocusStyle }) => css`
@@ -67,14 +69,16 @@ const verticalStyles = ({ hasTruncation }) => css`
   border-inline-start: ${tokens.spaceSm} solid transparent;
   padding: ${tokens.spaceLg};
 
-  ${hasTruncation
-    ? css`
-        display: block;
-        ${stylers.truncateText};
-      `
-    : css`
-        display: flex;
-      `}
+  ${
+    hasTruncation
+      ? css`
+          display: block;
+          ${stylers.truncateText};
+        `
+      : css`
+          display: flex;
+        `
+  }
 
   &:hover {
     background-color: ${tokens.color.blackLighten70};
@@ -87,12 +91,15 @@ const baseStyles = ({ isDisabled, isSelected, isVertical, size }) => css`
   color: ${tokens.color.black};
   margin: 0;
   position: relative;
-  transition: border-color 0.3s ease, background-color 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease;
   ${fontSize[size]}
   ${stylers.lineHeight(-2)}
   ${isVertical ? verticalStyles : horizontalStyles}
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     border-color: ${tokens.border.color};
   }
 
@@ -112,9 +119,11 @@ export const Link = styled.a(
     text-decoration: none;
 
     &:focus {
-      box-shadow: ${hasInsetFocusStyle
-        ? tokens.highlight.active.withBorder.insetBoxShadow
-        : tokens.highlight.active.withBorder.boxShadow};
+      box-shadow: ${
+        hasInsetFocusStyle
+          ? tokens.highlight.active.withBorder.insetBoxShadow
+          : tokens.highlight.active.withBorder.boxShadow
+      };
       outline: none;
     }
   `

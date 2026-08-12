@@ -6,6 +6,7 @@ import { crumb } from "../Title/Title.styles";
 import { isRoot } from "../../helpers";
 
 const propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
   breadcrumb: PropTypes.arrayOf(PropTypes.object),
   hasBrowserTitle: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,

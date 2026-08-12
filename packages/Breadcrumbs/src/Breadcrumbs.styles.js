@@ -18,7 +18,8 @@ export const List = styled.ol(
     margin: 0;
     padding: 0;
 
-    ${isCollapsed &&
+    ${
+      isCollapsed &&
       css`
         li[data-pka-anchor="breadcrumbs.list-item"] {
           display: none;
@@ -29,6 +30,7 @@ export const List = styled.ol(
             display: inline;
           }
         }
-      `}
+      `
+    }
   `
 );

@@ -73,9 +73,7 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Bootstrap Lerna
-        run: npx lerna bootstrap
-
+      # Builds translations/tokens/icons and transpiles every package's src/ -> lib/.
       - name: Build repository
         run: yarn build:repo
 

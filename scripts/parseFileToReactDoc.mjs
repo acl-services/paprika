@@ -15,7 +15,7 @@ function applyTypesHandler(doc) {
     let newValue;
 
     if (value.type && value.type.name === "enum" && Array.isArray(value.type.value)) {
-      newValue = value.type.value.map((propValue) => {
+      newValue = value.type.value.map(propValue => {
         if (hasTypes(propValue.value)) {
           return { ...propValue, value: `${componentName}.${propValue.value}` };
         }

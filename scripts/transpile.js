@@ -30,7 +30,7 @@ const packagesDir = join(__dirname, "..", "packages");
 const configFile = join(__dirname, "..", isEsm ? ".swcrc.esm" : ".swcrc");
 const outDir = isEsm ? "lib/esm" : "lib";
 
-const packages = readdirSync(packagesDir).filter((name) => {
+const packages = readdirSync(packagesDir).filter(name => {
   const srcDir = join(packagesDir, name, "src");
   try {
     return statSync(srcDir).isDirectory();
@@ -39,7 +39,7 @@ const packages = readdirSync(packagesDir).filter((name) => {
   }
 });
 
-const targets = isEsm ? packages.filter((p) => esmScope.has(p)) : packages;
+const targets = isEsm ? packages.filter(p => esmScope.has(p)) : packages;
 
 function transpile(pkg) {
   const cwd = join(packagesDir, pkg);
@@ -81,5 +81,9 @@ function copyDtsFiles(pkg) {
 }
 
 pMap(targets, transpile, { concurrency: os.cpus().length })
-  .then(() => { targets.forEach(copyDtsFiles); })
-  .catch(() => { process.exitCode = 1; });
+  .then(() => {
+    targets.forEach(copyDtsFiles);
+  })
+  .catch(() => {
+    process.exitCode = 1;
+  });

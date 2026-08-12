@@ -39,8 +39,7 @@ export const data2 = [
     avatar: "P",
     title: "Policy",
     meta1: "100,000 total",
-    text:
-      "I want everyone to know utterly, extremely important, and time sensitive the following information is. It is so unbelievably important that it must be discussed as soon as possible.",
+    text: "I want everyone to know utterly, extremely important, and time sensitive the following information is. It is so unbelievably important that it must be discussed as soon as possible.",
     meta2: "Created by Cory McBain",
     meta3: "Updated 3 months ago by Charles Bradley",
     footer1: "150 attribute types",
@@ -62,8 +61,7 @@ export const data2 = [
     avatar: "V",
     title: "Vendor",
     meta1: "12 total",
-    text:
-      "Kanye is the only one who can edit this. Kanye is the only one who can edit this. Kanye is the only one who can edit this. Kanye is the only one who can edit this.",
+    text: "Kanye is the only one who can edit this. Kanye is the only one who can edit this. Kanye is the only one who can edit this. Kanye is the only one who can edit this.",
     meta2: "Created by Cory McBain",
     meta3: "Updated 3 months ago by Charles Bradley",
     footer1: "150 attribute types",

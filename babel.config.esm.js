@@ -12,9 +12,7 @@ module.exports = function BabelConfigJS(api) {
     "@babel/preset-typescript",
   ];
 
-  const plugins = [
-    "styled-components",
-  ];
+  const plugins = ["styled-components"];
 
   return {
     sourceType: "unambiguous",

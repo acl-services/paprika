@@ -132,21 +132,23 @@ export const RealWorldStory: (props: { isForTesting?: boolean }) => JSX.Element 
     defaultOrderedColumnIds: Object.values(ColumnId),
   });
 
-  const columns = React.useMemo(() => {
-    return orderedColumnIds
-      .map((columnId: ColumnId) =>
-        isColumnHidden(columnId)
-          ? null
-          : {
-              Header,
-              accessor: columnId,
-              width: 200,
-              isSticky: isFixedColumn(columnId),
-              Cell: columnId === ColumnId.firstName ? NameLink : ({ value }: { value: string | number }) => value,
-            }
-      )
-      .filter(Boolean);
-  }, [orderedColumnIds, isColumnHidden]);
+  const columns = React.useMemo(
+    () =>
+      orderedColumnIds
+        .map((columnId: ColumnId) =>
+          isColumnHidden(columnId)
+            ? null
+            : {
+                Header,
+                accessor: columnId,
+                width: 200,
+                isSticky: isFixedColumn(columnId),
+                Cell: columnId === ColumnId.firstName ? NameLink : ({ value }: { value: string | number }) => value,
+              }
+        )
+        .filter(Boolean),
+    [orderedColumnIds, isColumnHidden]
+  );
 
   const handleLoadMore = async () => {
     const newItems = await new Promise<Record<string, unknown>[]>(res =>

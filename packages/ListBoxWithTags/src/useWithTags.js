@@ -71,17 +71,19 @@ export default function useWithTags({
   }
 
   const defaultFactoryAddCustomOption = label => ({ label, isCustom: true });
-  const handleAddCustomOption = (func = defaultFactoryAddCustomOption) => label => {
-    // useReducer might be a better alternative
+  const handleAddCustomOption =
+    (func = defaultFactoryAddCustomOption) =>
+    label => {
+      // useReducer might be a better alternative
 
-    const option = func(label);
+      const option = func(label);
 
-    setData(prev => prev.concat(option));
+      setData(prev => prev.concat(option));
 
-    setSelectedKeys(prev => prev.concat(option[key]));
+      setSelectedKeys(prev => prev.concat(option[key]));
 
-    setFilteredData(defaultData);
-  };
+      setFilteredData(defaultData);
+    };
 
   function handleFilter({ search }) {
     const result = filter(search, data, filterAttribute);

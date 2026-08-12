@@ -1,16 +1,17 @@
 {
   "name": "@paprika/notification-card",
   "version": "1.0.25",
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
   "description": "Notification Card component",
-  "author": "@paprika",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
   "license": "MIT",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/NotificationCard"
   },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -20,7 +21,7 @@
     "@paprika/helpers": "^2.4.3",
     "@paprika/stylers": "^1.1.13",
     "@paprika/tokens": "^3.1.1",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.8.1"
   },
   "peerDependencies": {
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
@@ -34,6 +35,5 @@
       "Body",
       "Footer"
     ]
-  },
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
+  }
 }

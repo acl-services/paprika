@@ -2,9 +2,9 @@ const fs = require("fs");
 const path = require("path");
 const jsYaml = require("js-yaml");
 
-const buildPath = (output) => path.resolve(process.cwd(), output);
+const buildPath = output => path.resolve(process.cwd(), output);
 const isYamlFile = (fileName, yamlFileExtension) => fileName.split(".")[1] === yamlFileExtension;
-const isJsTranslationFile = (fileName) => fileName.split(".")[1] === "js" && fileName.split(".")[0] !== "index";
+const isJsTranslationFile = fileName => fileName.split(".")[1] === "js" && fileName.split(".")[0] !== "index";
 
 async function removeTranslationFiles(outputPath) {
   let files = [];
@@ -20,7 +20,7 @@ async function removeTranslationFiles(outputPath) {
   console.log("  - cleaning up old files");
 
   await Promise.all(
-    files.map((fileName) => {
+    files.map(fileName => {
       if (fileName !== ".gitkeep" && isJsTranslationFile(fileName)) {
         return fs.promises.unlink(buildPath(`${outputPath}/${fileName}`));
       }
@@ -48,7 +48,7 @@ async function generateTranslationFiles({ sourcePath, outputPath, yamlFileExtens
     const yamlFiles = await fs.promises.readdir(buildPath(sourcePath));
 
     await Promise.all(
-      yamlFiles.map((yamlFileName) => {
+      yamlFiles.map(yamlFileName => {
         if (isYamlFile(yamlFileName, yamlFileExtension)) {
           return createTranslationFile({ sourcePath, outputPath, yamlFileName, yamlFileExtension });
         }
@@ -62,11 +62,7 @@ async function generateTranslationFiles({ sourcePath, outputPath, yamlFileExtens
   }
 }
 
-async function buildTranslations({
-  sourcePath = process.cwd(),
-  outputPath = sourcePath,
-  yamlFileExtension = "yml",
-}) {
+async function buildTranslations({ sourcePath = process.cwd(), outputPath = sourcePath, yamlFileExtension = "yml" }) {
   try {
     await removeTranslationFiles(outputPath);
     await generateTranslationFiles({ sourcePath, outputPath, yamlFileExtension });

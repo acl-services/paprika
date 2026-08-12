@@ -2,15 +2,15 @@
   "name": "@paprika/select",
   "version": "2.0.20",
   "description": "The Select component is a styled select drop-down form input that can be used as a controlled or uncontrolled component.",
-  "author": "@paprika",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
   "license": "MIT",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/Select"
   },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -20,7 +20,7 @@
     "@paprika/icon": "^3.0.3",
     "@paprika/stylers": "^1.1.13",
     "@paprika/tokens": "^3.1.1",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.8.1"
   },
   "peerDependencies": {
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",

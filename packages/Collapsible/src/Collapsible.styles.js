@@ -4,12 +4,13 @@ import stylers from "@paprika/stylers";
 import RawButton from "@paprika/raw-button";
 
 export const Collapsible = styled.div`
-  &, * {
+  &,
+  * {
     box-sizing: border-box;
   }
 
   ${stylers.fontSize()}
-  
+
   color: ${tokens.color.black};
   display: block;
   line-height: ${stylers.spacer(3)};
@@ -36,8 +37,7 @@ export const CollapsibleLabel = styled(RawButton)(
 export const CollapsibleIcon = styled.span(
   ({ iconAlign }) => css`
     ${iconAlign === "left" && `margin-inline-end: ${tokens.spaceSm};`}
-    ${iconAlign === "right" &&
-      `float: inline-end; margin-inline-start: ${tokens.spaceSm};`}
+    ${iconAlign === "right" && `float: inline-end; margin-inline-start: ${tokens.spaceSm};`}
 
     [data-pka-anchor="icon"] {
       color: ${tokens.textColor.icon};

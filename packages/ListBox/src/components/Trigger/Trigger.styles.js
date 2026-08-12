@@ -60,12 +60,14 @@ const triggerStylesProps = ({ isHidden, isInline, isReadOnly }) => {
   return isInline || isReadOnly
     ? css`
         ${triggerStyles}
-        ${isInline
-          ? css`
-              border-end-end-radius: 0;
-              border-end-start-radius: 0;
-            `
-          : ""}
+        ${
+          isInline
+            ? css`
+                border-end-end-radius: 0;
+                border-end-start-radius: 0;
+              `
+            : ""
+        }
       `
     : css`
         [data-pka-anchor="list-box-trigger"] {

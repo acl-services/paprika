@@ -33,6 +33,9 @@ interface DataTableComposition {
   types: ConstantsTypes;
 }
 
+// Defaults for the optional props below live in the DataTable() parameter destructuring,
+// which react/require-default-props cannot see
+/* eslint-disable react/require-default-props */
 export interface DataTableProps {
   /** Accessible description of the table */
   a11yText: string;
@@ -70,9 +73,9 @@ export interface DataTableProps {
   shouldResizeWithViewport?: boolean;
 
   /** Experimental prop */
-  extraCellProps?: Record<string, any>;
+  extraCellProps?: Record<string, unknown>;
 
-  [x: string]: any;
+  [x: string]: unknown;
 }
 
 function DataTable(
@@ -147,9 +150,9 @@ function DataTable(
 
     return (
       <InnerElement>
-        {tableInstance.rows.map((row, index) => {
-          return <TableRow key={row.id} index={index} />;
-        })}
+        {tableInstance.rows.map((row, index) => (
+          <TableRow key={row.id} index={index} />
+        ))}
       </InnerElement>
     );
   }

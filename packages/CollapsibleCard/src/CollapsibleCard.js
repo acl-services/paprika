@@ -41,13 +41,7 @@ export default function CollapsibleCard(props) {
 
   return (
     <CollapsibleCardContext.Provider value={thingsToShare}>
-      <sc.CollapsibleCard
-        aria-expanded={!isCollapsed}
-        isCollapsed={isCollapsed}
-        isEditing={isEditing}
-        position={position}
-        {...moreProps}
-      >
+      <sc.CollapsibleCard isCollapsed={isCollapsed} isEditing={isEditing} position={position} {...moreProps}>
         {children}
       </sc.CollapsibleCard>
     </CollapsibleCardContext.Provider>

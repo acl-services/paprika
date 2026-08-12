@@ -30,7 +30,6 @@ export default function MenuExample(): JSX.Element {
     }
 
     svg {
-
       ${stylers.fontSize(0)}
       margin-right: ${tokens.spaceSm};
     }

@@ -3,9 +3,7 @@ import { getStoryUrlPrefix } from "../../../.storybook/storyTree";
 
 describe("<DatePicker />", () => {
   const today = moment();
-  const targetDate = moment(today)
-    .add(1, "month")
-    .date(1);
+  const targetDate = moment(today).add(1, "month").date(1);
 
   const selectADateByClick = () => {
     cy.findByTestId("datepicker.input").click();
@@ -24,9 +22,7 @@ describe("<DatePicker />", () => {
   const openShortcut = () => {
     cy.findByTestId("datepicker.input").click();
     cy.wait(200);
-    cy.findAllByTestId("calendar.header")
-      .contains(today.format("MMMM YYYY"))
-      .click();
+    cy.findAllByTestId("calendar.header").contains(today.format("MMMM YYYY")).click();
   };
 
   it("should display calendar and be able to select date", () => {
@@ -53,9 +49,7 @@ describe("<DatePicker />", () => {
     cy.get('label[for$="-0"]').click();
     cy.get('label[for$="-2024"]').click();
     cy.findByTestId("calendar.apply").click();
-    cy.findAllByTestId("calendar.header")
-      .contains("January 2024")
-      .should("be.visible");
+    cy.findAllByTestId("calendar.header").contains("January 2024").should("be.visible");
   });
 
   it("should clear data after delete all input", () => {
@@ -74,9 +68,7 @@ describe("<DatePicker />", () => {
     cy.findByTestId("datepicker.input").type("5/6/2001");
 
     cy.tick(5000);
-    cy.findAllByTestId("calendar.header")
-      .contains("May 2001")
-      .should("be.visible");
+    cy.findAllByTestId("calendar.header").contains("May 2001").should("be.visible");
 
     cy.findByTestId("datepicker.input").click();
     cy.get("body").click();

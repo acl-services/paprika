@@ -11,15 +11,17 @@ export const Flex = styled.div(
       border-left: 1px solid ${tokens.border.color};
     }
 
-    ${hasLeftColumn
-      ? ""
-      : css`
-          display: inline;
-          [data-pka-anchor="list-box"]:last-child {
-            border: 0;
-            border-radius: ${tokens.border.radius};
-          }
-        `}
+    ${
+      hasLeftColumn
+        ? ""
+        : css`
+            display: inline;
+            [data-pka-anchor="list-box"]:last-child {
+              border: 0;
+              border-radius: ${tokens.border.radius};
+            }
+          `
+    }
   `
 );
 
@@ -57,11 +59,13 @@ export const Container = styled.div(
       background: ${tokens.color.greenLighten50};
     }
 
-    ${hasError
-      ? `
+    ${
+      hasError
+        ? `
       border: 2px solid ${tokens.color.orange};
       border-radius: ${tokens.border.radius};
     `
-      : ""}
+        : ""
+    }
   `
 );

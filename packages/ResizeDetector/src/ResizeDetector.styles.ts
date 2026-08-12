@@ -8,14 +8,18 @@ export const ResizeDetector = styled.div<{
   ({ isFullWidth, isFullHeight }) => css`
     display: inline-block;
 
-    ${isFullWidth &&
+    ${
+      isFullWidth &&
       css`
         width: 100%;
-      `}
+      `
+    }
 
-    ${isFullHeight &&
+    ${
+      isFullHeight &&
       css`
         height: 100%;
-      `}
+      `
+    }
   `
 );

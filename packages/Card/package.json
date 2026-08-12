@@ -2,15 +2,15 @@
   "name": "@paprika/card",
   "version": "2.0.11",
   "description": "The Card component is a customizable content container.",
-  "author": "@paprika",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
   "license": "MIT",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/Card"
   },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -21,7 +21,7 @@
     "@paprika/stylers": "^1.1.13",
     "@paprika/tokens": "^3.1.1",
     "lodash.truncate": "^4.4.2",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.8.1"
   },
   "peerDependencies": {
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",

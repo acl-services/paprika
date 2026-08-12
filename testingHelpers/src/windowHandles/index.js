@@ -1,6 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
-import sinon from "sinon";
 
 class WindowHandles extends React.Component {
   constructor(props) {
@@ -47,12 +45,6 @@ class WindowHandles extends React.Component {
   }
 }
 
-WindowHandles.propTypes = {
-  story: PropTypes.func.isRequired,
-  // eslint-disable-next-line
-  config: PropTypes.object.isRequired,
-};
-
 export class Input {
   constructor(initialValue) {
     this.initialValue = initialValue;
@@ -77,19 +69,6 @@ export class Input {
 export class Action {
   apply(wrapper, key) {
     wrapper.windowProps[key] = (...args) => wrapper.ref[key](...args); // eslint-disable-line
-  }
-}
-
-export class Callback {
-  constructor(fake) {
-    this.fake = fake;
-  }
-
-  apply(wrapper, key) {
-    if (wrapper.isPropUndefinedOrDefault(key)) {
-      wrapper.windowProps[key] = sinon.spy(this.fake); // eslint-disable-line
-      wrapper.childProps[key] = e => wrapper.windowProps[key](e); // eslint-disable-line
-    }
   }
 }
 

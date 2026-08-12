@@ -6,6 +6,9 @@ import TableRow from "../TableRow/TableRow";
 import { TableDataItemType } from "../../types";
 import useItemSizeCalculator from "./useItemSizeCalculator";
 
+// InfiniteLoaderImpl below consumes these props through an intersection type and defaults
+// them in its parameter destructuring; the react rules cannot follow that indirection
+/* eslint-disable react/no-unused-prop-types, react/require-default-props */
 export interface InfiniteLoaderPublicProps {
   /**
    * Function responsible for tracking the loaded state of each item.
@@ -127,8 +130,6 @@ export function InfiniteLoaderImpl({
   );
 }
 
-export const InfiniteLoader: React.FC<InfiniteLoaderPublicProps> = (props: InfiniteLoaderPublicProps) => {
-  return <></>;
-};
+export const InfiniteLoader: React.FC<InfiniteLoaderPublicProps> = (props: InfiniteLoaderPublicProps) => <></>;
 
 InfiniteLoader.displayName = "DataTable.InfiniteLoader";

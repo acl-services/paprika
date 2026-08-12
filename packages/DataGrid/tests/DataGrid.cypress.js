@@ -16,9 +16,7 @@ describe("<DataGrid />", () => {
   });
 
   it("Should run a callback function", () => {
-    cy.visitStorybook(`${storyPrefix}-backyard-tests--callback-function`)
-      .wait(100)
-      .contains("click me");
+    cy.visitStorybook(`${storyPrefix}-backyard-tests--callback-function`).wait(100).contains("click me");
 
     cy.on("window:alert", str => {
       expect(str).to.equal(`Josef Bican ‡`);
@@ -49,9 +47,7 @@ describe("<DataGrid />", () => {
       .then(e => {
         const coords = e[0].getBoundingClientRect();
 
-        cy.getAllByRole("rowgroup")
-          .last()
-          .scrollTo(100, 0);
+        cy.getAllByRole("rowgroup").last().scrollTo(100, 0);
 
         cy.get('[data-column-index="2"]')
           .eq(0)
@@ -61,18 +57,14 @@ describe("<DataGrid />", () => {
           });
       });
 
-    cy.getAllByRole("rowgroup")
-      .last()
-      .scrollTo(-100, 0);
+    cy.getAllByRole("rowgroup").last().scrollTo(-100, 0);
 
     cy.get('[data-column-index="5"]')
       .eq(0)
       .then(e => {
         const coords = e[0].getBoundingClientRect();
 
-        cy.getAllByRole("rowgroup")
-          .last()
-          .scrollTo(200, 0);
+        cy.getAllByRole("rowgroup").last().scrollTo(200, 0);
 
         cy.get('[data-column-index="5"]')
           .eq(0)
@@ -97,18 +89,9 @@ describe("<DataGrid />", () => {
 
   xit("should render ColumnExpand", () => {
     cy.visitStorybook(`${storyPrefix}-examples--lazy`);
-    cy.get('[data-column-index="1"]')
-      .eq(0)
-      .children()
-      .first()
-      .should("have.css", "opacity", "0");
+    cy.get('[data-column-index="1"]').eq(0).children().first().should("have.css", "opacity", "0");
 
-    cy.get('[data-column-index="1"]')
-      .eq(0)
-      .children()
-      .first()
-      .trigger("mouseover")
-      .should("have.css", "opacity", "1");
+    cy.get('[data-column-index="1"]').eq(0).children().first().trigger("mouseover").should("have.css", "opacity", "1");
   });
 
   xit("should render load more button when you scroll to the bottom", () => {
@@ -120,12 +103,7 @@ describe("<DataGrid />", () => {
         window.requestAnimationFrame(() => $e.get(0).scrollTo(0, $e.width() + 100));
       });
 
-    cy.get('[data-pka-anchor="button"')
-      .should("be.visible")
-      .click()
-      .getAllByRole("rowgroup")
-      .last()
-      .contains("Albion");
+    cy.get('[data-pka-anchor="button"').should("be.visible").click().getAllByRole("rowgroup").last().contains("Albion");
   });
 
   it("should navigate DataGrid-collapsible with enter key and up, down arrow keys", () => {

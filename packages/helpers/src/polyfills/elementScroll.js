@@ -3,7 +3,7 @@
 // IE polyfill for Element.scroll(), Element.scrollTo(), Element.scrollBy()
 // https://github.com/idmadj/element-scroll-polyfill/blob/master/index.js
 
-(function() {
+(function () {
   if ((Element.prototype.scroll && Element.prototype.scrollTo) || !document) return;
 
   const normalizeNonFiniteValue = function normalizeNonFiniteValue(value) {
@@ -11,7 +11,7 @@
     return isNaN(value) || value == Infinity || value == -Infinity ? 0 : value;
   };
 
-  const isBodyPotentiallyScrollable = function(body) {
+  const isBodyPotentiallyScrollable = function (body) {
     body = body || document.getElementsByTagName("BODY")[0];
 
     const bodyComputedStyle = window.getComputedStyle(body);
@@ -35,7 +35,7 @@
   };
 
   if (!Element.prototype.scroll) {
-    Element.prototype.scroll = function() {
+    Element.prototype.scroll = function () {
       if (!document) return;
 
       const argsLength = arguments.length;

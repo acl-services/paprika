@@ -40,5 +40,5 @@ export const Textarea = styled.textarea(
     &:focus {
       ${isReadOnly ? stylers.focusRing.subtle() : stylers.focusRing.bordered()}
     }
-`
+  `
 );

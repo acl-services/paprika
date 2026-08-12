@@ -1,6 +1,6 @@
 import { gridTypes } from "@paprika/constants";
 
-export type TableDataItemType = Record<string, any>;
+export type TableDataItemType = Record<string, unknown>;
 
 export type TableColumnsWidth = Record<string, number>;
 

@@ -23,7 +23,7 @@ showcase.story = {
   parameters: showcaseStoryParameters,
 };
 
-export const variations = () => (
+export const variations = (): JSX.Element => (
   <ExampleStory storyName="Link" tagline={ExampleStory.defaultTaglines.variations}>
     <Variations />
   </ExampleStory>

@@ -2,15 +2,19 @@
   "name": "@paprika/helpers",
   "version": "2.4.3",
   "description": "JavaScript and React helper utilities",
-  "author": "@paprika",
   "license": "MIT",
-  "main": "lib/index.js",
-  "module": "lib/esm/index.js",
+  "author": "@paprika",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/helpers"
   },
+  "sideEffects": [
+    "**/polyfills/elementClosest.js",
+    "**/polyfills/elementScroll.js"
+  ],
+  "main": "lib/index.js",
+  "module": "lib/esm/index.js",
   "publishConfig": {
     "access": "public"
   },
@@ -20,14 +24,10 @@
   },
   "dependencies": {
     "lodash.debounce": "^4.0.8",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.8.1"
   },
   "peerDependencies": {
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "react-dom": "^16.8.4 || ^17.0.2 || ^18.0.0"
-  },
-  "sideEffects": [
-    "**/polyfills/elementClosest.js",
-    "**/polyfills/elementScroll.js"
-  ]
+  }
 }

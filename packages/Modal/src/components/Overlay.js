@@ -1,3 +1,6 @@
+// Marker component: it renders null and Modal reads these propTypes off of it, so none of
+// the props are referenced here
+/* eslint-disable react/no-unused-prop-types */
 import PropTypes from "prop-types";
 
 const propTypes = {
@@ -24,6 +27,7 @@ const propTypes = {
     className: PropTypes.string,
 
     whiteList: PropTypes.func,
+    // eslint-disable-next-line react/forbid-prop-types
     shards: PropTypes.arrayOf(PropTypes.any),
 
     as: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),

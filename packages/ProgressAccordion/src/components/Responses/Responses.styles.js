@@ -21,7 +21,7 @@ export const Response = styled.dl`
 
   dt {
     ${stylers.fontSize(-1)}
-    
+
     display: block;
     font-weight: bold;
     margin-bottom: ${tokens.space};
