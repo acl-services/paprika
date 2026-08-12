@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
 
-Input.propTypes = propTypes;
-Input.defaultProps = defaultProps;
 Input.types = {
   size: constants.defaultSize,
 };
@@ -39,5 +37,7 @@ function Input() {
 }
 
 Input.displayName = "DatePicker.Input";
+Input.propTypes = propTypes;
+Input.defaultProps = defaultProps;
 
 export default Input;

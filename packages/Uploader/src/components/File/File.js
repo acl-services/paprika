@@ -13,9 +13,6 @@ import { getNumberWithUnits } from "../../helpers";
 import * as types from "../../types";
 import * as sc from "./File.styles";
 
-File.defaultProps = defaultProps;
-File.propTypes = propTypes;
-
 File.types = {
   status: types.status,
 };
@@ -156,5 +153,8 @@ function File(props) {
     </sc.FileListItem>
   );
 }
+
+File.propTypes = propTypes;
+File.defaultProps = defaultProps;
 
 export default File;
