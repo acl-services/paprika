@@ -26,7 +26,7 @@ npm install @paprika/data-header
 |color|string|false|null| |
 |label|[func,string]|true|-| |
 |renderActions|func|false|null| |
-|type|[ types.type.TEXT, types.type.NUMERIC, types.type.DATE, types.type.DATE_TIME, types.type.TIME]|false|null| |
+|type|[ "text", "numeric", "date", "dateTime", "time"]|false|null| |
 |icons|object|false|null| |
 
 
