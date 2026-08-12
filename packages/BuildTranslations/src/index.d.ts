@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 interface Options {
   sourcePath: string;
   outputPath?: string;

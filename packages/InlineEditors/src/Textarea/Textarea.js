@@ -10,13 +10,13 @@ export default function InlineTextarea(props) {
     onChange,
     onSubmit,
     onClose,
-    /* eslint-disable react/prop-types */
+
     rowIndex,
     columnIndex,
     isEditing,
     value,
     collapsedLength,
-    /* eslint-enable react/prop-types */
+
     ...moreProps
   } = props;
 
@@ -85,7 +85,7 @@ export default function InlineTextarea(props) {
         window.cancelAnimationFrame(id);
       };
     }
-  }, [value]); // eslint-disable-line react-hooks/exhaustive-deps -- run only when the value changes
+  }, [value]); // oxlint-disable-line react/exhaustive-deps -- run only when the value changes
 
   React.useEffect(() => {
     if (isEditing && refTextarea.current) {

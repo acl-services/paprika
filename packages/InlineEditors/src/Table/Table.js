@@ -15,7 +15,6 @@ export default function InlineEditingTable(props) {
       const { cell: Component, width } = child.props;
       cloned.push(
         <Table.ColumnDefinition
-          // eslint-disable-next-line react/no-array-index-key
           key={index}
           {...child.props}
           cell={args =>

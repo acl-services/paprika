@@ -9,7 +9,6 @@ import extractChildren from "@paprika/helpers/lib/extractChildren";
 import * as sc from "./Editor.styles";
 import { status as statusTypes } from "../types";
 
-// eslint-disable-next-line react/prop-types
 const Tooltip = ({ Icon = null, message }) => (
   <Popover isEager>
     <Popover.Trigger>

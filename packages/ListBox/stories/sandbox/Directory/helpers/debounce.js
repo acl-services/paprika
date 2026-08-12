@@ -1,4 +1,3 @@
-/* eslint-disable */
 // from lodash
 const debounce = function (func, wait, immediate) {
   var timeout;
@@ -15,6 +14,5 @@ const debounce = function (func, wait, immediate) {
     if (callNow) func.apply(context, args);
   };
 };
-/* eslint-enable */
 
 export default debounce;

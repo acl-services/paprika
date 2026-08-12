@@ -36,14 +36,12 @@ export function ListBox(props) {
     contentOffsetX,
     contentOffsetY,
 
-    /* eslint-disable react/prop-types */
     data,
     box,
     filter,
     footer,
     trigger: _trigger,
     content,
-    /* eslint-enable react/prop-types */
 
     ...moreProps
   } = props;
@@ -52,13 +50,11 @@ export function ListBox(props) {
   const [{ noResultsFound, refFooterContainer }] = useListBox();
   const { isInline, isReadOnly } = React.useContext(PropsContext);
 
-  /* eslint-disable react/prop-types */
   const onClickFooterAccept = footer ? footer.props.onClickAccept : null;
   const onCancelFooter = footer ? footer.props.onClickCancel : null;
   const noResultsMessage = filter ? filter.props.noResultsMessage || I18n.t("listBox.filter.no_results_message") : null;
   const boxProps = box ? box.props : null;
   const contentProps = content ? { ...content.props, onCancelFooter } : { onCancelFooter };
-  /* eslint-enable react/prop-types */
 
   const propsForTrigger = {
     hasClearButton: true,
@@ -72,7 +68,6 @@ export function ListBox(props) {
     hasOptions: !noResultsFound,
   };
 
-  // eslint-disable-next-line react/prop-types
   const trigger = _trigger ? React.cloneElement(_trigger, { ..._trigger.props }) : <Trigger {...propsForTrigger} />;
 
   const listBox = (
@@ -122,14 +117,12 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     contentOffsetX,
     contentOffsetY,
 
-    /* eslint-disable react/prop-types */
     box,
     filter,
     footer,
     popover,
     trigger,
     content,
-    /* eslint-enable react/prop-types */
 
     ...moreProps
   } = props;
@@ -138,10 +131,8 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
   const onChangeContext = React.useContext(OnChangeContext);
   const providedProps = React.useContext(PropsContext);
 
-  /* eslint-disable react/prop-types */
   const shouldTriggerKeepFocus = popover && popover.props.shouldKeepFocus;
   const popoverProps = popover && popover.props;
-  /* eslint-enable react/prop-types */
 
   // IMPERATIVE API
   const imperativeHandle = handleImperative({

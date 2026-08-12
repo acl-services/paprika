@@ -28,7 +28,7 @@ const propTypes = {
   onChange: PropTypes.func.isRequired,
   onClickNavigate: PropTypes.func.isRequired,
   onUp: PropTypes.func,
-  // eslint-disable-next-line react/forbid-prop-types
+
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

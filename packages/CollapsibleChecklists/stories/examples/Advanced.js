@@ -144,7 +144,7 @@ const AdvancedStory = () => {
               changedItemsArray.filter(changedItem => changedItem.props.foobar === team.name).length > 0;
 
             if (thisTeamWasChanged) {
-              team.isChecked = !team.isChecked; // eslint-disable-line
+              team.isChecked = !team.isChecked;
             }
           });
         }

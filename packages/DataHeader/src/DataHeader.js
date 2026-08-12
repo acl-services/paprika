@@ -38,7 +38,7 @@ DataHeader.propTypes = {
   label: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
   renderActions: PropTypes.func,
   type: PropTypes.oneOf([types.type.TEXT, types.type.NUMERIC, types.type.DATE, types.type.DATE_TIME, types.type.TIME]),
-  icons: PropTypes.object, // eslint-disable-line
+  icons: PropTypes.object,
 };
 
 DataHeader.defaultProps = {

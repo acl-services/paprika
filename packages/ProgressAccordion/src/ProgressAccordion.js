@@ -69,7 +69,6 @@ const ProgressAccordion = props => {
           };
 
           return (
-            // eslint-disable-next-line react/no-array-index-key
             <sc.Item key={index} role="listitem" data-pka-anchor="progress-accordion.item">
               <Indicator {...indicatorProps} />
               {React.cloneElement(child, {

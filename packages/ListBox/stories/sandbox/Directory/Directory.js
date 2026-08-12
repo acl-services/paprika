@@ -104,7 +104,6 @@ export default function Directory() {
     }
   }
 
-  /* eslint-disable jsx-a11y/label-has-associated-control */
   return (
     <>
       <ListBox ref={refListBox} isDisabled={isListBoxDisabled} onChange={handleChange} placeholder="Select user...">

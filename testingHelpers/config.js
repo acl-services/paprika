@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import React from "react";
 import { TextEncoder, TextDecoder } from "util";
 import { configure, render } from "@testing-library/react";

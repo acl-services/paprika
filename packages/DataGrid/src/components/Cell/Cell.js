@@ -61,7 +61,7 @@ export default function Cell(props) {
     return () => {
       delete window.paprika.dataGridRef[key];
     };
-  }, []); // eslint-disable-line
+  }, []); // oxlint-disable-line
 
   const isColumnCellAFunction = typeof column.cell === "function";
   return (

@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from "react";
 import PropTypes from "prop-types";
 import Checkbox from "@paprika/checkbox";
@@ -76,7 +75,7 @@ Option.propTypes = {
   onClick: PropTypes.func,
 
   /** Value of your option this can be any data structure  */
-  value: PropTypes.any, // eslint-disable-line
+  value: PropTypes.any,
 
   /** Internal prop, which shouldn't be documented */
   internalHandleOnClick: PropTypes.func,

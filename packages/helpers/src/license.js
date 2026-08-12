@@ -1,6 +1,3 @@
-/* eslint-disable guard-for-in */
-/* eslint-disable no-unused-vars */
-
 const legally = require("legally");
 const fs = require("fs");
 

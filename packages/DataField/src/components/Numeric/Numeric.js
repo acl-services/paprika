@@ -70,7 +70,7 @@ Numeric.propTypes = {
   /**
    * The window.Intl.numberFormat option object https://mzl.la/3iW0ioQ
    */
-  intl: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  intl: PropTypes.object,
   /**
    * When passing a currency string as 'EUR' or 'JPY' will display the correct currency symbol, is a short version instead of using the intl prop.
    */

@@ -21,14 +21,14 @@ export default function InlineListBox(props) {
     optimisticValue,
     messageError,
     /** These props are only consumable by the Author no need to expose them */
-    /* eslint-disable react/prop-types */
+
     status,
     placeHolder,
     rowIndex,
     columnIndex,
     children,
     getRefTable,
-    /* eslint-enable react/prop-types */
+
     ...moreProps
   } = props;
 
@@ -86,13 +86,13 @@ export default function InlineListBox(props) {
         window.cancelAnimationFrame(id);
       };
     }
-  }, [value]); // eslint-disable-line react-hooks/exhaustive-deps -- run only when the value changes
+  }, [value]); // oxlint-disable-line react/exhaustive-deps -- run only when the value changes
 
   React.useEffect(() => {
     if (!isEditing && nextValue !== null) {
       onSubmit(...nextValue, { rowIndex, columnIndex });
     }
-  }, [isEditing, nextValue, rowIndex, columnIndex]); // eslint-disable-line react-hooks/exhaustive-deps -- submit only after editing closes
+  }, [isEditing, nextValue, rowIndex, columnIndex]); // oxlint-disable-line react/exhaustive-deps -- submit only after editing closes
 
   React.useEffect(() => {
     if (isEditing && refListBox.current) {
@@ -147,7 +147,7 @@ InlineListBox.propTypes = {
   onSubmit: PropTypes.func,
   optimisticValue: PropTypes.node,
   renderValue: PropTypes.func,
-  // eslint-disable-next-line react/forbid-prop-types
+
   value: PropTypes.any,
 };
 

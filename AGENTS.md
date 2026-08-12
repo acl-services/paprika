@@ -78,10 +78,10 @@ No Storybook URL or placeholder found in PR description
 
 ### Commit message format
 
-This repo enforces [Conventional Commits](https://www.conventionalcommits.org/) via a commit-msg hook. The format is:
+This repo enforces [Conventional Commits](https://www.conventionalcommits.org/) via a commit-msg hook. Put the project ticket in the scope and start the subject with a lowercase word:
 
 ```
-type(AffectedComponent): <project (ex RCP, LCP )>-XXXXX short description
+type(RCP-XXXXX): lowercase short description
 ```
 
 Supported types: `feat`, `fix`, `style`, `test`, `docs`, `build`, `chore`, `ci`, `perf`, `refactor`, `revert`
@@ -89,11 +89,11 @@ Supported types: `feat`, `fix`, `style`, `test`, `docs`, `build`, `chore`, `ci`,
 Examples:
 
 ```
-chore(CI): RCP-43291 extract composite action and modernize pipeline
-fix(Filter): RCP-42687 removes immer dependency and fixes related bugs
+chore(RCP-44747): migrate eslint to oxlint
+fix(RCP-42687): remove immer dependency and fix related bugs
 ```
 
-Commits without a valid type will be rejected by the pre-commit hook.
+The default `commitlint` subject-case rule rejects a subject beginning with `RCP-XXXXX`, so do not put the ticket after the colon. Commits without a valid type and scope will be rejected by the commit-msg hook.
 
 ### Local composite actions and checkout
 

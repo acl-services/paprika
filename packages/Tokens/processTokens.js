@@ -1,6 +1,6 @@
-const YAML = require("yamljs"); /* eslint-disable-line import/no-extraneous-dependencies */
+const YAML = require("yamljs");
 const fs = require("fs");
-const sass = require("sass"); /* eslint-disable-line import/no-extraneous-dependencies */
+const sass = require("sass");
 
 class DesignTokenBuilder {
   constructor() {
@@ -131,7 +131,7 @@ import TokenSquare from "./TokenSquare"
         if (!this.yamlVariables[match]) {
           this.outputError(`The variable [${match}] was referenced in the YAML file before it was defined`);
         }
-        /* eslint-disable-next-line */
+
         str = str.replace(re, this.yamlVariables[match]);
       });
     }
@@ -177,7 +177,6 @@ import TokenSquare from "./TokenSquare"
   // Make it camel case, remove hyphens, remove leading `$`
   // E.g. convert `$black-lighten-10` to `blackLighten10`
   cleanUpKey(str) {
-    /* eslint-disable-next-line */
     str = str.replace(/-([a-z0-9])/gi, (s, group1) => group1.toUpperCase());
 
     return str.charAt(0) === "$" ? str.substr(1) : str;

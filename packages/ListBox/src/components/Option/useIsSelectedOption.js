@@ -27,5 +27,5 @@ export default function useIsSelectedOption({ index, props }) {
         selectSingleOption({ activeOptionIndex: index, state, dispatch, isOpen: state.isOpen, onChange: noop });
       }
     }
-  }, [dispatch, index, isSelected]); // eslint-disable-line
+  }, [dispatch, index, isSelected]); // oxlint-disable-line
 }

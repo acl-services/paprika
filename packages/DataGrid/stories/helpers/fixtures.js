@@ -258,7 +258,6 @@ export default function fixtures(times = 0) {
   let newData = [];
   let itemIndex = 0;
   for (let i = 0; i < times; i++) {
-    // eslint-disable-next-line no-loop-func
     newData = newData.concat(data.map(item => ({ ...item, id: itemIndex++ })));
   }
 

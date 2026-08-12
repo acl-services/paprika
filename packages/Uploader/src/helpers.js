@@ -4,7 +4,7 @@ import * as types from "./types";
 
 function getExtension({ file }) {
   const filename = file.name;
-  return filename.substr((~-filename.lastIndexOf(".") >>> 0) + 2); // eslint-disable-line
+  return filename.substr((~-filename.lastIndexOf(".") >>> 0) + 2);
 }
 
 function isValidFileType({ file, supportedMimeTypes }) {

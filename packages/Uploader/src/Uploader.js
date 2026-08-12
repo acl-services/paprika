@@ -62,7 +62,7 @@ const propTypes = {
   /**
     you can pass an array of header objects.
   */
-  // eslint-disable-next-line react/forbid-prop-types
+
   headers: PropTypes.arrayOf(PropTypes.object),
   /**
     This callback fires when uploading is about to start (all files have been processed to see if they are valid type/size).

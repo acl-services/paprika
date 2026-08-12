@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from "react";
 import { render, configure } from "@testing-library/react";
 import { axe } from "jest-axe";

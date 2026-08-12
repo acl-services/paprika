@@ -13,7 +13,7 @@ export default function logger(prevState, nextState, action, isFromInterceptor =
   console.groupCollapsed(`${isFromInterceptor ? "⇢" : ""} action: ${action.type} @ ${new Date().toLocaleTimeString()}`);
 
   // we don't want to showcase payload if it's undefined
-  // eslint-disable-next-line no-param-reassign
+
   if (typeof action.payload === "undefined") delete action.payload;
 
   console.log(`%c∙ prev state`, styles.prev, prevState);
