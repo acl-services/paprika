@@ -13,6 +13,9 @@ pre-commit:
       stage_fixed: true
     - name: lint
       glob: "packages/**/*.{js,jsx,ts,tsx}"
+      # oxlint has no rules for declaration files and fails the job outright when
+      # every file it is handed is one of them.
+      exclude: '\.d\.ts$'
       run: yarn oxlint --report-unused-disable-directives {staged_files}
     - name: lint-jss
       glob: "packages/**/src/**/*.styles.js"
