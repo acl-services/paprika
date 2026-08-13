@@ -17,6 +17,9 @@ cypress/fixtures
 # Dependency directories
 node_modules/
 
+# swc wasm plugin cache, in case jsc.experimental.cacheRoot is not picked up
+.swc/
+
 # Optional npm cache directory
 .npm
 

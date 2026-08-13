@@ -10,7 +10,11 @@
         "runtime": "classic"
       }
     },
-    "target": "es2018"
+    "target": "es2018",
+    "experimental": {
+      "cacheRoot": "../../node_modules/.cache/swc",
+      "plugins": [["@swc/plugin-styled-components", { "displayName": true, "ssr": true }]]
+    }
   },
   "module": {
     "type": "commonjs"

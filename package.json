@@ -82,6 +82,8 @@
     "@storybook/react": "^6.5.16",
     "@swc/cli": "^0.8.1",
     "@swc/core": "^1.15.46",
+    "@swc/jest": "^0.2.39",
+    "@swc/plugin-styled-components": "^12.19.0",
     "@testing-library/cypress": "^7.0.7",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^10.4.9",
