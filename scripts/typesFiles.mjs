@@ -2,6 +2,10 @@ import fs from "fs";
 import { execSync } from "child_process";
 import parseFileToReactDoc from "./parseFileToReactDoc.mjs";
 
+// react-docgen finds no component to describe in these packages, either because they
+// export something else entirely or because the component renders no JSX. The ones that
+// do declare "types" keep a hand-written src/index.d.ts, which scripts/transpile.js
+// copies into lib/ — skipping them here keeps that file authoritative.
 const skipPackages = [
   "Guard",
   "Icon",
@@ -13,6 +17,8 @@ const skipPackages = [
   "Constants",
   "seducer",
   "InlineEditors",
+  "DynamicHyperlinkTransformer",
+  "MockEndpoints",
 ];
 
 const fileName = "index.d.ts";
