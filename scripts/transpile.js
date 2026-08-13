@@ -41,7 +41,7 @@ const packages = readdirSync(packagesDir).filter(name => {
 
 const targets = isEsm ? packages.filter(p => esmScope.has(p)) : packages;
 
-function transpile(pkg) {
+function transpile(pkg, { retryOnCrash = true } = {}) {
   const cwd = join(packagesDir, pkg);
   return new Promise((resolve, reject) => {
     exec(
@@ -49,6 +49,14 @@ function transpile(pkg) {
       { cwd },
       (err, stdout, stderr) => {
         if (err) {
+          // A signal (or the shell's 128 + signal exit code) means swc crashed rather
+          // than rejecting the sources — the wasm plugin cache is the usual culprit.
+          // One retry runs against a cache somebody else has finished populating.
+          if (retryOnCrash && (err.signal || err.code >= 128)) {
+            process.stderr.write(`[${pkg}] swc crashed (${err.signal || err.code}), retrying\n`);
+            resolve(transpile(pkg, { retryOnCrash: false }));
+            return;
+          }
           process.stderr.write(`[${pkg}] ${stderr}`);
           reject(err);
         } else {
@@ -80,7 +88,15 @@ function copyDtsFiles(pkg) {
   walk(srcDir);
 }
 
-pMap(targets, transpile, { concurrency: os.cpus().length })
+// The styled-components transform is a wasm plugin that swc compiles once and then
+// memory-maps out of jsc.experimental.cacheRoot. Populating that cache from several
+// processes at once rewrites the file while the others have it mapped, and they die
+// with SIGBUS ("Bus error (core dumped)"). Transpile the first package on its own so
+// every parallel process below only ever reads a warm cache.
+const [warmup, ...rest] = targets;
+
+Promise.resolve(warmup && transpile(warmup))
+  .then(() => pMap(rest, transpile, { concurrency: os.cpus().length }))
   .then(() => {
     targets.forEach(copyDtsFiles);
   })
