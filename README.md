@@ -238,7 +238,8 @@ Common yarn commands for development:
 
 **Build & Transpilation:**
 
-- `yarn prepare` - Full build: cleanup, transpile, generate types and READMEs
+- `yarn build:repo` - Full build: cleanup, transpile, generate types and READMEs
+- `yarn build:packages` - Transpile every package to CommonJS, including the generated sources
 - `yarn prepare:esm` - Build ESM versions of packages
 - `yarn transpile` - Transpile packages to CommonJS
 - `yarn transpile:esm` - Transpile packages to ESM
