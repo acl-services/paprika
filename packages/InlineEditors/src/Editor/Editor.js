@@ -92,7 +92,7 @@ const propTypes = {
     Editor.types.status.ERROR,
     Editor.types.status.IDLE,
     Editor.types.status.LOADING,
-    Editor.types.status.SUCCESS,
+    Editor.types.status.SUCCEED,
   ]),
   children: PropTypes.node.isRequired,
   isEditing: PropTypes.bool.isRequired,
