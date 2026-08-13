@@ -10,7 +10,7 @@
         "runtime": "classic"
       }
     },
-    "target": "es2018",
+    "target": "es2022",
     "experimental": {
       "cacheRoot": "../../node_modules/.cache/swc",
       "plugins": [["@swc/plugin-styled-components", { "displayName": true, "ssr": true }]]

@@ -71,6 +71,6 @@
 "@paprika/uploader": minor
 ---
 
-Packages are now compiled with swc instead of babel. The published output targets ES2018 rather than ES5, so it keeps `const`, arrow functions and object spread, and no longer pulls in `@babel/runtime` helpers. Consumers need an environment that understands ES2018 (Chrome 60+, Safari 11.1+, Firefox 55+, Edge 79+, Node 10+) or a build step that transpiles `node_modules`.
+Packages are now compiled with swc instead of babel. The published output targets ES2022 rather than ES5, so it keeps `const`, arrow functions, class fields and optional chaining, and no longer pulls in `@babel/runtime` helpers. Consumers need an environment that understands ES2022 (Chrome 94+, Safari 15.4+, Firefox 93+, Edge 94+, Node 16.11+) or a build step that transpiles `node_modules`.
 
 `@paprika/mock-endpoints`, `@paprika/dynamic-hyperlink-transformer` and `@paprika/inline-editors` now ship the `lib/index.d.ts` their `types` field has always pointed at.
