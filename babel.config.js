@@ -1,9 +1,9 @@
 module.exports = function BabelConfigJS(api) {
   api.cache(true);
 
-  // Packages are transpiled by swc (see .swcrc, target es2018); babel is only left
-  // for Storybook and jest, so target browsers with native ES modules instead of
-  // downlevelling everything to ES5.
+  // Storybook is the only babel consumer left — packages are transpiled by swc
+  // (.swcrc) and so are the tests (jest.config.js) — so target browsers with native
+  // ES modules instead of downlevelling everything to ES5.
   const presets = [
     ["@babel/preset-env", { targets: { esmodules: true }, bugfixes: true }],
     "@babel/preset-react",
