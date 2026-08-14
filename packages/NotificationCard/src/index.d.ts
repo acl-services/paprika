@@ -14,7 +14,7 @@ declare namespace NotificationCard {
   interface ImageProps {
     [x: string]: any;
     /** Aligns the position of the image */
-    align?: NotificationCard.types.align.TOP | NotificationCard.types.align.CENTER;
+    align?: align.TOP | align.CENTER;
 
     children?: React.ReactNode;
   }
@@ -43,14 +43,5 @@ declare namespace NotificationCard {
     [x: string]: any;
 
     children?: React.ReactNode;
-  }
-}
-
-declare namespace NotificationCard {
-  namespace types {
-    namespace align {
-      const TOP: any;
-      const CENTER: any;
-    }
   }
 }

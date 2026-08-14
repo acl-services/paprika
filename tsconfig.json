@@ -1,24 +1,19 @@
 {
-  "include": ["./packages", "global.d.ts"],
-  "exclude": ["node_modules"],
+  "include": ["./packages"],
+  "exclude": ["node_modules", "**/node_modules", "**/stories/**", "**/tests/**", "**/*.stories.*", "**/*.test.*"],
   "compilerOptions": {
     "allowJs": true,
-    "declaration": true,
-    "emitDeclarationOnly": true,
+    "noEmit": true,
     "strict": true,
-    "target": "ES5",
+    "target": "ESNext",
     "module": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "jsx": "react",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "strictFunctionTypes": true,
-    "strictNullChecks": true,
-    "strictBindCallApply": true,
-    "noImplicitAny": true,
     "allowSyntheticDefaultImports": true
   }
 }

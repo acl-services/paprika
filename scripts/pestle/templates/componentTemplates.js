@@ -17,7 +17,6 @@ function renderPackageJSONTemplate(view) {
     "access": "public"
   },
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.29.7",
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",
     "class-names": "^1.0.0",

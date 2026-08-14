@@ -70,10 +70,12 @@ jobs:
       - name: Setup Yarn
         run: corepack enable
 
-      # Runs the root `prepare` lifecycle script, which builds translations/tokens/icons
-      # and transpiles every package's src/ -> lib/.
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+
+      # Builds translations/tokens/icons and transpiles every package's src/ -> lib/.
+      - name: Build repository
+        run: yarn build:repo
 
       - name: Prepare ESM builds
         run: yarn prepare:esm

@@ -23,7 +23,6 @@
     "transpile:esm:types": "tsc -p tsconfig.build.esm.json"
   },
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.29.7",
     "lodash.debounce": "^4.0.8",
     "prop-types": "^15.8.1"
   },

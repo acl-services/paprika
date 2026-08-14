@@ -17,7 +17,6 @@
     "transpile:types": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.29.7",
     "@paprika/icon": "^3.0.3",
     "@paprika/stylers": "^1.1.13",
     "@paprika/tokens": "^3.1.1",

@@ -19,7 +19,6 @@
     "transpile:types": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.29.7",
     "prop-types": "^15.8.1"
   },
   "devDependencies": {

@@ -21,9 +21,11 @@ const [major] = process.versions.node.split(".").map(Number);
 const supportsLegacyOpenssl = major >= 17;
 
 const env = { ...process.env };
+const nodeOpts = [env.NODE_OPTIONS, "--max-old-space-size=8192"];
 if (supportsLegacyOpenssl) {
-  env.NODE_OPTIONS = [env.NODE_OPTIONS, "--openssl-legacy-provider"].filter(Boolean).join(" ");
+  nodeOpts.push("--openssl-legacy-provider");
 }
+env.NODE_OPTIONS = nodeOpts.filter(Boolean).join(" ");
 
 const binaryPath = path.join(__dirname, "..", "node_modules", ".bin", binaryName);
 const result = spawnSync(binaryPath, extraArgs, { stdio: "inherit", env });

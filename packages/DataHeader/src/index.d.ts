@@ -12,7 +12,7 @@ interface DataHeaderProps {
 
   renderActions?: (...args: any[]) => any;
 
-  type?: types.type.TEXT | types.type.NUMERIC | types.type.DATE | types.type.DATE_TIME | types.type.TIME;
+  type?: "text" | "numeric" | "date" | "dateTime" | "time";
 
   icons?: object;
 }

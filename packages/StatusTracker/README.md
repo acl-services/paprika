@@ -31,7 +31,7 @@ npm install @paprika/status-tracker
 |-------|-------| --------  | --------- | ----------- |
 |children|node|false|null| |
 |description|node|false|null| The description of current status point will be shown in the tooltip.|
-|kind|[ kinds.CURRENT, kinds.FUTURE, kinds.PAST]|false|kinds.FUTURE| Kind of current status point.|
+|kind|[ "current", "future", "past"]|false|"future"| Kind of current status point.|
 |name|node|false|null| The name of current status point will be shown in the tooltip.|
 
 

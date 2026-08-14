@@ -1,0 +1,23 @@
+{
+  "$schema": "https://swc.rs/schema.json",
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "tsx": true
+    },
+    "transform": {
+      "react": {
+        "runtime": "classic"
+      }
+    },
+    "target": "es2022",
+    "experimental": {
+      "cacheRoot": "../../node_modules/.cache/swc",
+      "plugins": [["@swc/plugin-styled-components", { "displayName": true, "ssr": true }]]
+    }
+  },
+  "module": {
+    "type": "commonjs"
+  },
+  "exclude": [".*\\.d\\.ts$", ".*\\.test\\.", ".*\\.spec\\.", ".*\\.stories\\.", "node_modules"]
+}

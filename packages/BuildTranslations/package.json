@@ -16,9 +16,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@babel/register": "^7.12.1",
-    "@babel/runtime-corejs2": "7.10.2",
-    "arg": "^5.0.0",
     "js-yaml": "^3.13.1"
   }
 }

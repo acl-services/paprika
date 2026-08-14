@@ -30,8 +30,6 @@ runs:
         restore-keys: |
           ${{ runner.os }}-cypress-
 
-    # Runs the root `prepare` lifecycle script, which builds translations/tokens/icons
-    # and transpiles every package's src/ -> lib/.
     - name: Install dependencies
       shell: bash
       run: yarn install --frozen-lockfile

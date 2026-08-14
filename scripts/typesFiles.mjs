@@ -1,10 +1,25 @@
-#!/usr/bin/env node
-const fs = require("fs");
+import fs from "fs";
+import { execSync } from "child_process";
+import parseFileToReactDoc from "./parseFileToReactDoc.mjs";
 
-const shell = require("shelljs");
-const parseFileToReactDoc = require("./parseFileToReactDoc");
-
-const skipPackages = ["Guard", "Icon", "Stylers", "helpers", "Calendar", "BuildTranslations", "Tokens", "Constants"];
+// react-docgen finds no component to describe in these packages, either because they
+// export something else entirely or because the component renders no JSX. The ones that
+// do declare "types" keep a hand-written src/index.d.ts, which scripts/transpile.js
+// copies into lib/ — skipping them here keeps that file authoritative.
+const skipPackages = [
+  "Guard",
+  "Icon",
+  "Stylers",
+  "helpers",
+  "Calendar",
+  "BuildTranslations",
+  "Tokens",
+  "Constants",
+  "seducer",
+  "InlineEditors",
+  "DynamicHyperlinkTransformer",
+  "MockEndpoints",
+];
 
 const fileName = "index.d.ts";
 
@@ -41,12 +56,6 @@ const createPropsList = ({ info }) => {
     `,
   ];
 
-  /**
-   * [x:string]:any; to support typechecking for additional props
-   * autocomplete suggestions will display existing props first
-   * compared to using React.HTMLAttributes which suggest multiple html attributes
-   */
-
   Object.keys(info.props).map(key => {
     const v = info.props[key] || {};
     let type = "any";
@@ -74,17 +83,20 @@ const createPropsList = ({ info }) => {
           break;
         }
         default: {
-          type =
-            v.type.name !== "enum"
-              ? v.type.name
-              : Array.isArray(v.type.value)
-                ? `${v.type.value.map(i => i.value)}`.replace(/,/g, "|")
-                : v.type.value;
+          if (v.type.name !== "enum") {
+            type = v.type.name;
+          } else if (Array.isArray(v.type.value) && v.type.value.length > 0) {
+            type = `${v.type.value.map(i => i.value)}`.replace(/,/g, "|");
+          } else if (v.type.value) {
+            type = v.type.value;
+          } else {
+            type = "any";
+          }
         }
       }
     }
 
-    const req = v.required.toString() === "false" ? "?:" : ":";
+    const req = v.required === false || v.required?.toString() === "false" ? "?:" : ":";
     const description = v.description ? `/** ${v.description} */` : "";
 
     return list.push(` ${description}
@@ -109,7 +121,7 @@ const extractCorrectComponentDefinition = ({ desireDefinition, arrayOfComponents
   return definition[0];
 };
 
-const processPropsList = ({ info, folder, path, paprikaDocs = null }) => {
+const processPropsList = ({ info, folder, folderPath, paprikaDocs = null }) => {
   console.log("Generating .d.ts files...", folder);
   const propsList = [];
 
@@ -119,11 +131,9 @@ const processPropsList = ({ info, folder, path, paprikaDocs = null }) => {
 
   if (paprikaDocs && "subComponents" in paprikaDocs) {
     paprikaDocs.subComponents.forEach(subComponent => {
-      const subComponentContent = fs.readFileSync(`${path}/src/components/${subComponent}/${subComponent}.js`, "utf8");
-      const arrayOfComponentsDefinitions = parseFileToReactDoc(
-        subComponentContent,
-        `${path}/src/components/${subComponent}/${subComponent}.js`
-      );
+      const subComponentPath = `${folderPath}/src/components/${subComponent}/${subComponent}.js`;
+      const subComponentContent = fs.readFileSync(subComponentPath, "utf8");
+      const arrayOfComponentsDefinitions = parseFileToReactDoc(subComponentContent, subComponentPath);
       let _info = extractCorrectComponentDefinition({
         desireDefinition: subComponent,
         arrayOfComponentsDefinitions,
@@ -145,38 +155,38 @@ const processPropsList = ({ info, folder, path, paprikaDocs = null }) => {
   return propsList;
 };
 
-shell.ls("packages").forEach(folder => {
-  if (shouldSkipPackage(folder)) return;
+const packages = fs.readdirSync("packages");
 
-  const path = `./packages/${folder}`;
+for (const folder of packages) {
+  if (shouldSkipPackage(folder)) continue;
+
+  const folderPath = `./packages/${folder}`;
   try {
-    const { paprikaDocs = null } = JSON.parse(fs.readFileSync(`${path}/package.json`, "utf8"));
-    const componentContent = fs.readFileSync(`${path}/src/${folder}.js`, "utf8");
-    const arrayOfComponentsDefinitions = parseFileToReactDoc(componentContent, `${path}/src/${folder}.js`);
+    const { paprikaDocs = null } = JSON.parse(fs.readFileSync(`${folderPath}/package.json`, "utf8"));
+    const componentContent = fs.readFileSync(`${folderPath}/src/${folder}.js`, "utf8");
+    const arrayOfComponentsDefinitions = parseFileToReactDoc(componentContent, `${folderPath}/src/${folder}.js`);
 
     const info = extractCorrectComponentDefinition({
       desireDefinition: folder,
       arrayOfComponentsDefinitions,
     });
 
-    if (!info) return;
+    if (!info) continue;
 
     const propsList = processPropsList({
       info,
       componentContent,
-      path,
+      folderPath,
       paprikaDocs,
       folder,
     });
 
     // Constants
     const regex = /\.types\./;
-    const constants = propsList // return an array, [constants.type]
+    const constants = propsList
       .toString()
       .split(" ")
-      .filter(e => {
-        return regex.test(e);
-      });
+      .filter(e => regex.test(e));
 
     const typesConst = constants.map(e =>
       e
@@ -209,13 +219,21 @@ declare namespace ${e[0]}{
       typeConstants: typesTemp,
     });
 
-    fs.writeFileSync(`${path}/src/${fileName}`, template, {
+    const libDir = `${folderPath}/lib`;
+    if (!fs.existsSync(libDir)) fs.mkdirSync(libDir, { recursive: true });
+    fs.writeFileSync(`${libDir}/${fileName}`, template, {
       encoding: "utf8",
       flag: "w",
     });
   } catch (e) {
-    console.warn(e);
+    if (e.code === "ERR_REACTDOCGEN_MISSING_DEFINITION") {
+      console.warn(`  Skipping ${folder}: no component definition found`);
+    } else if (e.code === "ENOENT") {
+      console.warn(`  Skipping ${folder}: ${e.path} not found`);
+    } else {
+      console.warn(e);
+    }
   }
-});
+}
 
-shell.exec(`oxfmt "**/${fileName}" --write`);
+execSync(`oxfmt "**/${fileName}" --write`, { stdio: "inherit" });

@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import * as Sbook from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
-import worker from "workerize-loader!./helpers/data.worker";
+import { getDataFromWorker } from "./helpers/data.worker";
 import Spinner from "@paprika/spinner";
 import Panel from "@paprika/panel";
 import DataGrid, { LinkAction } from "../src";
@@ -17,8 +17,7 @@ export function App() {
 
   React.useEffect(() => {
     async function loadData() {
-      const w = worker();
-      const data = await w.getDataFromWorker(100, 5);
+      const data = getDataFromWorker(100, 5);
       setData(() => data);
       setIsLoading(() => false);
     }
