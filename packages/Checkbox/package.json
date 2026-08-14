@@ -1,6 +1,6 @@
 {
   "name": "@paprika/checkbox",
-  "version": "1.0.30",
+  "version": "1.1.0",
   "gitHead": "494ce26cb0a6c24a8f6abf2b154d97ddd4d7e343",
   "description": "Checkbox component displays a checkbox and label text beside it. When clicked it displays a checkmark. It can also have an indeterminate state which can be used to group checkboxes.",
   "license": "MIT",
@@ -16,11 +16,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@paprika/constants": "^1.0.2",
-    "@paprika/helpers": "^2.4.3",
-    "@paprika/icon": "^3.0.3",
-    "@paprika/stylers": "^1.1.13",
-    "@paprika/tokens": "^3.1.1",
+    "@paprika/constants": "^1.1.0",
+    "@paprika/helpers": "^2.5.0",
+    "@paprika/icon": "^3.1.0",
+    "@paprika/stylers": "^1.2.0",
+    "@paprika/tokens": "^3.2.0",
     "prop-types": "^15.8.1",
     "uuid": "^11.1.1"
   },

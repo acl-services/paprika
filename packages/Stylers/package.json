@@ -1,6 +1,6 @@
 {
   "name": "@paprika/stylers",
-  "version": "1.1.13",
+  "version": "1.2.0",
   "description": "Helpers and includes for styled-components",
   "license": "MIT",
   "author": "@paprika",
@@ -22,7 +22,7 @@
     "transpile:esm:types": "tsc -p tsconfig.build.esm.json"
   },
   "dependencies": {
-    "@paprika/tokens": "^3.1.1"
+    "@paprika/tokens": "^3.2.0"
   },
   "peerDependencies": {
     "styled-components": "^4.2.0 || >=5.0.0 <6.0.0"

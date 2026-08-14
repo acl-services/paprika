@@ -1,6 +1,6 @@
 {
   "name": "@paprika/collapsible-checklists",
-  "version": "1.0.39",
+  "version": "1.1.0",
   "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
   "description": "A controlled component that has checkable groups of checkable items. Checking the parent checks all of the children.",
   "license": "MIT",
@@ -16,10 +16,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@paprika/checkbox": "^1.0.30",
-    "@paprika/collapsible": "^4.0.4",
-    "@paprika/stylers": "^1.1.13",
-    "@paprika/tokens": "^3.1.1",
+    "@paprika/checkbox": "^1.1.0",
+    "@paprika/collapsible": "^5.0.0",
+    "@paprika/stylers": "^1.2.0",
+    "@paprika/tokens": "^3.2.0",
     "prop-types": "^15.8.1"
   },
   "peerDependencies": {

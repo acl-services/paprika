@@ -1,6 +1,6 @@
 {
   "name": "@paprika/notification-card",
-  "version": "1.0.25",
+  "version": "1.1.0",
   "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
   "description": "Notification Card component",
   "license": "MIT",
@@ -16,11 +16,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@paprika/constants": "^1.0.2",
-    "@paprika/heading": "^1.0.21",
-    "@paprika/helpers": "^2.4.3",
-    "@paprika/stylers": "^1.1.13",
-    "@paprika/tokens": "^3.1.1",
+    "@paprika/constants": "^1.1.0",
+    "@paprika/heading": "^1.1.0",
+    "@paprika/helpers": "^2.5.0",
+    "@paprika/stylers": "^1.2.0",
+    "@paprika/tokens": "^3.2.0",
     "prop-types": "^15.8.1"
   },
   "peerDependencies": {

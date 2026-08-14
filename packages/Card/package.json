@@ -1,6 +1,6 @@
 {
   "name": "@paprika/card",
-  "version": "2.0.11",
+  "version": "2.1.0",
   "description": "The Card component is a customizable content container.",
   "license": "MIT",
   "author": "@paprika",
@@ -15,11 +15,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@paprika/constants": "^1.0.2",
-    "@paprika/heading": "^1.0.21",
-    "@paprika/helpers": "^2.4.3",
-    "@paprika/stylers": "^1.1.13",
-    "@paprika/tokens": "^3.1.1",
+    "@paprika/constants": "^1.1.0",
+    "@paprika/heading": "^1.1.0",
+    "@paprika/helpers": "^2.5.0",
+    "@paprika/stylers": "^1.2.0",
+    "@paprika/tokens": "^3.2.0",
     "lodash.truncate": "^4.4.2",
     "prop-types": "^15.8.1"
   },

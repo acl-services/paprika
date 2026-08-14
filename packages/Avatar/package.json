@@ -1,6 +1,6 @@
 {
   "name": "@paprika/avatar",
-  "version": "2.2.21",
+  "version": "2.3.0",
   "description": "Avatar component represents an object or entity and displays initials or icon.",
   "license": "MIT",
   "author": "@paprika",
@@ -17,10 +17,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@paprika/constants": "^1.0.2",
-    "@paprika/helpers": "^2.4.3",
-    "@paprika/stylers": "^1.1.13",
-    "@paprika/tokens": "^3.1.1",
+    "@paprika/constants": "^1.1.0",
+    "@paprika/helpers": "^2.5.0",
+    "@paprika/stylers": "^1.2.0",
+    "@paprika/tokens": "^3.2.0",
     "prop-types": "^15.8.1"
   },
   "peerDependencies": {

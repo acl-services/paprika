@@ -1,6 +1,6 @@
 {
   "name": "@paprika/date-range-picker",
-  "version": "4.0.5",
+  "version": "5.0.0",
   "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
   "description": "DateRangePicker component allows user to view and specify a date range through an entry fields or a calendar widgets.",
   "license": "MIT",
@@ -16,17 +16,17 @@
     "access": "public"
   },
   "dependencies": {
-    "@paprika/calendar": "^5.0.4",
-    "@paprika/date-input": "^4.0.4",
-    "@paprika/helpers": "^2.4.3",
-    "@paprika/icon": "^3.0.3",
-    "@paprika/popover": "^2.0.14",
-    "@paprika/stylers": "^1.1.13",
-    "@paprika/tokens": "^3.1.1",
+    "@paprika/calendar": "^6.0.0",
+    "@paprika/date-input": "^5.0.0",
+    "@paprika/helpers": "^2.5.0",
+    "@paprika/icon": "^3.1.0",
+    "@paprika/popover": "^2.1.0",
+    "@paprika/stylers": "^1.2.0",
+    "@paprika/tokens": "^3.2.0",
     "prop-types": "^15.8.1"
   },
   "peerDependencies": {
-    "@paprika/l10n": "^2.1.2",
+    "@paprika/l10n": "^2.2.0",
     "moment": "^2.30.1",
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "react-dom": "^16.8.4 || ^17.0.2 || ^18.0.0",

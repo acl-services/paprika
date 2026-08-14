@@ -1,6 +1,6 @@
 {
   "name": "@paprika/button",
-  "version": "1.1.21",
+  "version": "1.2.0",
   "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
   "description": "Button component, for performing an action on the page you’re viewing.",
   "license": "MIT",
@@ -16,12 +16,12 @@
     "access": "public"
   },
   "dependencies": {
-    "@paprika/constants": "^1.0.2",
-    "@paprika/helpers": "^2.4.3",
-    "@paprika/icon": "^3.0.3",
-    "@paprika/raw-button": "^1.0.20",
-    "@paprika/stylers": "^1.1.13",
-    "@paprika/tokens": "^3.1.1",
+    "@paprika/constants": "^1.1.0",
+    "@paprika/helpers": "^2.5.0",
+    "@paprika/icon": "^3.1.0",
+    "@paprika/raw-button": "^1.1.0",
+    "@paprika/stylers": "^1.2.0",
+    "@paprika/tokens": "^3.2.0",
     "prop-types": "^15.8.1"
   },
   "peerDependencies": {

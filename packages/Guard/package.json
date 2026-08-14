@@ -1,6 +1,6 @@
 {
   "name": "@paprika/guard",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Guard component helps to prevent a user from losing unsaved data",
   "license": "MIT",
   "author": "@paprika",

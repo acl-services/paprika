@@ -1,6 +1,6 @@
 {
   "name": "@paprika/list-box-with-tags",
-  "version": "6.0.5",
+  "version": "7.0.0",
   "description": "Allowed the consumer to display a ListBox that show the selected option in a shape of pills",
   "license": "MIT",
   "author": "@paprika",
@@ -17,20 +17,20 @@
     "access": "public"
   },
   "dependencies": {
-    "@paprika/constants": "^1.0.2",
-    "@paprika/helpers": "^2.4.3",
-    "@paprika/icon": "^3.0.3",
-    "@paprika/list-box": "^7.0.5",
-    "@paprika/raw-button": "^1.0.20",
-    "@paprika/stylers": "^1.1.13",
-    "@paprika/tag": "^3.0.4",
-    "@paprika/tokens": "^3.1.1",
+    "@paprika/constants": "^1.1.0",
+    "@paprika/helpers": "^2.5.0",
+    "@paprika/icon": "^3.1.0",
+    "@paprika/list-box": "^8.0.0",
+    "@paprika/raw-button": "^1.1.0",
+    "@paprika/stylers": "^1.2.0",
+    "@paprika/tag": "^4.0.0",
+    "@paprika/tokens": "^3.2.0",
     "icons": "^1.0.0",
     "prop-types": "^15.8.1",
     "uuid": "^11.1.1"
   },
   "peerDependencies": {
-    "@paprika/l10n": "^2.1.2",
+    "@paprika/l10n": "^2.2.0",
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "react-dom": "^16.8.4 || ^17.0.2 || ^18.0.0",
     "styled-components": "^4.2.0 || >=5.0.0 <6.0.0"

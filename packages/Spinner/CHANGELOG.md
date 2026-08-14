@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.1.0
+
+### Minor Changes
+
+- 9705d99: Packages are now compiled with swc instead of babel. The published output targets ES2022 rather than ES5, so it keeps `const`, arrow functions, class fields and optional chaining, and no longer pulls in `@babel/runtime` helpers. Consumers need an environment that understands ES2022 (Chrome 94+, Safari 15.4+, Firefox 93+, Edge 94+, Node 16.11+) or a build step that transpiles `node_modules`.
+
+  `@paprika/mock-endpoints`, `@paprika/dynamic-hyperlink-transformer` and `@paprika/inline-editors` now ship the `lib/index.d.ts` their `types` field has always pointed at.
+
+### Patch Changes
+
+- Updated dependencies [9705d99]
+  - @paprika/constants@1.1.0
+  - @paprika/helpers@2.5.0
+  - @paprika/stylers@1.2.0
+  - @paprika/tokens@3.2.0
+
 ## 1.0.24
 
 ### Patch Changes

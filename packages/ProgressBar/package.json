@@ -1,6 +1,6 @@
 {
   "name": "@paprika/progress-bar",
-  "version": "1.1.16",
+  "version": "1.2.0",
   "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
   "description": "ProgressBar is a component that shows the current progress of an action",
   "license": "MIT",
@@ -16,9 +16,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@paprika/heading": "^1.0.21",
-    "@paprika/stylers": "^1.1.13",
-    "@paprika/tokens": "^3.1.1",
+    "@paprika/heading": "^1.1.0",
+    "@paprika/stylers": "^1.2.0",
+    "@paprika/tokens": "^3.2.0",
     "prop-types": "^15.8.1",
     "uuid": "^11.1.1"
   },

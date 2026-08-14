@@ -1,6 +1,6 @@
 {
   "name": "@paprika/link",
-  "version": "1.0.14",
+  "version": "1.1.0",
   "description": "The Link component produces a standard anchor tag that navigates to another URL.",
   "license": "MIT",
   "author": "@paprika",
@@ -17,9 +17,9 @@
     "transpile:types": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
-    "@paprika/icon": "^3.0.3",
-    "@paprika/stylers": "^1.1.13",
-    "@paprika/tokens": "^3.1.1",
+    "@paprika/icon": "^3.1.0",
+    "@paprika/stylers": "^1.2.0",
+    "@paprika/tokens": "^3.2.0",
     "prop-types": "^15.8.1"
   },
   "peerDependencies": {
