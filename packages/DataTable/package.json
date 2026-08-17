@@ -21,7 +21,7 @@
     "@paprika/helpers": "^2.5.0",
     "@paprika/stylers": "^1.2.0",
     "@paprika/tokens": "^3.2.0",
-    "dompurify": "^2.4.0",
+    "dompurify": "^3.4.13",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
     "react-table": "^7.7.0",
