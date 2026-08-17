@@ -4339,7 +4339,7 @@ __metadata:
     "@storybook/manager-webpack5": "npm:^6.5.16"
     "@storybook/react": "npm:^6.5.16"
     "@swc/cli": "npm:^0.8.1"
-    "@swc/core": "npm:^1.15.46"
+    "@swc/core": "npm:^1.16.0"
     "@swc/jest": "npm:^0.2.39"
     "@swc/plugin-styled-components": "npm:^13.0.0"
     "@testing-library/cypress": "npm:^7.0.7"
@@ -6547,7 +6547,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/core@npm:^1.15.46":
+"@swc/core@npm:^1.16.0":
   version: 1.16.0
   resolution: "@swc/core@npm:1.16.0"
   dependencies:
