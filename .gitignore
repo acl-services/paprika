@@ -23,10 +23,15 @@ node_modules/
 # Optional npm cache directory
 .npm
 
-# Yarn Integrity file
-.yarn-integrity
+# Yarn 4: commit the pinned release and patches, ignore everything generated
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+.pnp.*
 
-# npm lockfile, this repo is yarn 1 workspaces only
+# npm lockfile, this repo is yarn workspaces only
 package-lock.json
 
 # dotenv environment variables file

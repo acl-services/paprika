@@ -23,8 +23,6 @@ Notes:
 - `yarn build:packages` runs `pretranspile` for the packages that need generated sources (`@paprika/icon`, `@paprika/l10n` translation files, `@paprika/tokens`) and then transpiles `src/` → `lib/` for every package. Installing alone does **not** build anything.
 - `yarn build:repo` is the full release build: `cleanup` + `build:packages` + type definitions + generated READMEs. Use it when the `.d.ts` files or package READMEs matter, `build:packages` otherwise.
 - Re-run the build after pulling changes that touch translations or any package's public build output.
-- `lerna bootstrap` is **not** what builds the packages: `lerna.json` sets `useWorkspaces: true`, so bootstrap only re-runs a root `yarn install` (`lerna info bootstrap root only`) and reports `Already up-to-date`.
-- Use `node_modules/.bin/lerna` directly for other lerna commands (`lerna run`, `lerna exec`) — `npx lerna` can silently fail under corepack in some shells.
 
 ## Running tests
 
@@ -39,7 +37,7 @@ Example:
 node_modules/.bin/jest packages/Filter/tests/spec
 ```
 
-`yarn test` / `npx jest` may fail to resolve the `jest` binary or the `@testing-library/jest-dom/extend-expect` setup file depending on shell/corepack state — prefer the direct `node_modules/.bin/jest` invocation above.
+`yarn test` / `npx jest` may fail to resolve the `jest` binary or the `@testing-library/jest-dom/extend-expect` setup file depending on shell state — prefer the direct `node_modules/.bin/jest` invocation above.
 
 ## Testing hooks
 

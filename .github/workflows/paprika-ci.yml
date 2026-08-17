@@ -64,15 +64,23 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
-          cache: "yarn"
+          # cache: "yarn" removed — see setup-paprika/action.yml for reasoning.
 
       - name: Setup Yarn
         run: corepack enable
 
-      # @octokit/rest is already a root devDependency; --ignore-scripts keeps this
-      # job to a bare dependency install.
+      - name: Cache Yarn Berry global cache
+        uses: actions/cache@v6
+        with:
+          path: ~/.yarn/berry/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      # @octokit/rest is already a root devDependency; --mode=skip-build keeps this
+      # job to a bare dependency install (no postinstall scripts, e.g. Cypress).
       - name: Install dependencies
-        run: yarn install --frozen-lockfile --ignore-scripts
+        run: yarn install --immutable --mode=skip-build
 
       - name: Insert Storybook link into PR Body Message
         env:

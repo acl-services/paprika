@@ -164,7 +164,7 @@ export default function YourComponent() {
 After you have added a new translation to en.yml, in order to see it in Storybook you will need to delete the `lib` folder and regenerate it:
 
 ```
-rm -rf packages/L10n/lib/ && npx lerna bootstrap
+rm -rf packages/L10n/lib/ && yarn install
 ```
 
 <!-- eoContent -->

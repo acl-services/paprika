@@ -12,7 +12,6 @@
   <img alt="react version" src="https://img.shields.io/badge/react-v16.8.2-green.svg">
   <img alt="node version" src="https://img.shields.io/badge/node-v10.0.0%2B-brightgreen.svg">
   <img alt="yarn version" src="https://img.shields.io/badge/yarn-v1.12.3%2B-yellowgreen.svg">
-  <img alt="lerna version" src="https://img.shields.io/badge/lerna-v3.13.0-blue.svg">
   <img alt="styled components version" src="https://img.shields.io/badge/styled--components-4.2.0-yellow">
   <img alt="prettier" src="https://img.shields.io/badge/codestyle-prettier-%23ff69b4">
   <br>

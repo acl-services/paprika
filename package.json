@@ -29,7 +29,7 @@
     "build:packages": "yarn build:pretranspile && yarn transpile",
     "build:types": "yarn workspace @paprika/tokens transpile:types && yarn workspace @paprika/helpers transpile:types && yarn workspace @paprika/stylers transpile:types && yarn workspace @paprika/link transpile:types && yarn workspace @paprika/resize-detector transpile:types && yarn workspace @paprika/data-table transpile:types",
     "build:repo": "yarn cleanup && yarn build:packages && yarn generateTypeDefinitionsForJS && yarn build:types && yarn generateReadMe",
-    "prepare:esm": "yarn transpile:esm && lerna run transpile:esm:types",
+    "prepare:esm": "yarn transpile:esm && yarn workspaces foreach --all --topological run transpile:esm:types",
     "format": "oxfmt --write .",
     "format:check": "oxfmt --check .",
     "storybook": "run-p storybook:start storybook:uploadserver",
@@ -63,7 +63,7 @@
     "@babel/preset-env": "^7.29.7",
     "@babel/preset-react": "^7.29.7",
     "@babel/preset-typescript": "^7.29.7",
-    "@commitlint/cli": "^21.2.1",
+    "@commitlint/cli": "^21.2.2",
     "@commitlint/config-conventional": "^21.2.0",
     "@octokit/rest": "^16.43.2",
     "@storybook/addon-a11y": "^6.5.16",
@@ -79,7 +79,7 @@
     "@swc/cli": "^0.8.1",
     "@swc/core": "^1.15.46",
     "@swc/jest": "^0.2.39",
-    "@swc/plugin-styled-components": "^12.19.0",
+    "@swc/plugin-styled-components": "^13.0.0",
     "@testing-library/cypress": "^7.0.7",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^10.4.9",
@@ -103,7 +103,6 @@
     "jest-cli": "^26.6.3",
     "js-yaml": "^3.15.1",
     "lefthook": "^2.1.10",
-    "lerna": "^6.6.2",
     "npm-run-all": "^4.1.5",
     "oxfmt": "0.63.0",
     "oxlint": "1.78.0",
@@ -178,6 +177,7 @@
   },
   "engines": {
     "node": ">=22",
-    "yarn": ">=1"
-  }
+    "yarn": ">=4"
+  },
+  "packageManager": "yarn@4.18.0+sha512.fcb8716fe7cd0eece141ffc18b92193a9df9204c1ba83189c288835223fc0bbe64af473bab0d5e9927a7daeb5caf2bb07eb2787cc9338ca040ea125f2a1f2f7e"
 }
