@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:24-alpine
 
 ENV DIR /src
 
@@ -11,5 +11,4 @@ COPY . $DIR
 WORKDIR $DIR
 
 RUN yarn
-RUN npx lerna bootstrap
 RUN yarn storybook:build
