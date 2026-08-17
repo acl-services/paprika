@@ -14,11 +14,21 @@ runs:
       uses: actions/setup-node@v7
       with:
         node-version-file: .nvmrc
-        cache: "yarn"
+        # cache: "yarn" removed — setup-node invokes system Yarn 1 to find the
+        # cache dir, but Yarn 1 rejects packageManager: yarn@4 before corepack
+        # is enabled. Cache is managed manually below.
 
     - name: Setup Yarn
       shell: bash
       run: corepack enable
+
+    - name: Cache Yarn Berry global cache
+      uses: actions/cache@v6
+      with:
+        path: ~/.yarn/berry/cache
+        key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
 
     - name: Cache Cypress
       if: inputs.with-cypress-cache == 'true'
