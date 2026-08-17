@@ -1,5 +1,5 @@
 import tokens from "@paprika/tokens";
-import { sanitize } from "dompurify";
+import DOMPurify from "dompurify";
 import { TableDataItemType, TableColumnsWidth } from "../types";
 
 const DEFAULT_HEIGHT = 40;
@@ -68,7 +68,7 @@ export default class RowHeightHelper {
 
     for (let [key, value] of Object.entries(rowData)) {
       if (Object.prototype.hasOwnProperty.call(columnsWidth, key)) {
-        const sanitizedValue = value instanceof Node ? sanitize(value) : sanitize(String(value));
+        const sanitizedValue = value instanceof Node ? DOMPurify.sanitize(value) : DOMPurify.sanitize(String(value));
         innerElementsForTheRow.push(
           `<div style="box-sizing:border-box;width:${columnsWidth[key]}px;${this.styles}">${sanitizedValue}</div>`
         );
