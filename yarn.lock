@@ -4348,13 +4348,13 @@ __metadata:
     "@testing-library/react-hooks": "npm:^3.7.0"
     "@testing-library/user-event": "npm:^12.8.3"
     "@types/faker": "npm:^5.5.9"
-    "@types/jest-axe": "npm:^3.5.3"
-    "@types/styled-components": "npm:^5.1.11"
+    "@types/jest-axe": "npm:^3.5.9"
+    "@types/styled-components": "npm:^5.1.36"
     babel-loader: "npm:^8.4.1"
     babel-plugin-styled-components: "npm:^1.13.3"
     css-loader: "npm:^7.1.4"
     cypress: "npm:^6.9.1"
-    cypress-file-upload: "npm:^5.0.2"
+    cypress-file-upload: "npm:^5.0.8"
     cypress-plugin-tab: "npm:^1.0.5"
     faker: "npm:^4.1.0"
     given2: "npm:^2.1.7"
@@ -6950,7 +6950,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest-axe@npm:^3.5.3":
+"@types/jest-axe@npm:^3.5.9":
   version: 3.5.9
   resolution: "@types/jest-axe@npm:3.5.9"
   dependencies:
@@ -7256,7 +7256,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/styled-components@npm:^5.1.11":
+"@types/styled-components@npm:^5.1.36":
   version: 5.1.36
   resolution: "@types/styled-components@npm:5.1.36"
   dependencies:
@@ -11382,7 +11382,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress-file-upload@npm:^5.0.2":
+"cypress-file-upload@npm:^5.0.8":
   version: 5.0.8
   resolution: "cypress-file-upload@npm:5.0.8"
   peerDependencies:
