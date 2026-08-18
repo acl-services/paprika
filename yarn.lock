@@ -3834,18 +3834,18 @@ __metadata:
     "@paprika/input": "npm:^8.0.0"
     "@paprika/stylers": "npm:^1.2.0"
     "@paprika/tokens": "npm:^3.2.0"
-    "@types/dompurify": "npm:^2.3.3"
-    "@types/lodash.debounce": "npm:^4.0.6"
-    "@types/lodash.isequal": "npm:^4.5.5"
-    "@types/react-table": "npm:^7.7.7"
-    "@types/react-window": "npm:^1.8.5"
-    "@types/react-window-infinite-loader": "npm:^1.0.5"
-    dompurify: "npm:^2.4.0"
+    "@types/dompurify": "npm:^3.2.0"
+    "@types/lodash.debounce": "npm:^4.0.9"
+    "@types/lodash.isequal": "npm:^4.5.8"
+    "@types/react-table": "npm:^7.7.20"
+    "@types/react-window": "npm:^1.8.8"
+    "@types/react-window-infinite-loader": "npm:^1.0.9"
+    dompurify: "npm:^3.4.13"
     lodash.debounce: "npm:^4.0.8"
     lodash.isequal: "npm:^4.5.0"
-    react-table: "npm:^7.7.0"
-    react-window: "npm:^1.8.6"
-    react-window-infinite-loader: "npm:^1.0.7"
+    react-table: "npm:^7.8.0"
+    react-window: "npm:^1.8.11"
+    react-window-infinite-loader: "npm:^1.0.10"
   peerDependencies:
     react: ^16.8.4 || ^17.0.2 || ^18.0.0
     react-dom: ^16.8.4 || ^17.0.2 || ^18.0.0
@@ -4339,7 +4339,7 @@ __metadata:
     "@storybook/manager-webpack5": "npm:^6.5.16"
     "@storybook/react": "npm:^6.5.16"
     "@swc/cli": "npm:^0.8.1"
-    "@swc/core": "npm:^1.15.46"
+    "@swc/core": "npm:^1.16.0"
     "@swc/jest": "npm:^0.2.39"
     "@swc/plugin-styled-components": "npm:^13.0.0"
     "@testing-library/cypress": "npm:^7.0.7"
@@ -4348,13 +4348,13 @@ __metadata:
     "@testing-library/react-hooks": "npm:^3.7.0"
     "@testing-library/user-event": "npm:^12.8.3"
     "@types/faker": "npm:^5.5.9"
-    "@types/jest-axe": "npm:^3.5.3"
-    "@types/styled-components": "npm:^5.1.11"
+    "@types/jest-axe": "npm:^3.5.9"
+    "@types/styled-components": "npm:^5.1.36"
     babel-loader: "npm:^8.4.1"
     babel-plugin-styled-components: "npm:^1.13.3"
     css-loader: "npm:^7.1.4"
     cypress: "npm:^6.9.1"
-    cypress-file-upload: "npm:^5.0.2"
+    cypress-file-upload: "npm:^5.0.8"
     cypress-plugin-tab: "npm:^1.0.5"
     faker: "npm:^4.1.0"
     given2: "npm:^2.1.7"
@@ -6547,7 +6547,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/core@npm:^1.15.46":
+"@swc/core@npm:^1.16.0":
   version: 1.16.0
   resolution: "@swc/core@npm:1.16.0"
   dependencies:
@@ -6835,12 +6835,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/dompurify@npm:^2.3.3":
-  version: 2.4.0
-  resolution: "@types/dompurify@npm:2.4.0"
+"@types/dompurify@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "@types/dompurify@npm:3.2.0"
   dependencies:
-    "@types/trusted-types": "npm:*"
-  checksum: 10c0/a20c4288a067811e097f0b92a0cae927a9c49c0d5de36fea66b85fcc5c8db63a22ac47df37f324e426a01e8ab99ae28ea04260301350bda194850617a26931d6
+    dompurify: "npm:*"
+  checksum: 10c0/e83fec586ffbb1b43f7c8479f2a99c223814d240db912d53fb126aaeea52a4091deceeb75632b5d76004d88ef0fbf444984887b121dece6fa69f4172ed4b2b07
   languageName: node
   linkType: hard
 
@@ -6950,7 +6950,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest-axe@npm:^3.5.3":
+"@types/jest-axe@npm:^3.5.9":
   version: 3.5.9
   resolution: "@types/jest-axe@npm:3.5.9"
   dependencies:
@@ -6986,7 +6986,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash.debounce@npm:^4.0.6":
+"@types/lodash.debounce@npm:^4.0.9":
   version: 4.0.9
   resolution: "@types/lodash.debounce@npm:4.0.9"
   dependencies:
@@ -6995,7 +6995,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash.isequal@npm:^4.5.5":
+"@types/lodash.isequal@npm:^4.5.8":
   version: 4.5.8
   resolution: "@types/lodash.isequal@npm:4.5.8"
   dependencies:
@@ -7157,7 +7157,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-table@npm:^7.7.7":
+"@types/react-table@npm:^7.7.20":
   version: 7.7.20
   resolution: "@types/react-table@npm:7.7.20"
   dependencies:
@@ -7175,7 +7175,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-window-infinite-loader@npm:^1.0.5":
+"@types/react-window-infinite-loader@npm:^1.0.9":
   version: 1.0.9
   resolution: "@types/react-window-infinite-loader@npm:1.0.9"
   dependencies:
@@ -7256,7 +7256,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/styled-components@npm:^5.1.11":
+"@types/styled-components@npm:^5.1.36":
   version: 5.1.36
   resolution: "@types/styled-components@npm:5.1.36"
   dependencies:
@@ -7292,7 +7292,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/trusted-types@npm:*":
+"@types/trusted-types@npm:^2.0.7":
   version: 2.0.7
   resolution: "@types/trusted-types@npm:2.0.7"
   checksum: 10c0/4c4855f10de7c6c135e0d32ce462419d8abbbc33713b31d294596c0cc34ae1fa6112a2f9da729c8f7a20707782b0d69da3b1f8df6645b0366d08825ca1522e0c
@@ -11382,7 +11382,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress-file-upload@npm:^5.0.2":
+"cypress-file-upload@npm:^5.0.8":
   version: 5.0.8
   resolution: "cypress-file-upload@npm:5.0.8"
   peerDependencies:
@@ -12043,10 +12043,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dompurify@npm:^2.4.0":
-  version: 2.5.9
-  resolution: "dompurify@npm:2.5.9"
-  checksum: 10c0/91cf3fd8ad07f969a740813a2101d573547954fd87925d729e8cfc592fa93c51fc3f7b298d336bd90c1a5eae1ad65d1ca06254b938fd84af84ef081c9c4b75ee
+"dompurify@npm:*, dompurify@npm:^3.4.13":
+  version: 3.4.13
+  resolution: "dompurify@npm:3.4.13"
+  dependencies:
+    "@types/trusted-types": "npm:^2.0.7"
+  dependenciesMeta:
+    "@types/trusted-types":
+      optional: true
+  checksum: 10c0/9c2a1a71e1a1d8b77953db7a39ffc935ef4ed4f10fe40770232128c2cbfd4c3dc677d3d7bae51eb24cc52d9ff3548612dc540ecb4343e89b26e809d2be2e0cfe
   languageName: node
   linkType: hard
 
@@ -20668,7 +20673,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-table@npm:^7.7.0":
+"react-table@npm:^7.8.0":
   version: 7.8.0
   resolution: "react-table@npm:7.8.0"
   peerDependencies:
@@ -20719,7 +20724,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-window-infinite-loader@npm:^1.0.7":
+"react-window-infinite-loader@npm:^1.0.10":
   version: 1.0.10
   resolution: "react-window-infinite-loader@npm:1.0.10"
   peerDependencies:
@@ -20729,7 +20734,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-window@npm:^1.8.5, react-window@npm:^1.8.6":
+"react-window@npm:^1.8.11, react-window@npm:^1.8.5":
   version: 1.8.11
   resolution: "react-window@npm:1.8.11"
   dependencies:

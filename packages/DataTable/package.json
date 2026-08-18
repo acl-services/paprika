@@ -21,22 +21,22 @@
     "@paprika/helpers": "^2.5.0",
     "@paprika/stylers": "^1.2.0",
     "@paprika/tokens": "^3.2.0",
-    "dompurify": "^2.4.0",
+    "dompurify": "^3.4.13",
     "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
-    "react-table": "^7.7.0",
-    "react-window": "^1.8.6",
-    "react-window-infinite-loader": "^1.0.7"
+    "react-table": "^7.8.0",
+    "react-window": "^1.8.11",
+    "react-window-infinite-loader": "^1.0.10"
   },
   "devDependencies": {
     "@paprika/button": "^1.2.0",
     "@paprika/input": "^8.0.0",
-    "@types/dompurify": "^2.3.3",
-    "@types/lodash.debounce": "^4.0.6",
-    "@types/lodash.isequal": "^4.5.5",
-    "@types/react-table": "^7.7.7",
-    "@types/react-window": "^1.8.5",
-    "@types/react-window-infinite-loader": "^1.0.5"
+    "@types/dompurify": "^3.2.0",
+    "@types/lodash.debounce": "^4.0.9",
+    "@types/lodash.isequal": "^4.5.8",
+    "@types/react-table": "^7.7.20",
+    "@types/react-window": "^1.8.8",
+    "@types/react-window-infinite-loader": "^1.0.9"
   },
   "peerDependencies": {
     "react": "^16.8.4 || ^17.0.2 || ^18.0.0",
