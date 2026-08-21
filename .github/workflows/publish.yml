@@ -54,14 +54,6 @@ jobs:
           registry-url: "https://registry.npmjs.org"
           scope: "@paprika"
 
-      - name: Ensure npm supports Trusted Publishing
-        run: |
-          # Trusted Publishing requires npm 11.5.1+. `changeset publish` shells out to
-          # `npm publish`, so this is the npm that matters.
-          echo "npm bundled with Node: $(npm --version)"
-          npm install -g npm@^11.5.1
-          echo "npm used for publishing: $(npm --version)"
-
       # Builds translations/tokens/icons and transpiles every package's src/ -> lib/,
       # then the ESM output and its type definitions.
       - name: Build release artifacts
@@ -88,6 +80,11 @@ jobs:
           # carries a stale yarn.lock and every later `yarn install --immutable` fails (YN0028).
           yarn install --mode=update-lockfile --no-immutable
 
+      # `changeset publish` computes versions with Yarn but uploads with `npm publish`
+      # (@changesets/cli only shells out to pnpm; everything else gets npm), and npm needs
+      # 11.5.1+ for Trusted Publishing. .nvmrc pins Node 24, which bundles npm 11.17.0,
+      # so nothing has to be installed here — the assertion below fails loudly if that
+      # ever stops being true.
       - name: Publish packages and push changes
         env:
           # Publishing authenticates through npm Trusted Publishing (OIDC). setup-node's
@@ -99,6 +96,13 @@ jobs:
           GIT_COMMITTER_NAME: Paprika GitHub Actions
           GIT_COMMITTER_EMAIL: paprika-ci@diligent.com
         run: |
+          NPM_VERSION="$(npm --version)"
+          echo "Publishing with npm $NPM_VERSION"
+          if [ "$(printf '11.5.1\n%s\n' "$NPM_VERSION" | sort -V | head -1)" != "11.5.1" ]; then
+            echo "::error::npm $NPM_VERSION is below the 11.5.1 required for Trusted Publishing"
+            exit 1
+          fi
+
           if [ -z "$(git status --porcelain)" ]; then
             echo "No changes."
             exit 0
