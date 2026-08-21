@@ -2,8 +2,9 @@ name: Automatic Publish Packages
 
 on:
   schedule:
-    # Pre-release: Every 6 hours at :00 past the hour, between 03:00 AM and 09:59 PM UTC
-    - cron: "0 3,9,15,21 * * *"
+    # Pre-release: Every 6 hours at :00 past the hour, between 03:00 AM and 03:59 PM UTC.
+    # 21:00 is left out so it can never collide with the stable cron below.
+    - cron: "0 3,9,15 * * *"
     # Stable release: Every Saturday at 9:00 PM UTC
     - cron: "0 21 * * 6"
   workflow_dispatch:
@@ -17,106 +18,96 @@ on:
           - stable
 
 permissions:
-  contents: write # Needed to push commits and tags
+  contents: read # Commits are pushed with the SSH deploy key, not GITHUB_TOKEN
   id-token: write # Required for npm Trusted Publishing (OIDC)
+
+# Two runs versioning and publishing at once would leave npm ahead of git.
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+env:
+  RELEASE_TYPE: >-
+    ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.release_type
+    || (github.event.schedule == '0 21 * * 6' && 'stable' || 'pre-release') }}
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
-      - name: Setup SSH Deploy Key
-        uses: webfactory/ssh-agent@v0.10.0
-        with:
-          ssh-private-key: ${{ secrets.PAPRIKA_DEPLOY_KEY }}
-
       - name: Checkout repository
         uses: actions/checkout@v7
         with:
-          fetch-depth: 0
-          # Use SSH deploy key (doesn't expire, repo-scoped)
-          # Machine user account (paprika-ci@diligent.com) must be added to branch protection bypass list
+          fetch-depth: 0 # `pull --rebase` and `push --follow-tags` need real history
+          # Makes origin an SSH remote and stays configured for the push at the end of the job.
           ssh-key: ${{ secrets.PAPRIKA_DEPLOY_KEY }}
-          persist-credentials: false
 
-      - name: Determine release type
-        id: release-type
-        run: |
-          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
-            echo "type=${{ github.event.inputs.release_type }}" >> $GITHUB_OUTPUT
-          elif [ "${{ github.event.schedule }}" == "0 21 * * 6" ]; then
-            echo "type=stable" >> $GITHUB_OUTPUT
-          else
-            echo "type=pre-release" >> $GITHUB_OUTPUT
-          fi
-          echo "Release type: $(cat $GITHUB_OUTPUT | grep type | cut -d'=' -f2)"
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
+      - name: Setup Paprika
+        uses: ./.github/actions/setup-paprika
         with:
-          node-version-file: .nvmrc
-
-      - name: Install npm 11.5.1
-        run: |
-          # Trusted Publishing requires npm 11.5.1+
-          npm install -g npm@11.5.1
-
-      - name: Configure Git
-        run: |
-          git config user.name "Paprika GitHub Actions"
-          git config user.email "paprika-ci@diligent.com"
-          # SSH deploy key is already configured via ssh-agent
-          # Machine user account must be added to branch protection bypass list for master branch
-
-      - name: Setup Yarn
-        run: corepack enable
-
-      - name: Install dependencies
-        run: yarn install --immutable
-
-      # Builds translations/tokens/icons and transpiles every package's src/ -> lib/.
-      - name: Build repository
-        run: yarn build:repo
-
-      - name: Prepare ESM builds
-        run: yarn prepare:esm
-
-      - name: Enter pre-release mode
-        if: steps.release-type.outputs.type == 'pre-release'
-        run: |
-          test -f .changeset/pre.json || yarn changeset pre enter next
-
-      - name: Exit pre-release mode
-        if: steps.release-type.outputs.type == 'stable'
-        run: |
-          test -f .changeset/pre.json && yarn changeset pre exit
-
-      - name: Version packages
-        run: yarn changeset version
-
-      - name: Setup Node.js for publish
-        uses: actions/setup-node@v7
-        with:
-          node-version-file: .nvmrc
           registry-url: "https://registry.npmjs.org"
           scope: "@paprika"
 
+      # Builds translations/tokens/icons and transpiles every package's src/ -> lib/,
+      # then the ESM output and its type definitions.
+      - name: Build release artifacts
+        run: |
+          yarn build:repo
+          yarn prepare:esm
+
+      - name: Toggle pre-release mode
+        run: |
+          echo "Release type: $RELEASE_TYPE"
+          if [ "$RELEASE_TYPE" = "stable" ]; then
+            if [ -f .changeset/pre.json ]; then
+              yarn changeset pre exit
+            fi
+          elif [ ! -f .changeset/pre.json ]; then
+            yarn changeset pre enter next
+          fi
+
+      - name: Version packages
+        run: |
+          yarn changeset version
+          # `changeset version` rewrites internal dependency ranges but never the lockfile.
+          # Berry keys lockfile entries by range, so without this refresh the release commit
+          # carries a stale yarn.lock and every later `yarn install --immutable` fails (YN0028).
+          yarn install --mode=update-lockfile
+
       - name: Publish packages and push changes
         env:
-          NODE_AUTH_TOKEN: ${{ github.token }}
+          # Publishing authenticates through Trusted Publishing (OIDC). setup-node's .npmrc
+          # references ${NODE_AUTH_TOKEN}, so the variable has to exist — but it must stay
+          # empty: a real GitHub token here would be sent to the registry as a credential.
+          NODE_AUTH_TOKEN: ""
+          GIT_AUTHOR_NAME: Paprika GitHub Actions
+          GIT_AUTHOR_EMAIL: paprika-ci@diligent.com
+          GIT_COMMITTER_NAME: Paprika GitHub Actions
+          GIT_COMMITTER_EMAIL: paprika-ci@diligent.com
         run: |
-          if [ -z "`git status --porcelain`" ]; then
+          if [ -z "$(git status --porcelain)" ]; then
             echo "No changes."
-          else
-            git add .
-            if [ "${{ steps.release-type.outputs.type }}" == "stable" ]; then
-              COMMIT_MSG="[Bot] Paprika Release"
-            else
-              COMMIT_MSG="[Bot] Paprika Pre-Release"
-            fi
-            git commit -m "$COMMIT_MSG" --no-verify
-            yarn changeset publish
-            
-            # Direct push to master using SSH deploy key (doesn't expire)
-            # Machine user account (paprika-ci@diligent.com) must be added to branch protection bypass list
-            git push origin master --follow-tags --no-verify
+            exit 0
           fi
+
+          if [ "$RELEASE_TYPE" = "stable" ]; then
+            COMMIT_MSG="[Bot] Paprika Release"
+          else
+            COMMIT_MSG="[Bot] Paprika Pre-Release"
+          fi
+
+          # Stage only what a release may touch, so build output can never slip into the commit.
+          git add packages/*/package.json packages/*/CHANGELOG.md .changeset yarn.lock
+          git commit -m "$COMMIT_MSG" --no-verify
+
+          # master may have moved while this job was building. Rebasing has to happen before
+          # `changeset publish`: afterwards it would strip the release commit of the tags it
+          # just created and `--follow-tags` would push nothing.
+          git pull --rebase --autostash origin master
+
+          # `changeset publish` computes versions with Yarn but uploads with `npm publish`.
+          yarn changeset publish
+
+          # Machine user account (paprika-ci@diligent.com) must be added to branch protection bypass list
+          git push origin master --follow-tags --no-verify
