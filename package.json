@@ -10,7 +10,7 @@
   "scripts": {
     "postinstall": "patch-package",
     "build:translations": "yarn workspace @paprika/l10n build:translations",
-    "cleanup": "yarn rimraf packages/*/lib",
+    "cleanup": "yarn rimraf \"packages/*/lib\"",
     "cypress:ci": "run-p --race storybook cypress:run",
     "cypress:dev": "run-p --race storybook cypress:open",
     "cypress:open": "cypress open",
