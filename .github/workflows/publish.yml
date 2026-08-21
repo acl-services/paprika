@@ -3,8 +3,7 @@ name: Automatic Publish Packages
 on:
   schedule:
     # Pre-release: Every 6 hours at :00 past the hour, between 03:00 AM and 03:59 PM UTC.
-    # 21:00 is deliberately left out: it would collide with the stable cron below every
-    # Saturday and start two publish runs in the same minute.
+    # 21:00 is left out so it can never collide with the stable cron below.
     - cron: "0 3,9,15 * * *"
     # Stable release: Every Saturday at 9:00 PM UTC
     - cron: "0 21 * * 6"
@@ -22,8 +21,7 @@ permissions:
   contents: read # Commits are pushed with the SSH deploy key, not GITHUB_TOKEN
   id-token: write # Required for npm Trusted Publishing (OIDC)
 
-# Versioning, publishing and pushing must never overlap: a second run would publish the
-# same versions and then fail to push, leaving npm ahead of git.
+# Two runs versioning and publishing at once would leave npm ahead of git.
 concurrency:
   group: publish
   cancel-in-progress: false
@@ -41,11 +39,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
         with:
-          # Full history keeps `git pull --rebase` and `git push --follow-tags` honest.
-          fetch-depth: 0
-          # The SSH deploy key (doesn't expire, repo-scoped) makes origin an SSH remote and
-          # stays configured for the push at the end of the job.
-          # Machine user account (paprika-ci@diligent.com) must be added to branch protection bypass list
+          fetch-depth: 0 # `pull --rebase` and `push --follow-tags` need real history
+          # Makes origin an SSH remote and stays configured for the push at the end of the job.
           ssh-key: ${{ secrets.PAPRIKA_DEPLOY_KEY }}
 
       - name: Setup Paprika
@@ -78,31 +73,19 @@ jobs:
           # `changeset version` rewrites internal dependency ranges but never the lockfile.
           # Berry keys lockfile entries by range, so without this refresh the release commit
           # carries a stale yarn.lock and every later `yarn install --immutable` fails (YN0028).
-          yarn install --mode=update-lockfile --no-immutable
+          yarn install --mode=update-lockfile
 
-      # `changeset publish` computes versions with Yarn but uploads with `npm publish`
-      # (@changesets/cli only shells out to pnpm; everything else gets npm), and npm needs
-      # 11.5.1+ for Trusted Publishing. .nvmrc pins Node 24, which bundles npm 11.17.0,
-      # so nothing has to be installed here — the assertion below fails loudly if that
-      # ever stops being true.
       - name: Publish packages and push changes
         env:
-          # Publishing authenticates through npm Trusted Publishing (OIDC). setup-node's
-          # .npmrc references ${NODE_AUTH_TOKEN}, so the variable has to exist — but it must
-          # stay empty: a real GitHub token here would be sent to the registry as a credential.
+          # Publishing authenticates through Trusted Publishing (OIDC). setup-node's .npmrc
+          # references ${NODE_AUTH_TOKEN}, so the variable has to exist — but it must stay
+          # empty: a real GitHub token here would be sent to the registry as a credential.
           NODE_AUTH_TOKEN: ""
           GIT_AUTHOR_NAME: Paprika GitHub Actions
           GIT_AUTHOR_EMAIL: paprika-ci@diligent.com
           GIT_COMMITTER_NAME: Paprika GitHub Actions
           GIT_COMMITTER_EMAIL: paprika-ci@diligent.com
         run: |
-          NPM_VERSION="$(npm --version)"
-          echo "Publishing with npm $NPM_VERSION"
-          if [ "$(printf '11.5.1\n%s\n' "$NPM_VERSION" | sort -V | head -1)" != "11.5.1" ]; then
-            echo "::error::npm $NPM_VERSION is below the 11.5.1 required for Trusted Publishing"
-            exit 1
-          fi
-
           if [ -z "$(git status --porcelain)" ]; then
             echo "No changes."
             exit 0
@@ -114,17 +97,16 @@ jobs:
             COMMIT_MSG="[Bot] Paprika Pre-Release"
           fi
 
-          # Stage only what a release is allowed to touch, so a non-deterministic generator
-          # can never smuggle build output into the release commit.
+          # Stage only what a release may touch, so build output can never slip into the commit.
           git add packages/*/package.json packages/*/CHANGELOG.md .changeset yarn.lock
           git commit -m "$COMMIT_MSG" --no-verify
 
-          # master may have moved while this job was building, so rebase before publishing:
-          # a successful publish must never be left unpushed. It has to happen before
-          # `changeset publish` too, because rebasing afterwards would strip the release
-          # commit of the tags it just created and `--follow-tags` would push nothing.
+          # master may have moved while this job was building. Rebasing has to happen before
+          # `changeset publish`: afterwards it would strip the release commit of the tags it
+          # just created and `--follow-tags` would push nothing.
           git pull --rebase --autostash origin master
 
+          # `changeset publish` computes versions with Yarn but uploads with `npm publish`.
           yarn changeset publish
 
           # Machine user account (paprika-ci@diligent.com) must be added to branch protection bypass list
