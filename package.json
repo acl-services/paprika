@@ -161,7 +161,7 @@
     "serialize-javascript": "^3.1.0",
     "shell-quote": "^1.7.3",
     "ssri": "^6.0.2",
-    "tar": "^6.2.1",
+    "tar": "^7.5.21",
     "tmpl": "^1.0.5",
     "trim": "^0.0.3",
     "trim-newlines": "^3.0.1",
