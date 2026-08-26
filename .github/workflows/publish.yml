@@ -86,11 +86,6 @@ jobs:
           GIT_COMMITTER_NAME: Paprika GitHub Actions
           GIT_COMMITTER_EMAIL: paprika-ci@diligent.com
         run: |
-          if [ -z "$(git status --porcelain)" ]; then
-            echo "No changes."
-            exit 0
-          fi
-
           if [ "$RELEASE_TYPE" = "stable" ]; then
             COMMIT_MSG="[Bot] Paprika Release"
           else
@@ -98,7 +93,13 @@ jobs:
           fi
 
           # Stage only what a release may touch, so build output can never slip into the commit.
-          git add packages/*/package.json packages/*/CHANGELOG.md .changeset yarn.lock
+          git add packages/*/package.json packages/*/CHANGELOG.md packages/*/README.md .changeset yarn.lock
+
+          if git diff --cached --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+
           git commit -m "$COMMIT_MSG" --no-verify
 
           # master may have moved while this job was building. Rebasing has to happen before
