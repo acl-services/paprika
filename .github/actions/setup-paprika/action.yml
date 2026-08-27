@@ -6,6 +6,14 @@ inputs:
     description: "Whether to cache Cypress binary"
     required: false
     default: "false"
+  registry-url:
+    description: "npm registry written into .npmrc — only needed by jobs that publish"
+    required: false
+    default: ""
+  scope:
+    description: "npm scope bound to registry-url"
+    required: false
+    default: ""
 
 runs:
   using: "composite"
@@ -17,6 +25,8 @@ runs:
         # cache: "yarn" removed — setup-node invokes system Yarn 1 to find the
         # cache dir, but Yarn 1 rejects packageManager: yarn@4 before corepack
         # is enabled. Cache is managed manually below.
+        registry-url: ${{ inputs.registry-url }}
+        scope: ${{ inputs.scope }}
 
     - name: Setup Yarn
       shell: bash
