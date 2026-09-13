@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "i18next": "^19.9.2",
-    "js-yaml": "^3.15.1",
+    "js-yaml": "^3.15.2",
     "prop-types": "^15.8.1"
   },
   "peerDependencies": {
