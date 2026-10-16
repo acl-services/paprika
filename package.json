@@ -151,7 +151,7 @@
     "lodash": "^4.17.20",
     "minimatch": "^3.0.5",
     "minimist": "^1.2.6",
-    "moment": "^2.30.1",
+    "moment": "^2.31.0",
     "node-fetch": "^2.6.7",
     "nth-check": "^2.0.1",
     "postcss": "^8.4.0",
