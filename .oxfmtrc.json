@@ -20,7 +20,6 @@
     "packages/Tokens/src/tokens.yaml",
     "packages/Tokens/src/tokens.js",
     "packages/Tokens/src/tokens.mdx",
-    "packages/Uploader/server/uploads/",
     "packages/L10n/src/locales",
     "packages/L10n/src/locales-js",
     "storybook-dist",

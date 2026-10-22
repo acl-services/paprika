@@ -10,8 +10,21 @@ import * as types from "../src/types";
 
 const storyName = getStoryName("Uploader");
 
+/**
+ * Placeholder endpoint — there is intentionally no upload server behind these stories.
+ *
+ * They used to post to a local PHP server (packages/Uploader/server/upload.php, started by `yarn storybook`).
+ * It was removed as a security vulnerability: it saved any uploaded file under its client-supplied name inside
+ * its own docroot, where the PHP server would execute it, and it reflected any Origin with credentials allowed.
+ *
+ * `.invalid` is a reserved TLD that never resolves (RFC 6761), so dropped files never leave the browser and every
+ * upload ends in the error state — which is what the "Failed upload error" stories rely on. To demo successful
+ * uploads, use a mock via the `onRequest` prop instead of reintroducing a real server.
+ */
+const UPLOAD_ENDPOINT_PLACEHOLDER = "https://uploader-endpoint.invalid/upload";
+
 const props = {
-  endpoint: "http://localhost:9000/upload.php",
+  endpoint: UPLOAD_ENDPOINT_PLACEHOLDER,
   onChange: files => {
     console.log("Selected files:", files);
   },
@@ -58,7 +71,7 @@ storiesOf(storyName, module).add("Showcase", () => (
 storiesOf(`${storyName}/Examples`, module)
   .add("Failed upload error", () => (
     <Story>
-      <Uploader {...props} endpoint="http://localhost:9000/upload.php?error=true">
+      <Uploader {...props}>
         <Uploader.DropZone />
         <Uploader.FileList />
       </Uploader>
@@ -66,11 +79,7 @@ storiesOf(`${storyName}/Examples`, module)
   ))
   .add("Failed upload error using onError", () => (
     <Story>
-      <Uploader
-        {...props}
-        onError={error => `Oh dear... the server returned this error: ${error}`}
-        endpoint="http://localhost:9000/upload.php?error=true"
-      >
+      <Uploader {...props} onError={error => `Oh dear... the server returned this error: ${error}`}>
         <Uploader.DropZone />
         <Uploader.FileList />
       </Uploader>
@@ -132,7 +141,7 @@ storiesOf(`${storyName}/Examples`, module)
       <Uploader
         headers={[{ "API-Key": "your-api-key" }, { "X-CSRF-Token": "your-token" }]}
         onCompleted={files => console.log("on completed:", files)}
-        endpoint="http://localhost:9000/upload.php"
+        endpoint={UPLOAD_ENDPOINT_PLACEHOLDER}
       >
         <Uploader.DropZone />
         <Uploader.FileList />
@@ -169,7 +178,7 @@ storiesOf(`${storyName}/Examples`, module)
       <p>Override how files are uploaded.</p>
       <Uploader
         onCompleted={files => console.log("on finished:", files)}
-        endpoint="http://localhost:9000/upload.php"
+        endpoint={UPLOAD_ENDPOINT_PLACEHOLDER}
         onChange={files => {
           console.log("Selected files:", files);
         }}
@@ -199,7 +208,7 @@ storiesOf(`${storyName}/Examples`, module)
       <p>Check the console to see what is returned when you cancel an upload.</p>
       <Uploader
         onCompleted={files => console.log("on finished:", files)}
-        endpoint="http://localhost:9000/upload.php"
+        endpoint={UPLOAD_ENDPOINT_PLACEHOLDER}
         onCancel={file => {
           console.log("onCancel:", file);
         }}
@@ -212,7 +221,7 @@ storiesOf(`${storyName}/Examples`, module)
   .add("extended input props", () => (
     <Story>
       <p>Check the inspector to see the attributes on the input element</p>
-      <Uploader endpoint="http://localhost:9000/upload.php">
+      <Uploader endpoint={UPLOAD_ENDPOINT_PLACEHOLDER}>
         <Uploader.DropZone />
         <Uploader.FileList />
         <Uploader.Input name="entry-file" className="MyClassName" data-qa-anchor="my-qa-anchor" />
